@@ -14,6 +14,8 @@ cache:
   directories:
   - $HOME/.gradle
 
+before_script:
+  - git update-index --chmod=+x gradlew
 
 script:
   - ./gradlew assemble
