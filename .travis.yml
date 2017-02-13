@@ -10,11 +10,9 @@ branches:
   only:
     - master
 
-cache:
-  directories:
-  - $HOME/.gradle
+before_script:
+  - chmod +x gradlew
 
 script:
-  - chmod +x gradlew
   - ./gradlew assemble
 
