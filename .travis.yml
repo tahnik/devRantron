@@ -6,7 +6,8 @@ jdk:
 os:
   - linux
 
-sudo: required
+notifications:
+  slack: devrantfx:LB3S4jRiLEisGc71acoCZlnr
 
 branches:
   only:
