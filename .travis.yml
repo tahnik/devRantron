@@ -6,6 +6,8 @@ jdk:
 os:
   - linux
 
+sudo: required
+
 branches:
   only:
     - master
