@@ -16,6 +16,10 @@ cache:
 
 before_script:
   - chmod +x gradlew
+  - git fetch
+  - git checkout -b gh-pages
+  - git merge origin/master
+  - git rm --cached --ignore-unmatch index.html
 
 script:
   - ./gradlew assemble
