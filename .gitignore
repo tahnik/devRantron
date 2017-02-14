@@ -1,7 +1,5 @@
 build
 .gradle
-
-
 .idea/**/workspace.xml
 .idea/**/uiDesigner.xml
 

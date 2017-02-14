@@ -1,0 +1,35 @@
+.side_buttons {
+    -fx-font-size: 18;
+    -fx-text-fill: "white";
+}
+
+.tag_buttons {
+    -fx-background-color: "TRANSPARENT";
+    -fx-border-color: "#aaaab8";
+    -fx-border-radius: 5;
+    -fx-border-width: 2;
+    -fx-padding: 3;
+}
+
+.mainScrollPane .scroll-bar:vertical .thumb {
+    -fx-background-color: "#D1D0CE";
+    -fx-border-color:derive(gray,80%);
+    -fx-background-radius: 0em;
+}
+
+.mainScrollPane .scroll-bar:vertical .track {
+    -fx-background-color: "#E0E0DD";
+    -fx-background-radius: 0em;
+
+}
+
+.mainScrollPane .scroll-bar:vertical .track:hover {
+    -fx-background-color: "#D1D1CE";
+    -fx-background-radius: 0em;
+}
+
+.mainScrollPane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: "#B5B4B2";
+    -fx-border-color:derive(gray,80%);
+    -fx-background-radius: 0em;
+}
