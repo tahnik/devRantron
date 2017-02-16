@@ -1,6 +1,8 @@
 ## devRant Unofficial Cross Platform Desktop Application
 
 [![Build Status](https://travis-ci.org/tahnik/devRantFX.svg?branch=master)](https://travis-ci.org/tahnik/devRantFX)
+[![codecov](https://codecov.io/gh/tahnik/devRantFX/branch/master/graph/badge.svg)](https://codecov.io/gh/tahnik/devRantFX)
+
 
 This is our approach to create a cross platform desktop application for [devRant.io].
 
