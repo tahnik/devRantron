@@ -9,10 +9,6 @@ os:
 notifications:
   slack: devrantfx:LB3S4jRiLEisGc71acoCZlnr
 
-branches:
-  only:
-    - master
-
 before_install:
  - chmod +x gradlew
 
