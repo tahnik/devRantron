@@ -1,0 +1,10 @@
+.drawer_anchorpane {
+    -fx-background-color: "#40425b";
+}
+
+.drawer_buttons {
+    -fx-background-color: "#40425b";
+    -fx-text-fill: "white";
+    -fx-font-size: 18;
+    -fx-padding: 3;
+}
