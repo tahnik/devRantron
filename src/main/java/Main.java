@@ -1,5 +1,6 @@
 import api.DevRantAPI;
 import com.scorpiac.javarant.Sort;
+import com.scorpiac.javarant.exceptions.NoSuchRantException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,8 +30,15 @@ public class Main extends Application{
 
     public void testGetRant() {
         DevRantAPI devRantAPI = new DevRantAPI();
-        devRantAPI.getRant(-902).thenAccept(rant1 -> {
-            System.out.println(rant1.link());
-        });
+        devRantAPI.getRant(-902)
+                .thenAccept(rant1 -> {
+                    System.out.println(rant1.link());
+                })
+                .exceptionally(ex -> {
+                    if(ex.getCause() instanceof NoSuchRantException) {
+                        // TODO: Show user that rant is not found
+                    }
+                    return null;
+                });
     }
 }
