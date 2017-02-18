@@ -1,5 +1,4 @@
 import api.DevRantAPI;
-import com.scorpiac.javarant.Rant;
 import com.scorpiac.javarant.Sort;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,9 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.List;
-
-public class Main extends Application implements DevRantAPI.FeedListener, DevRantAPI.RantListener{
+public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -20,10 +17,9 @@ public class Main extends Application implements DevRantAPI.FeedListener, DevRan
         primaryStage.setMinWidth(600);
         primaryStage.show();
 
-        DevRantAPI devRantAPI = new DevRantAPI(this);
+        DevRantAPI devRantAPI = new DevRantAPI();
         devRantAPI.getRants(Sort.ALGO, 10, 0);
-        devRantAPI.getRant(422850);
-
+        testGetRant();
     }
 
 
@@ -31,13 +27,10 @@ public class Main extends Application implements DevRantAPI.FeedListener, DevRan
         launch(args);
     }
 
-    @Override
-    public void onResult(List<Rant> rants) {
-        System.out.println(rants.size());
-    }
-
-    @Override
-    public void onResult(Rant rant) {
-        System.out.println(rant.link());
+    public void testGetRant() {
+        DevRantAPI devRantAPI = new DevRantAPI();
+        devRantAPI.getRant(-902).thenAccept(rant1 -> {
+            System.out.println(rant1.link());
+        });
     }
 }
