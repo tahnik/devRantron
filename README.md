@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tahnik/devRantFX.svg?branch=master)](https://travis-ci.org/tahnik/devRantFX)
 [![codecov](https://codecov.io/gh/tahnik/devRantFX/branch/master/graph/badge.svg)](https://codecov.io/gh/tahnik/devRantFX)
+[![codebeat badge](https://codebeat.co/badges/38088b9d-dd27-4a20-a386-0e13ac7e2ae4)](https://codebeat.co/projects/github-com-tahnik-devrantfx)
 
 
 This is our approach to create a cross platform desktop application for [devRant.io].
