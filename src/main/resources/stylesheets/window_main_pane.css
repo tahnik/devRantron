@@ -38,3 +38,7 @@
     -fx-background-color: "transparent";
     -fx-border: 0;
 }
+
+.drawer_hamburger {
+    -fx-background-color: "#54556e";
+}
