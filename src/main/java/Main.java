@@ -1,7 +1,6 @@
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.CacheHint;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -15,8 +14,6 @@ public class Main extends Application{
         BorderPane pane = FXMLLoader.load(getClass().getResource("/views/window_main_pane.fxml"));;
         AnchorPane drawer = FXMLLoader.load(getClass().getResource("/views/drawer.fxml"));
         pane.setLeft(drawer);
-        drawer.setCache(true);
-        drawer.setCacheHint(CacheHint.SPEED);
         primaryStage.setTitle("devRant Unofficial");
         primaryStage.setScene(new Scene(pane, 800, 600));
         primaryStage.setMinHeight(800);
