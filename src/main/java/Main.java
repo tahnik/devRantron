@@ -13,6 +13,10 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         BorderPane pane = FXMLLoader.load(getClass().getResource("/views/window_main_pane.fxml"));;
         AnchorPane drawer = FXMLLoader.load(getClass().getResource("/views/drawer.fxml"));
+
+        BorderPane obj = FXMLLoader.load(getClass().getResource("/views/control_vote.fxml"));
+        pane.setCenter(obj);
+
         pane.setLeft(drawer);
         primaryStage.setTitle("devRant Unofficial");
         primaryStage.setScene(new Scene(pane, 800, 600));

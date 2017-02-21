@@ -8,11 +8,13 @@
 <?import javafx.scene.control.TextField?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             stylesheets="@../stylesheets/control_vote.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.MainPaneController">
+            >
+
+   <!-- fx:controller="controllers.MainPaneController" -->
    <top>
-            <Button fx:id="upvoteButton" maxHeight="70.0" maxWidth="40.0">
+            <Button fx:id="upvoteButton" maxHeight="40.0" maxWidth="40.0" prefHeight="40.0" prefWidth="40.0">
                <styleClass>
-                  <String fx:value="upvoteButton" />
+                  <String fx:value="button" />
                </styleClass>
             </Button>
    </top>
@@ -24,9 +26,9 @@
       </TextField>
    </center>
    <bottom>
-      <Button fx:id="downvoteButton"  maxHeight="70.0" maxWidth="40.0">
+      <Button fx:id="downvoteButton" maxHeight="40.0" maxWidth="40.0" prefHeight="40.0" prefWidth="40.0">
          <styleClass>
-            <String fx:value="downvoteButton" />
+            <String fx:value="button" />
          </styleClass>
       </Button>
    </bottom>
