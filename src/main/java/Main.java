@@ -1,3 +1,4 @@
+import controllers.VoteControl;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +15,12 @@ public class Main extends Application{
         BorderPane pane = FXMLLoader.load(getClass().getResource("/views/window_main_pane.fxml"));;
         AnchorPane drawer = FXMLLoader.load(getClass().getResource("/views/drawer.fxml"));
 
-        BorderPane obj = FXMLLoader.load(getClass().getResource("/views/control_vote.fxml"));
-        pane.setCenter(obj);
+        VoteControl votes = new VoteControl();
+        votes.setScore("1010");
+        pane.setCenter(votes);
+
+        //BorderPane obj = FXMLLoader.load(getClass().getResource("/views/control_vote.fxml"));
+        //pane.setCenter(obj);
 
         pane.setLeft(drawer);
         primaryStage.setTitle("devRant Unofficial");

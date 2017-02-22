@@ -7,11 +7,10 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Label?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<fx:root type="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             stylesheets="@../stylesheets/control_vote.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
-            >
+        >
 
-   <!-- fx:controller="controllers.MainPaneController" -->
    <top>
             <Button fx:id="upvoteButton" maxHeight="40.0" maxWidth="40.0" prefHeight="40.0" prefWidth="40.0">
                <styleClass>
@@ -20,7 +19,7 @@
             </Button>
    </top>
    <center>
-      <Label alignment="CENTER" text="Testing">
+      <Label fx:id="votesLabel" alignment="CENTER" text="Testing">
          <styleClass>
             <String fx:value="scoreText" />
          </styleClass>
@@ -33,4 +32,4 @@
          </styleClass>
       </Button>
    </bottom>
-</BorderPane>
+</fx:root>
