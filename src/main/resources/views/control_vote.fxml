@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.lang.String?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             stylesheets="@../stylesheets/control_vote.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
             >
@@ -19,11 +20,11 @@
             </Button>
    </top>
    <center>
-      <TextField alignment="CENTER" text="Testing">
+      <Label alignment="CENTER" text="Testing">
          <styleClass>
             <String fx:value="scoreText" />
          </styleClass>
-      </TextField>
+      </Label>
    </center>
    <bottom>
       <Button fx:id="downvoteButton" maxHeight="40.0" maxWidth="40.0" prefHeight="40.0" prefWidth="40.0">
