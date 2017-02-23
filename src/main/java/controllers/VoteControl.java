@@ -38,6 +38,7 @@ public class VoteControl extends BorderPane{
 
         try {
             fxmlLoader.load();
+
             initialize();
         } catch (IOException exception) {
             throw new RuntimeException(exception);

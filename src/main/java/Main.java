@@ -16,7 +16,7 @@ public class Main extends Application{
         AnchorPane drawer = FXMLLoader.load(getClass().getResource("/views/drawer.fxml"));
 
         VoteControl votes = new VoteControl();
-        votes.setScore("1010");
+        votes.setScore("87");
         pane.setCenter(votes);
 
         //BorderPane obj = FXMLLoader.load(getClass().getResource("/views/control_vote.fxml"));
