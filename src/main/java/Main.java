@@ -43,14 +43,17 @@ public class Main extends Application{
 
         api.getRants(Sort.ALGO, 10, 0).thenAcceptAsync(results -> {
                 if (results.size() > 0) {
-                    Rant r = results.get(0);
-                    PostControl obj = new PostControl(r);
 
-                    Platform.runLater(() -> pane.setCenter(obj));
-
-                    //System.out.println("");
+                    for (Rant r : results)
+                    {
+                        if (r.getImage() != null) {
+                            PostControl obj = new PostControl(r);
+                            Platform.runLater(() -> pane.setCenter(obj));
+                            break;
+                        }
+                    }
+                 //System.out.println("");
                 }
-
         })
         .exceptionally((error) ->
         {

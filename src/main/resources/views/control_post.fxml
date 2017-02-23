@@ -17,7 +17,7 @@
             <Label fx:id="textLabel" wrapText="true"/>
 
             <HBox alignment="TOP_CENTER">
-                <ImageView fx:id="imageView"/>
+                <ImageView fx:id="imageView" />
             </HBox>
 
             <BorderPane>

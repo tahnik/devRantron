@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +23,7 @@ public class PostControl extends BorderPane{
     @FXML private HBox tagsList; //TODO: Make it a control
     @FXML private ImageView imageView;
     @FXML private VoteControl voteControl;
+    @FXML private VBox container;
 
     private Rant rant;
 
@@ -33,6 +35,20 @@ public class PostControl extends BorderPane{
 
         setText(rant.getContent());
         voteControl.setScore(rant.getScore());
+
+        loadImage(rant.getImage());
+    }
+
+    private void loadImage(com.scorpiac.javarant.Image data) {
+        try {
+            String url = data.getUrl();
+            Image img = new Image(url);
+            imageView.setImage(img);
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 
     public PostControl()
@@ -42,8 +58,12 @@ public class PostControl extends BorderPane{
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
+
         try {
             fxmlLoader.load();
+
+            imageView.fitWidthProperty().bind(container.widthProperty());
+
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }

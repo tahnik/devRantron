@@ -6,6 +6,11 @@
     -fx-padding: 0 10px;
 }
 
+#imageView
+{
+
+}
+
 #postCard
 {
     -fx-background-color: white;
