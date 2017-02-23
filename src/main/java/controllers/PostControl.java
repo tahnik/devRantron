@@ -1,5 +1,6 @@
 package controllers;
 
+import com.scorpiac.javarant.Rant;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,19 @@ public class PostControl extends BorderPane{
     @FXML private Label textLabel;
     @FXML private HBox tagsList; //TODO: Make it a control
     @FXML private ImageView imageView;
+    @FXML private VoteControl voteControl;
+
+    private Rant rant;
+
+    public  PostControl(Rant rant)
+    {
+        this();
+
+        this.rant = rant;
+
+        setText(rant.getContent());
+        voteControl.setScore(rant.getScore());
+    }
 
     public PostControl()
     {
@@ -30,8 +44,6 @@ public class PostControl extends BorderPane{
 
         try {
             fxmlLoader.load();
-
-            initialize();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -49,7 +61,7 @@ public class PostControl extends BorderPane{
         return textLabel.textProperty();
     }
 
-    public void initialize() {
+    public void testInitialize() {
         textLabel.setText("this is a test\n" +
                 "this is a test\n" +
                 "this is a test\n" +

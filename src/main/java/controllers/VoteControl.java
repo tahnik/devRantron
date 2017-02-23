@@ -18,6 +18,7 @@ public class VoteControl extends BorderPane{
     @FXML private Button upvoteButton;
     @FXML private Label votesLabel;
 
+
     public enum VoteButtonType
     {
         UP,
@@ -46,6 +47,11 @@ public class VoteControl extends BorderPane{
 
     public void setScore(String value) {
         textProperty().set(value);
+    }
+
+
+    public void setScore(int score) {
+        setScore(String.valueOf(score));
     }
 
     public StringProperty textProperty() {
