@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import controllers.VoteControl?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<fx:root type="BorderPane" fx:id="postCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+         stylesheets="@../stylesheets/control_post.css" xmlns="http://javafx.com/javafx/8.0.111"
+         xmlns:fx="http://javafx.com/fxml/1"
+>
+
+    <left>
+        <VoteControl fx:id="voteControl" score="100"/>
+    </left>
+    <center>
+        <VBox fx:id="container">
+            <Label fx:id="textLabel" wrapText="true"/>
+
+            <HBox alignment="TOP_CENTER">
+                <ImageView fx:id="imageView"/>
+            </HBox>
+
+            <BorderPane>
+                <left>
+                    <Label styleClass="label">Tags:</Label>
+                </left>
+                <center>
+                    <HBox fx:id="tagsList"/>
+                </center>
+                <right>
+                    <Label>Comments</Label>
+                </right>
+            </BorderPane>
+        </VBox>
+    </center>
+</fx:root>

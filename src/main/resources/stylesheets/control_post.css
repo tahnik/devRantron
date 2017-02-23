@@ -1,0 +1,29 @@
+
+#container
+{
+    -fx-min-width: 300px;
+    -fx-max-width: 300px;
+    -fx-padding: 0 10px;
+}
+
+#postCard
+{
+    -fx-background-color: white;
+    -fx-padding: 5px;
+}
+
+#textLabel
+{
+    -fx-font-weight: normal;
+    -fx-padding: 0 0 10px 0;
+    -fx-font-size: 12pt;
+}
+
+.content
+{
+}
+
+.label
+{
+    -fx-font-weight: bold;
+}

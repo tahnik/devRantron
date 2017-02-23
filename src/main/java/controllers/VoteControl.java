@@ -3,22 +3,17 @@ package controllers;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import model.DrawerModel;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Created by Tahnik Mustasin on 19/02/2017.
  */
 public class VoteControl extends BorderPane{
 
-    private boolean isClosed = false;
     @FXML private Button downvoteButton;
     @FXML private Button upvoteButton;
     @FXML private Label votesLabel;
