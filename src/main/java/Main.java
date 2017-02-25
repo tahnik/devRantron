@@ -41,7 +41,7 @@ public class Main extends Application{
         tt.setCycleCount(99);
         //tt.play();
 
-        api.getRants(Sort.ALGO, 10, 0).thenAcceptAsync(results -> {
+        api.getRants(Sort.ALGO, 10, 0).thenAccept(results -> {
                 if (results.size() > 0) {
 
                     for (Rant r : results)
