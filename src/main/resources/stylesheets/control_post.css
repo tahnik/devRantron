@@ -14,7 +14,7 @@
 #postCard
 {
     -fx-background-color: white;
-    -fx-padding: 5px;
+    -fx-padding: 10px;
 }
 
 #textLabel
@@ -31,4 +31,14 @@
 .label
 {
     -fx-font-weight: bold;
+}
+
+.margin
+{
+    -fx-min-height: 15px;
+    -fx-min-width: 15px;
+
+    /*
+    -fx-background-color: red;
+    */
 }

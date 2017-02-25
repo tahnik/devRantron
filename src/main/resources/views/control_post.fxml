@@ -1,36 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import controllers.VoteControl?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<fx:root type="BorderPane" fx:id="postCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<fx:root type="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
          stylesheets="@../stylesheets/control_post.css" xmlns="http://javafx.com/javafx/8.0.111"
          xmlns:fx="http://javafx.com/fxml/1"
 >
-
+    <top>
+        <Label styleClass="margin"/>
+    </top>
     <left>
-        <VoteControl fx:id="voteControl" score="100"/>
+        <Label styleClass="margin"/>
     </left>
+    <right>
+        <Label styleClass="margin"/>
+    </right>
+    <bottom>
+        <Label styleClass="margin"/>
+    </bottom>
+
     <center>
-        <VBox fx:id="container">
-            <Label fx:id="textLabel" wrapText="true"/>
+        <BorderPane fx:id="postCard">
+            <left>
+                <VoteControl fx:id="voteControl" score="100"/>
+            </left>
+            <right>
+                <Label styleClass="margin"/>
+            </right>
 
-            <HBox alignment="TOP_CENTER">
-                <ImageView fx:id="imageView" />
-            </HBox>
+            <center>
+                <VBox fx:id="container">
+                    <Label fx:id="textLabel" wrapText="true"/>
 
-            <BorderPane>
-                <left>
-                    <Label styleClass="label">Tags:</Label>
-                </left>
-                <center>
-                    <HBox fx:id="tagsList"/>
-                </center>
-                <right>
-                    <Label>Comments</Label>
-                </right>
-            </BorderPane>
-        </VBox>
+                    <HBox alignment="TOP_CENTER">
+                        <StackPane fx:id="imagePane">
+                            <ImageView fx:id="imageView" preserveRatio="true" />
+                        </StackPane>
+                    </HBox>
+
+                    <BorderPane>
+                        <left>
+                            <Label styleClass="label">Tags:</Label>
+                        </left>
+                        <center>
+                            <HBox fx:id="tagsList"/>
+                        </center>
+                        <right>
+                            <Label>Comments</Label>
+                        </right>
+                    </BorderPane>
+                </VBox>
+            </center>
+        </BorderPane>
     </center>
+    <bottom>
+        <Label styleClass="margin"/>
+    </bottom>
 </fx:root>
