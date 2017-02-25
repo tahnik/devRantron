@@ -7,8 +7,8 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -18,14 +18,8 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        final BorderPane pane = FXMLLoader.load(getClass().getResource("/views/window_main_pane.fxml"));;
-        final AnchorPane drawer = FXMLLoader.load(getClass().getResource("/views/drawer.fxml"));
-
-        /*
-        VoteControl votes = new VoteControl();
-        votes.setScore("87");
-        pane.setCenter(votes);
-        */
+        BorderPane pane = FXMLLoader.load(getClass().getResource("/views/window_main_pane.fxml"));;
+        HBox drawer = FXMLLoader.load(getClass().getResource("/views/drawer.fxml"));
 
         pane.setLeft(drawer);
         primaryStage.setTitle("devRant Unofficial");

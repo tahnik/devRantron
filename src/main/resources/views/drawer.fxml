@@ -4,62 +4,69 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane fx:controller="controllers.DrawerController" fx:id="drawerAnchPane" maxHeight="1.7976931348623157E308" prefWidth="200.0" styleClass="drawer_anchorpane" stylesheets="@../stylesheets/drawer.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="100.0" stylesheets="@../stylesheets/drawer.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DrawerController">
    <children>
-      <VBox alignment="TOP_CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="uncollapsible_drawer" alignment="TOP_CENTER" prefWidth="45.0" styleClass="drawer_uncollapsible">
          <children>
-            <HBox>
+            <HBox prefHeight="45.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <children>
                   <ImageView>
                      <image>
                         <Image url="@../icons/rant_feed.png" />
                      </image>
                      <HBox.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" styleClass="drawer_buttons" text="Rant Feed" />
                </children>
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
             </HBox>
-            <HBox>
+            <HBox prefHeight="45.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <children>
                   <ImageView>
                      <image>
                         <Image url="@../icons/collabs.png" />
                      </image>
                      <HBox.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" styleClass="drawer_buttons" text="Collabs" />
                </children>
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
             </HBox>
-            <HBox>
+            <HBox prefHeight="45.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <children>
                   <ImageView>
                      <image>
                         <Image url="@../icons/settings.png" />
                      </image>
                      <HBox.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" styleClass="drawer_buttons" text="Settings" />
                </children>
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
             </HBox>
          </children>
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </VBox>
+      <VBox fx:id="collapsible_drawer" cache="true" cacheHint="SPEED" minWidth="0.0" prefHeight="200.0" prefWidth="155.0" styleClass="drawer_collapsible">
+         <children>
+            <Button alignment="BASELINE_LEFT" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="0.0" mnemonicParsing="false" prefHeight="45.0" styleClass="drawer_buttons" text="Settings" />
+            <Button alignment="BASELINE_LEFT" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="0.0" mnemonicParsing="false" prefHeight="45.0" styleClass="drawer_buttons" text="Rant Feed" />
+            <Button alignment="BASELINE_LEFT" ellipsisString="" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="0.0" mnemonicParsing="false" prefHeight="45.0" styleClass="drawer_buttons" text="Collabs" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
       </VBox>
    </children>
-   <padding>
-      <Insets top="5.0" />
-   </padding>
-</AnchorPane>
+</HBox>
