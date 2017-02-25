@@ -17,6 +17,19 @@
     -fx-padding: 10px;
 }
 
+
+.commentsIcon {
+    /*
+    -fx-shape: "M24.732 24.371v7.629l-7.267-7.267h-8.808c-4.781 0-8.657-3.875-8.657-8.657v-7.42c0-4.781 3.876-8.657 8.657-8.657h13.604c4.781 0 8.657 3.875 8.657 8.657v7.42c0 3.922-2.61 7.23-6.186 8.294z";
+    */
+
+    -fx-fill: black;
+}
+
+.commentsIcon:hover {
+    -fx-fill: red;
+}
+
 #textLabel
 {
     -fx-font-weight: normal;
