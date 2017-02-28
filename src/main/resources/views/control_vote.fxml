@@ -1,38 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import java.lang.String?>
-<fx:root type="BorderPane" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="65" minWidth="65"
-         stylesheets="@../stylesheets/control_vote.css" xmlns="http://javafx.com/javafx/8.0.111"
-         xmlns:fx="http://javafx.com/fxml/1"
->
-
-    <top>
-        <HBox alignment="TOP_CENTER">
-            <Button fx:id="upvoteButton" maxHeight="40.0" maxWidth="40.0" prefHeight="40.0" prefWidth="40.0">
-                <styleClass>
-                    <String fx:value="button"/>
-                </styleClass>
-            </Button>
-        </HBox>
-    </top>
-    <center>
-        <Label fx:id="votesLabel" alignment="CENTER" text="Testing">
-            <styleClass>
-                <String fx:value="scoreText"/>
-            </styleClass>
-        </Label>
-    </center>
-    <bottom>
-        <HBox alignment="TOP_CENTER">
-            <Button fx:id="downvoteButton" maxHeight="40.0" maxWidth="40.0" prefHeight="40.0" prefWidth="40.0">
-                <styleClass>
-                    <String fx:value="button"/>
-                </styleClass>
-            </Button>
-        </HBox>
-    </bottom>
-</fx:root>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<VBox alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="50.0" stylesheets="@../stylesheets/control_vote.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="upvoteButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+      <Label text="100">
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="downvoteButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
+   </children>
+   <padding>
+      <Insets bottom="10.0" top="10.0" />
+   </padding>
+</VBox>

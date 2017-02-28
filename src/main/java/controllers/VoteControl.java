@@ -28,7 +28,7 @@ public class VoteControl extends BorderPane{
     public VoteControl()
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "/views/control_vote.fxml"));
+                "/views/control_vote_bak.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

@@ -1,16 +1,15 @@
 import api.DevRantAPI;
 import com.scorpiac.javarant.Rant;
 import com.scorpiac.javarant.Sort;
-import controllers.PostControl;
-import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import view.Post;
 
 public class Main extends Application{
 
@@ -23,35 +22,25 @@ public class Main extends Application{
 
         pane.setLeft(drawer);
         primaryStage.setTitle("devRant Unofficial");
-        primaryStage.setScene(new Scene(pane, 800, 600));
-        primaryStage.setMinHeight(800);
-        primaryStage.setMinWidth(600);
+        Scene scene = new Scene(pane, 800, 600);
+        primaryStage.setScene(scene);
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
         primaryStage.show();
 
-        TranslateTransition tt = new TranslateTransition(Duration.millis(900), drawer);
-        tt.setFromX(0);
-        tt.setToX(-200);
-        tt.setAutoReverse(true);
-        tt.setCycleCount(99);
-        //tt.play();
-
+        // Test code to test post.
+        VBox rantContainer = (VBox) scene.lookup("#rantContainer");
         api.getRants(Sort.ALGO, 10, 0).thenAccept(results -> {
                 if (results.size() > 0) {
 
-                    for (Rant r : results)
+                    for (Rant rant : results)
                     {
-                        if (r.getImage() != null) {
-                            PostControl obj = new PostControl(r);
-                            Platform.runLater(() -> pane.setCenter(obj));
-                            break;
+                        if (rant.getImage() != null) {
+                            Post post = new Post(rant);
+                            Platform.runLater(() -> rantContainer.getChildren().add(post));
                         }
                     }
-                 //System.out.println("");
                 }
-        })
-        .exceptionally((error) ->
-        {
-            return null;
         });
 
     }

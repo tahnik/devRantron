@@ -1,66 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import controllers.VoteControl?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.SVGPath?>
-<fx:root type="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-         stylesheets="@../stylesheets/control_post.css" xmlns="http://javafx.com/javafx/8.0.111"
-         xmlns:fx="http://javafx.com/fxml/1"
->
-    <top>
-        <Label styleClass="margin"/>
-    </top>
-    <left>
-        <Label styleClass="margin"/>
-    </left>
-    <right>
-        <Label styleClass="margin"/>
-    </right>
-    <bottom>
-        <Label styleClass="margin"/>
-    </bottom>
-
-    <center>
-        <BorderPane fx:id="postCard">
-            <left>
-                <VoteControl fx:id="voteControl" score="100"/>
-            </left>
-            <right>
-                <Label styleClass="margin"/>
-            </right>
-
-            <center>
-                <VBox fx:id="container">
-                    <Label fx:id="textLabel" wrapText="true"/>
-
-                    <HBox alignment="TOP_CENTER">
-                        <StackPane fx:id="imagePane">
-                            <ImageView fx:id="imageView" preserveRatio="true" />
-                        </StackPane>
-                    </HBox>
-
-                    <BorderPane>
-                        <left>
-                            <Label styleClass="label">Tags:</Label>
-                        </left>
-                        <center>
-                            <HBox fx:id="tagsList"/>
-                        </center>
-                        <right>
-                            <HBox>
-                                <SVGPath styleClass="commentsIcon" content="M24.732 24.371v7.629l-7.267-7.267h-8.808c-4.781 0-8.657-3.875-8.657-8.657v-7.42c0-4.781 3.876-8.657 8.657-8.657h13.604c4.781 0 8.657 3.875 8.657 8.657v7.42c0 3.922-2.61 7.23-6.186 8.294z"
-                                scaleX=".4" scaleY=".4"/>
-                                <Label>100</Label>
-                            </HBox>
-                        </right>
-                    </BorderPane>
-                </VBox>
-            </center>
-        </BorderPane>
-    </center>
-    <bottom>
-        <Label styleClass="margin"/>
-    </bottom>
+<?import javafx.scene.text.Font?>
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:include source="control_vote.fxml" />
+    <VBox prefWidth="100.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <Label fx:id="rantText" maxHeight="1.7976931348623157E308" prefWidth="235.0" text="So I need a .gitlab-ci.yml file in the root folder of my repository for GitLab CI to work.I've done that. Hitting my head against wall as I keep getting an error &quot;.gitlab-ci.yml is missing from root directory&quot;Hour later I found out this is the filename I used: .github-ci.yml" wrapText="true">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+        </Label>
+      <AnchorPane>
+         <children>
+            <ImageView fx:id="rantImage" fitWidth="230.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </AnchorPane>
+      <AnchorPane>
+         <children>
+            <VBox />
+            <HBox alignment="CENTER_RIGHT" prefWidth="65.0" AnchorPane.rightAnchor="5.0">
+               <children>
+                   <SVGPath content="M24.732 24.371v7.629l-7.267-7.267h-8.808c-4.781 0-8.657-3.875-8.657-8.657v-7.42c0-4.781 3.876-8.657 8.657-8.657h13.604c4.781 0 8.657 3.875 8.657 8.657v7.42c0 3.922-2.61 7.23-6.186 8.294z" fill="#aaaab8" scaleX=".4" scaleY=".4" styleClass="commentsIcon" />
+                  <Label fx:id="rantCommentCount" text="999" textFill="#aaaab8">
+                      <font>
+                          <Font name="Arial Bold" size="14.0" />
+                      </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+    </VBox>
 </fx:root>
