@@ -39,5 +39,41 @@
 
 .side-nav a {
 	color: rgba(255, 255, 255, 1);
+}
+
+.side-nav {
 	text-align: left;
+}
+
+.top_nav {
+	height: 100%;
+	width: 80%;
+	margin: auto;
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 36px;
+	background-color: #40415A;
+}
+
+.top_nav {
+	text-align: center;
+}
+
+.top_nav > ul {
+	margin: 0;
+	display: inline-block;
+}
+
+.top_nav > ul > li {
+	color: white;
+	float: left;
+	line-height: 36px;
+	margin-right: 1.2rem;
+	font-weight: 300;
+	font-size: 1.2rem;
 }
