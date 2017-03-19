@@ -1,0 +1,44 @@
+{
+  "name": "devrantron",
+  "version": "0.0.1",
+  "description": "An open source cross platform desktop application for devRant",
+  "scripts": {
+    "hot": "webpack-dev-server --color --config ./configs/webpack.dev.config.js",
+    "dev": "cross-env NODE_ENV=development electron ./app/src/main/app.js",
+    "prod": "webpack -p --progress --color --config ./configs/webpack.prod.config.js && electron ./app/build/app.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "Electron",
+    "react"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-jest": "^19.0.0",
+    "babel-loader": "^6.4.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-1": "^6.22.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^3.2.4",
+    "electron": "^1.6.2",
+    "electron-devtools-installer": "^2.1.0",
+    "enzyme": "^2.7.1",
+    "eslint": "^3.17.1",
+    "eslint-config-google": "^0.7.1",
+    "jest": "^19.0.2",
+    "react": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "react-redux": "^5.0.3",
+    "react-router": "4.0.0",
+    "react-router-dom": "4.0.0",
+    "react-test-renderer": "^15.4.2",
+    "redux": "^3.6.0",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1",
+    "webpack-node-externals": "^1.2.0"
+  }
+}

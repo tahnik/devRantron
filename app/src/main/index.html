@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags always come first -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>React Router Redux Express</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="res/css/materialize.min.css" >
+	<link rel="stylesheet" href="./res/main.css">
+</head>
+
+<body>
+	<div id="root"></div>
+	<script>
+		{
+			if(process.env.NODE_ENV) {
+				const bundle = document.createElement('script');
+				const port = 8080;
+				bundle.src = 'http://localhost:' + port + '/app.bundle.js';
+				document.body.appendChild(bundle);
+
+				const devServer = document.createElement('script');
+				devServer.src = 'http://localhost:' + port + '/webpack-dev-server.js';
+				document.body.appendChild(devServer);
+			} else {
+				const bundle = document.createElement('script');
+				bundle.src = 'app.bundle.js';
+				document.body.appendChild(bundle);
+			}
+		}
+	</script>
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	<script src="res/js/jquery-3.1.1.min.js"></script>
+	<script src="res/js/materialize.min.js"></script>
+	 <script>if (window.module) module = window.module;</script>
+</body>
+
+</html>
