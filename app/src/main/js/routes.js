@@ -11,44 +11,33 @@ import {
 
 export default class extends Component {
 	componentDidMount() {
-		$(".button-collapse").sideNav();
+		$(".button-collapse").sideNav({
+			menuWidth: 270
+		});
 	}
 	render() {
 		return (
 			<Router>
 				<div>
+					<Header />
 					<ul id="slide-out" className="side-nav">
 						<li>
-							<div className="userView">
-								<a href="#!name">
-									<span className="white-text name">John Doe</span>
-								</a>
-								<a href="#!email">
-									<span className="white-text email">jdandturk@gmail.com</span>
-								</a>
-							</div>
+							<a href="#!">Rant Feed</a>
 						</li>
 						<li>
-							<a href="#!">
-								<i className="material-icons">cloud</i>
-								First Link With Icon
-            </a>
+							<a href="#!">Collabs</a>
 						</li>
 						<li>
-							<a href="#!">Second Link</a>
+							<a href="#!">Stories</a>
 						</li>
 						<li>
-							<div className="divider"></div>
-						</li>
-						<li>
-							<a className="subheader">Subheader</a>
-						</li>
-						<li>
-							<a className="waves-effect" href="#!">Third Link With Waves</a>
+							<a href="#!">Settings</a>
 						</li>
 					</ul>
-					<a href="#" data-activates="slide-out" className="button-collapse btn">
-						<i className="material-icons">menu</i>
+					<a 
+					href="#" data-activates="slide-out"
+					className="button-collapse btn">
+						<i className="ion-navicon-round"></i>
 					</a>
 				</div>
 			</Router>
