@@ -2,13 +2,13 @@
 
 Here is the initial sketch we made for our app:
 ### Home Screen
-![devRantFX mockup 1](https://raw.githubusercontent.com/tahnik/devRantFX/develop/docs/mockup1.png)
+![devRantFX mockup 1](http://imgur.com/tWUzRO5)
 ### Collapsible sidebar
-![devRantFX mockup 2](https://raw.githubusercontent.com/tahnik/devRantFX/develop/docs/mockup2.png)
+![devRantFX mockup 2](http://imgur.com/tlLhm0t)
 ### Single Rant
-![devRantFX mockup 3](https://raw.githubusercontent.com/tahnik/devRantFX/develop/docs/mockup3.png)
+![devRantFX mockup 3](http://imgur.com/V2gpdae)
 ### Post rant
-![devRantFX mockup 4](https://raw.githubusercontent.com/tahnik/devRantFX/develop/docs/mockup4.png)
+![devRantFX mockup 4](http://imgur.com/hF9STj7)
 
 This is our approach to create a cross platform desktop application for [devRant.io].
 
