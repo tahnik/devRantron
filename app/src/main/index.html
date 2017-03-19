@@ -15,6 +15,9 @@
 
 <body>
 	<div id="root"></div>
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	<script src="res/js/jquery-3.1.1.min.js"></script>
+	<script src="res/js/materialize.min.js"></script>
 	<script>
 		{
 			if(process.env.NODE_ENV) {
@@ -22,10 +25,6 @@
 				const port = 8080;
 				bundle.src = 'http://localhost:' + port + '/app.bundle.js';
 				document.body.appendChild(bundle);
-
-				const devServer = document.createElement('script');
-				devServer.src = 'http://localhost:' + port + '/webpack-dev-server.js';
-				document.body.appendChild(devServer);
 			} else {
 				const bundle = document.createElement('script');
 				bundle.src = 'app.bundle.js';
@@ -33,10 +32,15 @@
 			}
 		}
 	</script>
-	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-	<script src="res/js/jquery-3.1.1.min.js"></script>
-	<script src="res/js/materialize.min.js"></script>
-	 <script>if (window.module) module = window.module;</script>
+	<script>
+		function initSideNav() {
+			$(".button-collapse").sideNav();
+		}
+		function openSideNav() {
+			$('.button-collapse').sideNav('show');
+		}
+	</script>
+	<script>if (window.module) module = window.module;</script>
 </body>
 
 </html>

@@ -40,5 +40,8 @@
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1",
     "webpack-node-externals": "^1.2.0"
+  },
+  "dependencies": {
+    "jquery": "^3.2.0"
   }
 }
