@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getListItem } from '../actions/list_actions';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '../routes';
 
 class SideNav extends Component {
 	constructor(props) {
@@ -36,22 +37,22 @@ class SideNav extends Component {
 				<div className="togglable_side_nav" id="togglable_nav">
 					<ul>
 						<li>
-							<Link to={'/'} className="btn side_nav_toggle" >
+							<Link to={ROUTES.root} className="btn" >
 								Rant feed
 							</Link>
 						</li>
 						<li>
-							<Link to={'/'} className="btn side_nav_toggle" >
+							<Link to={ROUTES.collabs} className="btn" >
 								Collabs
 							</Link>
 						</li>
 						<li>
-							<Link to={'/'} className="btn side_nav_toggle" >
+							<Link to={ROUTES.stories} className="btn" >
 								Stories
 							</Link>
 						</li>
 						<li>
-							<Link to={'/'} className="btn side_nav_toggle" >
+							<Link to={ROUTES.settings} className="btn" >
 								Settings
 							</Link>
 						</li>
@@ -59,27 +60,28 @@ class SideNav extends Component {
 				</div>
 				<div className="static_side_nav">
 					<button onClick={() => this.toggleNav()} 
+					onBlur={() => this.toggleNav()}
 					className="btn side_nav_toggle" >
 						<i className="ion-navicon-round"></i>
 					</button>
 					<ul>
 						<li>
-							<Link to={'/'} className="btn side_nav_toggle" >
+							<Link to={ROUTES.root} className="btn" >
 								<i className="ion-chatbubble"></i>
 							</Link>
 						</li>
 						<li>
-							<Link to={'/'} className="btn side_nav_toggle" >
+							<Link to={ROUTES.collabs} className="btn" >
 								<i className="ion-chatbubbles"></i>
 							</Link>
 						</li>
 						<li>
-							<Link to={'/'} className="btn side_nav_toggle" >
+							<Link to={ROUTES.stories} className="btn" >
 								<i className="ion-ios-book"></i>
 							</Link>
 						</li>
 						<li>
-							<Link to={'/'} className="btn side_nav_toggle" >
+							<Link to={ROUTES.settings} className="btn" >
 								<i className="ion-ios-gear"></i>
 							</Link>
 						</li>
