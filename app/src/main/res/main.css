@@ -34,8 +34,14 @@
 	box-shadow: none;
 }
 
-.static_side_nav > ul > li > a:hover, .togglable_side_nav > ul > li > a:hover {
+.static_side_nav > ul > li > a:hover,
+.togglable_side_nav > ul > li > a:hover {
 	box-shadow: none;
+}
+
+.static_side_nav > ul > li > a:focus,
+.togglable_side_nav > ul > li > a:focus {
+	background-color: #54556E;
 }
 
 .top_nav {
