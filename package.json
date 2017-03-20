@@ -4,7 +4,7 @@
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
     "hot": "webpack-dev-server --color --config ./configs/webpack.dev.config.js",
-    "dev": "cross-env NODE_ENV=development electron ./app/src/main/app.js",
+    "start": "cross-env NODE_ENV=development electron ./app/src/main/app.js",
     "prod": "webpack -p --progress --color --config ./configs/webpack.prod.config.js && electron ./app/build/app.js",
     "test": "jest"
   },
