@@ -28,25 +28,18 @@ This is our approach to create a cross platform desktop application for [devRant
     npm run prod
     ```
 
-- To run in development with hot reloading, open two terminal.
-In the first terminal run 
+- To run in development with hot reloading, type the following into a terminal:
 
-    ```bash
-    npm run hot
-    ```
-    
-    In the second terminal run 
-    
     ```bash
     npm run dev
     ```
     
-    The first commands creates a webpack dev server which will watch and reload the bundle as you edit and will it available at https://localhost:8080.
-    The second command will run the electron app in development mode. So it will open up devtools with React and Redux devtools initialized.
+    The command will start two processes. One process will create a `webpack-dev-server` that will watch and reload the bundle as you edit and will make it available at `http://localhost:8080`.
+    The second process will run the electron app in development mode, meaning that it will open up devtools with React and Redux devtools initialized.
 - To run test:
 
     ```bash
-    npm test
+    npm run test
     ```
 
 [devRant.io]: <http://devrant.io>
