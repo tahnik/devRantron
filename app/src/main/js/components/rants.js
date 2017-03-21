@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getListItem } from '../actions/list_actions';
 import { Link } from 'react-router-dom';
 
 class Rants extends Component {
@@ -13,10 +12,4 @@ class Rants extends Component {
 	}
 }
 
-function mapStateToProps(state){
-	return {
-		item: state.lists.item
-	}
-}
-
-export default connect(mapStateToProps, { getListItem })(Rants);
+export default Rants;

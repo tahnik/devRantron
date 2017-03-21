@@ -25,16 +25,29 @@ module.exports = {
 		historyApiFallback: true,
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				exclude: /node_modules/,
 				test : /\.js$/,
-				loader: 'babel-loader',
-				query: {
-					presets: ['react', 'es2015', 'stage-1'],
+				use: { 
+					loader: 'babel-loader',
+					options: {
+						presets: ['react', 'es2015', 'stage-1'],
+					}
 				},
 			},
-		],
+			{
+				exclude: /node_modules/,
+				test: /\.sass$/,
+				use: [ 
+					{
+						loader: 'style-loader/useable',
+					}	, 
+					{ loader: 'css-loader' }, 
+					{ loader: 'sass-loader' }
+				]
+			}
+    ]
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),

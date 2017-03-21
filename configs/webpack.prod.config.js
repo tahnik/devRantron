@@ -18,12 +18,32 @@ module.exports = {
 		publicPath: '/',
 	},
 	module: {
-		loaders: [{
-			loader: 'babel-loader',
-			query: {
-				presets: ['react', 'es2015', 'stage-1'],
+		rules: [
+			{
+				exclude: /node_modules/,
+				test : /\.js$/,
+				use: { 
+					loader: 'babel-loader',
+					options: {
+						presets: ['react', 'es2015', 'stage-1'],
+					}
+				},
 			},
-		}],
+			{
+				exclude: /node_modules/,
+				test: /\.sass$/,
+				use: [ 
+					{
+						loader: 'style-loader',
+						options: {
+							singleton: true
+						}
+					}	, 
+					{ loader: 'css-loader' }, 
+					{ loader: 'sass-loader' }
+				]
+			}
+    ]
 	},
 	plugins: [
 		new CopyWebpackPlugin([

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getListItem } from '../actions/list_actions';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../routes';
+import { changeStyle } from '../actions/style_actions';
+
 
 class SideNav extends Component {
 	constructor(props) {
@@ -16,6 +17,8 @@ class SideNav extends Component {
 		nav.style.webkitTransform = 'translateX(-100%)';
 	}
 	toggleNav() {
+		console.log("HEllo there")
+		this.props.changeStyle('LIGHT_THEME');
 		if(this.state.sideNavHidden) {
 			this.showNav();
 		} else {
@@ -92,10 +95,4 @@ class SideNav extends Component {
 	}
 }
 
-function mapStateToProps(state){
-	return {
-		item: state.lists.item
-	}
-}
-
-export default connect(mapStateToProps, { getListItem })(SideNav);
+export default connect(null, { changeStyle })(SideNav);
