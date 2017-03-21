@@ -13,7 +13,7 @@
     "Electron",
     "react"
   ],
-  "devDependencies": {
+  "dependencies": {
     "babel-core": "^6.24.0",
     "babel-jest": "^19.0.0",
     "babel-loader": "^6.4.0",
@@ -29,8 +29,10 @@
     "electron-devtools-installer": "^2.1.0",
     "enzyme": "^2.7.1",
     "eslint": "^3.17.1",
-    "eslint-config-google": "^0.7.1",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
     "jest": "^19.0.2",
     "node-sass": "^4.5.0",
     "react": "^15.4.2",
@@ -47,9 +49,7 @@
     "style-loader": "^0.14.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1",
-    "webpack-node-externals": "^1.2.0"
-  },
-  "dependencies": {
+    "webpack-node-externals": "^1.2.0",
     "jquery": "^3.2.0"
   }
 }

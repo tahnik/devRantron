@@ -1,8 +1,10 @@
 {
-    "extends": "google",
-    "env": {
+    "extends": "airbnb",
+		"indent": ["error", "tab"],
+		"env": {
         "es6": true,
-        "node": true
+        "node": true,
+        "browser": true
     },
     "parserOptions": {
         "ecmaFeatures": {
@@ -12,6 +14,21 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
-    ]
+        "react",
+        "jsx-a11y",
+        "import"
+    ],
+    "rules": {
+      "react/sort-comp": [1, {
+          "order": [
+            "constructor",
+            "lifecycle",
+            "everything-else",
+            "render"
+          ]
+        }
+      ],
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "import/no-dynamic-require": 0
+    }
 }
