@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getListItem } from '../actions/list_actions';
-import { Link } from 'react-router-dom';
+import ToggleableSettings from '../containers/toggleable_settings';
 
+/* Ignore esling error for now. More stuff will be added later */
 class Settings extends Component {
-	render(){
-		return(
-			<div className="rants">
-				<h1>Settings</h1>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div className="rants">
+        <ToggleableSettings />
+      </div>
+    );
+  }
 }
 
-function mapStateToProps(state){
-	return {
-		item: state.lists.item
-	}
-}
-
-export default connect(mapStateToProps, { getListItem })(Settings);
+export default Settings;
