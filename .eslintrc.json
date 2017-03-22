@@ -1,5 +1,4 @@
 {
-	"parser": "babel-eslint",
 	"extends": "airbnb",
 	"indent": ["error", "tab"],
 	"env": {
@@ -32,7 +31,8 @@
 			"extensions": [".js", ".jsx"]
 		}],
 		"import/no-dynamic-require": 0,
-		"import/no-extraneous-dependencies": "off"
+		"import/no-extraneous-dependencies": "off",
+    "linebreak-style": ["error", "windows"]
 	},
 	"settings": {
 		"import/resolver": {
