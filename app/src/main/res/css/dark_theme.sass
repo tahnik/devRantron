@@ -26,6 +26,12 @@ $selected-color: #54556E
 	border-radius: 0
 	box-shadow: none
 
+.static_side_nav > ul > li > a:hover, .togglable_side_nav > ul > li > a:hover
+	box-shadow: none
+
+.static_side_nav > ul > li > a:focus, .togglable_side_nav > ul > li > a:focus
+	background-color: #54556E
+
 .top_nav
 	height: 100%
 	width: 80%
@@ -59,7 +65,7 @@ $selected-color: #54556E
 	left: 0
 	background-color: $main-color
 	width: 70px
-	z-index: 9
+	z-index: 99
 	ul
 		margin-top: 0
 		li
@@ -68,6 +74,7 @@ $selected-color: #54556E
 
 
 .togglable_side_nav
+	z-index: 98
 	position: fixed
 	height: 100%
 	top: 36px
@@ -88,7 +95,6 @@ $selected-color: #54556E
   transition: all .25s ease
 
 .rants
-	z-index: -1
 	position: relative
 	left: 70px
 	width: calc(100% - 70px)
