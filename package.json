@@ -34,6 +34,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "jest": "^19.0.2",
+    "jquery": "^3.2.0",
     "node-sass": "^4.5.0",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
@@ -49,7 +50,9 @@
     "style-loader": "^0.14.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1",
-    "webpack-node-externals": "^1.2.0",
-    "jquery": "^3.2.0"
+    "webpack-node-externals": "^1.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.0"
   }
 }
