@@ -7,7 +7,8 @@
     "start": "cross-env NODE_ENV=development electron ./app/src/main/app.js",
     "dev": "concurrently -k \"npm run hot\" \"npm run start\"",
     "prod": "webpack -p --progress --color --config ./configs/webpack.prod.config.js && electron ./app/build/app.js",
-    "test": "jest"
+    "test": "jest",
+		"lint": "eslint --ext .js,.jsx app/src/main"
   },
   "keywords": [
     "Electron",
