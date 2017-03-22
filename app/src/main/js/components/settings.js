@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import ToggleableSettings from '../containers/toggleable_settings';
 
 /* Ignore esling error for now. More stuff will be added later */
 class Settings extends Component {
   render() {
     return (
       <div className="rants">
-        <h1>Settings</h1>
+        <ToggleableSettings />
       </div>
     );
   }
