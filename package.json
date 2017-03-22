@@ -30,6 +30,7 @@
     "enzyme": "^2.7.1",
     "eslint": "^3.17.1",
     "eslint-config-google": "^0.7.1",
+    "eslint-plugin-react": "^6.10.3",
     "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.28.0",
     "jest": "^19.0.2",
