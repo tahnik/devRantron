@@ -26,17 +26,16 @@ module.exports = {
 		}],
 	},
 	plugins: [
-		new CopyWebpackPlugin([
-			{
-				from: './src/main/app.js', 
+		new CopyWebpackPlugin([{
+				from: './src/main/app.js',
 				to: path.join(__dirname, '../app/build')
 			},
 			{
-				from: './src/main/index.html', 
+				from: './src/main/index.html',
 				to: path.join(__dirname, '../app/build')
 			},
 			{
-				from: './src/main/res', 
+				from: './src/main/res',
 				to: path.join(__dirname, '../app/build/res')
 			},
 		]),
