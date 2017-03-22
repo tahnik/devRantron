@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "extends": "airbnb",
 		"indent": ["error", "tab"],
 		"env": {
@@ -30,5 +31,12 @@
       ],
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "import/no-dynamic-require": 0
-    }
+    },
+    "settings": {
+		"import/resolver": {
+			"webpack": {
+				"config": "./configs/webpack.dev.config.js"
+			}
+		}
+	}
 }

@@ -1,0 +1,3 @@
+# ingore tests directory
+__tests__
+res
