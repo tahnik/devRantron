@@ -1,6 +1,9 @@
 const webpack = require('webpack');
 let path = require('path');
-let CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	context: path.join(__dirname, '../app'),
@@ -12,6 +15,7 @@ module.exports = {
 			'webpack-dev-server/client?http://localhost:8080',
 			'webpack/hot/only-dev-server',
 			'./src/main/js/index.js',
+			'./src/main/res/main.sass',
 		],
 	},
 	output: {
@@ -28,20 +32,37 @@ module.exports = {
 		loaders: [
 			{
 				exclude: /node_modules/,
-				test : /\.js$/,
+				test: /\.js$/,
 				loader: 'babel-loader',
 				query: {
 					presets: ['react', 'es2015', 'stage-1'],
 				},
+			},
+			{
+				test: /\.sass$/,
+				loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader'],
+				}),
+			},
+			{
+				test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          use: 'css-loader',
+        }),
 			},
 		],
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
+		new ExtractTextPlugin({filename: 'main.css', allChunks: true}),
+		new HtmlWebpackPlugin({
+      title: 'devRantron',
+      template: 'src/main/index.ejs',
+    }),
 		new CopyWebpackPlugin([
             {from: './src/main/app.js'},
-            {from: './src/main/index.html'},
             {from: './src/main/res', to: 'res'},
         ]),
 	],
