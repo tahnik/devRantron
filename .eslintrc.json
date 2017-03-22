@@ -31,7 +31,8 @@
 		"react/jsx-filename-extension": [1, {
 			"extensions": [".js", ".jsx"]
 		}],
-		"import/no-dynamic-require": 0
+		"import/no-dynamic-require": 0,
+		"import/no-extraneous-dependencies": "off"
 	},
 	"settings": {
 		"import/resolver": {
