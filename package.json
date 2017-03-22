@@ -8,7 +8,7 @@
     "dev": "concurrently -k \"npm run hot\" \"npm run start\"",
     "prod": "webpack -p --progress --color --config ./configs/webpack.prod.config.js && electron ./app/build/app.js",
     "test": "jest",
-		"lint": "eslint --ext .js,.jsx app/src/main"
+    "lint": "eslint --ext .js,.jsx app/src/main"
   },
   "keywords": [
     "Electron",
@@ -35,6 +35,8 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^2.28.0",
     "jest": "^19.0.2",
     "node-sass": "^4.5.0",
     "react-addons-css-transition-group": "^15.4.2",
