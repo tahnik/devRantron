@@ -1,108 +1,107 @@
-#root
-    text-align: center
+body.light_theme
+	#root
+    	text-align: center
 
-.main
-    position: relative
-    margin-top: 5vh
+	.main
+    	position: relative
+    	margin-top: 5vh
 
+	$main-color: #40415A
+	$selected-color: #54556E
 
-/***** Light Theme *****/
-$main-color: #40415A
-$selected-color: #54556E
+	.btn
+		background-color: $main-color
+		&:hover
+			background-color: $selected-color
 
-.btn
-	background-color: $main-color
-	&:hover
-		background-color: $selected-color
-
-.side_nav_toggle
-	border-radius: 0
-	box-shadow: none
-	&:focus
-		background-color: $selected-color
-
-
-.static_side_nav > ul > li > a, .togglable_side_nav > ul > li > a
-	border-radius: 0
-	box-shadow: none
-
-.static_side_nav > ul > li > a:hover, .togglable_side_nav > ul > li > a:hover
-	box-shadow: none
-
-.static_side_nav > ul > li > a:focus, .togglable_side_nav > ul > li > a:focus
-	background-color: #54556E
-
-.top_nav
-	height: 100%
-	width: 80%
-	margin: auto
-
-.header
-	position: fixed
-	top: 0
-	left: 70px
-	width: calc(100% - 70px)
-	height: 36px
-	background-color: $main-color
-
-.top_nav
-	text-align: center
-	ul
-		margin: 0
-		display: inline-block
-		li
-			color: white
-			float: left
-			line-height: 36px
-			margin-right: 1.2rem
-			font-weight: 300
-			font-size: 1.2rem
-
-.static_side_nav
-	position: fixed
-	height: 100%
-	top: 0
-	left: 0
-	background-color: $main-color
-	width: 70px
-	z-index: 99
-	ul
-		margin-top: 0
-		li
-			a
-				max-width: 70px
+	.side_nav_toggle
+		border-radius: 0
+		box-shadow: none
+		&:focus
+			background-color: $selected-color
 
 
-.togglable_side_nav
-	z-index: 98
-	position: fixed
-	height: 100%
-	top: 36px
-	left: 70px
-	background-color: $main-color
-	text-align: left
-	ul
-		margin-top: 0
-		display: inline-block
-		li
-			a
-				text-align: left
-				padding-left: 0.5rem
-				width: 150px
+	.static_side_nav > ul > li > a, .togglable_side_nav > ul > li > a
+		border-radius: 0
+		box-shadow: none
+
+	.static_side_nav > ul > li > a:hover, .togglable_side_nav > ul > li > a:hover
+		box-shadow: none
+
+	.static_side_nav > ul > li > a:focus, .togglable_side_nav > ul > li > a:focus
+		background-color: #54556E
+
+	.top_nav
+		height: 100%
+		width: 80%
+		margin: auto
+
+	.header
+		position: fixed
+		top: 0
+		left: 70px
+		width: calc(100% - 70px)
+		height: 36px
+		background-color: $main-color
+
+	.top_nav
+		text-align: center
+		ul
+			margin: 0
+			display: inline-block
+			li
+				color: white
+				float: left
+				line-height: 36px
+				margin-right: 1.2rem
+				font-weight: 300
+				font-size: 1.2rem
+
+	.static_side_nav
+		position: fixed
+		height: 100%
+		top: 0
+		left: 0
+		background-color: $main-color
+		width: 70px
+		z-index: 99
+		ul
+			margin-top: 0
+			li
+				a
+					max-width: 70px
 
 
-.togglable_side_nav
-  transition: all .25s ease
+	.togglable_side_nav
+		z-index: 98
+		position: fixed
+		height: 100%
+		top: 36px
+		left: 70px
+		background-color: $main-color
+		text-align: left
+		ul
+			margin-top: 0
+			display: inline-block
+			li
+				a
+					text-align: left
+					padding-left: 0.5rem
+					width: 150px
 
-.rants
-	position: relative
-	left: 70px
-	top: 36px
-	width: calc(100% - 70px)
-	height: calc(100vh - 36px)
-	transition: all .2s ease-in
 
-.rants
-	display: flex
-	justify-content: center
-	align-items: center
+	.togglable_side_nav
+  		transition: all .25s ease
+
+	.rants
+		position: relative
+		left: 70px
+		top: 36px
+		width: calc(100% - 70px)
+		height: calc(100vh - 36px)
+		transition: all .2s ease-in
+
+	.rants
+		display: flex
+		justify-content: center
+		align-items: center

@@ -16,7 +16,7 @@ This is our approach to create a cross platform desktop application for [devRant
     - NodeJS v7.7.3
 #### Preferable editor to work on the source code:
     - Visual Studio Code
-    
+
 #### How to setup project using IntelliJ IDEA:
 - Install NodeJS from here: https://nodejs.org/en/
 - Clone this repository using:
@@ -33,7 +33,7 @@ This is our approach to create a cross platform desktop application for [devRant
     ```bash
     npm run dev
     ```
-    
+
     The command will start two processes. One process will create a `webpack-dev-server` that will watch and reload the bundle as you edit and will make it available at `http://localhost:8080`.
     The second process will run the electron app in development mode, meaning that it will open up devtools with React and Redux devtools initialized.
 - To run test:

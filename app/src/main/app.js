@@ -23,13 +23,6 @@ function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({ width: 1024, height: 768 });
 
-  // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true,
-  }));
-
   if (process.env.NODE_ENV === 'development') {
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
@@ -42,7 +35,17 @@ function createWindow() {
       .then(name => console.log(`Added Extension:  ${name}`))
       .catch(err => console.log('An error occurred: ', err));
 
-  }
+		// make sure to load the index from the hot reload server while in development mode
+		mainWindow.loadURL('http://localhost:8080');
+  } else {
+		// we should be in production
+		// load the index.html of the app.
+  	mainWindow.loadURL(url.format({
+    	pathname: path.join(__dirname, 'index.html'),
+    	protocol: 'file:',
+    	slashes: true,
+  	}));
+	}
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
