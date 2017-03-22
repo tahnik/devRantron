@@ -8,8 +8,8 @@ const path = require('path');
 const url = require('url');
 
 const {
-	default: installExtension, 
-	REACT_DEVELOPER_TOOLS, 
+	default: installExtension,
+	REACT_DEVELOPER_TOOLS,
 	REDUX_DEVTOOLS
 } = require('electron-devtools-installer');
 
@@ -20,20 +20,16 @@ let mainWindow;
 
 /** This function will create the mainWindow */
 function createWindow() {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1024, height: 768});
+	// Create the browser window.
+	mainWindow = new BrowserWindow({
+		width: 1024,
+		height: 768
+	});
 
-	// and load the index.html of the app.
-	mainWindow.loadURL(url.format({
-		pathname: path.join(__dirname, 'index.html'),
-		protocol: 'file:',
-		slashes: true,
-	}));
-
-  if(process.env.NODE_ENV === 'development') {
+	if (process.env.NODE_ENV === 'development') {
 		// Open the DevTools.
 		mainWindow.webContents.openDevTools();
-		
+
 		installExtension(REACT_DEVELOPER_TOOLS)
 			.then((name) => console.log(`Added Extension:  ${name}`))
 			.catch((err) => console.log('An error occurred: ', err));
@@ -42,15 +38,26 @@ function createWindow() {
 			.then((name) => console.log(`Added Extension:  ${name}`))
 			.catch((err) => console.log('An error occurred: ', err));
 
-  }
+		// only load the file form the url if we are in development mode
+		// makes for sense to load served url from localhost lol :D
+		/*mainWindow.loadURL(url.format({
+			pathname: path.join(__dirname, 'index.html'),
+			protocol: 'file:',
+			slashes: true,
+		}));*/
+		mainWindow.loadURL('http://localhost:8080');
+	} else {
+		// make sure to load the local compiled file
+		mainWindow.loadURL(path.join(__dirname, 'index.html'));
+	}
 
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function() {
-	// Dereference the window object, usually you would store windows
-	// in an array if your app supports multi windows, this is the time
-	// when you should delete the corresponding element.
-	mainWindow = null;
-  });
+	// Emitted when the window is closed.
+	mainWindow.on('closed', function () {
+		// Dereference the window object, usually you would store windows
+		// in an array if your app supports multi windows, this is the time
+		// when you should delete the corresponding element.
+		mainWindow = null;
+	});
 }
 
 // This method will be called when Electron has finished
@@ -59,20 +66,20 @@ function createWindow() {
 app.on('ready', createWindow);
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function() {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
+app.on('window-all-closed', function () {
+	// On OS X it is common for applications and their menu bar
+	// to stay active until the user quits explicitly with Cmd + Q
+	if (process.platform !== 'darwin') {
 		app.quit();
-  }
+	}
 });
 
-app.on('activate', function() {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (mainWindow === null) {
+app.on('activate', function () {
+	// On OS X it's common to re-create a window in the app when the
+	// dock icon is clicked and there are no other windows open.
+	if (mainWindow === null) {
 		createWindow();
-  }
+	}
 });
 
 // In this file you can include the rest of your app's specific main process
