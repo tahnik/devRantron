@@ -36,21 +36,21 @@
 		"eslint-plugin-jsx-a11y": "^4.0.0",
 		"eslint-plugin-react": "^6.10.3",
 		"jest": "^19.0.2",
-		"react": "^15.4.2",
 		"react-addons-css-transition-group": "^15.4.2",
 		"react-addons-test-utils": "^15.4.2",
-		"react-dom": "^15.4.2",
 		"react-hot-loader": "^3.0.0-beta.6",
-		"react-redux": "^5.0.3",
-		"react-router": "4.0.0",
-		"react-router-dom": "4.0.0",
 		"react-test-renderer": "^15.4.2",
-		"redux": "^3.6.0",
 		"webpack": "^2.2.1",
 		"webpack-dev-server": "^2.4.1",
 		"webpack-node-externals": "^1.2.0"
 	},
 	"dependencies": {
-		"jquery": "^3.2.0"
+		"jquery": "^3.2.0",
+		"react": "^15.4.2",
+		"react-dom": "^15.4.2",
+		"react-redux": "^5.0.3",
+		"react-router": "^4.0.0",
+		"react-router-dom": "^4.0.0",
+		"redux": "^3.6.0"
 	}
 }
