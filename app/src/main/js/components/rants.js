@@ -11,7 +11,7 @@ class Rants extends Component {
 
   componentDidMount() {
     rantscript
-      .rants('top', 25, 0)
+      .rants('algo', 25, 0)
       .then((resp) => {
         this.setState({ displayedRants: resp });
       });

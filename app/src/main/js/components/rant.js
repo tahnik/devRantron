@@ -6,9 +6,9 @@ class Rant extends Component {
     return (
       <div className="rant" >
         <div className="rant_vote_container">
-          <button><span>+</span></button>
-          <p>27</p>
-          <button><span>-</span></button>
+          <button><p>++</p></button>
+          <span>{this.props.rant.score}</span>
+          <button><p>--</p></button>
         </div>
         <p>{this.props.rant.text}</p>
       </div>
