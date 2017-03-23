@@ -22,6 +22,10 @@ This is our approach to create a cross platform desktop application for [devRant
 - Clone this repository using:
     `git clone https://github.com/tahnik/devRantron.git`
 - cd into downloaded directory
+- Install dependencies
+    ```bash
+    npm install
+    ```
 - To run in production mode:
 
     ```bash
