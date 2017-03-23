@@ -12,9 +12,9 @@ class ToggleableSettings extends Component {
   }
   onThemeChange() {
     if (this.state.darkTheme) {
-      this.props.changeStyle(THEME_TYPE.LIGHT_THEME);
+      changeStyle(THEME_TYPE.LIGHT_THEME);
     } else {
-      this.props.changeStyle(THEME_TYPE.DARK_THEME);
+      changeStyle(THEME_TYPE.DARK_THEME);
     }
     this.setState({ darkTheme: !this.state.darkTheme });
   }
@@ -36,8 +36,4 @@ class ToggleableSettings extends Component {
   }
 }
 
-ToggleableSettings.propTypes = {
-  changeStyle: React.PropTypes.func.isRequired,
-};
-
-export default connect(null, { changeStyle })(ToggleableSettings);
+export default ToggleableSettings;
