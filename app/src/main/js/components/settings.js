@@ -5,7 +5,7 @@ import ToggleableSettings from '../containers/toggleable_settings';
 class Settings extends Component {
   render() {
     return (
-      <div className="rants">
+      <div className="rants center">
         <ToggleableSettings />
       </div>
     );
