@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
-import rantscript from 'rantscript';
+import { connect } from 'react-redux';
+
+import {fetchRants} from '../actions/rantsActions';
+
 import Rant from './rant';
 
+@connect((store) => {
+  return {
+    rants: store.rants.rants,
+    fetching: store.rants.fetching,
+    fetched: store.rants.fetched,
+    error: store.rants.error,
+  };
+})
 /* Ignore esling error for now. More stuff will be added later */
 class Rants extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { displayedRants: [] };
-  }
-
-  componentDidMount() {
-    rantscript
-      .rants('algo', 25, 0)
-      .then((resp) => {
-        this.setState({ displayedRants: resp });
-      });
+  componentWillMount() {
+    this.props.dispatch(fetchRants());
   }
 
   render() {
-    if (this.state.displayedRants.length > 0) {
+    const { rants, fetching, fetched, error } = this.props;
+    if (!fetched) {
       return (
         <div className="rants" >
-          { this.state.displayedRants.map(rant => (
+          { rants.map(rant => (
             <Rant key={rant.id} rant={rant} />
           ))}
         </div>
