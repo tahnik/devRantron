@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../routes';
-import { changeStyle } from '../actions/style_actions';
 
 
 class SideNav extends Component {
@@ -96,8 +94,5 @@ class SideNav extends Component {
   }
 }
 
-SideNav.propTypes = {
-  changeStyle: React.PropTypes.func.isRequired,
-};
 
-export default connect(null, { changeStyle })(SideNav);
+export default SideNav;

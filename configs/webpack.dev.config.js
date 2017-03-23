@@ -14,6 +14,7 @@ module.exports = {
       'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:8080',
       'webpack/hot/only-dev-server',
+      './src/main/res/css/main.sass',
       './src/main/js/index.js',
     ],
   },
@@ -45,22 +46,22 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'sass-loader'],
-				}),
+        }),
       },
-			{
-				exclude: /node_modules/,
-				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
+      {
+        exclude: /node_modules/,
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
           use: 'css-loader',
         }),
-			},
+      },
     ],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-		new ExtractTextPlugin({filename: 'main.css', allChunks: true}),
-		new HtmlWebpackPlugin({
+    new ExtractTextPlugin({ filename: 'main.css', allChunks: true }),
+    new HtmlWebpackPlugin({
       title: 'devRantron',
       template: 'src/main/index.ejs',
     }),

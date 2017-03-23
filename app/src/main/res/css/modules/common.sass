@@ -1,13 +1,10 @@
-body.dark_theme
+body.#{$theme}
 	#root
     	text-align: center
 
 	.main
     	position: relative
     	margin-top: 5vh
-
-	$main-color: #40415A
-	$selected-color: #54556E
 
 	.btn
 		background-color: $main-color
@@ -99,7 +96,7 @@ body.dark_theme
 		top: 36px
 		width: calc(100% - 70px)
 		height: calc(100vh - 36px)
-		background-color: #54556E
+		background-color: $background_color
 		transition: all .2s ease-in
 
 	.rants

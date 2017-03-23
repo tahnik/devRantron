@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeStyle } from '../actions/style_actions';
-import { DARK_THEME, LIGHT_THEME } from '../actions/style_actions';
+import changeStyle from '../actions/styles';
+import { THEME_TYPE } from '../consts/styles';
 
 class ToggleableSettings extends Component {
   constructor(props) {
@@ -10,11 +10,11 @@ class ToggleableSettings extends Component {
       darkTheme: true,
     };
   }
-  onThemeChange(event) {
-    if(this.state.darkTheme) {
-      this.props.changeStyle(LIGHT_THEME);
+  onThemeChange() {
+    if (this.state.darkTheme) {
+      this.props.changeStyle(THEME_TYPE.LIGHT_THEME);
     } else {
-      this.props.changeStyle(DARK_THEME);
+      this.props.changeStyle(THEME_TYPE.DARK_THEME);
     }
     this.setState({ darkTheme: !this.state.darkTheme });
   }
@@ -25,7 +25,7 @@ class ToggleableSettings extends Component {
           <div className="switch">
             <label>
               Dark
-              <input onChange={event => this.onThemeChange(event)} type="checkbox" />
+              <input onChange={() => this.onThemeChange()} type="checkbox" />
               <span className="lever" />
               Light
             </label>
@@ -35,5 +35,9 @@ class ToggleableSettings extends Component {
     );
   }
 }
+
+ToggleableSettings.propTypes = {
+  changeStyle: React.PropTypes.func.isRequired,
+};
 
 export default connect(null, { changeStyle })(ToggleableSettings);

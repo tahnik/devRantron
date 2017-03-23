@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeStyle } from '../actions/style_actions';
+import { changeStyle } from '../actions/styles';
+
 
 let theme = null;
 
 /* Ignore esling error for now. More stuff will be added later */
 class StyleInjector extends Component {
   render() {
-    /*if (theme) {
-      theme.unuse();
+    if (theme !== this.props.style) {
+      const cl = document.querySelector('body').classList;
+      cl.remove(theme);
+      cl.add(this.props.style);
+      theme = this.props.style;
     }
-    // eslint-disable-next-line
-    theme = require(`../../res/css/${this.props.style}.sass`);
-    theme.use();*/
-
-		// make sure we select the right theme based on the switch
-		if(theme !== this.props.style) {
-				const cl = document.querySelector('body').classList;
-				cl.remove(theme);
-				cl.add(this.props.style);
-				theme = this.props.style;
-		}
 
     return (
       <div />

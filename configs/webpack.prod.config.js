@@ -38,20 +38,20 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'sass-loader'],
-				}),
+        }),
       },
-			{
-				exclude: /node_modules/,
-				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
+      {
+        exclude: /node_modules/,
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
           use: 'css-loader',
         }),
-			},
+      },
     ],
   },
   plugins: [
-    new ExtractTextPlugin({filename: 'main.css', allChunks: true}),
-		new HtmlWebpackPlugin({
+    new ExtractTextPlugin({ filename: 'main.css', allChunks: true }),
+    new HtmlWebpackPlugin({
       title: 'devRantron',
       template: 'src/main/index.ejs',
     }),

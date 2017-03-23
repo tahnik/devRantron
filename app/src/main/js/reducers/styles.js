@@ -1,20 +1,17 @@
-import { 
-	DARK_THEME, 
-	LIGHT_THEME, 
-	CHANGE_THEME 
-} from '../actions/style_actions';
+import {
+  THEME_TYPE,
+  CHANGE_THEME,
+} from '../consts/styles';
 
-export const DARK_THEME_FILE = 'dark_theme';
-export const LIGHT_THEME_FILE = 'light_theme';
 
-export default function(state = DARK_THEME_FILE, action) {
-	if(action.type == CHANGE_THEME) {
-			switch(action.theme) {
-				case DARK_THEME:
-					return DARK_THEME_FILE;
-				case LIGHT_THEME:
-					return LIGHT_THEME_FILE;
-			}
-	}
-	return state;
+export default function (state = THEME_TYPE.DARK_THEME, action) {
+  if (action.type === CHANGE_THEME) {
+    switch (action.themeType) {
+      case THEME_TYPE.DARK_THEME:
+        return action.themeType;
+      case THEME_TYPE.LIGHT_THEME:
+        return action.themeType;
+    }
+  }
+  return state;
 }
