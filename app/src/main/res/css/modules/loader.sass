@@ -1,0 +1,32 @@
+// !compileOnSave
+body
+  background: #fff
+  display: flex
+  height: 100vh
+  justify-content: center
+  align-items: center
+
+@keyframes loading
+  0%
+    transform: scale(0)
+  50%
+    transform: scale(1)
+  100%
+    transform: scale(0)
+#loaderCont
+  position: relative
+  display: flex
+  justify-content: center
+  align-items: center
+  .loader
+    position: absolute
+    background: rgba(0,0,10,0.5)
+    height: 100px
+    width: 100px
+    transform-origin: center
+    border-radius: 100%
+    transform: scale(0)
+  #loader1
+    animation: loading 1s ease-in-out 0s infinite
+  #loader2
+    animation: loading 1s ease-in-out 0.5s infinite

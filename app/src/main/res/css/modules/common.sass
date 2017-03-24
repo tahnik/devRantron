@@ -1,4 +1,6 @@
+// !compileOnSave
 body.#{$theme}
+  overflow-x: hidden
   #root
       text-align: center
 
@@ -40,6 +42,7 @@ body.#{$theme}
     left: 70px
     width: calc(100% - 70px)
     height: 36px
+    z-index: 175
     background-color: $main-color
 
   .top_nav
@@ -91,16 +94,55 @@ body.#{$theme}
   .togglable_side_nav
       transition: all .25s ease
 
-  .rants
-    position: relative
-    left: 70px
-    top: 36px
-    width: calc(100% - 70px)
-    height: calc(100vh - 36px)
-    background-color: $background_color
-    transition: all .2s ease
 
   .rants
+    position: absolute
+    left: 70px
+    top: 36px
+    width: calc(100vw - 70px)
+    min-height: calc(100vh - 36px)
+    background-color: $background_color
+    transition: all .2s ease
+    display: flex
+    flex-direction: column
+    align-items: center
+  .center
     display: flex
     justify-content: center
     align-items: center
+
+.rant
+  background: #fff
+  width: 80%
+  margin: 5px
+  padding: 10px
+  display: flex
+  p
+    text-align: left
+    flex: 1
+    margin-right: 10px
+  .rant_vote_container
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-right: 10px
+    width: 32px
+    height: 100px
+    span
+      text-align: center
+      width: 100%
+      line-height: 30px
+      margin: 0px
+      color: $selected-color
+    p
+      margin: 0px
+      text-align: center
+    button
+      padding: 0px
+      width: 32px
+      height: 32px
+      background: $selected-color
+      border: none
+      border-radius: 32px
+      display: block
+      color: #fff
