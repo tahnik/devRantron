@@ -13,30 +13,12 @@ body.#{$theme}
     &:hover
       background-color: $selected-color
 
-  .side_nav_toggle
-    border-radius: 0
-    box-shadow: none
-    max-width: 70px
-    &:focus
-      outline: non
-
-
-  .static_side_nav > ul > li > a, .togglable_side_nav > ul > li > a
-    border-radius: 0
-    box-shadow: none
-
-  .static_side_nav > ul > li > a:hover, .togglable_side_nav > ul > li > a:hover
-    box-shadow: none
-
-  .static_side_nav > ul > li > a:focus, .togglable_side_nav > ul > li > a:focus
-    outline: none
-
   .top_nav
     height: 100%
     width: 80%
     margin: auto
 
-  .header
+  .top_nav
     position: fixed
     top: 0
     left: 70px
@@ -44,8 +26,6 @@ body.#{$theme}
     height: 36px
     z-index: 175
     background-color: $main-color
-
-  .top_nav
     text-align: center
     ul
       margin: 0
@@ -58,13 +38,13 @@ body.#{$theme}
         font-weight: 300
         font-size: 1.2rem
 
-  .static_side_nav
+  .side_nav
     position: fixed
     height: 100%
+    min-width: 70px
     top: 0
     left: 0
     background-color: $main-color
-    width: 70px
     z-index: 99
     ul
       margin-top: 0
@@ -72,77 +52,62 @@ body.#{$theme}
         a
           max-width: 70px
 
+  .side_nav > ul > li > a, .togglable_side_nav > ul > li > a
+    border-radius: 0
+    box-shadow: none
 
-  .togglable_side_nav
-    z-index: 98
-    position: fixed
-    height: 100%
-    top: 36px
-    left: 70px
-    background-color: $main-color
-    text-align: left
-    ul
-      margin-top: 0
-      display: inline-block
-      li
-        a
-          text-align: left
-          padding-left: 0.5rem
-          width: 150px
+  .side_nav > ul > li > a:hover, .togglable_side_nav > ul > li > a:hover
+    box-shadow: none
 
+  .side_nav > ul > li > a:focus, .togglable_side_nav > ul > li > a:focus
+    outline: none
 
-  .togglable_side_nav
-      transition: all .25s ease
-
-
-  .rants
+  .side_nav_toggle
+    border-radius: 0
+    box-shadow: none
+    max-width: 70px
     position: absolute
+    top: 0
+    left: 0
+    &:focus
+      outline: none
+
+  .drawer_icon
+    width: 70px
+    float: left
+
+  .drawer
+    position: absolute
+    top: 36px
+    left: 0
+    height: calc(100% - 36px)
+    font-weight: 300
+    font-size: 1.2rem
+    color: white
+    z-index: 9
+    background-color: $main-color
+    transition: width .25s ease
+
+  .drawer_item
+    height: 36px
+    line-height: 36px
+    position: relative
+    cursor: pointer
+    &:hover
+      background-color: $selected-color
+
+  .drawer_text
+    width: 130px
+    text-align: left
+    padding-left: 5px
+    margin-left: 70px
+
+  .drawer_background
+    position: absolute
+    height: calc(100% - 36px)
+    background-color: $main-color
+    width: 130px
     left: 70px
     top: 36px
-    width: calc(100vw - 70px)
-    min-height: calc(100vh - 36px)
-    background-color: $background_color
-    transition: all .2s ease
-    display: flex
-    flex-direction: column
-    align-items: center
-  .center
-    display: flex
-    justify-content: center
-    align-items: center
-
-.rant
-  background: #fff
-  width: 80%
-  margin: 5px
-  padding: 10px
-  display: flex
-  p
-    text-align: left
-    flex: 1
-    margin-right: 10px
-  .rant_vote_container
-    display: flex
-    flex-direction: column
-    align-items: center
-    margin-right: 10px
-    width: 32px
-    height: 100px
-    span
-      text-align: center
-      width: 100%
-      line-height: 30px
-      margin: 0px
-      color: $selected-color
-    p
-      margin: 0px
-      text-align: center
-    button
-      padding: 0px
-      width: 32px
-      height: 32px
-      background: $selected-color
-      border: none
-      border-radius: 32px
-      display: block
-      color: #fff
+    z-index: 8
+    transition: all .25s ease

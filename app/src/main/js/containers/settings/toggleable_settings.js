@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import changeStyle from '../actions/styles';
-import { THEME_TYPE } from '../consts/styles';
+import changeStyle from '../../actions/styles';
+import { THEME_TYPE } from '../../consts/styles';
 
 class ToggleableSettings extends Component {
   constructor(props) {

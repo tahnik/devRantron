@@ -3,11 +3,8 @@ import {
   Route,
 } from 'react-router-dom';
 import React, { Component } from 'react';
-import Header from './components/header';
-import SideNav from './containers/side_nav';
-import Rants from './components/rants';
-import Stories from './components/stories';
-import Collabs from './components/collabs';
+import Feed from './components/feed';
+import Nav from './components/nav';
 import Settings from './components/settings';
 
 export const ROUTES = {
@@ -24,11 +21,10 @@ export default class extends Component {
     return (
       <Router>
         <div>
-          <Header />
-          <SideNav />
-          <Route exact path={ROUTES.root} component={Rants} />
-          <Route path={ROUTES.stories} component={Stories} />
-          <Route path={ROUTES.collabs} component={Collabs} />
+          <Nav />
+          <Route exact path={ROUTES.root} component={Feed} />
+          <Route path={ROUTES.stories} component={Feed} />
+          <Route path={ROUTES.collabs} component={Feed} />
           <Route path={ROUTES.settings} component={Settings} />
         </div>
       </Router>
