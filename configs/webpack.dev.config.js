@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -43,24 +42,18 @@ module.exports = {
       {
         exclude: /node_modules/,
         test: /\.sass$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
-        }),
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         exclude: /node_modules/,
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: 'css-loader',
-        }),
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new ExtractTextPlugin({ filename: 'main.css', allChunks: true }),
     new HtmlWebpackPlugin({
       title: 'devRantron',
       template: 'src/main/index.ejs',
