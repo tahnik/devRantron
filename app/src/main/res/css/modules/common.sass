@@ -74,33 +74,41 @@ body.#{$theme}
 
   .drawer_icon
     width: 70px
-    float: left
+    float: right
 
   .drawer
     position: absolute
     top: 36px
     left: 0
     height: calc(100% - 36px)
+    width: 200px
     font-weight: 300
     font-size: 1.2rem
     color: white
     z-index: 9
     background-color: $main-color
-    transition: width .25s ease
+    transition: all .20s ease-in-out
 
   .drawer_item
     height: 36px
     line-height: 36px
     position: relative
     cursor: pointer
+    padding: 0
+    box-shadow: none
+    text-transform: none
     &:hover
       background-color: $selected-color
+    &:focus
+      outline: none
+      box-shadow: none
 
   .drawer_text
     width: 130px
     text-align: left
-    padding-left: 5px
-    margin-left: 70px
+    float: left
+    padding-left: 10px
+    font-weight: 400
 
   .drawer_background
     position: absolute
@@ -111,3 +119,20 @@ body.#{$theme}
     top: 36px
     z-index: 8
     transition: all .25s ease
+
+  .container
+    height: calc(100vh - 36px)
+    width: calc(100vw - 70px)
+    margin-left: 70px
+    margin-top: 36px
+    background-color: $background-color
+    transition: all .35s ease
+
+  .toggleable_settings
+    position: relative
+    text-align: right
+    padding: 1rem
+    color: white
+
+  .switch_span
+    float: left

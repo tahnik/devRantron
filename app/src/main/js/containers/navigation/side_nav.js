@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes';
+import SideNavItem from './side_nav_item';
 
+const SIDE_NAV_ITEMS = [
+  { name: 'Rants', route: '/rants', icon: 'ion-chatboxes' },
+  { name: 'Collabs', route: '/collabs', icon: 'ion-person-stalker' },
+  { name: 'Stories', route: '/stories', icon: 'ion-ios-bookmarks' },
+  { name: 'Weekly', route: '/weekly', icon: 'ion-calendar' },
+  { name: 'Settings', route: '/Settings', icon: 'ion-android-settings' },
+];
 
 class SideNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
       sideNavHidden: true,
-      translateX: 70,
-      display: 'none',
+      translateX: -130,
     };
   }
   hideNav() {
-    this.setState({ sideNavHidden: true, translateX: 70, display: 'none' });
+    this.setState({ sideNavHidden: true, translateX: -130 });
   }
   showNav() {
-    this.setState({ sideNavHidden: false, translateX: 200, display: 'block' });
+    this.setState({ sideNavHidden: false, translateX: 0 });
   }
   toggleNav() {
     if (this.state.sideNavHidden) {
@@ -35,21 +41,13 @@ class SideNav extends Component {
         >
           <i className="ion-navicon-round" />
         </button>
-        <div className="drawer" style={{ width: `${this.state.translateX}px` }} >
-          <div
-            className="drawer_item"
-            onClick={() => this.toggleNav()}
-            onBlur={() => this.hideNav()}
-            >
-            <div className="drawer_icon" >
-              <i className="ion-chatbubble" />
-            </div>
-            <div
-              className="drawer_text"
-            >
-              <span>Rants</span>
-            </div>
-          </div>
+        <div
+          className="drawer"
+          style={{ transform: `translateX(${this.state.translateX}px)` }}
+        >
+          {
+            SIDE_NAV_ITEMS.map(item => <SideNavItem item={item} key={item.name} />)
+          }
         </div>
       </div>
     );

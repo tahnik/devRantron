@@ -20,15 +20,14 @@ class ToggleableSettings extends Component {
   render() {
     return (
       <div className="toggleable_settings">
-        <div>
-          <div className="switch">
-            <label>
-              Dark
-              <input onChange={() => this.onThemeChange()} type="checkbox" />
-              <span className="lever" />
-              Light
-            </label>
-          </div>
+        <div className="switch">
+          <span className="switch_span" >Use Dark Theme</span>
+          <label>
+            Yes
+            <input onChange={() => this.onThemeChange()} type="checkbox" />
+            <span className="lever" />
+            No
+          </label>
         </div>
       </div>
     );
