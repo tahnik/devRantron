@@ -1,6 +1,7 @@
 // !compileOnSave
 $button-width: 70px
 $button-height: 36px
+$poppy-bez: cubic-bezier(0.45, -0.1, 0.4, 1.2)
 body.#{$theme}
   #root
       text-align: center
@@ -83,7 +84,7 @@ body.#{$theme}
     color: white
     z-index: 9
     background-color: $main-color
-    transition: all .20s ease-in-out
+    transition: all .20s $poppy-bez
 
   .drawer_item
     height: $button-height
@@ -112,7 +113,7 @@ body.#{$theme}
     margin-left: $button-width
     margin-top: $button-height
     background-color: $background-color
-    transition: all .35s ease
+    transition: all .35s $poppy-bez
 
   .toggleable_settings
     position: relative
