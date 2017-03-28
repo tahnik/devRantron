@@ -6,15 +6,7 @@ import React, { Component } from 'react';
 import Feed from './components/feed';
 import Nav from './components/nav';
 import Settings from './components/settings';
-
-export const ROUTES = {
-  root: '/',
-  rants: '/',
-  stories: '/stories',
-  collabs: '/collabs',
-  settings: '/settings',
-};
-
+import { ROUTES } from './consts/routes';
 
 export default class extends Component {
   render() {
@@ -23,8 +15,10 @@ export default class extends Component {
         <div>
           <Nav />
           <Route exact path={ROUTES.root} component={Feed} />
+          <Route path={ROUTES.rants} component={Feed} />
           <Route path={ROUTES.stories} component={Feed} />
           <Route path={ROUTES.collabs} component={Feed} />
+          <Route path={ROUTES.weekly} component={Feed} />
           <Route path={ROUTES.settings} component={Settings} />
         </div>
       </Router>

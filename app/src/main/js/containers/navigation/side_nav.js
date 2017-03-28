@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { ROUTES } from '../../routes';
 import SideNavItem from './side_nav_item';
+import { ROUTES } from '../../consts/routes';
 
 const SIDE_NAV_ITEMS = [
-  { name: 'Rants', route: '/rants', icon: 'ion-chatboxes' },
-  { name: 'Collabs', route: '/collabs', icon: 'ion-person-stalker' },
-  { name: 'Stories', route: '/stories', icon: 'ion-ios-bookmarks' },
-  { name: 'Weekly', route: '/weekly', icon: 'ion-calendar' },
-  { name: 'Settings', route: '/Settings', icon: 'ion-android-settings' },
+  { name: 'Rants', route: ROUTES.rants, icon: 'ion-chatboxes' },
+  { name: 'Collabs', route: ROUTES.collabs, icon: 'ion-person-stalker' },
+  { name: 'Stories', route: ROUTES.stories, icon: 'ion-ios-bookmarks' },
+  { name: 'Weekly', route: ROUTES.weekly, icon: 'ion-calendar' },
+  { name: 'Settings', route: ROUTES.settings, icon: 'ion-android-settings' },
 ];
 
 class SideNav extends Component {
