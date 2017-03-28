@@ -28,10 +28,10 @@ body.#{$theme}
       display: inline-block
       li
         color: white
-        width: $button-width
         float: left
         line-height: $button-height
         font-weight: 300
+        margin-left: 1.2rem
         font-size: 1.2rem
 
   .side_nav
@@ -48,14 +48,17 @@ body.#{$theme}
         a
           max-width: $button-width
 
-  .side_nav > ul > li > a, .togglable_side_nav > ul > li > a
+  .side_nav > ul > li > a,
+  .top_nav_container > button
     border-radius: 0
     box-shadow: none
 
-  .side_nav > ul > li > a:hover, .togglable_side_nav > ul > li > a:hover
+  .side_nav > ul > li > a:hover,
+  .top_nav_container > button
     box-shadow: none
 
-  .side_nav > ul > li > a:focus, .togglable_side_nav > ul > li > a:focus
+  .side_nav > ul > li > a:focus,
+  .top_nav_container > button
     outline: none
 
   .side_nav_toggle
@@ -106,7 +109,8 @@ body.#{$theme}
     padding-left: 10px
     font-weight: 400
 
-  .container
+  .main_container
+    position: absolute
     height: calc(100vh - #{$button-height})
     width: calc(100vw - #{$button-width})
     margin-left: $button-width
@@ -118,7 +122,26 @@ body.#{$theme}
     position: relative
     text-align: right
     padding: 1rem
+    margin: 0 1rem 0 1rem
     color: white
+    border-bottom: $toggleable-settings-border
+    border-bottom-width: 1px
+    border-bottom-style: solid
+    label
+      color: $settings-text
 
   .switch_span
     float: left
+    color: $settings-text
+
+  .top_nav_container
+    transition: all .35s ease
+    text-align: center
+    button
+      display: inline
+      color: white
+      font-weight: 300
+      font-size: 1rem
+      padding: 0 15px 0 15px
+      &:hover
+        background-color: $main-color

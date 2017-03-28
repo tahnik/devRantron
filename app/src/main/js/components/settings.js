@@ -3,7 +3,7 @@ import ToggleableSettings from '../containers/settings/toggleable_settings';
 
 function Settings() {
   return (
-    <div className="container">
+    <div className="main_container">
       <ToggleableSettings />
     </div>
   );
