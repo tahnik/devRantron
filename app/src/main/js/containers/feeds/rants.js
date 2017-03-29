@@ -10,11 +10,10 @@ class Rants extends Component {
   }
   render() {
     const { rants } = this.props;
-    console.log(rants)
     if (rants.state === STATE.LOADING) {
       return (
-        <div className="center">
-          <div id="loaderCont">
+        <div>
+          <div id="loaderCont" >
             <div className="loader" id="loader1" />
             <div className="loader" id="loader2" />
           </div>
