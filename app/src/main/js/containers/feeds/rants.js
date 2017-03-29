@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import RantCard from '../rant/rant_card';
 import { connect } from 'react-redux';
-import { fetchRants } from '../../actions/rants';
+import { fetch } from '../../actions/rants';
 import { STATE } from '../../consts/state';
+import { FEED } from '../../consts/feed';
 
 class Rants extends Component {
-  componentDidMount() {
-    this.props.fetchRants('top', 10, 0);
-  }
   render() {
     const { rants } = this.props;
     if (rants.state === STATE.LOADING) {
@@ -21,9 +19,18 @@ class Rants extends Component {
       );
     }
     return (
-      <div className="rants row">
+      <div className="row" >
         {
-        rants.currentRants.map(rant => <RantCard rant={rant} key={rant.id} />)
+        rants.currentRants.map((currentRants, index) => {
+          const key = `column${index}`;
+          return (
+            <div className="rants col s6" id={key} key={key} >
+              {
+                currentRants.map(rant => <RantCard rant={rant} key={rant.id} />)
+              }
+            </div>
+          );
+        })
         }
       </div>
     );
@@ -36,4 +43,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchRants })(Rants);
+export default connect(mapStateToProps, { fetch })(Rants);

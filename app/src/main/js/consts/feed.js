@@ -1,8 +1,8 @@
 export const FEED = {
   RANTS: {
-    TOP: 'TOP',
-    ALGO: 'ALGO',
-    RECENT: 'RECENT',
+    TOP: 'top',
+    ALGO: 'algo',
+    RECENT: 'recent',
   },
   STORIES: {
     DAY: 'DAY',
