@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import changeStyle from '../../actions/styles';
-import { THEME_TYPE } from '../../consts/styles';
+import { connect } from 'react-redux';
+import changeStyle from '../../actions/settings';
+import { THEME_TYPE } from '../../consts/settings';
 
 class ToggleableSettings extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      darkTheme: true,
-    };
+  }
+  getThemeState() {
+    return this.props.theme === THEME_TYPE.DARK_THEME;
   }
   onThemeChange() {
-    if (this.state.darkTheme) {
-      changeStyle(THEME_TYPE.LIGHT_THEME);
+    console.log("Sorry")
+    if (this.getThemeState()) {
+      this.props.changeStyle(THEME_TYPE.LIGHT_THEME);
     } else {
-      changeStyle(THEME_TYPE.DARK_THEME);
+      this.props.changeStyle(THEME_TYPE.DARK_THEME);
     }
-    this.setState({ darkTheme: !this.state.darkTheme });
   }
   render() {
     return (
@@ -23,10 +24,10 @@ class ToggleableSettings extends Component {
         <div className="switch">
           <span className="switch_span" >Use Dark Theme</span>
           <label>
-            Yes
-            <input onChange={() => this.onThemeChange()} type="checkbox" />
-            <span className="lever" />
             No
+            <input checked={this.getThemeState()} onChange={() => this.onThemeChange()} type="checkbox" />
+            <span className="lever" />
+            Yes
           </label>
         </div>
       </div>
@@ -34,4 +35,10 @@ class ToggleableSettings extends Component {
   }
 }
 
-export default ToggleableSettings;
+function mapStateToProps(state) {
+  return {
+    theme: state.theme,
+  };
+}
+
+export default connect(mapStateToProps, { changeStyle })(ToggleableSettings);

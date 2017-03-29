@@ -5,4 +5,4 @@ export const CHANGE_THEME = 'CHANGE_THEME';
 export const THEME_TYPE = {
   DARK_THEME: 'dark_theme',
   LIGHT_THEME: 'light_theme',
-}
+};
