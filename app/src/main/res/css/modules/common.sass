@@ -24,6 +24,7 @@ body.#{$theme}
     height: $button-height
     background-color: $main-color
     text-align: center
+    z-index: 99
     ul
       margin: 0
       display: inline-block
@@ -112,12 +113,12 @@ body.#{$theme}
 
   .main_container
     position: absolute
-    height: calc(100vh - #{$button-height})
-    width: calc(100vw - #{$button-width})
-    margin-left: $button-width
-    margin-top: $button-height
+    width: calc(100% - #{$button-width})
+    left: $button-width
+    top: $button-height
     background-color: $background-color
     transition: all .35s $poppy-bez
+    padding: 1rem
 
   .toggleable_settings
     position: relative
@@ -146,3 +147,16 @@ body.#{$theme}
       padding: 0 15px 0 15px
       &:hover
         background-color: $main-color
+
+  .center
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+  .rant_card
+    .card
+      background-color: $rant-card-background !important
+    p
+      color: white
+      text-align: left
+      font-family: Helvetica, Arial, sans-serif;

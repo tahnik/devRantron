@@ -1,20 +1,25 @@
-export default function reducer(state = {
-  rants: [],
-  fetching: false,
-  fetched: false,
-  error: null,
-}, action) {
-  switch (action.type) {
-    case 'FETCH_RANTS': {
-      return { ...state, fetching: true, error: action.payload };
+import { FETCH_RANTS } from '../consts/rants';
+import { STATE } from '../consts/state';
+
+const DEFAULT_STATE = {
+  currentRants: [],
+  state: STATE.SUCCESS,
+};
+
+export function rants(state = DEFAULT_STATE, action) {
+  if (action.type === FETCH_RANTS) {
+    switch (action.state) {
+      case STATE.LOADING:
+        return { ...state, state: action.state };
+      case STATE.SUCCESS:
+        return {
+          ...state,
+          currentRants: action.payload,
+          state: action.state,
+        };
+      case STATE.FAILED:
+        return { ...state, state: action.state };
     }
-    case 'FETCH_RANTS_REJECTED': {
-      return { ...state, fetching: false, error: action.payload };
-    }
-    case 'FETCH_RANTS_FULFILLED': {
-      return { ...state, fetching: false, fetched: true, rants: action.payload };
-    }
-    default:
-      return { ...state };
   }
+  return state;
 }

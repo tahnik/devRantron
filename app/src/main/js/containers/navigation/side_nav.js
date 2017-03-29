@@ -3,7 +3,7 @@ import SideNavItem from './side_nav_item';
 import { ROUTES } from '../../consts/routes';
 
 const SIDE_NAV_ITEMS = [
-  { name: 'Rants', route: ROUTES.rants, icon: 'ion-chatboxes' },
+  { name: 'Rants', route: ROUTES.root, icon: 'ion-chatboxes' },
   { name: 'Collabs', route: ROUTES.collabs, icon: 'ion-person-stalker' },
   { name: 'Stories', route: ROUTES.stories, icon: 'ion-ios-bookmarks' },
   { name: 'Weekly', route: ROUTES.weekly, icon: 'ion-calendar' },
