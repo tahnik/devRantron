@@ -5,9 +5,30 @@ import { fetch } from '../../actions/rants';
 import { STATE } from '../../consts/state';
 import { FEED } from '../../consts/feed';
 
+function mapStateToProps(state) {
+  return {
+    rants: state.rants,
+  };
+}
+
 class Rants extends Component {
+  /* Ignore for now, not always running componentDidMount() {
+    const { rants } = this.props;
+
+    document.body.onscroll = () => {
+      console.log(document.body.scrollTop, document.body.scrollHeight, window.innerHeight * 2);
+      console.log(document.body.scrollTop > document.body.scrollHeight - (window.innerHeight * 2));
+
+      if (document.body.scrollTop > document.body.scrollHeight - (window.innerHeight * 2) && rants.state !== STATE.LOADING) {
+        console.log('Load Rants');
+        this.props.fetch(rants.feedType, 25, rants.page);
+      }
+    }
+  } */
+
   render() {
     const { rants } = this.props;
+
     if (rants.state === STATE.LOADING) {
       return (
         <div>
@@ -19,7 +40,7 @@ class Rants extends Component {
       );
     }
     return (
-      <div className="row" >
+      <div className="row" id="rantsFeed" >
         {
         rants.currentRants.map((currentRants, index) => {
           const key = `column${index}`;
@@ -35,12 +56,6 @@ class Rants extends Component {
       </div>
     );
   }
-}
-
-function mapStateToProps(state) {
-  return {
-    rants: state.rants,
-  };
 }
 
 export default connect(mapStateToProps, { fetch })(Rants);

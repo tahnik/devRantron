@@ -29,7 +29,7 @@ export function rants(state = DEFAULT_STATE, action) {
         };
       case STATE.SUCCESS:
         let newPage = state.page + 1;
-        console.log(newPage)
+        console.log(newPage);
         return {
           ...state,
           currentRants: breakDownRants(state.currentRants, action.payload),
@@ -43,4 +43,3 @@ export function rants(state = DEFAULT_STATE, action) {
   }
   return state;
 }
-

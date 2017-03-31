@@ -11,7 +11,7 @@ export function fetch(type, amount, page = 0) {
       feedType: type,
     });
     rantscript
-      .rants(type, amount, page)
+      .rants(type, amount, amount*page)
       .then((res) => {
         dispatch({
           type: FETCH_RANTS,
