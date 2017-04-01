@@ -6,9 +6,34 @@ import { STATE } from '../../consts/state';
 import { FEED } from '../../consts/feed';
 
 class Rants extends Component {
+  constructor(props) {
+    super(props);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+  handleScroll(event) {
+    const { rants } = this.props;
+    const windowHeight = 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom + (windowHeight * 2) >= docHeight && rants.state !== STATE.LOADING) {
+      this.props.fetch(
+        this.props.rants.feedType,
+        25,
+        25 * this.props.rants.page,
+      );
+    }
+  }
   render() {
     const { rants } = this.props;
-    if (rants.state === STATE.LOADING) {
+    if (rants.state === STATE.LOADING  && rants.currentRants.length === 0) {
       return (
         <div>
           <div id="loaderCont" >
@@ -19,7 +44,7 @@ class Rants extends Component {
       );
     }
     return (
-      <div className="row" >
+      <div className="row rantContainer" >
         {
         rants.currentRants.map((currentRants, index) => {
           const key = `column${index}`;

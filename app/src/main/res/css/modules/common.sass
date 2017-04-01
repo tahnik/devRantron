@@ -149,14 +149,37 @@ body.#{$theme}
         background-color: $main-color
 
   .center
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-
+    position: relative
+    top: 50%
+    transform: translateY(-50%)
+  .rantContainer
+    width: 1200px
   .rant_card
+    .card-image
+      width: 577.5px
+      height: 577.5px
+      background-size: cover !important
+      div
+        background: rgba(0,0,0,0.75)
+        opacity: 0
+        height: 100%
+        width: 100%
+        cursor: pointer
+        transition: opacity 0.3s
+        i
+          color: white
+          font-size: 32px
+          line-height: 577.5px
+          transition: font-size 0.2s
+
+        &:hover
+          opacity: 1
+          i
+            font-size: 52px
+
     .card
       background-color: $rant-card-background !important
     p
       color: white
       text-align: left
-      font-family: Helvetica, Arial, sans-serif;
+      font-family: Helvetica, Arial, sans-serif
