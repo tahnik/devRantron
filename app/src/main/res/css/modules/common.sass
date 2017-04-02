@@ -153,7 +153,7 @@ body.#{$theme}
     top: 50%
     transform: translateY(-50%)
   .rantContainer
-    width: 1200px
+    width: 900px
   .rant_card
     .card-bottomBar
       width: 100%
@@ -166,37 +166,27 @@ body.#{$theme}
         line-height: 36px
         font-size: 20px
         width: 36px
-        background: #40415a
         &:hover
-          background: #36374c
+          color: #D55161
+          cursor: pointer
       p
         font-weight: 600
-        margin: 8px
+        margin: 8px 0;
     .card-image
-      width: 577.5px
-      height: 577.5px
-      background-size: cover !important
-      div
-        background: rgba(0,0,0,0.75)
-        opacity: 0
-        height: 100%
-        width: 100%
-        cursor: pointer
-        transition: opacity 0.3s
-        i
-          color: white
-          font-size: 32px
-          line-height: 577.5px
-          transition: font-size 0.2s
-
-        &:hover
-          opacity: 1
-          i
-            font-size: 52px
+      width: 100%
+      max-height: 300px
+      overflow: hidden
 
     .card
       background-color: $rant-card-background !important
+      border-radius: 0
     p
       color: white
       text-align: left
       font-family: Helvetica, Arial, sans-serif
+  pre
+    white-space: pre-wrap
+    white-space: -moz-pre-wrap
+    white-space: -pre-wrap
+    white-space: -o-pre-wrap
+    word-wrap: break-word
