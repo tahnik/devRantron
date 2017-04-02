@@ -116,9 +116,13 @@ body.#{$theme}
     width: calc(100% - #{$button-width})
     left: $button-width
     top: $button-height
+    min-height: calc(100vh - #{$button-height})
     background-color: $background-color
     transition: all .35s $poppy-bez
     padding: 1rem
+    display: flex
+    justify-content: center
+    align-content: center
 
   .toggleable_settings
     position: relative
@@ -190,3 +194,4 @@ body.#{$theme}
     white-space: -pre-wrap
     white-space: -o-pre-wrap
     word-wrap: break-word
+    overflow-x: hidden
