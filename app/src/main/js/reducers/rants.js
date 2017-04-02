@@ -34,7 +34,7 @@ function breakDownRants(prevRants, newRants) {
   }
 
   if (prevRants[0]) {
-    return ([[...leftSide, ...prevRants[0]], [...rightSide, ...prevRants[1]]]);
+    return ([[...prevRants[0], ...leftSide], [...prevRants[1], ...rightSide]]);
   }
   return ([leftSide, rightSide]);
 }
