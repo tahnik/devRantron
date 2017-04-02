@@ -16,7 +16,6 @@ function breakDownRants(prevRants, newRants) {
   const leftSide = [];
   const rightSide = [];
   for (let i = 0; i < newRants.length; i += 1) {
-
     if (col1len <= col2len) {
       leftSide.push(newRants[i]);
       col1len += newRants[i].text.length;
@@ -24,7 +23,6 @@ function breakDownRants(prevRants, newRants) {
         // Found this to work good on images. Feel free to change if you find something better
         col1len += 1500;
       }
-
     } else {
       rightSide.push(newRants[i]);
       col2len += newRants[i].text.length;
@@ -32,9 +30,7 @@ function breakDownRants(prevRants, newRants) {
         // Found this to work good on images. Feel free to change if you find something better
         col2len += 1500;
       }
-
     }
-
   }
 
   if (prevRants[0]) {
