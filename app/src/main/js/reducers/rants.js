@@ -1,4 +1,4 @@
-import { FETCH_RANTS } from '../consts/rants';
+import { FETCH_RANTS, RESET_PAGE } from '../consts/rants';
 import { STATE } from '../consts/state';
 import { FEED } from '../consts/feed';
 
@@ -40,27 +40,52 @@ function breakDownRants(prevRants, newRants) {
 }
 
 export function rants(state = DEFAULT_STATE, action) {
-  if (action.type === FETCH_RANTS) {
-    switch (action.state) {
-      case STATE.LOADING:
-        return {
-          ...state,
-          state: action.state,
-          feedType: action.feedType,
-        };
-      case STATE.SUCCESS:
-        let newPage = state.page + 1;
-        console.log(newPage)
-        return {
-          ...state,
-          currentRants: breakDownRants(state.currentRants, action.payload),
-          state: action.state,
-          feedType: action.feedType,
-          page: newPage,
-        };
-      case STATE.FAILED:
-        return { ...state, state: action.state, feedType: action.feedType };
-    }
+  // if (action.type === FETCH_RANTS) {
+  //   switch (action.state) {
+  //     case STATE.LOADING:
+  //       return {
+  //         ...state,
+  //         state: action.state,
+  //         feedType: action.feedType,
+  //       };
+  //     case STATE.SUCCESS:
+  //       let newPage = state.page + 1;
+  //       console.log(newPage)
+  //       return {
+  //         ...state,
+  //         currentRants: breakDownRants(state.currentRants, action.payload),
+  //         state: action.state,
+  //         feedType: action.feedType,
+  //         page: newPage,
+  //       };
+  //     case STATE.FAILED:
+  //       return { ...state, state: action.state, feedType: action.feedType };
+  //   }
+  // }
+  switch (action.type) {
+    case FETCH_RANTS:
+      switch (action.state) {
+        case STATE.LOADING:
+          return {
+            ...state,
+            state: action.state,
+            feedType: action.feedType,
+          };
+        case STATE.SUCCESS:
+          const newPage = state.page + 1;
+          return {
+            ...state,
+            currentRants: breakDownRants(state.currentRants, action.payload),
+            state: action.state,
+            feedType: action.feedType,
+            page: newPage,
+          };
+        case STATE.FAILED:
+          return { ...state, state: action.state, feedType: action.feedType };
+      }
+      break;
+    case RESET_PAGE:
+      return { ...state, currentRants: [], page: 1 };
   }
   return state;
 }

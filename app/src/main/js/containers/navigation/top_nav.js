@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { ROUTES } from '../../consts/routes';
 import { FEED } from '../../consts/feed';
-import { fetch } from '../../actions/rants';
+import { fetch, resetPage } from '../../actions/rants';
 
 class TopNav extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class TopNav extends Component {
   componentDidMount() {
     this.props.fetch(
       this.props.rants.feedType,
-      10,
+      25,
     );
     this.setState({ activeItem: this.props.rants.feedType });
   }
@@ -30,10 +30,11 @@ class TopNav extends Component {
     }
   }
   changeTopNav(type) {
+    this.props.resetPage();
     this.props.fetch(
       type,
-      10,
-      this.props.rants.page,
+      25,
+      25 * this.props.rants.page,
     );
     this.setState({ activeItem: type });
   }
@@ -71,4 +72,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, { fetch })(TopNav));
+export default withRouter(connect(mapStateToProps, { fetch, resetPage })(TopNav));
