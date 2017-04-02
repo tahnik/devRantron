@@ -35,11 +35,9 @@ class Rants extends Component {
     const { rants } = this.props;
     if (rants.state === STATE.LOADING  && rants.currentRants.length === 0) {
       return (
-        <div>
-          <div id="loaderCont" >
-            <div className="loader" id="loader1" />
-            <div className="loader" id="loader2" />
-          </div>
+        <div id="loaderCont" >
+          <div className="loader" id="loader1" />
+          <div className="loader" id="loader2" />
         </div>
       );
     }
