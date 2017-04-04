@@ -15,11 +15,11 @@ class SideNav extends Component {
     super(props);
     this.state = {
       sideNavHidden: true,
-      translateX: -130,
+      translateX: -10,
     };
   }
   hideNav() {
-    this.setState({ sideNavHidden: true, translateX: -130 });
+    this.setState({ sideNavHidden: true, translateX: -10 });
   }
   showNav() {
     this.setState({ sideNavHidden: false, translateX: 0 });
@@ -43,7 +43,7 @@ class SideNav extends Component {
         </button>
         <div
           className="drawer"
-          style={{ transform: `translateX(${this.state.translateX}px)` }}
+          style={{ transform: `translateX(${this.state.translateX}rem)` }}
         >
           {
             SIDE_NAV_ITEMS.map(item => <SideNavItem item={item} key={item.name} />)
