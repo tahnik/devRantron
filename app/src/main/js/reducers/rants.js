@@ -9,17 +9,15 @@ const DEFAULT_STATE = {
   page: 0,
 };
 
-let col1len = 0;
-let col2len = 0;
-
 function breakDownRants(prevRants, newRants) {
-  console.log('--------------GETTING NEW STUFF--------------')
   const leftSide = [];
   const rightSide = [];
   const col0 = document.getElementById('column0');
   const col1 = document.getElementById('column1');
+  const hiddenRant = document.getElementById('hiddenRant');
   let col0Height = 0;
   let col1Height = 0;
+  const colWidth = hiddenRant.clientWidth;
   if (col0) {
     col0Height = col0.clientHeight;
     col1Height = col1.clientHeight;
@@ -28,34 +26,29 @@ function breakDownRants(prevRants, newRants) {
 
 
     const content = '<div class="rant_card" ><div class="card"><div class="card-content" ><pre><p>' + newRants[i].text + '</p></pre></div></div></div>';
-    const hiddenRant = document.getElementById('hiddenRant');
     let rantHeight = 0;
-    if (hiddenRant) {
-      document.getElementById('hiddenRant').innerHTML = content;
-      rantHeight = hiddenRant.clientHeight;
-    }
-
-
-
+    document.getElementById('hiddenRant').innerHTML = content;
+    rantHeight = hiddenRant.clientHeight;
 
     if (col0Height < col1Height) {
       leftSide.push(newRants[i]);
       col0Height += rantHeight;
       if (newRants[i].attached_image !== '') {
-        col0Height += 300;
+        const heightRatio = newRants[i].attached_image.height / newRants[i].attached_image.width;
+
+        const imageHeight = colWidth * heightRatio;
+        col0Height += imageHeight;
       }
     } else {
       rightSide.push(newRants[i]);
       col1Height += rantHeight;
       if (newRants[i].attached_image !== '') {
-        col1Height += 300;
+        const heightRatio = newRants[i].attached_image.height / newRants[i].attached_image.width;
+
+        const imageHeight = colWidth * heightRatio;
+        col1Height += imageHeight;
       }
     }
-    console.log(col0Height);
-    console.log(col1Height);
-    console.log(newRants[i]);
-    console.log(rantHeight);
-    console.log('-------------------------------');
   }
 
   if (prevRants[0]) {
