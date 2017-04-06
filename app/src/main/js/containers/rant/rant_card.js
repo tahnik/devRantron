@@ -25,7 +25,6 @@ class RantCard extends Component {
       trimmedString = rant.text.substr(0, maxLength);
       trimmedString = `${trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(' ')))}...(Read More)`;
     }
-    console.log(rant);
     return (
       <div className="rant_card row" >
         <div className="card blue-grey darken-1">

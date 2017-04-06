@@ -33,7 +33,7 @@ class Rants extends Component {
   }
   render() {
     const { rants } = this.props;
-    if (rants.state === STATE.LOADING  && rants.currentRants.length === 0) {
+    if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
       return (
         <div id="loaderCont" >
           <div className="loader" id="loader1" />
