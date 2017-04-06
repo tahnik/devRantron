@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetch } from '../../actions/rants';
 import { STATE } from '../../consts/state';
 import { FEED } from '../../consts/feed';
+const twemoji = require('twemoji');
 
 class Rants extends Component {
   constructor(props) {
@@ -30,6 +31,9 @@ class Rants extends Component {
         25 * this.props.rants.page,
       );
     }
+  }
+  componentDidUpdate() {
+    twemoji.parse(document.body);
   }
   render() {
     const { rants } = this.props;
