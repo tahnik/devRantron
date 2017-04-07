@@ -37,7 +37,7 @@ class Feed extends Component {
   render() {
     return (
       <div className="main_container row">
-        <div className="row" style={{ visibility: 'hidden', position: 'absolute', width: '100%', padding: '1rem' }} >
+        <div className="row" style={{ visibility: 'hidden', position: 'absolute', width: '900px' }} >
           <div className="rants col s6" id="fakeRant" style={{ visibility: 'hidden' }} >
             <div id="hiddenRant" style={{ visibility: 'hidden' }} />
           </div>
