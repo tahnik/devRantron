@@ -31,6 +31,9 @@ function breakDownRants(prevRants, newRants) {
   let col0Height = 0;
   let col1Height = 0;
 
+  // This is the height of the user profile on top of the rant card
+  const userProfileHeight = 75;
+
   // Get the width of the hidden div. This width is equal to the width of a rant card
   const colWidth = hiddenRant.clientWidth;
 
@@ -49,7 +52,7 @@ function breakDownRants(prevRants, newRants) {
        This height still doesn't consider the height of the image (if any)
      */
     document.getElementById('hiddenRant').innerHTML = content;
-    const rantHeight = hiddenRant.clientHeight;
+    const rantHeight = hiddenRant.clientHeight + userProfileHeight;
 
     /* Find out which column is shorter right now
      * Add the rant to the shorter column
