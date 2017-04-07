@@ -193,6 +193,8 @@ body.#{$theme}
         p
           font-weight: 600
           margin: 0
+        p.user_score
+          color: white
     .card-content
       padding: 1rem 2rem 1rem 2rem
 
@@ -200,13 +202,14 @@ body.#{$theme}
       width: 100%
       height: $card-bottom-bar
       color: white
-      background: #36374c
+      background: $card-bottom-bar-color
       display: flex
       align-items: center
       i
         line-height: $card-bottom-bar
         font-size: 1.5rem
         width: $card-bottom-bar
+        color: $p-text
         &:hover
           color: #D55161
           cursor: pointer
@@ -222,7 +225,7 @@ body.#{$theme}
       border-radius: 0
       box-shadow: none
     p
-      color: white
+      color: $p-text
       text-align: left
       font-family: Helvetica, Arial, sans-serif
   pre
