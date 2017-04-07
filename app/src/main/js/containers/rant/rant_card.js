@@ -25,11 +25,17 @@ class RantCard extends Component {
       trimmedString = rant.text.substr(0, maxLength);
       trimmedString = `${trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(' ')))}...(Read More)`;
     }
+
+    let imageSource = <img src="res/images/empty_avatar.png" alt="" />;
+
+    if (rant.user_avatar.i) {
+      imageSource = <img src={`https://avatars.devrant.io/${rant.user_avatar.i}`} alt="" />;
+    }
     return (
       <div className="rant_card row" >
         <div className="card blue-grey darken-1">
           <div className="card-user">
-            <img src={`https://avatars.devrant.io/${rant.user_avatar.i}`} alt="" />
+            { imageSource }
             <div>
               <p>{rant.user_username}</p>
               <p className="user_score">+{rant.user_score}</p>
