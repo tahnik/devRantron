@@ -1,11 +1,14 @@
 // !compileOnSave
-$button-width: 70px
-$button-height: 36px
+$button-width: 5rem
+$button-height: 2.8rem
+$card-bottom-bar: 2.8rem
 $poppy-bez: cubic-bezier(0.165, 0.840, 0.440, 1.00)
 body.#{$theme}
   #root
       text-align: center
-
+  .emoji
+    height: 16px
+    margin: 0px 2px -3px 2px
   .btn
     background-color: $main-color
     &:hover
@@ -67,6 +70,8 @@ body.#{$theme}
     border-radius: 0
     box-shadow: none
     max-width: $button-width
+    height: $button-height
+    max-height: $button-height
     position: absolute
     top: 0
     left: 0
@@ -82,7 +87,7 @@ body.#{$theme}
     top: $button-height
     left: 0
     height: calc(100% - #{$button-height})
-    width: 200px
+    width: 15rem
     font-weight: 300
     font-size: 1.2rem
     color: white
@@ -93,11 +98,13 @@ body.#{$theme}
   .drawer_item
     height: $button-height
     line-height: $button-height
+    width: 15rem
     position: relative
     cursor: pointer
     padding: 0
     box-shadow: none
     text-transform: none
+    border-radius: 0
     &:hover
       background-color: $selected-color
     &:focus
@@ -105,10 +112,10 @@ body.#{$theme}
       box-shadow: none
 
   .drawer_text
-    width: 130px
+    width: 10rem
     text-align: left
     float: left
-    padding-left: 10px
+    padding-left: 1rem
     font-weight: 400
 
   .main_container
@@ -116,12 +123,17 @@ body.#{$theme}
     width: calc(100% - #{$button-width})
     left: $button-width
     top: $button-height
+    min-height: calc(100vh - #{$button-height})
     background-color: $background-color
     transition: all .35s $poppy-bez
-    padding: 1rem
+    padding-top: 1rem
+    display: flex
+    justify-content: center
+    align-content: center
 
   .toggleable_settings
     position: relative
+    width: 100%
     text-align: right
     padding: 1rem
     margin: 0 1rem 0 1rem
@@ -139,24 +151,87 @@ body.#{$theme}
   .top_nav_container
     transition: all .35s ease
     text-align: center
+    height: $button-height
     button
       display: inline
       color: white
       font-weight: 300
       font-size: 1rem
-      padding: 0 15px 0 15px
+      padding: 0 1rem 0 1rem
+      height: $button-height
       &:hover
         background-color: $main-color
 
   .center
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-
+    position: relative
+    top: 50%
+    transform: translateY(-50%)
+  .user_score
+    background: $selected-color
+    border-radius: 0.4rem
+    color: white
+    font-weight: 600
+    padding: 0px 0.7rem
+    font-size: 0.9rem
+    float: left
+  .rantContainer
+    width: 900px
   .rant_card
+    .card-user
+      width: 100%
+      height: 5rem
+      display: flex
+      padding: 1.5rem 2rem 0
+      img
+        height: 100%
+        border-radius: 50%
+      div
+        height: 100%
+        justify-content: center
+        margin: 0 0.8rem
+        display: block
+        p
+          font-weight: 600
+          margin: 0
+        p.user_score
+          color: white
+    .card-content
+      padding: 1rem 2rem 1rem 2rem
+
+    .card-bottomBar
+      width: 100%
+      height: $card-bottom-bar
+      color: white
+      background: $card-bottom-bar-color
+      display: flex
+      align-items: center
+      i
+        line-height: $card-bottom-bar
+        font-size: 1.5rem
+        width: $card-bottom-bar
+        color: $p-text
+        &:hover
+          color: #D55161
+          cursor: pointer
+      p
+        font-weight: 600
+        margin: 0.7rem 0
+    .card-image
+      width: 100%
+      overflow: hidden
+
     .card
       background-color: $rant-card-background !important
+      border-radius: 0
+      box-shadow: none
     p
-      color: white
+      color: $p-text
       text-align: left
-      font-family: Helvetica, Arial, sans-serif;
+      font-family: Helvetica, Arial, sans-serif
+  pre
+    white-space: pre-wrap
+    white-space: -moz-pre-wrap
+    white-space: -pre-wrap
+    white-space: -o-pre-wrap
+    word-wrap: break-word
+    overflow-x: hidden
