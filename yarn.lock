@@ -5082,9 +5082,9 @@ range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
 
-rantscript@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/rantscript/-/rantscript-1.0.2.tgz#4bb7731157e90d3e1aca2cf174644a7b6a2f83d3"
+rantscript@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/rantscript/-/rantscript-1.0.4.tgz#ddeb3c700b09f69a028c01ce359d4f46fa0266d0"
   dependencies:
     co "^4.6.0"
     fetch "^1.1.0"
