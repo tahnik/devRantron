@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchRant } from '../../actions/rants';
+import { fetchRant } from '../../actions/rant';
 /* API Ref:
 attached_image: ""
 created_time: 1491178991

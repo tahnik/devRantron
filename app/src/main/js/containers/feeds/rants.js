@@ -43,9 +43,6 @@ class Rants extends Component {
       );
     }
   }
-  static renderRantItem(rant) {
-    return <RantItem rant={rant} />;
-  }
   render() {
     const { rants } = this.props;
     if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
@@ -58,7 +55,7 @@ class Rants extends Component {
     }
     return (
       <div>
-        { rants.rant ? Rants.renderRantItem(rants.rant) : null }
+        <RantItem />
         <div className="row rantContainer" >
           {
           rants.currentRants.map((currentRants, index) => {

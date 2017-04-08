@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchRant } from '../../actions/rants';
+import { addUserCommentPost } from '../../actions/comments';
 /* API Ref:
 attached_image: ""
 created_time: 1491178991
@@ -46,7 +46,11 @@ class CommentItem extends Component {
             <i className="ion-minus-round" />
             <div style={{ flex: 1 }} />
             <p>{comment.num_comments}</p>
-            <i onClick={() => this.openRant(comment.id)} className="ion-reply" />
+            <i
+              onClick={() =>
+              this.props.addUserCommentPost(comment.user_username)
+            } className="ion-reply"
+            />
           </div>
         </div>
       </div>
@@ -59,4 +63,4 @@ CommentItem.propTypes = {
   fetchRant: React.PropTypes.func.isRequired,
 };
 
-export default connect(null, { fetchRant })(CommentItem);
+export default connect(null, { addUserCommentPost })(CommentItem);

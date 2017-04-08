@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import CommentItem from './comment_item';
+import { connect } from 'react-redux';
+import Comments from './comments';
+import { closeRant } from '../../actions/rant';
+import { STATE } from '../../consts/state';
 
 class RantItem extends Component {
-  componentDidMount() {
-    document.body.style.overflow = 'hidden';
-  }
-  componentWillUnmount() {
-    document.body.style.overflow = 'scroll';
-  }
-  render() {
-    const { rant } = this.props.rant;
-    const { comments } = this.props.rant;
+  renderRant() {
+    const { rant, comments } = this.props.rant.rant;
     let imageSource = <img src="res/images/empty_avatar.png" alt="" />;
+
+    document.body.style.overflow = 'hidden';
 
     if (rant.user_avatar.i) {
       imageSource = <img src={`https://avatars.devrant.io/${rant.user_avatar.i}`} alt="" />;
@@ -19,6 +17,7 @@ class RantItem extends Component {
     return (
       <div
         className="rant_item_container"
+        onContextMenu={() => this.props.closeRant()}
       >
         <div className="rant_item">
           <div className="col s6" >
@@ -43,62 +42,42 @@ class RantItem extends Component {
                   <i className="ion-minus-round" />
                   <div style={{ flex: 1 }} />
                   <p>{rant.num_comments}</p>
-                  <i className="ion-chatbubbles" />
+                  <i className="ion-reply" />
                 </div>
               </div>
             </div>
           </div>
-          <div className="col s6 col-comment" >
-            {
-              comments.map((comment) => {
-                return (
-                  <CommentItem comment={comment} />
-                );
-              })
-            }
-          </div>
+          <Comments comments={comments} />
         </div>
       </div>
     );
-    // let trimmedString = rant.text;
-    // if (rant.text.length > 300) {
-    //   const maxLength = 300;
-    //   trimmedString = rant.text.substr(0, maxLength);
-    //   trimmedString = `${trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(' ')))}...(Read More)`;
-    // }
+  }
+  renderLoading() {
+    return (
+      <div
+        className="rant_item_container"
+      >
+        <div id="loaderCont" >
+          <div className="loader" id="loader1" />
+          <div className="loader" id="loader2" />
+        </div>
+      </div>
+    );
+  }
+  render() {
+    const { rant } = this.props;
 
-    // let imageSource = <img src="res/images/empty_avatar.png" alt="" />;
-
-    // if (rant.user_avatar.i) {
-    //   imageSource = <img src={`https://avatars.devrant.io/${rant.user_avatar.i}`} alt="" />;
-    // }
-    // return (
-    //   <div className="rant_card row" >
-    //     <div className="card blue-grey darken-1">
-    //       <div className="card-user">
-    //         { imageSource }
-    //         <div>
-    //           <p>{rant.user_username}</p>
-    //           <p className="user_score">+{rant.user_score}</p>
-    //         </div>
-    //       </div>
-    //       <div className="card-content white-text">
-    //         <pre><p>{trimmedString}</p></pre>
-    //       </div>
-    //       <div className="card-image">
-    //         <img src={rant.attached_image.url} alt="" />
-    //       </div>
-    //       <div className="card-bottomBar">
-    //         <i className="ion-plus-round" />
-    //         <p>{rant.score}</p>
-    //         <i className="ion-minus-round" />
-    //         <div style={{ flex: 1 }} />
-    //         <p>{rant.num_comments}</p>
-    //         <i className="ion-chatbubbles" />
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
+    if (rant.state === STATE.LOADING && rant.rant === null) {
+      return (
+        this.renderLoading()
+      );
+    } else if (rant.rant === null) {
+      document.body.style.overflow = 'auto';
+      return <div />;
+    }
+    return (
+      this.renderRant()
+    );
   }
 }
 
@@ -109,4 +88,10 @@ RantItem.propTypes = {
   }).isRequired,
 };
 
-export default RantItem;
+function mapStateToProps(state) {
+  return {
+    rant: state.rant,
+  };
+}
+
+export default connect(mapStateToProps, { closeRant })(RantItem);

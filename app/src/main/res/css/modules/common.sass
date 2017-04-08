@@ -3,6 +3,8 @@ $button-width: 5rem
 $button-height: 2.8rem
 $card-bottom-bar: 2.8rem
 $poppy-bez: cubic-bezier(0.165, 0.840, 0.440, 1.00)
+$comment-post: #C14857
+$comment-post-hover: #c62539
 ::-webkit-scrollbar
   width: 0px
   background: transparent
@@ -14,6 +16,7 @@ body.#{$theme}
     margin: 0px 2px -3px 2px
   .btn
     background-color: $main-color
+    border-radius: 0
     &:hover
       background-color: $selected-color
 
@@ -89,7 +92,7 @@ body.#{$theme}
     position: absolute
     top: $button-height
     left: 0
-    height: calc(100% - #{$button-height})
+    height: calc(100vh - #{$button-height})
     width: 15rem
     font-weight: 300
     font-size: 1.2rem
@@ -132,6 +135,7 @@ body.#{$theme}
     display: flex
     justify-content: center
     align-content: center
+    margin-bottom: 0
 
   .toggleable_settings
     position: relative
@@ -249,13 +253,48 @@ body.#{$theme}
     display: flex
     justify-content: center
     align-content: center
+    transition: all 0.3s $poppy-bez
     .rant_item
       width: 900px
       .col-comment
         margin-top: 0.5rem
+        position: relative
+        .comments_container
+          height: 78%
+          overflow-y: scroll
+        .comment_post_container
+          height: 20%
+          left: 0.75rem
+          right: 0.75rem
+          position: absolute
+          bottom: 0
+          textarea
+            resize: none
+            position: absolute
+            left: 0
+            right: 0
+            top: 0
+            height: 10rem
+            border: none
+            overflow: auto
+            outline: none
+            color: white
+            padding: 1rem
+            -webkit-box-shadow: none
+            background-color: $rant-card-background
+          button
+            position: absolute
+            height: 2.7rem
+            left: 0
+            right: 0
+            bottom: 0
+            width: 100%
+            box-shadow: none
+            background-color: $comment-post
+            &:hover
+              background-color: $comment-post-hover
       .col
         height: 98.5%
-        overflow-y: scroll
         .comment_card
           margin-bottom: 0
           .card-user
