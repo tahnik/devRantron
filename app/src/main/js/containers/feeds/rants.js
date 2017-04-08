@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import RantCard from '../rant/rant_card';
 import { connect } from 'react-redux';
+import RantCard from '../rant/rant_card';
+import RantItem from '../rant/rant_item';
 import { fetch } from '../../actions/rants';
 import { STATE } from '../../consts/state';
-import { FEED } from '../../consts/feed';
+
+// Use import instead?
 const twemoji = require('twemoji');
 
 class Rants extends Component {
@@ -14,26 +16,35 @@ class Rants extends Component {
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
   }
+  componentDidUpdate() {
+    twemoji.parse(document.body);
+  }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   }
-  handleScroll(event) {
+  handleScroll() {
     const { rants } = this.props;
     const windowHeight = 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
     const body = document.body;
     const html = document.documentElement;
-    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight,
+    );
     const windowBottom = windowHeight + window.pageYOffset;
     if (windowBottom + (windowHeight * 2) >= docHeight && rants.state !== STATE.LOADING) {
       this.props.fetch(
-        this.props.rants.feedType,
+        rants.feedType,
         25,
-        25 * this.props.rants.page,
+        25 * rants.page,
       );
     }
   }
-  componentDidUpdate() {
-    twemoji.parse(document.body);
+  static renderRantItem(rant) {
+    return <RantItem rant={rant} />;
   }
   render() {
     const { rants } = this.props;
@@ -46,23 +57,31 @@ class Rants extends Component {
       );
     }
     return (
-      <div className="row rantContainer" >
-        {
-        rants.currentRants.map((currentRants, index) => {
-          const key = `column${index}`;
-          return (
-            <div className="rants col s6" id={key} key={key} >
-              {
-                currentRants.map(rant => <RantCard rant={rant} key={rant.id} />)
-              }
-            </div>
-          );
-        })
-        }
+      <div>
+        { rants.rant ? Rants.renderRantItem(rants.rant) : null }
+        <div className="row rantContainer" >
+          {
+          rants.currentRants.map((currentRants, index) => {
+            const key = `column${index}`;
+            return (
+              <div className="rants col s6" id={key} key={key} >
+                {
+                  currentRants.map(rant => <RantCard rant={rant} key={rant.id} />)
+                }
+              </div>
+            );
+          })
+          }
+        </div>
       </div>
     );
   }
 }
+
+Rants.propTypes = {
+  rants: React.PropTypes.array.isRequired,
+  fetch: React.PropTypes.func.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

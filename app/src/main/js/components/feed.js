@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Collabs from '../containers/feeds/collabs';
-import Discussion from '../containers/feeds/discussions';
 import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
 import Weekly from '../containers/feeds/weekly';
@@ -37,9 +36,12 @@ class Feed extends Component {
   render() {
     return (
       <div className="main_container row">
-        <div className="row" style={{ visibility: 'hidden', position: 'absolute', width: '900px' }} >
+        <div className="row" style={{ visibility: 'hidden', position: 'absolute', maxWidth: '900px', width: '100%' }} >
           <div className="rants col s6" id="fakeRant" style={{ visibility: 'hidden' }} >
             <div id="hiddenRant" style={{ visibility: 'hidden' }} />
+          </div>
+          <div className="rants col s6" id="fakeRant" style={{ visibility: 'hidden' }} >
+            <div style={{ visibility: 'hidden' }} />
           </div>
         </div>
         {this.state.activeFeed}
@@ -47,5 +49,11 @@ class Feed extends Component {
     );
   }
 }
+
+Feed.propTypes = {
+  match: React.PropTypes.shape({
+    path: React.PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default Feed;

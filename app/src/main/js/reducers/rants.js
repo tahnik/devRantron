@@ -1,4 +1,4 @@
-import { FETCH_RANTS, RESET_PAGE } from '../consts/rants';
+import { FETCH_RANTS, RESET_PAGE, FETCH_RANT } from '../consts/rants';
 import { STATE } from '../consts/state';
 import { FEED } from '../consts/feed';
 
@@ -7,6 +7,7 @@ const DEFAULT_STATE = {
   state: STATE.SUCCESS,
   feedType: FEED.RANTS.ALGO,
   page: 0,
+  rant: null,
 };
 
 /*
@@ -118,6 +119,9 @@ export function rants(state = DEFAULT_STATE, action) {
       break;
     case RESET_PAGE:
       return { ...state, currentRants: [], page: 1 };
+    case FETCH_RANT:
+      console.log(action.payload)
+      return { ...state, rant: action.payload };
   }
   return state;
 }
