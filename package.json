@@ -10,6 +10,7 @@
     "test": "jest",
     "lint": "eslint --ext .js,.jsx app/src/main"
   },
+  "license": "MIT",
   "keywords": [
     "Electron",
     "react"
