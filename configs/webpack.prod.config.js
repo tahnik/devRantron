@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const BabiliPlugin = require('babili-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -27,9 +28,6 @@ module.exports = {
         test: /\.js$/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['react', 'es2015', 'stage-1'],
-          },
         },
       },
       {
@@ -50,6 +48,10 @@ module.exports = {
     ],
   },
   plugins: [
+    // new BabiliPlugin(),even disabled minification...
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
     new ExtractTextPlugin({ filename: 'main.css', allChunks: true }),
     new HtmlWebpackPlugin({
       title: 'devRantron',
