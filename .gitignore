@@ -185,3 +185,6 @@ GitHub.sublime-settings
 # *.ipr
 
 # End of https://www.gitignore.io/api/webstorm,intellij,sublimetext,node
+
+dist
+release
