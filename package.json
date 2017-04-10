@@ -14,7 +14,7 @@
     "dev": "concurrently -k \"npm run server\" \"npm run start\" ",
     "lint": "eslint --ext .jsx,.js app/src/main",
     "package:all": "",
-    "package:dir": "build --dir",
+    "package:dir": "build app/build --dir",
     "package:lin": "",
     "package:mac": "",
     "package:win": "",
@@ -24,6 +24,21 @@
     "test": "jest -c configs/jest.json"
   },
   "license": "MIT",
+  "author": {
+    "name": "Tahnik Mustasin",
+    "email": "tahnik@live.co.uk",
+    "url": "https://www.tahnik.com/"
+  },
+  "contributors": [
+    {
+      "name": "Hampus Lundqvist Norman",
+      "url": "https://rekkyrek.se"
+    },
+    {
+      "name": "Sven Lechner",
+      "url": "https://sirwindfield.github.io"
+    }
+  ],
   "keywords": [
     "Electron",
     "react"
