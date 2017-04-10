@@ -11,7 +11,7 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     app: [
-      'babel-polyfill',
+      // 'babel-polyfill',
       'react-hot-loader/patch',
       './src/main/res/css/main.sass',
       './src/main/js/index.js',
@@ -48,9 +48,10 @@ module.exports = {
     ],
   },
   plugins: [
-    new BabiliPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production'),
+      },
     }),
     new ExtractTextPlugin({ filename: 'main.css', allChunks: true }),
     new HtmlWebpackPlugin({
@@ -67,6 +68,8 @@ module.exports = {
         to: 'res',
       },
     ]),
-    new webpack.NamedModulesPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new BabiliPlugin(),
   ],
 };
