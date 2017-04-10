@@ -53,9 +53,8 @@ function createWindow() {
   mainWindow.on('ready-to-show', () => {
     mainWindow.show();
     mainWindow.focus();
-    mainWindow.webContents.openDevTools();
 
-      // measure startup time
+    // measure startup time
     console.timeEnd('startup');
   });
 
