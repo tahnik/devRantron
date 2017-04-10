@@ -1,8 +1,10 @@
 {
   "name": "devrantron",
   "version": "0.0.1",
+  "main": "./app/build/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
+    "clear": "rimraf dist",
     "ci:all": "npm-run-all ci:lint ci:test ci:coverage ci:build ci:package ci:deploy",
     "ci:build": "webpack --progress --color --config ./configs/webpack.prod.config.js",
     "ci:coverage": "echo ci:coverage",
@@ -14,14 +16,46 @@
     "dev": "concurrently -k \"npm run server\" \"npm run start\" ",
     "lint": "eslint --ext .jsx,.js app/src/main",
     "package:all": "",
-    "package:dir": "build app/build --dir",
+    "package:dir": "build --dir",
     "package:lin": "",
     "package:mac": "",
     "package:win": "",
     "package": "build",
     "server": "webpack-dev-server --color --config configs/webpack.dev.config.js",
     "start": "cross-env NODE_ENV=development electron app/src/main/app.js",
+    "start:app": "electron app/build/app.js",
     "test": "jest -c configs/jest.json"
+  },
+  "build": {
+    "productName": "devRantron",
+    "appId": "de.zerotask.theclassic",
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "win": {
+      "target": "squirrel"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "AppImage"
+      ]
+    },
+    "directories": {
+      "output": "release"
+    }
   },
   "author": {
     "name": "Tahnik Mustasin",
@@ -74,6 +108,7 @@
     "react-hot-loader": "^3.0.0-beta.6",
     "react-test-renderer": "^15.4.2",
     "redux-logger": "^3.0.0",
+    "rimraf": "^2.6.1",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.14.1",
     "webpack": "^2.2.1",
