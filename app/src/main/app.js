@@ -47,16 +47,17 @@ function createWindow() {
     	protocol: 'file:',
     	slashes: true,
   	}));
+	}
 
-    // just show the window if all content has been loaded
-    mainWindow.on('ready-to-show', () => {
-      mainWindow.show();
-      mainWindow.focus();
+  // just show the window if all content has been loaded
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show();
+    mainWindow.focus();
+    mainWindow.webContents.openDevTools();
 
       // measure startup time
-      console.time('startup');
-    });
-	}
+    console.timeEnd('startup');
+  });
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
