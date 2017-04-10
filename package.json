@@ -6,7 +6,7 @@
   "scripts": {
     "clear": "rimraf dist",
     "ci:all": "npm-run-all ci:lint ci:test ci:coverage ci:build ci:package ci:deploy",
-    "ci:build": "webpack --progress --color --config ./configs/webpack.prod.config.js",
+    "ci:build": "cross-env NODE_ENV=production webpack --progress --color --profile --config ./configs/webpack.prod.config.js",
     "ci:coverage": "echo ci:coverage",
     "ci:deploy": "echo ci:deploy",
     "ci:lint": "echo ci:lint",
@@ -24,7 +24,8 @@
     "server": "webpack-dev-server --color --config configs/webpack.dev.config.js",
     "start": "cross-env NODE_ENV=development electron app/src/main/app.js",
     "start:app": "electron app/build/app.js",
-    "test": "jest -c configs/jest.json"
+    "test": "jest -c configs/jest.json",
+    "time": "npm-run-all clear ci:build package:dir"
   },
   "license": "MIT",
   "build": {
@@ -82,10 +83,12 @@
     "babel-eslint": "^7.2.0",
     "babel-jest": "^19.0.0",
     "babel-loader": "^6.4.0",
+    "babel-preset-babili": "^0.0.12",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-1": "^6.22.0",
     "babili-webpack-plugin": "^0.0.11",
+    "compression-webpack-plugin": "^0.4.0",
     "concurrently": "^3.4.0",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^3.2.4",
