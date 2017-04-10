@@ -15,7 +15,7 @@
     "lint": "eslint --ext .jsx,.js app/src/main",
     "server": "webpack-dev-server --color --config configs/webpack.dev.config.js",
     "start": "cross-env NODE_ENV=development electron app/src/main/app.js",
-    "test": "jest"
+    "test": "jest -c configs/jest.json"
   },
   "keywords": [
     "Electron",
