@@ -4,7 +4,10 @@ import { STATE } from '../consts/state';
 
 // change to disable comprssion
 rantscript.httpSettings.SET_COMPRESS(false);
-rantscript.httpSettings.SET_DEBUG(true);
+// only execute if we are in development
+if (process.env.NODE_ENV === 'development') {
+  rantscript.httpSettings.SET_DEBUG(true);
+}
 
 export function fetch(type, amount, page = 0) {
   return (dispatch) => {
