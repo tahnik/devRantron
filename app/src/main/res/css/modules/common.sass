@@ -7,7 +7,6 @@ $comment-post: #C14857
 $comment-post-hover: #c62539
 ::-webkit-scrollbar
   -webkit-appearance: none
-::-webkit-scrollbar-track
   width: 0.5rem
 ::-webkit-scrollbar-thumb
   background: $card-bottom-bar-color
@@ -269,6 +268,7 @@ body.#{$theme}
         height: calc(100vh - 100px)
         .comments_container
           overflow-y: scroll
+          width: 427.5px
           margin-bottom: 1rem
         .comment_post_container
           width: calc(427.5px - 1rem)
@@ -295,6 +295,10 @@ body.#{$theme}
         height: 98.5%
         .comment_card
           margin-bottom: 10px
+          float: left
+          width: calc(427.5px - 1rem)
+          &:last-child
+            margin: 0px
           .card-user
             width: 100%
             height: 5rem
