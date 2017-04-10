@@ -17,7 +17,7 @@
     "lint": "eslint --ext .jsx,.js app/src/main",
     "package:all": "",
     "package:dir": "build --dir",
-    "package:lin": "",
+    "package:lin": "build --linux",
     "package:mac": "",
     "package:win": "",
     "package": "build",
@@ -51,8 +51,7 @@
     },
     "linux": {
       "target": [
-        "deb",
-        "AppImage"
+        "deb"
       ]
     },
     "directories": {
