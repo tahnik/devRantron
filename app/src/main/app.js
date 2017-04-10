@@ -18,10 +18,12 @@ const {
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+console.time('startup');
+
 /** This function will create the mainWindow */
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 1024, height: 768 });
+  mainWindow = new BrowserWindow({ width: 1024, height: 768, show: false });
 
   if (process.env.NODE_ENV === 'development') {
     // Open the DevTools.
@@ -45,6 +47,15 @@ function createWindow() {
     	protocol: 'file:',
     	slashes: true,
   	}));
+
+    // just show the window if all content has been loaded
+    mainWindow.on('ready-to-show', () => {
+      mainWindow.show();
+      mainWindow.focus();
+
+      // measure startup time
+      console.time('startup');
+    });
 	}
 
   // Emitted when the window is closed.
