@@ -14,28 +14,21 @@ class Rants extends Component {
     this.handleScroll = this.handleScroll.bind(this);
   }
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    document.getElementsByClassName('main_container')[0].addEventListener('scroll', this.handleScroll);
   }
   componentDidUpdate() {
     twemoji.parse(document.body);
   }
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    document.getElementsByClassName('main_container')[0].removeEventListener('scroll', this.handleScroll);
   }
   handleScroll() {
     const { rants } = this.props;
-    const windowHeight = 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
-    const body = document.body;
-    const html = document.documentElement;
-    const docHeight = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight,
-    );
-    const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom + (windowHeight * 2) >= docHeight && rants.state !== STATE.LOADING) {
+    const windowHeight = document.getElementsByClassName('main_container')[0].offsetHeight;
+    const scrollHeight = document.getElementsByClassName('rantContainer')[0].clientHeight - windowHeight;
+    const scrollTop = document.getElementsByClassName('main_container')[0].scrollTop;
+
+    if (scrollTop + (windowHeight * 2) >= scrollHeight && rants.state !== STATE.LOADING) {
       this.props.fetch(
         rants.feedType,
         25,

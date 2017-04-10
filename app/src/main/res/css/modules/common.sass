@@ -6,8 +6,11 @@ $poppy-bez: cubic-bezier(0.165, 0.840, 0.440, 1.00)
 $comment-post: #C14857
 $comment-post-hover: #c62539
 ::-webkit-scrollbar
-  width: 0px
-  background: transparent
+  -webkit-appearance: none
+::-webkit-scrollbar-track
+  width: 0.5rem
+::-webkit-scrollbar-thumb
+  background: $card-bottom-bar-color
 body.#{$theme}
   #root
       text-align: center
@@ -129,13 +132,16 @@ body.#{$theme}
     width: calc(100% - #{$button-width})
     left: $button-width
     top: $button-height
-    min-height: calc(100vh - #{$button-height})
+    height: calc(100vh - #{$button-height})
     background-color: $background-color
     transition: all .35s $poppy-bez
     display: flex
     justify-content: center
+    border: solid 1px transparent
+    border-width: 0px 10px
     align-content: center
     margin-bottom: 0
+    overflow-y: scroll
 
   .toggleable_settings
     position: relative
@@ -248,8 +254,7 @@ body.#{$theme}
     position: fixed
     left: 5rem
     z-index: 99
-    background-color: $background-color
-    opacity: 0.99
+    background-color: $rant-item-container-background
     display: flex
     justify-content: center
     align-content: center
@@ -259,44 +264,37 @@ body.#{$theme}
       .col-comment
         margin-top: 0.5rem
         position: relative
+        display: flex
+        flex-direction: column
+        height: calc(100vh - 100px)
         .comments_container
-          height: 78%
           overflow-y: scroll
+          margin-bottom: 1rem
         .comment_post_container
-          height: 20%
-          left: 0.75rem
-          right: 0.75rem
-          position: absolute
-          bottom: 0
+          width: calc(427.5px - 1rem)
           textarea
             resize: none
-            position: absolute
-            left: 0
-            right: 0
-            top: 0
             height: 10rem
             border: none
             overflow: auto
             outline: none
-            color: white
+            color: $p-text
             padding: 1rem
+            width: calc(427.5px - 1rem)
             -webkit-box-shadow: none
             background-color: $rant-card-background
           button
-            position: absolute
             height: 2.7rem
-            left: 0
-            right: 0
-            bottom: 0
             width: 100%
             box-shadow: none
+            width: calc(427.5px - 1rem)
             background-color: $comment-post
             &:hover
               background-color: $comment-post-hover
       .col
         height: 98.5%
         .comment_card
-          margin-bottom: 0
+          margin-bottom: 10px
           .card-user
             width: 100%
             height: 5rem
