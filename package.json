@@ -10,7 +10,7 @@
     "ci:coverage": "echo ci:coverage",
     "ci:deploy": "echo ci:deploy",
     "ci:lint": "echo ci:lint",
-    "ci:package": "echo ci:package",
+    "ci:package": "npm run package",
     "ci:test": "npm run test -- --runInBand",
     "contribute": "npm-run-all lint test",
     "dev": "concurrently -k \"npm run server\" \"npm run start\" ",
