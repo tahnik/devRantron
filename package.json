@@ -15,17 +15,16 @@
     "contribute": "npm-run-all lint test",
     "dev": "concurrently -k \"npm run server\" \"npm run start\" ",
     "lint": "eslint --ext .jsx,.js app/src/main",
-    "package:all": "",
+    "package:all": "npm-run-all package:lin package:mac package:win",
     "package:dir": "build --dir",
     "package:lin": "build --linux",
-    "package:mac": "",
+    "package:mac": "build --mac",
     "package:win": "build --win",
     "package": "build",
     "server": "webpack-dev-server --color --config configs/webpack.dev.config.js",
     "start": "cross-env NODE_ENV=development electron app/src/main/app.js",
     "start:app": "electron app/build/app.js",
-    "test": "jest -c configs/jest.json",
-    "time": "npm-run-all clear ci:build package:dir"
+    "test": "jest -c configs/jest.json"
   },
   "license": "MIT",
   "build": {
@@ -51,7 +50,8 @@
     },
     "linux": {
       "target": [
-        "deb"
+        "deb",
+        "AppImage"
       ]
     },
     "directories": {
