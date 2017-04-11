@@ -1,4 +1,4 @@
-export const FEED = {
+export default {
   RANTS: {
     TOP: 'top',
     ALGO: 'algo',

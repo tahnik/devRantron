@@ -32,7 +32,8 @@
 		}],
 		"import/no-dynamic-require": 0,
 		"import/no-extraneous-dependencies": "off",
-    "linebreak-style": ["error", "windows"]
+    "linebreak-style": ["error", "windows"],
+		"react/forbid-prop-types": 0
 	},
 	"settings": {
 		"import/resolver": {

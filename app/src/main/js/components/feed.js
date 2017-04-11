@@ -3,7 +3,7 @@ import Collabs from '../containers/feeds/collabs';
 import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
 import Weekly from '../containers/feeds/weekly';
-import { ROUTES } from '../consts/routes';
+import ROUTES from '../consts/routes';
 
 class Feed extends Component {
   constructor(props) {

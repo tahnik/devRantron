@@ -4,7 +4,7 @@ import {
   CLOSE_RANT,
   COMMENT_POST,
 } from '../consts/rants';
-import { STATE } from '../consts/state';
+import STATE from '../consts/state';
 
 export function fetchRant(id) {
   return (dispatch) => {
@@ -20,10 +20,13 @@ export function fetchRant(id) {
           state: STATE.SUCCESS,
           payload: res,
         });
-      })
-      .catch((err) => {
-        // dispatch({ type: FETCH_RANTS, state: STATE.FAILED, payload: err, feedType: type });
       });
+      /*
+      TODO: This needs to be fixed. Commented until @rekkyrek fixes the API
+      .catch((err) => {
+        dispatch({ type: FETCH_RANT, state: STATE.FAILED, payload: err });
+      });
+      */
   };
 }
 

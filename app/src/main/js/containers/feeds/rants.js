@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import RantCard from '../rant/rant_card';
 import RantItem from '../rant/rant_item';
 import { fetch } from '../../actions/rants';
-import { STATE } from '../../consts/state';
+import STATE from '../../consts/state';
 
 // Use import instead?
 const twemoji = require('twemoji');

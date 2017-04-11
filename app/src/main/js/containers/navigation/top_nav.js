@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { ROUTES } from '../../consts/routes';
-import { FEED } from '../../consts/feed';
+import ROUTES from '../../consts/routes';
+import FEED from '../../consts/feed';
 import { fetch, resetPage } from '../../actions/rants';
 
 class TopNav extends Component {

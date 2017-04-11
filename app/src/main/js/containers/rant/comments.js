@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import CommentItem from './comment_item';
 import CommentPost from './comment_post';
 import { closeRant } from '../../actions/rant';
-import { STATE } from '../../consts/state';
 
 class Comments extends Component {
   constructor(props) {

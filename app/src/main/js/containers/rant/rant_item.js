@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Comments from './comments';
 import { closeRant } from '../../actions/rant';
-import { STATE } from '../../consts/state';
+import STATE from '../../consts/state';
 
 class RantItem extends Component {
   renderRant() {

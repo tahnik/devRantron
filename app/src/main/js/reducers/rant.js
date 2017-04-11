@@ -1,5 +1,5 @@
 import { FETCH_RANT, CLOSE_RANT, COMMENT_POST } from '../consts/rants';
-import { STATE } from '../consts/state';
+import STATE from '../consts/state';
 
 const DEFAULT_STATE = {
   rant: null,
