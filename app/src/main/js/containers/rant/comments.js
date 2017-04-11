@@ -14,6 +14,7 @@ class Comments extends Component {
   }
   render() {
     const { comments } = this.props;
+    console.log(comments);
     return (
       <div className="col s6 col-comment" >
         <div className="comments_container">

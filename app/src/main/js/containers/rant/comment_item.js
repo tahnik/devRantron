@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addUserCommentPost } from '../../actions/comments';
+import { addUserCommentPost } from '../../actions/rant';
 /* API Ref:
 attached_image: ""
 created_time: 1491178991
@@ -60,7 +60,6 @@ class CommentItem extends Component {
 
 CommentItem.propTypes = {
   comment: React.PropTypes.object.isRequired,
-  fetchRant: React.PropTypes.func.isRequired,
 };
 
 export default connect(null, { addUserCommentPost })(CommentItem);

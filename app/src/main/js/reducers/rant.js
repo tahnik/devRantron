@@ -1,9 +1,11 @@
-import { FETCH_RANT, CLOSE_RANT } from '../consts/rants';
+import { FETCH_RANT, CLOSE_RANT, COMMENT_POST } from '../consts/rants';
 import { STATE } from '../consts/state';
 
 const DEFAULT_STATE = {
   rant: null,
   state: STATE.SUCCESS,
+  commentPost: '',
+  commentUsers: [],
 };
 
 
@@ -26,7 +28,13 @@ export function rant(state = DEFAULT_STATE, action) {
       }
       break;
     case CLOSE_RANT:
-      return { rant: null, state: STATE.SUCCESS }
+      return { rant: null, state: STATE.SUCCESS };
+    case COMMENT_POST.UPDATE:
+      return { commentPost: action.payload };
+    case COMMENT_POST.ADD_USER:
+      return { commentPost: `${state.commentPost} @${action.user} ` };
+    case COMMENT_POST.CLEAR:
+      return { commentPost: '' };
   }
   return state;
 }

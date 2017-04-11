@@ -4,7 +4,7 @@ import {
   updateCommentPost,
   clearCommentPost,
   addUserCommentPost,
- } from '../../actions/comments';
+ } from '../../actions/rant';
 
 class CommentPost extends Component {
   render() {
@@ -22,7 +22,7 @@ class CommentPost extends Component {
 
 function mapStateToProps(state) {
   return {
-    commentText: state.comments.commentPost,
+    commentText: state.rant.commentPost,
   };
 }
 
