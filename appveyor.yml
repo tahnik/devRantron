@@ -13,15 +13,17 @@ environment:
   matrix:
     - NODE_VERSION: 7
 
-platform: x64
+# make sure we are running on 64bit
+platform:
+  - x64
 
 # if one build fails, fail all builds.
 matrix:
   fast_finish: true
 
-# we only need node and yarn (preinstalled)
+# we only need node (64bit) and yarn (preinstalled)
 install:
-  - ps: Install-Product node $env:NODE_VERSION
+  - ps: Install-Product node $env:NODE_VERSION x64
   - set CI=true
   - yarn install
 
