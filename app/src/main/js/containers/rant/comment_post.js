@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {
   updateCommentPost,
@@ -6,19 +6,22 @@ import {
   addUserCommentPost,
  } from '../../actions/rant';
 
-class CommentPost extends Component {
-  render() {
-    return (
-      <div className="comment_post_container" >
-        <textarea
-          value={this.props.commentText}
-          onChange={e => this.props.updateCommentPost(e.target.value)}
-        />
-        <button className="btn">Add Comment</button>
-      </div>
-    );
-  }
+function CommentPost(props) {
+  return (
+    <div className="comment_post_container" >
+      <textarea
+        value={props.commentText}
+        onChange={e => props.updateCommentPost(e.target.value)}
+      />
+      <button className="btn">Add Comment</button>
+    </div>
+  );
 }
+
+CommentPost.propTypes = {
+  commentText: React.PropTypes.string.isRequired,
+  updateCommentPost: React.PropTypes.func.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

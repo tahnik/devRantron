@@ -52,7 +52,7 @@ class RantItem extends Component {
       </div>
     );
   }
-  renderLoading() {
+  static renderLoading() {
     return (
       <div
         className="rant_item_container"
@@ -69,7 +69,7 @@ class RantItem extends Component {
 
     if (rant.state === STATE.LOADING && rant.rant === null) {
       return (
-        this.renderLoading()
+        RantItem.renderLoading()
       );
     } else if (rant.rant === null) {
       document.body.style.overflow = 'auto';
@@ -86,6 +86,7 @@ RantItem.propTypes = {
     rant: React.PropTypes.object,
     comments: React.PropTypes.object,
   }).isRequired,
+  closeRant: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {

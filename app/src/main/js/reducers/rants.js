@@ -1,4 +1,4 @@
-import { FETCH_RANTS, RESET_PAGE, FETCH_RANT, CLOSE_RANT } from '../consts/rants';
+import { FETCH_RANTS, RESET_PAGE } from '../consts/rants';
 import STATE from '../consts/state';
 import FEED from '../consts/feed';
 

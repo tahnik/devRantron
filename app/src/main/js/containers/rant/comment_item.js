@@ -19,8 +19,7 @@ user_username: "DLMousey"
 vote_state: 0
 */
 function CommentItem(props) {
-  const { comment, addUserCommentPost } = props;
-  console.log(props);
+  const { comment } = props;
 
   let imageSource = <img src="res/images/empty_avatar.png" alt="" />;
 
@@ -47,7 +46,7 @@ function CommentItem(props) {
           <div style={{ flex: 1 }} />
           <p>{comment.num_comments}</p>
           <i
-            onClick={() => addUserCommentPost(comment.user_username)
+            onClick={() => props.addUserCommentPost(comment.user_username)
           } className="ion-reply"
           />
         </div>
@@ -56,6 +55,10 @@ function CommentItem(props) {
   );
 }
 
+CommentItem.propTypes = {
+  comment: React.PropTypes.object.isRequired,
+  addUserCommentPost: React.PropTypes.func.isRequired,
+};
 
 
 export default connect(null, { addUserCommentPost })(CommentItem);
