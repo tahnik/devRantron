@@ -5,7 +5,7 @@ import {
 } from '../consts/rants';
 import STATE from '../consts/state';
 
-// change to disable comprssion
+// change to disable comprssion in production
 rantscript.httpSettings.SET_COMPRESS(false);
 // only execute if we are in development
 if (process.env.NODE_ENV === 'development') {
