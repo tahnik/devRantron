@@ -6,12 +6,14 @@ import FEED from '../../consts/feed';
 import { fetch, resetPage } from '../../actions/rants';
 
 class TopNav extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       activeItem: '',
     };
   }
+
   componentDidMount() {
     this.props.fetch(
       this.props.rants.feedType,
@@ -19,6 +21,7 @@ class TopNav extends Component {
     );
     this.setState({ activeItem: this.props.rants.feedType });
   }
+
   getTopItems() {
     switch (this.props.match.path) {
       case ROUTES.root:
@@ -29,6 +32,7 @@ class TopNav extends Component {
         return [];
     }
   }
+
   changeTopNav(type) {
     this.props.resetPage();
     this.props.fetch(
@@ -38,14 +42,15 @@ class TopNav extends Component {
     );
     this.setState({ activeItem: type });
   }
+
   render() {
     return (
       <div className="top_nav">
         <div className="top_nav_container" id="top_nav_container" >
           {
-          this.getTopItems().map(item => {
+          this.getTopItems().map((item) => {
             let activeStyle = '';
-            if ( this.state.activeItem == item) {
+            if (this.state.activeItem === item) {
               activeStyle = '1px solid white';
             }
             return (
