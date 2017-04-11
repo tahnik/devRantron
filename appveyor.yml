@@ -26,6 +26,9 @@ install:
   - yarn install
 
 test_script:
+  - yarn ci:lint
+  - yarn ci:test
+  - yarn ci:coverage
   - yarn ci:build
   - yarn ci:package
 
