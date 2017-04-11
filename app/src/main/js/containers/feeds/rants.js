@@ -9,19 +9,24 @@ import STATE from '../../consts/state';
 const twemoji = require('twemoji');
 
 class Rants extends Component {
+
   constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
   }
+
   componentDidMount() {
     document.getElementsByClassName('main_container')[0].addEventListener('scroll', this.handleScroll);
   }
+
   componentDidUpdate() {
     twemoji.parse(document.body);
   }
+
   componentWillUnmount() {
     document.getElementsByClassName('main_container')[0].removeEventListener('scroll', this.handleScroll);
   }
+
   handleScroll() {
     const { rants } = this.props;
     const windowHeight = document.getElementsByClassName('main_container')[0].offsetHeight;
@@ -36,9 +41,10 @@ class Rants extends Component {
       );
     }
   }
+
   render() {
     const { rants } = this.props;
-    console.log(rants)
+
     if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
       return (
         <div id="loaderCont" >
@@ -47,6 +53,7 @@ class Rants extends Component {
         </div>
       );
     }
+
     return (
       <div>
         <RantItem />
