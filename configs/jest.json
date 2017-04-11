@@ -1,0 +1,12 @@
+{
+  "transform": {
+    ".*": "<rootDir>/node_modules/babel-jest"
+  },
+  "modulePaths": [
+    "app/src/main"
+  ],
+  "testRegex": ".*.test.js",
+  "verbose": true,
+  "coverageDirectory": "./coverage/",
+  "collectCoverage": true
+}
