@@ -15,26 +15,28 @@ export function rant(state = DEFAULT_STATE, action) {
       switch (action.state) {
         case STATE.LOADING:
           return {
+            ...state,
             state: action.state,
             rant: null,
           };
         case STATE.SUCCESS:
           return {
+            ...state,
             state: action.state,
             rant: action.payload,
           };
         case STATE.FAILED:
-          return { state: action.state, rant: null };
+          return { ...state, state: action.state, rant: null };
       }
       break;
     case CLOSE_RANT:
-      return { rant: null, state: STATE.SUCCESS };
+      return { rant: null, state: STATE.SUCCESS, commentPost: '' };
     case COMMENT_POST.UPDATE:
-      return { commentPost: action.payload };
+      return { ...state, commentPost: action.payload };
     case COMMENT_POST.ADD_USER:
-      return { commentPost: `${state.commentPost} @${action.user} ` };
+      return { ...state, commentPost: `${state.commentPost} @${action.user} ` };
     case COMMENT_POST.CLEAR:
-      return { commentPost: '' };
+      return { ...state, commentPost: '' };
   }
   return state;
 }
