@@ -1,3 +1,5 @@
+[![appveyor-badge]]([appveyor-url])
+[![travis-badge]]([travis-url])
 ## devRant Unofficial Cross Platform Desktop Application
 
 Here is the initial sketch we made for our app:
@@ -47,3 +49,7 @@ This is our approach to create a cross platform desktop application for [devRant
     ```
 
 [devRant.io]: <http://devrant.io>
+[appveyor-badge]: https://img.shields.io/appveyor/ci/tahnik/devRatron.svg
+[appveyor-url]: https://ci.appveyor.com/project/SirWindfield/devrantron
+[travis-badge]: https://img.shields.io/travis/tahnik/devRantron.svg
+[travis-url]: https://travis-ci.org/tahnik/devRantron
