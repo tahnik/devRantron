@@ -42,8 +42,8 @@ function breakDownRants(prevRants, newRants) {
     col0Height = col0.clientHeight;
     col1Height = col1.clientHeight;
   }
-  for (let i = 0; i < newRants.length; i += 1) {
 
+  for (let i = 0; i < newRants.length; i += 1) {
     let trimmedString = newRants[i].text;
     if (newRants[i].text.length > 300) {
       const maxLength = 300;
@@ -97,6 +97,7 @@ function breakDownRants(prevRants, newRants) {
   if (prevRants[0]) {
     return ([[...prevRants[0], ...column0], [...prevRants[1], ...column1]]);
   }
+
   // If there isn't, this means it's the first time. No need to add anything
   return ([column0, column1]);
 }
