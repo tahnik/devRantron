@@ -1,0 +1,36 @@
+os: unstable
+
+# cache yarn and node_modules folder for rebuilds 
+cache:
+  - "%LOCALAPPDATA%\\Yarn"
+  - node_modules
+
+# The environment configurations. We will use the latest node version.
+environment:
+  # the token is encrypted by appveyor. No need to hide it.
+  GH_TOKEN:
+    secure: RNdfJNqupQrCaYme1rm3Rdy4wmua9PWM0e38nLfr7oZqB0kzwwKOM8nyaPjt/Mu4
+  matrix:
+    - NODE_VERSION: 7
+
+platform: x64
+
+# if one build fails, fail all builds.
+matrix:
+  fast_finish: true
+
+# we only need node and yarn (preinstalled)
+install:
+  - ps: Install-Product node $env:NODE_VERSION
+  - set CI=true
+  - yarn install
+
+test_script:
+  - yarn ci:build
+  - yarn ci:package
+
+build: off
+
+# only deploy on success and if we are on the master branch
+on_success:
+  - IF %APPVEYOR_REPO_BRANCH%==master yarn ci:deploy
