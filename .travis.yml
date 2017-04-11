@@ -64,6 +64,9 @@ install:
 # Any only deploy if testing worked. Coverage will only be reported if testing succeeded.
 # MAKE SURE TO ONLY PACKAGE IF WE ARE ON MASTER. For testing, package:dir will be used.
 script:
+  - yarn ci:lint
+  - yarn ci:test
+  - yarn ci:coverage
   - yarn ci:build
   - yarn ci:package
 
