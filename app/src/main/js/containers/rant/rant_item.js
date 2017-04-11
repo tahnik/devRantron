@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Comments from './comments';
-import { closeRant } from '../../actions/rant';
+import { closeRant, addUserCommentPost } from '../../actions/rant';
 import STATE from '../../consts/state';
 
 class RantItem extends Component {
@@ -42,7 +42,10 @@ class RantItem extends Component {
                   <i className="ion-minus-round" />
                   <div style={{ flex: 1 }} />
                   <p>{rant.num_comments}</p>
-                  <i className="ion-reply" />
+                  <i
+                    onClick={() => this.props.addUserCommentPost(rant.user_username)}
+                    className="ion-reply"
+                  />
                 </div>
               </div>
             </div>
@@ -87,6 +90,7 @@ RantItem.propTypes = {
     comments: React.PropTypes.object,
   }).isRequired,
   closeRant: React.PropTypes.func.isRequired,
+  addUserCommentPost: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -95,4 +99,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { closeRant })(RantItem);
+export default connect(mapStateToProps, {
+  closeRant,
+  addUserCommentPost,
+})(RantItem);
