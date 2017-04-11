@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import RantCard from '../rant/rant_card';
 import { connect } from 'react-redux';
+import RantCard from '../rant/rant_card';
+import RantItem from '../rant/rant_item';
 import { fetch } from '../../actions/rants';
-import { STATE } from '../../consts/state';
-import { FEED } from '../../consts/feed';
+import STATE from '../../consts/state';
+
+// Use import instead?
 const twemoji = require('twemoji');
 
 class Rants extends Component {
@@ -12,28 +14,27 @@ class Rants extends Component {
     this.handleScroll = this.handleScroll.bind(this);
   }
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-  }
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
-  handleScroll(event) {
-    const { rants } = this.props;
-    const windowHeight = 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
-    const body = document.body;
-    const html = document.documentElement;
-    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-    const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom + (windowHeight * 2) >= docHeight && rants.state !== STATE.LOADING) {
-      this.props.fetch(
-        this.props.rants.feedType,
-        25,
-        25 * this.props.rants.page,
-      );
-    }
+    document.getElementsByClassName('main_container')[0].addEventListener('scroll', this.handleScroll);
   }
   componentDidUpdate() {
     twemoji.parse(document.body);
+  }
+  componentWillUnmount() {
+    document.getElementsByClassName('main_container')[0].removeEventListener('scroll', this.handleScroll);
+  }
+  handleScroll() {
+    const { rants } = this.props;
+    const windowHeight = document.getElementsByClassName('main_container')[0].offsetHeight;
+    const scrollHeight = document.getElementsByClassName('rantContainer')[0].clientHeight - windowHeight;
+    const scrollTop = document.getElementsByClassName('main_container')[0].scrollTop;
+
+    if (scrollTop + (windowHeight * 2) >= scrollHeight && rants.state !== STATE.LOADING) {
+      this.props.fetch(
+        rants.feedType,
+        25,
+        25 * rants.page,
+      );
+    }
   }
   render() {
     const { rants } = this.props;
@@ -46,23 +47,31 @@ class Rants extends Component {
       );
     }
     return (
-      <div className="row rantContainer" >
-        {
-        rants.currentRants.map((currentRants, index) => {
-          const key = `column${index}`;
-          return (
-            <div className="rants col s6" id={key} key={key} >
-              {
-                currentRants.map(rant => <RantCard rant={rant} key={rant.id} />)
-              }
-            </div>
-          );
-        })
-        }
+      <div>
+        <RantItem />
+        <div className="row rantContainer" >
+          {
+          rants.currentRants.map((currentRants, index) => {
+            const key = `column${index}`;
+            return (
+              <div className="rants col s6" id={key} key={key} >
+                {
+                  currentRants.map(rant => <RantCard rant={rant} key={rant.id} />)
+                }
+              </div>
+            );
+          })
+          }
+        </div>
       </div>
     );
   }
 }
+
+Rants.propTypes = {
+  rants: React.PropTypes.array.isRequired,
+  fetch: React.PropTypes.func.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

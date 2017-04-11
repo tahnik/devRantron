@@ -1,6 +1,6 @@
 import { FETCH_RANTS, RESET_PAGE } from '../consts/rants';
-import { STATE } from '../consts/state';
-import { FEED } from '../consts/feed';
+import STATE from '../consts/state';
+import FEED from '../consts/feed';
 
 const DEFAULT_STATE = {
   currentRants: [],
@@ -43,10 +43,18 @@ function breakDownRants(prevRants, newRants) {
     col1Height = col1.clientHeight;
   }
   for (let i = 0; i < newRants.length; i += 1) {
+
+    let trimmedString = newRants[i].text;
+    if (newRants[i].text.length > 300) {
+      const maxLength = 300;
+      trimmedString = newRants[i].text.substr(0, maxLength);
+      trimmedString = `${trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(' ')))}...(Read More)`;
+    }
+
     /* Populate the hidden rant card so that it resembles the rant card
        which will be actually rendered in future
      */
-    const content = `<div class="rant_card" ><div class="card"><div class="card-content" ><pre><p>${newRants[i].text}</p></pre></div></div></div>`;
+    const content = `<div class="rant_card" ><div class="card"><div class="card-content" ><pre><p>${trimmedString}</p></pre></div></div></div>`;
 
     /* Now the get the height of the hiddent rant card.
        This height still doesn't consider the height of the image (if any)

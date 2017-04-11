@@ -1,4 +1,4 @@
-export const ROUTES = {
+export default {
   root: '/',
   stories: '/stories',
   collabs: '/collabs',

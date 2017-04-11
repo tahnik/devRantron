@@ -3,6 +3,13 @@ $button-width: 5rem
 $button-height: 2.8rem
 $card-bottom-bar: 2.8rem
 $poppy-bez: cubic-bezier(0.165, 0.840, 0.440, 1.00)
+$comment-post: #C14857
+$comment-post-hover: #c62539
+::-webkit-scrollbar
+  -webkit-appearance: none
+  width: 0.5rem
+::-webkit-scrollbar-thumb
+  background: $card-bottom-bar-color
 body.#{$theme}
   #root
       text-align: center
@@ -11,6 +18,7 @@ body.#{$theme}
     margin: 0px 2px -3px 2px
   .btn
     background-color: $main-color
+    border-radius: 0
     &:hover
       background-color: $selected-color
 
@@ -86,7 +94,7 @@ body.#{$theme}
     position: absolute
     top: $button-height
     left: 0
-    height: calc(100% - #{$button-height})
+    height: calc(100vh - #{$button-height})
     width: 15rem
     font-weight: 300
     font-size: 1.2rem
@@ -123,13 +131,16 @@ body.#{$theme}
     width: calc(100% - #{$button-width})
     left: $button-width
     top: $button-height
-    min-height: calc(100vh - #{$button-height})
+    height: calc(100vh - #{$button-height})
     background-color: $background-color
     transition: all .35s $poppy-bez
-    padding-top: 1rem
     display: flex
     justify-content: center
+    border: solid 1px transparent
+    border-width: 0px 10px
     align-content: center
+    margin-bottom: 0
+    overflow-y: scroll
 
   .toggleable_settings
     position: relative
@@ -175,7 +186,7 @@ body.#{$theme}
     font-size: 0.9rem
     float: left
   .rantContainer
-    width: 900px
+    max-width: 900px
   .rant_card
     .card-user
       width: 100%
@@ -235,3 +246,108 @@ body.#{$theme}
     white-space: -o-pre-wrap
     word-wrap: break-word
     overflow-x: hidden
+
+  .rant_item_container
+    width: calc(100% - 5rem)
+    height: calc(100vh - 2.8rem)
+    position: fixed
+    left: 5rem
+    z-index: 99
+    background-color: $rant-item-container-background
+    display: flex
+    justify-content: center
+    align-content: center
+    transition: all 0.3s $poppy-bez
+    .rant_item
+      width: 900px
+      .col-comment
+        margin-top: 0.5rem
+        position: relative
+        display: flex
+        flex-direction: column
+        height: calc(100vh - 100px)
+        .comments_container
+          overflow-y: scroll
+          width: 427.5px
+          margin-bottom: 1rem
+        .comment_post_container
+          width: calc(427.5px - 1rem)
+          textarea
+            resize: none
+            height: 10rem
+            border: none
+            overflow: auto
+            outline: none
+            color: $p-text
+            padding: 1rem
+            width: calc(427.5px - 1rem)
+            -webkit-box-shadow: none
+            background-color: $rant-card-background
+          button
+            height: 2.7rem
+            width: 100%
+            box-shadow: none
+            width: calc(427.5px - 1rem)
+            background-color: $comment-post
+            &:hover
+              background-color: $comment-post-hover
+      .col
+        height: 98.5%
+        .comment_card
+          margin-bottom: 10px
+          float: left
+          width: calc(427.5px - 1rem)
+          &:last-child
+            margin: 0px
+          .card-user
+            width: 100%
+            height: 5rem
+            display: flex
+            padding: 1.5rem 2rem 0
+            img
+              height: 100%
+              border-radius: 50%
+            div
+              height: 100%
+              justify-content: center
+              margin: 0 0.8rem
+              display: block
+              p
+                font-weight: 600
+                margin: 0
+              p.user_score
+                color: white
+          .card-content
+            padding: 1rem 2rem 1rem 2rem
+
+          .card-bottomBar
+            width: 100%
+            height: $card-bottom-bar
+            color: white
+            background: $card-bottom-bar-color
+            display: flex
+            align-items: center
+            i
+              line-height: $card-bottom-bar
+              font-size: 1.5rem
+              width: $card-bottom-bar
+              color: $p-text
+              &:hover
+                color: #D55161
+                cursor: pointer
+            p
+              font-weight: 600
+              margin: 0.7rem 0
+          .card-image
+            width: 100%
+            overflow: hidden
+
+          .card
+            background-color: $rant-card-background !important
+            border-radius: 0
+            box-shadow: none
+            margin: 0
+          p
+            color: $p-text
+            text-align: left
+            font-family: Helvetica, Arial, sans-serif
