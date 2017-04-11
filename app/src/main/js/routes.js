@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import Feed from './components/feed';
 import Nav from './components/nav';
 import Settings from './components/settings';
-import { ROUTES } from './consts/routes';
+import ROUTES from './consts/routes';
 
 export default class extends Component {
   render() {

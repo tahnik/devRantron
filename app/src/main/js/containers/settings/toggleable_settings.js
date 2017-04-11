@@ -4,9 +4,6 @@ import changeStyle from '../../actions/settings';
 import { THEME_TYPE } from '../../consts/settings';
 
 class ToggleableSettings extends Component {
-  constructor(props) {
-    super(props);
-  }
   getThemeState() {
     return this.props.theme === THEME_TYPE.DARK_THEME;
   }

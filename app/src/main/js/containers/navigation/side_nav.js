@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SideNavItem from './side_nav_item';
-import { ROUTES } from '../../consts/routes';
+import ROUTES from '../../consts/routes';
 
 const SIDE_NAV_ITEMS = [
   { name: 'Rants', route: ROUTES.root, icon: 'ion-chatboxes' },

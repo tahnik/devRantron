@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchRant } from '../../actions/rant';
 /* API Ref:
 attached_image: ""
 created_time: 1491178991
@@ -17,6 +19,9 @@ user_username: "DLMousey"
 vote_state: 0
 */
 class RantCard extends Component {
+  openRant(id) {
+    this.props.fetchRant(id);
+  }
   render() {
     const { rant } = this.props;
     let trimmedString = rant.text;
@@ -53,7 +58,7 @@ class RantCard extends Component {
             <i className="ion-minus-round" />
             <div style={{ flex: 1 }} />
             <p>{rant.num_comments}</p>
-            <i className="ion-chatbubbles" />
+            <i onClick={() => this.openRant(rant.id)} className="ion-chatbubbles" />
           </div>
         </div>
       </div>
@@ -65,6 +70,7 @@ RantCard.propTypes = {
   rant: React.PropTypes.shape({
     text: React.PropTypes.string,
   }).isRequired,
+  fetchRant: React.PropTypes.func.isRequired,
 };
 
-export default RantCard;
+export default connect(null, { fetchRant })(RantCard);
