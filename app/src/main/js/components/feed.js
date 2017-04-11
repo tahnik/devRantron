@@ -6,15 +6,18 @@ import Weekly from '../containers/feeds/weekly';
 import ROUTES from '../consts/routes';
 
 class Feed extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       activeFeed: <Rants />,
     };
   }
+
   componentWillMount() {
     this.changeActiveFeed();
   }
+
   changeActiveFeed() {
     switch (this.props.match.path) {
       case ROUTES.stories:
@@ -33,6 +36,7 @@ class Feed extends Component {
         this.setState({ activeFeed: <Rants /> });
     }
   }
+
   render() {
     return (
       <div className="main_container row">
