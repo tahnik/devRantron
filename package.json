@@ -95,6 +95,7 @@
     "css-loader": "^0.27.3",
     "electron": "^1.6.2",
     "electron-builder": "^16.8.2",
+    "electron-builder-squirrel-windows": "^16.7.0",
     "enzyme": "^2.7.1",
     "eslint": "^3.17.1",
     "eslint-config-airbnb": "^14.1.0",
