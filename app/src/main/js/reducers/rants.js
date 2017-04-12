@@ -102,7 +102,7 @@ function breakDownRants(prevRants, newRants) {
   return ([column0, column1]);
 }
 
-export function rants(state = DEFAULT_STATE, action) {
+export default function rants(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_RANTS:
       switch (action.state) {
