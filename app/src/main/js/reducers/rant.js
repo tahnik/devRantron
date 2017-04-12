@@ -9,7 +9,7 @@ const DEFAULT_STATE = {
 };
 
 
-export function rant(state = DEFAULT_STATE, action) {
+export default function rant(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_RANT:
       switch (action.state) {
