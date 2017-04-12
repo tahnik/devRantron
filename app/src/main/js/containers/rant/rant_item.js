@@ -30,11 +30,13 @@ class RantItem extends Component {
                     <p className="user_score">+{rant.user_score}</p>
                   </div>
                 </div>
-                <div className="card-content white-text">
-                  <pre><p>{rant.text}</p></pre>
-                </div>
-                <div className="card-image">
-                  <img src={rant.attached_image.url} alt="" />
+                <div className="card-max-height-scroll">
+                  <div className="card-content white-text">
+                    <pre><p>{rant.text}</p></pre>
+                  </div>
+                  <div className="card-image">
+                    <img src={rant.attached_image.url} alt="" />
+                  </div>
                 </div>
                 <div className="card-bottomBar">
                   <i className="ion-plus-round" />

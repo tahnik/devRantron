@@ -140,8 +140,6 @@ body.#{$theme}
     border-width: 0px 10px
     align-content: center
     margin-bottom: 0
-    transform: translateZ(0)
-    -webkit-transform: translateZ(0)
     -webkit-font-smoothing: antialiased
     overflow-y: scroll
 
@@ -263,6 +261,11 @@ body.#{$theme}
     transition: all 0.3s $poppy-bez
     .rant_item
       width: 900px
+      .card-max-height-scroll
+        overflow-y: scroll
+        overflow-x: hidden
+        max-height: calc(100vh - 11.3rem)
+        width: calc(427.5px + 0.45rem)
       .col-comment
         margin-top: 0.5rem
         position: relative
