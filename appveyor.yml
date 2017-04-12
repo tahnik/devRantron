@@ -1,6 +1,6 @@
 os: unstable
 
-# cache yarn and node_modules folder for rebuilds 
+# cache yarn and node_modules folder for rebuilds
 cache:
   - "%LOCALAPPDATA%\\Yarn"
   - node_modules
@@ -9,7 +9,7 @@ cache:
 environment:
   # the token is encrypted by appveyor. No need to hide it.
   GH_TOKEN:
-    secure: RNdfJNqupQrCaYme1rm3Rdy4wmua9PWM0e38nLfr7oZqB0kzwwKOM8nyaPjt/Mu4
+    secure: iCb7rTARh54Z2o91jMgIsjvUn0zrJUXoMOG9nDAZ6vZB+5L+KrNKk2v6B6SUKvt7
   matrix:
     - NODE_VERSION: 7
 
