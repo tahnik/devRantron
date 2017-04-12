@@ -106,27 +106,35 @@ export default function rants(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_RANTS:
       switch (action.state) {
-        case STATE.LOADING:
+        case STATE.LOADING: {
           return {
             ...state,
             state: action.state,
             feedType: action.feedType,
           };
-        case STATE.SUCCESS:
-          const newPage = state.page + 1;
+        }
+        case STATE.SUCCESS: {
           return {
             ...state,
             currentRants: breakDownRants(state.currentRants, action.payload),
             state: action.state,
             feedType: action.feedType,
-            page: newPage,
+            page: state.page + 1,
           };
-        case STATE.FAILED:
+        }
+        case STATE.FAILED: {
           return { ...state, state: action.state, feedType: action.feedType };
+        }
+        default: {
+          // just return the failed state if something goes incredibly wrong
+          // (we should never enter this block anyway)
+          return { ...state, state: action.state, feedType: action.feedType };
+        }
       }
-      break;
     case RESET_PAGE:
       return { ...state, currentRants: [], page: 1 };
+    default: {
+      return state;
+    }
   }
-  return state;
 }
