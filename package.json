@@ -9,7 +9,7 @@
     "ci:build": "cross-env NODE_ENV=production webpack --progress --color --profile --config ./configs/webpack.prod.config.js",
     "ci:coverage": "echo ci:coverage",
     "ci:deploy": "npm run package",
-    "ci:lint": "echo ci:lint",
+    "ci:lint": "npm run lint",
     "ci:package": "npm run package:dir",
     "ci:test": "npm run test -- --runInBand",
     "contribute": "npm-run-all -s lint test",
