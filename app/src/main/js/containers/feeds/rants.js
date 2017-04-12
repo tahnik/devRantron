@@ -38,6 +38,7 @@ class Rants extends Component {
   }
   render() {
     const { rants } = this.props;
+    console.log(rants)
     if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
       return (
         <div id="loaderCont" >
@@ -69,7 +70,7 @@ class Rants extends Component {
 }
 
 Rants.propTypes = {
-  rants: React.PropTypes.array.isRequired,
+  rants: React.PropTypes.object.isRequired,
   fetch: React.PropTypes.func.isRequired,
 };
 

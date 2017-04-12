@@ -25,7 +25,7 @@ class Comments extends Component {
 }
 
 Comments.propTypes = {
-  comments: React.PropTypes.object.isRequired,
+  comments: React.PropTypes.array.isRequired,
 };
 
 export default Comments;
