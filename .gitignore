@@ -186,5 +186,11 @@ GitHub.sublime-settings
 
 # End of https://www.gitignore.io/api/webstorm,intellij,sublimetext,node
 
+################# CUSTOM ENTRIES #################
+
+# directories (build and release)
 dist
 release
+
+# script folder holding some quick edit scripts (sirwindfield)
+scripts
