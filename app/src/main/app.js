@@ -18,7 +18,7 @@ const {
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-console.time('startup');
+console.time('startup'); //eslint-disable-line
 
 /** This function will create the mainWindow */
 function createWindow() {
@@ -33,6 +33,7 @@ function createWindow() {
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
 
+    /* eslint-disable no-console */
     installExtension(REACT_DEVELOPER_TOOLS)
       .then(name => console.log(`Added Extension:  ${name}`))
       .catch(err => console.log('An error occurred: ', err));
@@ -40,6 +41,7 @@ function createWindow() {
     installExtension(REDUX_DEVTOOLS)
       .then(name => console.log(`Added Extension:  ${name}`))
       .catch(err => console.log('An error occurred: ', err));
+    /* eslint-enable no-console */
 
     // make sure to load the index from the hot reload server while in development mode
     mainWindow.loadURL('http://localhost:8080');
@@ -59,7 +61,7 @@ function createWindow() {
     mainWindow.focus();
 
     // measure startup time
-    console.timeEnd('startup');
+    console.timeEnd('startup'); //eslint-disable-line
   });
 
   // Emitted when the window is closed.

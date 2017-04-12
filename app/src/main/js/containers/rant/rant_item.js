@@ -5,6 +5,7 @@ import { closeRant, addUserCommentPost } from '../../actions/rant';
 import STATE from '../../consts/state';
 
 class RantItem extends Component {
+
   renderRant() {
     const { rant, comments } = this.props.rant.rant;
     let imageSource = <img src="res/images/empty_avatar.png" alt="" />;
@@ -14,6 +15,7 @@ class RantItem extends Component {
     if (rant.user_avatar.i) {
       imageSource = <img src={`https://avatars.devrant.io/${rant.user_avatar.i}`} alt="" />;
     }
+
     return (
       <div
         className="rant_item_container"
@@ -57,6 +59,7 @@ class RantItem extends Component {
       </div>
     );
   }
+
   static renderLoading() {
     return (
       <div
@@ -69,6 +72,7 @@ class RantItem extends Component {
       </div>
     );
   }
+
   render() {
     const { rant } = this.props;
 
