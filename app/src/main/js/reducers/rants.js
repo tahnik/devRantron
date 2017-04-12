@@ -42,8 +42,8 @@ function breakDownRants(prevRants, newRants) {
     col0Height = col0.clientHeight;
     col1Height = col1.clientHeight;
   }
-  for (let i = 0; i < newRants.length; i += 1) {
 
+  for (let i = 0; i < newRants.length; i += 1) {
     let trimmedString = newRants[i].text;
     if (newRants[i].text.length > 300) {
       const maxLength = 300;
@@ -97,35 +97,44 @@ function breakDownRants(prevRants, newRants) {
   if (prevRants[0]) {
     return ([[...prevRants[0], ...column0], [...prevRants[1], ...column1]]);
   }
+
   // If there isn't, this means it's the first time. No need to add anything
   return ([column0, column1]);
 }
 
-export function rants(state = DEFAULT_STATE, action) {
+export default function rants(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_RANTS:
       switch (action.state) {
-        case STATE.LOADING:
+        case STATE.LOADING: {
           return {
             ...state,
             state: action.state,
             feedType: action.feedType,
           };
-        case STATE.SUCCESS:
-          const newPage = state.page + 1;
+        }
+        case STATE.SUCCESS: {
           return {
             ...state,
             currentRants: breakDownRants(state.currentRants, action.payload),
             state: action.state,
             feedType: action.feedType,
-            page: newPage,
+            page: state.page + 1,
           };
-        case STATE.FAILED:
+        }
+        case STATE.FAILED: {
           return { ...state, state: action.state, feedType: action.feedType };
+        }
+        default: {
+          // just return the failed state if something goes incredibly wrong
+          // (we should never enter this block anyway)
+          return { ...state, state: action.state, feedType: action.feedType };
+        }
       }
-      break;
     case RESET_PAGE:
       return { ...state, currentRants: [], page: 1 };
+    default: {
+      return state;
+    }
   }
-  return state;
 }
