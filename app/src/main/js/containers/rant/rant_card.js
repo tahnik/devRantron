@@ -58,7 +58,9 @@ class RantCard extends Component {
             <i className="ion-minus-round" />
             <div style={{ flex: 1 }} />
             <p>{rant.num_comments}</p>
-            <i onClick={() => this.openRant(rant.id)} className="ion-chatbubbles" />
+            <button onClick={() => this.openRant(rant.id)} >
+              <i className="ion-chatbubbles" />
+            </button>
           </div>
         </div>
       </div>
