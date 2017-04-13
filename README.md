@@ -1,8 +1,11 @@
 [![appveyor-badge]][appveyor-url]
 [![travis-badge]][travis-url]
+[![bitHound Overall Score](https://www.bithound.io/github/tahnik/devRantron/badges/score.svg)](https://www.bithound.io/github/tahnik/devRantron)
+[![bitHound Dependencies](https://www.bithound.io/github/tahnik/devRantron/badges/dependencies.svg)](https://www.bithound.io/github/tahnik/devRantron/master/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/tahnik/devRantron/badges/devDependencies.svg)](https://www.bithound.io/github/tahnik/devRantron/master/dependencies/npm)
+[![bitHound Code](https://www.bithound.io/github/tahnik/devRantron/badges/code.svg)](https://www.bithound.io/github/tahnik/devRantron)
 [![Github All Releases](https://img.shields.io/github/downloads/tahnik/devRantron/total.svg)](https://github.com/tahnik/devRantron/releases)
 [![node](http://img.shields.io/badge/node-7.x-brightgreen.svg)](https://nodejs.org/en/)
-[![Code Climate](https://codeclimate.com/github/tahnik/devRantron/badges/gpa.svg)](https://codeclimate.com/github/tahnik/devRantron)
 [![GitHub contributors](https://img.shields.io/github/contributors/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/graphs/contributors)
 [![slack](https://img.shields.io/badge/slack-devRantron-blue.svg)](https://devrantron.slack.com/)
 ## devRant Unofficial Cross Platform Desktop Application
