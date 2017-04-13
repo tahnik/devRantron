@@ -22,9 +22,10 @@ class ToggleableSettings extends Component {
       <div className="toggleable_settings">
         <div className="switch">
           <span className="switch_span" >Use Dark Theme</span>
-          <label>
+          <label htmlFor="change_theme" >
             No
             <input
+              id="change_theme"
               checked={this.getThemeState()}
               onChange={() => this.onThemeChange()} type="checkbox"
             />
@@ -36,6 +37,11 @@ class ToggleableSettings extends Component {
     );
   }
 }
+
+ToggleableSettings.propTypes = {
+  theme: React.PropTypes.string.isRequired,
+  changeStyle: React.PropTypes.func.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

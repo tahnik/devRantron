@@ -46,10 +46,13 @@ class RantItem extends Component {
                   <i className="ion-minus-round" />
                   <div style={{ flex: 1 }} />
                   <p>{rant.num_comments}</p>
-                  <i
+                  <button
                     onClick={() => this.props.addUserCommentPost(rant.user_username)}
-                    className="ion-reply"
-                  />
+                  >
+                    <i
+                      className="ion-reply"
+                    />
+                  </button>
                 </div>
               </div>
             </div>
