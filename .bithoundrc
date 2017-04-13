@@ -11,8 +11,8 @@
   "critics": {
     "lint": {
         "engine": "eslint",
-        "configLocation": ".eslintrc.json",
-        "ignoreLocation": ".eslintignore"
+        "configLocation": "./.eslintrc.json",
+        "ignoreLocation": "./.eslintignore"
      }
   }
 }
