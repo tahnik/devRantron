@@ -1,7 +1,11 @@
 ---
 engines:
+  duplication:
+     enabled: false
   eslint:
     enabled: true
+    config:
+      config: .eslintrc
 ratings:
   paths:
   - "**.js"
