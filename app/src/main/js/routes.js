@@ -1,7 +1,9 @@
 import {
   HashRouter as Router,
   Route,
+  Redirect,
 } from 'react-router-dom';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import React from 'react';
 import Feed from './components/feed';
 import Nav from './components/nav';
@@ -12,10 +14,12 @@ function Main(match) {
   return (
     <div>
       <Nav match={match} />
-      <Route exact path={ROUTES.main.root} component={Feed} />
-      <Route path={ROUTES.main.stories} component={Feed} />
-      <Route path={ROUTES.main.collabs} component={Feed} />
-      <Route path={ROUTES.main.weekly} component={Feed} />
+      <Route
+        exact path={ROUTES.main.root} render={() => (
+          <Redirect to={ROUTES.main.rants} />
+        )}
+      />
+      <Route path="/:feed" component={Feed} />
       <Route path={ROUTES.main.settings} component={Settings} />
     </div>
   );
@@ -23,9 +27,7 @@ function Main(match) {
 
 function Auth() {
   return (
-    <div>
-
-    </div>
+    <div />
   );
 }
 

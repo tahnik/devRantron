@@ -6,6 +6,7 @@ export default {
   },
   main: {
     root: '/',
+    rants: '/rants',
     stories: '/stories',
     collabs: '/collabs',
     weekly: '/weekly',
