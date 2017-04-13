@@ -11,7 +11,7 @@
   "critics": {
     "lint": {
         "engine": "eslint",
-        "configLocation": ".eslintrc.json",
+        "configLocation": ".eslintrc.json"
      }
   }
 }
