@@ -5,8 +5,11 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/tahnik/devRantron/master/LICENSE)
 [![Github All Releases](https://img.shields.io/github/downloads/tahnik/devRantron/total.svg)](https://github.com/tahnik/devRantron/releases)
 [![David](https://img.shields.io/david/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron)
-[![node](https://img.shields.io/node/v/gh-badges.svg)](https://nodejs.org/en/)
-[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/)
+[![node](http://img.shields.io/badge/node-7.x-brightgreen.svg)](https://nodejs.org/en/)
+[![Code Climate](https://codeclimate.com/github/tahnik/devRantron/badges/gpa.svg)](https://codeclimate.com/github/tahnik/devRantron)
+[![](https://img.shields.io/github/issues-closed-raw/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/issues)
+[![GitHub contributors](https://img.shields.io/github/contributors/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/graphs/contributors)
+[![slack](https://img.shields.io/badge/slack-devRantron-blue.svg)](https://devrantron.slack.com/)
 ## devRant Unofficial Cross Platform Desktop Application
 
 Here is the initial sketch we made for our app:
