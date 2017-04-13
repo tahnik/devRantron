@@ -45,10 +45,13 @@ function CommentItem(props) {
           <i className="ion-minus-round" />
           <div style={{ flex: 1 }} />
           <p>{comment.num_comments}</p>
-          <i
-            onClick={() => props.addUserCommentPost(comment.user_username)
-          } className="ion-reply"
-          />
+          <button
+            onClick={() => props.addUserCommentPost(comment.user_username)}
+          >
+            <i
+              className="ion-reply"
+            />
+          </button>
         </div>
       </div>
     </div>
