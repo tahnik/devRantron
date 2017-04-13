@@ -1,6 +1,5 @@
 [![appveyor-badge]][appveyor-url]
 [![travis-badge]][travis-url]
-[![bitHound Overall Score](https://www.bithound.io/github/tahnik/devRantron/badges/score.svg)](https://www.bithound.io/github/tahnik/devRantron)
 [![bitHound Dependencies](https://www.bithound.io/github/tahnik/devRantron/badges/dependencies.svg)](https://www.bithound.io/github/tahnik/devRantron/master/dependencies/npm)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/tahnik/devRantron/badges/devDependencies.svg)](https://www.bithound.io/github/tahnik/devRantron/master/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/tahnik/devRantron/badges/code.svg)](https://www.bithound.io/github/tahnik/devRantron)
