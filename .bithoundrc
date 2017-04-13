@@ -1,0 +1,17 @@
+{
+  "ignore": [
+    "**/node_modules/**",
+    "**/vendor/**",
+    "**/**-min-**",
+    "**/**-min.**",
+    "**/**.min.**",
+    "**/**jquery-*.*.?(*).?(cs|j)s",
+    "**/res/**"
+  ],
+  "critics": {
+    "lint": {
+        "engine": "eslint",
+        "configLocation": ".eslintrc.json",
+     }
+  }
+}
