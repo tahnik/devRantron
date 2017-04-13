@@ -7,7 +7,6 @@
 [![David](https://img.shields.io/david/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron)
 [![node](http://img.shields.io/badge/node-7.x-brightgreen.svg)](https://nodejs.org/en/)
 [![Code Climate](https://codeclimate.com/github/tahnik/devRantron/badges/gpa.svg)](https://codeclimate.com/github/tahnik/devRantron)
-[![](https://img.shields.io/github/issues-closed-raw/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/issues)
 [![GitHub contributors](https://img.shields.io/github/contributors/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/graphs/contributors)
 [![slack](https://img.shields.io/badge/slack-devRantron-blue.svg)](https://devrantron.slack.com/)
 ## devRant Unofficial Cross Platform Desktop Application
