@@ -1,10 +1,6 @@
 [![appveyor-badge]][appveyor-url]
 [![travis-badge]][travis-url]
-[![GitHub issues](https://img.shields.io/github/issues/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/issues)
-[![GitHub stars](https://img.shields.io/github/stars/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/stargazers)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/tahnik/devRantron/master/LICENSE)
 [![Github All Releases](https://img.shields.io/github/downloads/tahnik/devRantron/total.svg)](https://github.com/tahnik/devRantron/releases)
-[![David](https://img.shields.io/david/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron)
 [![node](http://img.shields.io/badge/node-7.x-brightgreen.svg)](https://nodejs.org/en/)
 [![Code Climate](https://codeclimate.com/github/tahnik/devRantron/badges/gpa.svg)](https://codeclimate.com/github/tahnik/devRantron)
 [![GitHub contributors](https://img.shields.io/github/contributors/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/graphs/contributors)
