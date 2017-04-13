@@ -44,6 +44,7 @@ class Rants extends Component {
 
   render() {
     const { rants } = this.props;
+    console.log(rants)
 
     if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
       return (

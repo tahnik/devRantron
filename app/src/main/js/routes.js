@@ -8,16 +8,36 @@ import Nav from './components/nav';
 import Settings from './components/settings';
 import ROUTES from './consts/routes';
 
-const RoutesComponent = props => ( //eslint-disable-line
-  <Router>
+function Main(match) {
+  return (
     <div>
-      <Nav />
-      <Route exact path={ROUTES.root} component={Feed} />
-      <Route path={ROUTES.stories} component={Feed} />
-      <Route path={ROUTES.collabs} component={Feed} />
-      <Route path={ROUTES.weekly} component={Feed} />
-      <Route path={ROUTES.settings} component={Settings} />
+      <Nav match={match} />
+      <Route exact path={ROUTES.main.root} component={Feed} />
+      <Route path={ROUTES.main.stories} component={Feed} />
+      <Route path={ROUTES.main.collabs} component={Feed} />
+      <Route path={ROUTES.main.weekly} component={Feed} />
+      <Route path={ROUTES.main.settings} component={Settings} />
     </div>
-  </Router>
   );
-export default RoutesComponent;
+}
+
+function Auth() {
+  return (
+    <div>
+
+    </div>
+  );
+}
+
+function Routes() {
+  return (
+    <Router>
+      <div>
+        <Route path={ROUTES.main.root} component={Main} />
+        <Route path={ROUTES.auth.root} component={Auth} />
+      </div>
+    </Router>
+  );
+}
+
+export default Routes;

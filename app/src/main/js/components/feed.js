@@ -20,16 +20,16 @@ class Feed extends Component {
 
   changeActiveFeed() {
     switch (this.props.match.path) {
-      case ROUTES.stories:
+      case ROUTES.main.stories:
         this.setState({ activeFeed: <Stories /> });
         break;
-      case ROUTES.collabs:
+      case ROUTES.main.collabs:
         this.setState({ activeFeed: <Collabs /> });
         break;
-      case ROUTES.rants:
+      case ROUTES.main.rants:
         this.setState({ activeFeed: <Rants /> });
         break;
-      case ROUTES.weekly:
+      case ROUTES.main.weekly:
         this.setState({ activeFeed: <Weekly /> });
         break;
       default:
@@ -38,6 +38,8 @@ class Feed extends Component {
   }
 
   render() {
+    console.log("I AM BEING RENDERED")
+    console.log(this.state.activeFeed)
     return (
       <div className="main_container row">
         <div className="row" style={{ visibility: 'hidden', position: 'absolute', maxWidth: '900px', width: '100%' }} >
