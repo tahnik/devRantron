@@ -1,5 +1,8 @@
 [![appveyor-badge]]([appveyor-url])
 [![travis-badge]]([travis-url])
+[![GitHub issues](https://img.shields.io/github/issues/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/issues)
+[![GitHub stars](https://img.shields.io/github/stars/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/tahnik/devRantron/master/LICENSE)
 ## devRant Unofficial Cross Platform Desktop Application
 
 Here is the initial sketch we made for our app:
