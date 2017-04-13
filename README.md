@@ -3,6 +3,9 @@
 [![GitHub issues](https://img.shields.io/github/issues/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/issues)
 [![GitHub stars](https://img.shields.io/github/stars/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/tahnik/devRantron/master/LICENSE)
+[![Github All Releases](https://img.shields.io/github/downloads/tahnik/devRantron/total.svg)](https://github.com/tahnik/devRantron/releases)
+[![David](https://img.shields.io/david/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron)
+
 ## devRant Unofficial Cross Platform Desktop Application
 
 Here is the initial sketch we made for our app:
