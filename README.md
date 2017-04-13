@@ -1,8 +1,12 @@
-[![appveyor-badge]]([appveyor-url])
-[![travis-badge]]([travis-url])
+[![appveyor-badge]][appveyor-url]
+[![travis-badge]][travis-url]
 [![GitHub issues](https://img.shields.io/github/issues/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/issues)
 [![GitHub stars](https://img.shields.io/github/stars/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/tahnik/devRantron/master/LICENSE)
+[![Github All Releases](https://img.shields.io/github/downloads/tahnik/devRantron/total.svg)](https://github.com/tahnik/devRantron/releases)
+[![David](https://img.shields.io/david/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron)
+[![node](https://img.shields.io/node/v/gh-badges.svg)](https://nodejs.org/en/)
+[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/)
 ## devRant Unofficial Cross Platform Desktop Application
 
 Here is the initial sketch we made for our app:
@@ -52,7 +56,7 @@ This is our approach to create a cross platform desktop application for [devRant
     ```
 
 [devRant.io]: <http://devrant.io>
-[appveyor-badge]: https://img.shields.io/appveyor/ci/tahnik/devRatron.svg
-[appveyor-url]: https://ci.appveyor.com/project/SirWindfield/devrantron
+[appveyor-badge]: https://img.shields.io/appveyor/ci/tahnik/devRantron/master.svg
+[appveyor-url]: https://ci.appveyor.com/project/tahnik/devrantron
 [travis-badge]: https://img.shields.io/travis/tahnik/devRantron.svg
 [travis-url]: https://travis-ci.org/tahnik/devRantron
