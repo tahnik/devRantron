@@ -14,7 +14,7 @@ class TopNav extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetch(
       this.props.rants.feedType,
       25,
@@ -70,6 +70,13 @@ class TopNav extends Component {
     );
   }
 }
+
+TopNav.propTypes = {
+  fetch: React.PropTypes.func.isRequired,
+  resetPage: React.PropTypes.func.isRequired,
+  rants: React.PropTypes.object.isRequired,
+  match: React.PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
   return {
