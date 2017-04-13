@@ -56,5 +56,5 @@ This is our approach to create a cross platform desktop application for [devRant
 [devRant.io]: <http://devrant.io>
 [appveyor-badge]: https://img.shields.io/appveyor/ci/tahnik/devRantron/master.svg
 [appveyor-url]: https://ci.appveyor.com/project/tahnik/devrantron
-[travis-badge]: https://img.shields.io/travis/tahnik/devRantron.svg
+[travis-badge]: https://img.shields.io/travis/tahnik/devRantron/master.svg
 [travis-url]: https://travis-ci.org/tahnik/devRantron
