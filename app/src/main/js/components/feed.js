@@ -5,6 +5,7 @@ import Stories from '../containers/feeds/stories';
 import Weekly from '../containers/feeds/weekly';
 import ROUTES from '../consts/routes';
 
+
 class Feed extends Component {
   render() {
     let activeFeed = <Rants key={ROUTES.main.rants} />;

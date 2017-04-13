@@ -3,11 +3,11 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import React from 'react';
 import Feed from './components/feed';
 import Nav from './components/nav';
 import Settings from './components/settings';
+import Authentication from './components/auth';
 import ROUTES from './consts/routes';
 
 function Main(match) {
@@ -15,11 +15,11 @@ function Main(match) {
     <div>
       <Nav match={match} />
       <Route
-        exact path={ROUTES.main.root} render={() => (
+        exact path="/" render={() => (
           <Redirect to={ROUTES.main.rants} />
         )}
       />
-      <Route path="/:feed" component={Feed} />
+      <Route path="/feeds/:feed" component={Feed} />
       <Route path={ROUTES.main.settings} component={Settings} />
     </div>
   );
@@ -27,7 +27,9 @@ function Main(match) {
 
 function Auth() {
   return (
-    <div />
+    <div>
+      <Authentication />
+    </div>
   );
 }
 
@@ -35,7 +37,7 @@ function Routes() {
   return (
     <Router>
       <div>
-        <Route path={ROUTES.main.root} component={Main} />
+        <Route path="/" component={Main} />
         <Route path={ROUTES.auth.root} component={Auth} />
       </div>
     </Router>
