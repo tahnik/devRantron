@@ -11,7 +11,8 @@ export default function Auth(state = DEFAULT_STATE, action) {
     case AUTH.LOGIN:
       switch (action.state) {
         case STATE.SUCCESS:
-          return { token: action.payload, state: action.state };
+          console.log(action.payload.key)
+          return { token: action.payload.key, state: action.state };
         case STATE.FAILED:
           return { token: null, state: action.state };
         case STATE.CANCELLED:

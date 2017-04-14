@@ -47,6 +47,7 @@ module.exports = {
       },
     ],
   },
+  target: 'electron',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

@@ -1,6 +1,8 @@
-import rantscript from 'rantscript';
 import AUTH from '../consts/auth';
 import STATE from '../consts/state';
+import electron from 'electron';
+
+const rantscript = electron.remote.require('rantscript');
 
 // change to disable comprssion in production
 rantscript.httpSettings.SET_COMPRESS(false);
@@ -10,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export function login(username, password) {
-  console.log(username)
+
   return (dispatch) => {
     dispatch({
       type: AUTH.LOGIN,
@@ -19,20 +21,17 @@ export function login(username, password) {
     rantscript
       .login(username, password)
       .then((res) => {
-        console.log("PAYLOAD MFUCKERS!");
-        console.log(res)
+        console.log('PAYLOAD MFUCKERS!');
         dispatch({
           type: AUTH.LOGIN,
           state: STATE.SUCCESS,
-          payload: res.token,
+          payload: res.auth_token,
         });
-      });
-      /*
-      TODO: This needs to be fixed. Commented until @rekkyrek fixes the API
+      })
       .catch((err) => {
-        dispatch({ type: FETCH_RANTS, state: STATE.FAILED, payload: err, feedType: type });
+        console.log("Something")
+        dispatch({ type: AUTH.LOGIN, state: STATE.FAILED, payload: err });
       });
-      */
   };
 }
 
