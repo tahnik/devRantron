@@ -3,6 +3,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import { connect } from 'react-redux';
 import React from 'react';
 import Feed from './components/feed';
 import Nav from './components/nav';
@@ -10,10 +11,18 @@ import Settings from './components/settings';
 import Authentication from './components/auth';
 import ROUTES from './consts/routes';
 
-function Main(match) {
+function renderAuth() {
   return (
     <div>
-      <Nav match={match} />
+      <Authentication />
+    </div>
+  );
+}
+
+function renderMain() {
+  return (
+    <div>
+      <Nav />
       <Route
         exact path="/" render={() => (
           <Redirect to={ROUTES.main.rants} />
@@ -25,23 +34,33 @@ function Main(match) {
   );
 }
 
-function Auth() {
+function render(props) {
+  if (props.auth.token) {
+    return (
+      renderMain()
+    );
+  }
   return (
-    <div>
-      <Authentication />
-    </div>
+    renderAuth()
   );
+}
+
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
 }
 
 function Routes() {
   return (
     <Router>
       <div>
-        <Route path="/" component={Main} />
-        <Route path={ROUTES.auth.root} component={Auth} />
+        <Route path="/" component={connect(mapStateToProps, null)(render)} />
       </div>
     </Router>
   );
 }
+
 
 export default Routes;
