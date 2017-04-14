@@ -9,9 +9,9 @@ import Login from '../containers/auth/login';
 function Authentication() {
   const activeAuth = <Login key={ROUTES.auth.login} />;
   return (
-    <div>
-      <div>
-        NiceDesignOrImage
+    <div className="login_view">
+      <div className="devrantron_image">
+        <img src="./res/images/devrant_sidebar.png"/>
       </div>
       { activeAuth }
     </div>

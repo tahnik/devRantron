@@ -12,8 +12,7 @@ class Login extends Component {
   }
   render() {
     return (
-      <div>
-        SignIn
+      <div className="signin">
         <div className="row">
           <form className="col s12">
             <div className="row">
@@ -42,6 +41,9 @@ class Login extends Component {
             )}
             className="waves-effect waves-light btn"
           >Login</button>
+          <button
+            className="waves-effect waves-light btn"
+          >Signup</button>
         </div>
       </div>
     );
