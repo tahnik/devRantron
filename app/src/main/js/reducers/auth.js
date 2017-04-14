@@ -8,7 +8,7 @@ const DEFAULT_STATE = {
 
 export default function Auth(state = DEFAULT_STATE, action) {
   switch (action.type) {
-    case AUTH.SIGN_IN:
+    case AUTH.LOGIN:
       switch (action.state) {
         case STATE.SUCCESS:
           return { token: action.payload, state: action.state };
@@ -19,7 +19,7 @@ export default function Auth(state = DEFAULT_STATE, action) {
         default:
           return { token: null };
       }
-    case AUTH.SIGN_OUT:
+    case AUTH.LOGOUT:
       return { token: null, state: STATE.CANCELLED };
     default:
       return state;

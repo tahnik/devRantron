@@ -15,6 +15,7 @@ function renderAuth() {
   return (
     <div>
       <Authentication />
+      <Route path="/feeds/:feed" component={Feed} />
     </div>
   );
 }

@@ -9,17 +9,20 @@ if (process.env.NODE_ENV === 'development') {
   rantscript.httpSettings.SET_DEBUG(true);
 }
 
-export function signIn(username, password) {
+export function login(username, password) {
+  console.log(username)
   return (dispatch) => {
     dispatch({
-      type: AUTH.SIGN_IN,
+      type: AUTH.LOGIN,
       state: STATE.LOADING,
     });
     rantscript
       .login(username, password)
       .then((res) => {
+        console.log("PAYLOAD MFUCKERS!");
+        console.log(res)
         dispatch({
-          type: AUTH.SIGN_IN,
+          type: AUTH.LOGIN,
           state: STATE.SUCCESS,
           payload: res.token,
         });
@@ -33,10 +36,10 @@ export function signIn(username, password) {
   };
 }
 
-export function signOut() {
+export function logout() {
   return (dispatch) => {
     dispatch({
-      type: AUTH.SIGN_OUT,
+      type: AUTH.LOGIN,
       state: STATE.SUCCESS,
     });
   };
