@@ -2,6 +2,7 @@ import {
   FETCH_RANT,
   CLOSE_RANT,
   COMMENT_POST,
+  UPVOTE_RANT,
 } from '../consts/rants';
 import STATE from '../consts/state';
 
@@ -36,6 +37,23 @@ export function closeRant() {
     dispatch({
       type: CLOSE_RANT,
     });
+  };
+}
+
+export function upvote(rantId, tokenId, tokenKey, userId) {
+  return (dispatch) => {
+    dispatch({
+      type: UPVOTE_RANT,
+      state: STATE.LOADING,
+    });
+    rantscript
+      .vote(1, rantId, tokenId, tokenKey, userId)
+      .then(() => {
+        dispatch({
+          type: UPVOTE_RANT,
+          state: STATE.SUCCESS,
+        });
+      });
   };
 }
 

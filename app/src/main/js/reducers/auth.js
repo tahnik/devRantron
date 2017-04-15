@@ -2,6 +2,7 @@ import AUTH from '../consts/auth';
 import STATE from '../consts/state';
 
 const DEFAULT_STATE = {
+  authToken: null,
   token: null,
   id: null,
   expire_time: null,
@@ -15,6 +16,7 @@ export default function Auth(state = DEFAULT_STATE, action) {
       switch (action.state) {
         case STATE.SUCCESS: // eslint-disable-line
           const persisAuth = {
+            authToken: action.authToken,
             token: action.key,
             id: action.id,
             expire_time: action.expire_time,

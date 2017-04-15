@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchRant } from '../../actions/rant';
+import { fetchRant, upvote } from '../../actions/rant';
 /* API Ref:
 attached_image: ""
 created_time: 1491178991
@@ -19,8 +19,33 @@ user_username: "DLMousey"
 vote_state: 0
 */
 class RantCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      plusColor: null,
+      minusColor: null,
+    };
+  }
   openRant(id) {
     this.props.fetchRant(id);
+  }
+  upvote(id) {
+    this.setState({ plusColor: '#D55161' });
+    this.props.upvote(
+      id,
+      this.props.auth.id,
+      this.props.auth.token,
+      this.props.auth.user_id,
+    );
+  }
+  componentWillMount() {
+    const { rant } = this.props;
+    this.setState(
+      {
+        plusColor: rant.vote_state === 1 ? '#D55161' : null,
+        minusColor: rant.vote_state < 0 ? '#D55161' : null,
+      },
+    );
   }
   render() {
     const { rant } = this.props;
@@ -53,9 +78,17 @@ class RantCard extends Component {
             <img src={rant.attached_image.url} alt="" />
           </div>
           <div className="card-bottomBar">
-            <i className="ion-plus-round" />
+            <button onClick={() => this.upvote(rant.id)} >
+              <i
+                style={{ color: this.state.plusColor }}
+                className="ion-plus-round"
+              />
+            </button>
             <p>{rant.score}</p>
-            <i className="ion-minus-round" />
+            <i
+              style={{ color: this.state.minusColor }}
+              className="ion-minus-round"
+            />
             <div style={{ flex: 1 }} />
             <p>{rant.num_comments}</p>
             <button onClick={() => this.openRant(rant.id)} >
@@ -75,4 +108,10 @@ RantCard.propTypes = {
   fetchRant: React.PropTypes.func.isRequired,
 };
 
-export default connect(null, { fetchRant })(RantCard);
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps, { fetchRant, upvote })(RantCard);

@@ -48,6 +48,7 @@ class Rants extends Component {
         rants.feedType,
         25,
         25 * rants.page,
+        this.props.authToken,
       );
     }
   }
@@ -58,6 +59,7 @@ class Rants extends Component {
       type,
       25,
       25 * this.props.rants.page,
+      this.props.authToken,
     );
   }
 
@@ -114,6 +116,7 @@ Rants.propTypes = {
 function mapStateToProps(state) {
   return {
     rants: state.rants,
+    authToken: state.auth.authToken,
   };
 }
 
