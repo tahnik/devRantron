@@ -10,8 +10,12 @@ export default function Auth(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case AUTH.LOGIN:
       switch (action.state) {
-        case STATE.SUCCESS:
-          console.log(action.payload.key)
+        case STATE.SUCCESS: // eslint-disable-line
+          const persisAuth = {
+            token: action.payload.key,
+            state: action.state,
+          };
+          localStorage.setItem('auth', JSON.stringify(persisAuth));
           return { token: action.payload.key, state: action.state };
         case STATE.FAILED:
           return { token: null, state: action.state };
