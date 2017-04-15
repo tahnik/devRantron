@@ -5,39 +5,23 @@ import Stories from '../containers/feeds/stories';
 import Weekly from '../containers/feeds/weekly';
 import ROUTES from '../consts/routes';
 
+
 class Feed extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeFeed: <Rants />,
-    };
-  }
-
-  componentWillMount() {
-    this.changeActiveFeed();
-  }
-
-  changeActiveFeed() {
-    switch (this.props.match.path) {
-      case ROUTES.stories:
-        this.setState({ activeFeed: <Stories /> });
+  render() {
+    let activeFeed = <Rants key={ROUTES.main.rants} />;
+    switch (this.props.match.url) {
+      case ROUTES.main.stories:
+        activeFeed = <Stories key={this.props.match.url} />;
         break;
-      case ROUTES.collabs:
-        this.setState({ activeFeed: <Collabs /> });
+      case ROUTES.main.collabs:
+        activeFeed = <Collabs key={this.props.match.url} />;
         break;
-      case ROUTES.rants:
-        this.setState({ activeFeed: <Rants /> });
-        break;
-      case ROUTES.weekly:
-        this.setState({ activeFeed: <Weekly /> });
+      case ROUTES.main.weekly:
+        activeFeed = <Weekly key={this.props.match.url} />;
         break;
       default:
-        this.setState({ activeFeed: <Rants /> });
+        activeFeed = <Rants key={this.props.match.url} />;
     }
-  }
-
-  render() {
     return (
       <div className="main_container row">
         <div className="row" style={{ visibility: 'hidden', position: 'absolute', maxWidth: '900px', width: '100%' }} >
@@ -48,7 +32,7 @@ class Feed extends Component {
             <div style={{ visibility: 'hidden' }} />
           </div>
         </div>
-        {this.state.activeFeed}
+        { activeFeed }
       </div>
     );
   }
@@ -56,7 +40,7 @@ class Feed extends Component {
 
 Feed.propTypes = {
   match: React.PropTypes.shape({
-    path: React.PropTypes.string.isRequired,
+    url: React.PropTypes.string.isRequired,
   }).isRequired,
 };
 
