@@ -57,7 +57,7 @@ class Login extends Component {
               if (email.className === 'row signup-email email-hidden') {
                 email.className = 'row signup-email';
               } else {
-                email.className = 'row signup-email email-hidden';
+                // Reg Logic
               }
             }}
             className="waves-effect waves-light btn"

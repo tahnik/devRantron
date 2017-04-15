@@ -21,15 +21,13 @@ export function login(username, password) {
     rantscript
       .login(username, password)
       .then((res) => {
-        console.log('PAYLOAD MFUCKERS!');
-        /* dispatch({
+        dispatch({
           type: AUTH.LOGIN,
           state: STATE.SUCCESS,
           payload: res.auth_token,
-        });*/
+        });
       })
       .catch((err) => {
-        console.log("Something")
         dispatch({ type: AUTH.LOGIN, state: STATE.FAILED, payload: err });
       });
   };

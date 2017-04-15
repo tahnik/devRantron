@@ -4,8 +4,24 @@ const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
+const os = require('os');
 const path = require('path');
 const url = require('url');
+
+const systemSpecs = {
+  cpu_speed: os.cpus()[0].speed,
+  mem_available: os.freemem(),
+  high_spec: false,
+};
+
+// 2 684 354 560 == 2.5 GiB
+if (systemSpecs.cpu_speed > 2800 && systemSpecs.mem_available > 2684354560) {
+  systemSpecs.high_spec = true;
+}
+
+console.log(`System is high spec: ${systemSpecs.high_spec}`);
+
+exports.systemSpecs = systemSpecs;
 
 const {
   default: installExtension,
@@ -26,6 +42,8 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 768,
+    minHeight: 600,
+    minWidth: 900,
     show: false,
   });
 
