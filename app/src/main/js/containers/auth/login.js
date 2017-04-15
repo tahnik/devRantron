@@ -12,10 +12,18 @@ class Login extends Component {
   }
   render() {
     return (
-      <div>
-        SignIn
+      <div className="signin">
         <div className="row">
           <form className="col s12">
+            <div className="row signup-email email-hidden" id="signup-email">
+              <div className="input-field col s12">
+                <input
+                  onChange={event => this.setState({ username: event.target.value })}
+                  placeholder="Email"
+                  id="email" type="email" className="validate"
+                />
+              </div>
+            </div>
             <div className="row">
               <div className="input-field col s12">
                 <input
@@ -42,6 +50,18 @@ class Login extends Component {
             )}
             className="waves-effect waves-light btn"
           >Login</button>
+          <button
+            onClick={() => {
+              // Sorry for inline code xD
+              const email = document.getElementById('signup-email');
+              if (email.className === 'row signup-email email-hidden') {
+                email.className = 'row signup-email';
+              } else {
+                email.className = 'row signup-email email-hidden';
+              }
+            }}
+            className="waves-effect waves-light btn"
+          >Signup</button>
         </div>
       </div>
     );
