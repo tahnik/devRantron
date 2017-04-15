@@ -1,6 +1,6 @@
+import electron from 'electron';
 import AUTH from '../consts/auth';
 import STATE from '../consts/state';
-import electron from 'electron';
 
 const rantscript = electron.remote.require('rantscript');
 
@@ -12,7 +12,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export function login(username, password) {
-
   return (dispatch) => {
     dispatch({
       type: AUTH.LOGIN,

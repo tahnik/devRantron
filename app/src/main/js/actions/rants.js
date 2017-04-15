@@ -1,9 +1,11 @@
-import rantscript from 'rantscript';
 import {
   FETCH_RANTS,
   RESET_PAGE,
 } from '../consts/rants';
 import STATE from '../consts/state';
+
+const rantscript = require('electron').remote.require('rantscript');
+
 
 // change to disable comprssion in production
 rantscript.httpSettings.SET_COMPRESS(false);

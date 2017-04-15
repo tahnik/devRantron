@@ -1,10 +1,11 @@
-import rantscript from 'rantscript';
 import {
   FETCH_RANT,
   CLOSE_RANT,
   COMMENT_POST,
 } from '../consts/rants';
 import STATE from '../consts/state';
+
+const rantscript = require('electron').remote.require('rantscript');
 
 export function fetchRant(id) {
   return (dispatch) => {
