@@ -20,10 +20,14 @@ export function login(username, password) {
     rantscript
       .login(username, password)
       .then((res) => {
+        console.log(res)
         dispatch({
           type: AUTH.LOGIN,
           state: STATE.SUCCESS,
-          payload: res.auth_token,
+          key: res.auth_token.key,
+          id: res.auth_token.id,
+          expire_time: res.auth_token.expire_time,
+          user_id: res.auth_token.user_id,
         });
       })
       .catch((err) => {

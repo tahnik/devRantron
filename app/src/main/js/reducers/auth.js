@@ -3,6 +3,9 @@ import STATE from '../consts/state';
 
 const DEFAULT_STATE = {
   token: null,
+  id: null,
+  expire_time: null,
+  user_id: null,
   state: STATE.CANCELLED,
 };
 
@@ -12,11 +15,14 @@ export default function Auth(state = DEFAULT_STATE, action) {
       switch (action.state) {
         case STATE.SUCCESS: // eslint-disable-line
           const persisAuth = {
-            token: action.payload.key,
+            token: action.key,
+            id: action.id,
+            expire_time: action.expire_time,
+            user_id: action.user_id,
             state: action.state,
           };
           localStorage.setItem('auth', JSON.stringify(persisAuth));
-          return { token: action.payload.key, state: action.state };
+          return persisAuth;
         case STATE.FAILED:
           return { token: null, state: action.state };
         case STATE.CANCELLED:
