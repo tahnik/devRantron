@@ -111,6 +111,14 @@ body.#{$theme}
     z-index: 9
     background-color: $main-color
     transition: all 0.2s $poppy-bez
+    display: flex
+    flex-direction: column
+    .drawer_item_set
+      position: absolute
+    .drawer_item_set:first-child
+      top: 0
+    .drawer_item_set:nth-child(2)
+      bottom: 0
 
   .drawer_item
     height: $button-height

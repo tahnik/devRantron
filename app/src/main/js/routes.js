@@ -11,38 +11,29 @@ import Settings from './components/settings';
 import Authentication from './components/auth';
 import ROUTES from './consts/routes';
 
-function renderAuth() {
+function render(props) {
+  let initialRoute = ROUTES.auth.login;
+  let showNav = true;
+  if (props.auth.token) {
+    initialRoute = ROUTES.main.rants;
+  }
+  if (props.location.pathname === ROUTES.auth.login) {
+    console.log(props.location.pathname)
+    showNav = false;
+  }
   return (
     <div>
-      <Authentication />
-      <Route path="/feeds/:feed" component={Feed} />
-    </div>
-  );
-}
-
-function renderMain() {
-  return (
-    <div>
-      <Nav />
+      { showNav ? <Nav /> : null }
       <Route
         exact path="/" render={() => (
-          <Redirect to={ROUTES.main.rants} />
+          <Redirect to={initialRoute} />
         )}
       />
       <Route path="/feeds/:feed" component={Feed} />
       <Route path={ROUTES.main.settings} component={Settings} />
+      <Route path={ROUTES.auth.login} component={Authentication} />
+      <Route path={ROUTES.auth.logout} component={Authentication} />
     </div>
-  );
-}
-
-function render(props) {
-  if (props.auth.token) {
-    return (
-      renderMain()
-    );
-  }
-  return (
-    renderAuth()
   );
 }
 

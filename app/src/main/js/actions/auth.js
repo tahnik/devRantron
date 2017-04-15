@@ -33,9 +33,10 @@ export function login(username, password) {
 }
 
 export function logout() {
+  localStorage.removeItem('auth');
   return (dispatch) => {
     dispatch({
-      type: AUTH.LOGIN,
+      type: AUTH.LOGOUT,
       state: STATE.SUCCESS,
     });
   };

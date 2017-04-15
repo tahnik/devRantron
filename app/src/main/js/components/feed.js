@@ -9,6 +9,7 @@ import ROUTES from '../consts/routes';
 class Feed extends Component {
   render() {
     let activeFeed = <Rants key={ROUTES.main.rants} />;
+    console.log(activeFeed)
     switch (this.props.match.url) {
       case ROUTES.main.stories:
         activeFeed = <Stories key={this.props.match.url} />;

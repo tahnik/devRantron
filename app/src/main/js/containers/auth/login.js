@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth';
+import ROUTES from '../../consts/routes';
 
 class Login extends Component {
   constructor(props) {
@@ -11,6 +13,11 @@ class Login extends Component {
     };
   }
   render() {
+    if (this.props.token) {
+      return (
+        <Redirect to={ROUTES.main.rants} />
+      );
+    }
     return (
       <div className="signin">
         <div className="row">
@@ -68,4 +75,10 @@ class Login extends Component {
   }
 }
 
-export default connect(null, { login })(Login);
+function mapStateToProps(state) {
+  return {
+    token: state.auth.token,
+  };
+}
+
+export default connect(mapStateToProps, { login })(Login);

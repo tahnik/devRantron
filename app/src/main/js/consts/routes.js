@@ -9,6 +9,7 @@ const Routes = {
     root: RootRoutes.auth,
     login: `${RootRoutes.auth}/login`,
     register: `${RootRoutes.auth}/register`,
+    logout: `${RootRoutes.auth}/logout`,
   },
   main: {
     root: RootRoutes.main,
