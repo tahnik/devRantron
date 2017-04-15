@@ -11,7 +11,7 @@ function Authentication() {
   return (
     <div className="login_view">
       <div className="devrantron_image">
-        <img src="./res/images/devrant_sidebar.png"/>
+        <img alt="devrant" src="./res/images/devrant_sidebar.png" />
       </div>
       { activeAuth }
     </div>

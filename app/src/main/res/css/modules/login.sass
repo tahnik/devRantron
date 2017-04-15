@@ -24,7 +24,6 @@
   @keyframes signin_In
     0%
       opacity: 0
-
     100%
       opacity: 1
       transform: translateX(147.5px)
@@ -38,6 +37,20 @@
     position: absolute
     opacity: 0
     animation: signin_In 0.625s 1.875s forwards
+    .signup-email
+      transition: all 0.2s
+      *
+        transition: all 0.2s
+    .email-hidden
+      opacity: 0
+      height: 0px
+      margin: 0px
+      div
+        height: 0px
+        margin: 0px
+        input
+          height: 0px
+          margin: 0px
     .input-field
       color: white
       input
