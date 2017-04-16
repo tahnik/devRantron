@@ -3,6 +3,7 @@ import {
   CLOSE_RANT,
   COMMENT_POST,
   UPVOTE_RANT,
+  UPVOTE_COMMENT,
 } from '../consts/rants';
 import STATE from '../consts/state';
 
@@ -51,6 +52,23 @@ export function upvote(rantId, tokenId, tokenKey, userId) {
       .then(() => {
         dispatch({
           type: UPVOTE_RANT,
+          state: STATE.SUCCESS,
+        });
+      });
+  };
+}
+
+export function upvoteComment(commentId, tokenId, tokenKey, userId) {
+  return (dispatch) => {
+    dispatch({
+      type: UPVOTE_COMMENT,
+      state: STATE.LOADING,
+    });
+    rantscript
+      .voteComment(1, commentId, tokenId, tokenKey, userId)
+      .then(() => {
+        dispatch({
+          type: UPVOTE_COMMENT,
           state: STATE.SUCCESS,
         });
       });
