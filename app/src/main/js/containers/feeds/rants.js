@@ -6,7 +6,7 @@ import { fetch, resetPage } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
 import TopNav from '../navigation/top_nav';
-import { tabbedNav } from '../../actions/nav';
+import { tabbedNav, tabItem } from '../../actions/nav';
 
 // Use import instead?
 const twemoji = require('twemoji');
@@ -19,11 +19,13 @@ class Rants extends Component {
   }
 
   componentWillMount() {
+    const DEFAULT_TAB_ITEM = FEED.RANTS.ALGO
     this.props.fetch(
-      'Algo',
+      DEFAULT_TAB_ITEM,
       25,
       25 * this.props.rants.page,
     );
+    this.props.updateTabItem(DEFAULT_TAB_ITEM);
   }
 
   componentDidMount() {
@@ -125,7 +127,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => ({
   fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
   resetPage: () => resetPage()(dispatch),
-  updateTopNav: (r) => dispatch(tabbedNav(r))
+  updateTopNav: (r) => dispatch(tabbedNav(r)),
+  updateTabItem: (r) => dispatch(tabItem(r)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rants);

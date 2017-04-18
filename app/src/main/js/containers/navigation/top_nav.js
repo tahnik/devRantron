@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { tabItem } from '../../actions/nav';
 
 class TopNav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeItem: '',
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+    // this.state = {
+    //   activeItem: '',
+    // };
+  // }
 
   onClickTabItem(type) {
     this.props.updateItem(type);
@@ -23,7 +23,7 @@ class TopNav extends Component {
           {
           this.props.items.map((item) => {
             let activeStyle = '';
-            if (this.state.activeItem === item) {
+            if (this.props.selectedItem === item) {
               activeStyle = '1px solid white';
             }
             return (
@@ -54,7 +54,8 @@ TopNav.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  items: state.topNav.items
+  items: state.topNav.items,
+  selectedItem: state.topNav.selectedItem,
 });
 
 const mapDispatchToProps = (dispatch) => ({
