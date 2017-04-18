@@ -6,6 +6,7 @@ import { fetch, resetPage } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
 import TopNav from '../navigation/top_nav';
+import { tabbedNav } from '../../actions/nav';
 
 // Use import instead?
 const twemoji = require('twemoji');
@@ -65,6 +66,7 @@ class Rants extends Component {
 
   render() {
     const { rants } = this.props;
+    this.props.updateTopNav(Object.values(FEED.RANTS));
 
     if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
       return (
@@ -120,4 +122,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetch, resetPage })(Rants);
+const mapDispatchToProps = (dispatch) => ({
+  fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
+  resetPage: () => resetPage()(dispatch),
+  updateTopNav: (r) => dispatch(tabbedNav(r))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Rants);

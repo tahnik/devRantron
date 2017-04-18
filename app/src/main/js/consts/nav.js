@@ -1,4 +1,8 @@
 export default {
-    TABBED: "TABBED_NAV",
-    BLANK: "BLANK_NAV"
+    TYPE: {
+        TABBED: "TABBED_NAV",
+        BLANK: "BLANK_NAV",
+        NONE: "NONE_NAV",
+    },
+    ITEM: "NAV_ITEM",
 }
