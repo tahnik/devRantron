@@ -2,7 +2,8 @@ import React from 'react';
 import ROUTES from '../consts/routes';
 import Login from '../containers/auth/login';
 import Logout from '../containers/auth/logout';
-
+import { connect } from 'react-redux';
+import { routeAction } from '../actions/route';
 /*
  * Why is it so complicated for a single route? Because in case we add
  * registration in future we will need this structure
@@ -16,6 +17,7 @@ function Authentication(props) {
     default:
       activeAuth = <Login key={ROUTES.auth.login} />;
   }
+  props.updateRoute(activeAuth.key);
   console.log(activeAuth)
   return (
     <div className="login_view">
@@ -27,4 +29,8 @@ function Authentication(props) {
   );
 }
 
-export default Authentication;
+const mapDispatchToProps = {
+  updateRoute: routeAction
+}
+
+export default connect(null, mapDispatchToProps)(Authentication);
