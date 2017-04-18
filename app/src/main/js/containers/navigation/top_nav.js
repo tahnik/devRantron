@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { tabItem } from '../../actions/nav';
+import { resetPage, fetch } from '../../actions/rants';
 
 class TopNav extends Component {
   // constructor(props) {
@@ -12,8 +13,15 @@ class TopNav extends Component {
 
   onClickTabItem(type) {
     this.props.updateItem(type);
-    this.props.fetch(type);
-    this.setState({ activeItem: type });
+    this.props.resetPage();
+    this.props.fetch(
+      type,
+      25,
+      25 * this.props.rants.page,
+      this.props.authToken,
+    );
+    // this.props.fetch(type);
+    // this.setState({ activeItem: type });
   }
 
   render() {
@@ -56,10 +64,13 @@ TopNav.defaultProps = {
 const mapStateToProps = (state) => ({
   items: state.topNav.items,
   selectedItem: state.topNav.selectedItem,
+  authToken: state.auth.authToken,
+  rants: state.rants,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateItem: (i) => dispatch(tabItem(i))
+  updateItem: (i) => dispatch(tabItem(i)),
+  resetPage: () => resetPage()(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopNav);
