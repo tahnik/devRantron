@@ -6,6 +6,7 @@ import { fetch, resetPage } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
 import TopNav from '../navigation/top_nav';
+import { tabbedNav, tabItem } from '../../actions/nav';
 
 // Use import instead?
 const twemoji = require('twemoji');
@@ -15,14 +16,24 @@ class Rants extends Component {
   constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
+    // this.state = {
+    //   firstTime: true
+    // }
+    // const DEFAULT_TAB_ITEM = FEED.RANTS.ALGO
+    // props.updateTabItem(DEFAULT_TAB_ITEM);
+    // this.fetchRants(DEFAULT_TAB_ITEM);
   }
 
   componentWillMount() {
-    this.props.fetch(
-      'Algo',
-      25,
-      25 * this.props.rants.page,
-    );
+    const DEFAULT_TAB_ITEM = FEED.RANTS.ALGO
+    // this.props.fetch(
+    //   DEFAULT_TAB_ITEM,
+    //   25,
+    //   25 * this.props.rants.page,
+    // );
+    this.fetchRants(DEFAULT_TAB_ITEM);
+    this.props.updateTabItem(DEFAULT_TAB_ITEM);
+    this.props.updateTopNav(Object.values(FEED.RANTS));
   }
 
   componentDidMount() {
@@ -44,17 +55,18 @@ class Rants extends Component {
     const scrollTop = document.getElementsByClassName('main_container')[0].scrollTop;
 
     if (scrollTop + (windowHeight * 2) >= scrollHeight && rants.state !== STATE.LOADING) {
-      this.props.fetch(
-        rants.feedType,
-        25,
-        25 * rants.page,
-        this.props.authToken,
-      );
+      // this.props.fetch(
+      //   rants.feedType,
+      //   25,
+      //   25 * rants.page,
+      //   this.props.authToken,
+      // );
+      this.fetchRants(rants.feedType);
     }
   }
 
   fetchRants(type) {
-    this.props.resetPage();
+    // this.props.resetPage();
     this.props.fetch(
       type,
       25,
@@ -64,15 +76,18 @@ class Rants extends Component {
   }
 
   render() {
+    // if (this.state.firstTime) {
+    //   this.setState({ firstTime: false });
+    // } else {
+    //   this.fetchRants(this.props.selectedItem);
+    // }
+
     const { rants } = this.props;
+    // this.props.updateTopNav(Object.values(FEED.RANTS));
 
     if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
       return (
         <div style={{ display: 'flex' }}>
-          <TopNav
-            items={Object.values(FEED.RANTS)}
-            fetch={type => this.fetchRants(type)}
-          />
           <div id="loaderCont" >
             <div className="loader" id="loader1" />
             <div className="loader" id="loader2" />
@@ -83,10 +98,6 @@ class Rants extends Component {
 
     return (
       <div>
-        <TopNav
-          items={Object.values(FEED.RANTS)}
-          fetch={type => this.fetchRants(type)}
-        />
         <RantItem />
         <div className="row rantContainer" >
           {
@@ -117,7 +128,15 @@ function mapStateToProps(state) {
   return {
     rants: state.rants,
     authToken: state.auth.authToken,
+    selectedItem: state.topNav.selectedItem,
   };
 }
 
-export default connect(mapStateToProps, { fetch, resetPage })(Rants);
+const mapDispatchToProps = (dispatch) => ({
+  fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
+  resetPage: () => resetPage()(dispatch),
+  updateTopNav: (r) => dispatch(tabbedNav(r)),
+  updateTabItem: (r) => dispatch(tabItem(r)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Rants);
