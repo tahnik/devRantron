@@ -88,10 +88,6 @@ class Rants extends Component {
     if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
       return (
         <div style={{ display: 'flex' }}>
-          <TopNav
-            items={Object.values(FEED.RANTS)}
-            fetch={type => this.fetchRants(type)}
-          />
           <div id="loaderCont" >
             <div className="loader" id="loader1" />
             <div className="loader" id="loader2" />
@@ -102,10 +98,6 @@ class Rants extends Component {
 
     return (
       <div>
-        <TopNav
-          items={Object.values(FEED.RANTS)}
-          fetch={type => this.fetchRants(type)}
-        />
         <RantItem />
         <div className="row rantContainer" >
           {

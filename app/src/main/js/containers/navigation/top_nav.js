@@ -71,6 +71,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   updateItem: (i) => dispatch(tabItem(i)),
   resetPage: () => resetPage()(dispatch),
+  fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopNav);

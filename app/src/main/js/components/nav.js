@@ -1,12 +1,11 @@
 import React from 'react';
 import SideNav from '../containers/navigation/side_nav';
+import TopNav from '../containers/navigation/top_nav';
 
 function Nav() {
   return (
     <div>
-      <div className="top_nav">
-        <div className="top_nav_container" />
-      </div>
+      <TopNav />
       <SideNav />
     </div>
   );
