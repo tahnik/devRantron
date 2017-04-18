@@ -4,6 +4,8 @@ import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
 import Weekly from '../containers/feeds/weekly';
 import ROUTES from '../consts/routes';
+import { connect } from 'react-redux';
+import { routeAction } from '../actions/route';
 
 
 class Feed extends Component {
@@ -23,6 +25,9 @@ class Feed extends Component {
       default:
         activeFeed = <Rants key={this.props.match.url} />;
     }
+
+    this.props.updateRoute(activeFeed.key);
+
     return (
       <div className="main_container row">
         <div className="row" style={{ visibility: 'hidden', position: 'absolute', maxWidth: '900px', width: '100%' }} >
@@ -45,4 +50,8 @@ Feed.propTypes = {
   }).isRequired,
 };
 
-export default Feed;
+const mapDispatchToProps = {
+  updateRoute: routeAction
+}
+
+export default connect(null, mapDispatchToProps)(Feed);

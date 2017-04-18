@@ -21,6 +21,7 @@ function render(props) {
     console.log(props.location.pathname)
     showNav = false;
   }
+  
   return (
     <div>
       { showNav ? <Nav /> : null }
