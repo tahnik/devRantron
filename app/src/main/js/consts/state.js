@@ -3,4 +3,5 @@ export default {
   LOADING: 'LOADING',
   FAILED: 'FAILED',
   CANCELLED: 'CANCELLED',
+  INITIAL: 'INITIAL',
 };

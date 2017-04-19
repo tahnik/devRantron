@@ -13,6 +13,9 @@ if (process.env.NODE_ENV === 'development') {
 
 export function login(username, password) {
   return (dispatch) => {
+    console.log("Authentication started");
+    console.log(username)
+    console.log(password)
     dispatch({
       type: AUTH.LOGIN,
       state: STATE.LOADING,
@@ -20,6 +23,7 @@ export function login(username, password) {
     rantscript
       .login(username, password)
       .then((res) => {
+        console.log("Authentication successful");
         dispatch({
           type: AUTH.LOGIN,
           state: STATE.SUCCESS,
@@ -31,6 +35,8 @@ export function login(username, password) {
         });
       })
       .catch((err) => {
+        console.log("Authentication failed");
+        console.log(err)
         dispatch({ type: AUTH.LOGIN, state: STATE.FAILED, payload: err });
       });
   };

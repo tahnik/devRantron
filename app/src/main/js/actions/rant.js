@@ -92,6 +92,27 @@ export function clearCommentPost() {
   };
 }
 
+export function postComment(commenText, commentId, tokenId, tokenKey, userId) {
+  return (dispatch) => {
+    dispatch({
+      type: COMMENT_POST.POST,
+      state: STATE.LOADING,
+    });
+    console.log(commentId)
+    console.log(tokenId)
+    console.log(tokenKey)
+    console.log(userId)
+    rantscript
+      .voteComment(commenText, commentId, tokenId, tokenKey, userId)
+      .then(() => {
+        dispatch({
+          type: COMMENT_POST.POST,
+          state: STATE.SUCCESS,
+        });
+      });
+  };
+}
+
 export function addUserCommentPost(username) {
   return (dispatch) => {
     dispatch({
