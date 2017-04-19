@@ -81,13 +81,18 @@ export function postComment(commenText, commentId, tokenId, tokenKey, userId) {
       type: COMMENT_POST.POST,
       state: STATE.LOADING,
     });
+    console.log("Posting rants loading")
     rantscript
-      .voteComment(commenText, commentId, tokenId, tokenKey, userId)
+      .postComment(commenText, commentId, tokenId, tokenKey, userId)
       .then(() => {
+        console.log("Posting rants success")
         dispatch({
           type: COMMENT_POST.POST,
           state: STATE.SUCCESS,
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 }

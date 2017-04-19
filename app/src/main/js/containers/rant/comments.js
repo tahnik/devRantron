@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postComment } from '../../actions/rant';
 import CommentItem from './comment_item';
+import CommentPost from './comment_post';
 
 class Comments extends Component {
   constructor(props) {
@@ -33,24 +34,7 @@ class Comments extends Component {
             ))
           }
         </div>
-        <div className="comment_post_container" >
-          <textarea
-            value={this.state.commentPostText}
-            onChange={e =>
-              this.setState({ commentPostText: e.target.value })
-            }
-          />
-          <button
-            onClick={() => this.props.postComment(
-              this.state.commentPostText,
-              rantId,
-              auth.id,
-              auth.token,
-              auth.user_id,
-            )}
-            className="btn"
-          >Add Comment</button>
-        </div>
+        <CommentPost />
       </div>
     );
   }
