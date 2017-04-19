@@ -12,8 +12,12 @@ function Settings(props) {
   );
 }
 
+Settings.propTypes = {
+  blankNav: React.PropTypes.func.isRequired,
+};
+
 const mapDispatchToProps = {
-  blankNav
-}
+  blankNav,
+};
 
 export default connect(null, mapDispatchToProps)(Settings);

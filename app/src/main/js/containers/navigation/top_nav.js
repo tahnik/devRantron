@@ -55,22 +55,30 @@ class TopNav extends Component {
 TopNav.propTypes = {
   fetch: React.PropTypes.func.isRequired,
   items: React.PropTypes.array,
+  updateItem: React.PropTypes.func.isRequired,
+  resetPage: React.PropTypes.func.isRequired,
+  authToken: React.PropTypes.object.isRequired,
+  selectedItem: React.PropTypes.string.isRequired,
+  rants: React.PropTypes.shape({
+    page: React.PropTypes.number.isRequired,
+  }),
 };
 
 TopNav.defaultProps = {
   items: [],
+  rants: [],
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   items: state.topNav.items,
   selectedItem: state.topNav.selectedItem,
   authToken: state.auth.authToken,
   rants: state.rants,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  updateItem: (i) => dispatch(tabItem(i)),
-  resetPage: () => resetPage()(dispatch),
+const mapDispatchToProps = dispatch => ({
+  updateItem: (i) => { dispatch(tabItem(i)); },
+  resetPage: () => { resetPage()(dispatch); },
   fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
 });
 
