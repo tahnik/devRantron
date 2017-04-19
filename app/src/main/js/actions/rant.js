@@ -75,33 +75,12 @@ export function upvoteComment(commentId, tokenId, tokenKey, userId) {
   };
 }
 
-export function updateCommentPost(text) {
-  return (dispatch) => {
-    dispatch({
-      type: COMMENT_POST.UPDATE,
-      payload: text,
-    });
-  };
-}
-
-export function clearCommentPost() {
-  return (dispatch) => {
-    dispatch({
-      type: COMMENT_POST.CLEAR,
-    });
-  };
-}
-
 export function postComment(commenText, commentId, tokenId, tokenKey, userId) {
   return (dispatch) => {
     dispatch({
       type: COMMENT_POST.POST,
       state: STATE.LOADING,
     });
-    console.log(commentId)
-    console.log(tokenId)
-    console.log(tokenKey)
-    console.log(userId)
     rantscript
       .voteComment(commenText, commentId, tokenId, tokenKey, userId)
       .then(() => {
@@ -110,14 +89,5 @@ export function postComment(commenText, commentId, tokenId, tokenKey, userId) {
           state: STATE.SUCCESS,
         });
       });
-  };
-}
-
-export function addUserCommentPost(username) {
-  return (dispatch) => {
-    dispatch({
-      type: COMMENT_POST.ADD_USER,
-      user: username,
-    });
   };
 }
