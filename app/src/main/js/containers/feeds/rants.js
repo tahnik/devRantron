@@ -5,7 +5,7 @@ import RantItem from '../rant/rant_item';
 import { fetch, resetPage } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
-import TopNav from '../navigation/top_nav';
+// import TopNav from '../navigation/top_nav';
 import { tabbedNav, tabItem } from '../../actions/nav';
 
 // Use import instead?
@@ -25,7 +25,7 @@ class Rants extends Component {
   }
 
   componentWillMount() {
-    const DEFAULT_TAB_ITEM = FEED.RANTS.ALGO
+    const DEFAULT_TAB_ITEM = FEED.RANTS.ALGO;
     // this.props.fetch(
     //   DEFAULT_TAB_ITEM,
     //   25,
@@ -121,7 +121,10 @@ class Rants extends Component {
 Rants.propTypes = {
   rants: React.PropTypes.object.isRequired,
   fetch: React.PropTypes.func.isRequired,
-  resetPage: React.PropTypes.func.isRequired,
+  updateTopNav: React.PropTypes.func.isRequired,
+  updateTabItem: React.PropTypes.func.isRequired,
+  authToken: React.PropTypes.object.isRequired,
+  // resetPage: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -132,11 +135,11 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
   resetPage: () => resetPage()(dispatch),
-  updateTopNav: (r) => dispatch(tabbedNav(r)),
-  updateTabItem: (r) => dispatch(tabItem(r)),
+  updateTopNav: (r) => { dispatch(tabbedNav(r)); },
+  updateTabItem: (r) => { dispatch(tabItem(r)); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rants);
