@@ -57,7 +57,7 @@ class RantItem extends Component {
               </div>
             </div>
           </div>
-          <Comments comments={comments} />
+          <Comments comments={comments} rantId={rant.id} />
         </div>
       </div>
     );

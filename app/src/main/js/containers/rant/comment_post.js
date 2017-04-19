@@ -1,37 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  updateCommentPost,
-  clearCommentPost,
-  addUserCommentPost,
   postComment,
 } from '../../actions/rant';
 
-function CommentPost(props) {
-  console.log(props)
-  return (
-    <div className="comment_post_container" >
-      <textarea
-        value={props.commentText}
-        onChange={e => props.updateCommentPost(e.target.value)}
-      />
-      <button
-        onClick={() => props.postComment(
-          props.commentText,
-          props.rant.id,
-          props.auth.id,
-          props.auth.token,
-          props.auth.user_id,
-        )}
-        className="btn"
-      >Add Comment</button>
-    </div>
-  );
+class CommentPost extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commentPostText: '',
+    };
+  }
+  render() {
+    return (
+      <div className="comment_post_container" >
+        <textarea
+          value={this.state.commentPostText}
+          onChange={e => this.setState({ commentPostText: e.target.value })}
+        />
+        <button
+          onClick={() => this.props.postComment(
+            this.state.commentPostText,
+            this.props.rant.id,
+            this.props.auth.id,
+            this.props.auth.token,
+            this.props.auth.user_id,
+          )}
+          className="btn"
+        >Add Comment</button>
+      </div>
+    );
+  }
 }
 
 CommentPost.propTypes = {
-  commentText: React.PropTypes.string.isRequired,
-  updateCommentPost: React.PropTypes.func.isRequired,
+  rant: React.PropTypes.object.isRequired,
+  auth: React.PropTypes.object.isRequired,
+  postComment: React.PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -43,8 +48,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  updateCommentPost,
-  clearCommentPost,
-  addUserCommentPost,
   postComment,
 })(CommentPost);

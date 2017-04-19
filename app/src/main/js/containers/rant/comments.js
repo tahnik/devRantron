@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { postComment } from '../../actions/rant';
 import CommentItem from './comment_item';
 import CommentPost from './comment_post';
 
 class Comments extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commentPostText: '',
+    };
+  }
+  addUserToCommentPost(user) {
+    this.setState({
+      commentPostText: `${this.state.commentPostText} @${user} `,
+    });
+  }
+  // shouldComponentUpdate() {
+  //   return false;
+  // }
   render() {
-    const { comments } = this.props;
+    const { comments, auth, rantId } = this.props;
     return (
       <div className="col s6 col-comment" >
         <div className="comments_container">
@@ -26,6 +42,15 @@ class Comments extends Component {
 
 Comments.propTypes = {
   comments: React.PropTypes.array.isRequired,
+  auth: React.PropTypes.object.isRequired,
+  rantId: React.PropTypes.number.isRequired,
+  postComment: React.PropTypes.func.isRequired,
 };
 
-export default Comments;
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps, { postComment })(Comments);
