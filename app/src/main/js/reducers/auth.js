@@ -23,8 +23,7 @@ export default function Auth(state = DEFAULT_STATE, action) {
             user_id: action.user_id,
             state: action.state,
           };
-          console.log(persisAuth)
-          localStorage.setItem('auth', JSON.stringify(persisAuth));
+          // console.log(persisAuth);
           return persisAuth;
         case STATE.FAILED:
           return { token: null, state: action.state };
