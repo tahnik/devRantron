@@ -6,11 +6,11 @@ import { logout } from '../../actions/auth';
 
 function Logout(props) {
   if (props.token) {
-    console.log("loggin out")
+    console.log('loggin out');
     props.logout();
-    return (
-      <Redirect to={ROUTES.main.rants} />
-    );
+    // return (
+    //   <Redirect to={ROUTES.main.rants} />
+    // );
   }
   return (
     <Redirect to={ROUTES.auth.login} />

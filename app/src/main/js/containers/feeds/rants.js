@@ -1,39 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import twemoji from 'twemoji';
 import RantCard from '../rant/rant_card';
 import RantItem from '../rant/rant_item';
-import { fetch, resetPage } from '../../actions/rants';
 import STATE from '../../consts/state';
-import FEED from '../../consts/feed';
-// import TopNav from '../navigation/top_nav';
-import { tabbedNav, tabItem } from '../../actions/nav';
-
-// Use import instead?
-const twemoji = require('twemoji');
 
 class Rants extends Component {
 
   constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
-    // this.state = {
-    //   firstTime: true
-    // }
-    // const DEFAULT_TAB_ITEM = FEED.RANTS.ALGO
-    // props.updateTabItem(DEFAULT_TAB_ITEM);
-    // this.fetchRants(DEFAULT_TAB_ITEM);
-  }
-
-  componentWillMount() {
-    const DEFAULT_TAB_ITEM = FEED.RANTS.ALGO;
-    // this.props.fetch(
-    //   DEFAULT_TAB_ITEM,
-    //   25,
-    //   25 * this.props.rants.page,
-    // );
-    this.fetchRants(DEFAULT_TAB_ITEM);
-    this.props.updateTabItem(DEFAULT_TAB_ITEM);
-    this.props.updateTopNav(Object.values(FEED.RANTS));
   }
 
   componentDidMount() {
@@ -55,35 +31,12 @@ class Rants extends Component {
     const scrollTop = document.getElementsByClassName('main_container')[0].scrollTop;
 
     if (scrollTop + (windowHeight * 2) >= scrollHeight && rants.state !== STATE.LOADING) {
-      // this.props.fetch(
-      //   rants.feedType,
-      //   25,
-      //   25 * rants.page,
-      //   this.props.authToken,
-      // );
-      this.fetchRants(rants.feedType);
+      this.props.loadRants();
     }
   }
 
-  fetchRants(type) {
-    // this.props.resetPage();
-    this.props.fetch(
-      type,
-      25,
-      25 * this.props.rants.page,
-      this.props.authToken,
-    );
-  }
-
   render() {
-    // if (this.state.firstTime) {
-    //   this.setState({ firstTime: false });
-    // } else {
-    //   this.fetchRants(this.props.selectedItem);
-    // }
-
     const { rants } = this.props;
-    // this.props.updateTopNav(Object.values(FEED.RANTS));
 
     if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
       return (
@@ -120,11 +73,7 @@ class Rants extends Component {
 
 Rants.propTypes = {
   rants: React.PropTypes.object.isRequired,
-  fetch: React.PropTypes.func.isRequired,
-  updateTopNav: React.PropTypes.func.isRequired,
-  updateTabItem: React.PropTypes.func.isRequired,
-  authToken: React.PropTypes.object.isRequired,
-  // resetPage: React.PropTypes.func.isRequired,
+  loadRants: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -135,11 +84,4 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
-  resetPage: () => resetPage()(dispatch),
-  updateTopNav: (r) => { dispatch(tabbedNav(r)); },
-  updateTabItem: (r) => { dispatch(tabItem(r)); },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Rants);
+export default connect(mapStateToProps, null)(Rants);
