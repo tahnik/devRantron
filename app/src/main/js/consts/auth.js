@@ -6,4 +6,4 @@ export default {
 
 export const STATE_STRINGS = {
   WRONG_CREDENTIALS: 'Username or Password is wrong. Please try again',
-}
+};

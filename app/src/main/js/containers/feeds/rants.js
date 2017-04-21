@@ -5,7 +5,6 @@ import RantItem from '../rant/rant_item';
 import { fetch, resetPage } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
-// import TopNav from '../navigation/top_nav';
 import { tabbedNav, tabItem } from '../../actions/nav';
 
 // Use import instead?
@@ -16,21 +15,10 @@ class Rants extends Component {
   constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
-    // this.state = {
-    //   firstTime: true
-    // }
-    // const DEFAULT_TAB_ITEM = FEED.RANTS.ALGO
-    // props.updateTabItem(DEFAULT_TAB_ITEM);
-    // this.fetchRants(DEFAULT_TAB_ITEM);
   }
 
   componentWillMount() {
     const DEFAULT_TAB_ITEM = FEED.RANTS.ALGO;
-    // this.props.fetch(
-    //   DEFAULT_TAB_ITEM,
-    //   25,
-    //   25 * this.props.rants.page,
-    // );
     this.fetchRants(DEFAULT_TAB_ITEM);
     this.props.updateTabItem(DEFAULT_TAB_ITEM);
     this.props.updateTopNav(Object.values(FEED.RANTS));
@@ -55,18 +43,12 @@ class Rants extends Component {
     const scrollTop = document.getElementsByClassName('main_container')[0].scrollTop;
 
     if (scrollTop + (windowHeight * 2) >= scrollHeight && rants.state !== STATE.LOADING) {
-      // this.props.fetch(
-      //   rants.feedType,
-      //   25,
-      //   25 * rants.page,
-      //   this.props.authToken,
-      // );
       this.fetchRants(rants.feedType);
     }
   }
 
   fetchRants(type) {
-    // this.props.resetPage();
+    this.props.resetPage();
     this.props.fetch(
       type,
       25,
@@ -76,14 +58,7 @@ class Rants extends Component {
   }
 
   render() {
-    // if (this.state.firstTime) {
-    //   this.setState({ firstTime: false });
-    // } else {
-    //   this.fetchRants(this.props.selectedItem);
-    // }
-
     const { rants } = this.props;
-    // this.props.updateTopNav(Object.values(FEED.RANTS));
 
     if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
       return (
@@ -124,7 +99,7 @@ Rants.propTypes = {
   updateTopNav: React.PropTypes.func.isRequired,
   updateTabItem: React.PropTypes.func.isRequired,
   authToken: React.PropTypes.object.isRequired,
-  // resetPage: React.PropTypes.func.isRequired,
+  resetPage: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {

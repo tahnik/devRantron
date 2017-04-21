@@ -26,4 +26,8 @@ function Authentication(props) {
   );
 }
 
+Authentication.propTypes = {
+  match: React.PropTypes.object.isRequired,
+};
+
 export default Authentication;

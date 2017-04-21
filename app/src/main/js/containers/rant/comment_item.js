@@ -28,8 +28,17 @@ class CommentItem extends Component {
       commentScore: 0,
     };
   }
+  componentWillMount() {
+    const { comment } = this.props;
+    this.setState(
+      {
+        plusColor: comment.vote_state === 1 ? '#D55161' : null,
+        minusColor: comment.vote_state < 0 ? '#D55161' : null,
+      },
+    );
+    this.setState({ commentScore: comment.score });
+  }
   upvote(id) {
-    console.log(id)
     this.setState({ plusColor: '#D55161' });
     this.props.upvoteComment(
       id,
@@ -38,17 +47,6 @@ class CommentItem extends Component {
       this.props.auth.user_id,
     );
     this.setState({ commentScore: this.state.commentScore + 1 });
-  }
-  componentWillMount() {
-    const { comment } = this.props;
-    console.log(comment)
-    this.setState(
-      {
-        plusColor: comment.vote_state === 1 ? '#D55161' : null,
-        minusColor: comment.vote_state < 0 ? '#D55161' : null,
-      },
-    );
-    this.setState({ commentScore: comment.score });
   }
   render() {
     const { comment } = this.props;
@@ -101,6 +99,8 @@ class CommentItem extends Component {
 CommentItem.propTypes = {
   comment: React.PropTypes.object.isRequired,
   addUserCommentPost: React.PropTypes.func.isRequired,
+  upvoteComment: React.PropTypes.func.isRequired,
+  auth: React.PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

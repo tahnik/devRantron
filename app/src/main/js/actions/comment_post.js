@@ -25,9 +25,6 @@ export function postComment(commenText, commentId, tokenId, tokenKey, userId) {
               payload: res,
             });
           });
-      })
-      .catch((err) => {
-        console.log(err);
       });
   };
 }

@@ -23,8 +23,8 @@ function generateUUID() { // Public Domain/MIT
 
 function removeToast(toasts, id) {
   const arrayLength = toasts.length;
-  let removedToasts = toasts.slice();
-  for (let i = 0; i < arrayLength; i++) {
+  const removedToasts = toasts.slice();
+  for (let i = 0; i < arrayLength; i += 1) {
     if (toasts[i].id === id) {
       removedToasts.splice(i, 1);
     }

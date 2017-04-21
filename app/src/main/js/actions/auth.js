@@ -3,7 +3,6 @@ import AUTH, { STATE_STRINGS } from '../consts/auth';
 import STATE from '../consts/state';
 import {
   ADD_TOAST,
-  REMOVE_TOAST,
 } from '../consts/toast';
 
 const rantscript = electron.remote.require('rantscript');

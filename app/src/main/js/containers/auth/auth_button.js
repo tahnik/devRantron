@@ -12,7 +12,6 @@ function AuthButton(props) {
     authText = 'Logout';
     authIcon = 'ion-log-out';
   }
-  console.log(authRoute)
   return (
     <Link to={authRoute} className="drawer_item btn" >
       <div className="drawer_icon" >

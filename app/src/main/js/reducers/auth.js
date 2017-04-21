@@ -25,7 +25,6 @@ export default function Auth(state = DEFAULT_STATE, action) {
           };
           return persisAuth;
         case STATE.FAILED:
-          console.log(action)
           return { ...state, token: null, state: action.state };
         case STATE.LOADING:
           return { ...state, state: action.state };

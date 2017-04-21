@@ -19,8 +19,6 @@ if (systemSpecs.cpu_speed > 2800 && systemSpecs.mem_available > 2684354560) {
   systemSpecs.high_spec = true;
 }
 
-console.log(`System is high spec: ${systemSpecs.high_spec}`);
-
 exports.systemSpecs = systemSpecs;
 
 const {

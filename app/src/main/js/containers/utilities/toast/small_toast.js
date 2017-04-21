@@ -10,7 +10,6 @@ class SmallToast extends Component {
     };
   }
   componentDidMount() {
-    console.log("Setting timeout")
     setTimeout(() => {
       this.setState({ opacity: 1 });
     }, 100);
@@ -29,6 +28,11 @@ class SmallToast extends Component {
     );
   }
 }
+
+SmallToast.propTypes = {
+  removeToast: React.PropTypes.func.isRequired,
+  toast: React.PropTypes.object.isRequired,
+};
 
 
 export default connect(null, { removeToast })(SmallToast);

@@ -26,6 +26,15 @@ class RantCard extends Component {
       minusColor: null,
     };
   }
+  componentWillMount() {
+    const { rant } = this.props;
+    this.setState(
+      {
+        plusColor: rant.vote_state === 1 ? '#D55161' : null,
+        minusColor: rant.vote_state < 0 ? '#D55161' : null,
+      },
+    );
+  }
   openRant(id) {
     this.props.fetchRant(id);
   }
@@ -36,15 +45,6 @@ class RantCard extends Component {
       this.props.auth.id,
       this.props.auth.token,
       this.props.auth.user_id,
-    );
-  }
-  componentWillMount() {
-    const { rant } = this.props;
-    this.setState(
-      {
-        plusColor: rant.vote_state === 1 ? '#D55161' : null,
-        minusColor: rant.vote_state < 0 ? '#D55161' : null,
-      },
     );
   }
   render() {
@@ -106,6 +106,8 @@ RantCard.propTypes = {
     text: React.PropTypes.string,
   }).isRequired,
   fetchRant: React.PropTypes.func.isRequired,
+  upvote: React.PropTypes.func.isRequired,
+  auth: React.PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

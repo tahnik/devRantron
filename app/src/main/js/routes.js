@@ -38,6 +38,11 @@ function render(props) {
   );
 }
 
+render.propTypes = {
+  auth: React.PropTypes.object.isRequired,
+  location: React.PropTypes.object.isRequired,
+};
+
 
 function mapStateToProps(state) {
   return {
@@ -46,7 +51,6 @@ function mapStateToProps(state) {
 }
 
 function Routes() {
-  console.log(performance.now());
   return (
     <Router>
       <div>

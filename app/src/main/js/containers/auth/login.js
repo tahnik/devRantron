@@ -75,6 +75,11 @@ class Login extends Component {
   }
 }
 
+Login.propTypes = {
+  login: React.PropTypes.func.isRequired,
+  token: React.PropTypes.string, // eslint-disable-line
+};
+
 function mapStateToProps(state) {
   return {
     token: state.auth.token,

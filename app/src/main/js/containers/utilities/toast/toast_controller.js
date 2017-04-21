@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import SmallToast from './small_toast';
 
-class Toast extends Component {
-  render() {
-    return (
-      <div className="toast_container" >
-        {
-          this.props.toasts.map(toast => (
-            <SmallToast toast={toast} key={toast.id} />
-          ))
-        }
-      </div>
-    );
-  }
+function Toast(props) {
+  return (
+    <div className="toast_container" >
+      {
+        props.toasts.map(toast => (
+          <SmallToast toast={toast} key={toast.id} />
+        ))
+      }
+    </div>
+  );
 }
 
 function mapStateToProps(state) {
@@ -23,7 +21,7 @@ function mapStateToProps(state) {
 }
 
 Toast.propTypes = {
-  toasts: React.PropTypes.object.isRequired,
+  toasts: React.PropTypes.array.isRequired,
 };
 
 

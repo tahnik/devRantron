@@ -4,13 +4,6 @@ import { tabItem } from '../../actions/nav';
 import { resetPage, fetch } from '../../actions/rants';
 
 class TopNav extends Component {
-  // constructor(props) {
-  //   super(props);
-    // this.state = {
-    //   activeItem: '',
-    // };
-  // }
-
   onClickTabItem(type) {
     this.props.updateItem(type);
     this.props.resetPage();
@@ -20,8 +13,6 @@ class TopNav extends Component {
       25 * this.props.rants.page,
       this.props.authToken,
     );
-    // this.props.fetch(type);
-    // this.setState({ activeItem: type });
   }
 
   render() {
@@ -57,11 +48,11 @@ TopNav.propTypes = {
   items: React.PropTypes.array,
   updateItem: React.PropTypes.func.isRequired,
   resetPage: React.PropTypes.func.isRequired,
-  authToken: React.PropTypes.object.isRequired,
-  selectedItem: React.PropTypes.string.isRequired,
   rants: React.PropTypes.shape({
     page: React.PropTypes.number.isRequired,
   }),
+  selectedItem: React.PropTypes.string, // eslint-disable-line
+  authToken: React.PropTypes.object.isRequired,
 };
 
 TopNav.defaultProps = {
@@ -72,8 +63,8 @@ TopNav.defaultProps = {
 const mapStateToProps = state => ({
   items: state.topNav.items,
   selectedItem: state.topNav.selectedItem,
-  authToken: state.auth.authToken,
   rants: state.rants,
+  authToken: state.auth.authToken,
 });
 
 const mapDispatchToProps = dispatch => ({
