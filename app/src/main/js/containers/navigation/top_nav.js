@@ -1,46 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import ROUTES from '../../consts/routes';
-import FEED from '../../consts/feed';
-import { fetch, resetPage } from '../../actions/rants';
+import { tabItem } from '../../actions/nav';
+import { resetPage, fetch } from '../../actions/rants';
 
 class TopNav extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeItem: '',
-    };
-  }
-
-  componentWillMount() {
-    this.props.fetch(
-      this.props.rants.feedType,
-      25,
-    );
-    this.setState({ activeItem: this.props.rants.feedType });
-  }
-
-  getTopItems() {
-    switch (this.props.match.path) {
-      case ROUTES.root:
-        return Object.values(FEED.RANTS);
-      case ROUTES.stories:
-        return Object.values(FEED.STORIES);
-      default:
-        return [];
-    }
-  }
-
-  changeTopNav(type) {
+  onClickTabItem(type) {
+    this.props.updateItem(type);
     this.props.resetPage();
     this.props.fetch(
       type,
       25,
       25 * this.props.rants.page,
+      this.props.authToken,
     );
-    this.setState({ activeItem: type });
   }
 
   render() {
@@ -48,15 +20,15 @@ class TopNav extends Component {
       <div className="top_nav">
         <div className="top_nav_container" id="top_nav_container" >
           {
-          this.getTopItems().map((item) => {
+          this.props.items.map((item) => {
             let activeStyle = '';
-            if (this.state.activeItem === item) {
+            if (this.props.selectedItem === item) {
               activeStyle = '1px solid white';
             }
             return (
               <button
                 className="btn"
-                onClick={() => this.changeTopNav(item)}
+                onClick={() => this.onClickTabItem(item)}
                 key={item}
                 style={{ borderBottom: activeStyle }}
               >
@@ -73,15 +45,32 @@ class TopNav extends Component {
 
 TopNav.propTypes = {
   fetch: React.PropTypes.func.isRequired,
+  items: React.PropTypes.array,
+  updateItem: React.PropTypes.func.isRequired,
   resetPage: React.PropTypes.func.isRequired,
-  rants: React.PropTypes.object.isRequired,
-  match: React.PropTypes.object.isRequired,
+  rants: React.PropTypes.shape({
+    page: React.PropTypes.number.isRequired,
+  }),
+  selectedItem: React.PropTypes.string, // eslint-disable-line
+  authToken: React.PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
-  return {
-    rants: state.rants,
-  };
-}
+TopNav.defaultProps = {
+  items: [],
+  rants: [],
+};
 
-export default withRouter(connect(mapStateToProps, { fetch, resetPage })(TopNav));
+const mapStateToProps = state => ({
+  items: state.topNav.items,
+  selectedItem: state.topNav.selectedItem,
+  rants: state.rants,
+  authToken: state.auth.authToken,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateItem: (i) => { dispatch(tabItem(i)); },
+  resetPage: () => { resetPage()(dispatch); },
+  fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopNav);

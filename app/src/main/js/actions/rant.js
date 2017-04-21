@@ -1,10 +1,13 @@
-import rantscript from 'rantscript';
 import {
   FETCH_RANT,
   CLOSE_RANT,
   COMMENT_POST,
+  UPVOTE_RANT,
+  UPVOTE_COMMENT,
 } from '../consts/rants';
 import STATE from '../consts/state';
+
+const rantscript = require('electron').remote.require('rantscript');
 
 export function fetchRant(id) {
   return (dispatch) => {
@@ -35,31 +38,42 @@ export function closeRant() {
     dispatch({
       type: CLOSE_RANT,
     });
-  };
-}
-
-export function updateCommentPost(text) {
-  return (dispatch) => {
-    dispatch({
-      type: COMMENT_POST.UPDATE,
-      payload: text,
-    });
-  };
-}
-
-export function clearCommentPost() {
-  return (dispatch) => {
     dispatch({
       type: COMMENT_POST.CLEAR,
     });
   };
 }
 
-export function addUserCommentPost(username) {
+export function upvote(rantId, tokenId, tokenKey, userId) {
   return (dispatch) => {
     dispatch({
-      type: COMMENT_POST.ADD_USER,
-      user: username,
+      type: UPVOTE_RANT,
+      state: STATE.LOADING,
     });
+    rantscript
+      .vote(1, rantId, tokenId, tokenKey, userId)
+      .then(() => {
+        dispatch({
+          type: UPVOTE_RANT,
+          state: STATE.SUCCESS,
+        });
+      });
+  };
+}
+
+export function upvoteComment(commentId, tokenId, tokenKey, userId) {
+  return (dispatch) => {
+    dispatch({
+      type: UPVOTE_COMMENT,
+      state: STATE.LOADING,
+    });
+    rantscript
+      .voteComment(1, commentId, tokenId, tokenKey, userId)
+      .then(() => {
+        dispatch({
+          type: UPVOTE_COMMENT,
+          state: STATE.SUCCESS,
+        });
+      });
   };
 }

@@ -132,7 +132,7 @@ export default function rants(state = DEFAULT_STATE, action) {
         }
       }
     case RESET_PAGE:
-      return { ...state, currentRants: [], page: 1 };
+      return { ...state, currentRants: [], page: 0 };
     default: {
       return state;
     }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Comments from './comments';
-import { closeRant, addUserCommentPost } from '../../actions/rant';
+import { addUserCommentPost } from '../../actions/comment_post';
+import { closeRant } from '../../actions/rant';
 import STATE from '../../consts/state';
 
 class RantItem extends Component {
@@ -57,7 +58,7 @@ class RantItem extends Component {
               </div>
             </div>
           </div>
-          <Comments comments={comments} />
+          <Comments comments={comments} rantId={rant.id} />
         </div>
       </div>
     );

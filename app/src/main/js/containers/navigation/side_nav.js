@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import SideNavItem from './side_nav_item';
 import ROUTES from '../../consts/routes';
+import AuthButton from '../auth/auth_button';
 
 const SIDE_NAV_ITEMS = [
-  { name: 'Rants', route: ROUTES.root, icon: 'ion-chatboxes' },
-  { name: 'Collabs', route: ROUTES.collabs, icon: 'ion-person-stalker' },
-  { name: 'Stories', route: ROUTES.stories, icon: 'ion-ios-bookmarks' },
-  { name: 'Weekly', route: ROUTES.weekly, icon: 'ion-calendar' },
-  { name: 'Settings', route: ROUTES.settings, icon: 'ion-android-settings' },
+  { name: 'Rants', route: ROUTES.main.rants, icon: 'ion-chatboxes' },
+  { name: 'Collabs', route: ROUTES.main.collabs, icon: 'ion-person-stalker' },
+  { name: 'Stories', route: ROUTES.main.stories, icon: 'ion-ios-bookmarks' },
+  { name: 'Weekly', route: ROUTES.main.weekly, icon: 'ion-calendar' },
+  { name: 'Settings', route: ROUTES.main.settings, icon: 'ion-android-settings' },
 ];
 
 class SideNav extends Component {
@@ -45,9 +46,14 @@ class SideNav extends Component {
           className="drawer"
           style={{ transform: `translateX(${this.state.translateX}rem)` }}
         >
-          {
+          <div className="drawer_item_set" >
+            {
             SIDE_NAV_ITEMS.map(item => <SideNavItem item={item} key={item.name} />)
           }
+          </div>
+          <div className="drawer_item_set" >
+            <AuthButton />
+          </div>
         </div>
       </div>
     );

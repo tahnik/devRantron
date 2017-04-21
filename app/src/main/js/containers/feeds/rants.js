@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RantCard from '../rant/rant_card';
 import RantItem from '../rant/rant_item';
-import { fetch } from '../../actions/rants';
+import { fetch, resetPage } from '../../actions/rants';
 import STATE from '../../consts/state';
+import FEED from '../../consts/feed';
+import { tabbedNav, tabItem } from '../../actions/nav';
 
 // Use import instead?
 const twemoji = require('twemoji');
@@ -13,6 +15,13 @@ class Rants extends Component {
   constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  componentWillMount() {
+    const DEFAULT_TAB_ITEM = FEED.RANTS.ALGO;
+    this.fetchRants(DEFAULT_TAB_ITEM);
+    this.props.updateTabItem(DEFAULT_TAB_ITEM);
+    this.props.updateTopNav(Object.values(FEED.RANTS));
   }
 
   componentDidMount() {
@@ -34,12 +43,18 @@ class Rants extends Component {
     const scrollTop = document.getElementsByClassName('main_container')[0].scrollTop;
 
     if (scrollTop + (windowHeight * 2) >= scrollHeight && rants.state !== STATE.LOADING) {
-      this.props.fetch(
-        rants.feedType,
-        25,
-        25 * rants.page,
-      );
+      this.fetchRants(rants.feedType);
     }
+  }
+
+  fetchRants(type) {
+    this.props.resetPage();
+    this.props.fetch(
+      type,
+      25,
+      25 * this.props.rants.page,
+      this.props.authToken,
+    );
   }
 
   render() {
@@ -47,9 +62,11 @@ class Rants extends Component {
 
     if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
       return (
-        <div id="loaderCont" >
-          <div className="loader" id="loader1" />
-          <div className="loader" id="loader2" />
+        <div style={{ display: 'flex' }}>
+          <div id="loaderCont" >
+            <div className="loader" id="loader1" />
+            <div className="loader" id="loader2" />
+          </div>
         </div>
       );
     }
@@ -79,12 +96,25 @@ class Rants extends Component {
 Rants.propTypes = {
   rants: React.PropTypes.object.isRequired,
   fetch: React.PropTypes.func.isRequired,
+  updateTopNav: React.PropTypes.func.isRequired,
+  updateTabItem: React.PropTypes.func.isRequired,
+  authToken: React.PropTypes.object.isRequired,
+  resetPage: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     rants: state.rants,
+    authToken: state.auth.authToken,
+    selectedItem: state.topNav.selectedItem,
   };
 }
 
-export default connect(mapStateToProps, { fetch })(Rants);
+const mapDispatchToProps = dispatch => ({
+  fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
+  resetPage: () => resetPage()(dispatch),
+  updateTopNav: (r) => { dispatch(tabbedNav(r)); },
+  updateTabItem: (r) => { dispatch(tabItem(r)); },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Rants);

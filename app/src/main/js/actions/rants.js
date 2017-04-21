@@ -1,9 +1,11 @@
-import rantscript from 'rantscript';
 import {
   FETCH_RANTS,
   RESET_PAGE,
 } from '../consts/rants';
 import STATE from '../consts/state';
+
+const rantscript = require('electron').remote.require('rantscript');
+
 
 // change to disable comprssion in production
 rantscript.httpSettings.SET_COMPRESS(false);
@@ -12,7 +14,7 @@ if (process.env.NODE_ENV === 'development') {
   rantscript.httpSettings.SET_DEBUG(true);
 }
 
-export function fetch(type, amount, page = 0) {
+export function fetch(type, amount, page = 0, authToken = null) {
   return (dispatch) => {
     dispatch({
       type: FETCH_RANTS,
@@ -20,7 +22,7 @@ export function fetch(type, amount, page = 0) {
       feedType: type,
     });
     rantscript
-      .rants(type, amount, page)
+      .rants(type, amount, page, authToken)
       .then((res) => {
         dispatch({
           type: FETCH_RANTS,
