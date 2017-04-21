@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RantCard from '../rant/rant_card';
 import RantItem from '../rant/rant_item';
-import { fetch, resetPage } from '../../actions/rants';
+import { fetch } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
 import { tabbedNav, tabItem } from '../../actions/nav';
@@ -48,7 +48,6 @@ class Rants extends Component {
   }
 
   fetchRants(type) {
-    this.props.resetPage();
     this.props.fetch(
       type,
       25,
@@ -99,7 +98,6 @@ Rants.propTypes = {
   updateTopNav: React.PropTypes.func.isRequired,
   updateTabItem: React.PropTypes.func.isRequired,
   authToken: React.PropTypes.object.isRequired,
-  resetPage: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -112,7 +110,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => ({
   fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
-  resetPage: () => resetPage()(dispatch),
   updateTopNav: (r) => { dispatch(tabbedNav(r)); },
   updateTabItem: (r) => { dispatch(tabItem(r)); },
 });
