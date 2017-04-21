@@ -9,12 +9,6 @@ export function postComment(commenText, commentId, tokenId, tokenKey, userId) {
       type: COMMENT_POST.POST,
       state: STATE.LOADING,
     });
-    console.log("Posting rants loading")
-    console.log(commenText)
-    console.log(commentId)
-    console.log(tokenKey)
-    console.log(tokenId)
-    console.log(userId)
     rantscript
       .postComment(commenText, commentId, tokenId, tokenKey, userId)
       .then(() => {

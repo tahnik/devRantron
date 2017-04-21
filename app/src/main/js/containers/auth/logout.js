@@ -5,7 +5,7 @@ import ROUTES from '../../consts/routes';
 import { logout } from '../../actions/auth';
 
 function Logout(props) {
-  if (props.token) {
+  if (props.key) {
     console.log("loggin out")
     props.logout();
     return (
@@ -18,13 +18,13 @@ function Logout(props) {
 }
 
 Logout.propTypes = {
-  token: React.PropTypes.string.isRequired,
+  key: React.PropTypes.string.isRequired,
   logout: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    token: state.auth.token,
+    key: state.auth.key,
   };
 }
 

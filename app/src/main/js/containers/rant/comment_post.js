@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   postComment,
   updateCommentPost,
-} from '../../actions/post_comment';
+} from '../../actions/comment_post';
 import STATE from '../../consts/state';
 
 /*

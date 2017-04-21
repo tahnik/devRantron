@@ -4,7 +4,7 @@ import rants from './rants';
 import rant from './rant';
 import auth from './auth';
 import topNav from './nav';
-import postCommentState from './post_comment';
+import postCommentState from './comment_post';
 
 const rootReducer = combineReducers({
   theme,

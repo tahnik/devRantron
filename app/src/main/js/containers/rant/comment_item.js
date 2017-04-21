@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { upvoteComment } from '../../actions/rant';
-import { addUserCommentPost } from '../../actions/post_comment';
+import { addUserCommentPost } from '../../actions/comment_post';
 /* API Ref:
 attached_image: ""
 created_time: 1491178991
@@ -25,6 +25,7 @@ class CommentItem extends Component {
     this.state = {
       plusColor: null,
       minusColor: null,
+      commentScore: 0,
     };
   }
   upvote(id) {
@@ -33,9 +34,10 @@ class CommentItem extends Component {
     this.props.upvoteComment(
       id,
       this.props.auth.id,
-      this.props.auth.token,
+      this.props.auth.key,
       this.props.auth.user_id,
     );
+    this.setState({ commentScore: this.state.commentScore + 1 });
   }
   componentWillMount() {
     const { comment } = this.props;
@@ -46,6 +48,7 @@ class CommentItem extends Component {
         minusColor: comment.vote_state < 0 ? '#D55161' : null,
       },
     );
+    this.setState({ commentScore: comment.score });
   }
   render() {
     const { comment } = this.props;
@@ -77,7 +80,7 @@ class CommentItem extends Component {
                 className="ion-plus-round"
               />
             </button>
-            <p>{comment.score}</p>
+            <p>{this.state.commentScore}</p>
             <i className="ion-minus-round" />
             <div style={{ flex: 1 }} />
             <p>{comment.num_comments}</p>

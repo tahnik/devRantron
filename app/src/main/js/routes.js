@@ -14,7 +14,7 @@ import ROUTES from './consts/routes';
 function render(props) {
   let initialRoute = ROUTES.auth.login;
   let showNav = true;
-  if (props.auth.token) {
+  if (props.auth.key) {
     initialRoute = ROUTES.main.rants;
   }
   if (props.location.pathname === ROUTES.auth.login) {

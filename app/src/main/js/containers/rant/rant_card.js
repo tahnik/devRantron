@@ -34,7 +34,7 @@ class RantCard extends Component {
     this.props.upvote(
       id,
       this.props.auth.id,
-      this.props.auth.token,
+      this.props.auth.key,
       this.props.auth.user_id,
     );
   }
