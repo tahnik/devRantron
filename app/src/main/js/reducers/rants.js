@@ -95,7 +95,7 @@ function breakDownRants(prevRants, newRants) {
 
   // If there is any previous rant, just add to them
   if (prevRants[0]) {
-    return ([[...prevRants[0], ...column0], [...prevRants[1], ...column1]]);
+    return ([[...prevRants[0], ...new Set(column0)], [...prevRants[1], ...new Set(column1)]]);
   }
 
   // If there isn't, this means it's the first time. No need to add anything
