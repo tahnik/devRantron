@@ -384,3 +384,23 @@ body.#{$theme}
             color: $p-text
             text-align: left
             font-family: Helvetica, Arial, sans-serif
+
+  .toast_custom
+    position: fixed
+    width: 100vw
+    bottom: 0
+    left: 50%
+    transform: translateX(-50%)
+    .toast_container
+      display: flex
+      align-items: center
+      padding-bottom: 1rem
+      flex-direction: column
+      .small_toast
+        color: white
+        background-color: rgba(0,0,0,0.6)
+        padding: 1rem
+        border-radius: 0.2rem
+        margin: 0.5rem 0 0.5rem 0
+        opacity: 0
+        transition: opacity 0.5s ease-out

@@ -5,6 +5,7 @@ import rant from './rant';
 import auth from './auth';
 import topNav from './nav';
 import postCommentState from './comment_post';
+import toast from './toast';
 
 const rootReducer = combineReducers({
   theme,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   auth,
   topNav,
   postCommentState,
+  toast,
 });
 
 export default rootReducer;

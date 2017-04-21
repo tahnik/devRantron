@@ -9,6 +9,7 @@ import Feed from './components/feed';
 import Nav from './components/nav';
 import Settings from './components/settings';
 import Authentication from './components/auth';
+import Toast from './components/toast';
 import ROUTES from './consts/routes';
 
 function render(props) {
@@ -18,12 +19,12 @@ function render(props) {
     initialRoute = ROUTES.main.rants;
   }
   if (props.location.pathname === ROUTES.auth.login) {
-    console.log(props.location.pathname)
     showNav = false;
   }
   return (
     <div>
       { showNav ? <Nav /> : null }
+      <Toast />
       <Route
         exact path="/" render={() => (
           <Redirect to={initialRoute} />
@@ -45,6 +46,7 @@ function mapStateToProps(state) {
 }
 
 function Routes() {
+  console.log(performance.now());
   return (
     <Router>
       <div>

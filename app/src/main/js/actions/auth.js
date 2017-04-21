@@ -1,6 +1,10 @@
 import electron from 'electron';
-import AUTH from '../consts/auth';
+import AUTH, { STATE_STRINGS } from '../consts/auth';
 import STATE from '../consts/state';
+import {
+  ADD_TOAST,
+  REMOVE_TOAST,
+} from '../consts/toast';
 
 const rantscript = electron.remote.require('rantscript');
 
@@ -36,6 +40,13 @@ export function login(username, password) {
       })
       .catch((err) => {
         dispatch({ type: AUTH.LOGIN, state: STATE.FAILED, payload: err });
+        dispatch({
+          type: ADD_TOAST,
+          toast: {
+            text: STATE_STRINGS.WRONG_CREDENTIALS,
+            timeout: 40000,
+          },
+        });
       });
   };
 }

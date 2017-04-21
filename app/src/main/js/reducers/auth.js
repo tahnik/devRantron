@@ -1,7 +1,7 @@
 import AUTH from '../consts/auth';
 import STATE from '../consts/state';
 
-const DEFAULT_STATE = {
+export const DEFAULT_STATE = {
   authToken: null,
   token: null,
   id: null,
@@ -23,14 +23,16 @@ export default function Auth(state = DEFAULT_STATE, action) {
             user_id: action.user_id,
             state: action.state,
           };
-          // console.log(persisAuth);
           return persisAuth;
         case STATE.FAILED:
-          return { token: null, state: action.state };
+          console.log(action)
+          return { ...state, token: null, state: action.state };
+        case STATE.LOADING:
+          return { ...state, state: action.state };
         case STATE.CANCELLED:
-          return { token: null, state: action.state };
+          return { ...state, token: null, state: action.state };
         default:
-          return { token: null };
+          return { ...state, token: null };
       }
     case AUTH.LOGOUT:
       return { token: null, state: STATE.CANCELLED };

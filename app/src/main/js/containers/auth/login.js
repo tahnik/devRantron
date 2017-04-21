@@ -13,7 +13,6 @@ class Login extends Component {
     };
   }
   render() {
-    console.log(this.props)
     if (this.props.token) {
       return (
         <Redirect to={ROUTES.main.rants} />
@@ -79,6 +78,7 @@ class Login extends Component {
 function mapStateToProps(state) {
   return {
     token: state.auth.token,
+    auth: state.auth,
   };
 }
 

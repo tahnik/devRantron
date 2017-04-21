@@ -16,7 +16,6 @@ function Authentication(props) {
     default:
       activeAuth = <Login key={ROUTES.auth.login} />;
   }
-  console.log(activeAuth)
   return (
     <div className="login_view">
       <div className="devrantron_image">
