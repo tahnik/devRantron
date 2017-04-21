@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addUserCommentPost, upvoteComment } from '../../actions/rant';
+import { upvoteComment } from '../../actions/rant';
+import { addUserCommentPost } from '../../actions/post_comment';
 /* API Ref:
 attached_image: ""
 created_time: 1491178991

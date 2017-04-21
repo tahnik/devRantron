@@ -38,6 +38,9 @@ export function closeRant() {
     dispatch({
       type: CLOSE_RANT,
     });
+    dispatch({
+      type: COMMENT_POST.CLEAR,
+    });
   };
 }
 
