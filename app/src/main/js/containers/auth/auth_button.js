@@ -7,7 +7,7 @@ function AuthButton(props) {
   let authRoute = ROUTES.auth.login;
   let authText = 'Login';
   let authIcon = 'ion-log-in';
-  if (props.key) {
+  if (props.token) {
     authRoute = ROUTES.auth.logout;
     authText = 'Logout';
     authIcon = 'ion-log-out';
@@ -26,12 +26,12 @@ function AuthButton(props) {
 }
 
 AuthButton.propTypes = {
-  key: React.PropTypes.string.isRequired,
+  token: React.PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    key: state.auth.key,
+    token: state.auth.token,
   };
 }
 

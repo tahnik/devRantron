@@ -3,7 +3,7 @@ import STATE from '../consts/state';
 
 const DEFAULT_STATE = {
   authToken: null,
-  key: null,
+  token: null,
   id: null,
   expire_time: null,
   user_id: null,
@@ -17,7 +17,7 @@ export default function Auth(state = DEFAULT_STATE, action) {
         case STATE.SUCCESS: // eslint-disable-line
           const persisAuth = {
             authToken: action.authToken,
-            key: action.key,
+            token: action.token,
             id: action.id,
             expire_time: action.expire_time,
             user_id: action.user_id,
@@ -26,14 +26,14 @@ export default function Auth(state = DEFAULT_STATE, action) {
           // console.log(persisAuth);
           return persisAuth;
         case STATE.FAILED:
-          return { key: null, state: action.state };
+          return { token: null, state: action.state };
         case STATE.CANCELLED:
-          return { key: null, state: action.state };
+          return { token: null, state: action.state };
         default:
-          return { key: null };
+          return { token: null };
       }
     case AUTH.LOGOUT:
-      return { key: null, state: STATE.CANCELLED };
+      return { token: null, state: STATE.CANCELLED };
     default:
       return state;
   }

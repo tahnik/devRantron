@@ -13,9 +13,6 @@ if (process.env.NODE_ENV === 'development') {
 
 export function login(username, password) {
   return (dispatch) => {
-    console.log('Authentication started');
-    console.log(username);
-    console.log(password);
     dispatch({
       type: AUTH.LOGIN,
       state: STATE.LOADING,
@@ -23,12 +20,11 @@ export function login(username, password) {
     rantscript
       .login(username, password)
       .then((res) => {
-        console.log('Authentication successful');
         const persisAuth = {
           type: AUTH.LOGIN,
           state: STATE.SUCCESS,
           authToken: res.auth_token,
-          key: res.auth_token.key,
+          token: res.auth_token.key,
           id: res.auth_token.id,
           expire_time: res.auth_token.expire_time,
           user_id: res.auth_token.user_id,
@@ -39,8 +35,6 @@ export function login(username, password) {
         localStorage.setItem('auth', JSON.stringify(auth));
       })
       .catch((err) => {
-        console.log('Authentication failed');
-        console.log(err);
         dispatch({ type: AUTH.LOGIN, state: STATE.FAILED, payload: err });
       });
   };

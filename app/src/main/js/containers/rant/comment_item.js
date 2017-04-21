@@ -34,7 +34,7 @@ class CommentItem extends Component {
     this.props.upvoteComment(
       id,
       this.props.auth.id,
-      this.props.auth.key,
+      this.props.auth.token,
       this.props.auth.user_id,
     );
     this.setState({ commentScore: this.state.commentScore + 1 });

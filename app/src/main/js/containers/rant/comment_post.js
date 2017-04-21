@@ -30,7 +30,7 @@ class CommentPost extends Component { // eslint-disable-line
             this.props.postCommentState.text, // eslint-disable-line
             this.props.rant.id,
             this.props.auth.id,
-            this.props.auth.key,
+            this.props.auth.token,
             this.props.auth.user_id,
           )}
           className="btn"
