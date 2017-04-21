@@ -49,7 +49,7 @@ TopNav.propTypes = {
 
 TopNav.defaultProps = {
   items: [],
-  selectedItem: FEED.RANTS.ALGO,
+  selectedItem: '',
 };
 
 const mapStateToProps = state => ({

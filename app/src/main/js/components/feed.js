@@ -49,7 +49,7 @@ class Feed extends Component {
   shouldComponentUpdate(p) {
     console.log('should component update');
     return (
-      p.selectedItem !== this.state.selectedItem ||
+      (p.selectedItem && p.selectedItem !== this.state.selectedItem) ||
       p.match.url !== this.state.url
     );
   }
@@ -59,6 +59,7 @@ class Feed extends Component {
     let updateTN = false;
     let updateR = false;
     if (this.state.url !== p.match.url) {
+      this.props.updateTabItem('');
       updateTN = true;
       this.state.url = p.match.url;
       this.state.selectedItem = '';
@@ -71,6 +72,10 @@ class Feed extends Component {
 
     this.props.resetPage();
     this.loadRants(updateR, updateTN, updateR, p.selectedItem);
+  }
+
+  componentWillUnmount() {
+    this.props.updateTabItem('');
   }
 
   loadRants(
