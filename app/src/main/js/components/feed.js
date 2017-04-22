@@ -4,6 +4,7 @@ import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
 import Weekly from '../containers/feeds/weekly';
 import ROUTES from '../consts/routes';
+import { resetPage } from '../actions/rants';
 
 
 function Feed(props) {
