@@ -25,15 +25,11 @@ function render(props) {
     <div>
       { showNav ? <Nav /> : null }
       <Toast />
-      <Route
-        exact path="/" render={() => (
-          <Redirect to={initialRoute} />
-        )}
-      />
       <Route path="/feeds/:feed" component={Feed} />
       <Route path={ROUTES.main.settings} component={Settings} />
       <Route path={ROUTES.auth.login} component={Authentication} />
       <Route path={ROUTES.auth.logout} component={Authentication} />
+      <Redirect to={initialRoute} />
     </div>
   );
 }
