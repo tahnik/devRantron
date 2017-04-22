@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RantCard from '../rant/rant_card';
 import RantItem from '../rant/rant_item';
-import { fetch } from '../../actions/rants';
+import { fetch, dumpRants } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
 import { tabbedNav, tabItem } from '../../actions/nav';
@@ -109,7 +109,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
+  dumpRants: (t, p) => { dispatch(dumpRants(t, p)); },
   updateTopNav: (r) => { dispatch(tabbedNav(r)); },
   updateTabItem: (r) => { dispatch(tabItem(r)); },
 });
