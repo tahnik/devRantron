@@ -102,6 +102,12 @@ function breakDownRants(prevRants, newRants) {
   return ([column0, column1]);
 }
 
+function filterDuplicate(orants, newRants) {
+  const ids = [];
+  orants.map(rs => rs.map(r => ids.push(r.id)));
+  return newRants.filter(rant => ids.indexOf(rant.id) === -1);
+}
+
 export default function rants(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case FETCH_RANTS:
@@ -116,7 +122,9 @@ export default function rants(state = DEFAULT_STATE, action) {
         case STATE.SUCCESS: {
           return {
             ...state,
-            currentRants: breakDownRants(state.currentRants, action.payload),
+            currentRants: breakDownRants(
+              state.currentRants, filterDuplicate(state.currentRants, action.payload),
+            ),
             state: action.state,
             feedType: action.feedType,
             page: state.page + 1,
