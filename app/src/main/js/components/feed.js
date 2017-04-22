@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Collabs from '../containers/feeds/collabs';
 import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
@@ -41,6 +42,11 @@ Feed.propTypes = {
   match: React.PropTypes.shape({
     url: React.PropTypes.string.isRequired,
   }).isRequired,
+  resetPage: React.PropTypes.func.isRequired,
 };
 
-export default Feed;
+const mapDispatchToProps = dispatch => ({
+  resetPage: () => { dispatch(resetPage()); },
+});
+
+export default connect(null, mapDispatchToProps)(Feed);
