@@ -7,6 +7,7 @@ import { dumpRants } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
 import { tabbedNav, tabItem } from '../../actions/nav';
+import { filterDuplicate } from '../rant/rant_view';
 
 class Rants extends Component {
 
@@ -31,9 +32,6 @@ class Rants extends Component {
 
   componentDidUpdate() {
     twemoji.parse(document.body);
-    if (this.state.scrollLock) {
-      this.state.scrollLock = false;
-    }
   }
 
   componentWillUnmount() {
@@ -57,12 +55,18 @@ class Rants extends Component {
   }
 
   fetchRants(type) {
+    const { rants } = this.props;
     this.props.fetch(
       type,
       25,
       25 * this.props.rants.page,
       this.props.authToken,
-    ).then(res => this.props.dumpRants(type, res));
+    ).then((res) => {
+      this.props.dumpRants(type, filterDuplicate(rants.currentRants, res));
+      if (this.state.scrollLock) {
+        this.state.scrollLock = false;
+      }
+    });
   }
 
   render() {
