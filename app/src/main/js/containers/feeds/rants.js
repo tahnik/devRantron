@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import twemoji from 'twemoji';
 import { connect } from 'react-redux';
-import RantCard from '../rant/rant_card';
-import RantItem from '../rant/rant_item';
+// import RantCard from '../rant/rant_card';
+// import RantItem from '../rant/rant_item';
 import { dumpRants } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
 import { tabbedNav, tabItem } from '../../actions/nav';
-import { filterDuplicate } from '../rant/rant_view';
+import { filterDuplicate, basicRantView } from '../rant/rant_view';
 
 class Rants extends Component {
 
@@ -72,36 +72,7 @@ class Rants extends Component {
   render() {
     const { rants } = this.props;
 
-    if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
-      return (
-        <div style={{ display: 'flex' }}>
-          <div id="loaderCont" >
-            <div className="loader" id="loader1" />
-            <div className="loader" id="loader2" />
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div>
-        <RantItem />
-        <div className="row rantContainer" >
-          {
-          rants.currentRants.map((currentRants, index) => {
-            const key = `column${index}`;
-            return (
-              <div className="rants col s6" id={key} key={key} >
-                {
-                  currentRants.map(rant => <RantCard rant={rant} key={rant.id} />)
-                }
-              </div>
-            );
-          })
-          }
-        </div>
-      </div>
-    );
+    return basicRantView(rants);
   }
 }
 
