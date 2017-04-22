@@ -5,10 +5,25 @@ import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
 import Weekly from '../containers/feeds/weekly';
 import ROUTES from '../consts/routes';
-import { resetPage } from '../actions/rants';
+import { resetPage, loading } from '../actions/rants';
+
+const rantscript = require('electron').remote.require('rantscript');
+
+
+// change to disable comprssion in production
+rantscript.httpSettings.SET_COMPRESS(false);
+// only execute if we are in development
+if (process.env.NODE_ENV === 'development') {
+  rantscript.httpSettings.SET_DEBUG(true);
+}
 
 
 class Feed extends Component {
+  componentWillMount() {
+    this.props.loading();
+    this.props.resetPage();
+  }
+
   componentWillUpdate() {
     this.props.resetPage();
   }
@@ -17,13 +32,13 @@ class Feed extends Component {
     const url = this.props.match.url;
     switch (url) {
       case ROUTES.main.stories:
-        return <Stories key={url} />;
+        return <Stories key={url} fetch={rantscript.stories} />;
       case ROUTES.main.collabs:
-        return <Collabs key={url} />;
+        return <Collabs key={url} fetch={rantscript.collabs} />;
       case ROUTES.main.weekly:
-        return <Weekly key={url} />;
+        return <Weekly key={url} fetch={rantscript.weekly} />;
       default:
-        return <Rants key={url} />;
+        return <Rants key={url} fetch={rantscript.rants} />;
     }
   }
 
@@ -49,10 +64,12 @@ Feed.propTypes = {
     url: React.PropTypes.string.isRequired,
   }).isRequired,
   resetPage: React.PropTypes.func.isRequired,
+  loading: React.PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
   resetPage: () => { dispatch(resetPage()); },
+  loading: () => { dispatch(loading()); },
 });
 
 export default connect(null, mapDispatchToProps)(Feed);

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
+import twemoji from 'twemoji';
 import { connect } from 'react-redux';
 import RantCard from '../rant/rant_card';
 import RantItem from '../rant/rant_item';
-import { fetch, dumpRants } from '../../actions/rants';
+import { dumpRants } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
 import { tabbedNav, tabItem } from '../../actions/nav';
-
-// Use import instead?
-const twemoji = require('twemoji');
 
 class Rants extends Component {
 
@@ -53,7 +51,7 @@ class Rants extends Component {
       25,
       25 * this.props.rants.page,
       this.props.authToken,
-    );
+    ).then(res => this.props.dumpRants(type, res));
   }
 
   render() {
@@ -97,6 +95,7 @@ Rants.propTypes = {
   fetch: React.PropTypes.func.isRequired,
   updateTopNav: React.PropTypes.func.isRequired,
   updateTabItem: React.PropTypes.func.isRequired,
+  dumpRants: React.PropTypes.func.isRequired,
   authToken: React.PropTypes.object.isRequired,
 };
 
