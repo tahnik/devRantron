@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Collabs from '../containers/feeds/collabs';
 import Rants from '../containers/feeds/rants';
@@ -8,34 +8,40 @@ import ROUTES from '../consts/routes';
 import { resetPage } from '../actions/rants';
 
 
-function Feed(props) {
-  let activeFeed = <Rants key={ROUTES.main.rants} />;
-  switch (props.match.url) {
-    case ROUTES.main.stories:
-      activeFeed = <Stories key={props.match.url} />;
-      break;
-    case ROUTES.main.collabs:
-      activeFeed = <Collabs key={props.match.url} />;
-      break;
-    case ROUTES.main.weekly:
-      activeFeed = <Weekly key={props.match.url} />;
-      break;
-    default:
-      activeFeed = <Rants key={props.match.url} />;
+class Feed extends Component {
+  componentWillUpdate() {
+    this.props.resetPage();
   }
-  return (
-    <div className="main_container row">
-      <div className="row" style={{ visibility: 'hidden', position: 'absolute', maxWidth: '900px', width: '100%' }} >
-        <div className="rants col s6" id="fakeRant" style={{ visibility: 'hidden' }} >
-          <div id="hiddenRant" style={{ visibility: 'hidden' }} />
+
+  getActiveFeed() {
+    const url = this.props.match.url;
+    switch (url) {
+      case ROUTES.main.stories:
+        return <Stories key={url} />;
+      case ROUTES.main.collabs:
+        return <Collabs key={url} />;
+      case ROUTES.main.weekly:
+        return <Weekly key={url} />;
+      default:
+        return <Rants key={url} />;
+    }
+  }
+
+  render() {
+    return (
+      <div className="main_container row">
+        <div className="row" style={{ visibility: 'hidden', position: 'absolute', maxWidth: '900px', width: '100%' }} >
+          <div className="rants col s6" id="fakeRant" style={{ visibility: 'hidden' }} >
+            <div id="hiddenRant" style={{ visibility: 'hidden' }} />
+          </div>
+          <div className="rants col s6" id="fakeRant" style={{ visibility: 'hidden' }} >
+            <div style={{ visibility: 'hidden' }} />
+          </div>
         </div>
-        <div className="rants col s6" id="fakeRant" style={{ visibility: 'hidden' }} >
-          <div style={{ visibility: 'hidden' }} />
-        </div>
+        { this.getActiveFeed() }
       </div>
-      { activeFeed }
-    </div>
-  );
+    );
+  }
 }
 
 Feed.propTypes = {
