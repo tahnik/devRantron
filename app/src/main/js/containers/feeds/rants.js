@@ -13,6 +13,9 @@ class Rants extends Component {
   constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
+    this.state = {
+      scrollLock: false,  // false == not acquired
+    };
   }
 
   componentWillMount() {
@@ -28,6 +31,9 @@ class Rants extends Component {
 
   componentDidUpdate() {
     twemoji.parse(document.body);
+    if (this.state.scrollLock) {
+      this.state.scrollLock = false;
+    }
   }
 
   componentWillUnmount() {
@@ -40,7 +46,12 @@ class Rants extends Component {
     const scrollHeight = document.getElementsByClassName('rantContainer')[0].clientHeight - windowHeight;
     const scrollTop = document.getElementsByClassName('main_container')[0].scrollTop;
 
-    if (scrollTop + (windowHeight * 2) >= scrollHeight && rants.state !== STATE.LOADING) {
+    if (
+      scrollTop + (windowHeight * 2) >= scrollHeight &&
+      rants.state !== STATE.LOADING &&
+      !this.state.scrollLock
+    ) {
+      this.state.scrollLock = true;
       this.fetchRants(rants.feedType);
     }
   }
