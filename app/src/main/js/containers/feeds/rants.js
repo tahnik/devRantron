@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
+import twemoji from 'twemoji';
 import { connect } from 'react-redux';
-import RantCard from '../rant/rant_card';
-import RantItem from '../rant/rant_item';
-import { fetch } from '../../actions/rants';
+// import RantCard from '../rant/rant_card';
+// import RantItem from '../rant/rant_item';
+import { dumpRants } from '../../actions/rants';
 import STATE from '../../consts/state';
 import FEED from '../../consts/feed';
 import { tabbedNav, tabItem } from '../../actions/nav';
-
-// Use import instead?
-const twemoji = require('twemoji');
+import { filterDuplicate, basicRantView } from '../rant/rant_view';
 
 class Rants extends Component {
 
   constructor(props) {
     super(props);
     this.handleScroll = this.handleScroll.bind(this);
+    this.state = {
+      scrollLock: false,  // false == not acquired
+    };
   }
 
   componentWillMount() {
@@ -42,53 +44,35 @@ class Rants extends Component {
     const scrollHeight = document.getElementsByClassName('rantContainer')[0].clientHeight - windowHeight;
     const scrollTop = document.getElementsByClassName('main_container')[0].scrollTop;
 
-    if (scrollTop + (windowHeight * 2) >= scrollHeight && rants.state !== STATE.LOADING) {
+    if (
+      scrollTop + (windowHeight * 2) >= scrollHeight &&
+      rants.state !== STATE.LOADING &&
+      !this.state.scrollLock
+    ) {
+      this.state.scrollLock = true;
       this.fetchRants(rants.feedType);
     }
   }
 
   fetchRants(type) {
+    const { rants } = this.props;
     this.props.fetch(
       type,
       25,
       25 * this.props.rants.page,
       this.props.authToken,
-    );
+    ).then((res) => {
+      this.props.dumpRants(type, filterDuplicate(rants.currentRants, res));
+      if (this.state.scrollLock) {
+        this.state.scrollLock = false;
+      }
+    });
   }
 
   render() {
     const { rants } = this.props;
 
-    if (rants.state === STATE.LOADING && rants.currentRants.length === 0) {
-      return (
-        <div style={{ display: 'flex' }}>
-          <div id="loaderCont" >
-            <div className="loader" id="loader1" />
-            <div className="loader" id="loader2" />
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div>
-        <RantItem />
-        <div className="row rantContainer" >
-          {
-          rants.currentRants.map((currentRants, index) => {
-            const key = `column${index}`;
-            return (
-              <div className="rants col s6" id={key} key={key} >
-                {
-                  currentRants.map(rant => <RantCard rant={rant} key={rant.id} />)
-                }
-              </div>
-            );
-          })
-          }
-        </div>
-      </div>
-    );
+    return basicRantView(rants);
   }
 }
 
@@ -97,6 +81,7 @@ Rants.propTypes = {
   fetch: React.PropTypes.func.isRequired,
   updateTopNav: React.PropTypes.func.isRequired,
   updateTabItem: React.PropTypes.func.isRequired,
+  dumpRants: React.PropTypes.func.isRequired,
   authToken: React.PropTypes.object.isRequired,
 };
 
@@ -109,7 +94,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetch: (m, e, o, w) => fetch(m, e, o, w)(dispatch),
+  dumpRants: (t, p) => { dispatch(dumpRants(t, p)); },
   updateTopNav: (r) => { dispatch(tabbedNav(r)); },
   updateTabItem: (r) => { dispatch(tabItem(r)); },
 });

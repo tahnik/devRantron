@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ToggleableSettings from '../containers/settings/toggleable_settings';
 import { blankNav } from '../actions/nav';
 
-function Settings(props) {
-  props.blankNav();
-  return (
-    <div className="main_container">
-      <ToggleableSettings />
-    </div>
-  );
+class Settings extends Component {
+  componentWillMount() {
+    this.props.blankNav();
+  }
+  render() {
+    return (
+      <div className="main_container">
+        <ToggleableSettings />
+      </div>
+    );
+  }
 }
 
 Settings.propTypes = {
