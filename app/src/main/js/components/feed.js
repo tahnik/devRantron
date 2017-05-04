@@ -9,7 +9,9 @@ import { resetPage } from '../actions/rants';
 
 
 function Feed(props) {
-  props.resetPage();
+  if (localStorage.getItem('auth') !== null) {
+    props.resetPage();
+  }
   let activeFeed = <Rants key={ROUTES.main.rants} />;
   switch (props.match.url) {
     case ROUTES.main.stories:
