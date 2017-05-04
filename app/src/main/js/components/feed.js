@@ -46,8 +46,10 @@ Feed.propTypes = {
   resetPage: React.PropTypes.func.isRequired,
 };
 
-const matchDispatchToProps = dispatch => ({
-  resetPage: () => resetPage()(dispatch),
-});
+function matchDispatchToProps(dispatch) {
+  return {
+    resetPage: () => resetPage()(dispatch),
+  };
+}
 
 export default connect(null, matchDispatchToProps)(Feed);
