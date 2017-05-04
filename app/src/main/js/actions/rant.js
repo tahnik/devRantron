@@ -62,14 +62,14 @@ export function upvote(rantId, authToken) {
   };
 }
 
-export function upvoteComment(commentId, tokenId, tokenKey, userId) {
+export function upvoteComment(commentId, authToken) {
   return (dispatch) => {
     dispatch({
       type: UPVOTE_COMMENT,
       state: STATE.LOADING,
     });
     rantscript
-      .voteComment(1, commentId, tokenId, tokenKey, userId)
+      .voteComment(1, commentId, authToken)
       .then(() => {
         dispatch({
           type: UPVOTE_COMMENT,
