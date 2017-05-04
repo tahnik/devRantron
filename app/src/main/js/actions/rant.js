@@ -44,14 +44,15 @@ export function closeRant() {
   };
 }
 
-export function upvote(rantId, tokenId, tokenKey, userId) {
+export function upvote(rantId, authToken) {
   return (dispatch) => {
     dispatch({
       type: UPVOTE_RANT,
       state: STATE.LOADING,
     });
+    console.log(authToken);
     rantscript
-      .vote(1, rantId, tokenId, tokenKey, userId)
+      .vote(1, rantId, authToken)
       .then(() => {
         dispatch({
           type: UPVOTE_RANT,

@@ -42,9 +42,7 @@ class RantCard extends Component {
     this.setState({ plusColor: '#D55161' });
     this.props.upvote(
       id,
-      this.props.auth.id,
-      this.props.auth.token,
-      this.props.auth.user_id,
+      this.props.auth.authToken,
     );
   }
   render() {
