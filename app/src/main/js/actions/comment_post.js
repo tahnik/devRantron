@@ -3,14 +3,17 @@ import STATE from '../consts/state';
 
 const rantscript = require('electron').remote.require('rantscript');
 
-export function postComment(commenText, commentId, tokenId, tokenKey, userId) {
+export function postComment(commenText, commentId, authToken) {
   return (dispatch) => {
     dispatch({
       type: COMMENT_POST.POST,
       state: STATE.LOADING,
     });
+    console.log(commenText);
+    console.log(commentId);
+    console.log(authToken);
     rantscript
-      .postComment(commenText, commentId, tokenId, tokenKey, userId)
+      .postComment(commenText, commentId, authToken)
       .then(() => {
         dispatch({
           type: COMMENT_POST.POST,
