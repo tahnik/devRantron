@@ -29,9 +29,7 @@ class CommentPost extends Component { // eslint-disable-line
           onClick={() => this.props.postComment(
             this.props.postCommentState.text, // eslint-disable-line
             this.props.rant.id,
-            this.props.auth.id,
-            this.props.auth.token,
-            this.props.auth.user_id,
+            this.props.auth.authToken,
           )}
           className="btn"
         >Add Comment</button>

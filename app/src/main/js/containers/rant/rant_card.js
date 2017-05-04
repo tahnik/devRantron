@@ -24,6 +24,7 @@ class RantCard extends Component {
     this.state = {
       plusColor: null,
       minusColor: null,
+      rantScore: 0,
     };
   }
   componentWillMount() {
@@ -34,6 +35,7 @@ class RantCard extends Component {
         minusColor: rant.vote_state < 0 ? '#D55161' : null,
       },
     );
+    this.setState({ rantScore: rant.score });
   }
   openRant(id) {
     this.props.fetchRant(id);
@@ -42,10 +44,9 @@ class RantCard extends Component {
     this.setState({ plusColor: '#D55161' });
     this.props.upvote(
       id,
-      this.props.auth.id,
-      this.props.auth.token,
-      this.props.auth.user_id,
+      this.props.auth.authToken,
     );
+    this.setState({ rantScore: this.state.rantScore + 1 });
   }
   render() {
     const { rant } = this.props;
@@ -84,7 +85,7 @@ class RantCard extends Component {
                 className="ion-plus-round"
               />
             </button>
-            <p>{rant.score}</p>
+            <p>{this.state.rantScore}</p>
             <i
               style={{ color: this.state.minusColor }}
               className="ion-minus-round"
