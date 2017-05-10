@@ -34,7 +34,7 @@ export function login(username, password) {
           type: ADD_TOAST,
           toast: {
             text: STATE_STRINGS.WRONG_CREDENTIALS,
-            timeout: 40000,
+            timeout: 4000,
           },
         });
       });
