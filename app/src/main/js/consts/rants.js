@@ -10,3 +10,7 @@ export const COMMENT_POST = {
   CLEAR: 'COMMENT_POST_CLEAR',
   POST: 'COMMENT_POST',
 };
+
+export const STATE_STRINGS = {
+  FAILED_GET_RANTS: 'Could not get any rants. Check your network',
+};

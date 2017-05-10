@@ -21,7 +21,6 @@ function render(props) {
   if (props.location.pathname === ROUTES.auth.login) {
     showNav = false;
   }
-  console.log(initialRoute);
   return (
     <div>
       { showNav ? <Nav /> : null }

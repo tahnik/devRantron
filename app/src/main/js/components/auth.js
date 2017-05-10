@@ -8,7 +8,6 @@ import Logout from '../containers/auth/logout';
  * registration in future we will need this structure
  */
 function Authentication(props) {
-  console.log("Rendering auth");
   let activeAuth = <Login key={ROUTES.auth.login} />;
   switch (props.match.url) {
     case ROUTES.auth.logout:

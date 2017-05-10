@@ -49,7 +49,6 @@ export function upvote(rantId, authToken) {
       type: UPVOTE_RANT,
       state: STATE.LOADING,
     });
-    console.log(authToken);
     rantscript
       .vote(1, rantId, authToken)
       .then(() => {
