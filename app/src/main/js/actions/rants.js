@@ -5,9 +5,7 @@ import {
   STATE_STRINGS,
 } from '../consts/rants';
 import STATE from '../consts/state';
-import {
-  ADD_TOAST,
-} from '../consts/toast';
+import { ADD_TOAST } from '../consts/toast';
 
 
 export function fetch(type, amount, page = 0, authToken = null) {

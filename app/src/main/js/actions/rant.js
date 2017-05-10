@@ -5,8 +5,12 @@ import {
   COMMENT_POST,
   UPVOTE_RANT,
   UPVOTE_COMMENT,
+  STATE_STRINGS,
 } from '../consts/rants';
 import STATE from '../consts/state';
+import {
+  ADD_TOAST,
+} from '../consts/toast';
 
 export function fetchRant(id) {
   return (dispatch) => {
@@ -22,13 +26,17 @@ export function fetchRant(id) {
           state: STATE.SUCCESS,
           payload: res,
         });
-      });
-      /*
-      TODO: This needs to be fixed. Commented until @rekkyrek fixes the API
+      })
       .catch((err) => {
         dispatch({ type: FETCH_RANT, state: STATE.FAILED, payload: err });
+        dispatch({
+          type: ADD_TOAST,
+          toast: {
+            text: STATE_STRINGS.FAILED_GET_RANT,
+            timeout: 40000,
+          },
+        });
       });
-      */
   };
 }
 

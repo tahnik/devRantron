@@ -13,4 +13,5 @@ export const COMMENT_POST = {
 
 export const STATE_STRINGS = {
   FAILED_GET_RANTS: 'Could not get any rants. Check your network',
+  FAILED_GET_RANT: 'Could not get any rants. Ask @rekkyrek',
 };
