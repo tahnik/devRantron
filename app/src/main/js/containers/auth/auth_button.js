@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ROUTES from '../../consts/routes';
+import { changeNoLogin } from '../../actions/settings';
 
 function AuthButton(props) {
   let authRoute = ROUTES.auth.login;
@@ -11,6 +12,8 @@ function AuthButton(props) {
     authRoute = ROUTES.auth.logout;
     authText = 'Logout';
     authIcon = 'ion-log-out';
+  } else {
+    props.changeNoLogin(false);
   }
   return (
     <Link to={authRoute} className="drawer_item btn" >
@@ -26,6 +29,7 @@ function AuthButton(props) {
 
 AuthButton.propTypes = {
   token: React.PropTypes.string.isRequired,
+  changeNoLogin: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -36,5 +40,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  null,
+  { changeNoLogin },
 )(AuthButton);

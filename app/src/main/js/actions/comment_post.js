@@ -1,7 +1,6 @@
+import rantscript from '../consts/rantscript';
 import { COMMENT_POST, FETCH_RANT } from '../consts/rants';
 import STATE from '../consts/state';
-
-const rantscript = require('electron').remote.require('rantscript');
 
 export function postComment(commenText, commentId, authToken) {
   return (dispatch) => {

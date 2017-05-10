@@ -1,3 +1,4 @@
+import rantscript from '../consts/rantscript';
 import {
   FETCH_RANT,
   CLOSE_RANT,
@@ -6,8 +7,6 @@ import {
   UPVOTE_COMMENT,
 } from '../consts/rants';
 import STATE from '../consts/state';
-
-const rantscript = require('electron').remote.require('rantscript');
 
 export function fetchRant(id) {
   return (dispatch) => {
