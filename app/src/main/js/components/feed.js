@@ -1,12 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Collabs from '../containers/feeds/collabs';
 import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
 import Weekly from '../containers/feeds/weekly';
 import ROUTES from '../consts/routes';
+import { resetPage } from '../actions/rants';
 
 
 function Feed(props) {
+  if (localStorage.getItem('auth') !== null) {
+    props.resetPage();
+  }
   let activeFeed = <Rants key={ROUTES.main.rants} />;
   switch (props.match.url) {
     case ROUTES.main.stories:
@@ -40,6 +45,13 @@ Feed.propTypes = {
   match: React.PropTypes.shape({
     url: React.PropTypes.string.isRequired,
   }).isRequired,
+  resetPage: React.PropTypes.func.isRequired,
 };
 
-export default Feed;
+function matchDispatchToProps(dispatch) {
+  return {
+    resetPage: () => resetPage()(dispatch),
+  };
+}
+
+export default connect(null, matchDispatchToProps)(Feed);
