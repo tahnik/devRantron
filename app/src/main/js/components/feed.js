@@ -9,6 +9,7 @@ import { resetPage } from '../actions/rants';
 
 
 function Feed(props) {
+  console.log("Rendering Feed");
   if (localStorage.getItem('auth') !== null) {
     props.resetPage();
   }

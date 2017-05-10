@@ -15,12 +15,13 @@ import ROUTES from './consts/routes';
 function render(props) {
   let initialRoute = ROUTES.auth.login;
   let showNav = true;
-  if (props.auth.token) {
+  if (props.auth.token || props.settings.noLogin) {
     initialRoute = ROUTES.main.rants;
   }
   if (props.location.pathname === ROUTES.auth.login) {
     showNav = false;
   }
+  console.log(initialRoute);
   return (
     <div>
       { showNav ? <Nav /> : null }
@@ -41,12 +42,14 @@ function render(props) {
 render.propTypes = {
   auth: React.PropTypes.object.isRequired,
   location: React.PropTypes.object.isRequired,
+  settings: React.PropTypes.object.isRequired,
 };
 
 
 function mapStateToProps(state) {
   return {
     auth: state.auth,
+    settings: state.settings,
   };
 }
 

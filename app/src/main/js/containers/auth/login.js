@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth';
 import ROUTES from '../../consts/routes';
+import { changeNoLogin } from '../../actions/settings';
 
 class Login extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Login extends Component {
     };
   }
   render() {
-    if (this.props.token) {
+    if (this.props.token || this.props.noLogin) {
       return (
         <Redirect to={ROUTES.main.rants} />
       );
@@ -58,17 +59,9 @@ class Login extends Component {
             className="waves-effect waves-light btn"
           >Login</button>
           <button
-            onClick={() => {
-              // Sorry for inline code xD
-              const email = document.getElementById('signup-email');
-              if (email.className === 'row signup-email email-hidden') {
-                email.className = 'row signup-email';
-              } else {
-                // Reg Logic
-              }
-            }}
+            onClick={() => this.props.changeNoLogin(true)}
             className="waves-effect waves-light btn"
-          >Signup</button>
+          >Not now</button>
         </div>
       </div>
     );
@@ -78,13 +71,16 @@ class Login extends Component {
 Login.propTypes = {
   login: React.PropTypes.func.isRequired,
   token: React.PropTypes.string, // eslint-disable-line
+  changeNoLogin: React.PropTypes.func.isRequired,
+  noLogin: React.PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     token: state.auth.token,
     auth: state.auth,
+    noLogin: state.settings.noLogin,
   };
 }
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, changeNoLogin })(Login);

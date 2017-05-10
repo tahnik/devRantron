@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import theme from './settings';
+import settings from './settings';
 import rants from './rants';
 import rant from './rant';
 import auth from './auth';
@@ -8,7 +8,7 @@ import postCommentState from './comment_post';
 import toast from './toast';
 
 const rootReducer = combineReducers({
-  theme,
+  settings,
   rants,
   rant,
   auth,
