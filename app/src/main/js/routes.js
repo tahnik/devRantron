@@ -7,11 +7,12 @@ import {
 import { connect } from 'react-redux';
 import Auth from './containers/auth/auth';
 import Toast from './containers/utilities/toast/toast';
+import SideNav from './containers/navigation/sidenav';
 
-/* const MainRoutes = () => {
+const MainRoutes = (
   <Router>
     <SideNav />
-    <Route
+    {/*<Route
       exact
       path="/"
       component={() => (
@@ -24,9 +25,9 @@ import Toast from './containers/utilities/toast/toast';
     <Route path="/collabs" component={Collabs} />
     <Route path="/settings" component={Settings} />
     <SideColumn />
-    <Notifications />
-  </Router>;
-};*/
+    <Notifications />*/}
+  </Router>
+);
 
 const AuthRoutes = (
   <Router>
@@ -41,7 +42,7 @@ const Routes = (props) => {
   if (!props.auth.user) {
     return AuthRoutes;
   }
-  return AuthRoutes;
+  return MainRoutes;
 };
 
 const mapStateToProps = state => ({
