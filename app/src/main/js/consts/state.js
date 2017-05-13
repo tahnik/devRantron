@@ -1,7 +1,0 @@
-export default {
-  SUCCESS: 'SUCCESS',
-  LOADING: 'LOADING',
-  FAILED: 'FAILED',
-  CANCELLED: 'CANCELLED',
-  INITIAL: 'INITIAL',
-};
