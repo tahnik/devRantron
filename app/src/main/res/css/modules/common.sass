@@ -1,407 +1,62 @@
-// !compileOnSave
-$button-width: 5rem
-$button-height: 2.8rem
-$card-bottom-bar: 2.8rem
-$poppy-bez: cubic-bezier(0.4, 0, 0.25, 1)
-$comment-post: #C14857
-$comment-post-hover: #c62539
-$devrant-color: #f99a66
-::-webkit-scrollbar
-  -webkit-appearance: none
-  width: 0.5rem
-::-webkit-scrollbar-thumb
-  background: $card-bottom-bar-color
-.fade-enter
-  opacity: 0
-  z-index: 1
-
-.fade-enter.fade-enter-active
-  opacity: 1
-  transition: opacity 250ms ease-in
-
-body.#{$theme}
-  #root
-      text-align: center
-  .emoji
-    height: 16px
-    margin: 0px 2px -3px 2px
-  .btn
-    background-color: $main-color
-    border-radius: 0
-    &:hover
-      background-color: $selected-color
-
-  .top_nav
-    height: 100%
-    width: 80%
-    margin: auto
-
-  .top_nav
-    position: fixed
-    top: 0
-    left: $button-width
-    width: calc(100% - #{$button-width})
-    height: $button-height
-    background-color: $main-color
-    text-align: center
-    z-index: 99
-    ul
-      margin: 0
-      display: inline-block
-      li
-        color: white
-        float: left
-        line-height: $button-height
-        font-weight: 300
-        margin-left: 1.2rem
-        font-size: 1.2rem
-
-  .side_nav
-    position: fixed
-    height: 100%
-    min-width: $button-width
-    top: 0
-    left: 0
-    background-color: $main-color
-    z-index: 100
-    ul
-      margin-top: 0
-      li
-        a
-          max-width: $button-width
-
-  .side_nav > ul > li > a,
-  .top_nav_container > button
-    border-radius: 0
-    box-shadow: none
-
-  .side_nav > ul > li > a:hover,
-  .top_nav_container > button
-    box-shadow: none
-
-  .side_nav > ul > li > a:focus,
-  .top_nav_container > button
-    outline: none
-
-  .side_nav_toggle
-    border-radius: 0
-    box-shadow: none
-    max-width: $button-width
-    height: $button-height
-    max-height: $button-height
-    position: absolute
-    top: 0
-    left: 0
-    &:focus
-      outline: none
-
-  .drawer_icon
-    width: $button-width
-    float: right
-
-  .drawer
-    position: absolute
-    top: $button-height
-    left: 0
-    height: calc(100vh - #{$button-height})
-    width: 15rem
-    font-weight: 300
-    font-size: 1.2rem
+body
+  padding: 0
+  margin: 0
+  font-family: 'Lato', sans-serif
+  input
+    height: 2rem
+    background-color: transparent
+    border: 0;
+    border-bottom: 0.12rem solid white
+    margin: 0.4rem 0;
+    transition : border 200ms ease-out
     color: white
-    z-index: 9
-    background-color: $main-color
-    transition: all 0.2s $poppy-bez
-    display: flex
-    flex-direction: column
-    .drawer_item_set
-      position: absolute
-    .drawer_item_set:first-child
-      top: 0
-    .drawer_item_set:nth-child(2)
-      bottom: 0
-
-  .drawer_item
-    height: $button-height
-    line-height: $button-height
-    width: 15rem
-    position: relative
-    cursor: pointer
-    padding: 0
-    box-shadow: none
-    text-transform: none
-    border-radius: 0
-    &:hover
-      background-color: $selected-color
-    &:focus
+    padding-bottom: 2px
+    font-size: 0.95rem
+    &:active, &:focus
       outline: none
-      box-shadow: none
-
-  .drawer_text
-    width: 10rem
-    text-align: left
-    float: left
-    padding-left: 1rem
-    font-weight: 400
-
-  .main_container
-    position: absolute
-    width: calc(100% - #{$button-width})
-    left: $button-width
-    top: $button-height
-    height: calc(100vh - #{$button-height})
-    background-color: $background-color
-    transition: all .35s $poppy-bez
-    display: flex
-    justify-content: center
-    border: solid 1px transparent
-    border-width: 0px 10px
-    align-content: center
-    margin-bottom: 0
-    -webkit-font-smoothing: antialiased
-    overflow-y: scroll
-
-  .toggleable_settings
-    position: relative
-    width: 100%
-    text-align: right
+      border-bottom-color: #2A8B9D
+  button
+    border: 0
+    background-color: #40415A
+    height: 2rem
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+    color: white
+    font-size: 0.95rem
+    text-transform: uppercase
+    margin: 0.5rem 0
+    background-color: #C14857
+    border-radius: 0.1rem
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1)
+    &:hover
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+      cursor: pointer
+    &:active, &:focus
+      outline: none
+    &:disabled
+      background-color: grey
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+  .toast
+    position: fixed
+    bottom: 1rem
     padding: 1rem
-    margin: 0 1rem 0 1rem
-    color: white
-    border-bottom: $toggleable-settings-border
-    border-bottom-width: 1px
-    border-bottom-style: solid
-    label
-      color: $settings-text
-
-  .switch_span
-    float: left
-    color: $settings-text
-
-  .top_nav_container
-    transition: all .35s ease
-    text-align: center
-    height: $button-height
-    button
-      display: inline
-      color: white
-      font-weight: 300
-      font-size: 1rem
-      padding: 0 1rem 0 1rem
-      height: $button-height
-      &:hover
-        background-color: $main-color
-
-  .center
-    position: relative
-    top: 50%
-    transform: translateY(-50%)
-  .user_score
-    background: $selected-color
-    border-radius: 0.4rem
-    color: white
-    font-weight: 600
-    padding: 0px 0.7rem
-    font-size: 0.9rem
-    float: left
-  .rantContainer
-    max-width: 900px
-  .rant_card
-    .card-user
-      width: 100%
-      height: 5rem
-      display: flex
-      padding: 1.5rem 2rem 0
-      img
-        height: 100%
-        border-radius: 50%
-      div
-        height: 100%
-        justify-content: center
-        margin: 0 0.8rem
-        display: block
-        p
-          font-weight: 600
-          margin: 0
-        p.user_score
-          color: white
-    .card-content
-      padding: 1rem 2rem 1rem 2rem
-
-    .card-bottomBar
-      width: 100%
-      height: $card-bottom-bar
-      color: white
-      background: $card-bottom-bar-color
-      display: flex
-      align-items: center
-      button
-        background-color: #36374c
-        padding: 0 0.75rem 0 0.75rem
-        margin: 0
-        border: none
-      i
-        line-height: $card-bottom-bar
-        font-size: 1.5rem
-        width: $card-bottom-bar
-        color: $p-text
-        &:hover
-          color: #D55161
-          cursor: pointer
-      p
-        font-weight: 600
-        margin: 0.7rem 0
-    .card-image
-      width: 100%
-      overflow: hidden
-
-    .card
-      background-color: $rant-card-background !important
-      border-radius: 0
-      box-shadow: none
-    p
-      color: $p-text
-      text-align: left
-      font-family: Helvetica, Arial, sans-serif
-  pre
-    white-space: pre-wrap
-    white-space: -moz-pre-wrap
-    white-space: -pre-wrap
-    white-space: -o-pre-wrap
-    word-wrap: break-word
-    overflow-x: hidden
-
-  .rant_item_container
-    width: calc(100% - 5rem)
-    height: calc(100vh - 2.8rem)
-    position: fixed
-    left: 5rem
-    z-index: 99
-    background-color: $rant-item-container-background
-    display: flex
-    justify-content: center
-    align-content: center
-    transition: all 0.3s $poppy-bez
-    .rant_item
-      width: 900px
-      .card-max-height-scroll
-        overflow-y: scroll
-        overflow-x: hidden
-        max-height: calc(100vh - 11.3rem)
-        width: calc(427.5px + 0.45rem)
-      .col-comment
-        margin-top: 0.5rem
-        position: relative
-        display: flex
-        flex-direction: column
-        height: calc(100vh - 100px)
-        .comments_container
-          overflow-y: scroll
-          width: 427.5px
-          margin-bottom: 1rem
-        .comment_post_container
-          width: calc(427.5px - 1rem)
-          textarea
-            resize: none
-            height: 10rem
-            border: none
-            overflow: auto
-            outline: none
-            color: $p-text
-            padding: 1rem
-            width: calc(427.5px - 1rem)
-            -webkit-box-shadow: none
-            background-color: $rant-card-background
-          button
-            height: 2.7rem
-            width: 100%
-            box-shadow: none
-            width: calc(427.5px - 1rem)
-            background-color: $comment-post
-            &:hover
-              background-color: $comment-post-hover
-      .col
-        height: 98.5%
-        .comment_card
-          margin-bottom: 10px
-          float: left
-          width: calc(427.5px - 1rem)
-          &:last-child
-            margin: 0px
-          .card-user
-            width: 100%
-            height: 5rem
-            display: flex
-            padding: 1.5rem 2rem 0
-            img
-              height: 100%
-              border-radius: 50%
-            div
-              height: 100%
-              justify-content: center
-              margin: 0 0.8rem
-              display: block
-              p
-                font-weight: 600
-                margin: 0
-              p.user_score
-                color: white
-          .card-content
-            padding: 1rem 2rem 1rem 2rem
-
-          .card-bottomBar
-            width: 100%
-            height: $card-bottom-bar
-            color: white
-            background: $card-bottom-bar-color
-            display: flex
-            align-items: center
-            button
-              background-color: #36374c
-              padding: 0 0.75rem 0 0.75rem
-              margin: 0
-              border: none
-            i
-              line-height: $card-bottom-bar
-              font-size: 1.5rem
-              width: $card-bottom-bar
-              color: $p-text
-              &:hover
-                color: #D55161
-                cursor: pointer
-            p
-              font-weight: 600
-              margin: 0.7rem 0
-          .card-image
-            width: 100%
-            overflow: hidden
-
-          .card
-            background-color: $rant-card-background !important
-            border-radius: 0
-            box-shadow: none
-            margin: 0
-          p
-            color: $p-text
-            text-align: left
-            font-family: Helvetica, Arial, sans-serif
-
-  .toast_custom
-    position: fixed
-    width: 100vw
-    bottom: 0
+    background-color: rgba(0, 0, 0, 0.3)
     left: 50%
-    transform: translateX(-50%)
-    z-index: 100
-    .toast_container
-      display: flex
-      align-items: center
-      padding-bottom: 1rem
-      flex-direction: column
-      .small_toast
-        color: white
-        background-color: rgba(0,0,0,0.6)
-        padding: 1rem
-        border-radius: 0.2rem
-        margin: 0.5rem 0 0.5rem 0
-        opacity: 0
-        transition: opacity 0.5s ease-out
+    transform: translate(-50%, 0)
+    color: white
+    border-radius: 0.2rem
+    z-index: 199
+    transition: all 0.2s ease-out
+
+  .fade-enter
+    opacity: 0.01;
+
+  .fade-enter.fade-enter-active
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+
+  .fade-leave
+    opacity: 1;
+
+  .fade-leave.fade-leave-active
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
