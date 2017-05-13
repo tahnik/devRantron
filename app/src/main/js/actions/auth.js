@@ -1,10 +1,11 @@
 import rantscript from '../consts/rantscript';
 import showToast from './toast';
+import { AUTH, STATE } from '../consts/action_types';
 
 const login = (username, password) => (dispatch) => {
   dispatch({
-    type: 'AUTH_LOGIN',
-    state: 'STATE_LOADING',
+    type: AUTH.LOGIN,
+    state: STATE.LOADING,
   });
   rantscript.login(username, password)
     .then((res) => {
@@ -13,16 +14,16 @@ const login = (username, password) => (dispatch) => {
         id: res.auth_token.id,
       };
       dispatch({
-        type: 'AUTH_LOGIN',
-        state: 'STATE_SUCCESS',
+        type: AUTH.LOGIN,
+        state: STATE.SUCCESS,
         user,
       });
     })
     .catch(() => {
       showToast(dispatch, 'Username or Password is wrong');
       dispatch({
-        type: 'AUTH_LOGIN',
-        state: 'STATE_FAILED',
+        type: AUTH.LOGIN,
+        state: STATE.FAILED,
       });
     });
 };
