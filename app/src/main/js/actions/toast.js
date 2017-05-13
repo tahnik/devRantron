@@ -1,15 +1,17 @@
+import { TOAST } from '../consts/action_types';
+
 let timer = null;
 export default (dispatch, text, timeout = 4000) => {
   if (timer) {
     clearTimeout(timer);
   }
   dispatch({
-    type: 'TOAST_SHOW',
+    type: TOAST.SHOW,
     text,
   });
   timer = setTimeout(() => {
     dispatch({
-      type: 'TOAST_HIDE',
+      type: TOAST.HIDE,
     });
   }, timeout);
 };
