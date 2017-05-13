@@ -2,47 +2,46 @@ import React from 'react';
 import {
   HashRouter as Router,
   Route,
-  Redirect,
 } from 'react-router-dom';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Auth from './containers/auth/auth';
 import Toast from './containers/utilities/toast/toast';
 import SideNav from './containers/navigation/sidenav';
 
-const MainRoutes = (
-  <Router>
+const MainRoutes = () => (
+  <div key="MainRoutes" className="main_container" >
     <SideNav />
-    {/*<Route
-      exact
-      path="/"
-      component={() => (
-        <Redirect to="/rants" />
-      )}
-    />
-    <Route path="/rants" component={Rants} />
-    <Route path="/weekly" component={Weekly} />
-    <Route path="/stories" component={Stories} />
-    <Route path="/collabs" component={Collabs} />
-    <Route path="/settings" component={Settings} />
-    <SideColumn />
-    <Notifications />*/}
-  </Router>
+  </div>
 );
 
-const AuthRoutes = (
-  <Router>
-    <div>
-      <Route exact path="/" component={Auth} />
-      <Toast />
-    </div>
-  </Router>
+const AuthRoutes = () => (
+  <div key="AuthRoutes" >
+    <Route exact path="/" component={Auth} />
+    <Toast />
+  </div>
 );
 
-const Routes = (props) => {
-  if (!props.auth.user) {
-    return AuthRoutes;
-  }
-  return MainRoutes;
+const Routes = ({ auth }) => {
+  return (
+    <Router>
+      <div>
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+        >
+          {auth.user ? <MainRoutes /> : null}
+          {!auth.user ? <AuthRoutes /> : null}
+        </CSSTransitionGroup>
+      </div>
+    </Router>
+  );
+};
+
+Routes.propTypes = {
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
