@@ -6,11 +6,11 @@ export default (state = DEFAULT_STATES.AUTH, action) => {
     case AUTH.LOGIN: {
       switch (action.state) {
         case STATE.SUCCESS:
-          return { ...state, user: action.user, state: 'STATE_SUCCESS' };
+          return { ...state, user: action.user, state: STATE.SUCCESS };
         case STATE.FAILED:
-          return { ...state, user: null, state: 'STATE_FAILED' };
+          return { ...state, user: null, state: STATE.FAILED };
         case STATE.LOADING:
-          return { ...state, user: null, state: 'STATE_LOADING' };
+          return { ...state, user: null, state: STATE.LOADING };
         default:
           return state;
       }
