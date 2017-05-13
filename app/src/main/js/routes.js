@@ -1,11 +1,14 @@
+import React from 'react';
 import {
   HashRouter as Router,
   Route,
   Redirect,
 } from 'react-router-dom';
-import React from 'react';
+import { connect } from 'react-redux';
+import Auth from './containers/auth/auth';
+import Toast from './containers/utilities/toast/toast';
 
-const MainRoutes = () => {
+/* const MainRoutes = () => {
   <Router>
     <SideNav />
     <Route
@@ -23,17 +26,27 @@ const MainRoutes = () => {
     <SideColumn />
     <Notifications />
   </Router>;
-};
+};*/
 
-const AuthRoutes = () => {
+const AuthRoutes = (
   <Router>
-    <Route exact path="/" component={Auth} />
-  </Router>;
-};
+    <div>
+      <Route exact path="/" component={Auth} />
+      <Toast />
+    </div>
+  </Router>
+);
 
 const Routes = (props) => {
-  if (!props.auth.user || !props.settings.noLogin) {
+  if (!props.auth.user) {
     return AuthRoutes;
   }
-  return MainRoutes;
+  return AuthRoutes;
 };
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+
+export default connect(mapStateToProps, null)(Routes);
