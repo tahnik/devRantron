@@ -2,6 +2,7 @@ import React from 'react';
 import {
   HashRouter as Router,
   Route,
+  Redirect,
 } from 'react-router-dom';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import PropTypes from 'prop-types';
@@ -9,10 +10,17 @@ import { connect } from 'react-redux';
 import Auth from './containers/auth/auth';
 import Toast from './containers/utilities/toast/toast';
 import SideNav from './containers/navigation/sidenav';
+import Notifs from './containers/notifs/notifs';
+import Rants from './containers/feeds/rants';
 
 const MainRoutes = () => (
   <div key="MainRoutes" className="main_container" >
     <SideNav />
+    <div className="middle_container" id="middle_container" >
+      <Route exact path="/" render={() => (<Redirect to="/rants" />)} />
+      <Route path="/rants" component={Rants} />
+    </div>
+    <Notifs />
   </div>
 );
 

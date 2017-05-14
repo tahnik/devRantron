@@ -1,5 +1,5 @@
 import DEFAULT_STATE from '../consts/default_states';
-import { TOAST } from '../consts/action_types';
+import { TOAST } from '../consts/types';
 
 export default (state = DEFAULT_STATE.TOAST, action) => {
   switch (action.type) {

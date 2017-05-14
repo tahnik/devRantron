@@ -1,6 +1,6 @@
 import rantscript from '../consts/rantscript';
 import showToast from './toast';
-import { AUTH, STATE } from '../consts/action_types';
+import { AUTH, STATE } from '../consts/types';
 
 const login = (username, password) => (dispatch) => {
   dispatch({

@@ -1,4 +1,4 @@
-import { TOAST } from '../consts/action_types';
+import { TOAST } from '../consts/types';
 
 let timer = null;
 export default (dispatch, text, timeout = 4000) => {
