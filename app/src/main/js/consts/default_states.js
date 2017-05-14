@@ -35,4 +35,7 @@ export default {
   RANTS: {
     state: STATE.INITIAL,
   },
+  ITEM: [
+
+  ],
 };

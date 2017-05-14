@@ -31,4 +31,12 @@ export const FEED = {
       VOTE: 'RANT_VOTE',
     },
   },
+  ITEM: {
+    ACTION: {
+      GET: 'ITEM_GET',
+    },
+    TYPE: {
+      RANT: 'RANT',
+    },
+  },
 };

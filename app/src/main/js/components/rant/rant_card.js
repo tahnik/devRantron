@@ -5,7 +5,7 @@ import BottomBar from '../utilities/bottom_bar';
 
 class Rants extends Component {
   render() {
-    const { item, theme, vote } = this.props;
+    const { item, theme, vote, fetchItem } = this.props;
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,
@@ -21,7 +21,7 @@ class Rants extends Component {
           color: theme.rant_card.color,
         }}
       >
-        <div className="top_container">
+        <div className="top_container" onClick={() => fetchItem(item.id)}>
           <UserBadge user={user} theme={theme} />
           <p>{item.text}</p>
         </div>
@@ -42,6 +42,7 @@ Rants.propTypes = {
   item: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  fetchItem: PropTypes.func.isRequired,
 };
 
 export default Rants;

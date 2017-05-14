@@ -7,7 +7,7 @@ class Column extends Component {
     this.props.fetch();
   }
   render() {
-    const { feed, theme, vote } = this.props;
+    const { feed, theme, vote, fetchItem } = this.props;
     return (
       <div
         className="column"
@@ -16,7 +16,11 @@ class Column extends Component {
         {
           feed.items ?
           feed.items.map(item => (
-            <RantCard item={item} key={item.id} theme={theme} vote={vote} />
+            <RantCard
+              fetchItem={fetchItem}
+              item={item}
+              key={item.id} theme={theme} vote={vote}
+            />
           ))
           :
           <div>
@@ -33,6 +37,7 @@ Column.propTypes = {
   feed: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  fetchItem: PropTypes.func.isRequired,
 };
 
 export default Column;

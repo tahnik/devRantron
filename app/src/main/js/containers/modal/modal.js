@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import Column from '../../components/feeds/column';
+import Modal from '../../components/modal/modal';
 import { fetchRants } from '../../actions/rants';
-import { voteRant, fetchRant } from '../../actions/rant';
+import { voteRant } from '../../actions/rant';
 
 const mapDispatchToProps = dispatch => ({
   fetch: () => {
@@ -10,15 +10,11 @@ const mapDispatchToProps = dispatch => ({
   vote: (voteState, rantID) => {
     dispatch(voteRant(voteState, rantID));
   },
-  fetchItem: (itemID) => {
-    dispatch(fetchRant(itemID));
-  },
 });
 
 const mapStateToProps = state => ({
-  feed: state.rants,
   theme: state.settings.theme,
+  items: state.items,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Column);
-
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);
