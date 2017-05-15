@@ -41,6 +41,7 @@ class Login extends Component {
             )}
             disabled={auth.state === 'STATE_LOADING'}
           >Login</button>
+          <p><u>Not now</u></p>
         </div>
       </div>
     );
