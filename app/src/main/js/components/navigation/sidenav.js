@@ -15,13 +15,12 @@ class SideNav extends Component {
     this.props.fetchUser();
   }
   render() {
-    console.log("user", this.props.user.profile);
-    const { sideNavItems, history } = this.props;
+    const { sideNavItems, history, user } = this.props;
     return (
       <div className="sidenav_container" >
         <div className="navs">
           <div className="devRant_logo">
-            <CompactUserCard profile={this.props.user} />
+            { user ? <CompactUserCard profile={user} /> : null }
           </div>
           {
             sideNavItems.map(item => (
