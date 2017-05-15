@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Item from './items';
+import CompactUserCard from '../user/compact_user_card';
 
 class SideNav extends Component {
   constructor(props) {
@@ -14,12 +15,13 @@ class SideNav extends Component {
     this.props.fetchUser();
   }
   render() {
+    console.log("user", this.props.user.profile);
     const { sideNavItems, history } = this.props;
     return (
       <div className="sidenav_container" >
         <div className="navs">
           <div className="devRant_logo">
-            <img alt="" src="../../../res/images/devrant_sidebar.png" />
+            <CompactUserCard profile={this.props.user} />
           </div>
           {
             sideNavItems.map(item => (
@@ -40,6 +42,7 @@ class SideNav extends Component {
 SideNav.propTypes = {
   sideNavItems: PropTypes.array.isRequired,
   history: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   fetchUser: PropTypes.func.isRequired,
 };
 
