@@ -4,7 +4,6 @@ import showToast from './toast';
 
 
 const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
-  console.log(dispatch);
   const { user } = getState().auth;
   dispatch({
     type: FEED.RANT.ACTION.VOTE,

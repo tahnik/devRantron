@@ -16,7 +16,6 @@ const fetchUser = () => (dispatch, getState) => {
       type: USER.FETCH,
       state: STATE.FAILED,
     });
-    console.log('Not logged in?');
     return;
   }
   rantscript

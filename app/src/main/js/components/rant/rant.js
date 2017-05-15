@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RantCard from './rant_card';
 import Loading from '../utilities/loading';
+import rantscript from '../../consts/rantscript';
+import { FEED, STATE, ITEM } from '../../consts/types';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 class Rant extends Component {
   constructor() {
     super();
     this.state = {
       mainWidth: 0,
+      rant: null,
     };
   }
   componentWillMount() {
@@ -17,15 +21,26 @@ class Rant extends Component {
         this.setState({ middleWidth: middleContainer.offsetWidth });
       }
     }, false);
+
+    const { id } = this.props;
+    rantscript
+    .rant(id)
+    .then((res) => {
+      const rant = res;
+      this.setState({ rant });
+    })
+    .catch(() => {
+    });
   }
   renderSingleColumn() {
-    const { item, theme, vote } = this.props;
+    const { rant } = this.state;
+    const { theme, vote } = this.props;
     return (
       <div className="rant_compact_container">
         <RantCard
           modal
-          item={item.rant}
-          key={item.id} theme={theme} vote={vote}
+          item={rant.rant}
+          key={rant.id} theme={theme} vote={vote}
         />
       </div>
     );
@@ -33,16 +48,13 @@ class Rant extends Component {
   render() {
     return (
       <div className="rant_container modal">
-        { this.renderSingleColumn() }
+        { this.state.rant ? this.renderSingleColumn() : <Loading /> }
       </div>
     );
   }
 }
 
 Rant.propTypes = {
-  item: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-  vote: PropTypes.func.isRequired,
 };
 
 export default Rant;

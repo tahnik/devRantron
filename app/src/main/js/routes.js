@@ -12,7 +12,6 @@ import Toast from './containers/utilities/toast/toast';
 import SideNav from './containers/navigation/sidenav';
 import Notifs from './containers/notifs/notifs';
 import Rants from './containers/feeds/rants';
-import Modal from './containers/modal/modal';
 
 const MainRoutes = () => (
   <div key="MainRoutes" className="main_container" >
@@ -20,9 +19,7 @@ const MainRoutes = () => (
     <div className="middle_container" id="middle_container" >
       <Route exact path="/" render={() => (<Redirect to="/rants" />)} />
       <Route path="/rants" component={Rants} />
-      <div className="modal_container">
-        <Modal />
-      </div>
+
     </div>
     <Notifs />
   </div>

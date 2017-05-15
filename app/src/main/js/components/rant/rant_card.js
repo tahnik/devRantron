@@ -5,14 +5,17 @@ import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';
 
 class Rants extends Component {
-  fetch() {
-    const { item, fetch, modal } = this.props;
+  open() {
+    const { item, open, modal } = this.props;
     if (!modal) {
-      fetch(ITEM.RANT.NAME, item.id);
+      open(ITEM.RANT.NAME, item.id);
     }
   }
   render() {
     const { item, theme, vote, modal } = this.props;
+    if (modal) {
+      console.log(this.props);
+    }
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,
@@ -30,7 +33,7 @@ class Rants extends Component {
       >
         <div
           className="top_container"
-          onClick={() => this.fetch()}
+          onClick={() => this.open()}
         >
           <UserBadge user={user} theme={theme} />
           <p>{item.text}</p>
@@ -52,7 +55,7 @@ Rants.propTypes = {
   item: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
-  fetch: PropTypes.func, // eslint-disable-line
+  open: PropTypes.func, // eslint-disable-line
   modal: PropTypes.bool, //eslint-disable-line
 };
 
