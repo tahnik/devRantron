@@ -1,14 +1,19 @@
 import { connect } from 'react-redux';
 import Modal from '../../components/modal/modal';
-import { fetchRants } from '../../actions/rants';
-import { voteRant } from '../../actions/rant';
+import fetch from '../../actions/fetch';
+import close from '../../actions/item';
+import vote from '../../actions/vote';
+import { ITEM, FEED } from '../../consts/types';
 
 const mapDispatchToProps = dispatch => ({
-  fetch: () => {
-    dispatch(fetchRants());
+  fetch: (type, id) => {
+    dispatch(fetch(type, id));
   },
-  vote: (voteState, rantID) => {
-    dispatch(voteRant(voteState, rantID));
+  vote: (voteState, rantID, type) => {
+    dispatch(vote(voteState, rantID, type));
+  },
+  close: (id) => {
+    dispatch(close(id));
   },
 });
 

@@ -17,10 +17,24 @@ export const USER = {
   FETCH: 'USER_FETCH',
 };
 
+export const ITEM = {
+  RANT: {
+    NAME: 'RANT',
+    ACTION: {
+      FETCH: 'RANT_FETCH',
+    },
+  },
+  COMMON: {
+    ACTION: {
+      CLOSE: 'ITEM_CLOSE',
+    },
+  },
+};
+
 export const FEED = {
   RANTS: {
     ACTION: {
-      FETCH: 'FEED_RANTS_FETCH',
+      FETCH: 'RANTS_FETCH',
     },
     NAME: 'RANTS',
     FILTERS: {
@@ -29,19 +43,6 @@ export const FEED = {
         TOP: 'top',
         RECENT: 'recent',
       },
-    },
-  },
-  RANT: {
-    ACTION: {
-      VOTE: 'RANT_VOTE',
-    },
-  },
-  ITEM: {
-    ACTION: {
-      GET: 'ITEM_GET',
-    },
-    TYPE: {
-      RANT: 'RANT',
     },
   },
 };

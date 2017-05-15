@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RantCard from '../rant/rant_card';
+import Loading from '../utilities/loading';
 
 class Column extends Component {
   componentWillMount() {
     this.props.fetch();
   }
   render() {
-    const { feed, theme, vote, fetchItem } = this.props;
+    const { feed, theme, vote, fetch } = this.props;
+    if (!feed.items) {
+      return (
+        <Loading />
+      );
+    }
     return (
       <div
         className="column"
         style={{ backgroundColor: theme.column.backgroundColor }}
       >
         {
-          feed.items ?
           feed.items.map(item => (
             <RantCard
-              fetchItem={fetchItem}
+              fetch={fetch}
               item={item}
               key={item.id} theme={theme} vote={vote}
             />
           ))
-          :
-          <div>
-            Loading...
-          </div>
         }
       </div>
     );
@@ -37,7 +38,6 @@ Column.propTypes = {
   feed: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
-  fetchItem: PropTypes.func.isRequired,
 };
 
 export default Column;

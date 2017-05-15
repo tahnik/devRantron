@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import UserBadge from '../user/user_badge';
 import BottomBar from '../utilities/bottom_bar';
+import { ITEM } from '../../consts/types';
 
 class Rants extends Component {
+  fetch() {
+    const { item, fetch, modal } = this.props;
+    if (!modal) {
+      fetch(ITEM.RANT.NAME, item.id);
+    }
+  }
   render() {
-    const { item, theme, vote, fetchItem } = this.props;
+    const { item, theme, vote, modal } = this.props;
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,
@@ -15,13 +22,16 @@ class Rants extends Component {
     const image = item.attached_image;
     return (
       <div
-        className="rant_card"
+        className={`rant_card ${modal ? null : 'shadow' }`}
         style={{
           backgroundColor: theme.rant_card.backgroundColor,
           color: theme.rant_card.color,
         }}
       >
-        <div className="top_container" onClick={() => fetchItem(item.id)}>
+        <div
+          className="top_container"
+          onClick={() => this.fetch()}
+        >
           <UserBadge user={user} theme={theme} />
           <p>{item.text}</p>
         </div>
@@ -42,7 +52,8 @@ Rants.propTypes = {
   item: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
-  fetchItem: PropTypes.func.isRequired,
+  fetch: PropTypes.func, // eslint-disable-line
+  modal: PropTypes.bool, //eslint-disable-line
 };
 
 export default Rants;

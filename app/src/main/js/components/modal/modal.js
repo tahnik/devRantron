@@ -1,30 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Rant from '../rant/rant.js';
+import Rant from '../rant/rant';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import { STATE } from '../../consts/types';
+import Loading from '../utilities/loading';
 
-const getItem = (item) => {
+const getItem = (item, theme, vote, close) => {
   console.log(item);
-  return <Rant key={item.id} />;
-};
-
-const Modal = ({ items }) => {
   return (
-    <div>
-      <CSSTransitionGroup
-        transitionName="fade"
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}
+    <div key={item.id}>
+      <div
+        className="close_modal"
+        onClick={() => close(item.id)}
       >
-        {
-          items.length > 0 ? items.map(item => getItem(item)) : null
-        }
-      </CSSTransitionGroup>
+        <i className="ion-close-round" />
+      </div>
+      {
+        item.state === STATE.LOADING ? <Loading />
+        :
+        <Rant item={item.item} theme={theme} vote={vote} />
+      }
     </div>
   );
 };
 
+const Modal = ({ items, theme, vote, close }) => {
+  return (
+    <CSSTransitionGroup
+      transitionName="fade"
+      transitionEnterTimeout={300}
+      transitionLeaveTimeout={300}
+    >
+      {
+        items.length > 0 ?
+        items.map(item => getItem(item, theme, vote, close))
+        : null
+      }
+    </CSSTransitionGroup>
+  );
+};
+
 Modal.propTypes = {
+  items: PropTypes.array.isRequired,
+  theme: PropTypes.object.isRequired,
+  vote: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
 export default Modal;

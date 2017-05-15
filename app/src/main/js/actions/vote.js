@@ -1,8 +1,10 @@
 import rantscript from '../consts/rantscript';
-import { FEED, STATE } from '../consts/types';
+import { STATE, FEED } from '../consts/types';
 import showToast from './toast';
 
+
 const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
+  console.log(dispatch);
   const { user } = getState().auth;
   dispatch({
     type: FEED.RANT.ACTION.VOTE,
@@ -35,29 +37,13 @@ const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
       });
 };
 
-const fetchRant = id => (dispatch) => {
-  dispatch({
-    type: FEED.ITEM.ACTION.GET,
-    state: STATE.LOADING,
-  });
-  rantscript
-  .rant(id)
-  .then((res) => {
-    dispatch({
-      type: FEED.ITEM.ACTION.GET,
-      itemType: FEED.ITEM.TYPE.RANT,
-      state: STATE.SUCCESS,
-      id,
-      item: res,
-    });
-  })
-  .catch(() => {
-    showToast(dispatch, 'Could not get rant');
-    dispatch({
-      type: FEED.ITEM.ACTION.GET,
-      state: STATE.FAILED,
-    });
-  });
+const vote = (voteState = 1, id, type) => {
+  switch (type) {
+    case FEED.ITEM.TYPE.RANT:
+      return voteRant(voteState, id);
+    default:
+      return voteRant(voteState, id);
+  }
 };
 
-export { voteRant, fetchRant };
+export { vote as default };

@@ -1,17 +1,15 @@
 import { connect } from 'react-redux';
 import Column from '../../components/feeds/column';
-import { fetchRants } from '../../actions/rants';
-import { voteRant, fetchRant } from '../../actions/rant';
+import fetch from '../../actions/fetch';
+import vote from '../../actions/vote';
+import { ITEM, FEED } from '../../consts/types';
 
 const mapDispatchToProps = dispatch => ({
-  fetch: () => {
-    dispatch(fetchRants());
+  fetch: (type = FEED.RANTS.NAME, id) => {
+    dispatch(fetch(type, id));
   },
-  vote: (voteState, rantID) => {
-    dispatch(voteRant(voteState, rantID));
-  },
-  fetchItem: (itemID) => {
-    dispatch(fetchRant(itemID));
+  vote: (voteState, rantID, type = ITEM.TYPE.RANT) => {
+    dispatch(vote(voteState, rantID, type));
   },
 });
 

@@ -14,13 +14,20 @@ class SideNav extends Component {
   componentWillMount() {
     this.props.fetchUser();
   }
+  getUserCard() {
+    const { user } = this.props;
+    if (user.profile) {
+      return <CompactUserCard profile={user} />;
+    }
+    return <img alt="" src="../../../res/images/devrant_sidebar.png" />;
+  }
   render() {
-    const { sideNavItems, history, user } = this.props;
+    const { sideNavItems, history } = this.props;
     return (
       <div className="sidenav_container" >
         <div className="navs">
           <div className="devRant_logo">
-            { user ? <CompactUserCard profile={user} /> : null }
+            { this.getUserCard() }
           </div>
           {
             sideNavItems.map(item => (
