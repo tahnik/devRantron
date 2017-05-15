@@ -35,22 +35,20 @@ const AuthRoutes = () => (
   </div>
 );
 
-const Routes = ({ auth }) => {
-  return (
-    <Router>
-      <div>
-        <CSSTransitionGroup
-          transitionName="fade"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
-        >
-          {auth.user ? <MainRoutes /> : null}
-          {!auth.user ? <AuthRoutes /> : null}
-        </CSSTransitionGroup>
-      </div>
-    </Router>
+const Routes = ({ auth }) => (
+  <Router>
+    <div>
+      <CSSTransitionGroup
+        transitionName="fade"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}
+      >
+        { auth.user || auth.noLogin ? <MainRoutes /> : null}
+        { !auth.user && !auth.noLogin ? <AuthRoutes /> : null}
+      </CSSTransitionGroup>
+    </div>
+  </Router>
   );
-};
 
 Routes.propTypes = {
   auth: PropTypes.object.isRequired,

@@ -11,6 +11,7 @@ export default {
   AUTH: {
     user: null,
     state: STATE.INITIAL,
+    noLogin: false,
   },
   SETTINGS: {
     theme: {
@@ -38,4 +39,8 @@ export default {
   ITEM: [
 
   ],
+  USER: {
+    state: STATE.INITIAL,
+    profile: null,
+  },
 };

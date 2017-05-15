@@ -10,7 +10,7 @@ class Login extends Component {
     };
   }
   render() {
-    const { theme, auth } = this.props;
+    const { theme, auth, noLogin } = this.props;
     return (
       <div
         className="auth_container"
@@ -41,7 +41,7 @@ class Login extends Component {
             )}
             disabled={auth.state === 'STATE_LOADING'}
           >Login</button>
-          <p><u>Not now</u></p>
+          <p onClick={() => noLogin(true)}><u>Not now</u></p>
         </div>
       </div>
     );

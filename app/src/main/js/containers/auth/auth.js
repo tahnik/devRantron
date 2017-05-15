@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Login from '../../components/auth/login';
-import { login } from '../../actions/auth';
+import { login, noLogin } from '../../actions/auth';
 
 const mapStateToProps = state => ({
   theme: state.settings.theme,
@@ -10,6 +10,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   login: (username, password) => {
     dispatch(login(username, password));
+  },
+  noLogin: (bool) => {
+    dispatch(noLogin(bool));
   },
 });
 

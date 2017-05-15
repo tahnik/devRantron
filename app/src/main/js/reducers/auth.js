@@ -8,7 +8,6 @@ export default (state = DEFAULT_STATES.AUTH, action) => {
         case STATE.SUCCESS:
           return { ...state, user: action.user, state: STATE.SUCCESS };
         case STATE.FAILED:
-          console.log(action);
           return { ...state, user: null, state: STATE.FAILED };
         case STATE.LOADING:
           return { ...state, user: null, state: STATE.LOADING };
@@ -16,6 +15,8 @@ export default (state = DEFAULT_STATES.AUTH, action) => {
           return state;
       }
     }
+    case AUTH.NOLOGIN:
+      return { ...state, noLogin: action.payload };
     default:
       return state;
   }

@@ -1,14 +1,8 @@
 import { connect } from 'react-redux';
-import React from 'react';
-import Item from '../../components/navigation/items';
-import ROUTES from '../../consts/routes';
 import { withRouter } from 'react-router';
-
-const mapDispatchToProps = dispatch => ({
-  // login: (username, password) => {
-  //   dispatch(login(username, password));
-  // },
-});
+import SideNav from '../../components/navigation/sidenav';
+import ROUTES from '../../consts/routes';
+import { fetchUser } from '../../actions/user';
 
 const SIDE_NAV_ITEMS = [
   { name: 'Rants', route: ROUTES.rants, icon: 'ion-chatboxes' },
@@ -18,23 +12,18 @@ const SIDE_NAV_ITEMS = [
   { name: 'Settings', route: ROUTES.settings, icon: 'ion-android-settings' },
 ];
 
-export default withRouter(connect(null, mapDispatchToProps)(({ history }) => (
-  <div className="sidenav_container" >
-    <div className="navs">
-      <div className="devRant_logo">
-        <img alt="" src="../../../res/images/devrant_sidebar.png" />
-      </div>
-      {
-        SIDE_NAV_ITEMS.map(item => (
-          <Item
-            key={item.route}
-            item={item}
-            onClick={() => { history.push(item.route); }}
-          />
-        ))
-      }
-    </div>
-    <div className="profile" />
-  </div>
-)));
+const mapDispatchToProps = dispatch => ({
+  fetchUser: () => {
+    dispatch(fetchUser());
+  },
+});
 
+const mapStateToProps = state => ({
+  theme: state.theme,
+  auth: state.auth,
+  user: state.user,
+  sideNavItems: SIDE_NAV_ITEMS,
+});
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SideNav));

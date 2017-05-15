@@ -3,7 +3,6 @@ import { FEED, STATE } from '../consts/types';
 import showToast from './toast';
 
 const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
-  console.log("voting")
   const { user } = getState().auth;
   dispatch({
     type: FEED.RANT.ACTION.VOTE,
@@ -15,9 +14,9 @@ const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
   } else {
     showToast(dispatch, 'Are you logged in?');
     dispatch({
-        type: FEED.RANT.ACTION.VOTE,
-        state: STATE.FAILED,
-      });
+      type: FEED.RANT.ACTION.VOTE,
+      state: STATE.FAILED,
+    });
   }
   rantscript
       .vote(voteState, rantID, authToken)
@@ -37,7 +36,6 @@ const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
 };
 
 const fetchRant = id => (dispatch) => {
-  console.log("Fetching");
   dispatch({
     type: FEED.ITEM.ACTION.GET,
     state: STATE.LOADING,

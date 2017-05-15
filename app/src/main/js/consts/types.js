@@ -1,5 +1,6 @@
 export const AUTH = {
   LOGIN: 'AUTH_LOGIN',
+  NOLOGIN: 'AUTH_NOLOGIN',
 };
 export const STATE = {
   INITIAL: 'STATE_INITIAL',
@@ -10,6 +11,10 @@ export const STATE = {
 export const TOAST = {
   SHOW: 'TOAST_SHOW',
   HIDE: 'TOAST_HIDE',
+};
+
+export const USER = {
+  FETCH: 'USER_FETCH',
 };
 
 export const FEED = {

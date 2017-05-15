@@ -28,4 +28,11 @@ const login = (username, password) => (dispatch) => {
     });
 };
 
-export { login };
+const noLogin = bool => (dispatch) => {
+  dispatch({
+    type: AUTH.NOLOGIN,
+    payload: bool,
+  });
+};
+
+export { login, noLogin };
