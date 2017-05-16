@@ -52,6 +52,7 @@ Login.propTypes = {
   theme: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  noLogin: PropTypes.func.isRequired,
 };
 
 export default Login;

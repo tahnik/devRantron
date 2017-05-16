@@ -10,7 +10,6 @@ const fetchRants = (sort) => (dispatch, getState) => {
     type: FEED.RANTS.ACTION.FETCH,
     state: STATE.LOADING,
   });
-  console.log(sort);
   let authToken = null;
   if (user) {
     authToken = user.authToken;
