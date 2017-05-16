@@ -18,6 +18,12 @@ class Column extends Component {
       <div
         className="column"
       >
+        <div
+          className="column_topbar"
+          style={{ background: theme.rant_card.backgroundColor }}
+        >
+          <p>Algo</p>
+        </div>
         <div className="items_container">
           {
             feed.items.map(item => (
