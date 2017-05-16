@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import Notifs from '../../components/notifs/notifs';
 
-const mapStateToProps = state => ({
+// const mapStateToProps = state => ({
 
-});
+// });
 
-const mapDispatchToProps = dispatch => ({
-  // login: (username, password) => {
-  //   dispatch(login(username, password));
-  // },
-});
+// const mapDispatchToProps = dispatch => ({
+//   // login: (username, password) => {
+//   //   dispatch(login(username, password));
+//   // },
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Notifs);
+export default connect(null, null)(Notifs);
 

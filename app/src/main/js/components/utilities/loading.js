@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Loading = (props) => (
+const Loading = props => (
   <div
     className="loading_container"
     style={{ backgroundColor: props.backgroundColor }}

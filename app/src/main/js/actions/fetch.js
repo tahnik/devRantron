@@ -4,7 +4,7 @@ import showToast from './toast';
 
 const AMOUNT = 25;
 
-const fetchRants = (sort) => (dispatch, getState) => {
+const fetchRants = sort => (dispatch, getState) => {
   const { user } = getState().auth;
   dispatch({
     type: FEED.RANTS.ACTION.FETCH,

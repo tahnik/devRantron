@@ -36,4 +36,4 @@ const fetchUser = () => (dispatch, getState) => {
       });
 };
 
-export { fetchUser };
+export { fetchUser }; //eslint-disable-line

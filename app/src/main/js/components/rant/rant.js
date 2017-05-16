@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import RantCard from './rant_card';
 import Loading from '../utilities/loading';
 import rantscript from '../../consts/rantscript';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Comments from '../comments/comments';
 import PostComment from '../comments/comment_post';
 
