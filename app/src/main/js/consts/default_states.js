@@ -27,6 +27,7 @@ export default {
       },
       column: {
         backgroundColor: '#54556E',
+        width: '27',
       },
       user_badge: {
         details_back: '#54556E',

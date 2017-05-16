@@ -19,6 +19,7 @@ class Rants extends Component {
       id: item.user_id,
       username: item.user_username,
     };
+    console.log(modal ? item : '');
     const image = item.attached_image;
     return (
       <div

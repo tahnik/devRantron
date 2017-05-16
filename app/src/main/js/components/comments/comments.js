@@ -11,6 +11,13 @@ class Comments extends Component {
   }
   componentWillMount() {
   }
+  shouldComponentUpdate() {
+    const rantContainer = document.getElementsByClassName('rant_compact_column')[0];
+    setTimeout(() => {
+      rantContainer.scrollTop = rantContainer.scrollHeight;
+    }, 200);
+    return true;
+  }
   render() {
     const { theme, vote, comments } = this.props;
     return (

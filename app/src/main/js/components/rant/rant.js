@@ -6,6 +6,7 @@ import rantscript from '../../consts/rantscript';
 import { FEED, STATE, ITEM } from '../../consts/types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Comments from '../comments/comments';
+import PostComment from '../comments/comment_post';
 
 class Rant extends Component {
   constructor() {
@@ -22,10 +23,12 @@ class Rant extends Component {
         this.setState({ middleWidth: middleContainer.offsetWidth });
       }
     }, false);
-
-    const { id } = this.props;
+    this.fetchRant();
+  }
+  fetchRant() {
+    const { id, auth } = this.props;
     rantscript
-    .rant(id)
+    .rant(id, auth.user.authToken)
     .then((res) => {
       const rant = res;
       this.setState({ rant });
@@ -35,16 +38,19 @@ class Rant extends Component {
   }
   renderSingleColumn() {
     const { rant } = this.state;
-    const { theme, vote } = this.props;
-    console.log(rant.comments);
+    const { theme, vote, auth } = this.props;
     return (
       <div className="rant_compact_column">
         <RantCard
           modal
           item={rant.rant}
-          key={rant.id} theme={theme} vote={vote}
+          key={rant.rant.id} theme={theme} vote={vote}
         />
         <Comments comments={rant.comments} theme={theme} vote={vote} />
+        <PostComment
+          theme={theme} auth={auth} id={rant.rant.id}
+          fetch={() => this.fetchRant()}
+        />
       </div>
     );
   }

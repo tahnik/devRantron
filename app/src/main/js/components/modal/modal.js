@@ -4,8 +4,8 @@ import Rant from '../rant/rant';
 
 class Modal extends Component {
   getItem() {
-    const { item, theme, vote } = this.props;
-    return <Rant theme={theme} id={item.id} vote={vote} />;
+    const { item, theme, vote, auth } = this.props;
+    return <Rant theme={theme} id={item.id} vote={vote} auth={auth} />;
   }
   render() {
     const { close } = this.props;
@@ -23,6 +23,7 @@ class Modal extends Component {
 Modal.propTypes = {
   item: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,
   vote: PropTypes.func.isRequired,
 };

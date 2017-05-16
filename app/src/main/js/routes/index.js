@@ -16,7 +16,7 @@ const Routes = ({ auth, theme }) => (
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}
       >
-        { auth.user || auth.noLogin ? <MainRoutes theme={theme} /> : null }
+        { auth.user || auth.noLogin ? <MainRoutes theme={theme} auth={auth} /> : null }
         { !auth.user && !auth.noLogin ? <AuthRoutes /> : null }
       </CSSTransitionGroup>
     </div>

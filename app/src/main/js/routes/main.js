@@ -45,6 +45,7 @@ class MainRoutes extends Component {
               <Modal
                 item={this.state.item}
                 close={() => this.closeModal()}
+                auth={this.props.auth}
               /> : null
           }
         </div>
@@ -57,6 +58,7 @@ class MainRoutes extends Component {
 
 MainRoutes.propTypes = {
   theme: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 export default MainRoutes;

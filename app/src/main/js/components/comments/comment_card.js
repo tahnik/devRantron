@@ -7,7 +7,6 @@ import { ITEM } from '../../consts/types';
 class CommentCard extends Component {
   render() {
     const { item, theme, vote } = this.props;
-    console.log(item);
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,

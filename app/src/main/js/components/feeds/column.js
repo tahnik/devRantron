@@ -10,6 +10,7 @@ const Column = (props) => {
   return (
     <div
       className="column"
+      style={{ width: `${theme.column.width}rem` }}
     >
       <ColumnTopBar filters={filters} fetch={fetch} />
       <div className="items_container">
