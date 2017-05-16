@@ -5,6 +5,7 @@ import Loading from '../utilities/loading';
 import rantscript from '../../consts/rantscript';
 import { FEED, STATE, ITEM } from '../../consts/types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import Comments from '../comments/comments';
 
 class Rant extends Component {
   constructor() {
@@ -35,13 +36,15 @@ class Rant extends Component {
   renderSingleColumn() {
     const { rant } = this.state;
     const { theme, vote } = this.props;
+    console.log(rant.comments);
     return (
-      <div className="rant_compact_container">
+      <div className="rant_compact_column">
         <RantCard
           modal
           item={rant.rant}
           key={rant.id} theme={theme} vote={vote}
         />
+        <Comments comments={rant.comments} theme={theme} vote={vote} />
       </div>
     );
   }

@@ -25,6 +25,12 @@ export const ITEM = {
       VOTE: 'RANT_VOTE',
     },
   },
+  COMMENT: {
+    NAME: 'COMMENT',
+    ACTION: {
+      VOTE: 'RANT_VOTE',
+    },
+  },
   COMMON: {
     ACTION: {
       CLOSE: 'ITEM_CLOSE',

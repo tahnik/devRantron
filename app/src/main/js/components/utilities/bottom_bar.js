@@ -14,8 +14,12 @@ class BottomBar extends Component {
     this.setState({ isUpvoted, score });
   }
   vote(voteState) {
-    const { vote, rantID } = this.props;
-    vote(voteState, rantID);
+    const { vote, rantID, type } = this.props;
+    if (type) {
+      vote(voteState, rantID, type);
+    } else {
+      vote(voteState, rantID);
+    }
     this.setState({ isUpvoted: voteState, score: this.state.score += 1 });
   }
   render() {
@@ -44,10 +48,13 @@ class BottomBar extends Component {
           <i className="ion-ios-arrow-thin-down" />
         </div>
         <div className="padding" />
-        <div className="comments" >
-          <i className="ion-chatbubbles" />
-          <span>{ comments }</span>
-        </div>
+        {
+          !comments ? null :
+          <div className="comments" >
+            <i className="ion-chatbubbles" />
+            <span>{ comments }</span>
+          </div>
+        }
       </div>
     );
   }
@@ -57,9 +64,10 @@ class BottomBar extends Component {
 BottomBar.propTypes = {
   score: PropTypes.number.isRequired,
   vote: PropTypes.func.isRequired,
-  comments: PropTypes.number.isRequired,
+  comments: PropTypes.number, //eslint-disable-line
   isUpvoted: PropTypes.number.isRequired,
   rantID: PropTypes.number.isRequired,
+  type: PropTypes.string, //eslint-disable-line
 };
 
 export default BottomBar;

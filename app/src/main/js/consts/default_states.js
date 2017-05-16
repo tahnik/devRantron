@@ -21,6 +21,10 @@ export default {
         backgroundColor: '#40415A',
         color: 'white',
       },
+      comment_card: {
+        backgroundColor: '#40415A',
+        color: 'white',
+      },
       column: {
         backgroundColor: '#54556E',
       },
