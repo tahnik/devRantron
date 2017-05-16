@@ -26,7 +26,9 @@ class Comments extends Component {
           comments.map(comment => (
             <CommentCard
               key={comment.id}
-              item={comment} theme={theme} vote={vote}
+              item={comment}
+              theme={theme}
+              vote={vote}
             />
           ))
         }

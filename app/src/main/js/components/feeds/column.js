@@ -24,7 +24,9 @@ const Column = (props) => {
                 fetch={fetch}
                 item={item}
                 open={(type, id) => open(type, id)}
-                key={item.id} theme={theme} vote={vote}
+                key={item.id}
+                theme={theme}
+                vote={vote}
               />
             ))
         }

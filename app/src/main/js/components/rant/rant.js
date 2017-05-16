@@ -46,11 +46,15 @@ class Rant extends Component {
         <RantCard
           modal
           item={rant.rant}
-          key={rant.rant.id} theme={theme} vote={vote}
+          key={rant.rant.id}
+          theme={theme}
+          vote={vote}
         />
         <Comments comments={rant.comments} theme={theme} vote={vote} />
         <PostComment
-          theme={theme} auth={auth} id={rant.rant.id}
+          theme={theme}
+          auth={auth}
+          id={rant.rant.id}
           fetch={() => this.fetchRant()}
         />
       </div>
