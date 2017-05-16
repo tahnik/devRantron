@@ -13,13 +13,16 @@ import SideNav from './containers/navigation/sidenav';
 import Notifs from './containers/notifs/notifs';
 import Rants from './containers/feeds/rants';
 
-const MainRoutes = () => (
+const MainRoutes = ({ theme }) => (
   <div key="MainRoutes" className="main_container" >
     <SideNav />
-    <div className="middle_container" id="middle_container" >
+    <div
+      className="middle_container"
+      id="middle_container"
+      style={{ backgroundColor: theme.column.backgroundColor }}
+    >
       <Route exact path="/" render={() => (<Redirect to="/rants" />)} />
       <Route path="/rants" component={Rants} />
-
     </div>
     <Notifs />
   </div>
@@ -32,7 +35,7 @@ const AuthRoutes = () => (
   </div>
 );
 
-const Routes = ({ auth }) => (
+const Routes = ({ auth, settings }) => (
   <Router>
     <div>
       <CSSTransitionGroup
@@ -40,20 +43,24 @@ const Routes = ({ auth }) => (
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}
       >
-        { auth.user || auth.noLogin ? <MainRoutes /> : null}
+        { auth.user || auth.noLogin ? <MainRoutes theme={settings.theme} /> : null}
         { !auth.user && !auth.noLogin ? <AuthRoutes /> : null}
       </CSSTransitionGroup>
     </div>
   </Router>
   );
-
 Routes.propTypes = {
   auth: PropTypes.object.isRequired,
+  settings: PropTypes.object.isRequired,
+};
+
+MainRoutes.propTypes = {
+  theme: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  settings: state.settings,
 });
-
 
 export default connect(mapStateToProps, null)(Routes);

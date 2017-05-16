@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import RantCard from '../rant/rant_card';
 import Loading from '../utilities/loading';
 import Modal from '../modal/modal';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 class Column extends Component {
   constructor() {

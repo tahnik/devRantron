@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class CompactUserCard extends Component {
   render() {
     const { profile } = this.props.profile;
-    let imgsrc = "";
+    let imgsrc = '';
     if (profile.avatar.i) {
       imgsrc += `https://avatars.devrant.io/${profile.avatar.i}`.toString();
     }
