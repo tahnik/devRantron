@@ -13,9 +13,6 @@ class Rants extends Component {
   }
   render() {
     const { item, theme, vote, modal } = this.props;
-    if (modal) {
-      console.log(this.props);
-    }
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,

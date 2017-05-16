@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Rant from '../rant/rant';
-import { ITEM } from '../../consts/types';
 
 class Modal extends Component {
   getItem() {
-    const { theme, vote, item } = this.props;
-    switch (item.type) {
-      case ITEM.RANT.NAME:
-        return <Rant id={item.id} theme={theme} vote={vote} />;
-      default:
-        return null;
-    }
+    const { item, theme, vote } = this.props;
+    return <Rant theme={theme} id={item.id} vote={vote} />;
   }
   render() {
     const { close } = this.props;
@@ -27,10 +21,10 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  theme: PropTypes.object.isRequired,
-  vote: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,
+  vote: PropTypes.func.isRequired,
 };
 
 export default Modal;
