@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Items = ({ item, onClick }) => (
-  <div className="item" onClick={() => onClick()} >
+const Items = ({ item, onClick, active }) => (
+  <div className={`item ${active}`} onClick={() => onClick()} >
     <i className={item.icon} />{ item.name }
   </div>
 );

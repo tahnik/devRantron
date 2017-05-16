@@ -22,7 +22,7 @@ class SideNav extends Component {
     return <img alt="" src="../../../res/images/devrant_sidebar.png" />;
   }
   render() {
-    const { sideNavItems, history } = this.props;
+    const { sideNavItems, history, location } = this.props;
     return (
       <div className="sidenav_container" >
         <div className="navs">
@@ -34,6 +34,7 @@ class SideNav extends Component {
               <Item
                 key={item.route}
                 item={item}
+                active={location.pathname === item.route ? 'active' : null}
                 onClick={() => { history.push(item.route); }}
               />
             ))
@@ -50,6 +51,7 @@ SideNav.propTypes = {
   history: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   fetchUser: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default SideNav;
