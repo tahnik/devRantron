@@ -61,7 +61,9 @@ body
   .middle_container
     position: absolute
     left: $sidenav_width
-    right: 0
+    width: calc(100% - #{$sidenav_width})
+    display: flex
+    justify-content: center
 
   .fade-enter
     opacity: 0.01;
