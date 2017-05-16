@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ITEM } from '../../consts/types';
 import rantscript from '../../consts/rantscript';
 
 class CommentPost extends Component {

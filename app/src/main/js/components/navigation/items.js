@@ -10,6 +10,7 @@ const Items = ({ item, onClick, active }) => (
 Items.propTypes = {
   item: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
+  active: PropTypes.string, //eslint-disable-line
 };
 
 export default Items;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CommentCard from './comment_card';
-import Loading from '../utilities/loading';
 
 class Comments extends Component {
   constructor() {
@@ -24,7 +24,10 @@ class Comments extends Component {
       <div className="comments_container">
         {
           comments.map(comment => (
-            <CommentCard key={comment.id} item={comment} theme={theme} vote={vote} />
+            <CommentCard
+              key={comment.id}
+              item={comment} theme={theme} vote={vote}
+            />
           ))
         }
       </div>
@@ -33,6 +36,9 @@ class Comments extends Component {
 }
 
 Comments.propTypes = {
+  theme: PropTypes.object.isRequired,
+  vote: PropTypes.func.isRequired,
+  comments: PropTypes.array.isRequired,
 };
 
 export default Comments;
