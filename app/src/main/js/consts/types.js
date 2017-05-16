@@ -22,6 +22,7 @@ export const ITEM = {
     NAME: 'RANT',
     ACTION: {
       FETCH: 'RANT_FETCH',
+      VOTE: 'RANT_VOTE',
     },
   },
   COMMON: {
