@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import RantCard from './rant_card';
 import Loading from '../utilities/loading';
 import rantscript from '../../consts/rantscript';
-import { FEED, STATE, ITEM } from '../../consts/types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Comments from '../comments/comments';
 import PostComment from '../comments/comment_post';
@@ -64,6 +63,10 @@ class Rant extends Component {
 }
 
 Rant.propTypes = {
+  theme: PropTypes.object.isRequired,
+  vote: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default Rant;
