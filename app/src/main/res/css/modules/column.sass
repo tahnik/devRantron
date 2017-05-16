@@ -9,11 +9,20 @@
     padding: 0rem 0rem 1rem 1rem
     height: calc(100vh - 2.8rem - 1.5rem)
   .column_topbar
-    height: 2.8rem
     max-width: 400px
     margin: 0rem 0.7rem 0.5rem 1rem
-    p
+    padding: 1rem 0 0.4rem 0.4rem
+    display: flex
+    align-items: center
+    border-bottom: 1px solid grey
+    span
+      padding: 0 1rem 0 0;
       color: white
-      text-align: center
-      line-height: 2.8rem
-      margin: 0px
+      opacity: 0.4
+      transition: all 0.1s
+      &:hover
+        cursor: pointer
+        transform: scale(1.2)
+    span.active
+      opacity: 1
+      transform: scale(1.2)

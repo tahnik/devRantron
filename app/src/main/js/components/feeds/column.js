@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RantCard from '../rant/rant_card';
 import Loading from '../utilities/loading';
+import ColumnTopBar from './column_topbar';
 
 class Column extends Component {
   componentWillMount() {
@@ -18,12 +19,7 @@ class Column extends Component {
       <div
         className="column"
       >
-        <div
-          className="column_topbar"
-          style={{ background: theme.rant_card.backgroundColor }}
-        >
-          <p>Algo</p>
-        </div>
+        <ColumnTopBar />
         <div className="items_container">
           {
             feed.items.map(item => (
