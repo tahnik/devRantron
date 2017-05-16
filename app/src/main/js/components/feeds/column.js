@@ -45,6 +45,12 @@ class Column extends Component {
             close={() => this.close()}
           /> : null }
         </CSSTransitionGroup>
+        <div
+          className="column_topbar"
+          style={{ backgroundColor: theme.rant_card.backgroundColor }}
+        >
+          <p>Column Name</p>
+        </div>
         <div className="items_container">
           {
             feed.items.map(item => (

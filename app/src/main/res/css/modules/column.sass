@@ -1,9 +1,19 @@
 // !compileOnSave
 
 .column
-  overflow-y: scroll
   height: 100vh
-  width: 28rem
-  overflow-x: hidden
+  width: 27rem
+  overflow: hidden
   .items_container
-    padding: 1rem
+    overflow-y: scroll
+    padding: 0rem 0rem 1rem 1rem
+    height: calc(100vh - 2.8rem - 2.5rem)
+  .column_topbar
+    height: 2.8rem
+    width: 27rem
+    margin-bottom: 0.5rem
+    p
+      color: white
+      text-align: center
+      line-height: 2.8rem
+      margin: 0px
