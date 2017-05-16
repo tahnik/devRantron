@@ -5,8 +5,8 @@ import vote from '../../actions/vote';
 import { ITEM, FEED } from '../../consts/types';
 
 const mapDispatchToProps = dispatch => ({
-  fetch: (type = FEED.RANTS.NAME, id) => {
-    dispatch(fetch(type, id));
+  fetch: (sort, type = FEED.RANTS.NAME) => {
+    dispatch(fetch(sort, type));
   },
   vote: (voteState, rantID, type = ITEM.RANT.NAME) => {
     dispatch(vote(voteState, rantID, type));
@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   feed: state.rants,
   theme: state.settings.theme,
+  filters: FEED.RANTS.FILTERS,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Column);

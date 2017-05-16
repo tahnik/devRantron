@@ -1,27 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import RantCard from '../rant/rant_card';
 import Loading from '../utilities/loading';
 import ColumnTopBar from './column_topbar';
+import { STATE } from '../../consts/types';
 
-class Column extends Component {
-  componentWillMount() {
-    this.props.fetch();
-  }
-  render() {
-    const { feed, theme, vote, fetch, open } = this.props;
-    if (!feed.items) {
-      return (
-        <Loading />
-      );
-    }
+const Column = (props) => {
+  const { feed, theme, vote, fetch, open, filters } = props;
+  if (!feed.items) {
     return (
-      <div
-        className="column"
-      >
-        <ColumnTopBar />
-        <div className="items_container">
-          {
+      <Loading />
+    );
+  }
+  console.log(props);
+  return (
+    <div
+      className="column"
+    >
+      <ColumnTopBar filters={filters} fetch={fetch} />
+      <div className="items_container">
+        {
+          feed.state === STATE.LOADING ?
+            <Loading
+              backgroundColor={theme.backgroundColor}
+            /> :
             feed.items.map(item => (
               <RantCard
                 fetch={fetch}
@@ -30,12 +32,11 @@ class Column extends Component {
                 key={item.id} theme={theme} vote={vote}
               />
             ))
-          }
-        </div>
+        }
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 Column.propTypes = {
   fetch: PropTypes.func.isRequired,
@@ -43,6 +44,7 @@ Column.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
+  filters: PropTypes.object.isRequired,
 };
 
 export default Column;

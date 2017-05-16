@@ -39,11 +39,29 @@ export const FEED = {
     },
     NAME: 'RANTS',
     FILTERS: {
-      SORT: {
+      PRIMARY: {
         ALGO: 'algo',
         TOP: 'top',
         RECENT: 'recent',
       },
+    },
+  },
+  WEEKLY: {
+    ACTION: {
+      FETCH: 'WEEKLY_FETCH',
+    },
+    NAME: 'WEEKLY',
+    FILTERS: {
+      PRIMARY: {
+        ALGO: 'algo',
+        TOP: 'top',
+        RECENT: 'recent',
+      },
+      SECONDARY: [
+        {
+          DAY: 'WEEKLY_DAY',
+        },
+      ],
     },
   },
 };

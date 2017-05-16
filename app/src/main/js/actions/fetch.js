@@ -4,18 +4,19 @@ import showToast from './toast';
 
 const AMOUNT = 25;
 
-const fetchRants = () => (dispatch, getState) => {
+const fetchRants = (sort) => (dispatch, getState) => {
   const { user } = getState().auth;
   dispatch({
     type: FEED.RANTS.ACTION.FETCH,
     state: STATE.LOADING,
   });
+  console.log(sort);
   let authToken = null;
   if (user) {
     authToken = user.authToken;
   }
   rantscript
-      .rants('algo', AMOUNT, 0, authToken)
+      .rants(sort, AMOUNT, 0, authToken)
       .then((res) => {
         dispatch({
           type: FEED.RANTS.ACTION.FETCH,
@@ -32,10 +33,10 @@ const fetchRants = () => (dispatch, getState) => {
       });
 };
 
-const fetch = (type) => {
+const fetch = (sort, type) => {
   switch (type) {
     case FEED.RANTS.NAME:
-      return fetchRants();
+      return fetchRants(sort);
     default:
       return fetchRants();
   }
