@@ -25,8 +25,12 @@ class Rant extends Component {
   }
   fetchRant() {
     const { id, auth } = this.props;
+    let authToken = null;
+    if (auth.user) {
+      authToken = auth.user.authToken;
+    }
     rantscript
-    .rant(id, auth.user.authToken)
+    .rant(id, authToken)
     .then((res) => {
       const rant = res;
       this.setState({ rant });
