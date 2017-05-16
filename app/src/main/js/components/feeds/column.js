@@ -7,12 +7,6 @@ import { STATE } from '../../consts/types';
 
 const Column = (props) => {
   const { feed, theme, vote, fetch, open, filters } = props;
-  if (!feed.items) {
-    return (
-      <Loading />
-    );
-  }
-  console.log(props);
   return (
     <div
       className="column"
@@ -20,7 +14,7 @@ const Column = (props) => {
       <ColumnTopBar filters={filters} fetch={fetch} />
       <div className="items_container">
         {
-          feed.state === STATE.LOADING ?
+          feed.state === STATE.LOADING || !feed.items ?
             <Loading
               backgroundColor={theme.backgroundColor}
             /> :
