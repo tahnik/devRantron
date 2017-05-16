@@ -27,8 +27,8 @@ install:
   - set CI=true
   - yarn install
 
-# test_script:
-#   - yarn ci:all
+test_script:
+  - yarn ci:all
 
 build: off
 
