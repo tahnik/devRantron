@@ -19,11 +19,10 @@ class Rants extends Component {
       id: item.user_id,
       username: item.user_username,
     };
-    console.log(modal ? item : '');
     const image = item.attached_image;
     return (
       <div
-        className={`rant_card ${modal ? null : 'shadow' }`}
+        className={`rant_card ${modal ? null : 'shadow'}`}
         style={{
           backgroundColor: theme.rant_card.backgroundColor,
           color: theme.rant_card.color,
