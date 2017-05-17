@@ -1,4 +1,4 @@
-import rantscript from '../consts/rantscript';
+import { rantscriptBrowser } from '../consts/rantscript';
 import { FEED, STATE } from '../consts/types';
 import showToast from './toast';
 
@@ -14,7 +14,7 @@ const fetchRants = sort => (dispatch, getState) => {
   if (user) {
     authToken = user.authToken;
   }
-  rantscript
+  rantscriptBrowser
       .rants(sort, AMOUNT, 0, authToken)
       .then((res) => {
         dispatch({
