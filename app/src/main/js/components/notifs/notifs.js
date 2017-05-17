@@ -8,12 +8,7 @@ class Notifs extends Component {
     };
   }
   componentDidMount() {
-    window.addEventListener('resize', () => {
-      const middleContainer = document.getElementById('middle_container');
-      if (middleContainer) {
-        this.setState({ middleWidth: middleContainer.offsetWidth });
-      }
-    }, false);
+    //
   }
   render() {
     return (
