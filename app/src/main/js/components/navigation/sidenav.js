@@ -11,10 +11,6 @@ class SideNav extends Component {
       password: '',
     };
   }
-  componentDidMount() {
-    // This causes lag when tapping top_nav. Why?
-    // this.props.fetchUser();
-  }
   getUserCard() {
     const { user, logout, login } = this.props;
     if (user.profile) {
@@ -58,7 +54,6 @@ SideNav.propTypes = {
   sideNavItems: PropTypes.array.isRequired,
   history: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  fetchUser: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,

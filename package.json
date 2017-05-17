@@ -5,7 +5,7 @@
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
     "clear": "rimraf dist",
-    "ci:all": "npm-run-all -s ci:lint ci:test ci:coverage ci:build ci:package",
+    "ci:all": "npm-run-all -s ci:lint ci:coverage ci:build ci:package",
     "ci:build": "cross-env NODE_ENV=production webpack --progress --color --profile --config ./configs/webpack.prod.config.js",
     "ci:coverage": "echo ci:coverage",
     "ci:deploy": "npm run package",
