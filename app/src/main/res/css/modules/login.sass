@@ -1,13 +1,20 @@
-// !compileOnSave
-.login_view
-  background: $selected-color
+.auth_container
+  width: 100vw
   height: 100vh
-  overflow: hidden
   display: flex
-  flex-direction: row
-  align-items: center
-  justify-content: center
-  @keyframes logo_In
+  position: absolute
+  @keyframes auth_in
+    0%
+      width: 100vw
+    25%
+      width: 100vw
+    50%
+      width: 100vw
+    75%
+      width: 100vw
+    100%
+      width: 50vw
+  @keyframes logo_in
     0%
       opacity: 0
       transform: scale(0.8)
@@ -18,47 +25,44 @@
       opacity: 1
       transform: scale(1)
     75%
-      transform: translateX(0px)
+      opacity: 1
+      transform: scale(1)
     100%
-      transform: translateX(-177.5px)
-  @keyframes signin_In
+      opacity: 1
+      transform: scale(1)
+  @keyframes login_in
     0%
       opacity: 0
     100%
       opacity: 1
-      transform: translateX(147.5px)
-  .devrantron_image
+  .auth_side
+    width: 100vw
+    height: 100vh
     position: absolute
-    animation: logo_In 2.5s forwards
+    display: flex
+    justify-content: center
+    animation: auth_in 2s forwards
     img
-      height: 50vh
-      max-height: 450px
-  .signin
-    position: absolute
+      align-self: center
+      flex: 0 0 auto
+      animation: logo_in 2s forwards
+  .auth_form
     opacity: 0
-    animation: signin_In 0.625s 1.875s forwards
-    .signup-email
-      transition: all 0.2s
-      *
-        transition: all 0.2s
-    .email-hidden
-      opacity: 0
-      height: 0px
-      margin: 0px
-      div
-        height: 0px
-        margin: 0px
-        input
-          height: 0px
-          margin: 0px
-    .input-field
+    position: absolute
+    right: 0
+    width: 50%
+    height: 100vh
+    display: flex
+    flex-direction: column
+    justify-content: center
+    animation: login_in 1s 1.875s forwards
+    input
+      width: 60%
+    button
+      width: 30%
+    p
       color: white
-      input
-        &:focus
-          border-bottom: 1px solid $devrant-color
-          box-shadow: 0 1px 0 0 $devrant-color
-    .btn
-      background: $main-color
-      padding: 0px
-      width: calc(50% - 28px)
-      margin: 0 5px
+      font-size: 0.8rem
+      margin-top: 4px
+      &:hover
+        cursor: pointer

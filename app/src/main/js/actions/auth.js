@@ -1,61 +1,71 @@
-import electron from 'electron';
-import AUTH, { STATE_STRINGS } from '../consts/auth';
-import STATE from '../consts/state';
-import {
-  ADD_TOAST,
-} from '../consts/toast';
+import rantscript from '../consts/rantscript';
+import showToast from './toast';
+import { AUTH, STATE, USER, FEED } from '../consts/types';
 
-const rantscript = electron.remote.require('rantscript');
-
-// change to disable comprssion in production
-rantscript.httpSettings.SET_COMPRESS(false);
-// only execute if we are in development
-if (process.env.NODE_ENV === 'development') {
-  rantscript.httpSettings.SET_DEBUG(true);
-}
-
-export function login(username, password) {
-  return (dispatch) => {
-    dispatch({
-      type: AUTH.LOGIN,
-      state: STATE.LOADING,
-    });
-    rantscript
-      .login(username, password)
-      .then((res) => {
-        const persisAuth = {
-          type: AUTH.LOGIN,
-          state: STATE.SUCCESS,
-          authToken: res.auth_token,
-          token: res.auth_token.key,
-          id: res.auth_token.id,
-          expire_time: res.auth_token.expire_time,
-          user_id: res.auth_token.user_id,
-        };
-        dispatch(persisAuth);
-        const auth = Object.assign({}, persisAuth);
-        delete auth.type;
-        localStorage.setItem('auth', JSON.stringify(auth));
-      })
-      .catch((err) => {
-        dispatch({ type: AUTH.LOGIN, state: STATE.FAILED, payload: err });
+const login = (username, password) => (dispatch) => {
+  dispatch({
+    type: AUTH.LOGIN,
+    state: STATE.LOADING,
+  });
+  rantscript.login(username, password)
+    .then((res) => {
+      const user = {
+        authToken: res.auth_token,
+        id: res.auth_token.id,
+      };
+      dispatch({
+        type: AUTH.LOGIN,
+        state: STATE.SUCCESS,
+        user,
+      });
+      rantscript
+      .profile(user.id)
+      .then((resUser) => {
         dispatch({
-          type: ADD_TOAST,
-          toast: {
-            text: STATE_STRINGS.WRONG_CREDENTIALS,
-            timeout: 40000,
-          },
+          type: USER.FETCH,
+          state: STATE.SUCCESS,
+          profile: resUser,
+        });
+      })
+      .catch(() => {
+        showToast(dispatch, 'User is not logged in');
+        dispatch({
+          type: USER.FETCH,
+          state: STATE.FAILED,
         });
       });
-  };
-}
-
-export function logout() {
-  localStorage.removeItem('auth');
-  return (dispatch) => {
-    dispatch({
-      type: AUTH.LOGOUT,
-      state: STATE.SUCCESS,
+    })
+    .catch(() => {
+      showToast(dispatch, 'Username or Password is wrong');
+      dispatch({
+        type: AUTH.LOGIN,
+        state: STATE.FAILED,
+      });
     });
-  };
-}
+};
+
+const noLogin = bool => (dispatch) => {
+  dispatch({
+    type: AUTH.NOLOGIN,
+    payload: bool,
+  });
+  if (!bool) {
+    dispatch({
+      type: FEED.RANTS.ACTION.RESET,
+    });
+  }
+};
+
+const logout = () => (dispatch) => {
+  dispatch({
+    type: AUTH.LOGOUT,
+  });
+  dispatch({
+    type: USER.REMOVE,
+  });
+  dispatch({
+    type: FEED.RANTS.ACTION.RESET,
+  });
+};
+
+export { login, noLogin, logout };

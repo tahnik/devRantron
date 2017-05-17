@@ -1,8 +1,11 @@
-import { CHANGE_THEME, THEME_TYPE } from '../consts/settings';
+import DEFAULT_STATES from '../consts/default_states';
 
-export default function theme(state = THEME_TYPE.DARK_THEME, action) {
-  if (action.type === CHANGE_THEME) {
-    return action.payload;
+export default (state = DEFAULT_STATES.SETTINGS, action) => {
+  switch (action.type) {
+    case 'CHANGE_BACKGROUND': {
+      return { ...state, theme: { backgroundColor: action.color } };
+    }
+    default:
+      return state;
   }
-  return state;
-}
+};

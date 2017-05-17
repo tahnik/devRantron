@@ -1,21 +1,24 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
-import { DEFAULT_STATE } from './reducers/auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //eslint-disable-line
 const middleware = applyMiddleware(thunk);
 
-let initialAuthState = JSON.parse(localStorage.getItem('auth'));
-
-if (initialAuthState === null) {
-  initialAuthState = DEFAULT_STATE;
-}
-
-const initialState = {
-  auth: initialAuthState,
+const initialState = () => {
+  const persistedState = localStorage.getItem('reduxState');
+  if (persistedState) {
+    return JSON.parse(persistedState);
+  }
+  return {};
 };
 
-export default createStore(reducers, initialState, composeEnhancers(
+const store = createStore(reducers, initialState(), composeEnhancers(
     middleware,
 ));
+
+store.subscribe(() => {
+  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+});
+
+export default store;

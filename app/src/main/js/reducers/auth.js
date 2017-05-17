@@ -1,41 +1,25 @@
-import AUTH from '../consts/auth';
-import STATE from '../consts/state';
+import DEFAULT_STATES from '../consts/default_states';
+import { AUTH, STATE } from '../consts/types';
 
-export const DEFAULT_STATE = {
-  authToken: null,
-  token: null,
-  id: null,
-  expire_time: null,
-  user_id: null,
-  state: STATE.CANCELLED,
-};
-
-export default function Auth(state = DEFAULT_STATE, action) {
+export default (state = DEFAULT_STATES.AUTH, action) => {
   switch (action.type) {
-    case AUTH.LOGIN:
+    case AUTH.LOGIN: {
       switch (action.state) {
-        case STATE.SUCCESS: // eslint-disable-line
-          const persisAuth = {
-            authToken: action.authToken,
-            token: action.token,
-            id: action.id,
-            expire_time: action.expire_time,
-            user_id: action.user_id,
-            state: action.state,
-          };
-          return persisAuth;
+        case STATE.SUCCESS:
+          return { ...state, user: action.user, state: STATE.SUCCESS };
         case STATE.FAILED:
-          return { ...state, token: null, state: action.state };
+          return { ...state, user: null, state: STATE.FAILED };
         case STATE.LOADING:
-          return { ...state, state: action.state };
-        case STATE.CANCELLED:
-          return { ...state, token: null, state: action.state };
+          return { ...state, user: null, state: STATE.LOADING };
         default:
-          return { ...state, token: null };
+          return state;
       }
+    }
+    case AUTH.NOLOGIN:
+      return { ...state, noLogin: action.payload };
     case AUTH.LOGOUT:
-      return { token: null, state: STATE.CANCELLED };
+      return { ...state, user: null, state: STATE.INITIAL };
     default:
       return state;
   }
-}
+};

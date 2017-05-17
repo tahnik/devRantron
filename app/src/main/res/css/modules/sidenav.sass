@@ -1,0 +1,44 @@
+// !compileOnSave
+
+.sidenav_container
+  width: $sidenav_width
+  height: 100vh
+  position: fixed
+  left: 0
+  top: 0
+  bottom: 0
+  // This line prevents re-renders of fixed positioned element
+  backface-visibility: hidden
+  display: flex
+  flex-direction: column
+  background-color: #40415A
+  .navs
+    flex: 7
+    .devRant_logo
+      padding: 0rem
+      .devRant_placeholder
+        padding: 1rem
+        display: flex
+        flex-direction: column
+        align-items: center
+        text-align: center
+        img
+          width: 60%
+          margin-bottom: 1rem
+          display: inline-block
+        button
+          margin: 0 auto
+    .item
+      i
+        margin-right: 0.5rem
+      padding: 0.85rem 0.7rem
+      background-color: #40415A
+      color: white
+      transition: all 0.1s cubic-bezier(0.24, 0, 0.18, 1.05)
+      cursor: pointer
+      &:hover
+        background-color: #54556E
+    .item.active
+      background-color: #54556E
+  .profile
+    flex: 3

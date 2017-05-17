@@ -1,0 +1,29 @@
+.bottom_bar_container
+  font-size: 1.5rem
+  display: flex
+  background-color: #40415A
+  .score
+    flex: 2
+    font-size: $font-size
+    display: flex
+    align-items: center
+    justify-content: center
+  .padding
+    flex: 7
+  .comments
+    padding: 0 0.5rem
+    display: flex
+    align-items: center
+    justify-content: center
+    span
+      font-size: $font-size
+      padding-left: 0.5rem
+  .upvote, .downvote, .comments
+    flex: 1
+    &:hover
+      background-color: #D55161
+      cursor: pointer
+  div
+    text-align: center
+    transition: all 0.2s ease
+    padding-bottom: 0.2rem

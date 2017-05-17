@@ -1,20 +1,16 @@
 import { combineReducers } from 'redux';
-import theme from './settings';
-import rants from './rants';
-import rant from './rant';
 import auth from './auth';
-import topNav from './nav';
-import postCommentState from './comment_post';
+import settings from './settings';
 import toast from './toast';
+import rants from './rants';
+import user from './user';
 
-const rootReducer = combineReducers({
-  theme,
-  rants,
-  rant,
+const devRantron = combineReducers({
   auth,
-  topNav,
-  postCommentState,
+  settings,
   toast,
+  rants,
+  user,
 });
 
-export default rootReducer;
+export default devRantron;
