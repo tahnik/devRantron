@@ -41,7 +41,7 @@ class Rants extends Component {
           comments={item.num_comments}
           isUpvoted={item.vote_state}
           vote={vote}
-          rantID={item.id}
+          id={item.id}
         />
       </div>
     );

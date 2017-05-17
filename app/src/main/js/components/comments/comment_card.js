@@ -32,7 +32,7 @@ const CommentCard = (props) => {
         isUpvoted={item.vote_state}
         vote={vote}
         type={ITEM.COMMENT.NAME}
-        rantID={item.id}
+        id={item.id}
       />
     </div>
   );

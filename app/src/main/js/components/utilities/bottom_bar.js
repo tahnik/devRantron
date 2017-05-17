@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ITEM } from '../../consts/types';
 
 class BottomBar extends Component {
   constructor() {
@@ -14,16 +15,16 @@ class BottomBar extends Component {
     this.setState({ isUpvoted, score });
   }
   vote(voteState) {
-    const { vote, rantID, type } = this.props;
+    const { vote, id, type } = this.props;
     if (type) {
-      vote(voteState, rantID, type);
+      vote(voteState, id, type);
     } else {
-      vote(voteState, rantID);
+      vote(voteState, id);
     }
     this.setState({ isUpvoted: voteState, score: this.state.score += 1 });
   }
   render() {
-    const { comments } = this.props;
+    const { comments, type } = this.props;
     return (
       <div className="bottom_bar_container" >
         <div
@@ -49,7 +50,7 @@ class BottomBar extends Component {
         </div>
         <div className="padding" />
         {
-          !comments ? null :
+          type === ITEM.COMMENT.NAME ? null :
           <div className="comments" >
             <i className="ion-chatbubbles" />
             <span>{ comments }</span>
@@ -66,7 +67,7 @@ BottomBar.propTypes = {
   vote: PropTypes.func.isRequired,
   comments: PropTypes.number, //eslint-disable-line
   isUpvoted: PropTypes.number.isRequired,
-  rantID: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   type: PropTypes.string, //eslint-disable-line
 };
 
