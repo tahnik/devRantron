@@ -40,6 +40,8 @@ export default {
   },
   RANTS: {
     state: STATE.INITIAL,
+    page: 0,
+    items: [],
   },
   ITEM: [
 

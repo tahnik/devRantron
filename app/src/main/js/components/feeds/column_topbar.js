@@ -12,10 +12,19 @@ class ColumnTopBar extends Component {
     const { filters } = this.props;
     const primaryFilters = filters.PRIMARY;
     const firstIndex = Object.keys(primaryFilters)[0];
-    const firstItem = primaryFilters[firstIndex];
-    this.setState({ active: firstItem });
+    const sort = primaryFilters[firstIndex];
+    this.setState({ active: sort });
 
-    this.props.fetch(firstItem);
+    this.props.fetch(sort);
+  }
+  componentDidMount() {
+    const { divID, fetch } = this.props;
+    const element = document.getElementById(divID);
+    element.addEventListener('scroll', () => {
+      if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+        fetch();
+      }
+    });
   }
   handleClick(sort) {
     this.setState({ active: sort });
@@ -44,6 +53,7 @@ class ColumnTopBar extends Component {
 ColumnTopBar.propTypes = {
   filters: PropTypes.object.isRequired,
   fetch: PropTypes.func.isRequired,
+  divID: PropTypes.string.isRequired,
 };
 
 export default ColumnTopBar;

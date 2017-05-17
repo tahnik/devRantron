@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RantCard from './rant_card';
 import Loading from '../utilities/loading';
-import { rantscriptBrowser } from '../../consts/rantscript';
+import rantscript from '../../consts/rantscript';
 import Comments from '../comments/comments';
 import PostComment from '../comments/comment_post';
 
@@ -29,7 +29,7 @@ class Rant extends Component {
     if (auth.user) {
       authToken = auth.user.authToken;
     }
-    rantscriptBrowser
+    rantscript
     .rant(id, authToken)
     .then((res) => {
       const rant = res;

@@ -5,13 +5,19 @@ export default (state = DEFAULT_STATES.RANTS, action) => {
   switch (action.type) {
     case FEED.RANTS.ACTION.FETCH:
       switch (action.state) {
-        case STATE.SUCCESS:
+        case STATE.SUCCESS: {
           return {
             ...state,
             type: FEED.RANTS.NAME,
             state: STATE.SUCCESS,
-            items: action.items,
+            items: [
+              ...action.items,
+              ...state.items,
+            ],
+            page: action.page + 1,
+            sort: action.sort,
           };
+        }
         case STATE.FAILED:
           return {
             ...state,
@@ -23,6 +29,7 @@ export default (state = DEFAULT_STATES.RANTS, action) => {
             ...state,
             type: FEED.RANTS.NAME,
             state: STATE.LOADING,
+            items: action.page !== 0 ? state.items : [],
           };
         case STATE.INITIAL:
           return {

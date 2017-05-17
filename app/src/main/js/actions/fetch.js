@@ -1,4 +1,4 @@
-import { rantscriptBrowser } from '../consts/rantscript';
+import rantscript from '../consts/rantscript';
 import { FEED, STATE } from '../consts/types';
 import showToast from './toast';
 
@@ -6,21 +6,30 @@ const AMOUNT = 25;
 
 const fetchRants = sort => (dispatch, getState) => {
   const { user } = getState().auth;
+  let page = 0;
+  let oldSort = '';
+  if (getState().rants) {
+    page = oldSort !== sort ? 0 : getState().rants.page;
+    oldSort = getState().rants.sort;
+  }
   dispatch({
     type: FEED.RANTS.ACTION.FETCH,
     state: STATE.LOADING,
+    page,
   });
   let authToken = null;
   if (user) {
     authToken = user.authToken;
   }
-  rantscriptBrowser
-      .rants(sort, AMOUNT, 0, authToken)
+  rantscript
+      .rants(sort, AMOUNT, page, authToken)
       .then((res) => {
         dispatch({
           type: FEED.RANTS.ACTION.FETCH,
           state: STATE.SUCCESS,
           items: res,
+          page,
+          sort,
         });
       })
       .catch(() => {
