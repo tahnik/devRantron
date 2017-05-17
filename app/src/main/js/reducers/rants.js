@@ -11,8 +11,8 @@ export default (state = DEFAULT_STATES.RANTS, action) => {
             type: FEED.RANTS.NAME,
             state: STATE.SUCCESS,
             items: [
-              ...action.items,
               ...state.items,
+              ...action.items,
             ],
             page: action.page + 1,
             sort: action.sort,

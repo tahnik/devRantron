@@ -9,8 +9,8 @@ const fetchRants = sort => (dispatch, getState) => {
   let page = 0;
   let oldSort = '';
   if (getState().rants) {
-    page = oldSort !== sort ? 0 : getState().rants.page;
     oldSort = getState().rants.sort;
+    page = oldSort !== sort ? 0 : getState().rants.page;
   }
   dispatch({
     type: FEED.RANTS.ACTION.FETCH,
@@ -22,7 +22,7 @@ const fetchRants = sort => (dispatch, getState) => {
     authToken = user.authToken;
   }
   rantscript
-      .rants(sort, AMOUNT, page, authToken)
+      .rants(sort, AMOUNT, AMOUNT * page, authToken)
       .then((res) => {
         dispatch({
           type: FEED.RANTS.ACTION.FETCH,

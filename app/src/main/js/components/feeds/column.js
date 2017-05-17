@@ -25,10 +25,16 @@ class Column extends Component {
         className="column"
         style={{ width: `${theme.column.width}rem` }}
       >
-        <ColumnTopBar filters={filters} fetch={fetch} divID={divID} />
+        <ColumnTopBar
+          filters={filters}
+          fetch={fetch}
+          divID={divID}
+          state={feed.state}
+        />
         <div className="items_container" id={divID}>
           {
-            feed.state === STATE.LOADING || !feed.items ?
+            feed.state === STATE.LOADING &&
+            feed.items.length === 0 ?
               <Loading
                 backgroundColor={theme.backgroundColor}
               /> :

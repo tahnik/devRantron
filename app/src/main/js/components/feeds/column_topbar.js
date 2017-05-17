@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { STATE } from '../../consts/types';
 
 class ColumnTopBar extends Component {
   constructor() {
@@ -18,13 +19,24 @@ class ColumnTopBar extends Component {
     this.props.fetch(sort);
   }
   componentDidMount() {
-    const { divID, fetch } = this.props;
+    const { divID } = this.props;
     const element = document.getElementById(divID);
-    element.addEventListener('scroll', () => {
-      if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-        fetch();
-      }
-    });
+    element.addEventListener('scroll', () => this.handleScroll());
+  }
+  componentWillUnmount() {
+    const { divID } = this.props;
+    const element = document.getElementById(divID);
+    element.removeEventListener('scroll', () => this.handleScroll());
+  }
+  handleScroll() {
+    const { divID, fetch, state } = this.props;
+    const element = document.getElementById(divID);
+    if (
+      element.scrollHeight - element.scrollTop === element.clientHeight
+      && state !== STATE.LOADING
+    ) {
+      fetch(this.state.active);
+    }
   }
   handleClick(sort) {
     this.setState({ active: sort });
@@ -54,6 +66,7 @@ ColumnTopBar.propTypes = {
   filters: PropTypes.object.isRequired,
   fetch: PropTypes.func.isRequired,
   divID: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
 };
 
 export default ColumnTopBar;
