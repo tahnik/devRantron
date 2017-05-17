@@ -7,7 +7,7 @@ import Toast from '../containers/utilities/toast/toast';
 
 const AuthRoutes = () => (
   <div key="AuthRoutes" >
-    <Route exact path="/" component={Auth} />
+    <Route path="/" component={Auth} />
     <Toast />
   </div>
 );

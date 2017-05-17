@@ -30,6 +30,7 @@ export default (state = DEFAULT_STATES.RANTS, action) => {
             type: FEED.RANTS.NAME,
             state: STATE.LOADING,
             items: action.page !== 0 ? state.items : [],
+            page: action.page !== 0 ? state.page : 0,
           };
         case STATE.INITIAL:
           return {
@@ -40,6 +41,8 @@ export default (state = DEFAULT_STATES.RANTS, action) => {
         default:
           return state;
       }
+    case FEED.RANTS.ACTION.RESET:
+      return DEFAULT_STATES.RANTS;
     default:
       return state;
   }

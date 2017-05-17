@@ -1,6 +1,7 @@
 export const AUTH = {
   LOGIN: 'AUTH_LOGIN',
   NOLOGIN: 'AUTH_NOLOGIN',
+  LOGOUT: 'AUTH_LOGOUT',
 };
 export const STATE = {
   INITIAL: 'STATE_INITIAL',
@@ -15,6 +16,7 @@ export const TOAST = {
 
 export const USER = {
   FETCH: 'USER_FETCH',
+  REMOVE: 'USER_REMOVE',
 };
 
 export const ITEM = {
@@ -42,6 +44,7 @@ export const FEED = {
   RANTS: {
     ACTION: {
       FETCH: 'RANTS_FETCH',
+      RESET: 'RANTS_RESET',
     },
     NAME: 'RANTS',
     FILTERS: {

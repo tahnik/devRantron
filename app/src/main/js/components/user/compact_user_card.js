@@ -15,12 +15,16 @@ const CompactUserCard = (props) => {
     >
       <img className="user_image" src={imgsrc} style={{ background: `#${profile.avatar.b}` }} alt="avatar" />
       <div className="user_bg_tint" style={{ background: `#${profile.avatar.b}` }} />
+      <div className="logout" onClick={() => props.logout()}>
+        <i className="ion-log-out" />
+      </div>
     </div>
   );
 };
 
 CompactUserCard.propTypes = {
   profile: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default CompactUserCard;

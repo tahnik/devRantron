@@ -14,6 +14,8 @@ export default (state = DEFAULT_STATES.USER, action) => {
         default:
           return state;
       }
+    case USER.REMOVE:
+      return { state: STATE.INITIAL, profile: null };
     default:
       return state;
   }

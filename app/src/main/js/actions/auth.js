@@ -1,6 +1,6 @@
 import rantscript from '../consts/rantscript';
 import showToast from './toast';
-import { AUTH, STATE } from '../consts/types';
+import { AUTH, STATE, USER, FEED } from '../consts/types';
 
 const login = (username, password) => (dispatch) => {
   dispatch({
@@ -33,6 +33,23 @@ const noLogin = bool => (dispatch) => {
     type: AUTH.NOLOGIN,
     payload: bool,
   });
+  if (!bool) {
+    dispatch({
+      type: FEED.RANTS.ACTION.RESET,
+    });
+  }
 };
 
-export { login, noLogin };
+const logout = () => (dispatch) => {
+  dispatch({
+    type: AUTH.LOGOUT,
+  });
+  dispatch({
+    type: USER.REMOVE,
+  });
+  dispatch({
+    type: FEED.RANTS.ACTION.RESET,
+  });
+};
+
+export { login, noLogin, logout };

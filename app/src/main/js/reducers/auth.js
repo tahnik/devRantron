@@ -17,6 +17,8 @@ export default (state = DEFAULT_STATES.AUTH, action) => {
     }
     case AUTH.NOLOGIN:
       return { ...state, noLogin: action.payload };
+    case AUTH.LOGOUT:
+      return { ...state, user: null, state: STATE.INITIAL };
     default:
       return state;
   }
