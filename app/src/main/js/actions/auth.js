@@ -18,22 +18,6 @@ const login = (username, password) => (dispatch) => {
         state: STATE.SUCCESS,
         user,
       });
-      rantscript
-      .profile(user.id)
-      .then((resUser) => {
-        dispatch({
-          type: USER.FETCH,
-          state: STATE.SUCCESS,
-          profile: resUser,
-        });
-      })
-      .catch(() => {
-        showToast(dispatch, 'User is not logged in');
-        dispatch({
-          type: USER.FETCH,
-          state: STATE.FAILED,
-        });
-      });
     })
     .catch(() => {
       showToast(dispatch, 'Username or Password is wrong');

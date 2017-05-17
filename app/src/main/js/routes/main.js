@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import SideNav from '../containers/navigation/sidenav';
 import Notifs from '../containers/notifs/notifs';
 import Rants from '../containers/feeds/rants';
+import Stories from '../containers/feeds/stories';
 import Modal from '../containers/modal/modal';
 
 class MainRoutes extends Component {
@@ -36,6 +37,14 @@ class MainRoutes extends Component {
             path="/rants"
             render={() => (
               <Rants
+                open={(type, id) => this.openModal(type, id)}
+              />
+            )}
+          />
+          <Route
+            path="/stories"
+            render={() => (
+              <Stories
                 open={(type, id) => this.openModal(type, id)}
               />
             )}

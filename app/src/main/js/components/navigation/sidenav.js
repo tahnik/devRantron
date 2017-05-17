@@ -11,6 +11,9 @@ class SideNav extends Component {
       password: '',
     };
   }
+  componentWillMount() {
+    this.props.fetchUser();
+  }
   getUserCard() {
     const { user, logout, login } = this.props;
     if (user.profile) {
@@ -57,6 +60,7 @@ SideNav.propTypes = {
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
+  fetchUser: PropTypes.func.isRequired,
 };
 
 export default SideNav;

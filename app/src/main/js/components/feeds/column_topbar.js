@@ -6,17 +6,26 @@ class ColumnTopBar extends Component {
   constructor() {
     super();
     this.state = {
-      active: null,
+      primary: null,
+      secondary: null,
     };
   }
   componentWillMount() {
     const { filters } = this.props;
-    const primaryFilters = filters.PRIMARY;
-    const firstIndex = Object.keys(primaryFilters)[0];
-    const sort = primaryFilters[firstIndex];
-    this.setState({ active: sort });
 
-    this.props.fetch(sort);
+    const primaryFilters = filters[filters.PRIMARY];
+
+    const secondaryFilters = filters[filters.SECONDARY];
+
+    const firstPriIndex = Object.keys(primaryFilters)[0];
+    const firstPri = primaryFilters[firstPriIndex];
+
+    const firstSecIndex = Object.keys(secondaryFilters)[0];
+    const firstSec = secondaryFilters[firstSecIndex];
+
+    this.setState({ primary: firstPri, secondary: firstSec });
+
+    this.props.fetch(firstPri, firstSec);
   }
   componentDidMount() {
     const { divID } = this.props;
@@ -35,25 +44,27 @@ class ColumnTopBar extends Component {
       element.scrollHeight - element.scrollTop === element.clientHeight
       && state !== STATE.LOADING
     ) {
-      fetch(this.state.active);
+      fetch(this.state.primary, this.state.secondary);
     }
   }
-  handleClick(sort) {
-    this.setState({ active: sort });
-    this.props.fetch(sort);
+  handlePri(primary) {
+    this.setState({ primary });
+    this.props.fetch(primary, this.state.secondary);
   }
   render() {
     const { filters } = this.props;
-    const primaryFilters = filters.PRIMARY;
+    const primaryFilters = filters[filters.PRIMARY];
+
+    // const secondaryFilters = filters[filters.SECONDARY];
     return (
       <div className="column_topbar">
         { Object.keys(primaryFilters).map((key) => {
-          const isActive = this.state.active === primaryFilters[key] ? 'active' : null;
+          const isActive = this.state.primary === primaryFilters[key] ? 'active' : null;
           return (
             <span
               key={key}
               className={`${isActive}`}
-              onClick={() => this.handleClick(primaryFilters[key])}
+              onClick={() => this.handlePri(primaryFilters[key])}
             >{primaryFilters[key]}</span>
           );
         })}
