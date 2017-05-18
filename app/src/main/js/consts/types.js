@@ -42,10 +42,6 @@ export const ITEM = {
 
 export const FEED = {
   RANTS: {
-    ACTION: {
-      FETCH: 'RANTS_FETCH',
-      RESET: 'RANTS_RESET',
-    },
     NAME: 'RANTS',
     FILTERS: {
       RANGE: {
@@ -69,10 +65,6 @@ export const FEED = {
     },
   },
   STORIES: {
-    ACTION: {
-      FETCH: 'STORIES_FETCH',
-      RESET: 'STORIES_RESET',
-    },
     NAME: 'STORIES',
     FILTERS: {
       RANGE: {
@@ -95,17 +87,8 @@ export const FEED = {
       },
     },
   },
-  WEEKLY: {
-    ACTION: {
-      FETCH: 'WEEKLY_FETCH',
-    },
-    NAME: 'WEEKLY',
-    FILTERS: {
-      PRIMARY: {
-        ALGO: 'algo',
-        TOP: 'top',
-        RECENT: 'recent',
-      },
-    },
+  ACTION: {
+    FETCH: 'FEED_FETCH',
+    RESET: 'FEED_RESET',
   },
 };
