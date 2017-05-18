@@ -1,3 +1,6 @@
+// !compileOnSave
+body
+  overflow: hidden
 .auth_container
   width: 100vw
   height: 100vh
@@ -14,7 +17,7 @@
       width: 100vw
     100%
       width: 50vw
-  @keyframes logo_in
+  @keyframes logo_In
     0%
       opacity: 0
       transform: scale(0.8)
@@ -25,41 +28,44 @@
       opacity: 1
       transform: scale(1)
     75%
-      opacity: 1
-      transform: scale(1)
+      transform: translateX(0px)
     100%
-      opacity: 1
-      transform: scale(1)
-  @keyframes login_in
+      transform: translateX(-177.5px)
+  @keyframes login_In
     0%
       opacity: 0
     100%
       opacity: 1
-  .auth_side
-    width: 100vw
+      transform: translateX(147.5px)
+  .auth_image
     height: 100vh
+    width: 100vw
     position: absolute
     display: flex
     justify-content: center
-    animation: auth_in 2s forwards
+    animation: logo_In 2.5s forwards
     img
       align-self: center
       flex: 0 0 auto
-      animation: logo_in 2s forwards
   .auth_form
     opacity: 0
     position: absolute
     right: 0
-    width: 50%
+    width: 100vw
     height: 100vh
     display: flex
     flex-direction: column
     justify-content: center
-    animation: login_in 1s 1.875s forwards
+    align-items: center
+    animation: login_In 0.625s 1.875s forwards
     input
-      width: 60%
+      width: 18rem
+      &:focus
+        border-bottom-color: #e6596b
     button
-      width: 30%
+      width: 18rem
+    #notnow
+      height: 1.75rem
     p
       color: white
       font-size: 0.8rem
