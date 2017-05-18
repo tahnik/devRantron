@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  feed: state.rants,
+  feed: state.items,
   theme: state.settings.theme,
   filters: FEED.RANTS.FILTERS,
 });

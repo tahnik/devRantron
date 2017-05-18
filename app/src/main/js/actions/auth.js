@@ -35,7 +35,7 @@ const noLogin = bool => (dispatch) => {
   });
   if (!bool) {
     dispatch({
-      type: FEED.RANTS.ACTION.RESET,
+      type: FEED.ACTION.RESET,
     });
   }
 };
@@ -48,7 +48,7 @@ const logout = () => (dispatch) => {
     type: USER.REMOVE,
   });
   dispatch({
-    type: FEED.RANTS.ACTION.RESET,
+    type: FEED.ACTION.RESET,
   });
 };
 

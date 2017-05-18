@@ -1,14 +1,14 @@
 import DEFAULT_STATES from '../consts/default_states';
 import { FEED, STATE } from '../consts/types';
 
-export default (state = DEFAULT_STATES.STORIES, action) => {
+export default (state = DEFAULT_STATES.ITEMS, action) => {
   switch (action.type) {
-    case FEED.STORIES.ACTION.FETCH:
+    case FEED.ACTION.FETCH:
       switch (action.state) {
         case STATE.SUCCESS: {
           return {
             ...state,
-            type: FEED.STORIES.NAME,
+            type: action.itemType,
             state: STATE.SUCCESS,
             items: [
               ...state.items,
@@ -22,13 +22,13 @@ export default (state = DEFAULT_STATES.STORIES, action) => {
         case STATE.FAILED:
           return {
             ...state,
-            type: FEED.STORIES.NAME,
+            type: action.itemType,
             state: STATE.FAILED,
           };
         case STATE.LOADING:
           return {
             ...state,
-            type: FEED.STORIES.NAME,
+            type: action.itemType,
             state: STATE.LOADING,
             items: action.page !== 0 ? state.items : [],
             page: action.page !== 0 ? state.page : 0,
@@ -36,14 +36,14 @@ export default (state = DEFAULT_STATES.STORIES, action) => {
         case STATE.INITIAL:
           return {
             ...state,
-            type: FEED.STORIES.NAME,
+            type: action.itemType,
             state: STATE.INITIAL,
           };
         default:
           return state;
       }
-    case FEED.STORIES.ACTION.RESET:
-      return DEFAULT_STATES.STORIES;
+    case FEED.ACTION.RESET:
+      return DEFAULT_STATES.ITEMS;
     default:
       return state;
   }

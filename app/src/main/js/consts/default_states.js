@@ -48,7 +48,7 @@ export default {
     page: 0,
     items: [],
   },
-  STORIES: {
+  ITEMS: {
     state: STATE.INITIAL,
     page: 0,
     items: [],
