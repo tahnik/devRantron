@@ -4,7 +4,7 @@ import UserBadge from '../user/user_badge';
 import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';
 
-class Rants extends Component {
+class ItemCard extends Component {
   open() {
     const { item, open, modal } = this.props;
     if (!modal) {
@@ -22,10 +22,10 @@ class Rants extends Component {
     const image = item.attached_image;
     return (
       <div
-        className={`rant_card ${modal ? null : 'shadow'}`}
+        className={`item_card ${modal ? null : 'shadow'}`}
         style={{
-          backgroundColor: theme.rant_card.backgroundColor,
-          color: theme.rant_card.color,
+          backgroundColor: theme.item_card.backgroundColor,
+          color: theme.item_card.color,
         }}
       >
         <div
@@ -48,7 +48,7 @@ class Rants extends Component {
   }
 }
 
-Rants.propTypes = {
+ItemCard.propTypes = {
   item: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
@@ -56,4 +56,4 @@ Rants.propTypes = {
   modal: PropTypes.bool, //eslint-disable-line
 };
 
-export default Rants;
+export default ItemCard;

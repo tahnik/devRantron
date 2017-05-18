@@ -44,6 +44,46 @@ const fetchRants = sort => (dispatch, getState) => {
       });
 };
 
+const fetchCollabs = sort => (dispatch, getState) => {
+  const { user } = getState().auth;
+  let page = 0;
+  let oldSort = '';
+  if (getState().items) {
+    oldSort = getState().items.sort;
+    page = oldSort !== sort ? 0 : getState().items.page;
+  }
+  dispatch({
+    type: FEED.ACTION.FETCH,
+    state: STATE.LOADING,
+    itemType: FEED.COLLABS.NAME,
+    page,
+  });
+  let authToken = null;
+  if (user) {
+    authToken = user.authToken;
+  }
+  rantscript
+      .collabs(sort, AMOUNT, AMOUNT * page, authToken)
+      .then((res) => {
+        dispatch({
+          type: FEED.ACTION.FETCH,
+          state: STATE.SUCCESS,
+          itemType: FEED.COLLABS.NAME,
+          items: res,
+          page,
+          sort,
+        });
+      })
+      .catch(() => {
+        showToast(dispatch, 'Username or Password is wrong');
+        dispatch({
+          type: FEED.ACTION.FETCH,
+          itemType: FEED.COLLABS.NAME,
+          state: STATE.FAILED,
+        });
+      });
+};
+
 const fetchStories = (sort, range) => (dispatch, getState) => {
   const { user } = getState().auth;
   let page = 0;
@@ -93,6 +133,8 @@ const fetch = (sort, type, range = null) => {
       return fetchRants(sort);
     case FEED.STORIES.NAME:
       return fetchStories(sort, range);
+    case FEED.COLLABS.NAME:
+      return fetchCollabs(sort);
     default:
       return fetchRants();
   }

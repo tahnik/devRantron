@@ -8,8 +8,8 @@ const mapDispatchToProps = dispatch => ({
   fetch: (range, sort, type = FEED.STORIES.NAME) => {
     dispatch(fetch(sort, type, range));
   },
-  vote: (voteState, rantID, type = ITEM.RANT.NAME) => {
-    dispatch(vote(voteState, rantID, type));
+  vote: (voteState, id, type = ITEM.RANT.NAME) => {
+    dispatch(vote(voteState, id, type));
   },
 });
 

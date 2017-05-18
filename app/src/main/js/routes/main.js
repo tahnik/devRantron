@@ -8,6 +8,7 @@ import SideNav from '../containers/navigation/sidenav';
 import Notifs from '../containers/notifs/notifs';
 import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
+import Collabs from '../containers/feeds/collabs';
 import Modal from '../containers/modal/modal';
 
 class MainRoutes extends Component {
@@ -45,6 +46,14 @@ class MainRoutes extends Component {
             path="/stories"
             render={() => (
               <Stories
+                open={(type, id) => this.openModal(type, id)}
+              />
+            )}
+          />
+          <Route
+            path="/collabs"
+            render={() => (
+              <Collabs
                 open={(type, id) => this.openModal(type, id)}
               />
             )}

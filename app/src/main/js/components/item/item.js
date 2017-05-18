@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import RantCard from './rant_card';
+import ItemCard from './item_card';
 import Loading from '../utilities/loading';
 import rantscript from '../../consts/rantscript';
 import Comments from '../comments/comments';
 import PostComment from '../comments/comment_post';
 
-class Rant extends Component {
+class Item extends Component {
   constructor() {
     super();
     this.state = {
       mainWidth: 0,
-      rant: null,
+      item: null,
     };
   }
   componentWillMount() {
-    this.fetchRant();
+    this.fetchitem();
   }
-  fetchRant() {
+  fetchitem() {
     const { id, auth } = this.props;
     let authToken = null;
     if (auth.user) {
@@ -26,48 +26,48 @@ class Rant extends Component {
     rantscript
     .rant(id, authToken)
     .then((res) => {
-      const rant = res;
-      this.setState({ rant });
+      const item = res;
+      this.setState({ item });
     })
     .catch(() => {
     });
   }
   renderSingleColumn() {
-    const { rant } = this.state;
+    const { item } = this.state;
     const { theme, vote, auth } = this.props;
     return (
-      <div className="rant_compact_column">
-        <RantCard
+      <div className="item_compact_column">
+        <ItemCard
           modal
-          item={rant.rant}
-          key={rant.rant.id}
+          item={item.rant}
+          key={item.rant.id}
           theme={theme}
           vote={vote}
         />
-        <Comments comments={rant.comments} theme={theme} vote={vote} />
+        <Comments comments={item.comments} theme={theme} vote={vote} />
         <PostComment
           theme={theme}
           auth={auth}
-          id={rant.rant.id}
-          fetch={() => this.fetchRant()}
+          id={item.rant.id}
+          fetch={() => this.fetchitem()}
         />
       </div>
     );
   }
   render() {
     return (
-      <div className="rant_container modal">
-        { this.state.rant ? this.renderSingleColumn() : <Loading /> }
+      <div className="item_container modal">
+        { this.state.item ? this.renderSingleColumn() : <Loading /> }
       </div>
     );
   }
 }
 
-Rant.propTypes = {
+Item.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
 };
 
-export default Rant;
+export default Item;

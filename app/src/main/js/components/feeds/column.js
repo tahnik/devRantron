@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import RantCard from '../rant/rant_card';
+import ItemCard from '../item/item_card';
 import Loading from '../utilities/loading';
 import ColumnTopBar from './column_topbar';
 import { STATE } from '../../consts/types';
@@ -39,7 +39,7 @@ class Column extends Component {
                 backgroundColor={theme.backgroundColor}
               /> :
               feed.items.map(item => (
-                <RantCard
+                <ItemCard
                   fetch={fetch}
                   item={item}
                   open={(type, id) => open(type, id)}
