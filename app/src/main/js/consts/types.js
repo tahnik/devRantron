@@ -48,10 +48,50 @@ export const FEED = {
     },
     NAME: 'RANTS',
     FILTERS: {
-      PRIMARY: {
+      RANGE: {
+        DAY: 'day',
+        WEEK: 'week',
+        MONTH: 'month',
+        ALL: 'all',
+      },
+      SORT: {
         ALGO: 'algo',
         TOP: 'top',
         RECENT: 'recent',
+      },
+      PRIMARY: 'SORT',
+      SECONDARY: 'RANGE',
+      HAS_SECONDARY: {
+        TOP: true,
+        ALGO: false,
+        RECENT: false,
+      },
+    },
+  },
+  STORIES: {
+    ACTION: {
+      FETCH: 'STORIES_FETCH',
+      RESET: 'STORIES_RESET',
+    },
+    NAME: 'STORIES',
+    FILTERS: {
+      RANGE: {
+        DAY: 'day',
+        WEEK: 'week',
+        MONTH: 'month',
+        ALL: 'all',
+      },
+      SORT: {
+        TOP: 'top',
+        RECENT: 'recent',
+      },
+      PRIMARY: 'RANGE',
+      SECONDARY: 'SORT',
+      HAS_SECONDARY: {
+        DAY: true,
+        WEEK: true,
+        MONTH: true,
+        ALL: true,
       },
     },
   },
@@ -66,11 +106,6 @@ export const FEED = {
         TOP: 'top',
         RECENT: 'recent',
       },
-      SECONDARY: [
-        {
-          DAY: 'WEEKLY_DAY',
-        },
-      ],
     },
   },
 };

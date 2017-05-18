@@ -12,18 +12,13 @@ class SideNav extends Component {
     };
   }
   getUserCard() {
-    const { user, logout, login } = this.props;
-    if (user.profile) {
-      return <CompactUserCard profile={user} logout={logout} />;
-    }
-    return (
-      <div className="devRant_placeholder">
-        <div className="logo">
-          <img alt="" src="../../../res/images/devrant_sidebar.png" />
-        </div>
-        <button onClick={() => login()}>Login</button>
-      </div>
-    );
+    const { user, logout, login, fetchUser } = this.props;
+    return (<CompactUserCard
+      user={user}
+      login={login}
+      logout={logout}
+      fetchUser={fetchUser}
+    />);
   }
   render() {
     const { sideNavItems, history, location } = this.props;
@@ -57,6 +52,7 @@ SideNav.propTypes = {
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
+  fetchUser: PropTypes.func.isRequired,
 };
 
 export default SideNav;

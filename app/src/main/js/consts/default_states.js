@@ -43,6 +43,16 @@ export default {
     page: 0,
     items: [],
   },
+  WEEKLY: {
+    state: STATE.INITIAL,
+    page: 0,
+    items: [],
+  },
+  STORIES: {
+    state: STATE.INITIAL,
+    page: 0,
+    items: [],
+  },
   ITEM: [
 
   ],

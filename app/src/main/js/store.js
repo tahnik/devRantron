@@ -18,7 +18,13 @@ const store = createStore(reducers, initialState(), composeEnhancers(
 ));
 
 store.subscribe(() => {
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+  const state = store.getState();
+  const persistedState = {
+    auth: state.auth,
+    settings: state.settings,
+    user: state.user,
+  };
+  localStorage.setItem('reduxState', JSON.stringify(persistedState));
 });
 
 export default store;
