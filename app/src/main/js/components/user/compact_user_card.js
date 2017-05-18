@@ -25,7 +25,7 @@ class CompactUserCard extends Component {
     const profile = user.profile;
     let imgsrc = '';
     if (profile.avatar.i) {
-      imgsrc += `https://avatars.devrant.io/${profile.avatar.i}`.toString();
+      imgsrc += `https://avatars.devrant.io/${profile.avatar.i.replace("c-1", "c-2")}`.toString();
     }
 
     return (
