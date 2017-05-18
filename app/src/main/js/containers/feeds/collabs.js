@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   feed: state.items,
   theme: state.settings.theme,
   filters: FEED.COLLABS.FILTERS,
+  itemType: ITEM.COLLAB.NAME,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Column);

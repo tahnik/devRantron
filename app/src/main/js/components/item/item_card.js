@@ -6,13 +6,57 @@ import { ITEM } from '../../consts/types';
 
 class ItemCard extends Component {
   open() {
-    const { item, open, modal } = this.props;
+    const { item, open, modal, itemType } = this.props;
     if (!modal) {
-      open(ITEM.RANT.NAME, item.id);
+      open(itemType, item.id);
     }
   }
+  renderCollab() {
+    const { item, itemType } = this.props;
+    if (itemType !== ITEM.COLLAB.NAME) {
+      return null;
+    }
+    return (
+      <div className="item_card_collab" >
+        <span className="title">Project Type</span>
+        <span className="body">{item.c_type_long}</span>
+        {
+          item.c_description ?
+            <div>
+              <span className="title">Description</span>
+              <span className="body">{item.c_description}</span>
+            </div>
+            : null
+        }
+        {
+          item.c_tech_stack ?
+            <div>
+              <span className="title">Tech Stack</span>
+              <span className="body">{item.c_tech_stack}</span>
+            </div>
+            : null
+        }
+        {
+          item.c_team_size ?
+            <div>
+              <span className="title">Current Team Size</span>
+              <span className="body">{item.c_team_size}</span>
+            </div>
+            : null
+        }
+        {
+          item.c_url ?
+            <div>
+              <span className="title">Project Url</span>
+              <span className="body">{item.c_url}</span>
+            </div>
+            : null
+        }
+      </div>
+    );
+  }
   render() {
-    const { item, theme, vote, modal } = this.props;
+    const { item, theme, vote, modal, itemType } = this.props;
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,
@@ -28,14 +72,22 @@ class ItemCard extends Component {
           color: theme.item_card.color,
         }}
       >
+        <UserBadge user={user} theme={theme} />
         <div
-          className="top_container"
+          className="body_container"
           onClick={() => this.open()}
         >
-          <UserBadge user={user} theme={theme} />
-          <p>{item.text}</p>
+          <div
+            className="top_container"
+          >
+            { itemType === ITEM.COLLAB.NAME ?
+              <span className="title">Summary</span> : null
+            }
+            <span className="body">{item.text}</span>
+            { this.renderCollab() }
+          </div>
+          { image !== '' ? <img alt="" src={image.url} /> : null }
         </div>
-        { image !== '' ? <img alt="" src={image.url} /> : null }
         <BottomBar
           score={item.score}
           comments={item.num_comments}
@@ -52,6 +104,7 @@ ItemCard.propTypes = {
   item: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  itemType: PropTypes.string, //eslint-disable-line
   open: PropTypes.func, // eslint-disable-line
   modal: PropTypes.bool, //eslint-disable-line
 };

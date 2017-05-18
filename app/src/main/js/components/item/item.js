@@ -18,13 +18,13 @@ class Item extends Component {
     this.fetchitem();
   }
   fetchitem() {
-    const { id, auth } = this.props;
+    const { cardItem, auth } = this.props;
     let authToken = null;
     if (auth.user) {
       authToken = auth.user.authToken;
     }
     rantscript
-    .rant(id, authToken)
+    .rant(cardItem.id, authToken)
     .then((res) => {
       const item = res;
       this.setState({ item });
@@ -34,7 +34,7 @@ class Item extends Component {
   }
   renderSingleColumn() {
     const { item } = this.state;
-    const { theme, vote, auth } = this.props;
+    const { theme, vote, auth, cardItem } = this.props;
     return (
       <div className="item_compact_column">
         <ItemCard
@@ -43,6 +43,7 @@ class Item extends Component {
           key={item.rant.id}
           theme={theme}
           vote={vote}
+          itemType={cardItem.type}
         />
         <Comments comments={item.comments} theme={theme} vote={vote} />
         <PostComment
@@ -67,7 +68,7 @@ Item.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  id: PropTypes.number.isRequired,
+  cardItem: PropTypes.object.isRequired,
 };
 
 export default Item;

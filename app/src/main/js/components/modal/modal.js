@@ -5,7 +5,7 @@ import Item from '../item/item';
 class Modal extends Component {
   getItem() {
     const { item, theme, vote, auth } = this.props;
-    return <Item theme={theme} id={item.id} vote={vote} auth={auth} />;
+    return <Item theme={theme} cardItem={item} vote={vote} auth={auth} />;
   }
   render() {
     const { close } = this.props;

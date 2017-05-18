@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   feed: state.items,
   theme: state.settings.theme,
   filters: FEED.RANTS.FILTERS,
+  itemType: ITEM.RANT.NAME,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Column);
