@@ -8,13 +8,14 @@ const fetchRants = sort => (dispatch, getState) => {
   const { user } = getState().auth;
   let page = 0;
   let oldSort = '';
-  if (getState().rants) {
-    oldSort = getState().rants.sort;
-    page = oldSort !== sort ? 0 : getState().rants.page;
+  if (getState().items) {
+    oldSort = getState().items.sort;
+    page = oldSort !== sort ? 0 : getState().items.page;
   }
   dispatch({
-    type: FEED.RANTS.ACTION.FETCH,
+    type: FEED.ACTION.FETCH,
     state: STATE.LOADING,
+    itemType: FEED.RANTS.NAME,
     page,
   });
   let authToken = null;
@@ -25,8 +26,9 @@ const fetchRants = sort => (dispatch, getState) => {
       .rants(sort, AMOUNT, AMOUNT * page, authToken)
       .then((res) => {
         dispatch({
-          type: FEED.RANTS.ACTION.FETCH,
+          type: FEED.ACTION.FETCH,
           state: STATE.SUCCESS,
+          itemType: FEED.RANTS.NAME,
           items: res,
           page,
           sort,
@@ -35,7 +37,8 @@ const fetchRants = sort => (dispatch, getState) => {
       .catch(() => {
         showToast(dispatch, 'Username or Password is wrong');
         dispatch({
-          type: FEED.RANTS.ACTION.FETCH,
+          type: FEED.ACTION.FETCH,
+          itemType: FEED.RANTS.NAME,
           state: STATE.FAILED,
         });
       });
@@ -46,13 +49,14 @@ const fetchStories = (sort, range) => (dispatch, getState) => {
   let page = 0;
   let oldSort = '';
   let oldRange = '';
-  if (getState().stories) {
-    oldSort = getState().stories.sort;
-    oldRange = getState().stories.range;
-    page = oldSort !== sort || oldRange !== range ? 0 : getState().stories.page;
+  if (getState().items) {
+    oldSort = getState().items.sort;
+    oldRange = getState().items.range;
+    page = oldSort !== sort || oldRange !== range ? 0 : getState().items.page;
   }
   dispatch({
-    type: FEED.STORIES.ACTION.FETCH,
+    type: FEED.ACTION.FETCH,
+    itemType: FEED.STORIES.NAME,
     state: STATE.LOADING,
     page,
   });
@@ -64,8 +68,9 @@ const fetchStories = (sort, range) => (dispatch, getState) => {
       .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
       .then((res) => {
         dispatch({
-          type: FEED.STORIES.ACTION.FETCH,
+          type: FEED.ACTION.FETCH,
           state: STATE.SUCCESS,
+          itemType: FEED.STORIES.NAME,
           items: res,
           page,
           sort,
@@ -75,7 +80,8 @@ const fetchStories = (sort, range) => (dispatch, getState) => {
       .catch(() => {
         showToast(dispatch, 'Username or Password is wrong');
         dispatch({
-          type: FEED.STORIES.ACTION.FETCH,
+          type: FEED.ACTION.FETCH,
+          itemType: FEED.STORIES.NAME,
           state: STATE.FAILED,
         });
       });
