@@ -18,7 +18,7 @@ class Login extends Component {
           backgroundColor: theme.backgroundColor,
         }}
       >
-        <div className="auth_side" >
+        <div className="auth_image" >
           <img alt="devrant" src="./res/images/devrant_sidebar.png" />
         </div>
         <div className="auth_form" >
