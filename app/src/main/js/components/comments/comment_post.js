@@ -25,7 +25,7 @@ class CommentPost extends Component {
       });
   }
   render() {
-    const { theme } = this.props;
+    const { theme, auth } = this.props;
     return (
       <div
         className="post_comment"
@@ -36,7 +36,7 @@ class CommentPost extends Component {
           onChange={e => this.setState({ text: e.target.value })}
         />
         <button
-          disabled={this.state.disabled}
+          disabled={this.state.disabled || auth.user === null}
           onClick={() => this.onPost()}
         >Add Comment</button>
       </div>
