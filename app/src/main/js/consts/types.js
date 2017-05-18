@@ -33,6 +33,12 @@ export const ITEM = {
       VOTE: 'RANT_VOTE',
     },
   },
+  STORIES: {
+    NAME: 'STORIES',
+    ACTION: {
+      VOTE: 'RANT_VOTE',
+    },
+  },
   COLLAB: {
     NAME: 'COLLAB',
     ACTION: {
