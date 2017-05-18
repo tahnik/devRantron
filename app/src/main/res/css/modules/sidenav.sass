@@ -17,7 +17,7 @@
     .devRant_logo
       padding: 0rem
       .devRant_placeholder
-        padding: 1rem
+        padding: 1rem 0rem 0rem 0rem
         display: flex
         flex-direction: column
         align-items: center
@@ -26,8 +26,14 @@
           width: 60%
           margin-bottom: 1rem
           display: inline-block
-        button
-          margin: 0 auto
+        .item
+          background-color: #C14857
+          width: $sidenav_width
+          padding: 0.85rem 0.7rem
+          text-align: left
+          box-sizing: border-box
+          &:hover
+            background-color: #54556E
     .item
       i
         margin-right: 0.5rem

@@ -16,7 +16,9 @@ class CompactUserCard extends Component {
           <div className="logo">
             <img alt="" src="../../../res/images/devrant_sidebar.png" />
           </div>
-          <button onClick={() => login()}>Login</button>
+          <div className="item" onClick={() => login()} >
+            <i className="ion-log-in" />Login
+          </div>
         </div>
       );
     }
