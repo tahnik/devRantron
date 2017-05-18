@@ -21,10 +21,17 @@ const fetchUser = () => (dispatch, getState) => {
   rantscript
       .profile(userID)
       .then((res) => {
+        const profile = {
+          username: res.username,
+          score: res.score,
+          about: res.about,
+          location: res.location,
+          avatar: res.avatar,
+        };
         dispatch({
           type: USER.FETCH,
           state: STATE.SUCCESS,
-          profile: res,
+          profile,
         });
       })
       .catch(() => {
