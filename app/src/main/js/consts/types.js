@@ -3,6 +3,9 @@ export const AUTH = {
   NOLOGIN: 'AUTH_NOLOGIN',
   LOGOUT: 'AUTH_LOGOUT',
 };
+export const NOTIF = {
+  FETCH: 'NOTIF_FETCH',
+};
 export const STATE = {
   INITIAL: 'STATE_INITIAL',
   SUCCESS: 'STATE_SUCCESS',
