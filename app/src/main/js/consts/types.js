@@ -3,7 +3,7 @@ export const AUTH = {
   NOLOGIN: 'AUTH_NOLOGIN',
   LOGOUT: 'AUTH_LOGOUT',
 };
-export const NOTIF = {
+export const NOTIFS = {
   FETCH: 'NOTIF_FETCH',
 };
 export const STATE = {
