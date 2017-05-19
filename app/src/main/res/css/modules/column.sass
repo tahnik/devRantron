@@ -10,15 +10,17 @@
     padding: 0rem 0rem 1rem 0rem
     height: calc(100vh - 2.8rem - 1.5rem)
   .column_topbar
-    min-height: 20px
-    max-height: 20px
+    height: 25px
     overflow: hidden
+    margin: 0.7rem 0
+    display: flex
+    flex-direction: column
     .primary
-      height: 20px
-      margin: 0rem 0rem 0.5rem 0rem
-      padding: 1rem 0 0.4rem 0.4rem
+      flex: 1 0 20px
       display: flex
       align-items: center
+      padding: 5px 0.4rem
+      transition: all 0.5s
       span
         padding: 0 1rem 0 0;
         color: white
@@ -32,11 +34,11 @@
         opacity: 1
         transform: scale(1.2)
     .secondary
-      height: 20px
-      margin: 0rem 0rem 0.5rem 0rem
-      padding: 1rem 0 0.4rem 0.4rem
+      flex: 1 0 20px
       display: flex
       align-items: center
+      padding: 5px 0.4rem
+      transition: all 0.5s
       span
         padding: 0 1rem 0 0;
         color: white

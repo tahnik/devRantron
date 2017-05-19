@@ -8,6 +8,7 @@ class ColumnTopBar extends Component {
     this.state = {
       primary: null,
       secondary: null,
+      translateY: 0,
     };
   }
   componentWillMount() {
@@ -52,14 +53,39 @@ class ColumnTopBar extends Component {
     this.setState({ primary });
     this.props.fetch(primary, this.state.secondary);
   }
+  handleSec(secondary) {
+    this.setState({ secondary });
+    this.props.fetch(this.state.primary, secondary);
+  }
+  handleHover(primary) {
+    const { filters } = this.props;
+    if (!filters.HAS_SECONDARY) {
+      return;
+    }
+    const hasSecondary = filters.HAS_SECONDARY[primary.toUpperCase()];
+    if (primary === this.state.primary && hasSecondary) {
+      this.setState({ translateY: -100 });
+    }
+  }
+  handleHoverLeave() {
+    if (this.state.translateY === -100) {
+      this.setState({ translateY: 0 });
+    }
+  }
   render() {
     const { filters } = this.props;
     const primaryFilters = filters[filters.PRIMARY];
 
     const secondaryFilters = filters[filters.SECONDARY];
     return (
-      <div className="column_topbar">
-        <div className="primary">
+      <div
+        className="column_topbar"
+        onMouseLeave={() => this.handleHoverLeave()}
+      >
+        <div
+          className="primary"
+          style={{ transform: `translateY(${this.state.translateY}%)` }}
+        >
           { Object.keys(primaryFilters).map((key) => {
             const isActive = this.state.primary === primaryFilters[key] ? 'active' : null;
             return (
@@ -67,21 +93,26 @@ class ColumnTopBar extends Component {
                 key={key}
                 className={`${isActive}`}
                 onClick={() => this.handlePri(primaryFilters[key])}
+                onMouseOver={() => this.handleHover(primaryFilters[key])}
               >{primaryFilters[key]}</span>
             );
           })}
         </div>
-        <div className="secondary">
-          { Object.keys(secondaryFilters).map((key) => {
-            const isActive = this.state.secondary === secondaryFilters[key] ? 'active' : null;
-            return (
-              <span
-                key={key}
-                className={`${isActive}`}
-                onClick={() => this.handlePri(secondaryFilters[key])}
-              >{secondaryFilters[key]}</span>
-            );
-          })}
+        <div
+          className="secondary"
+          style={{ transform: `translateY(${this.state.translateY}%)` }}
+        >
+          { !secondaryFilters ? null :
+            Object.keys(secondaryFilters).map((key) => {
+              const isActive = this.state.secondary === secondaryFilters[key] ? 'active' : null;
+              return (
+                <span
+                  key={key}
+                  className={`${isActive}`}
+                  onClick={() => this.handleSec(secondaryFilters[key])}
+                >{secondaryFilters[key]}</span>
+              );
+            })}
         </div>
       </div>
     );
