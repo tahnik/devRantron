@@ -5,10 +5,10 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SideNav from '../containers/navigation/sidenav';
-import Notifs from '../containers/notifs/notifs';
 import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
 import Modal from '../containers/modal/modal';
+import Notifs from '../containers/notifs/notifs';
 
 class MainRoutes extends Component {
   constructor() {
@@ -26,6 +26,7 @@ class MainRoutes extends Component {
   render() {
     return (
       <div key="MainRoutes" className="main_container" >
+        <Notifs />
         <SideNav />
         <div
           className="middle_container"
