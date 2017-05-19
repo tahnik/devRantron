@@ -1,9 +1,9 @@
 import DEFAULT_STATES from '../consts/default_states';
-import { NOTIF, STATE } from '../consts/types';
+import { NOTIFS, STATE } from '../consts/types';
 
-export default (state = DEFAULT_STATES.NOTIF, action) => {
+export default (state = DEFAULT_STATES.NOTIFS, action) => {
   switch (action.type) {
-    case NOTIF.FETCH:
+    case NOTIFS.FETCH:
       switch (action.state) {
         case STATE.SUCCESS:
           return { ...state, notifs: action.notifs, state: STATE.SUCCESS };
