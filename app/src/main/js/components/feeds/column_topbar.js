@@ -56,19 +56,33 @@ class ColumnTopBar extends Component {
     const { filters } = this.props;
     const primaryFilters = filters[filters.PRIMARY];
 
-    // const secondaryFilters = filters[filters.SECONDARY];
+    const secondaryFilters = filters[filters.SECONDARY];
     return (
       <div className="column_topbar">
-        { Object.keys(primaryFilters).map((key) => {
-          const isActive = this.state.primary === primaryFilters[key] ? 'active' : null;
-          return (
-            <span
-              key={key}
-              className={`${isActive}`}
-              onClick={() => this.handlePri(primaryFilters[key])}
-            >{primaryFilters[key]}</span>
-          );
-        })}
+        <div className="primary">
+          { Object.keys(primaryFilters).map((key) => {
+            const isActive = this.state.primary === primaryFilters[key] ? 'active' : null;
+            return (
+              <span
+                key={key}
+                className={`${isActive}`}
+                onClick={() => this.handlePri(primaryFilters[key])}
+              >{primaryFilters[key]}</span>
+            );
+          })}
+        </div>
+        <div className="secondary">
+          { Object.keys(secondaryFilters).map((key) => {
+            const isActive = this.state.secondary === secondaryFilters[key] ? 'active' : null;
+            return (
+              <span
+                key={key}
+                className={`${isActive}`}
+                onClick={() => this.handlePri(secondaryFilters[key])}
+              >{secondaryFilters[key]}</span>
+            );
+          })}
+        </div>
       </div>
     );
   }
