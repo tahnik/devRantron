@@ -13,9 +13,9 @@ export default {
     state: STATE.INITIAL,
     noLogin: false,
   },
-  NOTIF: {
+  NOTIFS: {
     state: STATE.INITIAL,
-    notifs: [],
+    notifs: {},
   },
   SETTINGS: {
     theme: {
