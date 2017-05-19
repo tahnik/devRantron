@@ -11,11 +11,12 @@ const mapStateToProps = state => ({
 });
 
 /* Here we use dispatch to dispatch actions to redux store
- *
+ * We take notifs and state as params. We will send them to redux
+ * store via actions
  */
 const mapDispatchToProps = dispatch => ({
-  fetchNotifs: () => {
-    dispatch(fetchNotifs());
+  fetchNotifs: (notifs, state) => {
+    dispatch(fetchNotifs(notifs, state));
   },
 });
 
