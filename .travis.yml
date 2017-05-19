@@ -52,6 +52,7 @@ before_install:
     brew update;
     brew install yarn;
     fi
+  - npm rebuild node-sass
 
 # on linux, install yarn over apt, on osx, over brew
 install:
