@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import RantCard from '../rant/rant_card';
+import ItemCard from '../item/item_card';
 import Loading from '../utilities/loading';
 import ColumnTopBar from './column_topbar';
 import { STATE } from '../../consts/types';
@@ -18,7 +18,7 @@ class Column extends Component {
     this.setState({ divID });
   }
   render() {
-    const { feed, theme, vote, fetch, open, filters } = this.props;
+    const { feed, theme, vote, fetch, open, filters, itemType } = this.props;
     const { divID } = this.state;
     return (
       <div
@@ -39,13 +39,14 @@ class Column extends Component {
                 backgroundColor={theme.backgroundColor}
               /> :
               feed.items.map(item => (
-                <RantCard
+                <ItemCard
                   fetch={fetch}
                   item={item}
                   open={(type, id) => open(type, id)}
                   key={item.id}
                   theme={theme}
                   vote={vote}
+                  itemType={itemType}
                 />
               ))
           }
@@ -62,6 +63,7 @@ Column.propTypes = {
   vote: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
   filters: PropTypes.object.isRequired,
+  itemType: PropTypes.string.isRequired,
 };
 
 export default Column;

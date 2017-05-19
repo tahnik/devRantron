@@ -6,15 +6,15 @@ class Comments extends Component {
   constructor() {
     super();
     this.state = {
-      rant: null,
+      item: null,
     };
   }
   componentWillMount() {
   }
   shouldComponentUpdate() {
-    const rantContainer = document.getElementsByClassName('rant_compact_column')[0];
+    const itemContainer = document.getElementsByClassName('item_compact_column')[0];
     setTimeout(() => {
-      rantContainer.scrollTop = rantContainer.scrollHeight;
+      itemContainer.scrollTop = itemContainer.scrollHeight;
     }, 200);
     return true;
   }

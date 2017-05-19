@@ -8,8 +8,8 @@ const mapDispatchToProps = dispatch => ({
   fetch: (sort, range, type = FEED.RANTS.NAME) => {
     dispatch(fetch(sort, type, range));
   },
-  vote: (voteState, rantID, type = ITEM.RANT.NAME) => {
-    dispatch(vote(voteState, rantID, type));
+  vote: (voteState, id, type = ITEM.RANT.NAME) => {
+    dispatch(vote(voteState, id, type));
   },
 });
 
@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   feed: state.items,
   theme: state.settings.theme,
   filters: FEED.RANTS.FILTERS,
+  itemType: ITEM.RANT.NAME,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Column);

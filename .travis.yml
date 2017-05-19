@@ -64,6 +64,7 @@ install:
 # Any only deploy if testing worked. Coverage will only be reported if testing succeeded.
 # MAKE SURE TO ONLY PACKAGE IF WE ARE ON MASTER. For testing, package:dir will be used.
 script:
+  - npm rebuild node-sass
   - yarn ci:all
 
 # only deploy to github if the CI script exited with 0. Make sure to do this only if we are on master.

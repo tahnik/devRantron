@@ -33,6 +33,18 @@ export const ITEM = {
       VOTE: 'RANT_VOTE',
     },
   },
+  STORIES: {
+    NAME: 'STORIES',
+    ACTION: {
+      VOTE: 'RANT_VOTE',
+    },
+  },
+  COLLAB: {
+    NAME: 'COLLAB',
+    ACTION: {
+      VOTE: 'COLLAB_VOTE',
+    },
+  },
   COMMON: {
     ACTION: {
       CLOSE: 'ITEM_CLOSE',
@@ -90,5 +102,14 @@ export const FEED = {
   ACTION: {
     FETCH: 'FEED_FETCH',
     RESET: 'FEED_RESET',
+  },
+  COLLABS: {
+    NAME: 'COLLABS',
+    FILTERS: {
+      SORT: {
+        RECENT: 'recent',
+      },
+      PRIMARY: 'SORT',
+    },
   },
 };

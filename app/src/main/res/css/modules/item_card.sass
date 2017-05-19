@@ -1,0 +1,24 @@
+.item_card
+  margin-bottom: 1rem
+  border-radius: 3px
+  transition: all 0.2s ease
+  margin-right: 0.5rem
+  .body_container
+    .top_container
+      padding: 1rem
+      span
+        padding: 0.2rem 0
+        display: block
+      span.title
+        font-size: 0.9rem
+        color: grey
+        font-weight: bold
+      span.body
+        padding-bottom: 0.5rem
+    &:hover
+      cursor: pointer
+  img
+    width: 100%
+.item_card.shadow
+  &:hover
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)

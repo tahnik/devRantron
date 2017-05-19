@@ -14,16 +14,17 @@ class ColumnTopBar extends Component {
     const { filters } = this.props;
 
     const primaryFilters = filters[filters.PRIMARY];
-
-    const secondaryFilters = filters[filters.SECONDARY];
-
     const firstPriIndex = Object.keys(primaryFilters)[0];
     const firstPri = primaryFilters[firstPriIndex];
+    this.setState({ primary: firstPri });
 
-    const firstSecIndex = Object.keys(secondaryFilters)[0];
-    const firstSec = secondaryFilters[firstSecIndex];
-
-    this.setState({ primary: firstPri, secondary: firstSec });
+    let firstSec = null;
+    if (filters.SECONDARY) {
+      const secondaryFilters = filters[filters.SECONDARY];
+      const firstSecIndex = Object.keys(secondaryFilters)[0];
+      firstSec = secondaryFilters[firstSecIndex];
+      this.setState({ secondary: firstSec });
+    }
 
     this.props.fetch(firstPri, firstSec);
   }

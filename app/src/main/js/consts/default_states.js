@@ -17,7 +17,7 @@ export default {
     theme: {
       name: 'Dark Theme',
       backgroundColor: '#54556E',
-      rant_card: {
+      item_card: {
         backgroundColor: '#40415A',
         color: 'white',
       },
