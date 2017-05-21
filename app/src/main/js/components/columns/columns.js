@@ -4,8 +4,8 @@ import Column from './column';
 
 class Columns extends Component {
   renderSingleColumn() {
-    const { columns, theme, vote, fetch, open, filters, itemType } = this.props;
-    return <Column column={columns[0]} theme={theme} vote={vote} filters={filters} itemType={itemType} fetch={fetch} open={open} />
+    const { columns } = this.props;
+    return <Column {...this.props} column={columns[0]} />;
   }
   render() {
     const { columns } = this.props;
@@ -22,13 +22,7 @@ class Columns extends Component {
 }
 
 Columns.propTypes = {
-  fetch: PropTypes.func.isRequired,
   columns: PropTypes.array.isRequired,
-  theme: PropTypes.object.isRequired,
-  vote: PropTypes.func.isRequired,
-  open: PropTypes.func.isRequired,
-  filters: PropTypes.object.isRequired,
-  itemType: PropTypes.string.isRequired,
 };
 
 export default Columns;
