@@ -4,20 +4,21 @@ import showToast from './toast';
 
 const AMOUNT = 25;
 
-const fetchRants = sort => (dispatch, getState) => {
+const fetchRants = (sort, type) => (dispatch, getState) => {
   const { user } = getState().auth;
   let page = 0;
   let oldSort = '';
+  let oldType = '';
   if (getState().items) {
     oldSort = getState().items.sort;
-    page = oldSort !== sort ? 0 : getState().items.page;
+    oldType = getState().items.type;
+    page = oldSort !== sort || oldType !== type ? 0 : getState().items.page;
   }
-  dispatch({
-    type: FEED.ACTION.FETCH,
-    state: STATE.LOADING,
-    itemType: FEED.RANTS.NAME,
-    page,
-  });
+  if (page === 0) {
+    dispatch({
+      type: FEED.ACTION.RESET,
+    });
+  }
   let authToken = null;
   if (user) {
     authToken = user.authToken;
@@ -44,20 +45,21 @@ const fetchRants = sort => (dispatch, getState) => {
       });
 };
 
-const fetchCollabs = sort => (dispatch, getState) => {
+const fetchCollabs = (sort, type) => (dispatch, getState) => {
   const { user } = getState().auth;
   let page = 0;
   let oldSort = '';
+  let oldType = '';
   if (getState().items) {
     oldSort = getState().items.sort;
-    page = oldSort !== sort ? 0 : getState().items.page;
+    oldType = getState().items.type;
+    page = oldSort !== sort || oldType !== type ? 0 : getState().items.page;
   }
-  dispatch({
-    type: FEED.ACTION.FETCH,
-    state: STATE.LOADING,
-    itemType: FEED.COLLABS.NAME,
-    page,
-  });
+  if (page === 0) {
+    dispatch({
+      type: FEED.ACTION.RESET,
+    });
+  }
   let authToken = null;
   if (user) {
     authToken = user.authToken;
@@ -94,12 +96,11 @@ const fetchStories = (sort, range) => (dispatch, getState) => {
     oldRange = getState().items.range;
     page = oldSort !== sort || oldRange !== range ? 0 : getState().items.page;
   }
-  dispatch({
-    type: FEED.ACTION.FETCH,
-    itemType: FEED.STORIES.NAME,
-    state: STATE.LOADING,
-    page,
-  });
+  if (page === 0) {
+    dispatch({
+      type: FEED.ACTION.RESET,
+    });
+  }
   let authToken = null;
   if (user) {
     authToken = user.authToken;
@@ -130,11 +131,11 @@ const fetchStories = (sort, range) => (dispatch, getState) => {
 const fetch = (sort, type, range = null) => {
   switch (type) {
     case FEED.RANTS.NAME:
-      return fetchRants(sort);
+      return fetchRants(sort, type);
     case FEED.STORIES.NAME:
       return fetchStories(sort, range);
     case FEED.COLLABS.NAME:
-      return fetchCollabs(sort);
+      return fetchCollabs(sort, type);
     default:
       return fetchRants();
   }

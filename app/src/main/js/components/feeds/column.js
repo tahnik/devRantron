@@ -33,7 +33,6 @@ class Column extends Component {
         />
         <div className="items_container" id={divID}>
           {
-            feed.state === STATE.LOADING &&
             feed.items.length === 0 ?
               <Loading
                 backgroundColor={theme.backgroundColor}
