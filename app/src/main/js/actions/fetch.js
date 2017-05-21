@@ -30,6 +30,15 @@ const fetchRants = (sort, id) => (dispatch, getState) => {
 
   const newColumns = getState().columns.slice();
 
+  if (page === 0) {
+    const loadingColumn = getState().columns.slice();
+    loadingColumn[index].items = [];
+    dispatch({
+      type: FEED.ACTION.FETCH,
+      state: STATE.SUCCESS,
+      columns: loadingColumn,
+    });
+  }
 
   rantscript
       .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken)
@@ -50,11 +59,6 @@ const fetchRants = (sort, id) => (dispatch, getState) => {
       })
       .catch(() => {
         showToast(dispatch, 'Username or Password is wrong');
-        dispatch({
-          type: FEED.ACTION.FETCH,
-          itemType: FEED.RANTS.NAME,
-          state: STATE.FAILED,
-        });
       });
 };
 
