@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import Column from '../../components/columns/column';
+import Columns from '../../components/columns/columns';
 import fetch from '../../actions/fetch';
 import vote from '../../actions/vote';
 import { ITEM, FEED } from '../../consts/types';
 
 const mapDispatchToProps = dispatch => ({
-  fetch: (range, sort, type = FEED.STORIES.NAME) => {
-    dispatch(fetch(sort, type, range));
+  fetch: (range, sort, id = 0, type = FEED.STORIES.NAME) => {
+    dispatch(fetch(sort, type, id, range));
   },
   vote: (voteState, id, type = ITEM.RANT.NAME) => {
     dispatch(vote(voteState, id, type));
@@ -14,11 +14,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  feed: state.items,
+  columns: state.columns,
   theme: state.settings.theme,
   filters: FEED.STORIES.FILTERS,
   itemType: ITEM.STORIES.NAME,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Column);
+export default connect(mapStateToProps, mapDispatchToProps)(Columns);
 
