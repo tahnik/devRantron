@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Column from '../../components/feeds/column';
+import Column from '../../components/columns/column';
 import fetch from '../../actions/fetch';
 import vote from '../../actions/vote';
 import { ITEM, FEED } from '../../consts/types';
