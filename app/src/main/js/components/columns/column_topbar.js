@@ -12,7 +12,7 @@ class ColumnTopBar extends Component {
     };
   }
   componentWillMount() {
-    const { filters } = this.props;
+    const { filters, id } = this.props;
 
     const primaryFilters = filters[filters.PRIMARY];
     const firstPriIndex = Object.keys(primaryFilters)[0];
@@ -26,36 +26,38 @@ class ColumnTopBar extends Component {
       firstSec = secondaryFilters[firstSecIndex];
       this.setState({ secondary: firstSec });
     }
-
-    this.props.fetch(firstPri, firstSec);
+    this.props.fetch(firstPri, firstSec, id);
   }
   componentDidMount() {
     const { divID } = this.props;
     const element = document.getElementById(divID);
-    element.addEventListener('scroll', () => this.handleScroll());
+    if (element) {
+      element.addEventListener('scroll', () => this.handleScroll());
+    }
   }
   componentWillUnmount() {
     const { divID } = this.props;
     const element = document.getElementById(divID);
-    element.removeEventListener('scroll', () => this.handleScroll());
+    if (element) {
+      element.removeEventListener('scroll', () => this.handleScroll());
+    }
   }
   handleScroll() {
-    const { divID, fetch, state } = this.props;
+    const { divID, fetch, id } = this.props;
     const element = document.getElementById(divID);
-    if (
-      element.scrollHeight - element.scrollTop === element.clientHeight
-      && state !== STATE.LOADING
-    ) {
-      fetch(this.state.primary, this.state.secondary);
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      fetch(this.state.primary, this.state.secondary, id);
     }
   }
   handlePri(primary) {
+    const { id } = this.props;
     this.setState({ primary });
-    this.props.fetch(primary, this.state.secondary);
+    this.props.fetch(primary, this.state.secondary, id);
   }
   handleSec(secondary) {
+    const { id } = this.props;
     this.setState({ secondary });
-    this.props.fetch(this.state.primary, secondary);
+    this.props.fetch(this.state.primary, secondary, id);
   }
   handleHover(primary) {
     const { filters } = this.props;
@@ -123,7 +125,7 @@ ColumnTopBar.propTypes = {
   filters: PropTypes.object.isRequired,
   fetch: PropTypes.func.isRequired,
   divID: PropTypes.string.isRequired,
-  state: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default ColumnTopBar;

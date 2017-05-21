@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ItemCard from '../item/item_card';
 import Loading from '../utilities/loading';
 import ColumnTopBar from './column_topbar';
-import { STATE } from '../../consts/types';
 import { getRandomInt } from '../../consts/DOMFunctions';
 
 class Column extends Component {
@@ -14,11 +13,11 @@ class Column extends Component {
     };
   }
   componentWillMount() {
-    const divID = `column_${this.props.feed.type}_${getRandomInt()}`;
+    const divID = `column_${this.props.column.type}_${getRandomInt()}`;
     this.setState({ divID });
   }
   render() {
-    const { feed, theme, vote, fetch, open, filters, itemType } = this.props;
+    const { column, theme, vote, fetch, open, filters, itemType } = this.props;
     const { divID } = this.state;
     return (
       <div
@@ -28,16 +27,16 @@ class Column extends Component {
         <ColumnTopBar
           filters={filters}
           fetch={fetch}
+          id={column.id}
           divID={divID}
-          state={feed.state}
         />
         <div className="items_container" id={divID}>
           {
-            feed.items.length === 0 ?
+            column.items.length === 0 ?
               <Loading
                 backgroundColor={theme.backgroundColor}
               /> :
-              feed.items.map(item => (
+              column.items.map(item => (
                 <ItemCard
                   fetch={fetch}
                   item={item}
@@ -57,7 +56,7 @@ class Column extends Component {
 
 Column.propTypes = {
   fetch: PropTypes.func.isRequired,
-  feed: PropTypes.object.isRequired,
+  column: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,

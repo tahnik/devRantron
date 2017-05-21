@@ -3,14 +3,14 @@ import auth from './auth';
 import settings from './settings';
 import toast from './toast';
 import user from './user';
-import items from './items';
+import columns from './columns';
 
 const devRantron = combineReducers({
   auth,
   settings,
   toast,
   user,
-  items,
+  columns,
 });
 
 export default devRantron;

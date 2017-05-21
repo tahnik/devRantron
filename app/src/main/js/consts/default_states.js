@@ -1,4 +1,5 @@
 import { STATE } from './types';
+import { getUID } from './DOMFunctions';
 
 /*
  * Why not export them separately?
@@ -48,11 +49,11 @@ export default {
     page: 0,
     items: [],
   },
-  ITEMS: {
-    state: STATE.INITIAL,
-    page: 0,
+  COLUMNS: [{
+    id: getUID(),
     items: [],
-  },
+    page: 0,
+  }],
   ITEM: [
 
   ],
