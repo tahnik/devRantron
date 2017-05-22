@@ -5,6 +5,13 @@ import { getUID } from '../consts/DOMFunctions';
 
 const AMOUNT = 20;
 
+// Thanks to @tkshnwesper
+function filterDuplicate(orants, newRants) {
+  const ids = [];
+  orants.map(rs => ids.push(rs.id));
+  return newRants.filter(rant => ids.indexOf(rant.id) === -1);
+}
+
 const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
   const columns = getState().columns;
   const currentColumn = columns.filter(column => column.id === id)[0];
@@ -35,6 +42,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
   if (page === 0) {
     const loadingColumn = getState().columns.slice();
     loadingColumn[index].items = [];
+    loadingColumn[index].page = 0;
     dispatch({
       type: FEED.ACTION.FETCH,
       state: STATE.SUCCESS,
@@ -49,7 +57,10 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
         newColumns[index] = {
           id: uid,
           type: FEED.RANTS.NAME,
-          items: [...currentColumn.items, ...res.rants],
+          items: [
+            ...currentColumn.items,
+            ...filterDuplicate(currentColumn.items, res.rants),
+          ],
           page: currentColumn.page + 1,
           sort,
           range,
