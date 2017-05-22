@@ -1,16 +1,41 @@
 import rantscript from '../consts/rantscript';
 import { FEED, STATE } from '../consts/types';
+import DEFAULT_STATES from '../consts/default_states';
 import showToast from './toast';
 import { getUID } from '../consts/DOMFunctions';
 
 const AMOUNT = 20;
 
 // Thanks to @tkshnwesper
-function filterDuplicate(orants, newRants) {
+const filterDuplicate = (orants, newRants) => {
   const ids = [];
   orants.map(rs => ids.push(rs.id));
   return newRants.filter(rant => ids.indexOf(rant.id) === -1);
-}
+};
+
+const addColumn = (type) => (dispatch, getState) => {
+  const columns = getState().columns.slice();
+  const newColumn = DEFAULT_STATES.COLUMNS[0];
+  newColumn.id = getUID();
+  columns.push(newColumn);
+  dispatch({
+    type: FEED.ACTION.FETCH,
+    state: STATE.SUCCESS,
+    columns,
+  });
+};
+
+const resetColumns = () => (dispatch) => {
+  console.log("resetting the columns");
+  const newColumns = DEFAULT_STATES.COLUMNS;
+  newColumns[0].id = getUID();
+  console.log(newColumns);
+  dispatch({
+    type: FEED.ACTION.FETCH,
+    state: STATE.SUCCESS,
+    columns: newColumns,
+  });
+};
 
 const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
   const columns = getState().columns;
@@ -134,4 +159,4 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
 };
 
 
-export { fetch as default };
+export { fetch as default, addColumn, resetColumns };

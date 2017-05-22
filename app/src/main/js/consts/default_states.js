@@ -49,11 +49,13 @@ export default {
     page: 0,
     items: [],
   },
-  COLUMNS: [{
-    id: getUID(),
-    items: [],
-    page: 0,
-  }],
+  COLUMNS: [
+    {
+      id: getUID(),
+      items: [],
+      page: 0,
+    },
+  ],
   ITEM: [
 
   ],
