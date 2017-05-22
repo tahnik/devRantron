@@ -28,7 +28,7 @@ const fetchRants = (sort, page, range, authToken) => (dispatch) => {
       });
 };
 
-const fetchCollabs = (sort, page, authToken) => (dispatch) => {
+const fetchCollabs = (sort, page, range, authToken) => (dispatch) => {
   rantscript
       .collabs(sort, AMOUNT, AMOUNT * page, authToken)
       .then((res) => {
@@ -39,6 +39,7 @@ const fetchCollabs = (sort, page, authToken) => (dispatch) => {
           items: res,
           page,
           sort,
+          range,
         });
       })
       .catch(() => {
@@ -102,7 +103,7 @@ const fetch = (sort, type, range = null) => (dispatch, getState) => {
       dispatch(fetchStories(sort, range, page, authToken));
       break;
     case FEED.COLLABS.NAME:
-      dispatch(fetchCollabs(sort, page, authToken));
+      dispatch(fetchCollabs(sort, page, range, authToken));
       break;
     default:
       dispatch(fetchRants());
