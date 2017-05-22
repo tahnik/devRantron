@@ -31,7 +31,7 @@ class CompactUserCard extends Component {
     return (
       <div
         className="user_compact"
-        style={{ background: 'url(../../../../res/images/profile_banner.png)' }}
+        style={{ background: 'url(./res/images/profile_banner.png)' }}
       >
         <img className="user_image" src={imgsrc} style={{ background: `#${profile.avatar.b}` }} alt="avatar" />
         <div className="user_bg_tint" style={{ background: `#${profile.avatar.b}` }} />

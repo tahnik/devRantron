@@ -4,32 +4,15 @@ import showToast from './toast';
 
 const AMOUNT = 25;
 
-const fetchRants = sort => (dispatch, getState) => {
-  const { user } = getState().auth;
-  let page = 0;
-  let oldSort = '';
-  if (getState().items) {
-    oldSort = getState().items.sort;
-    page = oldSort !== sort ? 0 : getState().items.page;
-  }
-  dispatch({
-    type: FEED.ACTION.FETCH,
-    state: STATE.LOADING,
-    itemType: FEED.RANTS.NAME,
-    page,
-  });
-  let authToken = null;
-  if (user) {
-    authToken = user.authToken;
-  }
+const fetchRants = (sort, page, authToken) => (dispatch) => {
   rantscript
-      .rants(sort, AMOUNT, AMOUNT * page, authToken)
+      .rants(sort, AMOUNT, AMOUNT * page, 0, authToken)
       .then((res) => {
         dispatch({
           type: FEED.ACTION.FETCH,
           state: STATE.SUCCESS,
           itemType: FEED.RANTS.NAME,
-          items: res,
+          items: res.rants,
           page,
           sort,
         });
@@ -44,24 +27,7 @@ const fetchRants = sort => (dispatch, getState) => {
       });
 };
 
-const fetchCollabs = sort => (dispatch, getState) => {
-  const { user } = getState().auth;
-  let page = 0;
-  let oldSort = '';
-  if (getState().items) {
-    oldSort = getState().items.sort;
-    page = oldSort !== sort ? 0 : getState().items.page;
-  }
-  dispatch({
-    type: FEED.ACTION.FETCH,
-    state: STATE.LOADING,
-    itemType: FEED.COLLABS.NAME,
-    page,
-  });
-  let authToken = null;
-  if (user) {
-    authToken = user.authToken;
-  }
+const fetchCollabs = (sort, page, authToken) => (dispatch) => {
   rantscript
       .collabs(sort, AMOUNT, AMOUNT * page, authToken)
       .then((res) => {
@@ -84,26 +50,7 @@ const fetchCollabs = sort => (dispatch, getState) => {
       });
 };
 
-const fetchStories = (sort, range) => (dispatch, getState) => {
-  const { user } = getState().auth;
-  let page = 0;
-  let oldSort = '';
-  let oldRange = '';
-  if (getState().items) {
-    oldSort = getState().items.sort;
-    oldRange = getState().items.range;
-    page = oldSort !== sort || oldRange !== range ? 0 : getState().items.page;
-  }
-  dispatch({
-    type: FEED.ACTION.FETCH,
-    itemType: FEED.STORIES.NAME,
-    state: STATE.LOADING,
-    page,
-  });
-  let authToken = null;
-  if (user) {
-    authToken = user.authToken;
-  }
+const fetchStories = (sort, range, page, authToken) => (dispatch) => {
   rantscript
       .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
       .then((res) => {
@@ -127,16 +74,37 @@ const fetchStories = (sort, range) => (dispatch, getState) => {
       });
 };
 
-const fetch = (sort, type, range = null) => {
+const fetch = (sort, type, range = null) => (dispatch, getState) => {
+  const { user } = getState().auth;
+  let page = 0;
+  let oldSort = '';
+  let oldRange = '';
+  if (getState().items) {
+    oldSort = getState().items.sort;
+    oldRange = getState().items.range;
+    page = oldSort !== sort || oldRange !== range ? 0 : getState().items.page;
+  }
+  if (page === 0) {
+    dispatch({
+      type: FEED.ACTION.RESET,
+    });
+  }
+  let authToken = null;
+  if (user) {
+    authToken = user.authToken;
+  }
   switch (type) {
     case FEED.RANTS.NAME:
-      return fetchRants(sort);
+      dispatch(fetchRants(sort, page, authToken));
+      break;
     case FEED.STORIES.NAME:
-      return fetchStories(sort, range);
+      dispatch(fetchStories(sort, range, page, authToken));
+      break;
     case FEED.COLLABS.NAME:
-      return fetchCollabs(sort);
+      dispatch(fetchCollabs(sort, page, authToken));
+      break;
     default:
-      return fetchRants();
+      dispatch(fetchRants());
   }
 };
 

@@ -25,14 +25,6 @@ export default (state = DEFAULT_STATES.ITEMS, action) => {
             type: action.itemType,
             state: STATE.FAILED,
           };
-        case STATE.LOADING:
-          return {
-            ...state,
-            type: action.itemType,
-            state: STATE.LOADING,
-            items: action.page !== 0 ? state.items : [],
-            page: action.page !== 0 ? state.page : 0,
-          };
         case STATE.INITIAL:
           return {
             ...state,
