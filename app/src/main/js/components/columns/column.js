@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ItemCard from '../item/item_card';
 import Loading from '../utilities/loading';
 import ColumnTopBar from './column_topbar';
-import { STATE } from '../../consts/types';
 import { getRandomInt } from '../../consts/DOMFunctions';
 
 class Column extends Component {
