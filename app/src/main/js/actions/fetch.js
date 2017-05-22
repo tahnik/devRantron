@@ -5,31 +5,6 @@ import { getUID } from '../consts/DOMFunctions';
 
 const AMOUNT = 20;
 
-
-const fetchStories = (sort, range, page, authToken) => (dispatch) => {
-  rantscript
-      .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
-      .then((res) => {
-        dispatch({
-          type: FEED.ACTION.FETCH,
-          state: STATE.SUCCESS,
-          itemType: FEED.STORIES.NAME,
-          items: res,
-          page,
-          sort,
-          range,
-        });
-      })
-      .catch(() => {
-        showToast(dispatch, 'Username or Password is wrong');
-        dispatch({
-          type: FEED.ACTION.FETCH,
-          itemType: FEED.STORIES.NAME,
-          state: STATE.FAILED,
-        });
-      });
-};
-
 const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
   const columns = getState().columns;
   const currentColumn = columns.filter(column => column.id === id)[0];
@@ -52,6 +27,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
     prevSet = currentColumn.prev_set;
     oldSort = currentColumn.sort;
     oldRange = currentColumn.range;
+    console.log(oldRange !== range);
     page = oldSort !== sort || oldRange !== range ? 0 : currentColumn.page;
   }
 
@@ -77,6 +53,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
           items: [...currentColumn.items, ...res.rants],
           page: currentColumn.page + 1,
           sort,
+          range,
           prev_set: res.set,
         };
         dispatch({
@@ -123,6 +100,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
           items: [...currentColumn.items, ...res],
           page: currentColumn.page + 1,
           sort,
+          range,
           prev_set: res.set,
         };
         dispatch({
