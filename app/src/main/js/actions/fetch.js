@@ -4,7 +4,7 @@ import showToast from './toast';
 
 const AMOUNT = 25;
 
-const fetchRants = (sort, page, authToken) => (dispatch) => {
+const fetchRants = (sort, page, range, authToken) => (dispatch) => {
   rantscript
       .rants(sort, AMOUNT, AMOUNT * page, 0, authToken)
       .then((res) => {
@@ -15,6 +15,7 @@ const fetchRants = (sort, page, authToken) => (dispatch) => {
           items: res.rants,
           page,
           sort,
+          range,
         });
       })
       .catch(() => {
@@ -95,7 +96,7 @@ const fetch = (sort, type, range = null) => (dispatch, getState) => {
   }
   switch (type) {
     case FEED.RANTS.NAME:
-      dispatch(fetchRants(sort, page, authToken));
+      dispatch(fetchRants(sort, page, range, authToken));
       break;
     case FEED.STORIES.NAME:
       dispatch(fetchStories(sort, range, page, authToken));
