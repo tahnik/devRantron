@@ -5,6 +5,7 @@ import showToast from './toast';
 import { getUID } from '../consts/DOMFunctions';
 
 const AMOUNT = 20;
+let loading = false;
 
 // Thanks to @tkshnwesper
 const filterDuplicate = (orants, newRants) => {
@@ -38,6 +39,9 @@ const resetColumns = () => (dispatch) => {
 };
 
 const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
+  if (loading) {
+    return;
+  }
   const columns = getState().columns;
   const currentColumn = columns.filter(column => column.id === id)[0];
   const index = columns.indexOf(currentColumn);
@@ -70,15 +74,18 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
     loadingColumn[index].page = 0;
     dispatch({
       type: FEED.ACTION.FETCH,
-      state: STATE.SUCCESS,
+      state: STATE.LOADING,
       columns: loadingColumn,
     });
   }
+  loading = true;
   switch (type) {
     case FEED.RANTS.NAME:
       rantscript
       .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken)
       .then((res) => {
+        console.log("fetching");
+        loading = false;
         newColumns[index] = {
           id: uid,
           type: FEED.RANTS.NAME,
@@ -105,6 +112,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
       rantscript
       .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
       .then((res) => {
+        loading = false;
         newColumns[index] = {
           id: uid,
           type: FEED.RANTS.NAME,
@@ -129,6 +137,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
       rantscript
       .collabs(sort, AMOUNT, AMOUNT * page, authToken)
       .then((res) => {
+        loading = false;
         newColumns[index] = {
           id: uid,
           type: FEED.COLLABS.NAME,

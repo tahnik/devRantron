@@ -45,7 +45,9 @@ class ColumnTopBar extends Component {
   handleScroll() {
     const { divID, fetch, id } = this.props;
     const element = document.getElementById(divID);
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    if (
+      element.scrollHeight - element.scrollTop < element.clientHeight + 4000
+    ) {
       fetch(this.state.primary, this.state.secondary, id);
     }
   }
