@@ -27,7 +27,6 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
     prevSet = currentColumn.prev_set;
     oldSort = currentColumn.sort;
     oldRange = currentColumn.range;
-    console.log(oldRange !== range);
     page = oldSort !== sort || oldRange !== range ? 0 : currentColumn.page;
   }
 
