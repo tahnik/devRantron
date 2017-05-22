@@ -27,10 +27,8 @@ const addColumn = (type) => (dispatch, getState) => {
 };
 
 const resetColumns = () => (dispatch) => {
-  console.log("resetting the columns");
   const newColumns = DEFAULT_STATES.COLUMNS;
   newColumns[0].id = getUID();
-  console.log(newColumns);
   dispatch({
     type: FEED.ACTION.FETCH,
     state: STATE.SUCCESS,
@@ -74,7 +72,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
     loadingColumn[index].page = 0;
     dispatch({
       type: FEED.ACTION.FETCH,
-      state: STATE.LOADING,
+      state: STATE.SUCCESS,
       columns: loadingColumn,
     });
   }
@@ -84,7 +82,6 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
       rantscript
       .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken)
       .then((res) => {
-        console.log("fetching");
         loading = false;
         newColumns[index] = {
           id: uid,
@@ -116,7 +113,10 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
         newColumns[index] = {
           id: uid,
           type: FEED.RANTS.NAME,
-          items: [...currentColumn.items, ...res],
+          items: [
+            ...currentColumn.items,
+            ...filterDuplicate(currentColumn.items, res),
+          ],
           page: currentColumn.page + 1,
           sort,
           range,
@@ -141,7 +141,10 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
         newColumns[index] = {
           id: uid,
           type: FEED.COLLABS.NAME,
-          items: [...currentColumn.items, ...res],
+          items: [
+            ...currentColumn.items,
+            ...filterDuplicate(currentColumn.items, res),
+          ],
           page: currentColumn.page + 1,
           sort,
           range,
