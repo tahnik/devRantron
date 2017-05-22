@@ -18,7 +18,8 @@ const fetchRants = (sort, page, range, authToken) => (dispatch) => {
           range,
         });
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err)
         showToast(dispatch, 'Username or Password is wrong');
         dispatch({
           type: FEED.ACTION.FETCH,

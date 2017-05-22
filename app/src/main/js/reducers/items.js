@@ -1,6 +1,13 @@
 import DEFAULT_STATES from '../consts/default_states';
 import { FEED, STATE } from '../consts/types';
 
+// Thanks to @tkshnwesper
+function filterDuplicate(orants, newRants) {
+  const ids = [];
+  orants.map(rs => ids.push(rs.id));
+  return newRants.filter(rant => ids.indexOf(rant.id) === -1);
+}
+
 export default (state = DEFAULT_STATES.ITEMS, action) => {
   switch (action.type) {
     case FEED.ACTION.FETCH:
@@ -12,7 +19,7 @@ export default (state = DEFAULT_STATES.ITEMS, action) => {
             state: STATE.SUCCESS,
             items: [
               ...state.items,
-              ...action.items,
+              ...filterDuplicate(state.items, action.items),
             ],
             page: action.page + 1,
             sort: action.sort,
