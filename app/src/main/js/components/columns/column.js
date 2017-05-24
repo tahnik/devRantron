@@ -35,7 +35,7 @@ class Column extends Component {
     return (
       <div
         className="column"
-        style={{ width: `${theme.column.width}rem` }}
+        style={{ width: `${theme.column.width}px` }}
       >
         <ColumnTopBar
           filters={filters}

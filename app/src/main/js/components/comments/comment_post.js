@@ -33,7 +33,7 @@ class CommentPost extends Component {
     return (
       <div
         className="post_comment"
-        style={{ width: `${theme.column.width - 0.5}rem` }}
+        style={{ width: `${theme.column.width - 0.5}px` }}
       >
         <textarea
           value={this.state.text}
