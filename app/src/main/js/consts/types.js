@@ -3,15 +3,22 @@ export const AUTH = {
   NOLOGIN: 'AUTH_NOLOGIN',
   LOGOUT: 'AUTH_LOGOUT',
 };
+
 export const STATE = {
   INITIAL: 'STATE_INITIAL',
   SUCCESS: 'STATE_SUCCESS',
   FAILED: 'STATE_FAILED',
   LOADING: 'STATE_LOADING',
 };
+
 export const TOAST = {
   SHOW: 'TOAST_SHOW',
   HIDE: 'TOAST_HIDE',
+};
+
+export const MODAL = {
+  OPEN: 'MODAL_OPEN',
+  CLOSE: 'MODAL_CLOSE',
 };
 
 export const USER = {

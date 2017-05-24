@@ -8,7 +8,10 @@ class Modal extends Component {
     return <Item theme={theme} cardItem={item} vote={vote} auth={auth} />;
   }
   render() {
-    const { close } = this.props;
+    const { item, close } = this.props;
+    if (!item) {
+      return null;
+    }
     return (
       <div className="modal_container">
         <div className="close_modal" onClick={() => close()}>
@@ -21,7 +24,7 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  item: PropTypes.object.isRequired,
+  item: PropTypes.object, //eslint-disable-line
   theme: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,

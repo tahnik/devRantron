@@ -63,4 +63,7 @@ export default {
     state: STATE.INITIAL,
     profile: null,
   },
+  MODAL: {
+    item: null,
+  },
 };

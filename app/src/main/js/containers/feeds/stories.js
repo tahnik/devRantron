@@ -3,6 +3,7 @@ import Columns from '../../components/columns/columns';
 import fetch, { addColumn } from '../../actions/fetch';
 import vote from '../../actions/vote';
 import { ITEM, FEED } from '../../consts/types';
+import { openModal } from '../../actions/modal';
 
 const mapDispatchToProps = dispatch => ({
   fetch: (range, sort, id = 0, type = FEED.STORIES.NAME) => {
@@ -13,6 +14,9 @@ const mapDispatchToProps = dispatch => ({
   },
   addColumn: (type = null) => {
     dispatch(addColumn(type));
+  },
+  open: (type, id) => {
+    dispatch(openModal(type, id));
   },
 });
 
