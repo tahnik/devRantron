@@ -16,6 +16,19 @@ class Column extends Component {
     const divID = `column_${this.props.column.type}_${getRandomInt()}`;
     this.setState({ divID });
   }
+  shouldComponentUpdate(nextProps) {
+    const currentColumn = this.props.column;
+    const nextColumn = nextProps.column;
+    if (currentColumn) {
+      if (
+        currentColumn.page === nextColumn.page
+        && nextColumn.items.length !== 0
+      ) {
+        return false;
+      }
+    }
+    return true;
+  }
   render() {
     const { column, theme, vote, fetch, open, filters, itemType } = this.props;
     const { divID } = this.state;

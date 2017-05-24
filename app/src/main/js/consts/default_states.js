@@ -1,4 +1,4 @@
-import { STATE } from './types';
+import { STATE, FEED } from './types';
 import { getUID } from './DOMFunctions';
 
 /*
@@ -54,6 +54,7 @@ export default {
       id: getUID(),
       items: [],
       page: 0,
+      type: FEED.RANTS.NAME,
     },
   ],
   ITEM: [
