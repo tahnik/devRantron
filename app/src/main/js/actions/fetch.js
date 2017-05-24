@@ -14,7 +14,7 @@ const filterDuplicate = (orants, newRants) => {
   return newRants.filter(rant => ids.indexOf(rant.id) === -1);
 };
 
-const addColumn = (type) => (dispatch, getState) => {
+const addColumn = (type) => (dispatch, getState) => { //eslint-disable-line
   const columns = getState().columns.slice();
   const newColumn = DEFAULT_STATES.COLUMNS[0];
   newColumn.id = getUID();

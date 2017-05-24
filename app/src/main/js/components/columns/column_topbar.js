@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { STATE } from '../../consts/types';
 
 class ColumnTopBar extends Component {
   constructor() {

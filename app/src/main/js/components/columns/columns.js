@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Column from './column';
 import AddColumn from './column_add';
 import { FEED } from '../../consts/types';
 
-class Columns extends Component {
-  render() {
-    const { columns } = this.props;
-    return (
-      <div
-        className="columns"
-      >
-        {
-          columns.map((column) => {
-            if (column.type === FEED.RANTS.NAME) {
-              return <Column key={column.id} {...this.props} column={column} />;
-            }
-            return <Column key={column.id} {...this.props} column={column} />;
-          })
-        }
-        <AddColumn addColumn={this.props.addColumn} />
-      </div>
-    );
-  }
-}
+const Columns = (props) => {
+  const { columns } = props;
+  return (
+    <div
+      className="columns"
+      id="columns"
+    >
+      {
+        columns.map((column) => {
+          if (column.type === FEED.RANTS.NAME) {
+            return <Column key={column.id} {...props} column={column} />;
+          }
+          return <Column key={column.id} {...props} column={column} />;
+        })
+      }
+      <AddColumn addColumn={props.addColumn} theme={props.theme} />
+    </div>
+  );
+};
 
 Columns.propTypes = {
   columns: PropTypes.array.isRequired,
   addColumn: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default Columns;
