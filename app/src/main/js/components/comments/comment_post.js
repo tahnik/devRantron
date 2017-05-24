@@ -19,6 +19,10 @@ class CommentPost extends Component {
         this.setState({ text: '' });
         this.setState({ disabled: false });
         fetch();
+        const itemContainer = document.getElementsByClassName('item_compact_column')[0];
+        setTimeout(() => {
+          itemContainer.scrollTop = itemContainer.scrollHeight;
+        }, 200);
       })
       .catch(() => {
         this.setState({ disabled: false });

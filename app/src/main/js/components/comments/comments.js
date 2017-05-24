@@ -9,15 +9,6 @@ class Comments extends Component {
       item: null,
     };
   }
-  componentWillMount() {
-  }
-  shouldComponentUpdate() {
-    const itemContainer = document.getElementsByClassName('item_compact_column')[0];
-    setTimeout(() => {
-      itemContainer.scrollTop = itemContainer.scrollHeight;
-    }, 200);
-    return true;
-  }
   render() {
     const { theme, vote, comments } = this.props;
     return (
