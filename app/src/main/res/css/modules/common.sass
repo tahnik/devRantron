@@ -79,15 +79,33 @@ body
     justify-content: center
 
   .fade-enter
-    opacity: 0.01;
+    opacity: 0.01
 
   .fade-enter.fade-enter-active
-    opacity: 1;
-    transition: all 200ms ease-in;
+    opacity: 1
+    transition: all 200ms ease-in
 
   .fade-leave
-    opacity: 1;
+    opacity: 1
 
-  .fade-leave.fade-leave-active
-    opacity: 0.01;
-    transition: all 200ms ease-in;
+  .fade-leave.fade_item-leave-active
+    opacity: 0.01
+    transition: all 400ms ease-in
+
+  .fade_item-enter
+    opacity: 0.01
+    transform: scale(0.95)
+
+  .fade_item-enter.fade_item-enter-active
+    opacity: 1
+    transform: scale(1)
+    transition: all 200ms ease-in
+
+  .fade_item-leave
+    opacity: 1
+    transform: scale(1)
+
+  .fade_item-leave.fade_item-leave-active
+    opacity: 0.01
+    transform: scale(0.95)
+    transition: all 150ms ease-in

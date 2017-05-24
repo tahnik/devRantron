@@ -1,31 +1,36 @@
 // !compileOnSave
 
-.modal_container
-  position: fixed
-  top: 0
-  z-index: 99
-  width: calc(100% - #{$sidenav_width})
-  background-color: rgba(0, 0, 0, 0.66)
-  .modal
-    padding: 1rem
-    height: 100vh
-    box-sizing: border-box
-  .close_modal
-    padding: 0.5rem
-    width: 20px
-    height: 20px
-    background-color: #C14857
-    border-radius: 50%
-    position: absolute
-    top: 5px
-    left: 5px
-    color: white
-    z-index: 199
-    display: flex
-    justify-content: center
-    transition: all 0.4s ease
-    &:hover
-      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
-      cursor: pointer
-    i
-      align-self: center
+span.modal
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  width: calc(100% - 250px);
+  .modal_container
+    position: fixed
+    top: 0
+    z-index: 99
+    width: calc(100% - #{$sidenav_width})
+    background-color: rgba(0, 0, 0, 0.66)
+    .modal
+      padding: 1rem
+      height: 100vh
+      box-sizing: border-box
+    .close_modal
+      padding: 0.5rem
+      width: 20px
+      height: 20px
+      background-color: #C14857
+      border-radius: 50%
+      position: absolute
+      top: 5px
+      left: 5px
+      color: white
+      z-index: 199
+      display: flex
+      justify-content: center
+      transition: all 0.4s ease
+      &:hover
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
+        cursor: pointer
+      i
+        align-self: center
