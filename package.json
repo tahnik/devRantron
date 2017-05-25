@@ -1,6 +1,6 @@
 {
   "name": "devrantron",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "main": "./app/build/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
@@ -123,7 +123,7 @@
     "electron-devtools-installer": "^2.2.0",
     "jquery": "^3.2.1",
     "prop-types": "^15.5.10",
-    "rantscript": "^1.1.1",
+    "rantscript": "^1.1.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",

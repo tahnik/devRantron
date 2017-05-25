@@ -6,15 +6,22 @@ export const AUTH = {
 export const NOTIFS = {
   FETCH: 'NOTIF_FETCH',
 };
+
 export const STATE = {
   INITIAL: 'STATE_INITIAL',
   SUCCESS: 'STATE_SUCCESS',
   FAILED: 'STATE_FAILED',
   LOADING: 'STATE_LOADING',
 };
+
 export const TOAST = {
   SHOW: 'TOAST_SHOW',
   HIDE: 'TOAST_HIDE',
+};
+
+export const MODAL = {
+  OPEN: 'MODAL_OPEN',
+  CLOSE: 'MODAL_CLOSE',
 };
 
 export const USER = {
@@ -36,6 +43,18 @@ export const ITEM = {
       VOTE: 'RANT_VOTE',
     },
   },
+  STORIES: {
+    NAME: 'STORIES',
+    ACTION: {
+      VOTE: 'RANT_VOTE',
+    },
+  },
+  COLLAB: {
+    NAME: 'COLLAB',
+    ACTION: {
+      VOTE: 'COLLAB_VOTE',
+    },
+  },
   COMMON: {
     ACTION: {
       CLOSE: 'ITEM_CLOSE',
@@ -45,10 +64,6 @@ export const ITEM = {
 
 export const FEED = {
   RANTS: {
-    ACTION: {
-      FETCH: 'RANTS_FETCH',
-      RESET: 'RANTS_RESET',
-    },
     NAME: 'RANTS',
     FILTERS: {
       RANGE: {
@@ -72,10 +87,6 @@ export const FEED = {
     },
   },
   STORIES: {
-    ACTION: {
-      FETCH: 'STORIES_FETCH',
-      RESET: 'STORIES_RESET',
-    },
     NAME: 'STORIES',
     FILTERS: {
       RANGE: {
@@ -98,17 +109,17 @@ export const FEED = {
       },
     },
   },
-  WEEKLY: {
-    ACTION: {
-      FETCH: 'WEEKLY_FETCH',
-    },
-    NAME: 'WEEKLY',
+  ACTION: {
+    FETCH: 'FEED_FETCH',
+    RESET: 'FEED_RESET',
+  },
+  COLLABS: {
+    NAME: 'COLLABS',
     FILTERS: {
-      PRIMARY: {
-        ALGO: 'algo',
-        TOP: 'top',
+      SORT: {
         RECENT: 'recent',
       },
+      PRIMARY: 'SORT',
     },
   },
 };

@@ -33,11 +33,6 @@ const noLogin = bool => (dispatch) => {
     type: AUTH.NOLOGIN,
     payload: bool,
   });
-  if (!bool) {
-    dispatch({
-      type: FEED.RANTS.ACTION.RESET,
-    });
-  }
 };
 
 const logout = () => (dispatch) => {
@@ -48,7 +43,7 @@ const logout = () => (dispatch) => {
     type: USER.REMOVE,
   });
   dispatch({
-    type: FEED.RANTS.ACTION.RESET,
+    type: FEED.ACTION.RESET,
   });
 };
 

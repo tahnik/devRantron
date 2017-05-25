@@ -4,13 +4,12 @@ import SideNav from '../../components/navigation/sidenav';
 import ROUTES from '../../consts/routes';
 import { fetchUser } from '../../actions/user';
 import { logout, noLogin } from '../../actions/auth';
+import { resetColumns } from '../../actions/fetch';
 
 const SIDE_NAV_ITEMS = [
   { name: 'Rants', route: ROUTES.rants, icon: 'ion-chatboxes' },
   { name: 'Collabs', route: ROUTES.collabs, icon: 'ion-person-stalker' },
   { name: 'Stories', route: ROUTES.stories, icon: 'ion-ios-bookmarks' },
-  { name: 'Weekly', route: ROUTES.weekly, icon: 'ion-calendar' },
-  { name: 'Settings', route: ROUTES.settings, icon: 'ion-android-settings' },
 ];
 
 const mapDispatchToProps = dispatch => ({
@@ -22,6 +21,9 @@ const mapDispatchToProps = dispatch => ({
   },
   login: (bool = false) => {
     dispatch(noLogin(bool));
+  },
+  resetColumns: () => {
+    dispatch(resetColumns());
   },
 });
 

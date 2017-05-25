@@ -1,5 +1,5 @@
 import rantscript from '../consts/rantscript';
-import { ITEM } from '../consts/types';
+import { ITEM, AUTH, FEED } from '../consts/types';
 import showToast from './toast';
 
 
@@ -9,7 +9,16 @@ const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
   if (user) {
     authToken = user.authToken;
   } else {
-    showToast(dispatch, 'Are you logged in?');
+    showToast(dispatch, 'Log in to vote');
+    dispatch({
+      type: AUTH.NOLOGIN,
+      payload: false,
+    });
+    // annoying?
+    dispatch({
+      type: FEED.ACTION.RESET,
+    });
+    return;
   }
   rantscript
       .vote(voteState, rantID, authToken)
@@ -26,7 +35,16 @@ const voteComment = (voteState = 1, commentID) => (dispatch, getState) => {
   if (user) {
     authToken = user.authToken;
   } else {
-    showToast(dispatch, 'Are you logged in?');
+    showToast(dispatch, 'Log in to vote');
+    dispatch({
+      type: AUTH.NOLOGIN,
+      payload: false,
+    });
+    // annoying?
+    dispatch({
+      type: FEED.ACTION.RESET,
+    });
+    return;
   }
   rantscript
       .voteComment(voteState, commentID, authToken)

@@ -19,24 +19,28 @@ class CommentPost extends Component {
         this.setState({ text: '' });
         this.setState({ disabled: false });
         fetch();
+        const itemContainer = document.getElementsByClassName('item_compact_column')[0];
+        setTimeout(() => {
+          itemContainer.scrollTop = itemContainer.scrollHeight;
+        }, 200);
       })
       .catch(() => {
         this.setState({ disabled: false });
       });
   }
   render() {
-    const { theme } = this.props;
+    const { theme, auth } = this.props;
     return (
       <div
         className="post_comment"
-        style={{ width: `${theme.column.width - 0.5}rem` }}
+        style={{ width: `${theme.column.width - 0.5}px` }}
       >
         <textarea
           value={this.state.text}
           onChange={e => this.setState({ text: e.target.value })}
         />
         <button
-          disabled={this.state.disabled}
+          disabled={this.state.disabled || auth.user === null}
           onClick={() => this.onPost()}
         >Add Comment</button>
       </div>

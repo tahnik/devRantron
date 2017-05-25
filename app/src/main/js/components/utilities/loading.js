@@ -1,17 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Loading = props => (
+const Loading = () => (
   <div
     className="loading_container"
-    style={{ backgroundColor: props.backgroundColor }}
   >
-    <img src="../../../res/images/loading.png" alt="" />
+    <img src="./res/images/loading_small.png" alt="" />
   </div>
 );
-
-Loading.propTypes = {
-  backgroundColor: PropTypes.string, //eslint-disable-line
-};
 
 export default Loading;

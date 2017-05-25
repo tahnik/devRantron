@@ -1,4 +1,5 @@
-import { STATE } from './types';
+import { STATE, FEED } from './types';
+import { getUID } from './DOMFunctions';
 
 /*
  * Why not export them separately?
@@ -21,7 +22,7 @@ export default {
     theme: {
       name: 'Dark Theme',
       backgroundColor: '#54556E',
-      rant_card: {
+      item_card: {
         backgroundColor: '#40415A',
         color: 'white',
       },
@@ -31,7 +32,7 @@ export default {
       },
       column: {
         backgroundColor: '#54556E',
-        width: '27',
+        width: '450',
       },
       user_badge: {
         details_back: '#54556E',
@@ -52,16 +53,22 @@ export default {
     page: 0,
     items: [],
   },
-  STORIES: {
-    state: STATE.INITIAL,
-    page: 0,
-    items: [],
-  },
+  COLUMNS: [
+    {
+      id: getUID(),
+      items: [],
+      page: 0,
+      type: FEED.RANTS.NAME,
+    },
+  ],
   ITEM: [
 
   ],
   USER: {
     state: STATE.INITIAL,
     profile: null,
+  },
+  MODAL: {
+    item: null,
   },
 };

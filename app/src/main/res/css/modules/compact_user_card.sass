@@ -25,14 +25,24 @@
     border-radius: 100%
   .logout
     position: absolute
-    bottom: 0px
-    right: 5px
+    bottom: 5px
+    left: 10px
     font-size: 1.5rem
     z-index: 300
-    transition: all 0.2s ease
+    display: flex
+    align-items: center
+    transition: all 0.1s ease
+    color: white
+    cursor: pointer
     i
-      color: grey
-    &:hover
-      cursor: pointer
-      transform: scale(1.2)
-      right: 10px
+      text-shadow: 0px 0px 4px rgba(0,0,0,0.4)
+    &:hover::after
+      margin-left: 0.2rem
+      opacity: 1
+      text-shadow: 0px 0px 4px rgba(0,0,0,0.4)
+    &::after
+      content: "Logout"
+      font-size: 1rem
+      margin-left: -1.4rem
+      opacity: 0
+      transition: opacity 0.2s, margin-left 0.2s

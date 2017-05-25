@@ -14,7 +14,7 @@ class CompactUserCard extends Component {
       return (
         <div className="devRant_placeholder">
           <div className="logo">
-            <img alt="" src="../../../res/images/devrant_sidebar.png" />
+            <img alt="" src="./res/images/devrant_sidebar.png" />
           </div>
           <div className="item" onClick={() => login()} >
             <i className="ion-log-in" />Login
@@ -25,13 +25,13 @@ class CompactUserCard extends Component {
     const profile = user.profile;
     let imgsrc = '';
     if (profile.avatar.i) {
-      imgsrc += `https://avatars.devrant.io/${profile.avatar.i}`.toString();
+      imgsrc += `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
     }
 
     return (
       <div
         className="user_compact"
-        style={{ background: 'url(../../../../res/images/profile_banner.png)' }}
+        style={{ background: 'url(./res/images/profile_banner.png)' }}
       >
         <img className="user_image" src={imgsrc} style={{ background: `#${profile.avatar.b}` }} alt="avatar" />
         <div className="user_bg_tint" style={{ background: `#${profile.avatar.b}` }} />
