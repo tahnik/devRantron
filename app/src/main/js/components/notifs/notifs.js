@@ -64,9 +64,11 @@ class Notifs extends Component {
     console.log(data)
     return (
       <div className="notifs_container" >
-        <button><i className="ion-ios-bell" /></button>
+        <button
+          onClick={() => { this.setState({ visable: !this.state.visable }); }}
+        ><i className="ion-ios-bell" /></button>
         { /* data ? data.num_unread : null */ }
-        <div className="notif_bubbles">
+        <div className={`notif_bubbles ${(this.state.visable === true ? 'notif_open' : '')}`}>
           {
             data ? data.items.map((notif, index) =>
               (<Notification

@@ -6,14 +6,56 @@
   //display: none
   button
     margin: 0px
-    width: 3.5rem
+    width: 3.6rem
+    position: fixed
+    right: 0px
+  .notif_open
+    transform: translateX(0rem) !important
   .notif_bubbles
     overflow-y: scroll
-    height: 100vh
-    .notif_image
+    height: calc(100vh - 32px)
+    margin-top: 32px
+    transform: translateX(12.5rem)
+    transition: transform 0.2s
+    .notif_bubble
+      position: relative
       height: 3rem
-      width: 3rem
-      border-radius: 100%
-      margin-top: 0.2rem
+      padding: 0.4rem 0.4rem 0.4rem 0.2rem
+      width: 15.5rem
+      align-items: center
+      justify-content: center
+      color: #fff
+      text-align: right
+      background: rgb(64, 65, 90)
+      display: flex
+      flex-direction: row
+      .notif_desc
+        width: 12rem
+        height: 3rem
+        margin-left: 0.8rem
+        display: flex
+        align-items: center
+        p
+          margin: 0px
+          text-align: left
+      .notif_badge
+        position: absolute
+        top: 0.1rem
+        left: 2.2rem
+        height: 1.4rem
+        width: 1.4rem
+        border-radius: 100%
+        text-align: center
+        background: #C14857
+        color: white
+        i
+          font-size: 0.9rem
+          line-height: 1.4rem
+        &.read
+          background: #a2a1a1
+      .notif_image
+        height: 3rem
+        width: 3rem
+        border-radius: 100%
   ::-webkit-scrollbar
     display: none
