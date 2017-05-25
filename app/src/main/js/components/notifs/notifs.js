@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
 import { STATE } from '../../consts/types';
+import Notification from './notif_bubble';
 
 class Notifs extends Component {
   constructor() {
@@ -60,9 +61,23 @@ class Notifs extends Component {
      * otherwise we don't show any numbers yet
      */
     const data = notifs.notifs.data;
+    console.log(data)
     return (
       <div className="notifs_container" >
-        { data ? data.num_unread : null }
+        <button><i className="ion-ios-bell" /></button>
+        { /* data ? data.num_unread : null */ }
+        <div className="notif_bubbles">
+          {
+            data ? data.items.map((notif, index) =>
+              (<Notification
+                notif={notif}
+                index={index}
+                key={`${notif.rant_id}_${notif.uid}_${notif.type}_${Math.random()}`}
+                user={data.username_map[notif.uid]}
+              />),
+            ) : null
+          }
+        </div>
       </div>
     );
   }

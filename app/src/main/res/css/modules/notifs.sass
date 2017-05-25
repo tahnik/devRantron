@@ -1,4 +1,19 @@
+// !compileOnSave
+
 .notifs_container
   position: fixed
   right: 0
-  display: none
+  //display: none
+  button
+    margin: 0px
+    width: 3.5rem
+  .notif_bubbles
+    overflow-y: scroll
+    height: 100vh
+    .notif_image
+      height: 3rem
+      width: 3rem
+      border-radius: 100%
+      margin-top: 0.2rem
+  ::-webkit-scrollbar
+    display: none
