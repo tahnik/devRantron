@@ -1,5 +1,5 @@
 import rantscript from '../consts/rantscript';
-import { FEED, STATE } from '../consts/types';
+import { FEED, STATE, COLUMN, COLUMNS } from '../consts/types';
 import DEFAULT_STATES from '../consts/default_states';
 import showToast from './toast';
 import { getUID } from '../consts/DOMFunctions';
@@ -15,24 +15,22 @@ const filterDuplicate = (orants, newRants) => {
 };
 
 const addColumn = (type) => (dispatch, getState) => { //eslint-disable-line
-  const columns = getState().columns.slice();
-  const newColumn = DEFAULT_STATES.COLUMNS[0];
-  newColumn.id = getUID();
-  columns.push(newColumn);
+  const column = DEFAULT_STATES.COLUMN;
+  column.id = getUID();
   dispatch({
-    type: FEED.ACTION.FETCH,
+    type: COLUMNS.ADD,
     state: STATE.SUCCESS,
-    columns,
+    column,
   });
 };
 
 const resetColumns = () => (dispatch) => {
-  const newColumns = DEFAULT_STATES.COLUMNS;
-  newColumns[0].id = getUID();
+  const column = DEFAULT_STATES.COLUMN;
+  column.id = getUID();
   dispatch({
-    type: FEED.ACTION.FETCH,
+    type: COLUMN.RESET,
     state: STATE.SUCCESS,
-    columns: newColumns,
+    column,
   });
 };
 
@@ -41,8 +39,13 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
     return;
   }
   const columns = getState().columns;
-  const currentColumn = columns.filter(column => column.id === id)[0];
-  const index = columns.indexOf(currentColumn);
+  let currentColumn = columns.filter(column => column.id === id)[0];
+
+  if (!currentColumn) {
+    if (getState().column.id === id) {
+      currentColumn = Object.assign({}, getState().column);
+    }
+  }
 
   const { user } = getState().auth;
   let uid = getUID();
@@ -56,24 +59,20 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
     authToken = user.authToken;
   }
 
-  if (currentColumn) {
-    uid = currentColumn.id;
-    prevSet = currentColumn.prev_set;
-    oldSort = currentColumn.sort;
-    oldRange = currentColumn.range;
-    page = oldSort !== sort || oldRange !== range ? 0 : currentColumn.page;
-  }
 
-  const newColumns = getState().columns.slice();
+  uid = currentColumn.id;
+  prevSet = currentColumn.prev_set;
+  oldSort = currentColumn.sort;
+  oldRange = currentColumn.range;
+  page = oldSort !== sort || oldRange !== range ? 0 : currentColumn.page;
 
   if (page === 0) {
-    const loadingColumn = getState().columns.slice();
-    loadingColumn[index].items = [];
-    loadingColumn[index].page = 0;
+    currentColumn.items = [];
+    currentColumn.page = 0;
     dispatch({
-      type: FEED.ACTION.FETCH,
-      state: STATE.SUCCESS,
-      columns: loadingColumn,
+      type: COLUMN.FETCH,
+      state: STATE.LOADING,
+      column: currentColumn,
     });
   }
   loading = true;
@@ -83,7 +82,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
       .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken)
       .then((res) => {
         loading = false;
-        newColumns[index] = {
+        const column = {
           id: uid,
           type: FEED.RANTS.NAME,
           items: [
@@ -96,9 +95,9 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
           prev_set: res.set,
         };
         dispatch({
-          type: FEED.ACTION.FETCH,
+          type: COLUMN.FETCH,
           state: STATE.SUCCESS,
-          columns: newColumns,
+          column,
         });
       })
       .catch(() => {
@@ -110,7 +109,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
       .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
       .then((res) => {
         loading = false;
-        newColumns[index] = {
+        const column = {
           id: uid,
           type: FEED.RANTS.NAME,
           items: [
@@ -123,9 +122,9 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
           prev_set: res.set,
         };
         dispatch({
-          type: FEED.ACTION.FETCH,
+          type: COLUMN.FETCH,
           state: STATE.SUCCESS,
-          columns: newColumns,
+          column,
         });
       })
       .catch(() => {
@@ -138,7 +137,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
       .collabs(sort, AMOUNT, AMOUNT * page, authToken)
       .then((res) => {
         loading = false;
-        newColumns[index] = {
+        const column = {
           id: uid,
           type: FEED.COLLABS.NAME,
           items: [
@@ -151,18 +150,13 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
           prev_set: res.set,
         };
         dispatch({
-          type: FEED.ACTION.FETCH,
+          type: COLUMN.FETCH,
           state: STATE.SUCCESS,
-          columns: newColumns,
+          column,
         });
       })
       .catch(() => {
         showToast(dispatch, 'Username or Password is wrong');
-        dispatch({
-          type: FEED.ACTION.FETCH,
-          itemType: FEED.COLLABS.NAME,
-          state: STATE.FAILED,
-        });
       });
       break;
     default:

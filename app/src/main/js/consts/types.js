@@ -26,6 +26,16 @@ export const USER = {
   REMOVE: 'USER_REMOVE',
 };
 
+export const COLUMNS = {
+  RESET: 'COLUMNS_RESET',
+  ADD: 'COLUMNS_ADD',
+};
+
+export const COLUMN = {
+  FETCH: 'COLUMN_FETCH',
+  RESET: 'COLUMN_RESET',
+};
+
 export const ITEM = {
   RANT: {
     NAME: 'RANT',
@@ -105,10 +115,6 @@ export const FEED = {
         ALL: true,
       },
     },
-  },
-  ACTION: {
-    FETCH: 'FEED_FETCH',
-    RESET: 'FEED_RESET',
   },
   COLLABS: {
     NAME: 'COLLABS',

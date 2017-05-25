@@ -10,6 +10,7 @@ import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
 import Collabs from '../containers/feeds/collabs';
 import Modal from '../containers/modal/modal';
+import Custom from '../containers/feeds/custom';
 
 const MainRoutes = props => (
   <div key="MainRoutes" className="main_container" >
@@ -36,6 +37,12 @@ const MainRoutes = props => (
         path="/collabs"
         render={() => (
           <Collabs />
+        )}
+      />
+      <Route
+        path="/custom"
+        render={() => (
+          <Custom />
         )}
       />
       <Modal />
