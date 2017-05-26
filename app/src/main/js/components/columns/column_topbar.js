@@ -11,7 +11,7 @@ class ColumnTopBar extends Component {
     };
   }
   componentWillMount() {
-    const { filters, id } = this.props;
+    const { filters, id, fetchAfterMount } = this.props;
 
     const primaryFilters = filters[filters.PRIMARY];
     const firstPriIndex = Object.keys(primaryFilters)[0];
@@ -25,7 +25,9 @@ class ColumnTopBar extends Component {
       firstSec = secondaryFilters[firstSecIndex];
       this.setState({ secondary: firstSec });
     }
-    this.props.fetch(firstPri, firstSec, id);
+    if (fetchAfterMount) {
+      this.props.fetch(firstPri, firstSec, id);
+    }
   }
   componentDidMount() {
     const { divID } = this.props;
@@ -127,6 +129,7 @@ ColumnTopBar.propTypes = {
   fetch: PropTypes.func.isRequired,
   divID: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  fetchAfterMount: PropTypes.bool.isRequired,
 };
 
 export default ColumnTopBar;

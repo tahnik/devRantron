@@ -42,6 +42,7 @@ class Column extends Component {
           fetch={fetch}
           id={column.id}
           divID={divID}
+          fetchAfterMount={column.items.length === 0}
         />
         <div className="items_container" id={divID}>
           {
