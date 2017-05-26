@@ -1,6 +1,7 @@
 import rantscript from '../consts/rantscript';
 import showToast from './toast';
 import { AUTH, STATE, USER, FEED } from '../consts/types';
+import { resetColumns } from './fetch';
 
 const login = (username, password) => (dispatch) => {
   dispatch({
@@ -42,9 +43,7 @@ const logout = () => (dispatch) => {
   dispatch({
     type: USER.REMOVE,
   });
-  dispatch({
-    type: FEED.ACTION.RESET,
-  });
+  dispatch(resetColumns());
 };
 
 export { login, noLogin, logout };

@@ -77,7 +77,6 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
     authToken = user.authToken;
   }
 
-
   uid = currentColumn.id;
   prevSet = currentColumn.prev_set;
   oldSort = currentColumn.sort;
