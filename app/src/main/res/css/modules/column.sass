@@ -6,12 +6,17 @@
   height: 100vh
   .add_column
     display: flex
+    flex-direction: row-reverse
     align-items: center
-    position: absolute;
-    bottom: 5px;
-    right: 13px;
+    position: absolute
+    bottom: 5px
+    right: 13px
+    .items_holder
+      transition: width 0.7s cubic-bezier(.3,.51,.17,1)
+      display: flex
     .add_button
-      padding: 1.5rem
+      padding: 0.7rem
+      margin: 0 0.3rem
       height: auto
 .column
   height: 100vh

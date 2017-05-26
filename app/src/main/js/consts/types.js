@@ -69,6 +69,11 @@ export const ITEM = {
   },
 };
 
+export const FILTERS = {
+  SORT: 'SORT',
+  RANGE: 'RANGE',
+};
+
 export const FEED = {
   RANTS: {
     NAME: 'RANTS',

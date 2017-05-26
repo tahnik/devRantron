@@ -6,8 +6,8 @@ import { ITEM, FEED } from '../../consts/types';
 import { openModal } from '../../actions/modal';
 
 const mapDispatchToProps = dispatch => ({
-  fetch: (sort, range, id = 0, type = FEED.RANTS.NAME) => {
-    dispatch(fetch(sort, type, id, range));
+  fetch: (sort, range, id = 0) => {
+    dispatch(fetch(sort, FEED.RANTS.NAME, id, range));
   },
   vote: (voteState, id, type = ITEM.RANT.NAME) => {
     dispatch(vote(voteState, id, type));

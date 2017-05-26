@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FILTERS } from '../../consts/types';
 
 class ColumnTopBar extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class ColumnTopBar extends Component {
     };
   }
   componentWillMount() {
-    const { filters, id, fetchAfterMount } = this.props;
+    const { filters, fetchAfterMount } = this.props;
 
     const primaryFilters = filters[filters.PRIMARY];
     const firstPriIndex = Object.keys(primaryFilters)[0];
@@ -26,7 +27,7 @@ class ColumnTopBar extends Component {
       this.setState({ secondary: firstSec });
     }
     if (fetchAfterMount) {
-      this.props.fetch(firstPri, firstSec, id);
+      this.fetch(firstPri, firstSec);
     }
   }
   componentDidMount() {
@@ -43,24 +44,30 @@ class ColumnTopBar extends Component {
       element.removeEventListener('scroll', () => this.handleScroll());
     }
   }
+  fetch(firstPri, firstSec) {
+    const { id, type, filters } = this.props;
+    if (filters.PRIMARY === FILTERS.SORT) {
+      this.props.fetch(firstPri, firstSec, id, type);
+    } else {
+      this.props.fetch(firstSec, firstPri, id, type);
+    }
+  }
   handleScroll() {
-    const { divID, fetch, id } = this.props;
+    const { divID } = this.props;
     const element = document.getElementById(divID);
     if (
       element.scrollHeight - element.scrollTop < element.clientHeight + 4000
     ) {
-      fetch(this.state.primary, this.state.secondary, id);
+      this.fetch(this.state.primary, this.state.secondary);
     }
   }
   handlePri(primary) {
-    const { id } = this.props;
     this.setState({ primary });
-    this.props.fetch(primary, this.state.secondary, id);
+    this.fetch(primary, this.state.secondary);
   }
   handleSec(secondary) {
-    const { id } = this.props;
     this.setState({ secondary });
-    this.props.fetch(this.state.primary, secondary, id);
+    this.fetch(this.state.primary, secondary);
   }
   handleHover(primary) {
     const { filters } = this.props;
@@ -130,6 +137,7 @@ ColumnTopBar.propTypes = {
   divID: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   fetchAfterMount: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default ColumnTopBar;

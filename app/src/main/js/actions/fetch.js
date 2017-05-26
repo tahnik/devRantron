@@ -14,9 +14,25 @@ const filterDuplicate = (orants, newRants) => {
   return newRants.filter(rant => ids.indexOf(rant.id) === -1);
 };
 
-const addColumn = (type) => (dispatch, getState) => { //eslint-disable-line
+const getFilters = (type) => {
+  switch (type) {
+    case FEED.RANTS.NAME:
+      return FEED.RANTS.FILTERS;
+    case FEED.COLLABS.NAME:
+      return FEED.COLLABS.FILTERS;
+    case FEED.STORIES.NAME:
+      return FEED.STORIES.FILTERS;
+    default:
+      return FEED.RANTS.FILTERS;
+  }
+};
+
+const addColumn = (type = FEED.RANTS.NAME) => (dispatch) => {
   const column = DEFAULT_STATES.COLUMN;
+  const filters = getFilters(type);
   column.id = getUID();
+  column.filters = filters;
+  column.type = type;
   dispatch({
     type: COLUMNS.ADD,
     state: STATE.SUCCESS,
@@ -27,6 +43,7 @@ const addColumn = (type) => (dispatch, getState) => { //eslint-disable-line
 const resetColumns = () => (dispatch) => {
   const column = DEFAULT_STATES.COLUMN;
   column.id = getUID();
+  column.type = '';
   dispatch({
     type: COLUMN.RESET,
     state: STATE.SUCCESS,
@@ -53,6 +70,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
   let oldSort = '';
   let prevSet = 0;
   let oldRange = '';
+  const filters = getFilters(type);
 
   let authToken = null;
   if (user) {
@@ -93,6 +111,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
           sort,
           range,
           prev_set: res.set,
+          filters,
         };
         dispatch({
           type: COLUMN.FETCH,
@@ -111,7 +130,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
         loading = false;
         const column = {
           id: uid,
-          type: FEED.RANTS.NAME,
+          type: FEED.STORIES.NAME,
           items: [
             ...currentColumn.items,
             ...filterDuplicate(currentColumn.items, res),
@@ -120,6 +139,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
           sort,
           range,
           prev_set: res.set,
+          filters,
         };
         dispatch({
           type: COLUMN.FETCH,
@@ -148,6 +168,7 @@ const fetch = (sort, type, id, range = null) => (dispatch, getState) => {
           sort,
           range,
           prev_set: res.set,
+          filters,
         };
         dispatch({
           type: COLUMN.FETCH,

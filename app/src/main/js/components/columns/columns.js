@@ -14,9 +14,25 @@ const Columns = (props) => {
       {
         columns.map((column) => {
           if (column.type === FEED.RANTS.NAME) {
-            return <Column key={column.id} {...props} column={column} />;
+            return (
+              <Column
+                key={column.id}
+                {...props}
+                column={column}
+                filters={column.filters}
+                itemType={column.type}
+              />
+            );
           }
-          return <Column key={column.id} {...props} column={column} />;
+          return (
+            <Column
+              key={column.id}
+              {...props}
+              column={column}
+              filters={column.filters}
+              itemType={column.type}
+            />
+          );
         })
       }
       <AddColumn addColumn={props.addColumn} theme={props.theme} />
