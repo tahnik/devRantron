@@ -23,8 +23,11 @@ store.subscribe(() => {
     auth: state.auth,
     settings: state.settings,
     user: state.user,
+    columns: state.columns,
   };
   localStorage.setItem('reduxState', JSON.stringify(persistedState));
 });
+
+
 
 export default store;
