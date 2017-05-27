@@ -196,7 +196,7 @@ const fetch = (sort, type, id, range) => (dispatch, getState) => {
         });
       })
       .catch(() => {
-        showToast(dispatch, 'Username or Password is wrong');
+        showToast(dispatch, 'Could not fetch feed');
       });
       break;
     case FEED.STORIES.NAME:
@@ -215,7 +215,7 @@ const fetch = (sort, type, id, range) => (dispatch, getState) => {
         });
       })
       .catch(() => {
-        showToast(dispatch, 'Username or Password is wrong');
+        showToast(dispatch, 'Could not fetch feed');
       });
 
       break;
@@ -235,7 +235,7 @@ const fetch = (sort, type, id, range) => (dispatch, getState) => {
         });
       })
       .catch(() => {
-        showToast(dispatch, 'Username or Password is wrong');
+        showToast(dispatch, 'Could not fetch feed');
       });
       break;
     default:
