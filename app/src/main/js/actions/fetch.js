@@ -73,6 +73,18 @@ const addColumn = (type = FEED.RANTS.NAME) => (dispatch) => {
 };
 
 /**
+ * Removes a column in the custom component.
+ *
+ * @param {number} id ID of the column that will be removed
+ */
+const removeColumn = id => (dispatch) => {
+  dispatch({
+    type: COLUMNS.REMOVE,
+    id,
+  });
+};
+
+/**
  * Used to reset a column when switching between tabs or nav
  *
  */
@@ -101,10 +113,11 @@ const resetColumn = () => (dispatch) => {
  * @param {string} id ID of the specific column, used to identify a column in
  *                    array of columns
  * @param {string} range Either Day, Month, Year or All
+ * @param {bool} refresh Indicates if the column should be refreshed from the
+ *                       start
  */
 const fetch =
 (sort, type, id, range, refresh = false) => (dispatch, getState) => {
-  console.log(refresh);
   // First check if column that requested the fetch is part of custom columns
   const columns = getState().columns;
   let currentColumn = columns.filter(column => column.id === id)[0];
@@ -250,4 +263,4 @@ const fetch =
 };
 
 
-export { fetch as default, addColumn, resetColumn };
+export { fetch as default, addColumn, resetColumn, removeColumn };

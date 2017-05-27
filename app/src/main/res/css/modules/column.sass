@@ -39,18 +39,20 @@
       color: white
       display: flex
       justify-content: flex-end
-      i
-        font-size: 1.4rem
-        opacity: 0.4
+      span
         display: flex
         align-items: center
-        transition: all 0.1s
-        &:hover
-          font-size: 1.6rem
-          opacity: 1
-          cursor: pointer
-        &:active
-          font-size: 1.4rem
+        margin: 0 5px
+        i
+          font-size: 1.2rem
+          opacity: 0.4
+          transition: all 0.1s
+          &:hover
+            transform: scale(1.2)
+            opacity: 1
+            cursor: pointer
+          &:active
+            transform: scale(1)
     .left_navs
       flex: 8
       .primary

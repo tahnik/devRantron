@@ -29,6 +29,7 @@ export const USER = {
 export const COLUMNS = {
   RESET: 'COLUMNS_RESET',
   ADD: 'COLUMNS_ADD',
+  REMOVE: 'COLUMNS_REMOVE',
 };
 
 export const COLUMN = {

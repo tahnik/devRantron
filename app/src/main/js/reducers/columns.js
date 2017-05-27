@@ -25,7 +25,6 @@ export default (state = DEFAULT_STATES.COLUMNS, action) => {
         newColumns.splice(index, 1);
       }
       return newColumns;
-
     }
     case COLUMNS.RESET: {
       return DEFAULT_STATES.COLUMNS;

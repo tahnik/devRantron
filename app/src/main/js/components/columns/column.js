@@ -31,7 +31,7 @@ class Column extends Component {
     return true;
   }
   render() {
-    const { column, theme, vote, fetch, open, filters, itemType } = this.props;
+    const { column, theme, vote, fetch, open, filters, itemType, removeColumn } = this.props;
     const { divID } = this.state;
     return (
       <div
@@ -46,6 +46,7 @@ class Column extends Component {
           fetchAfterMount={column.items.length === 0}
           type={column.type}
           state={column.state}
+          removeColumn={removeColumn}
         />
         <div className="items_container" id={divID}>
           {
@@ -77,6 +78,7 @@ Column.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
+  removeColumn: PropTypes.func.isRequired,
   filters: PropTypes.object.isRequired,
   itemType: PropTypes.string.isRequired,
 };

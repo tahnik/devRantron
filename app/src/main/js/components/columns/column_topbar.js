@@ -65,6 +65,9 @@ class ColumnTopBar extends Component {
   refresh() {
     this.fetch(this.state.primary, this.state.secondary, true);
   }
+  remove() {
+    this.props.removeColumn(this.props.id);
+  }
   handlePri(primary) {
     this.setState({ primary });
     this.fetch(primary, this.state.secondary);
@@ -89,7 +92,7 @@ class ColumnTopBar extends Component {
     }
   }
   render() {
-    const { filters } = this.props;
+    const { filters, removeColumn } = this.props;
     const primaryFilters = filters[filters.PRIMARY];
 
     const secondaryFilters = filters[filters.SECONDARY];
@@ -133,7 +136,15 @@ class ColumnTopBar extends Component {
           </div>
         </div>
         <div className="right_navs">
-          <i onClick={() => this.refresh()} className="ion-ios-refresh-empty" />
+          <span>
+            <i onClick={() => this.refresh()} className="ion-refresh" />
+          </span>
+          {
+            removeColumn ?
+              <span>
+                <i onClick={() => this.remove()} className="ion-close-round" />
+              </span> : null
+          }
         </div>
       </div>
     );
@@ -143,6 +154,7 @@ class ColumnTopBar extends Component {
 ColumnTopBar.propTypes = {
   filters: PropTypes.object.isRequired,
   fetch: PropTypes.func.isRequired,
+  removeColumn: PropTypes.func.isRequired,
   divID: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   fetchAfterMount: PropTypes.bool.isRequired,

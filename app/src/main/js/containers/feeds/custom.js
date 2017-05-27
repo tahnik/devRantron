@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Columns from '../../components/columns/columns';
-import fetch, { addColumn } from '../../actions/fetch';
+import fetch, { addColumn, removeColumn } from '../../actions/fetch';
 import vote from '../../actions/vote';
 import { ITEM } from '../../consts/types';
 import { openModal } from '../../actions/modal';
@@ -14,6 +14,9 @@ const mapDispatchToProps = dispatch => ({
   },
   addColumn: (type = null) => {
     dispatch(addColumn(type));
+  },
+  removeColumn: (id) => {
+    dispatch(removeColumn(id));
   },
   open: (type, id) => {
     dispatch(openModal(type, id));
