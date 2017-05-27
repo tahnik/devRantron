@@ -1,7 +1,7 @@
 import { TOAST } from '../consts/types';
 
 let timer = null;
-export default (dispatch, text, timeout = 4000) => {
+export default (text, timeout = 4000) => (dispatch) => {
   if (timer) {
     clearTimeout(timer);
   }

@@ -27,7 +27,7 @@ const login = (username, password) => (dispatch) => {
       });
     })
     .catch(() => {
-      showToast(dispatch, 'Username or Password is wrong');
+      dispatch(showToast('Username or Password is wrong'));
       dispatch({
         type: AUTH.LOGIN,
         state: STATE.FAILED,

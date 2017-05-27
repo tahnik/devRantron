@@ -9,7 +9,7 @@ const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
   if (user) {
     authToken = user.authToken;
   } else {
-    showToast(dispatch, 'Log in to vote');
+    dispatch(showToast(dispatch, 'Log in to vote'));
     dispatch({
       type: AUTH.NOLOGIN,
       payload: false,
@@ -25,7 +25,7 @@ const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
       .then(() => {
       })
       .catch(() => {
-        showToast(dispatch, 'Username or Password is wrong');
+        dispatch(showToast('Username or Password is wrong'));
       });
 };
 
@@ -35,7 +35,7 @@ const voteComment = (voteState = 1, commentID) => (dispatch, getState) => {
   if (user) {
     authToken = user.authToken;
   } else {
-    showToast(dispatch, 'Log in to vote');
+    dispatch(showToast('Log in to vote'));
     dispatch({
       type: AUTH.NOLOGIN,
       payload: false,
@@ -51,7 +51,7 @@ const voteComment = (voteState = 1, commentID) => (dispatch, getState) => {
       .then(() => {
       })
       .catch(() => {
-        showToast(dispatch, 'Username or Password is wrong');
+        dispatch(showToast('Username or Password is wrong'));
       });
 };
 
