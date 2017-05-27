@@ -14,6 +14,9 @@ class Comments extends Component {
     return (
       <div className="comments_container">
         {
+          comments.length === 0 ? <h4>No comments</h4> : null
+        }
+        {
           comments.map(comment => (
             <CommentCard
               key={comment.id}

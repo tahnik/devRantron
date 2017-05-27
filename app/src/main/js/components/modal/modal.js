@@ -5,8 +5,8 @@ import Item from '../item/item';
 
 class Modal extends Component {
   getItem() {
-    const { item, theme, vote, auth } = this.props;
-    return <Item key={item.id} theme={theme} cardItem={item} vote={vote} auth={auth} />;
+    const { item, theme, vote, auth, close } = this.props;
+    return <Item key={item.id} theme={theme} cardItem={item} vote={vote} auth={auth} close={close} />;
   }
   onOutsideClick(e) {
     if (e.target.className === 'item_container modal') {
