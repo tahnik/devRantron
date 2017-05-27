@@ -9,8 +9,7 @@ const defaultState = {
     backgroundColor: 'grey',
   },
   itemsHolder: {
-    width: 0,
-    overflow: 'hidden',
+    transform: 'translateX(100%)',
     display: 'flex',
   },
 };
@@ -42,12 +41,18 @@ class AddColumn extends Component {
   }
   toggleItems() {
     const itemsHolder = {
-      width: '100%',
+      transform: 'translateX(0%)',
     };
     if (this.state.active) {
       this.setState(defaultState);
     } else {
+      this.makeAddActive();
       this.setState({ active: true, itemsHolder });
+    }
+  }
+  onMainLeave() {
+    if (!this.state.active) {
+      this.setState(defaultState);
     }
   }
   render() {
@@ -58,22 +63,25 @@ class AddColumn extends Component {
     return (
       <div
         className="add_column"
+        onMouseLeave={() => this.onMainLeave()}
       >
-        <div style={this.state.itemsHolder} className="items_holder">
-          {
-            Object.keys(FEED).map(key => (
-              <button
-                className="add_button"
-                onClick={() => this.addColumn(FEED[key].NAME)}
-                key={key}
-              >
-                { FEED[key].NAME }
-              </button>
-              ))
-          }
+        <div className="items_holder">
+          <div style={this.state.itemsHolder} className="items">
+            {
+              Object.keys(FEED).map(key => (
+                <button
+                  className="add_button"
+                  onClick={() => this.addColumn(FEED[key].NAME)}
+                  key={key}
+                >
+                  { FEED[key].NAME }
+                </button>
+                ))
+            }
+          </div>
         </div>
         <button
-          className="add_button"
+          className="plus_button"
           onMouseEnter={() => this.makeAddActive()}
           onClick={() => this.toggleItems()}
           style={this.state.addTheme}
