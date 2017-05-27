@@ -78,7 +78,7 @@ Column.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
-  removeColumn: PropTypes.func.isRequired,
+  removeColumn: PropTypes.func, // eslint-disable-line
   filters: PropTypes.object.isRequired,
   itemType: PropTypes.string.isRequired,
 };
