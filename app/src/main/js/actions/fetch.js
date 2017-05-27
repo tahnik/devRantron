@@ -79,6 +79,7 @@ const addColumn = (type = FEED.RANTS.NAME) => (dispatch) => {
 const resetColumn = () => (dispatch) => {
   // Get a default state, this can be used to reset the column
   const column = DEFAULT_STATES.COLUMN;
+  column.id = getUID();
 
   dispatch({
     type: COLUMN.RESET,
