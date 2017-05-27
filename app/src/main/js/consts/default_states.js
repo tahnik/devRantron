@@ -56,6 +56,7 @@ export default {
     page: 0,
     type: FEED.RANTS.NAME,
     prev_set: 0,
+    state: STATE.INITIAL,
   },
   ITEM: [
 

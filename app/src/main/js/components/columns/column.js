@@ -23,6 +23,7 @@ class Column extends Component {
       if (
         currentColumn.page === nextColumn.page
         && nextColumn.items.length !== 0
+        && currentColumn.state === nextColumn.state
       ) {
         return false;
       }
@@ -44,6 +45,7 @@ class Column extends Component {
           divID={divID}
           fetchAfterMount={column.items.length === 0}
           type={column.type}
+          state={column.state}
         />
         <div className="items_container" id={divID}>
           {

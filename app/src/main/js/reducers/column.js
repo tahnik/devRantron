@@ -7,11 +7,10 @@ export default (state = DEFAULT_STATES.COLUMN, action) => {
       if (action.column.id === state.id) {
         return action.column;
       }
-      break;
+      return state;
     case COLUMN.RESET:
       return action.column;
     default:
       return state;
   }
-  return state;
 };

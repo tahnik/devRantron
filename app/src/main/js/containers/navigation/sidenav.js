@@ -4,7 +4,7 @@ import SideNav from '../../components/navigation/sidenav';
 import ROUTES from '../../consts/routes';
 import { fetchUser } from '../../actions/user';
 import { logout, noLogin } from '../../actions/auth';
-import { resetColumns } from '../../actions/fetch';
+import { resetColumn } from '../../actions/fetch';
 
 const SIDE_NAV_ITEMS = [
   { name: 'Rants', route: ROUTES.rants, icon: 'ion-chatboxes' },
@@ -23,8 +23,8 @@ const mapDispatchToProps = dispatch => ({
   login: (bool = false) => {
     dispatch(noLogin(bool));
   },
-  resetColumns: () => {
-    dispatch(resetColumns());
+  resetColumn: () => {
+    dispatch(resetColumn());
   },
 });
 

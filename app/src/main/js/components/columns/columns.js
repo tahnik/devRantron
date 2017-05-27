@@ -20,7 +20,7 @@ const Columns = (props) => {
                 {...props}
                 column={column}
                 filters={column.filters}
-                itemType={column.type}
+                itemType={column.itemType}
               />
             );
           }
@@ -30,7 +30,7 @@ const Columns = (props) => {
               {...props}
               column={column}
               filters={column.filters}
-              itemType={column.type}
+              itemType={column.itemType}
             />
           );
         })

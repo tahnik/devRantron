@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FILTERS } from '../../consts/types';
+import { FILTERS, STATE } from '../../consts/types';
 
 class ColumnTopBar extends Component {
   constructor() {
@@ -53,10 +53,11 @@ class ColumnTopBar extends Component {
     }
   }
   handleScroll() {
-    const { divID } = this.props;
+    const { divID, state } = this.props;
     const element = document.getElementById(divID);
     if (
       element.scrollHeight - element.scrollTop < element.clientHeight + 4000
+      && state !== STATE.LOADING
     ) {
       this.fetch(this.state.primary, this.state.secondary);
     }
@@ -138,6 +139,7 @@ ColumnTopBar.propTypes = {
   id: PropTypes.string.isRequired,
   fetchAfterMount: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
 };
 
 export default ColumnTopBar;
