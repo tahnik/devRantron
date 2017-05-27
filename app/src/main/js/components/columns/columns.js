@@ -16,6 +16,7 @@ const Columns = (props) => {
         transitionName="fade_item"
         transitionEnterTimeout={250}
         transitionLeaveTimeout={150}
+        className="custom_columns"
       >
         {
           columns.map((column) => {
@@ -41,7 +42,7 @@ const Columns = (props) => {
             );
           })
         }
-        </CSSTransitionGroup>
+      </CSSTransitionGroup>
       <AddColumn addColumn={props.addColumn} theme={props.theme} />
     </div>
   );
