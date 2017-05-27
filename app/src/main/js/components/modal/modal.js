@@ -8,6 +8,11 @@ class Modal extends Component {
     const { item, theme, vote, auth } = this.props;
     return <Item key={item.id} theme={theme} cardItem={item} vote={vote} auth={auth} />;
   }
+  onOutsideClick(e) {
+    if (e.target.className === 'item_container modal') {
+      this.props.close();
+    }
+  }
   render() {
     const { item, close } = this.props;
     return (
@@ -19,7 +24,10 @@ class Modal extends Component {
       >
         {
           item ?
-            <div className="modal_container">
+            <div
+              className="modal_container"
+              onClick={e => this.onOutsideClick(e)}
+            >
               <div className="close_modal" onClick={() => close()}>
                 <i className="ion-close-round" />
               </div>
