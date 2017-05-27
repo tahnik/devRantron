@@ -5,8 +5,8 @@ import Item from '../item/item';
 
 class Modal extends Component {
   getItem() {
-    const { item, theme, vote, auth, close } = this.props;
-    return <Item key={item.id} theme={theme} cardItem={item} vote={vote} auth={auth} close={close} />;
+    const { item } = this.props;
+    return <Item key={item.id} cardItem={item} {...this.props} />;
   }
   onOutsideClick(e) {
     if (e.target.className === 'item_container modal') {
@@ -43,10 +43,7 @@ class Modal extends Component {
 
 Modal.propTypes = {
   item: PropTypes.object, //eslint-disable-line
-  theme: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,
-  vote: PropTypes.func.isRequired,
 };
 
 export default Modal;

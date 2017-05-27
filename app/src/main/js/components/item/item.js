@@ -28,7 +28,6 @@ class Item extends Component {
     window.removeEventListener('resize', this.listener);
   }
   handleOnClick(e) {
-    console.log(e.target.className);
     if (e.target.className === 'itemcard_container') {
       this.props.close();
     }
