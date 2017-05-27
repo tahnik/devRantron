@@ -5,7 +5,6 @@ import showToast from './toast';
 import { getUID } from '../consts/DOMFunctions';
 
 const AMOUNT = 20;
-const loading = false;
 
 /**
  * devRant server sometimes returns duplicate for algo sorts. Duplicates
