@@ -50,6 +50,7 @@ class Columns extends Component {
           transitionEnterTimeout={250}
           transitionLeaveTimeout={150}
           className="custom_columns"
+          id="custom_columns"
         >
           {
             columns.map((column, index) => {

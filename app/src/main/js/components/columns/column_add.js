@@ -22,7 +22,7 @@ class AddColumn extends Component {
   addColumn(type) {
     const { theme } = this.props;
     const middleContainer = document.getElementById('middle_container');
-    const columns = document.getElementById('columns');
+    const columns = document.getElementById('custom_columns');
     if (middleContainer && columns) {
       const middleWidth = middleContainer.offsetWidth;
       const columnsWidth = columns.offsetWidth;

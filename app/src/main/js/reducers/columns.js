@@ -13,9 +13,7 @@ export default (state = DEFAULT_STATES.COLUMNS, action) => {
       return newColumns;
     }
     case COLUMNS.ADD: {
-      const newColumns = state.slice();
-      newColumns.push(action.column);
-      return newColumns;
+      return [...state, action.column];
     }
     case COLUMNS.REMOVE: {
       const reqColumn = state.filter(column => column.id === action.id)[0];
