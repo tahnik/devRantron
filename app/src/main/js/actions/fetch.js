@@ -5,7 +5,7 @@ import showToast from './toast';
 import { getUID } from '../consts/DOMFunctions';
 
 const AMOUNT = 20;
-let loading = false;
+const loading = false;
 
 /**
  * devRant server sometimes returns duplicate for algo sorts. Duplicates
@@ -102,7 +102,9 @@ const resetColumn = () => (dispatch) => {
  *                    array of columns
  * @param {string} range Either Day, Month, Year or All
  */
-const fetch = (sort, type, id, range) => (dispatch, getState) => {
+const fetch =
+(sort, type, id, range, refresh = false) => (dispatch, getState) => {
+  console.log(refresh);
   // First check if column that requested the fetch is part of custom columns
   const columns = getState().columns;
   let currentColumn = columns.filter(column => column.id === id)[0];
@@ -135,13 +137,16 @@ const fetch = (sort, type, id, range) => (dispatch, getState) => {
   /**
    * Get the currently selected sort and range and compare them with new ones
    * If they have changed, make the page 0. This means we are doing a semi reset
+   * Also, resets the pages if fetch requested a refresh
    */
   let page = 0;
   let prevSet = 0;
   prevSet = currentColumn.prev_set;
   const oldSort = currentColumn.sort;
   const oldRange = currentColumn.range;
-  page = oldSort !== sort || oldRange !== range ? 0 : currentColumn.page;
+  page = oldSort !== sort
+         || oldRange !== range
+         || refresh ? 0 : currentColumn.page;
 
   /**
    * If the pages is 0, that means we need to remove the existing items in the

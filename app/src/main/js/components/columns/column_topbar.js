@@ -44,12 +44,12 @@ class ColumnTopBar extends Component {
       element.removeEventListener('scroll', () => this.handleScroll());
     }
   }
-  fetch(firstPri, firstSec) {
+  fetch(firstPri, firstSec, refresh = false) {
     const { id, type, filters } = this.props;
     if (filters.PRIMARY === FILTERS.SORT) {
-      this.props.fetch(firstPri, firstSec, id, type);
+      this.props.fetch(firstPri, firstSec, id, refresh, type);
     } else {
-      this.props.fetch(firstSec, firstPri, id, type);
+      this.props.fetch(firstSec, firstPri, id, refresh, type);
     }
   }
   handleScroll() {
@@ -61,6 +61,9 @@ class ColumnTopBar extends Component {
     ) {
       this.fetch(this.state.primary, this.state.secondary);
     }
+  }
+  refresh() {
+    this.fetch(this.state.primary, this.state.secondary, true);
   }
   handlePri(primary) {
     this.setState({ primary });
@@ -95,37 +98,42 @@ class ColumnTopBar extends Component {
         className="column_topbar"
         onMouseLeave={() => this.handleHoverLeave()}
       >
-        <div
-          className="primary"
-          style={{ transform: `translateY(${this.state.translateY}%)` }}
-        >
-          { Object.keys(primaryFilters).map((key) => {
-            const isActive = this.state.primary === primaryFilters[key] ? 'active' : null;
-            return (
-              <span
-                key={key}
-                className={`${isActive}`}
-                onClick={() => this.handlePri(primaryFilters[key])}
-                onMouseOver={() => this.handleHover(primaryFilters[key])}
-              >{primaryFilters[key]}</span>
-            );
-          })}
-        </div>
-        <div
-          className="secondary"
-          style={{ transform: `translateY(${this.state.translateY}%)` }}
-        >
-          { !secondaryFilters ? null :
-            Object.keys(secondaryFilters).map((key) => {
-              const isActive = this.state.secondary === secondaryFilters[key] ? 'active' : null;
+        <div className="left_navs">
+          <div
+            className="primary"
+            style={{ transform: `translateY(${this.state.translateY}%)` }}
+          >
+            { Object.keys(primaryFilters).map((key) => {
+              const isActive = this.state.primary === primaryFilters[key] ? 'active' : null;
               return (
                 <span
                   key={key}
                   className={`${isActive}`}
-                  onClick={() => this.handleSec(secondaryFilters[key])}
-                >{secondaryFilters[key]}</span>
+                  onClick={() => this.handlePri(primaryFilters[key])}
+                  onMouseOver={() => this.handleHover(primaryFilters[key])}
+                >{primaryFilters[key]}</span>
               );
             })}
+          </div>
+          <div
+            className="secondary"
+            style={{ transform: `translateY(${this.state.translateY}%)` }}
+          >
+            { !secondaryFilters ? null :
+              Object.keys(secondaryFilters).map((key) => {
+                const isActive = this.state.secondary === secondaryFilters[key] ? 'active' : null;
+                return (
+                  <span
+                    key={key}
+                    className={`${isActive}`}
+                    onClick={() => this.handleSec(secondaryFilters[key])}
+                  >{secondaryFilters[key]}</span>
+                );
+              })}
+          </div>
+        </div>
+        <div className="right_navs">
+          <i onClick={() => this.refresh()} className="ion-ios-refresh-empty" />
         </div>
       </div>
     );
