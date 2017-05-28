@@ -5,12 +5,6 @@ import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';
 
 class ItemCard extends Component {
-  open() {
-    const { item, open, modal, itemType } = this.props;
-    if (!modal) {
-      open(itemType, item.id);
-    }
-  }
   shouldComponentUpdate(nextProps) {
     if (
       this.props.theme === nextProps.theme
@@ -19,6 +13,12 @@ class ItemCard extends Component {
       return false;
     }
     return true;
+  }
+  open() {
+    const { item, open, modal, itemType } = this.props;
+    if (!modal) {
+      open(itemType, item.id);
+    }
   }
   renderCollab() {
     const { item, itemType } = this.props;
