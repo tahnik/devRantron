@@ -24,7 +24,6 @@ const initialState = () => {
   }
 
   if (persistedState) {
-    console.log(persistedState);
     return persistedState;
   }
   return {};
