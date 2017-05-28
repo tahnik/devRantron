@@ -6,9 +6,26 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = applyMiddleware(thunk);
 
 const initialState = () => {
-  const persistedState = localStorage.getItem('reduxState');
+  const persistedState = {};
+
+  const auth = localStorage.getItem('auth');
+  if (auth) {
+    persistedState.auth = JSON.parse(auth);
+  }
+
+  const user = localStorage.getItem('user');
+  if (user) {
+    persistedState.user = JSON.parse(user);
+  }
+
+  const columns = localStorage.getItem('columns');
+  if (columns) {
+    persistedState.columns = JSON.parse(columns);
+  }
+
   if (persistedState) {
-    return JSON.parse(persistedState);
+    console.log(persistedState);
+    return persistedState;
   }
   return {};
 };
@@ -16,16 +33,5 @@ const initialState = () => {
 const store = createStore(reducers, initialState(), composeEnhancers(
     middleware,
 ));
-
-store.subscribe(() => {
-  const state = store.getState();
-  const persistedState = {
-    auth: state.auth,
-    settings: state.settings,
-    user: state.user,
-    columns: state.columns,
-  };
-  localStorage.setItem('reduxState', JSON.stringify(persistedState));
-});
 
 export default store;
