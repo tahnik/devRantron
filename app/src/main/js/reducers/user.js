@@ -6,11 +6,9 @@ export default (state = DEFAULT_STATES.USER, action) => {
     case USER.FETCH:
       switch (action.state) {
         case STATE.SUCCESS: {
-          const nextState = {
+          return {
             ...state, profile: action.profile, state: STATE.SUCCESS,
           };
-          localStorage.setItem('user', JSON.stringify(nextState));
-          return nextState;
         }
         case STATE.FAILED:
           return { ...state, state: STATE.FAILED };
@@ -20,11 +18,9 @@ export default (state = DEFAULT_STATES.USER, action) => {
           return state;
       }
     case USER.REMOVE: {
-      const nextState = {
+      return {
         profile: null, state: STATE.INITIAL,
       };
-      localStorage.setItem('user', JSON.stringify(nextState));
-      return nextState;
     }
     default:
       return state;

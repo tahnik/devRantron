@@ -10,9 +10,6 @@ export default (state = DEFAULT_STATES.COLUMNS, action) => {
       if (reqColumn) {
         newColumns[index] = action.column;
       }
-      setTimeout(() => {
-        localStorage.setItem('columns', JSON.stringify(newColumns));
-      }, 100);
       return newColumns;
     }
     case COLUMNS.ADD: {
@@ -25,9 +22,6 @@ export default (state = DEFAULT_STATES.COLUMNS, action) => {
       if (reqColumn) {
         newColumns.splice(index, 1);
       }
-      setTimeout(() => {
-        localStorage.setItem('columns', JSON.stringify(newColumns));
-      }, 100);
       return newColumns;
     }
     case COLUMNS.RESET: {

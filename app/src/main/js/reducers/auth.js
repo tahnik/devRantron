@@ -6,13 +6,11 @@ export default (state = DEFAULT_STATES.AUTH, action) => {
     case AUTH.LOGIN: {
       switch (action.state) {
         case STATE.SUCCESS: {
-          const nextState = {
+          return {
             ...state,
             user: action.user,
             state: STATE.SUCCESS,
           };
-          localStorage.setItem('auth', JSON.stringify(nextState));
-          return nextState;
         }
         case STATE.FAILED:
           return { ...state, user: null, state: STATE.FAILED };
@@ -23,12 +21,10 @@ export default (state = DEFAULT_STATES.AUTH, action) => {
       }
     }
     case AUTH.NOLOGIN: {
-      const nextState = {
+      return {
         ...state,
         noLogin: action.payload,
       };
-      localStorage.setItem('auth', JSON.stringify(nextState));
-      return nextState;
     }
     case AUTH.LOGOUT: {
       const nextState = {
@@ -36,7 +32,6 @@ export default (state = DEFAULT_STATES.AUTH, action) => {
         user: null,
         state: STATE.INITIAL,
       };
-      localStorage.setItem('auth', JSON.stringify(nextState));
       return nextState;
     }
     default:
