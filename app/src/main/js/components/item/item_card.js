@@ -11,6 +11,15 @@ class ItemCard extends Component {
       open(itemType, item.id);
     }
   }
+  shouldComponentUpdate(nextProps) {
+    if (
+      this.props.theme === nextProps.theme
+      && this.props.item === nextProps.item
+    ) {
+      return false;
+    }
+    return true;
+  }
   renderCollab() {
     const { item, itemType } = this.props;
     if (itemType !== ITEM.COLLAB.NAME) {
