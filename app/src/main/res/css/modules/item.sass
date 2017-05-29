@@ -3,3 +3,17 @@
   display: flex
   flex-direction: column
   align-items: center
+  .item_compact_column
+    height: 100vh
+    width: 450px
+    overflow-y: scroll
+    margin-bottom: calc(#{$post_comment_height} + 1rem)
+  .item_column
+    display: flex
+    .itemcard_container
+      margin: 0 0.3rem
+      overflow-y: scroll
+    .comments_and_post
+      margin: 0 0.3rem
+      overflow-y: scroll
+      margin-bottom: calc(#{$post_comment_height} + 1rem)

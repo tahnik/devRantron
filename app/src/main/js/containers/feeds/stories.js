@@ -3,18 +3,22 @@ import Column from '../../components/columns/column';
 import fetch from '../../actions/fetch';
 import vote from '../../actions/vote';
 import { ITEM, FEED } from '../../consts/types';
+import { openModal } from '../../actions/modal';
 
 const mapDispatchToProps = dispatch => ({
-  fetch: (range, sort, type = FEED.STORIES.NAME) => {
-    dispatch(fetch(sort, type, range));
+  fetch: (sort, range, id = 0, refresh = false) => {
+    dispatch(fetch(sort, FEED.STORIES.NAME, id, range, refresh));
   },
   vote: (voteState, id, type = ITEM.RANT.NAME) => {
     dispatch(vote(voteState, id, type));
   },
+  open: (type, id) => {
+    dispatch(openModal(type, id));
+  },
 });
 
 const mapStateToProps = state => ({
-  feed: state.items,
+  column: state.column,
   theme: state.settings.theme,
   filters: FEED.STORIES.FILTERS,
   itemType: ITEM.STORIES.NAME,

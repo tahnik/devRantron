@@ -1,7 +1,14 @@
 import rantscript from '../consts/rantscript';
 import showToast from './toast';
-import { AUTH, STATE, USER, FEED } from '../consts/types';
+import { AUTH, STATE, USER } from '../consts/types';
+import { resetColumn } from './fetch';
 
+/**
+ * Logs in the user
+ *
+ * @param {string} username Either username or email
+ * @param {string} password Password for the user
+ */
 const login = (username, password) => (dispatch) => {
   dispatch({
     type: AUTH.LOGIN,
@@ -20,7 +27,7 @@ const login = (username, password) => (dispatch) => {
       });
     })
     .catch(() => {
-      showToast(dispatch, 'Username or Password is wrong');
+      dispatch(showToast('Username or Password is wrong'));
       dispatch({
         type: AUTH.LOGIN,
         state: STATE.FAILED,
@@ -28,18 +35,23 @@ const login = (username, password) => (dispatch) => {
     });
 };
 
+/**
+ * If the user does not want to login but still want to browse rants, this
+ * function dispatches the necessary action
+ *
+ * @param {bool} bool
+ */
 const noLogin = bool => (dispatch) => {
   dispatch({
     type: AUTH.NOLOGIN,
     payload: bool,
   });
-  if (!bool) {
-    dispatch({
-      type: FEED.ACTION.RESET,
-    });
-  }
 };
 
+/**
+ * Logs out the user. Just removes the user and the token really
+ *
+ */
 const logout = () => (dispatch) => {
   dispatch({
     type: AUTH.LOGOUT,
@@ -47,9 +59,7 @@ const logout = () => (dispatch) => {
   dispatch({
     type: USER.REMOVE,
   });
-  dispatch({
-    type: FEED.ACTION.RESET,
-  });
+  dispatch(resetColumn());
 };
 
 export { login, noLogin, logout };

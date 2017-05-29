@@ -6,7 +6,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = applyMiddleware(thunk);
 
 const initialState = () => {
-  const persistedState = localStorage.getItem('reduxState');
+  const persistedState = localStorage.getItem('savedState');
+
   if (persistedState) {
     return JSON.parse(persistedState);
   }
@@ -17,14 +18,8 @@ const store = createStore(reducers, initialState(), composeEnhancers(
     middleware,
 ));
 
-store.subscribe(() => {
-  const state = store.getState();
-  const persistedState = {
-    auth: state.auth,
-    settings: state.settings,
-    user: state.user,
-  };
-  localStorage.setItem('reduxState', JSON.stringify(persistedState));
-});
+window.onbeforeunload = () => {
+  localStorage.setItem('savedState', JSON.stringify(store.getState()));
+};
 
 export default store;

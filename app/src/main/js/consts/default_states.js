@@ -1,4 +1,5 @@
-import { STATE } from './types';
+import { STATE, FEED } from './types';
+import { getUID } from './DOMFunctions';
 
 /*
  * Why not export them separately?
@@ -27,7 +28,7 @@ export default {
       },
       column: {
         backgroundColor: '#54556E',
-        width: '27',
+        width: '450',
       },
       user_badge: {
         details_back: '#54556E',
@@ -48,10 +49,14 @@ export default {
     page: 0,
     items: [],
   },
-  ITEMS: {
-    state: STATE.INITIAL,
-    page: 0,
+  COLUMNS: [],
+  COLUMN: {
+    id: getUID(),
     items: [],
+    page: 0,
+    type: FEED.RANTS.NAME,
+    prev_set: 0,
+    state: STATE.INITIAL,
   },
   ITEM: [
 
@@ -59,5 +64,8 @@ export default {
   USER: {
     state: STATE.INITIAL,
     profile: null,
+  },
+  MODAL: {
+    item: null,
   },
 };

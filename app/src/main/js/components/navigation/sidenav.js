@@ -21,7 +21,7 @@ class SideNav extends Component {
     />);
   }
   render() {
-    const { sideNavItems, history, location } = this.props;
+    const { sideNavItems, history, location, resetColumn } = this.props;
     return (
       <div className="sidenav_container" >
         <div className="navs">
@@ -34,7 +34,10 @@ class SideNav extends Component {
                 key={item.route}
                 item={item}
                 active={location.pathname === item.route ? 'active' : null}
-                onClick={() => { history.push(item.route); }}
+                onClick={() => {
+                  resetColumn();
+                  history.push(item.route);
+                }}
               />
             ))
           }
@@ -53,6 +56,7 @@ SideNav.propTypes = {
   logout: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
   fetchUser: PropTypes.func.isRequired,
+  resetColumn: PropTypes.func.isRequired,
 };
 
 export default SideNav;

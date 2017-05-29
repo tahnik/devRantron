@@ -3,20 +3,38 @@ export const AUTH = {
   NOLOGIN: 'AUTH_NOLOGIN',
   LOGOUT: 'AUTH_LOGOUT',
 };
+
 export const STATE = {
   INITIAL: 'STATE_INITIAL',
   SUCCESS: 'STATE_SUCCESS',
   FAILED: 'STATE_FAILED',
   LOADING: 'STATE_LOADING',
 };
+
 export const TOAST = {
   SHOW: 'TOAST_SHOW',
   HIDE: 'TOAST_HIDE',
 };
 
+export const MODAL = {
+  OPEN: 'MODAL_OPEN',
+  CLOSE: 'MODAL_CLOSE',
+};
+
 export const USER = {
   FETCH: 'USER_FETCH',
   REMOVE: 'USER_REMOVE',
+};
+
+export const COLUMNS = {
+  RESET: 'COLUMNS_RESET',
+  ADD: 'COLUMNS_ADD',
+  REMOVE: 'COLUMNS_REMOVE',
+};
+
+export const COLUMN = {
+  FETCH: 'COLUMN_FETCH',
+  RESET: 'COLUMN_RESET',
 };
 
 export const ITEM = {
@@ -50,6 +68,11 @@ export const ITEM = {
       CLOSE: 'ITEM_CLOSE',
     },
   },
+};
+
+export const FILTERS = {
+  SORT: 'SORT',
+  RANGE: 'RANGE',
 };
 
 export const FEED = {
@@ -98,10 +121,6 @@ export const FEED = {
         ALL: true,
       },
     },
-  },
-  ACTION: {
-    FETCH: 'FEED_FETCH',
-    RESET: 'FEED_RESET',
   },
   COLLABS: {
     NAME: 'COLLABS',

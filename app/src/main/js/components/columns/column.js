@@ -13,30 +13,48 @@ class Column extends Component {
     };
   }
   componentWillMount() {
-    const divID = `column_${this.props.feed.type}_${getRandomInt()}`;
+    const divID = `column_${this.props.column.type}_${getRandomInt()}`;
     this.setState({ divID });
   }
+  shouldComponentUpdate(nextProps) {
+    const currentColumn = this.props.column;
+    const nextColumn = nextProps.column;
+    if (currentColumn) {
+      if (
+        currentColumn.page === nextColumn.page
+        && nextColumn.items.length !== 0
+        && currentColumn.state === nextColumn.state
+      ) {
+        return false;
+      }
+    }
+    return true;
+  }
   render() {
-    const { feed, theme, vote, fetch, open, filters, itemType } = this.props;
+    const { column, theme, vote, fetch, open, filters, itemType, removeColumn } = this.props;
     const { divID } = this.state;
     return (
       <div
         className="column"
-        style={{ width: `${theme.column.width}rem` }}
+        style={{ width: `${theme.column.width}px` }}
       >
         <ColumnTopBar
           filters={filters}
           fetch={fetch}
+          id={column.id}
           divID={divID}
-          state={feed.state}
+          fetchAfterMount={column.items.length === 0}
+          type={column.type}
+          state={column.state}
+          removeColumn={removeColumn}
         />
         <div className="items_container" id={divID}>
           {
-            feed.items.length === 0 ?
+            column.items.length === 0 ?
               <Loading
                 backgroundColor={theme.backgroundColor}
               /> :
-              feed.items.map(item => (
+              column.items.map(item => (
                 <ItemCard
                   fetch={fetch}
                   item={item}
@@ -56,10 +74,11 @@ class Column extends Component {
 
 Column.propTypes = {
   fetch: PropTypes.func.isRequired,
-  feed: PropTypes.object.isRequired,
+  column: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
+  removeColumn: PropTypes.func, // eslint-disable-line
   filters: PropTypes.object.isRequired,
   itemType: PropTypes.string.isRequired,
 };

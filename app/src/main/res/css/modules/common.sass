@@ -19,6 +19,7 @@ body
   padding: 0
   margin: 0
   font-family: 'Lato', sans-serif
+  background-color: rgb(84, 85, 110)
   p
     font-family: 'Roboto', sans-serif
     font-weight: 300
@@ -52,6 +53,8 @@ body
       cursor: pointer
     &:active, &:focus
       outline: none
+    &:active
+      transform: scale(0.9)
     &:disabled
       background-color: grey
       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
@@ -61,7 +64,6 @@ body
     padding: 1rem
     background-color: rgba(0, 0, 0, 0.3)
     left: 50%
-    transform: translate(-50%, 0)
     color: white
     border-radius: 0.2rem
     z-index: 199
@@ -79,15 +81,33 @@ body
     justify-content: center
 
   .fade-enter
-    opacity: 0.01;
+    opacity: 0.01
 
   .fade-enter.fade-enter-active
-    opacity: 1;
-    transition: all 200ms ease-in;
+    opacity: 1
+    transition: all 200ms ease-in
 
   .fade-leave
-    opacity: 1;
+    opacity: 1
 
   .fade-leave.fade-leave-active
-    opacity: 0.01;
-    transition: all 200ms ease-in;
+    opacity: 0.01
+    transition: all 400ms ease-in
+
+  .fade_item-enter
+    opacity: 0
+    transform: scale(0.95)
+
+  .fade_item-enter.fade_item-enter-active
+    opacity: 1
+    transform: scale(1)
+    transition: all 200ms
+
+  .fade_item-leave
+    opacity: 1
+    transform: scale(1)
+
+  .fade_item-leave.fade_item-leave-active
+    opacity: 0
+    transform: scale(0.95)
+    transition: all 150ms

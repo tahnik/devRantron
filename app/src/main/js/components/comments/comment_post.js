@@ -19,6 +19,10 @@ class CommentPost extends Component {
         this.setState({ text: '' });
         this.setState({ disabled: false });
         fetch();
+        const itemContainer = document.getElementsByClassName('item_compact_column')[0];
+        setTimeout(() => {
+          itemContainer.scrollTop = itemContainer.scrollHeight;
+        }, 200);
       })
       .catch(() => {
         this.setState({ disabled: false });
@@ -29,7 +33,7 @@ class CommentPost extends Component {
     return (
       <div
         className="post_comment"
-        style={{ width: `${theme.column.width - 0.5}rem` }}
+        style={{ width: `${theme.column.width - 17}px` }}
       >
         <textarea
           value={this.state.text}

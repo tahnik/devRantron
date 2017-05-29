@@ -1,7 +1,14 @@
 import { TOAST } from '../consts/types';
 
+
 let timer = null;
-export default (dispatch, text, timeout = 4000) => {
+/**
+ * Shows a toast (can be error, info etc)
+ *
+ * @param {any} text Text to show in the toast
+ * @param {number} [timeout=4000] Can make the toast longer or shorter
+ */
+const showToast = (text, timeout = 4000) => (dispatch) => {
   if (timer) {
     clearTimeout(timer);
   }
@@ -15,3 +22,5 @@ export default (dispatch, text, timeout = 4000) => {
     });
   }, timeout);
 };
+
+export { showToast as default };
