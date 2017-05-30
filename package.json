@@ -47,7 +47,7 @@
       ]
     },
     "win": {
-      "target": "squirrel"
+      "target": "NSIS"
     },
     "linux": {
       "target": [
