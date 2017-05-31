@@ -74,7 +74,7 @@ class Notifs extends Component {
      */
     const data = notifs.notifs.data;
     return (
-      <div className="notifs_container" >
+      <div className={`notifs_container ${this.state.active ? 'active' : ''}`} >
         <button
           className="notifs_ball"
           onClick={() => { this.setState({ active: !this.state.active }); }}

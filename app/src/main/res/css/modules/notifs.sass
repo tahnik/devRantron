@@ -1,9 +1,12 @@
 // !compileOnSave
 
 .notifs_container
+  pointer-events: none
   position: fixed
   right: 0
   //display: none
+  &.active
+    pointer-events: all
   button
     margin: 0px
     width: 3.6rem
@@ -24,6 +27,7 @@
       transform: translateY(-3rem)
       opacity: 0
   .notifs_ball
+    pointer-events: all !important
     z-index: 299
     border-radius: 50%
     width: 3.2rem
