@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
 import { STATE } from '../../consts/types';
-import Notification from './notif_bubble';
+import NotifBubbles from './notif_bubbles';
 
 class Notifs extends Component {
   constructor() {
     super();
     this.state = {
       notifTimestamp: 1,
+      active: false,
     };
   }
   componentDidMount() {
@@ -45,6 +46,17 @@ class Notifs extends Component {
       });
     }
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    const currentNotifs = this.props.notifs.notifs;
+    const nextNotifs = nextProps.notifs.notifs;
+    if (
+      currentNotifs.data.items.length === nextNotifs.data.items.length
+      && this.state.active === nextState.active
+    ) {
+      return false;
+    }
+    return true;
+  }
   render() {
     const { notifs } = this.props;
 
@@ -56,30 +68,24 @@ class Notifs extends Component {
      * So in our container, when we ask redux for notifs, it actually gives
      * use this:
      * notifs: { state: STATE.INITIAL, notifs: {} }
-     *
+
      * Also, we check if notif actually exists by checking notifs.notifs.data
      * otherwise we don't show any numbers yet
      */
     const data = notifs.notifs.data;
-    console.log(data)
     return (
       <div className="notifs_container" >
         <button
-          onClick={() => { this.setState({ visable: !this.state.visable }); }}
-        ><i className="ion-ios-bell" /></button>
-        { /* data ? data.num_unread : null */ }
-        <div className={`notif_bubbles ${(this.state.visable === true ? 'notif_open' : '')}`}>
-          {
-            data ? data.items.map((notif, index) =>
-              (<Notification
-                notif={notif}
-                index={index}
-                key={`${notif.rant_id}_${notif.uid}_${notif.type}_${Math.random()}`}
-                user={data.username_map[notif.uid]}
-              />),
-            ) : null
-          }
+          className="notifs_ball"
+          onClick={() => { this.setState({ active: !this.state.active }); }}
+        >
+          <i className="ion-ios-bell" />
+          <span className="num_unread" >{ data ? data.num_unread : '' }</span>
+        </button>
+        <div className={`notif_bubbles ${this.state.active ? 'active' : ''}`}>
+          <NotifBubbles data={data} />
         </div>
+        <div className={`notifs_bubbles_container ${this.state.active ? 'active' : ''}`} />
       </div>
     );
   }

@@ -42,8 +42,8 @@ class Notification extends Component {
 
     return (
       <div className="notif_bubble" >
-        <img alt="" src={imageSource} className="notif_image" style={{ background: `#${user.avatar.b}` }} />
         <div className={`notif_badge ${(notif.read === 1 ? 'read' : '')}`}>
+          <img alt="" src={imageSource} className="notif_image" style={{ background: `#${user.avatar.b}` }} />
           <i className={icon} />
         </div>
         <div className="notif_desc">
