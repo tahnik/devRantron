@@ -10,12 +10,40 @@ class Item extends Component {
   constructor() {
     super();
     this.state = {
-      mainWidth: 0,
       item: null,
+      maxCol: 1,
     };
   }
   componentWillMount() {
     this.fetchitem();
+  }
+  componentDidMount() {
+    this.handleResize();
+    this.listener = () => {
+      this.handleResize();
+    };
+    window.addEventListener('resize', this.listener);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.listener);
+  }
+  handleOnClick(e) {
+    if (e.target.className === 'itemcard_container') {
+      this.props.close();
+    }
+  }
+  handleResize() {
+    const { theme } = this.props;
+    const middleContainer = document.getElementById('item_container');
+    let maxCol = 1;
+    if (middleContainer) {
+      const middleWidth = middleContainer.offsetWidth;
+      const nextColumnWidth = parseInt(theme.column.width, 10) + 50;
+      maxCol = Math.floor(middleWidth / nextColumnWidth);
+    }
+    if (this.state.maxCol !== maxCol) {
+      this.setState({ maxCol });
+    }
   }
   fetchitem() {
     const { cardItem, auth } = this.props;
@@ -31,6 +59,39 @@ class Item extends Component {
     })
     .catch(() => {
     });
+  }
+  renderMutliCol() {
+    const { item } = this.state;
+    const { theme, vote, auth, cardItem } = this.props;
+    return (
+      <div className="item_column">
+        <div
+          className="itemcard_container"
+          style={{ width: `${theme.column.width}px` }}
+        >
+          <ItemCard
+            modal
+            item={item.rant}
+            key={item.rant.id}
+            theme={theme}
+            vote={vote}
+            itemType={cardItem.type}
+          />
+        </div>
+        <div
+          className="comments_and_post"
+          style={{ width: `${theme.column.width}px` }}
+        >
+          <Comments comments={item.comments} theme={theme} vote={vote} />
+          <PostComment
+            theme={theme}
+            auth={auth}
+            id={item.rant.id}
+            fetch={() => this.fetchitem()}
+          />
+        </div>
+      </div>
+    );
   }
   renderSingleColumn() {
     const { item } = this.state;
@@ -56,9 +117,22 @@ class Item extends Component {
     );
   }
   render() {
+    if (!this.state.item) {
+      return (
+        <div className="item_container modal" id="item_container">
+          <Loading />
+        </div>
+      );
+    }
     return (
-      <div className="item_container modal">
-        { this.state.item ? this.renderSingleColumn() : <Loading /> }
+      <div
+        className="item_container modal"
+        id="item_container"
+        onClick={e => this.handleOnClick(e)}
+      >
+        { this.state.maxCol === 1 ? this.renderSingleColumn()
+          : this.renderMutliCol()
+        }
       </div>
     );
   }
@@ -69,6 +143,7 @@ Item.propTypes = {
   vote: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   cardItem: PropTypes.object.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
 export default Item;

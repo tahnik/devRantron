@@ -9,10 +9,19 @@ class Comments extends Component {
       item: null,
     };
   }
+  shouldComponentUpdate(nextProps) {
+    if (this.props.comments.length === nextProps.comments.length) {
+      return false;
+    }
+    return true;
+  }
   render() {
     const { theme, vote, comments } = this.props;
     return (
       <div className="comments_container">
+        {
+          comments.length === 0 ? <h4>No comments</h4> : null
+        }
         {
           comments.map(comment => (
             <CommentCard

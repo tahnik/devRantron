@@ -29,6 +29,17 @@ export const USER = {
   REMOVE: 'USER_REMOVE',
 };
 
+export const COLUMNS = {
+  RESET: 'COLUMNS_RESET',
+  ADD: 'COLUMNS_ADD',
+  REMOVE: 'COLUMNS_REMOVE',
+};
+
+export const COLUMN = {
+  FETCH: 'COLUMN_FETCH',
+  RESET: 'COLUMN_RESET',
+};
+
 export const ITEM = {
   RANT: {
     NAME: 'RANT',
@@ -60,6 +71,11 @@ export const ITEM = {
       CLOSE: 'ITEM_CLOSE',
     },
   },
+};
+
+export const FILTERS = {
+  SORT: 'SORT',
+  RANGE: 'RANGE',
 };
 
 export const FEED = {
@@ -108,10 +124,6 @@ export const FEED = {
         ALL: true,
       },
     },
-  },
-  ACTION: {
-    FETCH: 'FEED_FETCH',
-    RESET: 'FEED_RESET',
   },
   COLLABS: {
     NAME: 'COLLABS',

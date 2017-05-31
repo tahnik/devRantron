@@ -1,6 +1,6 @@
 {
   "name": "devrantron",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "main": "./app/build/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
@@ -47,7 +47,7 @@
       ]
     },
     "win": {
-      "target": "squirrel"
+      "target": "NSIS"
     },
     "linux": {
       "target": [

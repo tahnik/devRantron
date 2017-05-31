@@ -53,14 +53,15 @@ export default {
     page: 0,
     items: [],
   },
-  COLUMNS: [
-    {
-      id: getUID(),
-      items: [],
-      page: 0,
-      type: FEED.RANTS.NAME,
-    },
-  ],
+  COLUMNS: [],
+  COLUMN: {
+    id: getUID(),
+    items: [],
+    page: 0,
+    type: FEED.RANTS.NAME,
+    prev_set: 0,
+    state: STATE.INITIAL,
+  },
   ITEM: [
 
   ],

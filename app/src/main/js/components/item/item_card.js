@@ -5,6 +5,15 @@ import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';
 
 class ItemCard extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (
+      this.props.theme === nextProps.theme
+      && this.props.item === nextProps.item
+    ) {
+      return false;
+    }
+    return true;
+  }
   open() {
     const { item, open, modal, itemType } = this.props;
     if (!modal) {

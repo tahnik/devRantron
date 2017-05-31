@@ -4,4 +4,5 @@ export default {
   stories: '/stories',
   weekly: '/weekly',
   settings: '/settings',
+  custom: '/custom',
 };

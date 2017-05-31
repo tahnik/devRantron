@@ -3,31 +3,68 @@
 
 .columns
   display: flex
-  .add_column
+  height: 100vh
+  width: 100%
+  span.custom_columns
     display: flex
-    align-items: center
-    position: absolute;
-    bottom: 5px;
-    right: 13px;
-    .add_button
-      padding: 1.5rem
-      height: auto
-  .column
     height: 100vh
+  .add_column
+    position: absolute
+    bottom: 0px
+    right: 13px
+    display: flex
+    .items_holder
+      overflow-x: hidden
+      padding: 2rem 0
+      .items
+        display: flex
+        transition: all 0.5s cubic-bezier(.3,.51,.17,1)
+        .add_button
+          padding: 0.7rem
+          margin: 0 5px
+          height: auto
+    .plus_button
+      width: 50px
+      padding: 0.7rem 0
+      margin: 2rem 5px
+      height: auto
+.column
+  height: 100vh
+  overflow: hidden
+  margin: 0 1rem
+  .items_container
+    overflow-y: scroll
+    transform: translateZ(0)
+    -webkit-transform: translateZ(0)
+    padding: 0rem 0rem 1rem 0rem
+    height: calc(100vh - 2.8rem - 1.5rem)
+  .column_topbar
+    height: 30px
     overflow: hidden
-    margin: 0 1rem
-    .items_container
-      overflow-y: scroll
-      transform: translateZ(0)
-      -webkit-transform: translateZ(0)
-      padding: 0rem 0rem 1rem 0rem
-      height: calc(100vh - 2.8rem - 1.5rem)
-    .column_topbar
-      height: 30px
-      overflow: hidden
-      margin: 0.7rem 0
+    margin: 0.7rem 0 0.4rem 0
+    display: flex
+    .right_navs
+      flex: 2
+      padding: 3px 1.35rem 0 0
+      color: white
       display: flex
-      flex-direction: column
+      justify-content: flex-end
+      span
+        display: flex
+        align-items: center
+        margin: 0 5px
+        i
+          font-size: 1.2rem
+          opacity: 0.4
+          transition: all 0.1s
+          &:hover
+            transform: scale(1.2)
+            opacity: 1
+            cursor: pointer
+          &:active
+            transform: scale(1)
+    .left_navs
+      flex: 8
       .primary
         flex: 0 0 20px
         display: flex
@@ -43,6 +80,8 @@
           &:hover
             cursor: pointer
             transform: scale(1.2)
+          &:active
+            transform: scale(1)
         span.active
           opacity: 1
           transform: scale(1.2)
@@ -61,6 +100,8 @@
           &:hover
             cursor: pointer
             transform: scale(1.2)
+          &:active
+            transform: scale(1)
         span.active
           opacity: 1
           transform: scale(1.2)

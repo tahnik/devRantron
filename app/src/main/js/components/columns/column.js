@@ -23,6 +23,7 @@ class Column extends Component {
       if (
         currentColumn.page === nextColumn.page
         && nextColumn.items.length !== 0
+        && currentColumn.state === nextColumn.state
       ) {
         return false;
       }
@@ -30,7 +31,7 @@ class Column extends Component {
     return true;
   }
   render() {
-    const { column, theme, vote, fetch, open, filters, itemType } = this.props;
+    const { column, theme, vote, fetch, open, filters, itemType, removeColumn } = this.props;
     const { divID } = this.state;
     return (
       <div
@@ -42,6 +43,10 @@ class Column extends Component {
           fetch={fetch}
           id={column.id}
           divID={divID}
+          fetchAfterMount={column.items.length === 0}
+          type={column.type}
+          state={column.state}
+          removeColumn={removeColumn}
         />
         <div className="items_container" id={divID}>
           {
@@ -73,6 +78,7 @@ Column.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
+  removeColumn: PropTypes.func, // eslint-disable-line
   filters: PropTypes.object.isRequired,
   itemType: PropTypes.string.isRequired,
 };

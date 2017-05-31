@@ -4,6 +4,7 @@ import settings from './settings';
 import toast from './toast';
 import user from './user';
 import columns from './columns';
+import column from './column';
 import modal from './modal';
 import notifs from './notifs';
 
@@ -15,6 +16,7 @@ const devRantron = combineReducers({
   columns,
   modal,
   notifs,
+  column,
 });
 
 export default devRantron;

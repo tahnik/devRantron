@@ -3,20 +3,22 @@ import { ITEM, AUTH, FEED } from '../consts/types';
 import showToast from './toast';
 
 
+/**
+ * Votes a rant. If there is not user, shows the login page
+ *
+ * @param {number} [voteState=1] Always upvote unless specified otherwise
+ * @param {number} rantID ID of the rant to upvote (works for collab too)
+ */
 const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
   const { user } = getState().auth;
   let authToken = null;
   if (user) {
     authToken = user.authToken;
   } else {
-    showToast(dispatch, 'Log in to vote');
+    dispatch(showToast('Log in to vote'));
     dispatch({
       type: AUTH.NOLOGIN,
       payload: false,
-    });
-    // annoying?
-    dispatch({
-      type: FEED.ACTION.RESET,
     });
     return;
   }
@@ -25,17 +27,23 @@ const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
       .then(() => {
       })
       .catch(() => {
-        showToast(dispatch, 'Username or Password is wrong');
+        dispatch(showToast('Username or Password is wrong'));
       });
 };
 
+/**
+ * Votes a comment. If there is not user, shows the login page
+ *
+ * @param {number} [voteState=1] Always upvote unless specified otherwise
+ * @param {number} commentID ID of the comment
+ */
 const voteComment = (voteState = 1, commentID) => (dispatch, getState) => {
   const { user } = getState().auth;
   let authToken = null;
   if (user) {
     authToken = user.authToken;
   } else {
-    showToast(dispatch, 'Log in to vote');
+    dispatch(showToast('Log in to vote'));
     dispatch({
       type: AUTH.NOLOGIN,
       payload: false,
@@ -51,18 +59,27 @@ const voteComment = (voteState = 1, commentID) => (dispatch, getState) => {
       .then(() => {
       })
       .catch(() => {
-        showToast(dispatch, 'Username or Password is wrong');
+        dispatch(showToast('Username or Password is wrong'));
       });
 };
 
-const vote = (voteState = 1, id, type) => {
+/**
+ * Reusability. Determines what to vote
+ *
+ * @param {number} [voteState=1] Always upvote unless specified otherwise
+ * @param {any} id id of the comment or rant
+ * @param {any} type If it is a comment or rant
+ */
+const vote = (voteState = 1, id, type) => (dispatch) => {
   switch (type) {
     case ITEM.RANT.NAME:
-      return voteRant(voteState, id);
+      dispatch(voteRant(voteState, id));
+      break;
     case ITEM.COMMENT.NAME:
-      return voteComment(voteState, id);
+      dispatch(voteComment(voteState, id));
+      break;
     default:
-      return voteRant(voteState, id);
+      dispatch(voteRant(voteState, id));
   }
 };
 

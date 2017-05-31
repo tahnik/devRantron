@@ -1,19 +1,16 @@
 import { connect } from 'react-redux';
-import Columns from '../../components/columns/columns';
-import fetch, { addColumn } from '../../actions/fetch';
+import Column from '../../components/columns/column';
+import fetch from '../../actions/fetch';
 import vote from '../../actions/vote';
 import { ITEM, FEED } from '../../consts/types';
 import { openModal } from '../../actions/modal';
 
 const mapDispatchToProps = dispatch => ({
-  fetch: (sort, range, id = 0, type = FEED.RANTS.NAME) => {
-    dispatch(fetch(sort, type, id, range));
+  fetch: (sort, range, id = 0, refresh = false) => {
+    dispatch(fetch(sort, FEED.RANTS.NAME, id, range, refresh));
   },
   vote: (voteState, id, type = ITEM.RANT.NAME) => {
     dispatch(vote(voteState, id, type));
-  },
-  addColumn: (type = null) => {
-    dispatch(addColumn(type));
   },
   open: (type, id) => {
     dispatch(openModal(type, id));
@@ -21,11 +18,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  columns: state.columns,
+  column: state.column,
   theme: state.settings.theme,
   filters: FEED.RANTS.FILTERS,
   itemType: ITEM.RANT.NAME,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Columns);
+export default connect(mapStateToProps, mapDispatchToProps)(Column);
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FILTERS, STATE } from '../../consts/types';
 
 class ColumnTopBar extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class ColumnTopBar extends Component {
     };
   }
   componentWillMount() {
-    const { filters, id } = this.props;
+    const { filters, fetchAfterMount } = this.props;
 
     const primaryFilters = filters[filters.PRIMARY];
     const firstPriIndex = Object.keys(primaryFilters)[0];
@@ -25,7 +26,9 @@ class ColumnTopBar extends Component {
       firstSec = secondaryFilters[firstSecIndex];
       this.setState({ secondary: firstSec });
     }
-    this.props.fetch(firstPri, firstSec, id);
+    if (fetchAfterMount) {
+      this.fetch(firstPri, firstSec);
+    }
   }
   componentDidMount() {
     const { divID } = this.props;
@@ -41,24 +44,37 @@ class ColumnTopBar extends Component {
       element.removeEventListener('scroll', () => this.handleScroll());
     }
   }
+  fetch(firstPri, firstSec, refresh = false) {
+    const { id, type, filters } = this.props;
+    if (filters.PRIMARY === FILTERS.SORT) {
+      this.props.fetch(firstPri, firstSec, id, refresh, type);
+    } else {
+      this.props.fetch(firstSec, firstPri, id, refresh, type);
+    }
+  }
   handleScroll() {
-    const { divID, fetch, id } = this.props;
+    const { divID, state } = this.props;
     const element = document.getElementById(divID);
     if (
       element.scrollHeight - element.scrollTop < element.clientHeight + 4000
+      && state !== STATE.LOADING
     ) {
-      fetch(this.state.primary, this.state.secondary, id);
+      this.fetch(this.state.primary, this.state.secondary);
     }
   }
+  refresh() {
+    this.fetch(this.state.primary, this.state.secondary, true);
+  }
+  remove() {
+    this.props.removeColumn(this.props.id);
+  }
   handlePri(primary) {
-    const { id } = this.props;
     this.setState({ primary });
-    this.props.fetch(primary, this.state.secondary, id);
+    this.fetch(primary, this.state.secondary);
   }
   handleSec(secondary) {
-    const { id } = this.props;
     this.setState({ secondary });
-    this.props.fetch(this.state.primary, secondary, id);
+    this.fetch(this.state.primary, secondary);
   }
   handleHover(primary) {
     const { filters } = this.props;
@@ -76,7 +92,7 @@ class ColumnTopBar extends Component {
     }
   }
   render() {
-    const { filters } = this.props;
+    const { filters, removeColumn } = this.props;
     const primaryFilters = filters[filters.PRIMARY];
 
     const secondaryFilters = filters[filters.SECONDARY];
@@ -85,37 +101,50 @@ class ColumnTopBar extends Component {
         className="column_topbar"
         onMouseLeave={() => this.handleHoverLeave()}
       >
-        <div
-          className="primary"
-          style={{ transform: `translateY(${this.state.translateY}%)` }}
-        >
-          { Object.keys(primaryFilters).map((key) => {
-            const isActive = this.state.primary === primaryFilters[key] ? 'active' : null;
-            return (
-              <span
-                key={key}
-                className={`${isActive}`}
-                onClick={() => this.handlePri(primaryFilters[key])}
-                onMouseOver={() => this.handleHover(primaryFilters[key])}
-              >{primaryFilters[key]}</span>
-            );
-          })}
-        </div>
-        <div
-          className="secondary"
-          style={{ transform: `translateY(${this.state.translateY}%)` }}
-        >
-          { !secondaryFilters ? null :
-            Object.keys(secondaryFilters).map((key) => {
-              const isActive = this.state.secondary === secondaryFilters[key] ? 'active' : null;
+        <div className="left_navs">
+          <div
+            className="primary"
+            style={{ transform: `translateY(${this.state.translateY}%)` }}
+          >
+            { Object.keys(primaryFilters).map((key) => {
+              const isActive = this.state.primary === primaryFilters[key] ? 'active' : null;
               return (
                 <span
                   key={key}
                   className={`${isActive}`}
-                  onClick={() => this.handleSec(secondaryFilters[key])}
-                >{secondaryFilters[key]}</span>
+                  onClick={() => this.handlePri(primaryFilters[key])}
+                  onMouseOver={() => this.handleHover(primaryFilters[key])}
+                >{primaryFilters[key]}</span>
               );
             })}
+          </div>
+          <div
+            className="secondary"
+            style={{ transform: `translateY(${this.state.translateY}%)` }}
+          >
+            { !secondaryFilters ? null :
+              Object.keys(secondaryFilters).map((key) => {
+                const isActive = this.state.secondary === secondaryFilters[key] ? 'active' : null;
+                return (
+                  <span
+                    key={key}
+                    className={`${isActive}`}
+                    onClick={() => this.handleSec(secondaryFilters[key])}
+                  >{secondaryFilters[key]}</span>
+                );
+              })}
+          </div>
+        </div>
+        <div className="right_navs">
+          <span>
+            <i onClick={() => this.refresh()} className="ion-refresh" />
+          </span>
+          {
+            removeColumn ?
+              <span>
+                <i onClick={() => this.remove()} className="ion-close-round" />
+              </span> : null
+          }
         </div>
       </div>
     );
@@ -125,8 +154,12 @@ class ColumnTopBar extends Component {
 ColumnTopBar.propTypes = {
   filters: PropTypes.object.isRequired,
   fetch: PropTypes.func.isRequired,
+  removeColumn: PropTypes.func, // eslint-disable-line
   divID: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  fetchAfterMount: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
+  state: PropTypes.string.isRequired,
 };
 
 export default ColumnTopBar;
