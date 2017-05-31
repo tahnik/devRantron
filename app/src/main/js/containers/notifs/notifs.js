@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import Notifs from '../../components/notifs/notifs';
 import { fetchNotifs } from '../../actions/notifs';
+import { openModal } from '../../actions/modal';
+import { ITEM } from '../../consts/types';
 
 /* Here we ask redux to give us this states
  * auth is needed as we will only show notif if the user is authenticated
@@ -15,8 +17,11 @@ const mapStateToProps = state => ({
  * store via actions
  */
 const mapDispatchToProps = dispatch => ({
-  fetchNotifs: (notifs, state) => {
-    dispatch(fetchNotifs(notifs, state));
+  fetchNotifs: () => {
+    dispatch(fetchNotifs());
+  },
+  open: (id, type = ITEM.RANT.NAME) => {
+    dispatch(openModal(type, id));
   },
 });
 

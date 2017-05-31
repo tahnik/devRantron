@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import rantscript from '../../consts/rantscript';
-import { STATE } from '../../consts/types';
 import NotifBubbles from './notif_bubbles';
+import { getNotifText } from '../../consts/DOMFunctions';
+
+const currentWindow = require('electron').remote.getCurrentWindow();
 
 class Notifs extends Component {
   constructor() {
@@ -18,47 +19,40 @@ class Notifs extends Component {
      * we asked for auth state and said that we will dispatch notifs actions.
      * That's why we can access them as props in here.
      */
-    const { auth, fetchNotifs } = this.props;
+    const { fetchNotifs } = this.props;
 
-    // Check if there's any authenticated user before doing anything
-    if (auth.user) {
-      /* We dispatch an action immedietly saying that notifs is loading
-       * This may not be used now, might come handy in future
-       */
-      fetchNotifs(null, STATE.LOADING);
-
-
-      rantscript
-      .notifications(auth.user.authToken, this.state.notifTimestamp)
-      .then((res) => {
-        /*
-         * We have got a successful response, let's dispatch to let
-         * redux store know about it
-         */
-        fetchNotifs(res, STATE.SUCCESS);
-
-        // We update our components state
-        this.setState({ notifTimestamp: res.check_time });
-      })
-      .catch(() => {
-        // Just in case it fails, we dispatch a failure
-        fetchNotifs(null, STATE.FAILED);
+    setInterval(() => {
+      fetchNotifs();
+    }, 10000);
+  }
+  componentDidUpdate(prevProps) {
+    const prevUnread = prevProps.notifs.notifs.data.num_unread;
+    const currentUnread = this.props.notifs.notifs.data.num_unread;
+    const notifs = this.props.notifs.notifs;
+    if (prevUnread < currentUnread) {
+      const notif = notifs.data.items[0];
+      const myNotification = new Notification('devRantron', {
+        body: getNotifText(
+          notif.type,
+          notifs.data.username_map[notif.uid].name,
+        ),
+        data: notif.rant_id,
+        icon: 'http://i.imgur.com/iikd00P.png',
       });
+
+      myNotification.onclick = (e) => {
+        this.props.open(e.target.data);
+        currentWindow.focus();
+      };
     }
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    const currentNotifs = this.props.notifs.notifs;
-    const nextNotifs = nextProps.notifs.notifs;
-    if (
-      currentNotifs.data.items.length === nextNotifs.data.items.length
-      && this.state.active === nextState.active
-    ) {
-      return false;
+  toggleNotif(e) {
+    if (e.target.className === 'notif_bubbles active') {
+      this.setState({ active: !this.state.active });
     }
-    return true;
   }
   render() {
-    const { notifs } = this.props;
+    const { notifs, auth, open } = this.props;
 
     /* Wondering why there is notifs.notifs?
      * If you look at the default state, it looks like this:
@@ -73,8 +67,14 @@ class Notifs extends Component {
      * otherwise we don't show any numbers yet
      */
     const data = notifs.notifs.data;
+    if (!data || !auth.user) {
+      return <div />;
+    }
     return (
-      <div className={`notifs_container ${this.state.active ? 'active' : ''}`} >
+      <div
+        className={`notifs_container ${this.state.active ? 'active' : ''}`}
+        onClick={e => this.toggleNotif(e)}
+      >
         <button
           className="notifs_ball"
           onClick={() => { this.setState({ active: !this.state.active }); }}
@@ -85,7 +85,7 @@ class Notifs extends Component {
           </span>
         </button>
         <div className={`notif_bubbles ${this.state.active ? 'active' : 'inactive'}`}>
-          <NotifBubbles data={data} />
+          <NotifBubbles data={data} open={open} />
         </div>
         <div className={`notifs_bubbles_container ${this.state.active ? 'active' : ''}`} />
       </div>
@@ -97,6 +97,7 @@ Notifs.propTypes = {
   auth: PropTypes.object.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
   notifs: PropTypes.object.isRequired,
+  open: PropTypes.func.isRequired,
 };
 
 export default Notifs;
