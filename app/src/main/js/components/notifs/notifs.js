@@ -80,9 +80,11 @@ class Notifs extends Component {
           onClick={() => { this.setState({ active: !this.state.active }); }}
         >
           <i className="ion-ios-bell" />
-          <span className="num_unread" >{ data ? data.num_unread : '' }</span>
+          <span className={`num_unread ${data.num_unread > 0 ? 'unread' : ''}`} >
+            { data ? data.num_unread : '' }
+          </span>
         </button>
-        <div className={`notif_bubbles ${this.state.active ? 'active' : ''}`}>
+        <div className={`notif_bubbles ${this.state.active ? 'active' : 'inactive'}`}>
           <NotifBubbles data={data} />
         </div>
         <div className={`notifs_bubbles_container ${this.state.active ? 'active' : ''}`} />

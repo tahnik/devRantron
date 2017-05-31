@@ -11,23 +11,17 @@
     right: 0px
   @keyframes notif_bubbles_in
     0%
-      transform: scale(0.95)
-      opacity: 0
-    50%
-      transform: scale(0.95)
+      transform: translateY(-3rem)
       opacity: 0
     100%
-      transform: scale(1)
+      transform: translateY(0)
       opacity: 1
   @keyframes notif_bubbles_out
     0%
-      transform: scale(1)
-      opacity: 1
-    50%
-      transform: scale(1)
+      transform: translateY(0)
       opacity: 1
     100%
-      transform: scale(0.95)
+      transform: translateY(-3rem)
       opacity: 0
   .notifs_ball
     z-index: 299
@@ -45,11 +39,13 @@
       height: 20px
       width: 20px
       border-radius: 50%
-      background-color: #62B38D
+      background-color: #8c8d9e
       font-size: 0.7rem
       display: flex
       justify-content: center
       align-items: center
+      &.unread
+        background-color: #62B38D
   .notifs_bubbles_container
     z-index: 99
     position: absolute
@@ -60,14 +56,14 @@
     border-radius: 50%
     background-color: rgba(0, 0, 0, 0.8)
     transition: transform 0.3s
+    transition-delay: 0.05s
     transform: scale(0)
   .notifs_bubbles_container.active
     transform: scale(100)
-  .notif_bubbles.active
-    display: flex
-    animation: notif_bubbles_in 0.3s forwards
   .notif_bubbles
-    display: none
+    display: flex
+    pointer-events: none
+    opacity: 0
     z-index: 199
     animation: notif_bubbles_out 0.3s forwards
     position: relative
@@ -78,6 +74,13 @@
     transition: transform 0.2s
     flex-direction: column
     align-items: center
+    &.active
+      pointer-events: all
+      opacity: 0
+      animation: notif_bubbles_in 0.3s forwards 0.15s
+    &.inactive
+      opacity: 1
+      animation: notif_bubbles_out 0.3s forwards
     .notif_bubble
       width: 20rem
       border-radius: 5px
