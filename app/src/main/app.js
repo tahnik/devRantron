@@ -80,11 +80,6 @@ function createWindow() {
     console.timeEnd('startup'); //eslint-disable-line
   });
 
-  mainWindow.on('close', (e) => {
-    e.preventDefault();
-    mainWindow.minimize();
-  });
-
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows

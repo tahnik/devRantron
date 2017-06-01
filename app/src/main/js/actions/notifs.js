@@ -8,6 +8,9 @@ const fetchNotifs = () => (dispatch, getState) => {
     notifs: null,
     state: STATE.LOADING,
   });
+  if (!auth.user) {
+    return;
+  }
   rantscript
   // .notifications(auth.user.authToken, this.state.notifTimestamp)
   .notifications(auth.user.authToken, 1)

@@ -26,8 +26,13 @@ class Notifs extends Component {
     }, 10000);
   }
   componentDidUpdate(prevProps) {
-    const prevUnread = prevProps.notifs.notifs.data.num_unread;
-    const currentUnread = this.props.notifs.notifs.data.num_unread;
+    const prevNotifs = prevProps.notifs.notifs;
+    const currentNotifs = this.props.notifs.notifs;
+    if (!prevNotifs.data) {
+      return;
+    }
+    const prevUnread = prevNotifs.data.num_unread;
+    const currentUnread = currentNotifs.data.num_unread;
     const notifs = this.props.notifs.notifs;
     if (prevUnread < currentUnread) {
       const notif = notifs.data.items[0];
