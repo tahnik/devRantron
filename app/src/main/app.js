@@ -43,6 +43,7 @@ function createWindow() {
     minHeight: 600,
     minWidth: 900,
     show: false,
+    frame: false,
   });
 
   if (process.env.NODE_ENV === 'development') {
