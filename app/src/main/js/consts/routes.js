@@ -5,4 +5,5 @@ export default {
   weekly: '/weekly',
   settings: '/settings',
   custom: '/custom',
+  profile: '/profile',
 };
