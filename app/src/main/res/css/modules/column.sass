@@ -15,7 +15,8 @@
     display: flex
     .items_holder
       overflow-x: hidden
-      padding: 2rem 0
+      padding: 0px
+      position: fixed
       .items
         display: flex
         transition: all 0.5s cubic-bezier(.3,.51,.17,1)
@@ -24,10 +25,13 @@
           margin: 0 5px
           height: auto
     .plus_button
-      width: 50px
-      padding: 0.7rem 0
-      margin: 2rem 5px
-      height: auto
+      height: 5rem
+      width: 5rem
+      border-radius: 100%
+      position: fixed
+      right: -1rem
+      bottom: -1rem
+      margin: 0px
 .column
   height: 100vh
   overflow: hidden
