@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EmojiPicker from '../emoji_picker/emoji_picker';
 
 class Profile extends Component {
   render() {
@@ -8,7 +9,6 @@ class Profile extends Component {
     if (profile.avatar.i) {
       imgsrc += `https://avatars.devrant.io/${profile.avatar.i}`.toString();
     }
-    console.log(user)
     return (
       <div className="profile">
         <div className="profile_header">
@@ -31,6 +31,8 @@ class Profile extends Component {
             {profile.location && <li><i className="ion-location" /><p>{profile.location}</p></li>}
           </ul>
         </div>
+        { /* placeholder until implemented */ }
+        <EmojiPicker />
       </div>
     );
   }
