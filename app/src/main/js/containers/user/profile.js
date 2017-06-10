@@ -4,6 +4,7 @@ import vote from '../../actions/vote';
 
 const mapStateToProps = state => ({
   user: state.user,
+  theme: state.theme,
 });
 
 const mapDispatchToProps = dispatch => ({

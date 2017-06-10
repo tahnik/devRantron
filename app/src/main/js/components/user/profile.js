@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import EmojiPicker from '../emoji_picker/emoji_picker';
+import RantComposer from '../post_rant/rant_composer';
 
 class Profile extends Component {
   render() {
     const { user } = this.props;
     const profile = user.profile;
+    console.log(this.props)
     let imgsrc = '';
     if (profile.avatar.i) {
       imgsrc += `https://avatars.devrant.io/${profile.avatar.i}`.toString();
@@ -32,7 +33,7 @@ class Profile extends Component {
           </ul>
         </div>
         { /* placeholder until implemented */ }
-        <EmojiPicker />
+        <RantComposer />
       </div>
     );
   }
