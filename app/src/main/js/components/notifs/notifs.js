@@ -90,6 +90,10 @@ class Notifs extends Component {
           </span>
         </button>
         <div className={`notif_bubbles ${this.state.active ? 'active' : 'inactive'}`}>
+          <button
+            className="notifs_clear"
+            onClick={() => { console.log('@tahnik'); }}
+          >Clear All</button>
           <NotifBubbles data={data} open={open} />
         </div>
         <div className={`notifs_bubbles_container ${this.state.active ? 'active' : ''}`} />
