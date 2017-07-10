@@ -25,21 +25,30 @@ class Notifs extends Component {
       fetchNotifs();
     }, 10000);
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      this.props.notifs.num_unread === nextProps.notifs.num_unread
+      && this.state.active === nextState.active
+    ) {
+      return false;
+    }
+    return true;
+  }
   componentDidUpdate(prevProps) {
-    const prevNotifs = prevProps.notifs.notifs;
-    const currentNotifs = this.props.notifs.notifs;
+    const prevNotifs = prevProps.notifs;
+    const currentNotifs = this.props.notifs;
     if (!prevNotifs.data) {
       return;
     }
-    const prevUnread = prevNotifs.data.num_unread;
-    const currentUnread = currentNotifs.data.num_unread;
-    const notifs = this.props.notifs.notifs;
+    const prevUnread = prevNotifs.num_unread;
+    const currentUnread = currentNotifs.num_unread;
+    const notifs = this.props.notifs;
     if (prevUnread < currentUnread) {
-      const notif = notifs.data.items[0];
+      const notif = notifs.items[0];
       const myNotification = new Notification('devRantron', {
         body: getNotifText(
           notif.type,
-          notifs.data.username_map[notif.uid].name,
+          notifs.username_map[notif.uid].name,
         ),
         data: notif.rant_id,
         icon: 'http://i.imgur.com/iikd00P.png',
@@ -57,7 +66,7 @@ class Notifs extends Component {
     }
   }
   render() {
-    const { notifs, auth, open } = this.props;
+    const { notifs, auth, open, clearNotifs } = this.props;
 
     /* Wondering why there is notifs.notifs?
      * If you look at the default state, it looks like this:
@@ -71,8 +80,7 @@ class Notifs extends Component {
      * Also, we check if notif actually exists by checking notifs.notifs.data
      * otherwise we don't show any numbers yet
      */
-    const data = notifs.notifs.data;
-    if (!data || !auth.user) {
+    if (!notifs || !auth.user) {
       return <div />;
     }
     return (
@@ -85,16 +93,16 @@ class Notifs extends Component {
           onClick={() => { this.setState({ active: !this.state.active }); }}
         >
           <i className="ion-ios-bell" />
-          <span className={`num_unread ${data.num_unread > 0 ? 'unread' : ''}`} >
-            { data ? data.num_unread : '' }
+          <span className={`num_unread ${notifs.num_unread > 0 ? 'unread' : ''}`} >
+            { notifs ? notifs.num_unread : '' }
           </span>
         </button>
         <div className={`notif_bubbles ${this.state.active ? 'active' : 'inactive'}`}>
           <button
             className="notifs_clear"
-            onClick={() => { console.log('@tahnik'); }}
+            onClick={() => { clearNotifs(); }}
           >Clear All</button>
-          <NotifBubbles data={data} open={open} />
+          <NotifBubbles data={notifs} open={open} />
         </div>
         <div className={`notifs_bubbles_container ${this.state.active ? 'active' : ''}`} />
       </div>
@@ -105,8 +113,9 @@ class Notifs extends Component {
 Notifs.propTypes = {
   auth: PropTypes.object.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
-  notifs: PropTypes.object.isRequired,
+  notifs: PropTypes.object, //eslint-disable-line
   open: PropTypes.func.isRequired,
+  clearNotifs: PropTypes.func.isRequired,
 };
 
 export default Notifs;

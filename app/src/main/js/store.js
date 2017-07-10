@@ -20,8 +20,8 @@ const store = createStore(reducers, initialState(), composeEnhancers(
 
 window.onbeforeunload = () => {
   const state = store.getState();
-  const customCols = [ ...state.columns ];
-  for (let index = 0; index < customCols.length ; index += 1) {
+  const customCols = [...state.columns];
+  for (let index = 0; index < customCols.length; index += 1) {
     customCols[index].items = [];
     customCols[index].prev_set = 0;
     customCols[index].page = 0;
@@ -32,8 +32,7 @@ window.onbeforeunload = () => {
     settings: state.settings,
     notifs: state.notifs,
     columns: customCols,
-  }
-  console.log(savedState);
+  };
   localStorage.setItem('savedState', JSON.stringify(savedState));
 };
 
