@@ -14,6 +14,7 @@ export default {
     state: STATE.INITIAL,
     noLogin: false,
   },
+  NOTIFS: null,
   SETTINGS: {
     theme: {
       name: 'Dark Theme',

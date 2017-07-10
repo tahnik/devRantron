@@ -22,7 +22,7 @@ const openModal = (type, id) => (dispatch) => {
  */
 const closeModal = () => (dispatch) => {
   dispatch({
-    type: MODAL.OPEN,
+    type: MODAL.CLOSE,
     item: null,
   });
 };

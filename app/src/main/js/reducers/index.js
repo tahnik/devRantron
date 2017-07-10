@@ -6,6 +6,7 @@ import user from './user';
 import columns from './columns';
 import column from './column';
 import modal from './modal';
+import notifs from './notifs';
 
 const devRantron = combineReducers({
   auth,
@@ -14,6 +15,7 @@ const devRantron = combineReducers({
   user,
   columns,
   modal,
+  notifs,
   column,
 });
 

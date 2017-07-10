@@ -5,11 +5,11 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SideNav from '../containers/navigation/sidenav';
-import Notifs from '../containers/notifs/notifs';
 import Rants from '../containers/feeds/rants';
 import Stories from '../containers/feeds/stories';
 import Collabs from '../containers/feeds/collabs';
 import Modal from '../containers/modal/modal';
+import Notifs from '../containers/notifs/notifs';
 import Custom from '../containers/feeds/custom';
 import Toast from '../containers/utilities/toast/toast';
 

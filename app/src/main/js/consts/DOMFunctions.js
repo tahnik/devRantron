@@ -7,4 +7,19 @@ const getUID = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c)
   return v.toString(16);
 });
 
-export { getRandomInt, getUID };
+const getNotifText = (type, username) => {
+  switch (type) {
+    case 'comment_mention':
+      return `${username} mentioned you in a comment.`;
+    case 'comment_content':
+      return `${username} commented on your rant.`;
+    case 'comment_discuss':
+      return 'New comments on a rant you follow.';
+    case 'comment_vote':
+      return `${username} +1'd your comment.`;
+    default:
+      return `${username} +1'd your rant.`;
+  }
+};
+
+export { getRandomInt, getUID, getNotifText };

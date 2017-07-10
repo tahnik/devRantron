@@ -3,6 +3,11 @@ export const AUTH = {
   NOLOGIN: 'AUTH_NOLOGIN',
   LOGOUT: 'AUTH_LOGOUT',
 };
+export const NOTIFS = {
+  FETCH: 'NOTIF_FETCH',
+  CLEARALL: 'NOTIF_CLEARALL',
+  CLEAR: 'NOTIF_CLEAR',
+};
 
 export const STATE = {
   INITIAL: 'STATE_INITIAL',
