@@ -1,8 +1,7 @@
 const electron = require('electron');
-// Module to control application life.
-const app = electron.app;
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
+
+const { app, BrowserWindow, Menu, Tray } = electron;
+
 
 const os = require('os');
 const path = require('path');
@@ -33,6 +32,30 @@ const {
 let mainWindow;
 
 console.time('startup'); //eslint-disable-line
+
+function openRantComposer() {
+  mainWindow.show();
+  mainWindow.webContents.send('compose_rant');
+}
+function openNotifications() {
+  mainWindow.show();
+  mainWindow.webContents.send('open_notif');
+}
+
+/** This function will create the tray icon */
+function initTray() {
+  tray = new Tray(path.join(__dirname, '/res/images/devrantLogo512.png'));
+  const contextMenu = Menu.buildFromTemplate([
+    { label: 'Open App', click() { mainWindow.show(); } },
+    { type: 'separator' },
+    { label: 'Compose A Rant', click() { openRantComposer(); } },
+    { label: 'Open Notifications', click() { openNotifications(); } },
+    { type: 'separator' },
+    { label: 'Quit', click() { app.quit(); } },
+  ]);
+  tray.setToolTip('This is my application.');
+  tray.setContextMenu(contextMenu);
+}
 
 /** This function will create the mainWindow */
 function createWindow() {
@@ -87,6 +110,8 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  initTray();
 }
 
 // This method will be called when Electron has finished
