@@ -1,53 +1,55 @@
-import { NOTIFS, STATE } from '../consts/types';
+import { NOTIFS } from '../consts/types';
 import rantscript from '../consts/rantscript';
+
+let clearingNotif = false;
 
 const fetchNotifs = () => (dispatch, getState) => {
   const auth = getState().auth;
-  dispatch({
-    type: NOTIFS.FETCH,
-    notifs: null,
-    state: STATE.LOADING,
-  });
   if (!auth.user) {
     return;
   }
   rantscript
-  // .notifications(auth.user.authToken, this.state.notifTimestamp)
   .notifications(auth.user.authToken, 1)
   .then((res) => {
     /*
     * We have got a successful response, let's dispatch to let
     * redux store know about it
     */
-    dispatch({
-      type: NOTIFS.FETCH,
-      notifs: res,
-      state: STATE.SUCCESS,
-    });
+    const notifs = {
+      items: res.data.items,
+      check_time: res.data.check_time,
+      username_map: res.data.username_map,
+      num_unread: res.data.num_unread,
+    };
+    if (!clearingNotif) {
+      dispatch({
+        type: NOTIFS.FETCH,
+        notifs,
+      });
+    }
   })
   .catch(() => {
-    // Just in case it fails, we dispatch a failure
-    dispatch({
-      type: NOTIFS.FETCH,
-      state: STATE.FAILED,
-    });
+
   });
 };
 
-const clearNotif = id => (dispatch, getState) => {
-  const currentNotifs = { ...getState().notifs.notifs };
-  for (let index = 0; index < currentNotifs.data.items.length; index += 1) {
-    if (currentNotifs.data.items[index].rant_id === id) {
-      if (currentNotifs.data.items[index].read !== 1) {
-        currentNotifs.data.items[index].read = 1;
-      }
-    }
-  }
+const clearNotifs = () => (dispatch, getState) => {
   dispatch({
-    type: NOTIFS.FETCH,
-    notifs: currentNotifs,
-    state: STATE.SUCCESS,
+    type: NOTIFS.CLEARALL,
+  });
+  const auth = getState().auth;
+  if (!auth.user) {
+    return;
+  }
+  clearingNotif = true;
+  rantscript
+  .clearNotifications(auth.user.authToken)
+  .then(() => {
+    clearingNotif = false;
+  })
+  .catch(() => {
+    clearingNotif = false;
   });
 };
 
-export { fetchNotifs, clearNotif }; //eslint-disable-line
+export { fetchNotifs, clearNotifs }; //eslint-disable-line

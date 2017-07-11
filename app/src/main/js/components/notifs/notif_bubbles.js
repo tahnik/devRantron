@@ -23,7 +23,8 @@ class NotifBubbles extends Component {
               notif={notif}
               index={index}
               open={open}
-              key={`${notif.rant_id}_${notif.uid}_${notif.type}_${Math.random()}`}
+              unread={data.num_unread}
+              key={`${notif.uid}_${index}`} //eslint-disable-line
               user={data.username_map[notif.uid]}
             />),
           ) : null

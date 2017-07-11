@@ -9,11 +9,20 @@ class Notification extends Component {
       visable: false,
     };
   }
+  shouldComponentUpdate(nextProps) {
+    const { notif } = this.props;
+    if (
+      nextProps.unread === 0 && (notif.read === 1)
+    ) {
+      return false;
+    }
+    return true;
+  }
   open(id) {
     this.props.open(id);
   }
   render() {
-    const { notif, user } = this.props;
+    const { notif, user, unread } = this.props;
     let icon;
     let imageSource = 'res/images/invis.png';
 
@@ -44,7 +53,9 @@ class Notification extends Component {
       >
         <div className={`notif_badge ${notif.read === 1 ? 'read' : ''}`}>
           <img alt="" src={imageSource} className="notif_image" style={{ background: `#${user.avatar.b}` }} />
-          <i className={`${icon} ${notif.read === 1 ? 'read' : ''}`} />
+          <i
+            className={`${icon} ${notif.read === 1 || unread === 0 ? 'read' : ''}`}
+          />
         </div>
         <div className="notif_desc">
           <p>{notifText}</p>
@@ -58,6 +69,7 @@ Notification.propTypes = {
   notif: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   open: PropTypes.func.isRequired,
+  unread: PropTypes.number.isRequired,
 };
 
 export default Notification;

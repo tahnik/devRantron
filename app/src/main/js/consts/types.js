@@ -5,6 +5,8 @@ export const AUTH = {
 };
 export const NOTIFS = {
   FETCH: 'NOTIF_FETCH',
+  CLEARALL: 'NOTIF_CLEARALL',
+  CLEAR: 'NOTIF_CLEAR',
 };
 
 export const STATE = {
