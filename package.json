@@ -96,6 +96,7 @@
     "electron": "^1.6.8",
     "electron-builder": "^19.13.0",
     "electron-builder-squirrel-windows": "^19.15.0",
+    "env-paths": "^1.0.0",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
@@ -119,9 +120,12 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
+    "auto-launch": "^5.0.1",
     "babel-polyfill": "^6.23.0",
     "electron-devtools-installer": "^2.2.0",
+    "fast-deep-equal": "^1.0.0",
     "jquery": "^3.2.1",
+    "json-schema-traverse": "^0.3.1",
     "prop-types": "^15.5.10",
     "rantscript": "^1.1.2",
     "react": "^15.5.4",
