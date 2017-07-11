@@ -1,0 +1,5914 @@
+{
+  "people": [
+    {
+      "character": "😀",
+      "description": "Grinning Face"
+    },
+    {
+      "character": "😁",
+      "description": "Grinning Face With Smiling Eyes"
+    },
+    {
+      "character": "😂",
+      "description": "Face With Tears of Joy"
+    },
+    {
+      "character": "🤣",
+      "description": "Rolling on the Floor Laughing"
+    },
+    {
+      "character": "😃",
+      "description": "Smiling Face With Open Mouth"
+    },
+    {
+      "character": "😄",
+      "description": "Smiling Face With Open Mouth & Smiling Eyes"
+    },
+    {
+      "character": "😅",
+      "description": "Smiling Face With Open Mouth & Cold Sweat"
+    },
+    {
+      "character": "😆",
+      "description": "Smiling Face With Open Mouth & Closed Eyes"
+    },
+    {
+      "character": "😉",
+      "description": "Winking Face"
+    },
+    {
+      "character": "😊",
+      "description": "Smiling Face With Smiling Eyes"
+    },
+    {
+      "character": "😋",
+      "description": "Face Savouring Delicious Food"
+    },
+    {
+      "character": "😎",
+      "description": "Smiling Face With Sunglasses"
+    },
+    {
+      "character": "😍",
+      "description": "Smiling Face With Heart-Eyes"
+    },
+    {
+      "character": "😘",
+      "description": "Face Blowing a Kiss"
+    },
+    {
+      "character": "😗",
+      "description": "Kissing Face"
+    },
+    {
+      "character": "😙",
+      "description": "Kissing Face With Smiling Eyes"
+    },
+    {
+      "character": "😚",
+      "description": "Kissing Face With Closed Eyes"
+    },
+    {
+      "character": "☺",
+      "description": "Smiling Face"
+    },
+    {
+      "character": "🙂",
+      "description": "Slightly Smiling Face"
+    },
+    {
+      "character": "🤗",
+      "description": "Hugging Face"
+    },
+    {
+      "character": "🤔",
+      "description": "Thinking Face"
+    },
+    {
+      "character": "😐",
+      "description": "Neutral Face"
+    },
+    {
+      "character": "😑",
+      "description": "Expressionless Face"
+    },
+    {
+      "character": "😶",
+      "description": "Face Without Mouth"
+    },
+    {
+      "character": "🙄",
+      "description": "Face With Rolling Eyes"
+    },
+    {
+      "character": "😏",
+      "description": "Smirking Face"
+    },
+    {
+      "character": "😣",
+      "description": "Persevering Face"
+    },
+    {
+      "character": "😥",
+      "description": "Disappointed but Relieved Face"
+    },
+    {
+      "character": "😮",
+      "description": "Face With Open Mouth"
+    },
+    {
+      "character": "🤐",
+      "description": "Zipper-Mouth Face"
+    },
+    {
+      "character": "😯",
+      "description": "Hushed Face"
+    },
+    {
+      "character": "😪",
+      "description": "Sleepy Face"
+    },
+    {
+      "character": "😫",
+      "description": "Tired Face"
+    },
+    {
+      "character": "😴",
+      "description": "Sleeping Face"
+    },
+    {
+      "character": "😌",
+      "description": "Relieved Face"
+    },
+    {
+      "character": "😛",
+      "description": "Face With Stuck-Out Tongue"
+    },
+    {
+      "character": "😜",
+      "description": "Face With Stuck-Out Tongue & Winking Eye"
+    },
+    {
+      "character": "😝",
+      "description": "Face With Stuck-Out Tongue & Closed Eyes"
+    },
+    {
+      "character": "🤤",
+      "description": "Drooling Face"
+    },
+    {
+      "character": "😒",
+      "description": "Unamused Face"
+    },
+    {
+      "character": "😓",
+      "description": "Face With Cold Sweat"
+    },
+    {
+      "character": "😔",
+      "description": "Pensive Face"
+    },
+    {
+      "character": "😕",
+      "description": "Confused Face"
+    },
+    {
+      "character": "🙃",
+      "description": "Upside-Down Face"
+    },
+    {
+      "character": "🤑",
+      "description": "Money-Mouth Face"
+    },
+    {
+      "character": "😲",
+      "description": "Astonished Face"
+    },
+    {
+      "character": "☹",
+      "description": "Frowning Face"
+    },
+    {
+      "character": "🙁",
+      "description": "Slightly Frowning Face"
+    },
+    {
+      "character": "😖",
+      "description": "Confounded Face"
+    },
+    {
+      "character": "😞",
+      "description": "Disappointed Face"
+    },
+    {
+      "character": "😟",
+      "description": "Worried Face"
+    },
+    {
+      "character": "😤",
+      "description": "Face With Steam From Nose"
+    },
+    {
+      "character": "😢",
+      "description": "Crying Face"
+    },
+    {
+      "character": "😭",
+      "description": "Loudly Crying Face"
+    },
+    {
+      "character": "😦",
+      "description": "Frowning Face With Open Mouth"
+    },
+    {
+      "character": "😧",
+      "description": "Anguished Face"
+    },
+    {
+      "character": "😨",
+      "description": "Fearful Face"
+    },
+    {
+      "character": "😩",
+      "description": "Weary Face"
+    },
+    {
+      "character": "😬",
+      "description": "Grimacing Face"
+    },
+    {
+      "character": "😰",
+      "description": "Face With Open Mouth & Cold Sweat"
+    },
+    {
+      "character": "😱",
+      "description": "Face Screaming in Fear"
+    },
+    {
+      "character": "😳",
+      "description": "Flushed Face"
+    },
+    {
+      "character": "😵",
+      "description": "Dizzy Face"
+    },
+    {
+      "character": "😡",
+      "description": "Pouting Face"
+    },
+    {
+      "character": "😠",
+      "description": "Angry Face"
+    },
+    {
+      "character": "😷",
+      "description": "Face With Medical Mask"
+    },
+    {
+      "character": "🤒",
+      "description": "Face With Thermometer"
+    },
+    {
+      "character": "🤕",
+      "description": "Face With Head-Bandage"
+    },
+    {
+      "character": "🤢",
+      "description": "Nauseated Face"
+    },
+    {
+      "character": "🤧",
+      "description": "Sneezing Face"
+    },
+    {
+      "character": "😇",
+      "description": "Smiling Face With Halo"
+    },
+    {
+      "character": "🤠",
+      "description": "Cowboy Hat Face"
+    },
+    {
+      "character": "🤡",
+      "description": "Clown Face"
+    },
+    {
+      "character": "🤥",
+      "description": "Lying Face"
+    },
+    {
+      "character": "🤓",
+      "description": "Nerd Face"
+    },
+    {
+      "character": "😈",
+      "description": "Smiling Face With Horns"
+    },
+    {
+      "character": "👿",
+      "description": "Angry Face With Horns"
+    },
+    {
+      "character": "👹",
+      "description": "Ogre"
+    },
+    {
+      "character": "👺",
+      "description": "Goblin"
+    },
+    {
+      "character": "💀",
+      "description": "Skull"
+    },
+    {
+      "character": "👻",
+      "description": "Ghost"
+    },
+    {
+      "character": "👽",
+      "description": "Alien"
+    },
+    {
+      "character": "🤖",
+      "description": "Robot Face"
+    },
+    {
+      "character": "💩",
+      "description": "Pile of Poo"
+    },
+    {
+      "character": "😺",
+      "description": "Smiling Cat Face With Open Mouth"
+    },
+    {
+      "character": "😸",
+      "description": "Grinning Cat Face With Smiling Eyes"
+    },
+    {
+      "character": "😹",
+      "description": "Cat Face With Tears of Joy"
+    },
+    {
+      "character": "😻",
+      "description": "Smiling Cat Face With Heart-Eyes"
+    },
+    {
+      "character": "😼",
+      "description": "Cat Face With Wry Smile"
+    },
+    {
+      "character": "😽",
+      "description": "Kissing Cat Face With Closed Eyes"
+    },
+    {
+      "character": "🙀",
+      "description": "Weary Cat Face"
+    },
+    {
+      "character": "😿",
+      "description": "Crying Cat Face"
+    },
+    {
+      "character": "😾",
+      "description": "Pouting Cat Face"
+    },
+    {
+      "character": "👶",
+      "description": "Baby"
+    },
+    {
+      "character": "👦",
+      "description": "Boy"
+    },
+    {
+      "character": "👧",
+      "description": "Girl"
+    },
+    {
+      "character": "👨",
+      "description": "Man"
+    },
+    {
+      "character": "👩",
+      "description": "Woman"
+    },
+    {
+      "character": "👴",
+      "description": "Old Man"
+    },
+    {
+      "character": "👵",
+      "description": "Old Woman"
+    },
+    {
+      "character": "👨‍⚕️",
+      "description": "Man Health Worker"
+    },
+    {
+      "character": "👩‍⚕️",
+      "description": "Woman Health Worker"
+    },
+    {
+      "character": "👨‍🎓",
+      "description": "Man Student"
+    },
+    {
+      "character": "👩‍🎓",
+      "description": "Woman Student"
+    },
+    {
+      "character": "👨‍⚖️",
+      "description": "Man Judge"
+    },
+    {
+      "character": "👩‍⚖️",
+      "description": "Woman Judge"
+    },
+    {
+      "character": "👨‍🌾",
+      "description": "Man Farmer"
+    },
+    {
+      "character": "👩‍🌾",
+      "description": "Woman Farmer"
+    },
+    {
+      "character": "👨‍🍳",
+      "description": "Man Cook"
+    },
+    {
+      "character": "👩‍🍳",
+      "description": "Woman Cook"
+    },
+    {
+      "character": "👨‍🔧",
+      "description": "Man Mechanic"
+    },
+    {
+      "character": "👩‍🔧",
+      "description": "Woman Mechanic"
+    },
+    {
+      "character": "👨‍🏭",
+      "description": "Man Factory Worker"
+    },
+    {
+      "character": "👩‍🏭",
+      "description": "Woman Factory Worker"
+    },
+    {
+      "character": "👨‍💼",
+      "description": "Man Office Worker"
+    },
+    {
+      "character": "👩‍💼",
+      "description": "Woman Office Worker"
+    },
+    {
+      "character": "👨‍🔬",
+      "description": "Man Scientist"
+    },
+    {
+      "character": "👩‍🔬",
+      "description": "Woman Scientist"
+    },
+    {
+      "character": "👨‍💻",
+      "description": "Man Technologist"
+    },
+    {
+      "character": "👩‍💻",
+      "description": "Woman Technologist"
+    },
+    {
+      "character": "👨‍🎤",
+      "description": "Man Singer"
+    },
+    {
+      "character": "👩‍🎤",
+      "description": "Woman Singer"
+    },
+    {
+      "character": "👨‍🎨",
+      "description": "Man Artist"
+    },
+    {
+      "character": "👩‍🎨",
+      "description": "Woman Artist"
+    },
+    {
+      "character": "👨‍✈️",
+      "description": "Man Pilot"
+    },
+    {
+      "character": "👩‍✈️",
+      "description": "Woman Pilot"
+    },
+    {
+      "character": "👨‍🚀",
+      "description": "Man Astronaut"
+    },
+    {
+      "character": "👩‍🚀",
+      "description": "Woman Astronaut"
+    },
+    {
+      "character": "👨‍🚒",
+      "description": "Man Firefighter"
+    },
+    {
+      "character": "👩‍🚒",
+      "description": "Woman Firefighter"
+    },
+    {
+      "character": "👮",
+      "description": "Police Officer"
+    },
+    {
+      "character": "👮‍♂️",
+      "description": "Man Police Officer"
+    },
+    {
+      "character": "👮‍♀️",
+      "description": "Woman Police Officer"
+    },
+    {
+      "character": "🕵",
+      "description": "Detective"
+    },
+    {
+      "character": "🕵️‍♂️",
+      "description": "Man Detective"
+    },
+    {
+      "character": "🕵️‍♀️",
+      "description": "Woman Detective"
+    },
+    {
+      "character": "💂",
+      "description": "Guard"
+    },
+    {
+      "character": "💂‍♂️",
+      "description": "Man Guard"
+    },
+    {
+      "character": "💂‍♀️",
+      "description": "Woman Guard"
+    },
+    {
+      "character": "👷",
+      "description": "Construction Worker"
+    },
+    {
+      "character": "👷‍♂️",
+      "description": "Man Construction Worker"
+    },
+    {
+      "character": "👷‍♀️",
+      "description": "Woman Construction Worker"
+    },
+    {
+      "character": "🤴",
+      "description": "Prince"
+    },
+    {
+      "character": "👸",
+      "description": "Princess"
+    },
+    {
+      "character": "👳",
+      "description": "Person Wearing Turban"
+    },
+    {
+      "character": "👳‍♂️",
+      "description": "Man Wearing Turban"
+    },
+    {
+      "character": "👳‍♀️",
+      "description": "Woman Wearing Turban"
+    },
+    {
+      "character": "👲",
+      "description": "Man With Chinese Cap"
+    },
+    {
+      "character": "👱",
+      "description": "Blond-Haired Person"
+    },
+    {
+      "character": "👱‍♂️",
+      "description": "Blond-Haired Man"
+    },
+    {
+      "character": "👱‍♀️",
+      "description": "Blond-Haired Woman"
+    },
+    {
+      "character": "🤵",
+      "description": "Man in Tuxedo"
+    },
+    {
+      "character": "👰",
+      "description": "Bride With Veil"
+    },
+    {
+      "character": "🤰",
+      "description": "Pregnant Woman"
+    },
+    {
+      "character": "👼",
+      "description": "Baby Angel"
+    },
+    {
+      "character": "🎅",
+      "description": "Santa Claus"
+    },
+    {
+      "character": "🤶",
+      "description": "Mrs. Claus"
+    },
+    {
+      "character": "🙍",
+      "description": "Person Frowning"
+    },
+    {
+      "character": "🙍‍♂️",
+      "description": "Man Frowning"
+    },
+    {
+      "character": "🙍‍♀️",
+      "description": "Woman Frowning"
+    },
+    {
+      "character": "🙎",
+      "description": "Person Pouting"
+    },
+    {
+      "character": "🙎‍♂️",
+      "description": "Man Pouting"
+    },
+    {
+      "character": "🙎‍♀️",
+      "description": "Woman Pouting"
+    },
+    {
+      "character": "🙅",
+      "description": "Person Gesturing No"
+    },
+    {
+      "character": "🙅‍♂️",
+      "description": "Man Gesturing No"
+    },
+    {
+      "character": "🙅‍♀️",
+      "description": "Woman Gesturing No"
+    },
+    {
+      "character": "🙆",
+      "description": "Person Gesturing OK"
+    },
+    {
+      "character": "🙆‍♂️",
+      "description": "Man Gesturing OK"
+    },
+    {
+      "character": "🙆‍♀️",
+      "description": "Woman Gesturing OK"
+    },
+    {
+      "character": "💁",
+      "description": "Person Tipping Hand"
+    },
+    {
+      "character": "💁‍♂️",
+      "description": "Man Tipping Hand"
+    },
+    {
+      "character": "💁‍♀️",
+      "description": "Woman Tipping Hand"
+    },
+    {
+      "character": "🙋",
+      "description": "Person Raising Hand"
+    },
+    {
+      "character": "🙋‍♂️",
+      "description": "Man Raising Hand"
+    },
+    {
+      "character": "🙋‍♀️",
+      "description": "Woman Raising Hand"
+    },
+    {
+      "character": "🙇",
+      "description": "Person Bowing"
+    },
+    {
+      "character": "🙇‍♂️",
+      "description": "Man Bowing"
+    },
+    {
+      "character": "🙇‍♀️",
+      "description": "Woman Bowing"
+    },
+    {
+      "character": "🤦",
+      "description": "Person Facepalming"
+    },
+    {
+      "character": "🤦‍♂️",
+      "description": "Man Facepalming"
+    },
+    {
+      "character": "🤦‍♀️",
+      "description": "Woman Facepalming"
+    },
+    {
+      "character": "🤷",
+      "description": "Person Shrugging"
+    },
+    {
+      "character": "🤷‍♂️",
+      "description": "Man Shrugging"
+    },
+    {
+      "character": "🤷‍♀️",
+      "description": "Woman Shrugging"
+    },
+    {
+      "character": "💆",
+      "description": "Person Getting Massage"
+    },
+    {
+      "character": "💆‍♂️",
+      "description": "Man Getting Massage"
+    },
+    {
+      "character": "💆‍♀️",
+      "description": "Woman Getting Massage"
+    },
+    {
+      "character": "💇",
+      "description": "Person Getting Haircut"
+    },
+    {
+      "character": "💇‍♂️",
+      "description": "Man Getting Haircut"
+    },
+    {
+      "character": "💇‍♀️",
+      "description": "Woman Getting Haircut"
+    },
+    {
+      "character": "🚶",
+      "description": "Person Walking"
+    },
+    {
+      "character": "🚶‍♂️",
+      "description": "Man Walking"
+    },
+    {
+      "character": "🚶‍♀️",
+      "description": "Woman Walking"
+    },
+    {
+      "character": "🏃",
+      "description": "Person Running"
+    },
+    {
+      "character": "🏃‍♂️",
+      "description": "Man Running"
+    },
+    {
+      "character": "🏃‍♀️",
+      "description": "Woman Running"
+    },
+    {
+      "character": "💃",
+      "description": "Woman Dancing"
+    },
+    {
+      "character": "🕺",
+      "description": "Man Dancing"
+    },
+    {
+      "character": "👯",
+      "description": "People With Bunny Ears Partying"
+    },
+    {
+      "character": "👯‍♂️",
+      "description": "Men With Bunny Ears Partying"
+    },
+    {
+      "character": "👯‍♀️",
+      "description": "Women With Bunny Ears Partying"
+    },
+    {
+      "character": "🕴",
+      "description": "Man in Business Suit Levitating"
+    },
+    {
+      "character": "🗣",
+      "description": "Speaking Head"
+    },
+    {
+      "character": "👤",
+      "description": "Bust in Silhouette"
+    },
+    {
+      "character": "👥",
+      "description": "Busts in Silhouette"
+    },
+    {
+      "character": "👫",
+      "description": "Man and Woman Holding Hands"
+    },
+    {
+      "character": "👬",
+      "description": "Two Men Holding Hands"
+    },
+    {
+      "character": "👭",
+      "description": "Two Women Holding Hands"
+    },
+    {
+      "character": "💏",
+      "description": "Kiss"
+    },
+    {
+      "character": "👨‍❤️‍💋‍👨",
+      "description": "Kiss: Man, Man"
+    },
+    {
+      "character": "👩‍❤️‍💋‍👩",
+      "description": "Kiss: Woman, Woman"
+    },
+    {
+      "character": "💑",
+      "description": "Couple With Heart"
+    },
+    {
+      "character": "👨‍❤️‍👨",
+      "description": "Couple With Heart: Man, Man"
+    },
+    {
+      "character": "👩‍❤️‍👩",
+      "description": "Couple With Heart: Woman, Woman"
+    },
+    {
+      "character": "👪",
+      "description": "Family"
+    },
+    {
+      "character": "👨‍👩‍👦",
+      "description": "Family: Man, Woman, Boy"
+    },
+    {
+      "character": "👨‍👩‍👧",
+      "description": "Family: Man, Woman, Girl"
+    },
+    {
+      "character": "👨‍👩‍👧‍👦",
+      "description": "Family: Man, Woman, Girl, Boy"
+    },
+    {
+      "character": "👨‍👩‍👦‍👦",
+      "description": "Family: Man, Woman, Boy, Boy"
+    },
+    {
+      "character": "👨‍👩‍👧‍👧",
+      "description": "Family: Man, Woman, Girl, Girl"
+    },
+    {
+      "character": "👨‍👨‍👦",
+      "description": "Family: Man, Man, Boy"
+    },
+    {
+      "character": "👨‍👨‍👧",
+      "description": "Family: Man, Man, Girl"
+    },
+    {
+      "character": "👨‍👨‍👧‍👦",
+      "description": "Family: Man, Man, Girl, Boy"
+    },
+    {
+      "character": "👨‍👨‍👦‍👦",
+      "description": "Family: Man, Man, Boy, Boy"
+    },
+    {
+      "character": "👨‍👨‍👧‍👧",
+      "description": "Family: Man, Man, Girl, Girl"
+    },
+    {
+      "character": "👩‍👩‍👦",
+      "description": "Family: Woman, Woman, Boy"
+    },
+    {
+      "character": "👩‍👩‍👧",
+      "description": "Family: Woman, Woman, Girl"
+    },
+    {
+      "character": "👩‍👩‍👧‍👦",
+      "description": "Family: Woman, Woman, Girl, Boy"
+    },
+    {
+      "character": "👩‍👩‍👦‍👦",
+      "description": "Family: Woman, Woman, Boy, Boy"
+    },
+    {
+      "character": "👩‍👩‍👧‍👧",
+      "description": "Family: Woman, Woman, Girl, Girl"
+    },
+    {
+      "character": "👨‍👦",
+      "description": "Family: Man, Boy"
+    },
+    {
+      "character": "👨‍👦‍👦",
+      "description": "Family: Man, Boy, Boy"
+    },
+    {
+      "character": "👨‍👧",
+      "description": "Family: Man, Girl"
+    },
+    {
+      "character": "👨‍👧‍👦",
+      "description": "Family: Man, Girl, Boy"
+    },
+    {
+      "character": "👨‍👧‍👧",
+      "description": "Family: Man, Girl, Girl"
+    },
+    {
+      "character": "👩‍👦",
+      "description": "Family: Woman, Boy"
+    },
+    {
+      "character": "👩‍👦‍👦",
+      "description": "Family: Woman, Boy, Boy"
+    },
+    {
+      "character": "👩‍👧",
+      "description": "Family: Woman, Girl"
+    },
+    {
+      "character": "👩‍👧‍👦",
+      "description": "Family: Woman, Girl, Boy"
+    },
+    {
+      "character": "👩‍👧‍👧",
+      "description": "Family: Woman, Girl, Girl"
+    },
+    {
+      "character": "🤳",
+      "description": "Selfie"
+    },
+    {
+      "character": "💪",
+      "description": "Flexed Biceps"
+    },
+    {
+      "character": "👈",
+      "description": "Backhand Index Pointing Left"
+    },
+    {
+      "character": "👉",
+      "description": "Backhand Index Pointing Right"
+    },
+    {
+      "character": "☝",
+      "description": "Index Pointing Up"
+    },
+    {
+      "character": "👆",
+      "description": "Backhand Index Pointing Up"
+    },
+    {
+      "character": "🖕",
+      "description": "Middle Finger"
+    },
+    {
+      "character": "👇",
+      "description": "Backhand Index Pointing Down"
+    },
+    {
+      "character": "✌",
+      "description": "Victory Hand"
+    },
+    {
+      "character": "🤞",
+      "description": "Crossed Fingers"
+    },
+    {
+      "character": "🖖",
+      "description": "Vulcan Salute"
+    },
+    {
+      "character": "🤘",
+      "description": "Sign of the Horns"
+    },
+    {
+      "character": "🖐",
+      "description": "Raised Hand With Fingers Splayed"
+    },
+    {
+      "character": "✋",
+      "description": "Raised Hand"
+    },
+    {
+      "character": "👌",
+      "description": "OK Hand"
+    },
+    {
+      "character": "👍",
+      "description": "Thumbs Up"
+    },
+    {
+      "character": "👎",
+      "description": "Thumbs Down"
+    },
+    {
+      "character": "✊",
+      "description": "Raised Fist"
+    },
+    {
+      "character": "👊",
+      "description": "Oncoming Fist"
+    },
+    {
+      "character": "🤛",
+      "description": "Left-Facing Fist"
+    },
+    {
+      "character": "🤜",
+      "description": "Right-Facing Fist"
+    },
+    {
+      "character": "🤚",
+      "description": "Raised Back of Hand"
+    },
+    {
+      "character": "👋",
+      "description": "Waving Hand"
+    },
+    {
+      "character": "✍",
+      "description": "Writing Hand"
+    },
+    {
+      "character": "👏",
+      "description": "Clapping Hands"
+    },
+    {
+      "character": "👐",
+      "description": "Open Hands"
+    },
+    {
+      "character": "🙌",
+      "description": "Raising Hands"
+    },
+    {
+      "character": "🙏",
+      "description": "Folded Hands"
+    },
+    {
+      "character": "🤝",
+      "description": "Handshake"
+    },
+    {
+      "character": "💅",
+      "description": "Nail Polish"
+    },
+    {
+      "character": "👂",
+      "description": "Ear"
+    },
+    {
+      "character": "👃",
+      "description": "Nose"
+    },
+    {
+      "character": "👣",
+      "description": "Footprints"
+    },
+    {
+      "character": "👀",
+      "description": "Eyes"
+    },
+    {
+      "character": "👁",
+      "description": "Eye"
+    },
+    {
+      "character": "👅",
+      "description": "Tongue"
+    },
+    {
+      "character": "👄",
+      "description": "Mouth"
+    },
+    {
+      "character": "💋",
+      "description": "Kiss Mark"
+    },
+    {
+      "character": "👓",
+      "description": "Glasses"
+    },
+    {
+      "character": "🕶",
+      "description": "Sunglasses"
+    },
+    {
+      "character": "👔",
+      "description": "Necktie"
+    },
+    {
+      "character": "👕",
+      "description": "T-Shirt"
+    },
+    {
+      "character": "👖",
+      "description": "Jeans"
+    },
+    {
+      "character": "👗",
+      "description": "Dress"
+    },
+    {
+      "character": "👘",
+      "description": "Kimono"
+    },
+    {
+      "character": "👙",
+      "description": "Bikini"
+    },
+    {
+      "character": "👚",
+      "description": "Woman’s Clothes"
+    },
+    {
+      "character": "👛",
+      "description": "Purse"
+    },
+    {
+      "character": "👜",
+      "description": "Handbag"
+    },
+    {
+      "character": "👝",
+      "description": "Clutch Bag"
+    },
+    {
+      "character": "🎒",
+      "description": "School Backpack"
+    },
+    {
+      "character": "👞",
+      "description": "Man’s Shoe"
+    },
+    {
+      "character": "👟",
+      "description": "Running Shoe"
+    },
+    {
+      "character": "👠",
+      "description": "High-Heeled Shoe"
+    },
+    {
+      "character": "👡",
+      "description": "Woman’s Sandal"
+    },
+    {
+      "character": "👢",
+      "description": "Woman’s Boot"
+    },
+    {
+      "character": "👑",
+      "description": "Crown"
+    },
+    {
+      "character": "👒",
+      "description": "Woman’s Hat"
+    },
+    {
+      "character": "🎩",
+      "description": "Top Hat"
+    },
+    {
+      "character": "🎓",
+      "description": "Graduation Cap"
+    },
+    {
+      "character": "⛑",
+      "description": "Rescue Worker’s Helmet"
+    },
+    {
+      "character": "💄",
+      "description": "Lipstick"
+    },
+    {
+      "character": "💍",
+      "description": "Ring"
+    },
+    {
+      "character": "🌂",
+      "description": "Closed Umbrella"
+    },
+    {
+      "character": "☂",
+      "description": "Umbrella"
+    },
+    {
+      "character": "💼",
+      "description": "Briefcase"
+    }
+  ],
+  "nature": [
+    {
+      "character": "🙈",
+      "description": "See-No-Evil Monkey"
+    },
+    {
+      "character": "🙉",
+      "description": "Hear-No-Evil Monkey"
+    },
+    {
+      "character": "🙊",
+      "description": "Speak-No-Evil Monkey"
+    },
+    {
+      "character": "💥",
+      "description": "Collision"
+    },
+    {
+      "character": "💦",
+      "description": "Sweat Droplets"
+    },
+    {
+      "character": "💨",
+      "description": "Dashing Away"
+    },
+    {
+      "character": "💫",
+      "description": "Dizzy"
+    },
+    {
+      "character": "🐵",
+      "description": "Monkey Face"
+    },
+    {
+      "character": "🐒",
+      "description": "Monkey"
+    },
+    {
+      "character": "🦍",
+      "description": "Gorilla"
+    },
+    {
+      "character": "🐶",
+      "description": "Dog Face"
+    },
+    {
+      "character": "🐕",
+      "description": "Dog"
+    },
+    {
+      "character": "🐩",
+      "description": "Poodle"
+    },
+    {
+      "character": "🐺",
+      "description": "Wolf Face"
+    },
+    {
+      "character": "🦊",
+      "description": "Fox Face"
+    },
+    {
+      "character": "🐱",
+      "description": "Cat Face"
+    },
+    {
+      "character": "🐈",
+      "description": "Cat"
+    },
+    {
+      "character": "🦁",
+      "description": "Lion Face"
+    },
+    {
+      "character": "🐯",
+      "description": "Tiger Face"
+    },
+    {
+      "character": "🐅",
+      "description": "Tiger"
+    },
+    {
+      "character": "🐆",
+      "description": "Leopard"
+    },
+    {
+      "character": "🐴",
+      "description": "Horse Face"
+    },
+    {
+      "character": "🐎",
+      "description": "Horse"
+    },
+    {
+      "character": "🦄",
+      "description": "Unicorn Face"
+    },
+    {
+      "character": "🐮",
+      "description": "Cow Face"
+    },
+    {
+      "character": "🐂",
+      "description": "Ox"
+    },
+    {
+      "character": "🐃",
+      "description": "Water Buffalo"
+    },
+    {
+      "character": "🐄",
+      "description": "Cow"
+    },
+    {
+      "character": "🐷",
+      "description": "Pig Face"
+    },
+    {
+      "character": "🐖",
+      "description": "Pig"
+    },
+    {
+      "character": "🐗",
+      "description": "Boar"
+    },
+    {
+      "character": "🐽",
+      "description": "Pig Nose"
+    },
+    {
+      "character": "🐏",
+      "description": "Ram"
+    },
+    {
+      "character": "🐑",
+      "description": "Ewe"
+    },
+    {
+      "character": "🐐",
+      "description": "Goat"
+    },
+    {
+      "character": "🐪",
+      "description": "Camel"
+    },
+    {
+      "character": "🐫",
+      "description": "Two-Hump Camel"
+    },
+    {
+      "character": "🐘",
+      "description": "Elephant"
+    },
+    {
+      "character": "🦏",
+      "description": "Rhinoceros"
+    },
+    {
+      "character": "🐭",
+      "description": "Mouse Face"
+    },
+    {
+      "character": "🐁",
+      "description": "Mouse"
+    },
+    {
+      "character": "🐀",
+      "description": "Rat"
+    },
+    {
+      "character": "🐹",
+      "description": "Hamster Face"
+    },
+    {
+      "character": "🐰",
+      "description": "Rabbit Face"
+    },
+    {
+      "character": "🐇",
+      "description": "Rabbit"
+    },
+    {
+      "character": "🐿",
+      "description": "Chipmunk"
+    },
+    {
+      "character": "🦇",
+      "description": "Bat"
+    },
+    {
+      "character": "🐻",
+      "description": "Bear Face"
+    },
+    {
+      "character": "🐨",
+      "description": "Koala"
+    },
+    {
+      "character": "🐼",
+      "description": "Panda Face"
+    },
+    {
+      "character": "🐾",
+      "description": "Paw Prints"
+    },
+    {
+      "character": "🦃",
+      "description": "Turkey"
+    },
+    {
+      "character": "🐔",
+      "description": "Chicken"
+    },
+    {
+      "character": "🐓",
+      "description": "Rooster"
+    },
+    {
+      "character": "🐣",
+      "description": "Hatching Chick"
+    },
+    {
+      "character": "🐤",
+      "description": "Baby Chick"
+    },
+    {
+      "character": "🐥",
+      "description": "Front-Facing Baby Chick"
+    },
+    {
+      "character": "🐦",
+      "description": "Bird"
+    },
+    {
+      "character": "🐧",
+      "description": "Penguin"
+    },
+    {
+      "character": "🕊",
+      "description": "Dove"
+    },
+    {
+      "character": "🦅",
+      "description": "Eagle"
+    },
+    {
+      "character": "🦆",
+      "description": "Duck"
+    },
+    {
+      "character": "🦉",
+      "description": "Owl"
+    },
+    {
+      "character": "🐸",
+      "description": "Frog Face"
+    },
+    {
+      "character": "🐊",
+      "description": "Crocodile"
+    },
+    {
+      "character": "🐢",
+      "description": "Turtle"
+    },
+    {
+      "character": "🦎",
+      "description": "Lizard"
+    },
+    {
+      "character": "🐍",
+      "description": "Snake"
+    },
+    {
+      "character": "🐲",
+      "description": "Dragon Face"
+    },
+    {
+      "character": "🐉",
+      "description": "Dragon"
+    },
+    {
+      "character": "🐳",
+      "description": "Spouting Whale"
+    },
+    {
+      "character": "🐋",
+      "description": "Whale"
+    },
+    {
+      "character": "🐬",
+      "description": "Dolphin"
+    },
+    {
+      "character": "🐟",
+      "description": "Fish"
+    },
+    {
+      "character": "🐠",
+      "description": "Tropical Fish"
+    },
+    {
+      "character": "🐡",
+      "description": "Blowfish"
+    },
+    {
+      "character": "🐙",
+      "description": "Octopus"
+    },
+    {
+      "character": "🐚",
+      "description": "Spiral Shell"
+    },
+    {
+      "character": "🦀",
+      "description": "Crab"
+    },
+    {
+      "character": "🦐",
+      "description": "Shrimp"
+    },
+    {
+      "character": "🦑",
+      "description": "Squid"
+    },
+    {
+      "character": "🐌",
+      "description": "Snail"
+    },
+    {
+      "character": "🦋",
+      "description": "Butterfly"
+    },
+    {
+      "character": "🐛",
+      "description": "Bug"
+    },
+    {
+      "character": "🐜",
+      "description": "Ant"
+    },
+    {
+      "character": "🐝",
+      "description": "Honeybee"
+    },
+    {
+      "character": "🐞",
+      "description": "Lady Beetle"
+    },
+    {
+      "character": "🕷",
+      "description": "Spider"
+    },
+    {
+      "character": "🕸",
+      "description": "Spider Web"
+    },
+    {
+      "character": "🦂",
+      "description": "Scorpion"
+    },
+    {
+      "character": "💐",
+      "description": "Bouquet"
+    },
+    {
+      "character": "🌸",
+      "description": "Cherry Blossom"
+    },
+    {
+      "character": "💮",
+      "description": "White Flower"
+    },
+    {
+      "character": "🏵",
+      "description": "Rosette"
+    },
+    {
+      "character": "🌹",
+      "description": "Rose"
+    },
+    {
+      "character": "🥀",
+      "description": "Wilted Flower"
+    },
+    {
+      "character": "🌺",
+      "description": "Hibiscus"
+    },
+    {
+      "character": "🌻",
+      "description": "Sunflower"
+    },
+    {
+      "character": "🌼",
+      "description": "Blossom"
+    },
+    {
+      "character": "🌷",
+      "description": "Tulip"
+    },
+    {
+      "character": "🌱",
+      "description": "Seedling"
+    },
+    {
+      "character": "🌲",
+      "description": "Evergreen Tree"
+    },
+    {
+      "character": "🌳",
+      "description": "Deciduous Tree"
+    },
+    {
+      "character": "🌴",
+      "description": "Palm Tree"
+    },
+    {
+      "character": "🌵",
+      "description": "Cactus"
+    },
+    {
+      "character": "🌾",
+      "description": "Sheaf of Rice"
+    },
+    {
+      "character": "🌿",
+      "description": "Herb"
+    },
+    {
+      "character": "☘",
+      "description": "Shamrock"
+    },
+    {
+      "character": "🍀",
+      "description": "Four Leaf Clover"
+    },
+    {
+      "character": "🍁",
+      "description": "Maple Leaf"
+    },
+    {
+      "character": "🍂",
+      "description": "Fallen Leaf"
+    },
+    {
+      "character": "🍃",
+      "description": "Leaf Fluttering in Wind"
+    },
+    {
+      "character": "🍄",
+      "description": "Mushroom"
+    },
+    {
+      "character": "🌰",
+      "description": "Chestnut"
+    },
+    {
+      "character": "🌍",
+      "description": "Globe Showing Europe-Africa"
+    },
+    {
+      "character": "🌎",
+      "description": "Globe Showing Americas"
+    },
+    {
+      "character": "🌏",
+      "description": "Globe Showing Asia-Australia"
+    },
+    {
+      "character": "🌐",
+      "description": "Globe With Meridians"
+    },
+    {
+      "character": "🌑",
+      "description": "New Moon"
+    },
+    {
+      "character": "🌒",
+      "description": "Waxing Crescent Moon"
+    },
+    {
+      "character": "🌓",
+      "description": "First Quarter Moon"
+    },
+    {
+      "character": "🌔",
+      "description": "Waxing Gibbous Moon"
+    },
+    {
+      "character": "🌕",
+      "description": "Full Moon"
+    },
+    {
+      "character": "🌖",
+      "description": "Waning Gibbous Moon"
+    },
+    {
+      "character": "🌗",
+      "description": "Last Quarter Moon"
+    },
+    {
+      "character": "🌘",
+      "description": "Waning Crescent Moon"
+    },
+    {
+      "character": "🌙",
+      "description": "Crescent Moon"
+    },
+    {
+      "character": "🌚",
+      "description": "New Moon Face"
+    },
+    {
+      "character": "🌛",
+      "description": "First Quarter Moon With Face"
+    },
+    {
+      "character": "🌜",
+      "description": "Last Quarter Moon With Face"
+    },
+    {
+      "character": "☀",
+      "description": "Sun"
+    },
+    {
+      "character": "🌝",
+      "description": "Full Moon With Face"
+    },
+    {
+      "character": "🌞",
+      "description": "Sun With Face"
+    },
+    {
+      "character": "⭐",
+      "description": "White Medium Star"
+    },
+    {
+      "character": "🌟",
+      "description": "Glowing Star"
+    },
+    {
+      "character": "🌠",
+      "description": "Shooting Star"
+    },
+    {
+      "character": "☁",
+      "description": "Cloud"
+    },
+    {
+      "character": "⛅",
+      "description": "Sun Behind Cloud"
+    },
+    {
+      "character": "⛈",
+      "description": "Cloud With Lightning and Rain"
+    },
+    {
+      "character": "🌤",
+      "description": "Sun Behind Small Cloud"
+    },
+    {
+      "character": "🌥",
+      "description": "Sun Behind Large Cloud"
+    },
+    {
+      "character": "🌦",
+      "description": "Sun Behind Rain Cloud"
+    },
+    {
+      "character": "🌧",
+      "description": "Cloud With Rain"
+    },
+    {
+      "character": "🌨",
+      "description": "Cloud With Snow"
+    },
+    {
+      "character": "🌩",
+      "description": "Cloud With Lightning"
+    },
+    {
+      "character": "🌪",
+      "description": "Tornado"
+    },
+    {
+      "character": "🌫",
+      "description": "Fog"
+    },
+    {
+      "character": "🌬",
+      "description": "Wind Face"
+    },
+    {
+      "character": "🌈",
+      "description": "Rainbow"
+    },
+    {
+      "character": "☂",
+      "description": "Umbrella"
+    },
+    {
+      "character": "☔",
+      "description": "Umbrella With Rain Drops"
+    },
+    {
+      "character": "⚡",
+      "description": "High Voltage"
+    },
+    {
+      "character": "❄",
+      "description": "Snowflake"
+    },
+    {
+      "character": "☃",
+      "description": "Snowman"
+    },
+    {
+      "character": "⛄",
+      "description": "Snowman Without Snow"
+    },
+    {
+      "character": "☄",
+      "description": "Comet"
+    },
+    {
+      "character": "🔥",
+      "description": "Fire"
+    },
+    {
+      "character": "💧",
+      "description": "Droplet"
+    },
+    {
+      "character": "🌊",
+      "description": "Water Wave"
+    },
+    {
+      "character": "🎄",
+      "description": "Christmas Tree"
+    },
+    {
+      "character": "✨",
+      "description": "Sparkles"
+    },
+    {
+      "character": "🎋",
+      "description": "Tanabata Tree"
+    },
+    {
+      "character": "🎍",
+      "description": "Pine Decoration"
+    }
+  ],
+  "food-drink": [
+    {
+      "character": "🍇",
+      "description": "Grapes"
+    },
+    {
+      "character": "🍈",
+      "description": "Melon"
+    },
+    {
+      "character": "🍉",
+      "description": "Watermelon"
+    },
+    {
+      "character": "🍊",
+      "description": "Tangerine"
+    },
+    {
+      "character": "🍋",
+      "description": "Lemon"
+    },
+    {
+      "character": "🍌",
+      "description": "Banana"
+    },
+    {
+      "character": "🍍",
+      "description": "Pineapple"
+    },
+    {
+      "character": "🍎",
+      "description": "Red Apple"
+    },
+    {
+      "character": "🍏",
+      "description": "Green Apple"
+    },
+    {
+      "character": "🍐",
+      "description": "Pear"
+    },
+    {
+      "character": "🍑",
+      "description": "Peach"
+    },
+    {
+      "character": "🍒",
+      "description": "Cherries"
+    },
+    {
+      "character": "🍓",
+      "description": "Strawberry"
+    },
+    {
+      "character": "🥝",
+      "description": "Kiwi Fruit"
+    },
+    {
+      "character": "🍅",
+      "description": "Tomato"
+    },
+    {
+      "character": "🥑",
+      "description": "Avocado"
+    },
+    {
+      "character": "🍆",
+      "description": "Eggplant"
+    },
+    {
+      "character": "🥔",
+      "description": "Potato"
+    },
+    {
+      "character": "🥕",
+      "description": "Carrot"
+    },
+    {
+      "character": "🌽",
+      "description": "Ear of Corn"
+    },
+    {
+      "character": "🌶",
+      "description": "Hot Pepper"
+    },
+    {
+      "character": "🥒",
+      "description": "Cucumber"
+    },
+    {
+      "character": "🍄",
+      "description": "Mushroom"
+    },
+    {
+      "character": "🥜",
+      "description": "Peanuts"
+    },
+    {
+      "character": "🌰",
+      "description": "Chestnut"
+    },
+    {
+      "character": "🍞",
+      "description": "Bread"
+    },
+    {
+      "character": "🥐",
+      "description": "Croissant"
+    },
+    {
+      "character": "🥖",
+      "description": "Baguette Bread"
+    },
+    {
+      "character": "🥞",
+      "description": "Pancakes"
+    },
+    {
+      "character": "🧀",
+      "description": "Cheese Wedge"
+    },
+    {
+      "character": "🍖",
+      "description": "Meat on Bone"
+    },
+    {
+      "character": "🍗",
+      "description": "Poultry Leg"
+    },
+    {
+      "character": "🥓",
+      "description": "Bacon"
+    },
+    {
+      "character": "🍔",
+      "description": "Hamburger"
+    },
+    {
+      "character": "🍟",
+      "description": "French Fries"
+    },
+    {
+      "character": "🍕",
+      "description": "Pizza"
+    },
+    {
+      "character": "🌭",
+      "description": "Hot Dog"
+    },
+    {
+      "character": "🌮",
+      "description": "Taco"
+    },
+    {
+      "character": "🌯",
+      "description": "Burrito"
+    },
+    {
+      "character": "🍳",
+      "description": "Cooking"
+    },
+    {
+      "character": "🍲",
+      "description": "Pot of Food"
+    },
+    {
+      "character": "🥗",
+      "description": "Green Salad"
+    },
+    {
+      "character": "🍿",
+      "description": "Popcorn"
+    },
+    {
+      "character": "🍱",
+      "description": "Bento Box"
+    },
+    {
+      "character": "🍘",
+      "description": "Rice Cracker"
+    },
+    {
+      "character": "🍙",
+      "description": "Rice Ball"
+    },
+    {
+      "character": "🍚",
+      "description": "Cooked Rice"
+    },
+    {
+      "character": "🍛",
+      "description": "Curry Rice"
+    },
+    {
+      "character": "🍜",
+      "description": "Steaming Bowl"
+    },
+    {
+      "character": "🍝",
+      "description": "Spaghetti"
+    },
+    {
+      "character": "🍠",
+      "description": "Roasted Sweet Potato"
+    },
+    {
+      "character": "🍢",
+      "description": "Oden"
+    },
+    {
+      "character": "🍣",
+      "description": "Sushi"
+    },
+    {
+      "character": "🍤",
+      "description": "Fried Shrimp"
+    },
+    {
+      "character": "🍥",
+      "description": "Fish Cake With Swirl"
+    },
+    {
+      "character": "🍡",
+      "description": "Dango"
+    },
+    {
+      "character": "🍦",
+      "description": "Soft Ice Cream"
+    },
+    {
+      "character": "🍧",
+      "description": "Shaved Ice"
+    },
+    {
+      "character": "🍨",
+      "description": "Ice Cream"
+    },
+    {
+      "character": "🍩",
+      "description": "Doughnut"
+    },
+    {
+      "character": "🍪",
+      "description": "Cookie"
+    },
+    {
+      "character": "🎂",
+      "description": "Birthday Cake"
+    },
+    {
+      "character": "🍰",
+      "description": "Shortcake"
+    },
+    {
+      "character": "🍫",
+      "description": "Chocolate Bar"
+    },
+    {
+      "character": "🍬",
+      "description": "Candy"
+    },
+    {
+      "character": "🍭",
+      "description": "Lollipop"
+    },
+    {
+      "character": "🍮",
+      "description": "Custard"
+    },
+    {
+      "character": "🍯",
+      "description": "Honey Pot"
+    },
+    {
+      "character": "🍼",
+      "description": "Baby Bottle"
+    },
+    {
+      "character": "🥛",
+      "description": "Glass of Milk"
+    },
+    {
+      "character": "☕",
+      "description": "Hot Beverage"
+    },
+    {
+      "character": "🍵",
+      "description": "Teacup Without Handle"
+    },
+    {
+      "character": "🍶",
+      "description": "Sake"
+    },
+    {
+      "character": "🍾",
+      "description": "Bottle With Popping Cork"
+    },
+    {
+      "character": "🍷",
+      "description": "Wine Glass"
+    },
+    {
+      "character": "🍸",
+      "description": "Cocktail Glass"
+    },
+    {
+      "character": "🍹",
+      "description": "Tropical Drink"
+    },
+    {
+      "character": "🍺",
+      "description": "Beer Mug"
+    },
+    {
+      "character": "🍻",
+      "description": "Clinking Beer Mugs"
+    },
+    {
+      "character": "🥂",
+      "description": "Clinking Glasses"
+    },
+    {
+      "character": "🥃",
+      "description": "Tumbler Glass"
+    },
+    {
+      "character": "🍽",
+      "description": "Fork and Knife With Plate"
+    },
+    {
+      "character": "🍴",
+      "description": "Fork and Knife"
+    },
+    {
+      "character": "🥄",
+      "description": "Spoon"
+    }
+  ],
+  "activity": [
+    {
+      "character": "👾",
+      "description": "Alien Monster"
+    },
+    {
+      "character": "🕴",
+      "description": "Man in Business Suit Levitating"
+    },
+    {
+      "character": "🏇",
+      "description": "Horse Racing"
+    },
+    {
+      "character": "⛷",
+      "description": "Skier"
+    },
+    {
+      "character": "🏂",
+      "description": "Snowboarder"
+    },
+    {
+      "character": "🏌",
+      "description": "Person Golfing"
+    },
+    {
+      "character": "🏌️‍♂️",
+      "description": "Man Golfing"
+    },
+    {
+      "character": "🏌️‍♀️",
+      "description": "Woman Golfing"
+    },
+    {
+      "character": "🏄",
+      "description": "Person Surfing"
+    },
+    {
+      "character": "🏄‍♂️",
+      "description": "Man Surfing"
+    },
+    {
+      "character": "🏄‍♀️",
+      "description": "Woman Surfing"
+    },
+    {
+      "character": "🚣",
+      "description": "Person Rowing Boat"
+    },
+    {
+      "character": "🚣‍♂️",
+      "description": "Man Rowing Boat"
+    },
+    {
+      "character": "🚣‍♀️",
+      "description": "Woman Rowing Boat"
+    },
+    {
+      "character": "🏊",
+      "description": "Person Swimming"
+    },
+    {
+      "character": "🏊‍♂️",
+      "description": "Man Swimming"
+    },
+    {
+      "character": "🏊‍♀️",
+      "description": "Woman Swimming"
+    },
+    {
+      "character": "⛹",
+      "description": "Person Bouncing Ball"
+    },
+    {
+      "character": "⛹️‍♂️",
+      "description": "Man Bouncing Ball"
+    },
+    {
+      "character": "⛹️‍♀️",
+      "description": "Woman Bouncing Ball"
+    },
+    {
+      "character": "🏋",
+      "description": "Person Lifting Weights"
+    },
+    {
+      "character": "🏋️‍♂️",
+      "description": "Man Lifting Weights"
+    },
+    {
+      "character": "🏋️‍♀️",
+      "description": "Woman Lifting Weights"
+    },
+    {
+      "character": "🚴",
+      "description": "Person Biking"
+    },
+    {
+      "character": "🚴‍♂️",
+      "description": "Man Biking"
+    },
+    {
+      "character": "🚴‍♀️",
+      "description": "Woman Biking"
+    },
+    {
+      "character": "🚵",
+      "description": "Person Mountain Biking"
+    },
+    {
+      "character": "🚵‍♂️",
+      "description": "Man Mountain Biking"
+    },
+    {
+      "character": "🚵‍♀️",
+      "description": "Woman Mountain Biking"
+    },
+    {
+      "character": "🤸",
+      "description": "Person Cartwheeling"
+    },
+    {
+      "character": "🤸‍♂️",
+      "description": "Man Cartwheeling"
+    },
+    {
+      "character": "🤸‍♀️",
+      "description": "Woman Cartwheeling"
+    },
+    {
+      "character": "🤼",
+      "description": "People Wrestling"
+    },
+    {
+      "character": "🤼‍♂️",
+      "description": "Men Wrestling"
+    },
+    {
+      "character": "🤼‍♀️",
+      "description": "Women Wrestling"
+    },
+    {
+      "character": "🤽",
+      "description": "Person Playing Water Polo"
+    },
+    {
+      "character": "🤽‍♂️",
+      "description": "Man Playing Water Polo"
+    },
+    {
+      "character": "🤽‍♀️",
+      "description": "Woman Playing Water Polo"
+    },
+    {
+      "character": "🤾",
+      "description": "Person Playing Handball"
+    },
+    {
+      "character": "🤾‍♂️",
+      "description": "Man Playing Handball"
+    },
+    {
+      "character": "🤾‍♀️",
+      "description": "Woman Playing Handball"
+    },
+    {
+      "character": "🤹",
+      "description": "Person Juggling"
+    },
+    {
+      "character": "🤹‍♂️",
+      "description": "Man Juggling"
+    },
+    {
+      "character": "🤹‍♀️",
+      "description": "Woman Juggling"
+    },
+    {
+      "character": "🎪",
+      "description": "Circus Tent"
+    },
+    {
+      "character": "🎭",
+      "description": "Performing Arts"
+    },
+    {
+      "character": "🎨",
+      "description": "Artist Palette"
+    },
+    {
+      "character": "🎰",
+      "description": "Slot Machine"
+    },
+    {
+      "character": "🎗",
+      "description": "Reminder Ribbon"
+    },
+    {
+      "character": "🎟",
+      "description": "Admission Tickets"
+    },
+    {
+      "character": "🎫",
+      "description": "Ticket"
+    },
+    {
+      "character": "🎖",
+      "description": "Military Medal"
+    },
+    {
+      "character": "🏆",
+      "description": "Trophy"
+    },
+    {
+      "character": "🏅",
+      "description": "Sports Medal"
+    },
+    {
+      "character": "🥇",
+      "description": "1st Place Medal"
+    },
+    {
+      "character": "🥈",
+      "description": "2nd Place Medal"
+    },
+    {
+      "character": "🥉",
+      "description": "3rd Place Medal"
+    },
+    {
+      "character": "⚽",
+      "description": "Soccer Ball"
+    },
+    {
+      "character": "⚾",
+      "description": "Baseball"
+    },
+    {
+      "character": "🏀",
+      "description": "Basketball"
+    },
+    {
+      "character": "🏐",
+      "description": "Volleyball"
+    },
+    {
+      "character": "🏈",
+      "description": "American Football"
+    },
+    {
+      "character": "🏉",
+      "description": "Rugby Football"
+    },
+    {
+      "character": "🎾",
+      "description": "Tennis"
+    },
+    {
+      "character": "🎱",
+      "description": "Pool 8 Ball"
+    },
+    {
+      "character": "🎳",
+      "description": "Bowling"
+    },
+    {
+      "character": "🏏",
+      "description": "Cricket"
+    },
+    {
+      "character": "🏑",
+      "description": "Field Hockey"
+    },
+    {
+      "character": "🏒",
+      "description": "Ice Hockey"
+    },
+    {
+      "character": "🏓",
+      "description": "Ping Pong"
+    },
+    {
+      "character": "🏸",
+      "description": "Badminton"
+    },
+    {
+      "character": "🥊",
+      "description": "Boxing Glove"
+    },
+    {
+      "character": "🥋",
+      "description": "Martial Arts Uniform"
+    },
+    {
+      "character": "🎯",
+      "description": "Direct Hit"
+    },
+    {
+      "character": "⛳",
+      "description": "Flag in Hole"
+    },
+    {
+      "character": "⛸",
+      "description": "Ice Skate"
+    },
+    {
+      "character": "🎣",
+      "description": "Fishing Pole"
+    },
+    {
+      "character": "🎽",
+      "description": "Running Shirt"
+    },
+    {
+      "character": "🎿",
+      "description": "Skis"
+    },
+    {
+      "character": "🎮",
+      "description": "Video Game"
+    },
+    {
+      "character": "🎲",
+      "description": "Game Die"
+    },
+    {
+      "character": "🎼",
+      "description": "Musical Score"
+    },
+    {
+      "character": "🎤",
+      "description": "Microphone"
+    },
+    {
+      "character": "🎧",
+      "description": "Headphone"
+    },
+    {
+      "character": "🎷",
+      "description": "Saxophone"
+    },
+    {
+      "character": "🎸",
+      "description": "Guitar"
+    },
+    {
+      "character": "🎹",
+      "description": "Musical Keyboard"
+    },
+    {
+      "character": "🎺",
+      "description": "Trumpet"
+    },
+    {
+      "character": "🎻",
+      "description": "Violin"
+    },
+    {
+      "character": "🥁",
+      "description": "Drum"
+    },
+    {
+      "character": "🎬",
+      "description": "Clapper Board"
+    },
+    {
+      "character": "🏹",
+      "description": "Bow and Arrow"
+    }
+  ],
+  "travel-places": [
+    {
+      "character": "🚣",
+      "description": "Person Rowing Boat"
+    },
+    {
+      "character": "🏎",
+      "description": "Racing Car"
+    },
+    {
+      "character": "🏍",
+      "description": "Motorcycle"
+    },
+    {
+      "character": "🗾",
+      "description": "Map of Japan"
+    },
+    {
+      "character": "🏔",
+      "description": "Snow-Capped Mountain"
+    },
+    {
+      "character": "⛰",
+      "description": "Mountain"
+    },
+    {
+      "character": "🌋",
+      "description": "Volcano"
+    },
+    {
+      "character": "🗻",
+      "description": "Mount Fuji"
+    },
+    {
+      "character": "🏕",
+      "description": "Camping"
+    },
+    {
+      "character": "🏖",
+      "description": "Beach With Umbrella"
+    },
+    {
+      "character": "🏜",
+      "description": "Desert"
+    },
+    {
+      "character": "🏝",
+      "description": "Desert Island"
+    },
+    {
+      "character": "🏞",
+      "description": "National Park"
+    },
+    {
+      "character": "🏟",
+      "description": "Stadium"
+    },
+    {
+      "character": "🏛",
+      "description": "Classical Building"
+    },
+    {
+      "character": "🏗",
+      "description": "Building Construction"
+    },
+    {
+      "character": "🏘",
+      "description": "House"
+    },
+    {
+      "character": "🏙",
+      "description": "Cityscape"
+    },
+    {
+      "character": "🏚",
+      "description": "Derelict House"
+    },
+    {
+      "character": "🏠",
+      "description": "House"
+    },
+    {
+      "character": "🏡",
+      "description": "House With Garden"
+    },
+    {
+      "character": "🏢",
+      "description": "Office Building"
+    },
+    {
+      "character": "🏣",
+      "description": "Japanese Post Office"
+    },
+    {
+      "character": "🏤",
+      "description": "Post Office"
+    },
+    {
+      "character": "🏥",
+      "description": "Hospital"
+    },
+    {
+      "character": "🏦",
+      "description": "Bank"
+    },
+    {
+      "character": "🏨",
+      "description": "Hotel"
+    },
+    {
+      "character": "🏩",
+      "description": "Love Hotel"
+    },
+    {
+      "character": "🏪",
+      "description": "Convenience Store"
+    },
+    {
+      "character": "🏫",
+      "description": "School"
+    },
+    {
+      "character": "🏬",
+      "description": "Department Store"
+    },
+    {
+      "character": "🏭",
+      "description": "Factory"
+    },
+    {
+      "character": "🏯",
+      "description": "Japanese Castle"
+    },
+    {
+      "character": "🏰",
+      "description": "Castle"
+    },
+    {
+      "character": "💒",
+      "description": "Wedding"
+    },
+    {
+      "character": "🗼",
+      "description": "Tokyo Tower"
+    },
+    {
+      "character": "🗽",
+      "description": "Statue of Liberty"
+    },
+    {
+      "character": "⛪",
+      "description": "Church"
+    },
+    {
+      "character": "🕌",
+      "description": "Mosque"
+    },
+    {
+      "character": "🕍",
+      "description": "Synagogue"
+    },
+    {
+      "character": "⛩",
+      "description": "Shinto Shrine"
+    },
+    {
+      "character": "🕋",
+      "description": "Kaaba"
+    },
+    {
+      "character": "⛲",
+      "description": "Fountain"
+    },
+    {
+      "character": "⛺",
+      "description": "Tent"
+    },
+    {
+      "character": "🌁",
+      "description": "Foggy"
+    },
+    {
+      "character": "🌃",
+      "description": "Night With Stars"
+    },
+    {
+      "character": "🌄",
+      "description": "Sunrise Over Mountains"
+    },
+    {
+      "character": "🌅",
+      "description": "Sunrise"
+    },
+    {
+      "character": "🌆",
+      "description": "Cityscape at Dusk"
+    },
+    {
+      "character": "🌇",
+      "description": "Sunset"
+    },
+    {
+      "character": "🌉",
+      "description": "Bridge at Night"
+    },
+    {
+      "character": "🌌",
+      "description": "Milky Way"
+    },
+    {
+      "character": "🎠",
+      "description": "Carousel Horse"
+    },
+    {
+      "character": "🎡",
+      "description": "Ferris Wheel"
+    },
+    {
+      "character": "🎢",
+      "description": "Roller Coaster"
+    },
+    {
+      "character": "🚂",
+      "description": "Locomotive"
+    },
+    {
+      "character": "🚃",
+      "description": "Railway Car"
+    },
+    {
+      "character": "🚄",
+      "description": "High-Speed Train"
+    },
+    {
+      "character": "🚅",
+      "description": "High-Speed Train With Bullet Nose"
+    },
+    {
+      "character": "🚆",
+      "description": "Train"
+    },
+    {
+      "character": "🚇",
+      "description": "Metro"
+    },
+    {
+      "character": "🚈",
+      "description": "Light Rail"
+    },
+    {
+      "character": "🚉",
+      "description": "Station"
+    },
+    {
+      "character": "🚊",
+      "description": "Tram"
+    },
+    {
+      "character": "🚝",
+      "description": "Monorail"
+    },
+    {
+      "character": "🚞",
+      "description": "Mountain Railway"
+    },
+    {
+      "character": "🚋",
+      "description": "Tram Car"
+    },
+    {
+      "character": "🚌",
+      "description": "Bus"
+    },
+    {
+      "character": "🚍",
+      "description": "Oncoming Bus"
+    },
+    {
+      "character": "🚎",
+      "description": "Trolleybus"
+    },
+    {
+      "character": "🚐",
+      "description": "Minibus"
+    },
+    {
+      "character": "🚑",
+      "description": "Ambulance"
+    },
+    {
+      "character": "🚒",
+      "description": "Fire Engine"
+    },
+    {
+      "character": "🚓",
+      "description": "Police Car"
+    },
+    {
+      "character": "🚔",
+      "description": "Oncoming Police Car"
+    },
+    {
+      "character": "🚕",
+      "description": "Taxi"
+    },
+    {
+      "character": "🚖",
+      "description": "Oncoming Taxi"
+    },
+    {
+      "character": "🚗",
+      "description": "Automobile"
+    },
+    {
+      "character": "🚘",
+      "description": "Oncoming Automobile"
+    },
+    {
+      "character": "🚚",
+      "description": "Delivery Truck"
+    },
+    {
+      "character": "🚛",
+      "description": "Articulated Lorry"
+    },
+    {
+      "character": "🚜",
+      "description": "Tractor"
+    },
+    {
+      "character": "🚲",
+      "description": "Bicycle"
+    },
+    {
+      "character": "🛴",
+      "description": "Kick Scooter"
+    },
+    {
+      "character": "🛵",
+      "description": "Motor Scooter"
+    },
+    {
+      "character": "🚏",
+      "description": "Bus Stop"
+    },
+    {
+      "character": "🛤",
+      "description": "Railway Track"
+    },
+    {
+      "character": "⛽",
+      "description": "Fuel Pump"
+    },
+    {
+      "character": "🚨",
+      "description": "Police Car Light"
+    },
+    {
+      "character": "🚥",
+      "description": "Horizontal Traffic Light"
+    },
+    {
+      "character": "🚦",
+      "description": "Vertical Traffic Light"
+    },
+    {
+      "character": "🚧",
+      "description": "Construction"
+    },
+    {
+      "character": "⚓",
+      "description": "Anchor"
+    },
+    {
+      "character": "⛵",
+      "description": "Sailboat"
+    },
+    {
+      "character": "🚤",
+      "description": "Speedboat"
+    },
+    {
+      "character": "🛳",
+      "description": "Passenger Ship"
+    },
+    {
+      "character": "⛴",
+      "description": "Ferry"
+    },
+    {
+      "character": "🛥",
+      "description": "Motor Boat"
+    },
+    {
+      "character": "🚢",
+      "description": "Ship"
+    },
+    {
+      "character": "✈",
+      "description": "Airplane"
+    },
+    {
+      "character": "🛩",
+      "description": "Small Airplane"
+    },
+    {
+      "character": "🛫",
+      "description": "Airplane Departure"
+    },
+    {
+      "character": "🛬",
+      "description": "Airplane Arrival"
+    },
+    {
+      "character": "💺",
+      "description": "Seat"
+    },
+    {
+      "character": "🚁",
+      "description": "Helicopter"
+    },
+    {
+      "character": "🚟",
+      "description": "Suspension Railway"
+    },
+    {
+      "character": "🚠",
+      "description": "Mountain Cableway"
+    },
+    {
+      "character": "🚡",
+      "description": "Aerial Tramway"
+    },
+    {
+      "character": "🛰",
+      "description": "Satellite"
+    },
+    {
+      "character": "🚀",
+      "description": "Rocket"
+    },
+    {
+      "character": "🌠",
+      "description": "Shooting Star"
+    },
+    {
+      "character": "⛱",
+      "description": "Umbrella on Ground"
+    },
+    {
+      "character": "🎆",
+      "description": "Fireworks"
+    },
+    {
+      "character": "🎇",
+      "description": "Sparkler"
+    },
+    {
+      "character": "🎑",
+      "description": "Moon Viewing Ceremony"
+    },
+    {
+      "character": "💴",
+      "description": "Yen Banknote"
+    },
+    {
+      "character": "💵",
+      "description": "Dollar Banknote"
+    },
+    {
+      "character": "💶",
+      "description": "Euro Banknote"
+    },
+    {
+      "character": "💷",
+      "description": "Pound Banknote"
+    },
+    {
+      "character": "🗿",
+      "description": "Moai"
+    },
+    {
+      "character": "🛂",
+      "description": "Passport Control"
+    },
+    {
+      "character": "🛃",
+      "description": "Customs"
+    },
+    {
+      "character": "🛄",
+      "description": "Baggage Claim"
+    },
+    {
+      "character": "🛅",
+      "description": "Left Luggage"
+    }
+  ],
+  "objects": [
+    {
+      "character": "☠",
+      "description": "Skull and Crossbones"
+    },
+    {
+      "character": "🛀",
+      "description": "Person Taking Bath"
+    },
+    {
+      "character": "🛌",
+      "description": "Person in Bed"
+    },
+    {
+      "character": "💌",
+      "description": "Love Letter"
+    },
+    {
+      "character": "💣",
+      "description": "Bomb"
+    },
+    {
+      "character": "🕳",
+      "description": "Hole"
+    },
+    {
+      "character": "🛍",
+      "description": "Shopping Bags"
+    },
+    {
+      "character": "📿",
+      "description": "Prayer Beads"
+    },
+    {
+      "character": "💎",
+      "description": "Gem Stone"
+    },
+    {
+      "character": "🔪",
+      "description": "Kitchen Knife"
+    },
+    {
+      "character": "🏺",
+      "description": "Amphora"
+    },
+    {
+      "character": "🗺",
+      "description": "World Map"
+    },
+    {
+      "character": "💈",
+      "description": "Barber Pole"
+    },
+    {
+      "character": "🖼",
+      "description": "Framed Picture"
+    },
+    {
+      "character": "🛎",
+      "description": "Bellhop Bell"
+    },
+    {
+      "character": "🚪",
+      "description": "Door"
+    },
+    {
+      "character": "🛏",
+      "description": "Bed"
+    },
+    {
+      "character": "🛋",
+      "description": "Couch and Lamp"
+    },
+    {
+      "character": "🚽",
+      "description": "Toilet"
+    },
+    {
+      "character": "🚿",
+      "description": "Shower"
+    },
+    {
+      "character": "🛁",
+      "description": "Bathtub"
+    },
+    {
+      "character": "⌛",
+      "description": "Hourglass"
+    },
+    {
+      "character": "⏳",
+      "description": "Hourglass With Flowing Sand"
+    },
+    {
+      "character": "⌚",
+      "description": "Watch"
+    },
+    {
+      "character": "⏰",
+      "description": "Alarm Clock"
+    },
+    {
+      "character": "⏱",
+      "description": "Stopwatch"
+    },
+    {
+      "character": "⏲",
+      "description": "Timer Clock"
+    },
+    {
+      "character": "🕰",
+      "description": "Mantelpiece Clock"
+    },
+    {
+      "character": "🌡",
+      "description": "Thermometer"
+    },
+    {
+      "character": "⛱",
+      "description": "Umbrella on Ground"
+    },
+    {
+      "character": "🎈",
+      "description": "Balloon"
+    },
+    {
+      "character": "🎉",
+      "description": "Party Popper"
+    },
+    {
+      "character": "🎊",
+      "description": "Confetti Ball"
+    },
+    {
+      "character": "🎎",
+      "description": "Japanese Dolls"
+    },
+    {
+      "character": "🎏",
+      "description": "Carp Streamer"
+    },
+    {
+      "character": "🎐",
+      "description": "Wind Chime"
+    },
+    {
+      "character": "🎀",
+      "description": "Ribbon"
+    },
+    {
+      "character": "🎁",
+      "description": "Wrapped Gift"
+    },
+    {
+      "character": "🕹",
+      "description": "Joystick"
+    },
+    {
+      "character": "📯",
+      "description": "Postal Horn"
+    },
+    {
+      "character": "🎙",
+      "description": "Studio Microphone"
+    },
+    {
+      "character": "🎚",
+      "description": "Level Slider"
+    },
+    {
+      "character": "🎛",
+      "description": "Control Knobs"
+    },
+    {
+      "character": "📻",
+      "description": "Radio"
+    },
+    {
+      "character": "📱",
+      "description": "Mobile Phone"
+    },
+    {
+      "character": "📲",
+      "description": "Mobile Phone With Arrow"
+    },
+    {
+      "character": "☎",
+      "description": "Telephone"
+    },
+    {
+      "character": "📞",
+      "description": "Telephone Receiver"
+    },
+    {
+      "character": "📟",
+      "description": "Pager"
+    },
+    {
+      "character": "📠",
+      "description": "Fax Machine"
+    },
+    {
+      "character": "🔋",
+      "description": "Battery"
+    },
+    {
+      "character": "🔌",
+      "description": "Electric Plug"
+    },
+    {
+      "character": "💻",
+      "description": "Laptop Computer"
+    },
+    {
+      "character": "🖥",
+      "description": "Desktop Computer"
+    },
+    {
+      "character": "🖨",
+      "description": "Printer"
+    },
+    {
+      "character": "⌨",
+      "description": "Keyboard"
+    },
+    {
+      "character": "🖱",
+      "description": "Computer Mouse"
+    },
+    {
+      "character": "🖲",
+      "description": "Trackball"
+    },
+    {
+      "character": "💽",
+      "description": "Computer Disk"
+    },
+    {
+      "character": "💾",
+      "description": "Floppy Disk"
+    },
+    {
+      "character": "💿",
+      "description": "Optical Disk"
+    },
+    {
+      "character": "📀",
+      "description": "DVD"
+    },
+    {
+      "character": "🎥",
+      "description": "Movie Camera"
+    },
+    {
+      "character": "🎞",
+      "description": "Film Frames"
+    },
+    {
+      "character": "📽",
+      "description": "Film Projector"
+    },
+    {
+      "character": "📺",
+      "description": "Television"
+    },
+    {
+      "character": "📷",
+      "description": "Camera"
+    },
+    {
+      "character": "📸",
+      "description": "Camera With Flash"
+    },
+    {
+      "character": "📹",
+      "description": "Video Camera"
+    },
+    {
+      "character": "📼",
+      "description": "Videocassette"
+    },
+    {
+      "character": "🔍",
+      "description": "Left-Pointing Magnifying Glass"
+    },
+    {
+      "character": "🔎",
+      "description": "Right-Pointing Magnifying Glass"
+    },
+    {
+      "character": "🔬",
+      "description": "Microscope"
+    },
+    {
+      "character": "🔭",
+      "description": "Telescope"
+    },
+    {
+      "character": "📡",
+      "description": "Satellite Antenna"
+    },
+    {
+      "character": "🕯",
+      "description": "Candle"
+    },
+    {
+      "character": "💡",
+      "description": "Light Bulb"
+    },
+    {
+      "character": "🔦",
+      "description": "Flashlight"
+    },
+    {
+      "character": "🏮",
+      "description": "Red Paper Lantern"
+    },
+    {
+      "character": "📔",
+      "description": "Notebook With Decorative Cover"
+    },
+    {
+      "character": "📕",
+      "description": "Closed Book"
+    },
+    {
+      "character": "📖",
+      "description": "Open Book"
+    },
+    {
+      "character": "📗",
+      "description": "Green Book"
+    },
+    {
+      "character": "📘",
+      "description": "Blue Book"
+    },
+    {
+      "character": "📙",
+      "description": "Orange Book"
+    },
+    {
+      "character": "📚",
+      "description": "Books"
+    },
+    {
+      "character": "📓",
+      "description": "Notebook"
+    },
+    {
+      "character": "📃",
+      "description": "Page With Curl"
+    },
+    {
+      "character": "📜",
+      "description": "Scroll"
+    },
+    {
+      "character": "📄",
+      "description": "Page Facing Up"
+    },
+    {
+      "character": "📰",
+      "description": "Newspaper"
+    },
+    {
+      "character": "🗞",
+      "description": "Rolled-Up Newspaper"
+    },
+    {
+      "character": "📑",
+      "description": "Bookmark Tabs"
+    },
+    {
+      "character": "🔖",
+      "description": "Bookmark"
+    },
+    {
+      "character": "🏷",
+      "description": "Label"
+    },
+    {
+      "character": "💰",
+      "description": "Money Bag"
+    },
+    {
+      "character": "💴",
+      "description": "Yen Banknote"
+    },
+    {
+      "character": "💵",
+      "description": "Dollar Banknote"
+    },
+    {
+      "character": "💶",
+      "description": "Euro Banknote"
+    },
+    {
+      "character": "💷",
+      "description": "Pound Banknote"
+    },
+    {
+      "character": "💸",
+      "description": "Money With Wings"
+    },
+    {
+      "character": "💳",
+      "description": "Credit Card"
+    },
+    {
+      "character": "✉",
+      "description": "Envelope"
+    },
+    {
+      "character": "📧",
+      "description": "E-Mail"
+    },
+    {
+      "character": "📨",
+      "description": "Incoming Envelope"
+    },
+    {
+      "character": "📩",
+      "description": "Envelope With Arrow"
+    },
+    {
+      "character": "📤",
+      "description": "Outbox Tray"
+    },
+    {
+      "character": "📥",
+      "description": "Inbox Tray"
+    },
+    {
+      "character": "📦",
+      "description": "Package"
+    },
+    {
+      "character": "📫",
+      "description": "Closed Mailbox With Raised Flag"
+    },
+    {
+      "character": "📪",
+      "description": "Closed Mailbox With Lowered Flag"
+    },
+    {
+      "character": "📬",
+      "description": "Open Mailbox With Raised Flag"
+    },
+    {
+      "character": "📭",
+      "description": "Open Mailbox With Lowered Flag"
+    },
+    {
+      "character": "📮",
+      "description": "Postbox"
+    },
+    {
+      "character": "🗳",
+      "description": "Ballot Box With Ballot"
+    },
+    {
+      "character": "✏",
+      "description": "Pencil"
+    },
+    {
+      "character": "✒",
+      "description": "Black Nib"
+    },
+    {
+      "character": "🖋",
+      "description": "Fountain Pen"
+    },
+    {
+      "character": "🖊",
+      "description": "Pen"
+    },
+    {
+      "character": "🖌",
+      "description": "Paintbrush"
+    },
+    {
+      "character": "🖍",
+      "description": "Crayon"
+    },
+    {
+      "character": "📝",
+      "description": "Memo"
+    },
+    {
+      "character": "📁",
+      "description": "File Folder"
+    },
+    {
+      "character": "📂",
+      "description": "Open File Folder"
+    },
+    {
+      "character": "🗂",
+      "description": "Card Index Dividers"
+    },
+    {
+      "character": "📅",
+      "description": "Calendar"
+    },
+    {
+      "character": "📆",
+      "description": "Tear-Off Calendar"
+    },
+    {
+      "character": "🗒",
+      "description": "Spiral Notepad"
+    },
+    {
+      "character": "🗓",
+      "description": "Spiral Calendar"
+    },
+    {
+      "character": "📇",
+      "description": "Card Index"
+    },
+    {
+      "character": "📈",
+      "description": "Chart Increasing"
+    },
+    {
+      "character": "📉",
+      "description": "Chart Decreasing"
+    },
+    {
+      "character": "📊",
+      "description": "Bar Chart"
+    },
+    {
+      "character": "📋",
+      "description": "Clipboard"
+    },
+    {
+      "character": "📌",
+      "description": "Pushpin"
+    },
+    {
+      "character": "📍",
+      "description": "Round Pushpin"
+    },
+    {
+      "character": "📎",
+      "description": "Paperclip"
+    },
+    {
+      "character": "🖇",
+      "description": "Linked Paperclips"
+    },
+    {
+      "character": "📏",
+      "description": "Straight Ruler"
+    },
+    {
+      "character": "📐",
+      "description": "Triangular Ruler"
+    },
+    {
+      "character": "✂",
+      "description": "Scissors"
+    },
+    {
+      "character": "🗃",
+      "description": "Card File Box"
+    },
+    {
+      "character": "🗄",
+      "description": "File Cabinet"
+    },
+    {
+      "character": "🗑",
+      "description": "Wastebasket"
+    },
+    {
+      "character": "🔒",
+      "description": "Locked"
+    },
+    {
+      "character": "🔓",
+      "description": "Unlocked"
+    },
+    {
+      "character": "🔏",
+      "description": "Locked With Pen"
+    },
+    {
+      "character": "🔐",
+      "description": "Locked With Key"
+    },
+    {
+      "character": "🔑",
+      "description": "Key"
+    },
+    {
+      "character": "🗝",
+      "description": "Old Key"
+    },
+    {
+      "character": "🔨",
+      "description": "Hammer"
+    },
+    {
+      "character": "⛏",
+      "description": "Pick"
+    },
+    {
+      "character": "⚒",
+      "description": "Hammer and Pick"
+    },
+    {
+      "character": "🛠",
+      "description": "Hammer and Wrench"
+    },
+    {
+      "character": "🗡",
+      "description": "Dagger"
+    },
+    {
+      "character": "⚔",
+      "description": "Crossed Swords"
+    },
+    {
+      "character": "🔫",
+      "description": "Pistol"
+    },
+    {
+      "character": "🛡",
+      "description": "Shield"
+    },
+    {
+      "character": "🔧",
+      "description": "Wrench"
+    },
+    {
+      "character": "🔩",
+      "description": "Nut and Bolt"
+    },
+    {
+      "character": "⚙",
+      "description": "Gear"
+    },
+    {
+      "character": "🗜",
+      "description": "Clamp"
+    },
+    {
+      "character": "⚗",
+      "description": "Alembic"
+    },
+    {
+      "character": "⚖",
+      "description": "Balance Scale"
+    },
+    {
+      "character": "🔗",
+      "description": "Link"
+    },
+    {
+      "character": "⛓",
+      "description": "Chains"
+    },
+    {
+      "character": "💉",
+      "description": "Syringe"
+    },
+    {
+      "character": "💊",
+      "description": "Pill"
+    },
+    {
+      "character": "🚬",
+      "description": "Cigarette"
+    },
+    {
+      "character": "⚰",
+      "description": "Coffin"
+    },
+    {
+      "character": "⚱",
+      "description": "Funeral Urn"
+    },
+    {
+      "character": "🗿",
+      "description": "Moai"
+    },
+    {
+      "character": "🛢",
+      "description": "Oil Drum"
+    },
+    {
+      "character": "🔮",
+      "description": "Crystal Ball"
+    },
+    {
+      "character": "🚰",
+      "description": "Potable Water"
+    },
+    {
+      "character": "🏁",
+      "description": "Chequered Flag"
+    },
+    {
+      "character": "🚩",
+      "description": "Triangular Flag"
+    },
+    {
+      "character": "🎌",
+      "description": "Crossed Flags"
+    },
+    {
+      "character": "🏴",
+      "description": "Black Flag"
+    },
+    {
+      "character": "🏳",
+      "description": "White Flag"
+    },
+    {
+      "character": "🏳️‍🌈",
+      "description": "Rainbow Flag"
+    }
+  ],
+  "symbols": [
+    {
+      "character": "👁️‍🗨️",
+      "description": "Eye in Speech Bubble"
+    },
+    {
+      "character": "💘",
+      "description": "Heart With Arrow"
+    },
+    {
+      "character": "❤",
+      "description": "Red Heart"
+    },
+    {
+      "character": "💓",
+      "description": "Beating Heart"
+    },
+    {
+      "character": "💔",
+      "description": "Broken Heart"
+    },
+    {
+      "character": "💕",
+      "description": "Two Hearts"
+    },
+    {
+      "character": "💖",
+      "description": "Sparkling Heart"
+    },
+    {
+      "character": "💗",
+      "description": "Growing Heart"
+    },
+    {
+      "character": "💙",
+      "description": "Blue Heart"
+    },
+    {
+      "character": "💚",
+      "description": "Green Heart"
+    },
+    {
+      "character": "💛",
+      "description": "Yellow Heart"
+    },
+    {
+      "character": "💜",
+      "description": "Purple Heart"
+    },
+    {
+      "character": "🖤",
+      "description": "Black Heart"
+    },
+    {
+      "character": "💝",
+      "description": "Heart With Ribbon"
+    },
+    {
+      "character": "💞",
+      "description": "Revolving Hearts"
+    },
+    {
+      "character": "💟",
+      "description": "Heart Decoration"
+    },
+    {
+      "character": "❣",
+      "description": "Heavy Heart Exclamation"
+    },
+    {
+      "character": "💤",
+      "description": "Zzz"
+    },
+    {
+      "character": "💢",
+      "description": "Anger Symbol"
+    },
+    {
+      "character": "💬",
+      "description": "Speech Balloon"
+    },
+    {
+      "character": "🗯",
+      "description": "Right Anger Bubble"
+    },
+    {
+      "character": "💭",
+      "description": "Thought Balloon"
+    },
+    {
+      "character": "💮",
+      "description": "White Flower"
+    },
+    {
+      "character": "♨",
+      "description": "Hot Springs"
+    },
+    {
+      "character": "💈",
+      "description": "Barber Pole"
+    },
+    {
+      "character": "🛑",
+      "description": "Stop Sign"
+    },
+    {
+      "character": "🕛",
+      "description": "Twelve O’clock"
+    },
+    {
+      "character": "🕧",
+      "description": "Twelve-Thirty"
+    },
+    {
+      "character": "🕐",
+      "description": "One O’clock"
+    },
+    {
+      "character": "🕜",
+      "description": "One-Thirty"
+    },
+    {
+      "character": "🕑",
+      "description": "Two O’clock"
+    },
+    {
+      "character": "🕝",
+      "description": "Two-Thirty"
+    },
+    {
+      "character": "🕒",
+      "description": "Three O’clock"
+    },
+    {
+      "character": "🕞",
+      "description": "Three-Thirty"
+    },
+    {
+      "character": "🕓",
+      "description": "Four O’clock"
+    },
+    {
+      "character": "🕟",
+      "description": "Four-Thirty"
+    },
+    {
+      "character": "🕔",
+      "description": "Five O’clock"
+    },
+    {
+      "character": "🕠",
+      "description": "Five-Thirty"
+    },
+    {
+      "character": "🕕",
+      "description": "Six O’clock"
+    },
+    {
+      "character": "🕡",
+      "description": "Six-Thirty"
+    },
+    {
+      "character": "🕖",
+      "description": "Seven O’clock"
+    },
+    {
+      "character": "🕢",
+      "description": "Seven-Thirty"
+    },
+    {
+      "character": "🕗",
+      "description": "Eight O’clock"
+    },
+    {
+      "character": "🕣",
+      "description": "Eight-Thirty"
+    },
+    {
+      "character": "🕘",
+      "description": "Nine O’clock"
+    },
+    {
+      "character": "🕤",
+      "description": "Nine-Thirty"
+    },
+    {
+      "character": "🕙",
+      "description": "Ten O’clock"
+    },
+    {
+      "character": "🕥",
+      "description": "Ten-Thirty"
+    },
+    {
+      "character": "🕚",
+      "description": "Eleven O’clock"
+    },
+    {
+      "character": "🕦",
+      "description": "Eleven-Thirty"
+    },
+    {
+      "character": "🌀",
+      "description": "Cyclone"
+    },
+    {
+      "character": "♠",
+      "description": "Spade Suit"
+    },
+    {
+      "character": "♥",
+      "description": "Heart Suit"
+    },
+    {
+      "character": "♦",
+      "description": "Diamond Suit"
+    },
+    {
+      "character": "♣",
+      "description": "Club Suit"
+    },
+    {
+      "character": "🃏",
+      "description": "Joker"
+    },
+    {
+      "character": "🀄",
+      "description": "Mahjong Red Dragon"
+    },
+    {
+      "character": "🎴",
+      "description": "Flower Playing Cards"
+    },
+    {
+      "character": "🔇",
+      "description": "Muted Speaker"
+    },
+    {
+      "character": "🔈",
+      "description": "Speaker Low Volume"
+    },
+    {
+      "character": "🔉",
+      "description": "Speaker Medium Volume"
+    },
+    {
+      "character": "🔊",
+      "description": "Speaker High Volume"
+    },
+    {
+      "character": "📢",
+      "description": "Loudspeaker"
+    },
+    {
+      "character": "📣",
+      "description": "Megaphone"
+    },
+    {
+      "character": "📯",
+      "description": "Postal Horn"
+    },
+    {
+      "character": "🔔",
+      "description": "Bell"
+    },
+    {
+      "character": "🔕",
+      "description": "Bell With Slash"
+    },
+    {
+      "character": "🎵",
+      "description": "Musical Note"
+    },
+    {
+      "character": "🎶",
+      "description": "Musical Notes"
+    },
+    {
+      "character": "🏧",
+      "description": "Atm Sign"
+    },
+    {
+      "character": "🚮",
+      "description": "Litter in Bin Sign"
+    },
+    {
+      "character": "🚰",
+      "description": "Potable Water"
+    },
+    {
+      "character": "♿",
+      "description": "Wheelchair Symbol"
+    },
+    {
+      "character": "🚹",
+      "description": "Men’s Room"
+    },
+    {
+      "character": "🚺",
+      "description": "Women’s Room"
+    },
+    {
+      "character": "🚻",
+      "description": "Restroom"
+    },
+    {
+      "character": "🚼",
+      "description": "Baby Symbol"
+    },
+    {
+      "character": "🚾",
+      "description": "Water Closet"
+    },
+    {
+      "character": "⚠",
+      "description": "Warning"
+    },
+    {
+      "character": "🚸",
+      "description": "Children Crossing"
+    },
+    {
+      "character": "⛔",
+      "description": "No Entry"
+    },
+    {
+      "character": "🚫",
+      "description": "Prohibited"
+    },
+    {
+      "character": "🚳",
+      "description": "No Bicycles"
+    },
+    {
+      "character": "🚭",
+      "description": "No Smoking"
+    },
+    {
+      "character": "🚯",
+      "description": "No Littering"
+    },
+    {
+      "character": "🚱",
+      "description": "Non-Potable Water"
+    },
+    {
+      "character": "🚷",
+      "description": "No Pedestrians"
+    },
+    {
+      "character": "🔞",
+      "description": "No One Under Eighteen"
+    },
+    {
+      "character": "☢",
+      "description": "Radioactive"
+    },
+    {
+      "character": "☣",
+      "description": "Biohazard"
+    },
+    {
+      "character": "⬆",
+      "description": "Up Arrow"
+    },
+    {
+      "character": "↗",
+      "description": "Up-Right Arrow"
+    },
+    {
+      "character": "➡",
+      "description": "Right Arrow"
+    },
+    {
+      "character": "↘",
+      "description": "Down-Right Arrow"
+    },
+    {
+      "character": "⬇",
+      "description": "Down Arrow"
+    },
+    {
+      "character": "↙",
+      "description": "Down-Left Arrow"
+    },
+    {
+      "character": "⬅",
+      "description": "Left Arrow"
+    },
+    {
+      "character": "↖",
+      "description": "Up-Left Arrow"
+    },
+    {
+      "character": "↕",
+      "description": "Up-Down Arrow"
+    },
+    {
+      "character": "↔",
+      "description": "Left-Right Arrow"
+    },
+    {
+      "character": "↩",
+      "description": "Right Arrow Curving Left"
+    },
+    {
+      "character": "↪",
+      "description": "Left Arrow Curving Right"
+    },
+    {
+      "character": "⤴",
+      "description": "Right Arrow Curving Up"
+    },
+    {
+      "character": "⤵",
+      "description": "Right Arrow Curving Down"
+    },
+    {
+      "character": "🔃",
+      "description": "Clockwise Vertical Arrows"
+    },
+    {
+      "character": "🔄",
+      "description": "Anticlockwise Arrows Button"
+    },
+    {
+      "character": "🔙",
+      "description": "Back Arrow"
+    },
+    {
+      "character": "🔚",
+      "description": "End Arrow"
+    },
+    {
+      "character": "🔛",
+      "description": "On! Arrow"
+    },
+    {
+      "character": "🔜",
+      "description": "Soon Arrow"
+    },
+    {
+      "character": "🔝",
+      "description": "Top Arrow"
+    },
+    {
+      "character": "🛐",
+      "description": "Place of Worship"
+    },
+    {
+      "character": "⚛",
+      "description": "Atom Symbol"
+    },
+    {
+      "character": "🕉",
+      "description": "Om"
+    },
+    {
+      "character": "✡",
+      "description": "Star of David"
+    },
+    {
+      "character": "☸",
+      "description": "Wheel of Dharma"
+    },
+    {
+      "character": "☯",
+      "description": "Yin Yang"
+    },
+    {
+      "character": "✝",
+      "description": "Latin Cross"
+    },
+    {
+      "character": "☦",
+      "description": "Orthodox Cross"
+    },
+    {
+      "character": "☪",
+      "description": "Star and Crescent"
+    },
+    {
+      "character": "☮",
+      "description": "Peace Symbol"
+    },
+    {
+      "character": "🕎",
+      "description": "Menorah"
+    },
+    {
+      "character": "🔯",
+      "description": "Dotted Six-Pointed Star"
+    },
+    {
+      "character": "♈",
+      "description": "Aries"
+    },
+    {
+      "character": "♉",
+      "description": "Taurus"
+    },
+    {
+      "character": "♊",
+      "description": "Gemini"
+    },
+    {
+      "character": "♋",
+      "description": "Cancer"
+    },
+    {
+      "character": "♌",
+      "description": "Leo"
+    },
+    {
+      "character": "♍",
+      "description": "Virgo"
+    },
+    {
+      "character": "♎",
+      "description": "Libra"
+    },
+    {
+      "character": "♏",
+      "description": "Scorpius"
+    },
+    {
+      "character": "♐",
+      "description": "Sagittarius"
+    },
+    {
+      "character": "♑",
+      "description": "Capricorn"
+    },
+    {
+      "character": "♒",
+      "description": "Aquarius"
+    },
+    {
+      "character": "♓",
+      "description": "Pisces"
+    },
+    {
+      "character": "⛎",
+      "description": "Ophiuchus"
+    },
+    {
+      "character": "🔀",
+      "description": "Shuffle Tracks Button"
+    },
+    {
+      "character": "🔁",
+      "description": "Repeat Button"
+    },
+    {
+      "character": "🔂",
+      "description": "Repeat Single Button"
+    },
+    {
+      "character": "▶",
+      "description": "Play Button"
+    },
+    {
+      "character": "⏩",
+      "description": "Fast-Forward Button"
+    },
+    {
+      "character": "◀",
+      "description": "Reverse Button"
+    },
+    {
+      "character": "⏪",
+      "description": "Fast Reverse Button"
+    },
+    {
+      "character": "🔼",
+      "description": "Up Button"
+    },
+    {
+      "character": "⏫",
+      "description": "Fast Up Button"
+    },
+    {
+      "character": "🔽",
+      "description": "Down Button"
+    },
+    {
+      "character": "⏬",
+      "description": "Fast Down Button"
+    },
+    {
+      "character": "⏹",
+      "description": "Stop Button"
+    },
+    {
+      "character": "🎦",
+      "description": "Cinema"
+    },
+    {
+      "character": "🔅",
+      "description": "Dim Button"
+    },
+    {
+      "character": "🔆",
+      "description": "Bright Button"
+    },
+    {
+      "character": "📶",
+      "description": "Antenna Bars"
+    },
+    {
+      "character": "📳",
+      "description": "Vibration Mode"
+    },
+    {
+      "character": "📴",
+      "description": "Mobile Phone Off"
+    },
+    {
+      "character": "♻",
+      "description": "Recycling Symbol"
+    },
+    {
+      "character": "🔱",
+      "description": "Trident Emblem"
+    },
+    {
+      "character": "📛",
+      "description": "Name Badge"
+    },
+    {
+      "character": "🔰",
+      "description": "Japanese Symbol for Beginner"
+    },
+    {
+      "character": "⭕",
+      "description": "Heavy Large Circle"
+    },
+    {
+      "character": "✅",
+      "description": "White Heavy Check Mark"
+    },
+    {
+      "character": "☑",
+      "description": "Ballot Box With Check"
+    },
+    {
+      "character": "✔",
+      "description": "Heavy Check Mark"
+    },
+    {
+      "character": "✖",
+      "description": "Heavy Multiplication X"
+    },
+    {
+      "character": "❌",
+      "description": "Cross Mark"
+    },
+    {
+      "character": "❎",
+      "description": "Cross Mark Button"
+    },
+    {
+      "character": "➕",
+      "description": "Heavy Plus Sign"
+    },
+    {
+      "character": "➖",
+      "description": "Heavy Minus Sign"
+    },
+    {
+      "character": "➗",
+      "description": "Heavy Division Sign"
+    },
+    {
+      "character": "➰",
+      "description": "Curly Loop"
+    },
+    {
+      "character": "➿",
+      "description": "Double Curly Loop"
+    },
+    {
+      "character": "〽",
+      "description": "Part Alternation Mark"
+    },
+    {
+      "character": "✳",
+      "description": "Eight-Spoked Asterisk"
+    },
+    {
+      "character": "✴",
+      "description": "Eight-Pointed Star"
+    },
+    {
+      "character": "❇",
+      "description": "Sparkle"
+    },
+    {
+      "character": "‼",
+      "description": "Double Exclamation Mark"
+    },
+    {
+      "character": "⁉",
+      "description": "Exclamation Question Mark"
+    },
+    {
+      "character": "❓",
+      "description": "Question Mark"
+    },
+    {
+      "character": "❔",
+      "description": "White Question Mark"
+    },
+    {
+      "character": "❕",
+      "description": "White Exclamation Mark"
+    },
+    {
+      "character": "❗",
+      "description": "Exclamation Mark"
+    },
+    {
+      "character": "©",
+      "description": "Copyright"
+    },
+    {
+      "character": "®",
+      "description": "Registered"
+    },
+    {
+      "character": "™",
+      "description": "Trade Mark"
+    },
+    {
+      "character": "#️⃣",
+      "description": "Keycap Number Sign"
+    },
+    {
+      "character": "0️⃣",
+      "description": "Keycap Digit Zero"
+    },
+    {
+      "character": "1️⃣",
+      "description": "Keycap Digit One"
+    },
+    {
+      "character": "2️⃣",
+      "description": "Keycap Digit Two"
+    },
+    {
+      "character": "3️⃣",
+      "description": "Keycap Digit Three"
+    },
+    {
+      "character": "4️⃣",
+      "description": "Keycap Digit Four"
+    },
+    {
+      "character": "5️⃣",
+      "description": "Keycap Digit Five"
+    },
+    {
+      "character": "6️⃣",
+      "description": "Keycap Digit Six"
+    },
+    {
+      "character": "7️⃣",
+      "description": "Keycap Digit Seven"
+    },
+    {
+      "character": "8️⃣",
+      "description": "Keycap Digit Eight"
+    },
+    {
+      "character": "9️⃣",
+      "description": "Keycap Digit Nine"
+    },
+    {
+      "character": "🔟",
+      "description": "Keycap 10"
+    },
+    {
+      "character": "💯",
+      "description": "Hundred Points"
+    },
+    {
+      "character": "🔠",
+      "description": "Input Latin Uppercase"
+    },
+    {
+      "character": "🔡",
+      "description": "Input Latin Lowercase"
+    },
+    {
+      "character": "🔢",
+      "description": "Input Numbers"
+    },
+    {
+      "character": "🔣",
+      "description": "Input Symbols"
+    },
+    {
+      "character": "🔤",
+      "description": "Input Latin Letters"
+    },
+    {
+      "character": "🅰",
+      "description": "A Button (blood Type)"
+    },
+    {
+      "character": "🆎",
+      "description": "Ab Button (blood Type)"
+    },
+    {
+      "character": "🅱",
+      "description": "B Button (blood Type)"
+    },
+    {
+      "character": "🆑",
+      "description": "CL Button"
+    },
+    {
+      "character": "🆒",
+      "description": "Cool Button"
+    },
+    {
+      "character": "🆓",
+      "description": "Free Button"
+    },
+    {
+      "character": "ℹ",
+      "description": "Information"
+    },
+    {
+      "character": "🆔",
+      "description": "ID Button"
+    },
+    {
+      "character": "Ⓜ",
+      "description": "Circled M"
+    },
+    {
+      "character": "🆕",
+      "description": "New Button"
+    },
+    {
+      "character": "🆖",
+      "description": "NG Button"
+    },
+    {
+      "character": "🅾",
+      "description": "O Button (blood Type)"
+    },
+    {
+      "character": "🆗",
+      "description": "OK Button"
+    },
+    {
+      "character": "🅿",
+      "description": "P Button"
+    },
+    {
+      "character": "🆘",
+      "description": "SOS Button"
+    },
+    {
+      "character": "🆙",
+      "description": "Up! Button"
+    },
+    {
+      "character": "🆚",
+      "description": "Vs Button"
+    },
+    {
+      "character": "🈁",
+      "description": "Japanese “here” Button"
+    },
+    {
+      "character": "🈂",
+      "description": "Japanese “service Charge” Button"
+    },
+    {
+      "character": "🈷",
+      "description": "Japanese “monthly Amount” Button"
+    },
+    {
+      "character": "🈶",
+      "description": "Japanese “not Free of Charge” Button"
+    },
+    {
+      "character": "🈯",
+      "description": "Japanese “reserved” Button"
+    },
+    {
+      "character": "🉐",
+      "description": "Japanese “bargain” Button"
+    },
+    {
+      "character": "🈹",
+      "description": "Japanese “discount” Button"
+    },
+    {
+      "character": "🈚",
+      "description": "Japanese “free of Charge” Button"
+    },
+    {
+      "character": "🈲",
+      "description": "Japanese “prohibited” Button"
+    },
+    {
+      "character": "🉑",
+      "description": "Japanese “acceptable” Button"
+    },
+    {
+      "character": "🈸",
+      "description": "Japanese “application” Button"
+    },
+    {
+      "character": "🈴",
+      "description": "Japanese “passing Grade” Button"
+    },
+    {
+      "character": "🈳",
+      "description": "Japanese “vacancy” Button"
+    },
+    {
+      "character": "㊗",
+      "description": "Japanese “congratulations” Button"
+    },
+    {
+      "character": "㊙",
+      "description": "Japanese “secret” Button"
+    },
+    {
+      "character": "🈺",
+      "description": "Japanese “open for Business” Button"
+    },
+    {
+      "character": "🈵",
+      "description": "Japanese “no Vacancy” Button"
+    },
+    {
+      "character": "▪",
+      "description": "Black Small Square"
+    },
+    {
+      "character": "▫",
+      "description": "White Small Square"
+    },
+    {
+      "character": "◻",
+      "description": "White Medium Square"
+    },
+    {
+      "character": "◼",
+      "description": "Black Medium Square"
+    },
+    {
+      "character": "◽",
+      "description": "White Medium-Small Square"
+    },
+    {
+      "character": "◾",
+      "description": "Black Medium-Small Square"
+    },
+    {
+      "character": "⬛",
+      "description": "Black Large Square"
+    },
+    {
+      "character": "⬜",
+      "description": "White Large Square"
+    },
+    {
+      "character": "🔶",
+      "description": "Large Orange Diamond"
+    },
+    {
+      "character": "🔷",
+      "description": "Large Blue Diamond"
+    },
+    {
+      "character": "🔸",
+      "description": "Small Orange Diamond"
+    },
+    {
+      "character": "🔹",
+      "description": "Small Blue Diamond"
+    },
+    {
+      "character": "🔺",
+      "description": "Red Triangle Pointed Up"
+    },
+    {
+      "character": "🔻",
+      "description": "Red Triangle Pointed Down"
+    },
+    {
+      "character": "💠",
+      "description": "Diamond With a Dot"
+    },
+    {
+      "character": "🔲",
+      "description": "Black Square Button"
+    },
+    {
+      "character": "🔳",
+      "description": "White Square Button"
+    },
+    {
+      "character": "⚪",
+      "description": "White Circle"
+    },
+    {
+      "character": "⚫",
+      "description": "Black Circle"
+    },
+    {
+      "character": "🔴",
+      "description": "Red Circle"
+    },
+    {
+      "character": "🔵",
+      "description": "Blue Circle"
+    }
+  ],
+  "flags": [
+    {
+      "character": "🏁",
+      "description": "Chequered Flag"
+    },
+    {
+      "character": "🚩",
+      "description": "Triangular Flag"
+    },
+    {
+      "character": "🎌",
+      "description": "Crossed Flags"
+    },
+    {
+      "character": "🏴",
+      "description": "Black Flag"
+    },
+    {
+      "character": "🏳",
+      "description": "White Flag"
+    },
+    {
+      "character": "🏳️‍🌈",
+      "description": "Rainbow Flag"
+    },
+    {
+      "character": "🇦🇨",
+      "description": "Ascension Island"
+    },
+    {
+      "character": "🇦🇩",
+      "description": "Andorra"
+    },
+    {
+      "character": "🇦🇪",
+      "description": "United Arab Emirates"
+    },
+    {
+      "character": "🇦🇫",
+      "description": "Afghanistan"
+    },
+    {
+      "character": "🇦🇬",
+      "description": "Antigua & Barbuda"
+    },
+    {
+      "character": "🇦🇮",
+      "description": "Anguilla"
+    },
+    {
+      "character": "🇦🇱",
+      "description": "Albania"
+    },
+    {
+      "character": "🇦🇲",
+      "description": "Armenia"
+    },
+    {
+      "character": "🇦🇴",
+      "description": "Angola"
+    },
+    {
+      "character": "🇦🇶",
+      "description": "Antarctica"
+    },
+    {
+      "character": "🇦🇷",
+      "description": "Argentina"
+    },
+    {
+      "character": "🇦🇸",
+      "description": "American Samoa"
+    },
+    {
+      "character": "🇦🇹",
+      "description": "Austria"
+    },
+    {
+      "character": "🇦🇺",
+      "description": "Australia"
+    },
+    {
+      "character": "🇦🇼",
+      "description": "Aruba"
+    },
+    {
+      "character": "🇦🇽",
+      "description": "Åland Islands"
+    },
+    {
+      "character": "🇦🇿",
+      "description": "Azerbaijan"
+    },
+    {
+      "character": "🇧🇦",
+      "description": "Bosnia & Herzegovina"
+    },
+    {
+      "character": "🇧🇧",
+      "description": "Barbados"
+    },
+    {
+      "character": "🇧🇩",
+      "description": "Bangladesh"
+    },
+    {
+      "character": "🇧🇪",
+      "description": "Belgium"
+    },
+    {
+      "character": "🇧🇫",
+      "description": "Burkina Faso"
+    },
+    {
+      "character": "🇧🇬",
+      "description": "Bulgaria"
+    },
+    {
+      "character": "🇧🇭",
+      "description": "Bahrain"
+    },
+    {
+      "character": "🇧🇮",
+      "description": "Burundi"
+    },
+    {
+      "character": "🇧🇯",
+      "description": "Benin"
+    },
+    {
+      "character": "🇧🇱",
+      "description": "St. Barthélemy"
+    },
+    {
+      "character": "🇧🇲",
+      "description": "Bermuda"
+    },
+    {
+      "character": "🇧🇳",
+      "description": "Brunei"
+    },
+    {
+      "character": "🇧🇴",
+      "description": "Bolivia"
+    },
+    {
+      "character": "🇧🇶",
+      "description": "Caribbean Netherlands"
+    },
+    {
+      "character": "🇧🇷",
+      "description": "Brazil"
+    },
+    {
+      "character": "🇧🇸",
+      "description": "Bahamas"
+    },
+    {
+      "character": "🇧🇹",
+      "description": "Bhutan"
+    },
+    {
+      "character": "🇧🇻",
+      "description": "Bouvet Island"
+    },
+    {
+      "character": "🇧🇼",
+      "description": "Botswana"
+    },
+    {
+      "character": "🇧🇾",
+      "description": "Belarus"
+    },
+    {
+      "character": "🇧🇿",
+      "description": "Belize"
+    },
+    {
+      "character": "🇨🇦",
+      "description": "Canada"
+    },
+    {
+      "character": "🇨🇨",
+      "description": "Cocos (Keeling) Islands"
+    },
+    {
+      "character": "🇨🇩",
+      "description": "Congo - Kinshasa"
+    },
+    {
+      "character": "🇨🇫",
+      "description": "Central African Republic"
+    },
+    {
+      "character": "🇨🇬",
+      "description": "Congo - Brazzaville"
+    },
+    {
+      "character": "🇨🇭",
+      "description": "Switzerland"
+    },
+    {
+      "character": "🇨🇮",
+      "description": "Côte D’Ivoire"
+    },
+    {
+      "character": "🇨🇰",
+      "description": "Cook Islands"
+    },
+    {
+      "character": "🇨🇱",
+      "description": "Chile"
+    },
+    {
+      "character": "🇨🇲",
+      "description": "Cameroon"
+    },
+    {
+      "character": "🇨🇳",
+      "description": "China"
+    },
+    {
+      "character": "🇨🇴",
+      "description": "Colombia"
+    },
+    {
+      "character": "🇨🇵",
+      "description": "Clipperton Island"
+    },
+    {
+      "character": "🇨🇷",
+      "description": "Costa Rica"
+    },
+    {
+      "character": "🇨🇺",
+      "description": "Cuba"
+    },
+    {
+      "character": "🇨🇻",
+      "description": "Cape Verde"
+    },
+    {
+      "character": "🇨🇼",
+      "description": "Curaçao"
+    },
+    {
+      "character": "🇨🇽",
+      "description": "Christmas Island"
+    },
+    {
+      "character": "🇨🇾",
+      "description": "Cyprus"
+    },
+    {
+      "character": "🇨🇿",
+      "description": "Czechia"
+    },
+    {
+      "character": "🇩🇪",
+      "description": "Germany"
+    },
+    {
+      "character": "🇩🇬",
+      "description": "Diego Garcia"
+    },
+    {
+      "character": "🇩🇯",
+      "description": "Djibouti"
+    },
+    {
+      "character": "🇩🇰",
+      "description": "Denmark"
+    },
+    {
+      "character": "🇩🇲",
+      "description": "Dominica"
+    },
+    {
+      "character": "🇩🇴",
+      "description": "Dominican Republic"
+    },
+    {
+      "character": "🇩🇿",
+      "description": "Algeria"
+    },
+    {
+      "character": "🇪🇦",
+      "description": "Ceuta & Melilla"
+    },
+    {
+      "character": "🇪🇨",
+      "description": "Ecuador"
+    },
+    {
+      "character": "🇪🇪",
+      "description": "Estonia"
+    },
+    {
+      "character": "🇪🇬",
+      "description": "Egypt"
+    },
+    {
+      "character": "🇪🇭",
+      "description": "Western Sahara"
+    },
+    {
+      "character": "🇪🇷",
+      "description": "Eritrea"
+    },
+    {
+      "character": "🇪🇸",
+      "description": "Spain"
+    },
+    {
+      "character": "🇪🇹",
+      "description": "Ethiopia"
+    },
+    {
+      "character": "🇪🇺",
+      "description": "European Union"
+    },
+    {
+      "character": "🇫🇮",
+      "description": "Finland"
+    },
+    {
+      "character": "🇫🇯",
+      "description": "Fiji"
+    },
+    {
+      "character": "🇫🇰",
+      "description": "Falkland Islands"
+    },
+    {
+      "character": "🇫🇲",
+      "description": "Micronesia"
+    },
+    {
+      "character": "🇫🇴",
+      "description": "Faroe Islands"
+    },
+    {
+      "character": "🇫🇷",
+      "description": "France"
+    },
+    {
+      "character": "🇬🇦",
+      "description": "Gabon"
+    },
+    {
+      "character": "🇬🇧",
+      "description": "United Kingdom"
+    },
+    {
+      "character": "🇬🇩",
+      "description": "Grenada"
+    },
+    {
+      "character": "🇬🇪",
+      "description": "Georgia"
+    },
+    {
+      "character": "🇬🇫",
+      "description": "French Guiana"
+    },
+    {
+      "character": "🇬🇬",
+      "description": "Guernsey"
+    },
+    {
+      "character": "🇬🇭",
+      "description": "Ghana"
+    },
+    {
+      "character": "🇬🇮",
+      "description": "Gibraltar"
+    },
+    {
+      "character": "🇬🇱",
+      "description": "Greenland"
+    },
+    {
+      "character": "🇬🇲",
+      "description": "Gambia"
+    },
+    {
+      "character": "🇬🇳",
+      "description": "Guinea"
+    },
+    {
+      "character": "🇬🇵",
+      "description": "Guadeloupe"
+    },
+    {
+      "character": "🇬🇶",
+      "description": "Equatorial Guinea"
+    },
+    {
+      "character": "🇬🇷",
+      "description": "Greece"
+    },
+    {
+      "character": "🇬🇸",
+      "description": "South Georgia & South Sandwich Islands"
+    },
+    {
+      "character": "🇬🇹",
+      "description": "Guatemala"
+    },
+    {
+      "character": "🇬🇺",
+      "description": "Guam"
+    },
+    {
+      "character": "🇬🇼",
+      "description": "Guinea-Bissau"
+    },
+    {
+      "character": "🇬🇾",
+      "description": "Guyana"
+    },
+    {
+      "character": "🇭🇰",
+      "description": "Hong Kong Sar China"
+    },
+    {
+      "character": "🇭🇲",
+      "description": "Heard & Mcdonald Islands"
+    },
+    {
+      "character": "🇭🇳",
+      "description": "Honduras"
+    },
+    {
+      "character": "🇭🇷",
+      "description": "Croatia"
+    },
+    {
+      "character": "🇭🇹",
+      "description": "Haiti"
+    },
+    {
+      "character": "🇭🇺",
+      "description": "Hungary"
+    },
+    {
+      "character": "🇮🇨",
+      "description": "Canary Islands"
+    },
+    {
+      "character": "🇮🇩",
+      "description": "Indonesia"
+    },
+    {
+      "character": "🇮🇪",
+      "description": "Ireland"
+    },
+    {
+      "character": "🇮🇱",
+      "description": "Israel"
+    },
+    {
+      "character": "🇮🇲",
+      "description": "Isle of Man"
+    },
+    {
+      "character": "🇮🇳",
+      "description": "India"
+    },
+    {
+      "character": "🇮🇴",
+      "description": "British Indian Ocean Territory"
+    },
+    {
+      "character": "🇮🇶",
+      "description": "Iraq"
+    },
+    {
+      "character": "🇮🇷",
+      "description": "Iran"
+    },
+    {
+      "character": "🇮🇸",
+      "description": "Iceland"
+    },
+    {
+      "character": "🇮🇹",
+      "description": "Italy"
+    },
+    {
+      "character": "🇯🇪",
+      "description": "Jersey"
+    },
+    {
+      "character": "🇯🇲",
+      "description": "Jamaica"
+    },
+    {
+      "character": "🇯🇴",
+      "description": "Jordan"
+    },
+    {
+      "character": "🇯🇵",
+      "description": "Japan"
+    },
+    {
+      "character": "🇰🇪",
+      "description": "Kenya"
+    },
+    {
+      "character": "🇰🇬",
+      "description": "Kyrgyzstan"
+    },
+    {
+      "character": "🇰🇭",
+      "description": "Cambodia"
+    },
+    {
+      "character": "🇰🇮",
+      "description": "Kiribati"
+    },
+    {
+      "character": "🇰🇲",
+      "description": "Comoros"
+    },
+    {
+      "character": "🇰🇳",
+      "description": "St. Kitts & Nevis"
+    },
+    {
+      "character": "🇰🇵",
+      "description": "North Korea"
+    },
+    {
+      "character": "🇰🇷",
+      "description": "South Korea"
+    },
+    {
+      "character": "🇰🇼",
+      "description": "Kuwait"
+    },
+    {
+      "character": "🇰🇾",
+      "description": "Cayman Islands"
+    },
+    {
+      "character": "🇰🇿",
+      "description": "Kazakhstan"
+    },
+    {
+      "character": "🇱🇦",
+      "description": "Laos"
+    },
+    {
+      "character": "🇱🇧",
+      "description": "Lebanon"
+    },
+    {
+      "character": "🇱🇨",
+      "description": "St. Lucia"
+    },
+    {
+      "character": "🇱🇮",
+      "description": "Liechtenstein"
+    },
+    {
+      "character": "🇱🇰",
+      "description": "Sri Lanka"
+    },
+    {
+      "character": "🇱🇷",
+      "description": "Liberia"
+    },
+    {
+      "character": "🇱🇸",
+      "description": "Lesotho"
+    },
+    {
+      "character": "🇱🇹",
+      "description": "Lithuania"
+    },
+    {
+      "character": "🇱🇺",
+      "description": "Luxembourg"
+    },
+    {
+      "character": "🇱🇻",
+      "description": "Latvia"
+    },
+    {
+      "character": "🇱🇾",
+      "description": "Libya"
+    },
+    {
+      "character": "🇲🇦",
+      "description": "Morocco"
+    },
+    {
+      "character": "🇲🇨",
+      "description": "Monaco"
+    },
+    {
+      "character": "🇲🇩",
+      "description": "Moldova"
+    },
+    {
+      "character": "🇲🇪",
+      "description": "Montenegro"
+    },
+    {
+      "character": "🇲🇫",
+      "description": "St. Martin"
+    },
+    {
+      "character": "🇲🇬",
+      "description": "Madagascar"
+    },
+    {
+      "character": "🇲🇭",
+      "description": "Marshall Islands"
+    },
+    {
+      "character": "🇲🇰",
+      "description": "Macedonia"
+    },
+    {
+      "character": "🇲🇱",
+      "description": "Mali"
+    },
+    {
+      "character": "🇲🇲",
+      "description": "Myanmar (Burma)"
+    },
+    {
+      "character": "🇲🇳",
+      "description": "Mongolia"
+    },
+    {
+      "character": "🇲🇴",
+      "description": "Macau Sar China"
+    },
+    {
+      "character": "🇲🇵",
+      "description": "Northern Mariana Islands"
+    },
+    {
+      "character": "🇲🇶",
+      "description": "Martinique"
+    },
+    {
+      "character": "🇲🇷",
+      "description": "Mauritania"
+    },
+    {
+      "character": "🇲🇸",
+      "description": "Montserrat"
+    },
+    {
+      "character": "🇲🇹",
+      "description": "Malta"
+    },
+    {
+      "character": "🇲🇺",
+      "description": "Mauritius"
+    },
+    {
+      "character": "🇲🇻",
+      "description": "Maldives"
+    },
+    {
+      "character": "🇲🇼",
+      "description": "Malawi"
+    },
+    {
+      "character": "🇲🇽",
+      "description": "Mexico"
+    },
+    {
+      "character": "🇲🇾",
+      "description": "Malaysia"
+    },
+    {
+      "character": "🇲🇿",
+      "description": "Mozambique"
+    },
+    {
+      "character": "🇳🇦",
+      "description": "Namibia"
+    },
+    {
+      "character": "🇳🇨",
+      "description": "New Caledonia"
+    },
+    {
+      "character": "🇳🇪",
+      "description": "Niger"
+    },
+    {
+      "character": "🇳🇫",
+      "description": "Norfolk Island"
+    },
+    {
+      "character": "🇳🇬",
+      "description": "Nigeria"
+    },
+    {
+      "character": "🇳🇮",
+      "description": "Nicaragua"
+    },
+    {
+      "character": "🇳🇱",
+      "description": "Netherlands"
+    },
+    {
+      "character": "🇳🇴",
+      "description": "Norway"
+    },
+    {
+      "character": "🇳🇵",
+      "description": "Nepal"
+    },
+    {
+      "character": "🇳🇷",
+      "description": "Nauru"
+    },
+    {
+      "character": "🇳🇺",
+      "description": "Niue"
+    },
+    {
+      "character": "🇳🇿",
+      "description": "New Zealand"
+    },
+    {
+      "character": "🇴🇲",
+      "description": "Oman"
+    },
+    {
+      "character": "🇵🇦",
+      "description": "Panama"
+    },
+    {
+      "character": "🇵🇪",
+      "description": "Peru"
+    },
+    {
+      "character": "🇵🇫",
+      "description": "French Polynesia"
+    },
+    {
+      "character": "🇵🇬",
+      "description": "Papua New Guinea"
+    },
+    {
+      "character": "🇵🇭",
+      "description": "Philippines"
+    },
+    {
+      "character": "🇵🇰",
+      "description": "Pakistan"
+    },
+    {
+      "character": "🇵🇱",
+      "description": "Poland"
+    },
+    {
+      "character": "🇵🇲",
+      "description": "St. Pierre & Miquelon"
+    },
+    {
+      "character": "🇵🇳",
+      "description": "Pitcairn Islands"
+    },
+    {
+      "character": "🇵🇷",
+      "description": "Puerto Rico"
+    },
+    {
+      "character": "🇵🇸",
+      "description": "Palestinian Territories"
+    },
+    {
+      "character": "🇵🇹",
+      "description": "Portugal"
+    },
+    {
+      "character": "🇵🇼",
+      "description": "Palau"
+    },
+    {
+      "character": "🇵🇾",
+      "description": "Paraguay"
+    },
+    {
+      "character": "🇶🇦",
+      "description": "Qatar"
+    },
+    {
+      "character": "🇷🇪",
+      "description": "Réunion"
+    },
+    {
+      "character": "🇷🇴",
+      "description": "Romania"
+    },
+    {
+      "character": "🇷🇸",
+      "description": "Serbia"
+    },
+    {
+      "character": "🇷🇺",
+      "description": "Russia"
+    },
+    {
+      "character": "🇷🇼",
+      "description": "Rwanda"
+    },
+    {
+      "character": "🇸🇦",
+      "description": "Saudi Arabia"
+    },
+    {
+      "character": "🇸🇧",
+      "description": "Solomon Islands"
+    },
+    {
+      "character": "🇸🇨",
+      "description": "Seychelles"
+    },
+    {
+      "character": "🇸🇩",
+      "description": "Sudan"
+    },
+    {
+      "character": "🇸🇪",
+      "description": "Sweden"
+    },
+    {
+      "character": "🇸🇬",
+      "description": "Singapore"
+    },
+    {
+      "character": "🇸🇭",
+      "description": "St. Helena"
+    },
+    {
+      "character": "🇸🇮",
+      "description": "Slovenia"
+    },
+    {
+      "character": "🇸🇯",
+      "description": "Svalbard & Jan Mayen"
+    },
+    {
+      "character": "🇸🇰",
+      "description": "Slovakia"
+    },
+    {
+      "character": "🇸🇱",
+      "description": "Sierra Leone"
+    },
+    {
+      "character": "🇸🇲",
+      "description": "San Marino"
+    },
+    {
+      "character": "🇸🇳",
+      "description": "Senegal"
+    },
+    {
+      "character": "🇸🇴",
+      "description": "Somalia"
+    },
+    {
+      "character": "🇸🇷",
+      "description": "Suriname"
+    },
+    {
+      "character": "🇸🇸",
+      "description": "South Sudan"
+    },
+    {
+      "character": "🇸🇹",
+      "description": "São Tomé & Príncipe"
+    },
+    {
+      "character": "🇸🇻",
+      "description": "El Salvador"
+    },
+    {
+      "character": "🇸🇽",
+      "description": "Sint Maarten"
+    },
+    {
+      "character": "🇸🇾",
+      "description": "Syria"
+    },
+    {
+      "character": "🇸🇿",
+      "description": "Swaziland"
+    },
+    {
+      "character": "🇹🇦",
+      "description": "Tristan Da Cunha"
+    },
+    {
+      "character": "🇹🇨",
+      "description": "Turks & Caicos Islands"
+    },
+    {
+      "character": "🇹🇩",
+      "description": "Chad"
+    },
+    {
+      "character": "🇹🇫",
+      "description": "French Southern Territories"
+    },
+    {
+      "character": "🇹🇬",
+      "description": "Togo"
+    },
+    {
+      "character": "🇹🇭",
+      "description": "Thailand"
+    },
+    {
+      "character": "🇹🇯",
+      "description": "Tajikistan"
+    },
+    {
+      "character": "🇹🇰",
+      "description": "Tokelau"
+    },
+    {
+      "character": "🇹🇱",
+      "description": "Timor-Leste"
+    },
+    {
+      "character": "🇹🇲",
+      "description": "Turkmenistan"
+    },
+    {
+      "character": "🇹🇳",
+      "description": "Tunisia"
+    },
+    {
+      "character": "🇹🇴",
+      "description": "Tonga"
+    },
+    {
+      "character": "🇹🇷",
+      "description": "Turkey"
+    },
+    {
+      "character": "🇹🇹",
+      "description": "Trinidad & Tobago"
+    },
+    {
+      "character": "🇹🇻",
+      "description": "Tuvalu"
+    },
+    {
+      "character": "🇹🇼",
+      "description": "Taiwan"
+    },
+    {
+      "character": "🇹🇿",
+      "description": "Tanzania"
+    },
+    {
+      "character": "🇺🇦",
+      "description": "Ukraine"
+    },
+    {
+      "character": "🇺🇬",
+      "description": "Uganda"
+    },
+    {
+      "character": "🇺🇲",
+      "description": "U.S. Outlying Islands"
+    },
+    {
+      "character": "🇺🇳",
+      "description": "United Nations"
+    },
+    {
+      "character": "🇺🇸",
+      "description": "United States"
+    },
+    {
+      "character": "🇺🇾",
+      "description": "Uruguay"
+    },
+    {
+      "character": "🇺🇿",
+      "description": "Uzbekistan"
+    },
+    {
+      "character": "🇻🇦",
+      "description": "Vatican City"
+    },
+    {
+      "character": "🇻🇨",
+      "description": "St. Vincent & Grenadines"
+    },
+    {
+      "character": "🇻🇪",
+      "description": "Venezuela"
+    },
+    {
+      "character": "🇻🇬",
+      "description": "British Virgin Islands"
+    },
+    {
+      "character": "🇻🇮",
+      "description": "U.S. Virgin Islands"
+    },
+    {
+      "character": "🇻🇳",
+      "description": "Vietnam"
+    },
+    {
+      "character": "🇻🇺",
+      "description": "Vanuatu"
+    },
+    {
+      "character": "🇼🇫",
+      "description": "Wallis & Futuna"
+    },
+    {
+      "character": "🇼🇸",
+      "description": "Samoa"
+    },
+    {
+      "character": "🇽🇰",
+      "description": "Kosovo"
+    },
+    {
+      "character": "🇾🇪",
+      "description": "Yemen"
+    },
+    {
+      "character": "🇾🇹",
+      "description": "Mayotte"
+    },
+    {
+      "character": "🇿🇦",
+      "description": "South Africa"
+    },
+    {
+      "character": "🇿🇲",
+      "description": "Zambia"
+    },
+    {
+      "character": "🇿🇼",
+      "description": "Zimbabwe"
+    },
+    {
+      "character": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "description": "England"
+    },
+    {
+      "character": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "description": "Scotland"
+    },
+    {
+      "character": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+      "description": "Wales"
+    },
+    {
+      "character": "🏴‍☠️",
+      "description": "Pirate Flag"
+    }
+  ]
+}

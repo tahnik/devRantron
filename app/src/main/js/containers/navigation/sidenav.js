@@ -11,6 +11,7 @@ const SIDE_NAV_ITEMS = [
   { name: 'Collabs', route: ROUTES.collabs, icon: 'ion-person-stalker' },
   { name: 'Stories', route: ROUTES.stories, icon: 'ion-ios-bookmarks' },
   { name: 'Custom', route: ROUTES.custom, icon: 'ion-edit' },
+  { name: 'Profile', route: ROUTES.profile, icon: 'ion-person' },
 ];
 
 const mapDispatchToProps = dispatch => ({

@@ -1,0 +1,89 @@
+// !compileOnSave
+.profile
+  width: 100%
+  .profile_header
+    display: flex
+    align-items: center
+    background: #40415a
+  .profile_image
+    height: 20rem
+    width: 20rem
+    display: flex
+    align-items: center
+    justify-content: center
+    position: relative
+    background-size: cover !important
+    @media screen and (max-width: 1160px)
+      width: 14rem
+    @media screen and (max-width: 990px)
+      display: none
+    .user_image
+      position: relative
+      z-index: 25
+      height: 14rem
+      width: 14rem
+      border-radius: 100%
+      @media screen and (max-width: 1160px)
+        height: 10rem !important
+        width: 10rem !important
+    .user_bg_tint
+      z-index: 10
+      position: absolute
+      top: 0px
+      left: 0px
+      height: 100%
+      width: 100%
+      opacity: 0.66
+  .user_info
+    z-index: 100
+    height: 16rem
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    justify-content: flex-start
+    margin: 1rem
+    h1
+      font-weight: 300
+      color: #fff
+.profile_description
+  flex: 1
+  color: #fff
+  text-shadow: 1px 1px 1px #000
+  padding-right: 2.5rem
+  @media screen and (max-width: 1560px)
+    padding-right: 1rem
+  @media screen and (max-width: 1160px)
+    padding-left: 0px
+    padding-right: 0px
+  .profile_username
+    display: flex
+    flex-direction: row
+    align-items: center
+    span
+      text-align: left
+      padding: 0rem .5rem 0rem 1.5rem
+      margin: 0px
+      font-size: 2rem
+    p
+      font-size: 1rem
+      margin: 0px
+      height: 1.467rem
+  li
+    display: flex
+    flex-direction: row
+    padding: 0.5rem 1rem
+    font-size: 1rem
+    i
+      width: 3rem
+      font-size: 1.6rem
+      margin-top: -0.4rem
+      &::before
+        width: 2rem !important
+        text-align: center
+    p
+      margin: 0px
+      text-align: left
+      max-width: calc(100% - 45px)
+      overflow-y: hidden
+      word-break: break-all
+      max-height: 2.5rem
