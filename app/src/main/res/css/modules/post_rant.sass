@@ -1,0 +1,34 @@
+.post_rant_container
+  height: 100%
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  .post_rant
+    display: flex
+    width: 25rem
+    flex-direction: column
+    textarea
+      background-color: white
+      color: black
+      word-wrap: break-word
+      resize: none
+      font-family: 'Roboto', sans-serif
+      font-size: 1rem
+      padding: 0.5rem
+      border-radius: 5px
+      height: 1.5rem
+      margin-top: 1rem
+    textarea.rant_content
+      height: 20vh
+    p
+      color: red
+    .post
+      display: flex
+      justify-content: flex-end
+      margin-top: 0.4rem
+      button
+        flex: 1
+        &:nth-child(2)
+          margin-left: 1rem

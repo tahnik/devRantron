@@ -21,7 +21,7 @@ class SideNav extends Component {
     />);
   }
   render() {
-    const { sideNavItems, history, location, resetColumn } = this.props;
+    const { sideNavItems, history, location, resetColumn, open } = this.props;
     return (
       <div className="sidenav_container" >
         <div className="navs">
@@ -42,7 +42,11 @@ class SideNav extends Component {
             ))
           }
         </div>
-        <div className="profile" />
+        <div className="add_rant">
+          <button onClick={() => open()} className="add_button">
+            <i className="ion-plus-round" />
+          </button>
+        </div>
       </div>
     );
   }
@@ -57,6 +61,7 @@ SideNav.propTypes = {
   location: PropTypes.object.isRequired,
   fetchUser: PropTypes.func.isRequired,
   resetColumn: PropTypes.func.isRequired,
+  open: PropTypes.func.isRequired,
 };
 
 export default SideNav;

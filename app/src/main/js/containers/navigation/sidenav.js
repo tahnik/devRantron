@@ -5,6 +5,8 @@ import ROUTES from '../../consts/routes';
 import { fetchUser } from '../../actions/user';
 import { logout, noLogin } from '../../actions/auth';
 import { resetColumn } from '../../actions/fetch';
+import { openModal } from '../../actions/modal';
+import { ITEM } from '../../consts/types';
 
 const SIDE_NAV_ITEMS = [
   { name: 'Rants', route: ROUTES.rants, icon: 'ion-chatboxes' },
@@ -25,6 +27,9 @@ const mapDispatchToProps = dispatch => ({
   },
   resetColumn: () => {
     dispatch(resetColumn());
+  },
+  open: () => {
+    dispatch(openModal(ITEM.POST_RANT.NAME));
   },
 });
 
