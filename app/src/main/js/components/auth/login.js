@@ -17,7 +17,6 @@ class Login extends Component {
     if (auth.user === null && nextProps.auth.user) {
       return false;
     }
-    console.log('Updatin');
     return true;
   }
   render() {
