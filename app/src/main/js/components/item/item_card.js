@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import UserBadge from '../user/user_badge';
 import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';
+import Twemoji from 'react-twemoji';
 
 class ItemCard extends Component {
   shouldComponentUpdate(nextProps) {
@@ -96,7 +97,7 @@ class ItemCard extends Component {
             { itemType === ITEM.COLLAB.NAME ?
               <span className="title">Summary</span> : null
             }
-            <span className="body">{item.text}</span>
+            <span className="body"><Twemoji>{item.text}</Twemoji></span>
             { this.renderCollab() }
           </div>
           { image !== '' ? <img alt="" src={image.url} /> : null }

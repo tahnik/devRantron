@@ -29,7 +29,7 @@ const CommentCard = (props) => {
         className="top_container"
       >
         <UserBadge user={user} theme={theme} />
-        <p>{item.body}</p>
+        <p><Twemoji>{item.body}</Twemoji></p>
       </div>
       <BottomBar
         score={item.score}
