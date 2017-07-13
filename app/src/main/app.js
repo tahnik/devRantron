@@ -27,6 +27,15 @@ const {
   REDUX_DEVTOOLS,
 } = require('electron-devtools-installer');
 
+if (process.env.NODE_ENV !== 'development') {
+  const AutoLaunch = require('auto-launch'); //eslint-disable-line
+
+  const AppAutoLauncher = new AutoLaunch({
+    name: 'devRantron',
+  });
+
+  AppAutoLauncher.enable();
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
