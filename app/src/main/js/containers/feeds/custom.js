@@ -26,6 +26,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   columns: state.columns,
   theme: state.settings.theme,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Columns);

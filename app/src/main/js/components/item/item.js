@@ -64,7 +64,7 @@ class Item extends Component {
   }
   renderMutliCol() {
     const { item } = this.state;
-    const { theme, vote, auth, cardItem } = this.props;
+    const { theme, vote, cardItem, auth } = this.props;
     return (
       <div className="item_column">
         <div
@@ -78,13 +78,14 @@ class Item extends Component {
             theme={theme}
             vote={vote}
             itemType={cardItem.type}
+            auth={auth}
           />
         </div>
         <div
           className="comments_and_post"
           style={{ width: `${theme.column.width}px` }}
         >
-          <Comments comments={item.comments} theme={theme} vote={vote} />
+          <Comments comments={item.comments} theme={theme} vote={vote} auth={auth} />
           <PostComment
             theme={theme}
             auth={auth}
@@ -97,7 +98,7 @@ class Item extends Component {
   }
   renderSingleColumn() {
     const { item } = this.state;
-    const { theme, vote, auth, cardItem } = this.props;
+    const { theme, vote, cardItem, auth } = this.props;
     return (
       <div className="item_compact_column">
         <ItemCard
@@ -107,12 +108,18 @@ class Item extends Component {
           theme={theme}
           vote={vote}
           itemType={cardItem.type}
+          auth={auth}
         />
-        <Comments comments={item.comments} theme={theme} vote={vote} />
+        <Comments
+          comments={item.comments}
+          theme={theme}
+          vote={vote}
+          auth={auth}
+        />
         <PostComment
           theme={theme}
-          auth={auth}
           id={item.rant.id}
+          auth={auth}
           fetch={() => this.fetchitem()}
         />
       </div>
@@ -143,8 +150,8 @@ class Item extends Component {
 Item.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
   cardItem: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
   clearNotif: PropTypes.func.isRequired,

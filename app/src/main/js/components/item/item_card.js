@@ -65,13 +65,17 @@ class ItemCard extends Component {
     );
   }
   render() {
-    const { item, theme, vote, modal, itemType } = this.props;
+    const { item, theme, vote, modal, itemType, auth } = this.props;
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,
       id: item.user_id,
       username: item.user_username,
     };
+    let isUser = false;
+    if (auth.user) {
+      isUser = auth.user.authToken.user_id === item.user_id;
+    }
     const image = item.attached_image;
     return (
       <div
@@ -103,6 +107,7 @@ class ItemCard extends Component {
           isUpvoted={item.vote_state}
           vote={vote}
           id={item.id}
+          isUser={isUser}
         />
       </div>
     );
@@ -112,6 +117,7 @@ class ItemCard extends Component {
 ItemCard.propTypes = {
   item: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   itemType: PropTypes.string, //eslint-disable-line
   open: PropTypes.func, // eslint-disable-line
