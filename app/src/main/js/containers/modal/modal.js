@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
   theme: state.settings.theme,
   auth: state.auth,
   item: state.modal.item,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({

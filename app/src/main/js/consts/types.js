@@ -50,6 +50,12 @@ export const ITEM = {
       VOTE: 'RANT_VOTE',
     },
   },
+  POST_RANT: {
+    NAME: 'POST_RANT',
+    ACTION: {
+      POST_RANT: 'POST_RANT',
+    },
+  },
   COMMENT: {
     NAME: 'COMMENT',
     ACTION: {
