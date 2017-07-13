@@ -28,10 +28,10 @@ const {
 } = require('electron-devtools-installer');
 
 if (process.env.NODE_ENV !== 'development') {
-  const AutoLaunch = require('auto-launch');
-  
-  var AppAutoLauncher = new AutoLaunch({
-      name: 'devRantron',
+  const AutoLaunch = require('auto-launch'); //eslint-disable-line
+
+  const AppAutoLauncher = new AutoLaunch({
+    name: 'devRantron',
   });
 
   AppAutoLauncher.enable();
