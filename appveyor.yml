@@ -2,8 +2,7 @@ os: unstable
 
 # cache yarn and node_modules folder for rebuilds
 cache:
-  # - "%LOCALAPPDATA%\\Yarn"
-  # - node_modules
+  - node_modules
 
 # The environment configurations. We will use the latest node version.
 environment:
@@ -11,7 +10,7 @@ environment:
   GH_TOKEN:
     secure: 6d2w18wTLgz3cqa6w2ACgRVI2PIlGJSyV9kKG1W8F4aVkYcyHMEBvxD5XruXA6V/
   matrix:
-    - NODE_VERSION: 7
+    - NODE_VERSION: 8
 
 # make sure we are running on 64bit
 platform:
@@ -25,7 +24,7 @@ matrix:
 install:
   - ps: Install-Product node $env:NODE_VERSION x64
   - set CI=true
-  - yarn install
+  - npm install
 
 test_script:
   - yarn ci:all

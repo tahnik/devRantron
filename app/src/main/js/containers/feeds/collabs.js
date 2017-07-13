@@ -22,6 +22,7 @@ const mapStateToProps = state => ({
   theme: state.settings.theme,
   filters: FEED.COLLABS.FILTERS,
   itemType: ITEM.COLLAB.NAME,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Column);

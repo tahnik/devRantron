@@ -22,6 +22,7 @@ const mapStateToProps = state => ({
   theme: state.settings.theme,
   filters: FEED.STORIES.FILTERS,
   itemType: ITEM.STORIES.NAME,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Column);
