@@ -11,17 +11,39 @@ class BottomBar extends Component {
     };
   }
   componentWillMount() {
-    const { score, isUpvoted } = this.props;
-    this.setState({ isUpvoted, score });
+    const { score, isUpvoted, isUser } = this.props;
+    let nextIsUpvoted = isUpvoted;
+    if (isUser) {
+      nextIsUpvoted = 0;
+    }
+    this.setState({ isUpvoted: nextIsUpvoted, score, staticScore: score });
   }
-  vote(voteState) {
+  vote(state) {
+    if (this.props.isUser) {
+      return;
+    }
+    let voteState = state;
+    let nextScore = this.state.score + voteState;
+    if (this.state.isUpvoted === state) {
+      voteState = 0;
+      /**
+       * Why? Why? Why do it like this?
+       * React state updates fast and messes up the calculation
+       * if I do nextScore -= this.state.isUpvoted
+       */
+      if (this.state.isUpvoted === -1) {
+        nextScore += 1;
+      } else {
+        nextScore -= 1;
+      }
+    }
     const { vote, id, type } = this.props;
     if (type) {
       vote(voteState, id, type);
     } else {
       vote(voteState, id);
     }
-    this.setState({ isUpvoted: voteState, score: this.state.score += 1 });
+    this.setState({ isUpvoted: voteState, score: nextScore });
   }
   render() {
     const { comments, type } = this.props;
@@ -34,7 +56,8 @@ class BottomBar extends Component {
             backgroundColor: this.state.isUpvoted > 0 ? '#D55161' : null,
           }}
         >
-          <i className="ion-ios-arrow-thin-up" />
+          <span className="ud_icon">+</span>
+          <span className="ud_icon">+</span>
         </div>
         <div className="score" >
           <span>{ this.state.score }</span>
@@ -46,7 +69,8 @@ class BottomBar extends Component {
             backgroundColor: this.state.isUpvoted < 0 ? '#D55161' : null,
           }}
         >
-          <i className="ion-ios-arrow-thin-down" />
+          <span className="ud_icon">-</span>
+          <span className="ud_icon">-</span>
         </div>
         <div className="padding" />
         {
@@ -64,6 +88,7 @@ class BottomBar extends Component {
 
 BottomBar.propTypes = {
   score: PropTypes.number.isRequired,
+  isUser: PropTypes.bool.isRequired,
   vote: PropTypes.func.isRequired,
   comments: PropTypes.number, //eslint-disable-line
   isUpvoted: PropTypes.number.isRequired,

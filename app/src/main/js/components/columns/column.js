@@ -31,7 +31,8 @@ class Column extends Component {
     return true;
   }
   render() {
-    const { column, theme, vote, fetch, open, filters, itemType, removeColumn } = this.props;
+    const {
+      column, theme, vote, fetch, open, filters, itemType, removeColumn, auth } = this.props;
     const { divID } = this.state;
     return (
       <div
@@ -63,6 +64,7 @@ class Column extends Component {
                   theme={theme}
                   vote={vote}
                   itemType={itemType}
+                  auth={auth}
                 />
               ))
           }
@@ -81,6 +83,7 @@ Column.propTypes = {
   removeColumn: PropTypes.func, // eslint-disable-line
   filters: PropTypes.object.isRequired,
   itemType: PropTypes.string.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 export default Column;

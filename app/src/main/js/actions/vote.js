@@ -1,5 +1,6 @@
 import rantscript from '../consts/rantscript';
-import { ITEM, AUTH, FEED } from '../consts/types';
+import { ITEM, AUTH } from '../consts/types';
+import { resetColumn } from './fetch';
 import showToast from './toast';
 
 
@@ -20,6 +21,7 @@ const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
       type: AUTH.NOLOGIN,
       payload: false,
     });
+    dispatch(resetColumn());
     return;
   }
   rantscript
@@ -48,10 +50,7 @@ const voteComment = (voteState = 1, commentID) => (dispatch, getState) => {
       type: AUTH.NOLOGIN,
       payload: false,
     });
-    // annoying?
-    dispatch({
-      type: FEED.ACTION.RESET,
-    });
+    dispatch(resetColumn());
     return;
   }
   rantscript

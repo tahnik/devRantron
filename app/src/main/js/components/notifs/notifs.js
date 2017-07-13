@@ -42,6 +42,9 @@ class Notifs extends Component {
     return true;
   }
   componentDidUpdate(prevProps) {
+    if (!this.props.notifs || !this.props.auth.user) {
+      return;
+    }
     const prevNotifs = prevProps.notifs;
     const currentNotifs = this.props.notifs;
     if (!prevNotifs.data) {

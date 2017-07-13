@@ -39,7 +39,7 @@ class Columns extends Component {
     return 1;
   }
   render() {
-    const { columns } = this.props;
+    const { columns, auth } = this.props;
     return (
       <div
         className="columns"
@@ -62,6 +62,7 @@ class Columns extends Component {
                     column={column}
                     filters={column.filters}
                     itemType={column.itemType}
+                    auth={auth}
                   />
                 );
               }
@@ -79,6 +80,7 @@ Columns.propTypes = {
   columns: PropTypes.array.isRequired,
   addColumn: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 export default Columns;
