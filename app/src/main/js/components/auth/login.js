@@ -9,6 +9,17 @@ class Login extends Component {
       password: '',
     };
   }
+  shouldComponentUpdate(nextProps) {
+    const { auth } = this.props;
+    if (auth.noLogin === false && nextProps.auth.noLogin === true) {
+      return false;
+    }
+    if (auth.user === null && nextProps.auth.user) {
+      return false;
+    }
+    console.log('Updatin');
+    return true;
+  }
   render() {
     const { theme, auth, noLogin } = this.props;
     return (
