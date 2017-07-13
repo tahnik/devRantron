@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Item from '../item/item';
+import PostRant from '../utilities/post_rant';
+import { ITEM } from '../../consts/types';
 
 class Modal extends Component {
   getItem() {
     const { item } = this.props;
+    if (item.type === ITEM.POST_RANT.NAME) {
+      return <PostRant {...this.props} />;
+    }
     return <Item key={item.id} cardItem={item} {...this.props} />;
   }
   onOutsideClick(e) {
