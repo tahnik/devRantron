@@ -28,6 +28,10 @@ class PostRant extends Component {
       this.setState({ posting: false });
     });
   }
+  addEmoji(emoji) {
+    this.setState({ rant_content: this.state.rant_content += emoji });
+    Twemoji.parse(this.state.rant_content);
+  }
   render() {
     return (
       <div
@@ -57,7 +61,7 @@ class PostRant extends Component {
                 to make sure everyones content gets good exposure! Please contact
                  info@devrant.io if you have any questions :)</p> : null}
           </div>
-          <EmojiPicker onPick={e => console.log(e)} />
+          <EmojiPicker onPick={emoji => this.addEmoji(emoji)} />
         </div>
       </div>
     );
