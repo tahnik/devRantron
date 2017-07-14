@@ -51,17 +51,14 @@ class Item extends Component {
     if (auth.user) {
       authToken = auth.user.authToken;
     }
-    console.log('getting item');
     rantscript
     .rant(cardItem.id, authToken)
     .then((res) => {
-      console.log(res);
       const item = res;
       this.setState({ item });
       fetchNotifs();
     })
     .catch((e) => {
-      console.log(e);
     });
   }
   renderMutliCol() {

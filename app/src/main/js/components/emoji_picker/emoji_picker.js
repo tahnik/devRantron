@@ -33,7 +33,6 @@ class EmojiPicker extends Component {
         }
       }
     });
-    console.log(allEmojis);
   }
   pickEmoji(emojChar) {
     if (this.props.onPick === undefined) {
