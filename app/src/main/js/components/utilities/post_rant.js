@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import TwemojiComp from 'react-twemoji';
 import Twemoji from 'twemoji';
 import rantscript from '../../consts/rantscript';
 import EmojiPicker from '../emoji_picker/emoji_picker';
+
+const HELPER_TYPES = {
+  EMOJI: 'EMOJI',
+};
 
 class PostRant extends Component {
   constructor() {
@@ -12,6 +17,7 @@ class PostRant extends Component {
       tags: '',
       posting: false,
       limitCrossed: false,
+      activeHelper: null,
     };
   }
 
@@ -30,23 +36,24 @@ class PostRant extends Component {
       this.setState({ posting: false });
     });
   }
+  toggleEmoji() {
+    if (this.state.activeHelper === HELPER_TYPES.EMOJI) {
+      this.setState({ activeHelper: null });
+      return;
+    }
+    this.setState({ activeHelper: HELPER_TYPES.EMOJI });
+  }
   static addEmoji(emoji) {
     const div = document.getElementById('post_rant_content');
 
-    // This is kind of bodgy since it was copy pasted from a previous project
     let range;
     const sel = window.getSelection();
-    if (sel.anchorNode && sel.anchorNode.nodeName === '#text') {
+    if (sel.anchorNode && sel.anchorNode.parentElement.id === 'post_rant_content') {
       if (sel.getRangeAt && sel.rangeCount) {
         range = sel.getRangeAt(0);
         range.deleteContents();
         const textNode = document.createTextNode(` ${emoji}\u00A0`);
         range.insertNode(textNode);
-        // range = range.cloneRange();
-        // range.selectNodeContents(div);
-        // range.collapse(false);
-        // sel.removeAllRanges();
-        // sel.addRange(range);
       }
     } else {
       div.innerHTML += (`${emoji}&nbsp;`);
@@ -67,6 +74,12 @@ class PostRant extends Component {
                 id="post_rant_content"
                 contentEditable="true"
               />
+              <TwemojiComp
+                className="emoji_trigger"
+                onClick={() => this.toggleEmoji()}
+              >
+                <span role="img" aria-label="smile">🙂</span>
+              </TwemojiComp>
             </div>
             <textarea
               onChange={e => this.setState({ tags: e.target.value })}
@@ -85,7 +98,10 @@ class PostRant extends Component {
                 to make sure everyones content gets good exposure! Please contact
                  info@devrant.io if you have any questions :)</p> : null}
           </div>
-          <EmojiPicker onPick={emoji => PostRant.addEmoji(emoji)} />
+          {
+            this.state.activeHelper === HELPER_TYPES.EMOJI ?
+              <EmojiPicker onPick={emoji => PostRant.addEmoji(emoji)} /> : null
+          }
         </div>
       </div>
     );
