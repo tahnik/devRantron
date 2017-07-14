@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Twemoji from 'react-twemoji';
 import UserBadge from '../user/user_badge';
 import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';
@@ -29,7 +30,7 @@ const CommentCard = (props) => {
         className="top_container"
       >
         <UserBadge user={user} theme={theme} />
-        <p>{item.body}</p>
+        <Twemoji><p>{item.body}</p></Twemoji>
       </div>
       <BottomBar
         score={item.score}

@@ -46,7 +46,7 @@ class Item extends Component {
     }
   }
   fetchitem() {
-    const { cardItem, auth, fetchNotifs, clearNotif } = this.props;
+    const { cardItem, auth, fetchNotifs } = this.props;
     let authToken = null;
     if (auth.user) {
       authToken = auth.user.authToken;
@@ -57,7 +57,6 @@ class Item extends Component {
       const item = res;
       this.setState({ item });
       fetchNotifs();
-      clearNotif(item.rant.id);
     })
     .catch(() => {
     });
@@ -154,7 +153,6 @@ Item.propTypes = {
   auth: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
-  clearNotif: PropTypes.func.isRequired,
 };
 
 export default Item;

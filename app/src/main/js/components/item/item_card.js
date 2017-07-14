@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Twemoji from 'react-twemoji';
 import UserBadge from '../user/user_badge';
 import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';
@@ -96,7 +97,7 @@ class ItemCard extends Component {
             { itemType === ITEM.COLLAB.NAME ?
               <span className="title">Summary</span> : null
             }
-            <span className="body">{item.text}</span>
+            <span className="body"><Twemoji>{item.text}</Twemoji></span>
             { this.renderCollab() }
           </div>
           { image !== '' ? <img alt="" src={image.url} /> : null }
