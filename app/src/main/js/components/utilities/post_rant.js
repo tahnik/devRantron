@@ -30,7 +30,6 @@ class PostRant extends Component {
   }
   addEmoji(emoji) {
     this.setState({ rant_content: this.state.rant_content += emoji });
-    Twemoji.parse(this.state.rant_content);
   }
   render() {
     return (
