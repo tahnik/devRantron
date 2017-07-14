@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Twemoji from 'react-twemoji';
 import UserBadge from '../user/user_badge';
 import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';

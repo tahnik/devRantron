@@ -46,20 +46,22 @@ class Item extends Component {
     }
   }
   fetchitem() {
-    const { cardItem, auth, fetchNotifs, clearNotif } = this.props;
+    const { cardItem, auth, fetchNotifs } = this.props;
     let authToken = null;
     if (auth.user) {
       authToken = auth.user.authToken;
     }
+    console.log('getting item');
     rantscript
     .rant(cardItem.id, authToken)
     .then((res) => {
+      console.log(res);
       const item = res;
       this.setState({ item });
       fetchNotifs();
-      clearNotif(item.rant.id);
     })
-    .catch(() => {
+    .catch((e) => {
+      console.log(e);
     });
   }
   renderMutliCol() {
@@ -154,7 +156,6 @@ Item.propTypes = {
   auth: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
-  clearNotif: PropTypes.func.isRequired,
 };
 
 export default Item;
