@@ -36,13 +36,10 @@ class EmojiPicker extends Component {
   }
   pickEmoji(emojChar) {
     if (this.props.onPick === undefined) {
-      console.error('No "onPick" function is present. Pass a prop called "onPick" containing a function.');
       return false;
     }
     this.props.onPick(emojChar);
     return true;
-  }
-  componentDidMount() {
   }
   render() {
     if (this.state.search.length > 1 && this.state.search !== this.state.prevSearch) {
@@ -57,10 +54,10 @@ class EmojiPicker extends Component {
         <div className="emoji_top">
           <div className="categories">
             {emojiData.categories.map(object => (
-              <div
+              <Twemoji
                 onClick={() => { this.setState({ activeTab: object.name }); }}
                 className="category"
-              ><Twemoji>{object.icon}</Twemoji></div>
+              >{object.icon}</Twemoji>
               ))}
           </div>
           <input
@@ -75,13 +72,13 @@ class EmojiPicker extends Component {
 
         <div className="emoji_list">
           {emojiData[this.state.activeTab].map(object => (
-            <div
-              className="emoji"
+            <Twemoji
+              className="emoji_wrapper"
               key={object.description}
               onClick={() => { this.pickEmoji(object.character); }}
             >
-              <Twemoji>{object.character}</Twemoji>
-            </div>
+              {object.character}
+            </Twemoji>
             ))}
         </div>
       </div>
