@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Twemoji from 'twemoji';
 import rantscript from '../../consts/rantscript';
 import EmojiPicker from '../emoji_picker/emoji_picker';
 
@@ -28,8 +29,11 @@ class PostRant extends Component {
       this.setState({ posting: false });
     });
   }
-  addEmoji(emoji) {
-    this.setState({ rant_content: this.state.rant_content += emoji });
+  static addEmoji(emoji) {
+    const div = document.getElementById('post_rant_content');
+
+    div.innerHTML += emoji;
+    Twemoji.parse(div);
   }
   render() {
     return (
@@ -38,11 +42,13 @@ class PostRant extends Component {
       >
         <div className="post_rant_container">
           <div className="post_rant">
-            <textarea
-              onChange={e => this.setState({ rant_content: e.target.value })}
-              value={this.state.rant_content}
-              className="rant_content"
-            />
+            <div className="text_wrapper">
+              <div
+                className="text"
+                id="post_rant_content"
+                contentEditable="true"
+              />
+            </div>
             <textarea
               onChange={e => this.setState({ tags: e.target.value })}
               value={this.state.tags}
@@ -60,7 +66,7 @@ class PostRant extends Component {
                 to make sure everyones content gets good exposure! Please contact
                  info@devrant.io if you have any questions :)</p> : null}
           </div>
-          <EmojiPicker onPick={emoji => this.addEmoji(emoji)} />
+          <EmojiPicker onPick={emoji => PostRant.addEmoji(emoji)} />
         </div>
       </div>
     );
