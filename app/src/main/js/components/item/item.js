@@ -58,7 +58,7 @@ class Item extends Component {
       this.setState({ item });
       fetchNotifs();
     })
-    .catch((e) => {
+    .catch(() => {
     });
   }
   renderMutliCol() {
