@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
+import EmojiPicker from '../emoji_picker/emoji_picker';
 
 class PostRant extends Component {
   constructor() {
@@ -56,6 +57,7 @@ class PostRant extends Component {
                 to make sure everyones content gets good exposure! Please contact
                  info@devrant.io if you have any questions :)</p> : null}
           </div>
+          <EmojiPicker onPick={e => console.log(e)} />
         </div>
       </div>
     );
