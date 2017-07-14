@@ -14,6 +14,7 @@ class PostRant extends Component {
       limitCrossed: false,
     };
   }
+
   onPost() {
     const { auth } = this.props;
     this.setState({ posting: true });
@@ -32,7 +33,19 @@ class PostRant extends Component {
   static addEmoji(emoji) {
     const div = document.getElementById('post_rant_content');
 
-    div.innerHTML += emoji;
+    // This is kind of bodgy since it was copy pasted from a previous project
+    var sel, range, html;
+    if (window.getSelection) {
+      sel = window.getSelection();
+      if (sel.getRangeAt && sel.rangeCount) {
+          range = sel.getRangeAt(0);
+          range.deleteContents();
+          range.insertNode( document.createTextNode(emoji) );
+      }
+    } else if (document.selection && document.selection.createRange) {
+        document.selection.createRange().text = text;
+    }
+
     Twemoji.parse(div);
   }
   render() {
