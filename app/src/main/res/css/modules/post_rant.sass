@@ -17,6 +17,16 @@
         flex: 1
         font-family: 'Roboto', sans-serif
         overflow-y: scroll
+        &::-webkit-scrollbar
+          width: 5px
+
+        &::-webkit-scrollbar-thumb
+          background: rgb(64, 65, 90)
+          border-radius: 10px
+
+        &::-webkit-scrollbar-track
+          background: transparent
+          border-radius: 10px
         &:focus
           outline: none
     textarea

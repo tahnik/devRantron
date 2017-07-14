@@ -34,16 +34,22 @@ class PostRant extends Component {
     const div = document.getElementById('post_rant_content');
 
     // This is kind of bodgy since it was copy pasted from a previous project
-    var sel, range, html;
-    if (window.getSelection) {
-      sel = window.getSelection();
+    let range;
+    const sel = window.getSelection();
+    if (sel.anchorNode && sel.anchorNode.nodeName === '#text') {
       if (sel.getRangeAt && sel.rangeCount) {
-          range = sel.getRangeAt(0);
-          range.deleteContents();
-          range.insertNode( document.createTextNode(emoji) );
+        range = sel.getRangeAt(0);
+        range.deleteContents();
+        const textNode = document.createTextNode(` ${emoji}\u00A0`);
+        range.insertNode(textNode);
+        // range = range.cloneRange();
+        // range.selectNodeContents(div);
+        // range.collapse(false);
+        // sel.removeAllRanges();
+        // sel.addRange(range);
       }
-    } else if (document.selection && document.selection.createRange) {
-        document.selection.createRange().text = text;
+    } else {
+      div.innerHTML += (`${emoji}&nbsp;`);
     }
 
     Twemoji.parse(div);
