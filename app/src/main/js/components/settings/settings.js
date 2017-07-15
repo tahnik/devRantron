@@ -11,7 +11,7 @@ class Items extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeNav: '',
+      activeNav: SETTINGS_NAV[0],
     };
   }
   getSettings() {
@@ -21,10 +21,17 @@ class Items extends Component {
     return <General />;
   }
   render() {
+    const { activeNav } = this.state;
     return (
       <div className="settings">
         <div className="top_nav">
-          { SETTINGS_NAV.map(nav => (<div className="nav" key={nav}>{nav}</div>))}
+          { SETTINGS_NAV.map(
+              nav => (<div
+                className={`nav ${activeNav === nav ? 'active' : ''}`}
+                key={nav}
+              >{nav}</div>),
+            )
+          }
         </div>
         <div className="settings_container">
           { this.getSettings() }

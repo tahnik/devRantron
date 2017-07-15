@@ -1,0 +1,26 @@
+.settings
+  height: 100%
+  width: 100%
+  position: relative
+  .top_nav
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 0.7rem
+    position: fixed
+    width: calc(100% - #{$sidenav_width})
+    height: 1.4rem
+    .nav
+      padding: 0 0.7rem;
+      color: white
+      transition: 0.1s all
+      opacity: 0.4
+      &:hover
+        cursor: pointer
+        transform: scale(1.2)
+      &.active
+        transform: scale(1.2)
+        opacity: 1
+  .settings_container
+    margin-top: 2rem
+    padding: 1rem
