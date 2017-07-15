@@ -81,6 +81,10 @@ class PostRant extends Component {
                 <span role="img" aria-label="smile">🙂</span>
               </TwemojiComp>
             </div>
+            {
+              this.state.activeHelper === HELPER_TYPES.EMOJI ?
+                <EmojiPicker onPick={emoji => PostRant.addEmoji(emoji)} /> : null
+            }
             <textarea
               onChange={e => this.setState({ tags: e.target.value })}
               value={this.state.tags}
@@ -98,10 +102,6 @@ class PostRant extends Component {
                 to make sure everyones content gets good exposure! Please contact
                  info@devrant.io if you have any questions :)</p> : null}
           </div>
-          {
-            this.state.activeHelper === HELPER_TYPES.EMOJI ?
-              <EmojiPicker onPick={emoji => PostRant.addEmoji(emoji)} /> : null
-          }
         </div>
       </div>
     );
