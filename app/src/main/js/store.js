@@ -1,7 +1,12 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
-import { setAutoLaunch, setMinimiseOnClose, saveUserState } from './actions/settings';
+import {
+  saveUserState,
+  setUpdateStatus,
+  setOnStartup,
+  setFirstLaunch,
+} from './actions/settings';
 
 const { ipcRenderer } = require('electron');
 
@@ -24,24 +29,28 @@ const store = createStore(reducers, initialState, composeEnhancers(
 ));
 
 if (initialState) {
+  console.log(initialState);
   if (initialState.settings) {
-    const generalSettings = initialState.settings.general;
-    if (generalSettings.autoLaunch.value === true) {
-      setAutoLaunch(true);
-    } else {
-      setAutoLaunch(false);
-    }
-    if (generalSettings.minimiseOnClose.value === true) {
-      store.dispatch(setMinimiseOnClose(true));
-    } else {
-      store.dispatch(setMinimiseOnClose(false));
-    }
+    store.dispatch(setOnStartup());
+  } else if (
+    Object.keys(initialState).length === 0
+    && initialState.constructor === Object
+  ) {
+    store.dispatch(setFirstLaunch());
   }
 }
 
 ipcRenderer.on('quitApp', () => {
   saveUserState(store.getState());
   ipcRenderer.sendSync('forceQuitApp');
+});
+
+ipcRenderer.on('newUpdate', () => {
+  store.dispatch(setUpdateStatus(true));
+});
+
+ipcRenderer.on('upToDate', () => {
+  store.dispatch(setUpdateStatus(false));
 });
 
 export default store;

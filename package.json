@@ -1,6 +1,6 @@
 {
   "name": "devrantron",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "main": "./app/build/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
@@ -123,6 +123,7 @@
     "auto-launch": "^5.0.1",
     "babel-polyfill": "^6.23.0",
     "electron-devtools-installer": "^2.2.0",
+    "electron-updater": "^2.7.1",
     "fast-deep-equal": "^1.0.0",
     "jquery": "^3.2.1",
     "json-schema-traverse": "^0.3.1",

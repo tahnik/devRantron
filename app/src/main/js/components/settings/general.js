@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { SETTINGS } from '../../consts/types';
 import Toggle from './toggle';
 import Text from './text';
+import Button from './button';
 
 class General extends Component {
-  handleChange(primaryKey, secondaryKey, value) {
+  handleChange(primaryKey, secondaryKey, value = null) {
     this.props.changeGeneral(primaryKey, secondaryKey, value);
   }
   getSettingComponent(setting, primaryKey, secondaryKey) {
@@ -28,6 +29,17 @@ class General extends Component {
             setting={setting}
             handleChange={(value) => {
               this.handleChange(primaryKey, secondaryKey, value);
+            }}
+          />
+        );
+      }
+      case SETTINGS.TYPE.BUTTON: {
+        return (
+          <Button
+            key={secondaryKey}
+            setting={setting}
+            handleChange={() => {
+              this.handleChange(primaryKey, secondaryKey);
             }}
           />
         );
