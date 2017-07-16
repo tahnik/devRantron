@@ -27,8 +27,7 @@ require('electron').ipcRenderer.on('os_notification', function(event, message) {
   });
   notif.onclick = function (e) {
     e.preventDefault()
-    console.log(e)
-    message.onclick()
+    console.log('@tahnik open rant from "message.rant_id"')
   };
 });
 

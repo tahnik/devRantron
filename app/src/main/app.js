@@ -96,8 +96,8 @@ function createWindow() {
       title: 'Good morrow',
       body: 'Good morrow to you sir or madam or to whom ever this may concern...',
       icon: 'https://avatars.devrant.io/v-17_c-3_b-5_g-m_9-1_1-1_16-14_3-2_8-3_7-3_5-4_12-1_6-3_10-9_2-54_11-2_4-4_19-2_21-2.jpg',
-      onclick () {console.log('click')},
-      browserWindow: mainWindow
+      browserWindow: mainWindow,
+      rant_id: 717129
     })
   }, 10000)
 }
