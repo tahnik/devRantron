@@ -21,19 +21,21 @@ const filterRants = (orants, newRants, cFilters) => {
   const rantsWithoutDuplicates = newRants.filter(rant => ids.indexOf(rant.id) === -1);
   if (cFilters) {
     const content = cFilters.rant_content;
-    const tags = cFilters.tags;
     const contentArray = content.split(',');
-    const tagsArray = tags.split(',');
     for (let i = 0; i < contentArray.length; i += 1) {
       contentArray[i] = contentArray[i].trim();
     }
+    const tags = cFilters.tags;
+    const tagsArray = tags.split(',');
     for (let i = 0; i < tagsArray.length; i += 1) {
       tagsArray[i] = tagsArray[i].trim();
     }
     return rantsWithoutDuplicates.filter((rant) => {
-      for (let i = 0; i < contentArray.length; i += 1) {
-        if (rant.text.toLowerCase().includes(contentArray[i])) {
-          return false;
+      if (!(contentArray.length === 1 && contentArray[0] === '')) {
+        for (let i = 0; i < contentArray.length; i += 1) {
+          if (rant.text.toLowerCase().includes(contentArray[i])) {
+            return false;
+          }
         }
       }
       for (let i = 0; i < tagsArray.length; i += 1) {
