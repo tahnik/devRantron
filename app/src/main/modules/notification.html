@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>devRant</title>
+    <link rel="stylesheet" href="http://localhost:8080/res/css/ionicons.min.css">
+    <style>
+      body, html {
+        background: transparent;
+        font: menu;
+        overflow: hidden;
+        margin: 0px;
+      }
+      #top {
+        display: flex;
+      }
+      #notifimage {
+        height: 72px;
+        width: 72px;
+        margin: 10px;
+        border: none;
+        border-radius: 100%;
+        -webkit-app-region: drag;
+      }
+      #info {
+        flex: 1;
+        padding-left: 12px;
+      }
+      #header {
+        margin-bottom: 6px;
+        margin-top: 14px;
+      }
+      #desc {
+        margin: 0px;
+        width: 335px;
+      }
+
+      #text_area {
+        margin: 10px;
+      }
+      button {
+        height: 54px;
+        width: 54px;
+        margin: 6px 0px;
+        border: none;
+        background: transparent;
+        transform: translateY(-43%);
+      }
+      button:focus {
+        outline: none;
+      }
+      button i {
+        font-size: 32px;
+      }
+      button i::before {
+        -webkit-text-stroke: 1px #777;
+        color: #fff;
+      }
+      textarea {
+        width: 362px;
+        max-width: 362px;
+        padding: 8px;
+        resize: none;
+        margin: 6px 0px;
+        font: menu !important;
+      }
+      textarea:focus {
+        outline: none;
+        border: 1px solid #666;
+      }
+      #close {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        right: 1px;
+        top: 4px;
+        color: #666;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="close">
+      <i class="ion-close-round"></i>
+    </div>
+    <div id="top">
+      <img src="https://avatars.devrant.io/v-17_c-3_b-4_g-m_9-2_1-4_16-9_3-14_8-3_7-3_5-4_12-4_6-10_10-9_2-46_15-18_11-2_18-4_4-4_19-3_20-14.jpg" id="notifimage"/>
+      <div id="info">
+        <h4 id="header">tahnik</h4>
+        <p id="desc">Yo daseksi. Do you wanna join my mineceraft srever? Teh iip is www.tohnak.com is gon be fun :)</p>
+      </div>
+    </div>
+    <div id="text_area">
+      <textarea id="ta" resizable="false" placeholder="Ya wil be great! Jouinnin rite nao!"></textarea>
+      <button onclick="sendReply()"><i class="ion-android-send"></i></button>
+    </div>
+    <script type="text/javascript">
+      const { ipcRenderer, screen, remote } = require('electron');
+
+      const main = remote.require(__dirname + '/notify.js');
+
+      console.log(main)
+
+      function sendReply() {
+        let replyText = document.getElementById('ta').value;
+        document.getElementById('ta').value = "";
+        console.log(replyText);
+      }
+
+      document.getElementById('close').onclick = () => {
+        main.ui().hide();
+      }
+
+      ipcRenderer.on('notifData', function (serder, store) {
+        const myNotification = new Notification('devRantron', {
+          body: 'Click here for quick reply UI to show',
+          icon: 'file://'+__dirname+'/128.png',
+        });
+
+        myNotification.onclick = (e) => {
+          var np = screen.getDisplayNearestPoint(screen.getCursorScreenPoint()).size;
+          var ap = screen.getCursorScreenPoint();
+          if(ap.y > np.height / 2) {
+            main.ui().setPosition(ap.x, ap.y + 56)
+          } else {
+            main.ui().setPosition(ap.x, ap.y - 56)
+          }
+          main.ui().show();
+        };
+      });
+    </script>
+  </body>
+</html>
