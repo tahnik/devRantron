@@ -1,0 +1,92 @@
+.settings
+  height: 100%
+  width: 100%
+  position: relative
+  .top_nav
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 0.7rem
+    position: fixed
+    width: calc(100% - #{$sidenav_width})
+    height: 1.4rem
+    .nav
+      padding: 0 0.7rem;
+      color: white
+      transition: 0.1s all
+      opacity: 0.4
+      &:hover
+        cursor: pointer
+        transform: scale(1.2)
+      &.active
+        transform: scale(1.2)
+        opacity: 1
+  .settings_container
+    margin-top: 2rem
+    padding: 1rem
+    .theme_container
+      color: white
+      display: flex
+      justify-content: center
+      margin-top: 2rem
+    .general_container
+      .multi_settings
+        border-bottom: 2px solid gray
+        .header
+          color: white
+          padding: 0.3rem 0
+          border-bottom: 2px solid gray
+        .options
+          margin-left: 1.5rem
+          margin-bottom: 0.6rem
+          padding-left: 1rem
+          border-left: 2px solid gray
+      .single_settings
+        padding-bottom: 0.6rem
+        border-bottom: 2px solid gray
+      .setting
+        display: flex
+        justify-content: space-between
+        align-items: center
+        color: white
+        &.textarea
+          margin-top: 0.5rem
+        &.toggle
+          margin: 0.6rem 0 0 0
+          .setting_label
+            color: white
+          .setting_option
+            display: flex
+            align-items: center
+            .switch
+              position: relative
+              display: inline-block
+              width: 60px
+              height: 34px
+              input
+                display: none
+              input:checked + .slider
+                background-color: #C14857
+              input:focus + .slider
+                box-shadow: 0 0 1px #C14857
+              input:checked + .slider:before
+                transform: translateX(26px)
+              .slider
+                transform: scale(0.7)
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                transition: .2s;
+                &:before
+                  position: absolute;
+                  content: "";
+                  height: 26px;
+                  width: 26px;
+                  left: 4px;
+                  bottom: 4px;
+                  background-color: white;
+                  transition: .2s;

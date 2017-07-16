@@ -12,12 +12,39 @@ const AMOUNT = 20;
  *
  * @param {array} orants Existing rants in a column
  * @param {array} newRants New rants fetched from devRant
+ * @param {string} cFilters Custom filters set by user
  * @returns {array} filteredRants Filtered rants without duplicates
  */
-const filterDuplicate = (orants, newRants) => {
+const filterRants = (orants, newRants, cFilters) => {
   const ids = [];
   orants.map(rs => ids.push(rs.id));
-  return newRants.filter(rant => ids.indexOf(rant.id) === -1);
+  const rantsWithoutDuplicates = newRants.filter(rant => ids.indexOf(rant.id) === -1);
+  if (cFilters) {
+    const content = cFilters.rant_content;
+    const tags = cFilters.tags;
+    const contentArray = content.split(',');
+    const tagsArray = tags.split(',');
+    for (let i = 0; i < contentArray.length; i += 1) {
+      contentArray[i] = contentArray[i].trim();
+    }
+    for (let i = 0; i < tagsArray.length; i += 1) {
+      tagsArray[i] = tagsArray[i].trim();
+    }
+    return rantsWithoutDuplicates.filter((rant) => {
+      for (let i = 0; i < contentArray.length; i += 1) {
+        if (rant.text.toLowerCase().includes(contentArray[i])) {
+          return false;
+        }
+      }
+      for (let i = 0; i < tagsArray.length; i += 1) {
+        if (rant.tags.indexOf(tagsArray[i]) !== -1) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }
+  return rantsWithoutDuplicates;
 };
 
 
@@ -146,6 +173,21 @@ const fetch =
   const filters = getFilters(type);
   const itemType = getItemType(type);
 
+  // Get the custom filters set by user
+  let cFilters = { rant_content: '', tags: '' };
+  const settings = getState().settings;
+  if (settings && settings.general) {
+    const generalSettings = settings.general;
+    const filterRantOptions = generalSettings.filterRants.options;
+    if (filterRantOptions.filter_enabled.value) {
+      cFilters.rant_content = filterRantOptions.rant_content.value;
+      cFilters.tags = filterRantOptions.tags.value;
+    } else {
+      cFilters = null;
+    }
+  }
+
+
   /**
    * Get the currently selected sort and range and compare them with new ones
    * If they have changed, make the page 0. This means we are doing a semi reset
@@ -204,7 +246,7 @@ const fetch =
         const currentItems = page !== 0 ? currentColumn.items : [];
         newColumn.items = [
           ...currentItems,
-          ...filterDuplicate(currentItems, res.rants),
+          ...filterRants(currentItems, res.rants, cFilters),
         ];
         // The prev_set is needed for algo sort to work.
         newColumn.prev_set = res.set;
@@ -224,7 +266,7 @@ const fetch =
         const currentItems = page !== 0 ? currentColumn.items : [];
         newColumn.items = [
           ...currentItems,
-          ...filterDuplicate(currentItems, res),
+          ...filterRants(currentItems, res, cFilters),
         ];
         newColumn.prev_set = res.set;
         dispatch({
@@ -244,7 +286,7 @@ const fetch =
         const currentItems = page !== 0 ? currentColumn.items : [];
         newColumn.items = [
           ...currentItems,
-          ...filterDuplicate(currentItems, res),
+          ...filterRants(currentItems, res, cFilters),
         ];
         newColumn.prev_set = res.set;
         dispatch({
