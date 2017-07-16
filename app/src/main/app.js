@@ -169,6 +169,10 @@ ipcMain.on('forceQuitApp', () => {
   app.exit(0);
 });
 
+ipcMain.on('updateNow', () => {
+  autoUpdater.quitAndInstall();
+});
+
 
 //-------------------------------------------------------------------
 // Auto updates
@@ -181,27 +185,25 @@ ipcMain.on('forceQuitApp', () => {
 // Uncomment any of the below events to listen for them.  Also,
 // look in the previous section to see them being used.
 //-------------------------------------------------------------------
-autoUpdater.on('checking-for-update', () => {
-  console.log('Checking');
-});
+// autoUpdater.on('checking-for-update', () => {
+// });
 autoUpdater.on('update-available', (info) => {
-});
-autoUpdater.on('update-not-available', (info) => {
-  console.log('no update');
   console.log(info);
 });
-autoUpdater.on('error', (err) => {
-  console.log(err);
+autoUpdater.on('update-not-available', (info) => {
+  console.log(info);
+  mainWindow.webContents.send('upTodate');
 });
-autoUpdater.on('download-progress', (progressObj) => {
-});
+// autoUpdater.on('error', (err) => {
+// });
+// autoUpdater.on('download-progress', (progressObj) => {
+// });
 autoUpdater.on('update-downloaded', (info) => {
-  // Wait 5 seconds, then quit and install
-  // In your application, you don't need to wait 5 seconds.
-  // You could call autoUpdater.quitAndInstall(); immediately
-  setTimeout(() => {
-    autoUpdater.quitAndInstall();
-  }, 5000);
+  console.log(info);
+  mainWindow.webContents.send('newUpdate');
+  // setTimeout(() => {
+  //   autoUpdater.quitAndInstall();
+  // }, 5000);
 });
 
 app.on('ready', () => {

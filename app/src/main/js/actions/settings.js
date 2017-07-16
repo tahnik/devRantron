@@ -49,6 +49,24 @@ const setMinimiseOnClose = value => (dispatch, getState) => {
   }
 };
 
+const setUpdateStatus = value => (dispatch) => {
+  if (value) {
+    dispatch({
+      type: SETTINGS.ACTION.CHANGE_GENERAL,
+      primaryKey: 'update',
+      buttonText: 'Update availble',
+      value: true,
+    });
+  } else {
+    dispatch({
+      type: SETTINGS.ACTION.CHANGE_GENERAL,
+      primaryKey: '',
+      buttonText: 'Up to date',
+      value: false,
+    });
+  }
+};
+
 
 /**
  * Logs in the user
@@ -56,12 +74,16 @@ const setMinimiseOnClose = value => (dispatch, getState) => {
  * @param {string} username Either username or email
  * @param {string} password Password for the user
  */
-const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
+const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch, getState) => {
   if (primaryKey === 'autoLaunch') {
     setAutoLaunch(value);
   }
   if (primaryKey === 'minimiseOnClose') {
     dispatch(setMinimiseOnClose(value));
+  }
+  if (primaryKey === 'update') {
+    saveUserState(getState());
+    ipcRenderer.send('updateNow', true);
   }
   dispatch({
     type: SETTINGS.ACTION.CHANGE_GENERAL,
@@ -83,4 +105,10 @@ const changeTheme = () => () => {
 };
 
 
-export { changeGeneral, changeTheme, setAutoLaunch, setMinimiseOnClose, saveUserState };
+export {
+  changeGeneral,
+  changeTheme,
+  setAutoLaunch,
+  setMinimiseOnClose,
+  saveUserState,
+  setUpdateStatus };

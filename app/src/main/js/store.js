@@ -1,7 +1,12 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
-import { setAutoLaunch, setMinimiseOnClose, saveUserState } from './actions/settings';
+import {
+  setAutoLaunch,
+  setMinimiseOnClose,
+  saveUserState,
+  setUpdateStatus,
+} from './actions/settings';
 
 const { ipcRenderer } = require('electron');
 
@@ -42,6 +47,14 @@ if (initialState) {
 ipcRenderer.on('quitApp', () => {
   saveUserState(store.getState());
   ipcRenderer.sendSync('forceQuitApp');
+});
+
+ipcRenderer.on('newUpdate', () => {
+  store.dispatch(setUpdateStatus(true));
+});
+
+ipcRenderer.on('upToDate', () => {
+  store.dispatch(setUpdateStatus(false));
 });
 
 export default store;

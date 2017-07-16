@@ -11,6 +11,9 @@ export default (state = DEFAULT_STATES.SETTINGS, action) => {
         options[secondaryKey].value = action.value;
       } else {
         general[primaryKey].value = action.value;
+        if (action.buttonText) {
+          general[primaryKey].buttonText = action.buttonText;
+        }
       }
       return {
         ...state,

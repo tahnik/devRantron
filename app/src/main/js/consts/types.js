@@ -14,6 +14,7 @@ export const SETTINGS = {
     DROPDOWN: 'DROPDOWN',
     TOGGLE: 'TOGGLE',
     TEXT: 'TEXT',
+    BUTTON: 'BUTTON',
   },
   ACTION: {
     CHANGE_GENERAL: 'CHANGE_GENERAL',
