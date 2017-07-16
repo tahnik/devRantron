@@ -12,6 +12,7 @@ import Modal from '../containers/modal/modal';
 import Notifs from '../containers/notifs/notifs';
 import Custom from '../containers/feeds/custom';
 import Toast from '../containers/utilities/toast/toast';
+import Settings from '../containers/settings/settings';
 
 const MainRoutes = props => (
   <div key="MainRoutes" className="main_container" >
@@ -44,6 +45,12 @@ const MainRoutes = props => (
         path="/custom"
         render={() => (
           <Custom />
+        )}
+      />
+      <Route
+        path="/settings"
+        render={() => (
+          <Settings />
         )}
       />
       <Modal />

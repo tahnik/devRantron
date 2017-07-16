@@ -6,6 +6,7 @@ const { app, BrowserWindow, Menu, Tray } = electron;
 const os = require('os');
 const path = require('path');
 const url = require('url');
+const { ipcMain } = require('electron');
 
 const systemSpecs = {
   cpu_speed: os.cpus()[0].speed,
@@ -138,3 +139,24 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+ipcMain.on('auto-launch', (event, arg) => {
+  if (process.env.NODE_ENV !== 'development') {
+    const AutoLaunch = require('auto-launch'); //eslint-disable-line
+
+    const AppAutoLauncher = new AutoLaunch({
+      name: 'devRantron',
+    });
+
+    if (arg) {
+      AppAutoLauncher.enable();
+    } else {
+      AppAutoLauncher.disable();
+    }
+  }
+});
+
+
+ipcMain.on('minimiseApp', () => {
+  mainWindow.minimize();
+});

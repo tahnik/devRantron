@@ -1,0 +1,58 @@
+.emoji_picker
+  background: #fff
+  display: flex
+  flex-direction: column
+  width: 25rem
+  justify-content: center
+  margin-top: 1rem
+  .emoji_top
+    background: #fff
+    padding: 1rem
+    display: flex
+    flex-direction: column
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.2)
+    .emoji_search
+      flex: 1
+      border-bottom: 1px solid #ccc
+      color: #000
+      &:focus
+        border-bottom-color: #de5c6c
+    .categories
+      display: flex
+      justify-content: center
+      align-items: center
+      .category
+        padding: 0.3rem 0.3rem
+        cursor: pointer
+        &:hover
+          background: #f1f0f0
+        img
+          height: 1.5rem
+  .active_emoji_tab
+    margin: 0px 1.5rem
+    display: none
+  .emoji_list
+    margin: 0px 0.5rem
+    height: 20rem
+    display: flex
+    overflow-y: scroll
+    &::-webkit-scrollbar
+      width: 5px
+
+    &::-webkit-scrollbar-thumb
+      background: rgb(64, 65, 90)
+      border-radius: 10px
+
+    &::-webkit-scrollbar-track
+      background: transparent
+      border-radius: 10px
+    flex-wrap: wrap
+    .emoji_wrapper
+      padding: 0.2rem 0.2rem
+      cursor: pointer
+      transition: all 0.2s
+      user-select: none
+      &:hover
+        background: #f1f0f0
+      img
+        height: 1.5rem

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Twemoji from 'react-twemoji';
 import UserBadge from '../user/user_badge';
 import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';
@@ -65,13 +66,17 @@ class ItemCard extends Component {
     );
   }
   render() {
-    const { item, theme, vote, modal, itemType } = this.props;
+    const { item, theme, vote, modal, itemType, auth } = this.props;
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,
       id: item.user_id,
       username: item.user_username,
     };
+    let isUser = false;
+    if (auth.user) {
+      isUser = auth.user.authToken.user_id === item.user_id;
+    }
     const image = item.attached_image;
     return (
       <div
@@ -92,7 +97,7 @@ class ItemCard extends Component {
             { itemType === ITEM.COLLAB.NAME ?
               <span className="title">Summary</span> : null
             }
-            <span className="body">{item.text}</span>
+            <span className="body"><Twemoji>{item.text}</Twemoji></span>
             { this.renderCollab() }
           </div>
           { image !== '' ? <img alt="" src={image.url} /> : null }
@@ -103,6 +108,7 @@ class ItemCard extends Component {
           isUpvoted={item.vote_state}
           vote={vote}
           id={item.id}
+          isUser={isUser}
         />
       </div>
     );
@@ -112,6 +118,7 @@ class ItemCard extends Component {
 ItemCard.propTypes = {
   item: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   itemType: PropTypes.string, //eslint-disable-line
   open: PropTypes.func, // eslint-disable-line

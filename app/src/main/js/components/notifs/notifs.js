@@ -12,6 +12,7 @@ class Notifs extends Component {
     this.state = {
       notifTimestamp: 1,
       active: false,
+      firstFetch: true,
     };
   }
   componentDidMount() {
@@ -22,6 +23,8 @@ class Notifs extends Component {
      */
     const { fetchNotifs } = this.props;
 
+    fetchNotifs();
+
     setInterval(() => {
       fetchNotifs();
     }, 10000);
@@ -29,6 +32,10 @@ class Notifs extends Component {
     ipcRenderer.on('open_notif', () => { this.setState({ active: true }); });
   }
   shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.firstFetch) {
+      this.setState({ firstFetch: false });
+      return true;
+    }
     if (
       this.props.notifs.num_unread === nextProps.notifs.num_unread
       && this.state.active === nextState.active
@@ -38,6 +45,9 @@ class Notifs extends Component {
     return true;
   }
   componentDidUpdate(prevProps) {
+    if (!this.props.notifs || !this.props.auth.user) {
+      return;
+    }
     const prevNotifs = prevProps.notifs;
     const currentNotifs = this.props.notifs;
     if (!prevNotifs.data) {

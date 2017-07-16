@@ -9,6 +9,17 @@ export const NOTIFS = {
   CLEAR: 'NOTIF_CLEAR',
 };
 
+export const SETTINGS = {
+  TYPE: {
+    DROPDOWN: 'DROPDOWN',
+    TOGGLE: 'TOGGLE',
+    TEXT: 'TEXT',
+  },
+  ACTION: {
+    CHANGE_GENERAL: 'CHANGE_GENERAL',
+  },
+};
+
 export const STATE = {
   INITIAL: 'STATE_INITIAL',
   SUCCESS: 'STATE_SUCCESS',
