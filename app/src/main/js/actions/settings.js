@@ -2,6 +2,55 @@ import { SETTINGS } from '../consts/types';
 
 const { ipcRenderer } = require('electron');
 
+const setAutoLaunch = (value) => {
+  if (value) {
+    ipcRenderer.send('auto-launch', true);
+  } else {
+    ipcRenderer.send('auto-launch', false);
+  }
+};
+
+const saveUserState = (state) => {
+  const customCols = [...state.columns];
+  for (let index = 0; index < customCols.length; index += 1) {
+    customCols[index].items = [];
+    customCols[index].prev_set = 0;
+    customCols[index].page = 0;
+  }
+  const savedState = {
+    auth: state.auth,
+    user: state.user,
+    settings: state.settings,
+    notifs: state.notifs,
+    columns: customCols,
+  };
+  localStorage.setItem('savedState', JSON.stringify(savedState));
+};
+
+const setOnBeforeUnload = (state, value) => {
+  if (value) {
+    window.onbeforeunload = (e) => {
+      saveUserState(state);
+      ipcRenderer.send('minimiseApp');
+      e.returnValue = false;
+    };
+  } else {
+    window.onbeforeunload = () => {
+      saveUserState(state);
+    };
+  }
+};
+
+
+const setMinimiseOnClose = value => (dispatch, getState) => {
+  if (value) {
+    setOnBeforeUnload(getState(), true);
+  } else {
+    setOnBeforeUnload(getState(), false);
+  }
+};
+
+
 /**
  * Logs in the user
  *
@@ -10,21 +59,10 @@ const { ipcRenderer } = require('electron');
  */
 const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
   if (primaryKey === 'autoLaunch') {
-    if (value) {
-      ipcRenderer.send('auto-launch', true);
-    } else {
-      ipcRenderer.send('auto-launch', false);
-    }
+    setAutoLaunch(value);
   }
   if (primaryKey === 'minimiseOnClose') {
-    if (value) {
-      window.onbeforeunload = (e) => {
-        ipcRenderer.send('minimiseApp');
-        e.returnValue = false;
-      };
-    } else {
-      window.onbeforeunload = () => {};
-    }
+    dispatch(setMinimiseOnClose(value));
   }
   dispatch({
     type: SETTINGS.ACTION.CHANGE_GENERAL,
@@ -46,4 +84,4 @@ const changeTheme = () => () => {
 };
 
 
-export { changeGeneral, changeTheme };
+export { changeGeneral, changeTheme, setAutoLaunch, setMinimiseOnClose };

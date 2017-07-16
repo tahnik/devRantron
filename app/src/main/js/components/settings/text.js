@@ -8,6 +8,7 @@ const Text = props => (
       <input
         onChange={e => props.handleChange(e.target.value)}
         placeholder={props.setting.placeholder}
+        value={props.setting.value}
       />
     </div>
   </div>
