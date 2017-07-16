@@ -1,6 +1,6 @@
 {
   "name": "devrantron",
-  "version": "0.2.1",
+  "version": "0.4.0",
   "main": "./app/build/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
@@ -124,6 +124,7 @@
     "babel-polyfill": "^6.23.0",
     "electron-devtools-installer": "^2.2.0",
     "electron-windows-notifications": "^1.1.13",
+    "electron-updater": "^2.7.1",
     "fast-deep-equal": "^1.0.0",
     "jquery": "^3.2.1",
     "json-schema-traverse": "^0.3.1",

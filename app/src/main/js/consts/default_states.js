@@ -68,6 +68,12 @@ export default {
         type: SETTINGS.TYPE.TOGGLE,
         value: true,
       },
+      update: {
+        text: 'Update Status',
+        type: SETTINGS.TYPE.BUTTON,
+        buttonText: 'Up to date',
+        value: false,
+      },
     },
   },
   TOAST: {
