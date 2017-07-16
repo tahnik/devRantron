@@ -1,4 +1,4 @@
-import { STATE, FEED } from './types';
+import { STATE, FEED, SETTINGS } from './types';
 import { getUID } from './DOMFunctions';
 
 /*
@@ -33,6 +33,40 @@ export default {
       },
       user_badge: {
         details_back: '#54556E',
+      },
+    },
+    general: {
+      filterRants: {
+        title: 'Filter Rants',
+        options: {
+          filter_enabled: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'Enabled',
+            value: true,
+          },
+          rant_content: {
+            type: SETTINGS.TYPE.TEXT,
+            text: 'Rants containing these texts (Comma Separated)',
+            placeholder: 'i.e. !rant',
+            value: '',
+          },
+          tags: {
+            type: SETTINGS.TYPE.TEXT,
+            text: 'Rants containing these tags (Comma Separated)',
+            placeholder: 'i.e. windows',
+            value: '',
+          },
+        },
+      },
+      autoLaunch: {
+        text: 'Auto launch after boot',
+        type: SETTINGS.TYPE.TOGGLE,
+        value: true,
+      },
+      minimiseOnClose: {
+        text: 'Minimise app on close',
+        type: SETTINGS.TYPE.TOGGLE,
+        value: true,
       },
     },
   },

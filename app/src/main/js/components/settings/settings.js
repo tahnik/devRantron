@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import General from './general';
+import Theme from './theme';
 
 const SETTINGS_NAV = [
   'General',
@@ -15,8 +16,14 @@ class Items extends Component {
     };
   }
   getSettings() {
-    if (this.activeNav === SETTINGS_NAV[0]) {
-      return <General />;
+    const { activeNav } = this.state;
+    const { settings, changeGeneral } = this.props;
+    if (activeNav === SETTINGS_NAV[0]) {
+      return (
+        <General general={settings.general} changeGeneral={changeGeneral} />
+      );
+    } else if (activeNav === SETTINGS_NAV[1]) {
+      return <Theme />;
     }
     return <General />;
   }
@@ -28,6 +35,7 @@ class Items extends Component {
           { SETTINGS_NAV.map(
               nav => (<div
                 className={`nav ${activeNav === nav ? 'active' : ''}`}
+                onClick={() => this.setState({ activeNav: nav })}
                 key={nav}
               >{nav}</div>),
             )
@@ -42,6 +50,8 @@ class Items extends Component {
 }
 
 Items.propTypes = {
+  settings: PropTypes.object.isRequired,
+  changeGeneral: PropTypes.func.isRequired,
 };
 
 export default Items;
