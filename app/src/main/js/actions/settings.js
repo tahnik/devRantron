@@ -30,7 +30,6 @@ const saveUserState = (state) => {
 const setOnBeforeUnload = (state, value) => {
   if (value) {
     window.onbeforeunload = (e) => {
-      saveUserState(state);
       ipcRenderer.send('minimiseApp');
       e.returnValue = false;
     };
@@ -84,4 +83,4 @@ const changeTheme = () => () => {
 };
 
 
-export { changeGeneral, changeTheme, setAutoLaunch, setMinimiseOnClose };
+export { changeGeneral, changeTheme, setAutoLaunch, setMinimiseOnClose, saveUserState };

@@ -38,24 +38,27 @@ function openRantComposer() {
   mainWindow.show();
   mainWindow.webContents.send('compose_rant');
 }
-function openNotifications() {
-  mainWindow.show();
-  mainWindow.webContents.send('open_notif');
+
+function quitApp() {
+  mainWindow.webContents.send('quitApp');
 }
 
 /** This function will create the tray icon */
 function initTray() {
+  // No idea why using let or var or const with tray causes the tray not to display anything
+  /* eslint-disable */
   tray = new Tray(path.join(__dirname, '/res/images/devrantLogo512.png'));
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Open App', click() { mainWindow.show(); } },
     { type: 'separator' },
     { label: 'Compose A Rant', click() { openRantComposer(); } },
-    { label: 'Open Notifications', click() { openNotifications(); } },
     { type: 'separator' },
-    { label: 'Quit', click() { app.quit(); } },
+    { label: 'Quit', click() { quitApp(); } },
   ]);
-  tray.setToolTip('This is my application.');
+  tray.setToolTip('devRantron');
   tray.setContextMenu(contextMenu);
+  tray.on('click', () => { mainWindow.show(); });
+  /* eslint-enable */
 }
 
 /** This function will create the mainWindow */
@@ -158,5 +161,9 @@ ipcMain.on('auto-launch', (event, arg) => {
 
 
 ipcMain.on('minimiseApp', () => {
-  mainWindow.minimize();
+  mainWindow.hide();
+});
+
+ipcMain.on('forceQuitApp', () => {
+  app.exit(0);
 });
