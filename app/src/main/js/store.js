@@ -29,7 +29,6 @@ const store = createStore(reducers, initialState, composeEnhancers(
 ));
 
 if (initialState) {
-  console.log(initialState);
   if (initialState.settings) {
     store.dispatch(setOnStartup());
   } else if (

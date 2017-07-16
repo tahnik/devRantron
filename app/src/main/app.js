@@ -187,23 +187,17 @@ ipcMain.on('updateNow', () => {
 //-------------------------------------------------------------------
 // autoUpdater.on('checking-for-update', () => {
 // });
-autoUpdater.on('update-available', (info) => {
-  console.log(info);
+autoUpdater.on('update-available', () => {
 });
-autoUpdater.on('update-not-available', (info) => {
-  console.log(info);
+autoUpdater.on('update-not-available', () => {
   mainWindow.webContents.send('upTodate');
 });
 // autoUpdater.on('error', (err) => {
 // });
 // autoUpdater.on('download-progress', (progressObj) => {
 // });
-autoUpdater.on('update-downloaded', (info) => {
-  console.log(info);
+autoUpdater.on('update-downloaded', () => {
   mainWindow.webContents.send('newUpdate');
-  // setTimeout(() => {
-  //   autoUpdater.quitAndInstall();
-  // }, 5000);
 });
 
 app.on('ready', () => {
