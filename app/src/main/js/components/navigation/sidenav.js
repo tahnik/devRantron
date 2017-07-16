@@ -35,8 +35,10 @@ class SideNav extends Component {
                 item={item}
                 active={location.pathname === item.route ? 'active' : null}
                 onClick={() => {
-                  resetColumn();
-                  history.push(item.route);
+                  if (location.pathname !== item.route) {
+                    resetColumn();
+                    history.push(item.route);
+                  }
                 }}
               />
             ))
