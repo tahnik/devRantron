@@ -68,6 +68,26 @@ const setUpdateStatus = value => (dispatch) => {
 };
 
 
+const setFirstLaunch = () => (dispatch) => {
+  setAutoLaunch(true);
+  dispatch(setMinimiseOnClose(true));
+};
+
+const setOnStartup = () => (dispatch, getState) => {
+  const generalSettings = getState().settings.general;
+  if (generalSettings.autoLaunch.value === true) {
+    setAutoLaunch(true);
+  } else {
+    setAutoLaunch(false);
+  }
+  if (generalSettings.minimiseOnClose.value === true) {
+    dispatch(setMinimiseOnClose(true));
+  } else {
+    dispatch(setMinimiseOnClose(false));
+  }
+};
+
+
 /**
  * Logs in the user
  *
@@ -111,4 +131,6 @@ export {
   setAutoLaunch,
   setMinimiseOnClose,
   saveUserState,
+  setFirstLaunch,
+  setOnStartup,
   setUpdateStatus };
