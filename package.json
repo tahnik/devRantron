@@ -126,6 +126,7 @@
     "fast-deep-equal": "^1.0.0",
     "jquery": "^3.2.1",
     "json-schema-traverse": "^0.3.1",
+    "node-notifier": "^5.1.2",
     "prop-types": "^15.5.10",
     "rantscript": "^1.1.2",
     "react": "^15.5.4",
