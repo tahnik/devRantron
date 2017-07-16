@@ -4,6 +4,7 @@ import NotifBubbles from './notif_bubbles';
 import { getNotifText } from '../../consts/DOMFunctions';
 
 const currentWindow = require('electron').remote.getCurrentWindow();
+const { ipcRenderer } = require('electron');
 
 class Notifs extends Component {
   constructor() {
@@ -27,6 +28,8 @@ class Notifs extends Component {
     setInterval(() => {
       fetchNotifs();
     }, 10000);
+
+    ipcRenderer.on('open_notif', () => { this.setState({ active: true }); });
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.firstFetch) {

@@ -1,8 +1,7 @@
 const electron = require('electron');
-// Module to control application life.
-const app = electron.app;
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
+
+const { app, BrowserWindow, Menu, Tray } = electron;
+
 
 const os = require('os');
 const path = require('path');
@@ -34,6 +33,33 @@ const {
 let mainWindow;
 
 console.time('startup'); //eslint-disable-line
+
+function openRantComposer() {
+  mainWindow.show();
+  mainWindow.webContents.send('compose_rant');
+}
+
+function quitApp() {
+  mainWindow.webContents.send('quitApp');
+}
+
+/** This function will create the tray icon */
+function initTray() {
+  // No idea why using let or var or const with tray causes the tray not to display anything
+  /* eslint-disable */
+  tray = new Tray(path.join(__dirname, '/res/images/devrantLogo512.png'));
+  const contextMenu = Menu.buildFromTemplate([
+    { label: 'Open App', click() { mainWindow.show(); } },
+    { type: 'separator' },
+    { label: 'Compose A Rant', click() { openRantComposer(); } },
+    { type: 'separator' },
+    { label: 'Quit', click() { quitApp(); } },
+  ]);
+  tray.setToolTip('devRantron');
+  tray.setContextMenu(contextMenu);
+  tray.on('click', () => { mainWindow.show(); });
+  /* eslint-enable */
+}
 
 /** This function will create the mainWindow */
 function createWindow() {
@@ -88,6 +114,8 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  initTray();
 }
 
 // This method will be called when Electron has finished
@@ -133,5 +161,9 @@ ipcMain.on('auto-launch', (event, arg) => {
 
 
 ipcMain.on('minimiseApp', () => {
-  mainWindow.minimize();
+  mainWindow.hide();
+});
+
+ipcMain.on('forceQuitApp', () => {
+  app.exit(0);
 });

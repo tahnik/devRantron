@@ -1,7 +1,9 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
-import { setAutoLaunch, setMinimiseOnClose } from './actions/settings';
+import { setAutoLaunch, setMinimiseOnClose, saveUserState } from './actions/settings';
+
+const { ipcRenderer } = require('electron');
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //eslint-disable-line
 const middleware = applyMiddleware(thunk);
@@ -37,23 +39,9 @@ if (initialState) {
   }
 }
 
-
-// window.onbeforeunload = () => {
-//   const state = store.getState();
-//   const customCols = [...state.columns];
-//   for (let index = 0; index < customCols.length; index += 1) {
-//     customCols[index].items = [];
-//     customCols[index].prev_set = 0;
-//     customCols[index].page = 0;
-//   }
-//   const savedState = {
-//     auth: state.auth,
-//     user: state.user,
-//     settings: state.settings,
-//     notifs: state.notifs,
-//     columns: customCols,
-//   };
-//   localStorage.setItem('savedState', JSON.stringify(savedState));
-// };
+ipcRenderer.on('quitApp', () => {
+  saveUserState(store.getState());
+  ipcRenderer.sendSync('forceQuitApp');
+});
 
 export default store;
