@@ -7,6 +7,7 @@ const os = require('os');
 const path = require('path');
 const url = require('url');
 const { ipcMain } = require('electron');
+const { autoUpdater } = require('electron-updater');
 
 const systemSpecs = {
   cpu_speed: os.cpus()[0].speed,
@@ -166,4 +167,43 @@ ipcMain.on('minimiseApp', () => {
 
 ipcMain.on('forceQuitApp', () => {
   app.exit(0);
+});
+
+
+//-------------------------------------------------------------------
+// Auto updates
+//
+// For details about these events, see the Wiki:
+// https://github.com/electron-userland/electron-builder/wiki/Auto-Update#events
+//
+// The app doesn't need to listen to any events except `update-downloaded`
+//
+// Uncomment any of the below events to listen for them.  Also,
+// look in the previous section to see them being used.
+//-------------------------------------------------------------------
+autoUpdater.on('checking-for-update', () => {
+  console.log('Checking');
+});
+autoUpdater.on('update-available', (info) => {
+});
+autoUpdater.on('update-not-available', (info) => {
+  console.log('no update');
+  console.log(info);
+});
+autoUpdater.on('error', (err) => {
+  console.log(err);
+});
+autoUpdater.on('download-progress', (progressObj) => {
+});
+autoUpdater.on('update-downloaded', (info) => {
+  // Wait 5 seconds, then quit and install
+  // In your application, you don't need to wait 5 seconds.
+  // You could call autoUpdater.quitAndInstall(); immediately
+  setTimeout(() => {
+    autoUpdater.quitAndInstall();
+  }, 5000);
+});
+
+app.on('ready', () => {
+  autoUpdater.checkForUpdates();
 });
