@@ -9,6 +9,10 @@ export const NOTIFS = {
   CLEAR: 'NOTIF_CLEAR',
 };
 
+export const NOTIF_TYPES = {
+
+};
+
 export const SETTINGS = {
   TYPE: {
     DROPDOWN: 'DROPDOWN',

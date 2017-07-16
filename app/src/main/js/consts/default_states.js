@@ -58,6 +58,46 @@ export default {
           },
         },
       },
+      notifications: {
+        title: 'Notifications',
+        options: {
+          notif_enabled: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'Enabled',
+            value: true,
+          },
+          rant_plus: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'New +1\'s on your rants',
+            value: true,
+          },
+          comment_plus: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'New +1\'s on your comments',
+            value: true,
+          },
+          comment_on_own: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'New comments on your rants',
+            value: true,
+          },
+          comment_on_others: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'New comments on rants you have commented on',
+            value: true,
+          },
+          mentions: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'Someone @mentions you',
+            value: true,
+          },
+          subscriptions: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'New rants from users you subscribe to',
+            value: true,
+          },
+        },
+      },
       autoLaunch: {
         text: 'Auto launch after boot',
         type: SETTINGS.TYPE.TOGGLE,
@@ -73,6 +113,12 @@ export default {
         type: SETTINGS.TYPE.BUTTON,
         buttonText: 'Up to date',
         value: false,
+      },
+      reset_cache: {
+        text: 'Reset application cache (This will log you out)',
+        type: SETTINGS.TYPE.BUTTON,
+        buttonText: 'Reset',
+        value: true,
       },
     },
   },

@@ -105,6 +105,11 @@ const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch, getState) 
     saveUserState(getState());
     ipcRenderer.send('updateNow', true);
   }
+  if (primaryKey === 'reset_cache') {
+    localStorage.setItem('savedState', JSON.stringify({}));
+    ipcRenderer.send('reLaunch', true);
+    return;
+  }
   dispatch({
     type: SETTINGS.ACTION.CHANGE_GENERAL,
     primaryKey,

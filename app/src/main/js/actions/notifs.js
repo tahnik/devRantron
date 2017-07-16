@@ -1,5 +1,8 @@
 import { NOTIFS } from '../consts/types';
 import rantscript from '../consts/rantscript';
+import { openModal } from './modal';
+
+const currentWindow = require('electron').remote.getCurrentWindow();
 
 let clearingNotif = false;
 
@@ -52,4 +55,20 @@ const clearNotifs = () => (dispatch, getState) => {
   });
 };
 
-export { fetchNotifs, clearNotifs }; //eslint-disable-line
+const showNotifs = notif => (dispatch, getState) => {
+  const notifSettings = getState().settings.general.notifications.options;
+
+  const myNotification = new Notification('devRantron', {
+    body: notif.body,
+    data: notif.id,
+    icon: 'http://i.imgur.com/iikd00P.png',
+  });
+
+
+  myNotification.onclick = (e) => {
+    dispatch(openModal(e.target.data));
+    currentWindow.focus();
+  };
+};
+
+export { fetchNotifs, clearNotifs, showNotifs }; //eslint-disable-line
