@@ -32,26 +32,33 @@ const currentVersion = remote.app.getVersion();
 
 const prevVersion = localStorage.getItem('prevVersion');
 
-if (currentVersion && prevVersion) {
+if (
+  currentVersion && prevVersion
+  && !(Object.keys(initialState).length === 0
+  && initialState.constructor === Object)
+) {
   if (cmp(currentVersion, prevVersion) === 1) {
     const changes = updates[currentVersion];
-    if (changes) {
-      const toBeAdded = changes.ADD.split('.');
-      let reference = null;
-      let initStateReference = initialState;
-      toBeAdded.forEach((element, index) => {
-        if (index === 0) {
-          reference = DEFAULT_STATE[element];
-        } else {
-          reference = reference[element];
-        }
+    if (changes.ADD) {
+      const changesToBeAdded = changes.ADD;
+      for (let i = 0; i < changesToBeAdded.length; i += 1) {
+        const toBeAdded = changesToBeAdded[i].split('.');
+        let reference = null;
+        let initStateReference = initialState;
+        toBeAdded.forEach((element, index) => {
+          if (index === 0) {
+            reference = DEFAULT_STATE[element];
+          } else {
+            reference = reference[element];
+          }
 
-        if (index === (toBeAdded.length - 1)) {
-          initStateReference[element.toLowerCase()] = reference;
-        } else {
-          initStateReference = initStateReference[element.toLowerCase()];
-        }
-      });
+          if (index === (toBeAdded.length - 1)) {
+            initStateReference[element.toLowerCase()] = reference;
+          } else {
+            initStateReference = initStateReference[element.toLowerCase()];
+          }
+        });
+      }
     }
   }
 }
