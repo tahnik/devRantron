@@ -10,7 +10,14 @@ export const NOTIFS = {
 };
 
 export const NOTIF_TYPES = {
-
+  CONTENT_VOTE: 'content_vote',
+  RANT_SUB: 'rant_sub',
+  COMMENT: {
+    DISCUSS: 'comment_discuss',
+    MENTION: 'comment_mention',
+    CONTENT: 'comment_content',
+    VOTE: 'comment_vote',
+  },
 };
 
 export const SETTINGS = {

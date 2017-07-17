@@ -1,4 +1,4 @@
-import { NOTIFS } from '../consts/types';
+import { NOTIFS, ITEM } from '../consts/types';
 import rantscript from '../consts/rantscript';
 import { openModal } from './modal';
 
@@ -58,17 +58,21 @@ const clearNotifs = () => (dispatch, getState) => {
 const showNotifs = notif => (dispatch, getState) => {
   const notifSettings = getState().settings.general.notifications.options;
 
-  const myNotification = new Notification('devRantron', {
-    body: notif.body,
-    data: notif.id,
-    icon: 'http://i.imgur.com/iikd00P.png',
-  });
+  if (!notifSettings.notif_enabled.value) {
+    return;
+  }
+  if (notifSettings[notif.content.type].value === true) {
+    const myNotification = new Notification('devRantron', {
+      body: notif.body,
+      data: notif.id,
+      icon: 'http://i.imgur.com/iikd00P.png',
+    });
 
-
-  myNotification.onclick = (e) => {
-    dispatch(openModal(e.target.data));
-    currentWindow.focus();
-  };
+    myNotification.onclick = (e) => {
+      dispatch(openModal(ITEM.RANT.NAME, e.target.data));
+      currentWindow.focus();
+    };
+  }
 };
 
 export { fetchNotifs, clearNotifs, showNotifs }; //eslint-disable-line

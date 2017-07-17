@@ -54,7 +54,6 @@ class Notifs extends Component {
     const notifs = this.props.notifs;
     if (prevUnread < currentUnread) {
       const notif = notifs.items[0];
-      console.log(notif);
       const osNotif = {
         body: getNotifText(
           notif.type,
@@ -63,7 +62,6 @@ class Notifs extends Component {
         id: notif.rant_id,
         content: notif,
       };
-      console.log(osNotif);
       this.props.openNotif(osNotif);
     }
   }

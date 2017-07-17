@@ -66,32 +66,32 @@ export default {
             text: 'Enabled',
             value: true,
           },
-          rant_plus: {
+          content_vote: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'New +1\'s on your rants',
             value: true,
           },
-          comment_plus: {
+          comment_vote: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'New +1\'s on your comments',
             value: true,
           },
-          comment_on_own: {
+          comment_content: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'New comments on your rants',
             value: true,
           },
-          comment_on_others: {
+          comment_discuss: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'New comments on rants you have commented on',
             value: true,
           },
-          mentions: {
+          comment_mention: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'Someone @mentions you',
             value: true,
           },
-          subscriptions: {
+          rant_sub: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'New rants from users you subscribe to',
             value: true,

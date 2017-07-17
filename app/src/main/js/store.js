@@ -46,6 +46,11 @@ ipcRenderer.on('quitApp', () => {
 
 ipcRenderer.on('newUpdate', () => {
   store.dispatch(setUpdateStatus(true));
+  // eslint-disable-next-line
+  const notification = new Notification('devRantron', {
+    body: 'New update is availble. You can install it from settings',
+    icon: 'http://i.imgur.com/iikd00P.png',
+  });
 });
 
 ipcRenderer.on('upToDate', () => {

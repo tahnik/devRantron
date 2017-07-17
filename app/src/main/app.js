@@ -2,7 +2,7 @@ const electron = require('electron');
 
 const { app, BrowserWindow, Menu, Tray } = electron;
 
-const notify = require('./modules/notify.js');
+// const notify = require('./modules/notify.js');
 
 const os = require('os');
 const path = require('path');
@@ -65,7 +65,7 @@ function initTray() {
 
 /** This function will create the mainWindow */
 function createWindow() {
-  notify.init();
+  // notify.init();
 
   // Create the browser window.
   mainWindow = new BrowserWindow({

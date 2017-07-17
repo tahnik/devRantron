@@ -2,6 +2,7 @@
 /**
  * tahnik: We won't use this for now. We will work on it in later versions
  * rekkyrek: lol
+ * tahnik: lol wut?
  */
 
 const { BrowserWindow } = require('electron');
