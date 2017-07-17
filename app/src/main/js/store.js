@@ -39,7 +39,7 @@ if (
 ) {
   if (cmp(currentVersion, prevVersion) === 1) {
     const changes = updates[currentVersion];
-    if (changes.ADD) {
+    if (changes && changes.ADD) {
       const changesToBeAdded = changes.ADD;
       for (let i = 0; i < changesToBeAdded.length; i += 1) {
         const toBeAdded = changesToBeAdded[i].split('.');
