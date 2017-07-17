@@ -29,7 +29,6 @@ class Notifs extends Component {
     }, 10000);
 
     ipcRenderer.on('open_notif', () => { this.setState({ active: true }); });
-    ipcRenderer.on('notifReply', (sender, nr) => { console.log(nr.rantid, nr.message); });
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.firstFetch) {

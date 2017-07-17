@@ -52,5 +52,6 @@ module.exports = {
   init: initUI,
   send: (i,m)=>{main.sendReply(i,m)},
   show: showNotif,
+  log: (msg) => {console.log(msg)},
   ui: () => {return w}
 }

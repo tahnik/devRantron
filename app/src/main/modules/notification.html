@@ -117,6 +117,26 @@
         }
       }
 
+      function calcPos() {
+        var np = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
+        var ap = screen.getCursorScreenPoint();
+        main.log(np)
+        main.log(np.bounds.x + np.bounds.width - window.innerWidth - 12)
+        if(ap.y > np.workArea.height / 2) {
+          main.ui().setPosition(
+            np.workArea.x + np.workArea.width - window.innerWidth - 12,
+            np.workArea.y + np.workArea.height - window.innerHeight - 12
+          )
+        } else {
+          main.ui().setPosition(
+            np.workArea.x + np.workArea.width - window.innerWidth - 12,
+            np.workArea.y + 12
+          )
+        }
+      }
+
+      calcPos()
+
       function sendNotif(n, i) {
         const myNotification = new Notification('devRantron', {
           body: n.body + ' Click here to reply.',
@@ -124,13 +144,7 @@
         });
 
         myNotification.onclick = (e) => {
-          var np = screen.getDisplayNearestPoint(screen.getCursorScreenPoint()).size;
-          var ap = screen.getCursorScreenPoint();
-          if(ap.y > np.height / 2) {
-            main.ui().setPosition(ap.x, ap.y + 56)
-          } else {
-            main.ui().setPosition(ap.x, ap.y - (window.innerHeight / 2) - 56)
-          }
+          calcPos();
           main.ui().show();
         };
       }
