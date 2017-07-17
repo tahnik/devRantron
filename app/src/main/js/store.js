@@ -7,8 +7,12 @@ import {
   setOnStartup,
   setFirstLaunch,
 } from './actions/settings';
+import updates from './updates';
+import DEFAULT_STATE from './consts/default_states';
 
-const { ipcRenderer } = require('electron');
+const cmp = require('semver-compare');
+
+const { ipcRenderer, remote } = require('electron');
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //eslint-disable-line
 const middleware = applyMiddleware(thunk);
@@ -23,6 +27,36 @@ const getInitialState = () => {
 };
 
 const initialState = getInitialState();
+
+const currentVersion = remote.app.getVersion();
+
+const prevVersion = localStorage.getItem('prevVersion');
+
+if (currentVersion && prevVersion) {
+  if (cmp(currentVersion, prevVersion) === 1) {
+    const changes = updates[currentVersion];
+    if (changes) {
+      const toBeAdded = changes.ADD.split('.');
+      let reference = null;
+      let initStateReference = initialState;
+      toBeAdded.forEach((element, index) => {
+        if (index === 0) {
+          reference = DEFAULT_STATE[element];
+        } else {
+          reference = reference[element];
+        }
+
+        if (index === (toBeAdded.length - 1)) {
+          initStateReference[element.toLowerCase()] = reference;
+        } else {
+          initStateReference = initStateReference[element.toLowerCase()];
+        }
+      });
+    }
+  }
+}
+
+localStorage.setItem('prevVersion', currentVersion);
 
 const store = createStore(reducers, initialState, composeEnhancers(
     middleware,

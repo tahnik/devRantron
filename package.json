@@ -1,6 +1,6 @@
 {
   "name": "devrantron",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "main": "./app/build/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
@@ -139,6 +139,7 @@
     "react-twemoji": "0.0.8",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
+    "semver-compare": "^1.0.0",
     "twemoji": "^2.2.5"
   }
 }
