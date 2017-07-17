@@ -102,6 +102,7 @@
 
       // This is lazy but it works ;)
       let currentReply = 0;
+      let currentName = "";
 
       console.log(main)
 
@@ -112,7 +113,7 @@
           document.getElementById('ta').value = "";
           console.log('notif > send')
           main.ui().hide();
-          main.send(currentReply, replyText);
+          main.send(currentReply, `@${currentName} ${replyText}`);
         }
       }
 
@@ -150,6 +151,7 @@
             for (comment of res.comments) {
               if(n.content.created_time  == comment.created_time) {
                 document.getElementById('header').innerHTML = comment.user_username;
+                currentName = comment.user_username;
                 document.getElementById('desc').innerHTML = comment.body;
                 if(comment.user_avatar.i != undefined) {
                   document.getElementById('notifimage').src = 'https://avatars.devrant.io/'+comment.user_avatar.i;
