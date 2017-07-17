@@ -14,18 +14,23 @@ const isWin = /^win/.test(process.platform);
 const isMac = /^dar/.test(process.platform);
 const isLin = /^lin/.test(process.platform);
 
+
+const main = require('../app.js');
+
+let callback = () => {}
+
 function notifyLinux(opt) {
   opt.browserWindow.send('os_notification', opt);
 }
 // path.join(__dirname, '128.png')
 let w;
-function initUI(opt) {
+function initUI() {
   w = new BrowserWindow({
     width: 460,
     height: 172,
     frame: false,
     show: false,
-    resizable: true
+    resizable: false
   });
 
   w.loadURL(url.format({
@@ -34,18 +39,18 @@ function initUI(opt) {
     slashes: true
   }))
 
-  setInterval(()=>{
-    if(!w.isVisible()) {
-      w.webContents.send('notifData', {});
-    }
-  }, 10000)
-
   w.on('closed', () => {
     w = null
   })
 }
 
+function showNotif(n) {
+  w.webContents.send('notifData', n);
+}
+
 module.exports = {
   init: initUI,
+  send: (i,m)=>{main.sendReply(i,m)},
+  show: showNotif,
   ui: () => {return w}
 }

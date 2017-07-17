@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>devRant</title>
-    <link rel="stylesheet" href="http://localhost:8080/res/css/ionicons.min.css">
+    <link rel="stylesheet" href="../res/css/ionicons.min.css">
     <style>
       body, html {
         background: transparent;
@@ -84,10 +84,10 @@
       <i class="ion-close-round"></i>
     </div>
     <div id="top">
-      <img src="https://avatars.devrant.io/v-17_c-3_b-4_g-m_9-2_1-4_16-9_3-14_8-3_7-3_5-4_12-4_6-10_10-9_2-46_15-18_11-2_18-4_4-4_19-3_20-14.jpg" id="notifimage"/>
+      <img src="../res/images/invis.png" id="notifimage"/>
       <div id="info">
-        <h4 id="header">tahnik</h4>
-        <p id="desc">Yo daseksi. Do you wanna join my mineceraft srever? Teh iip is www.tohnak.com is gon be fun :)</p>
+        <h4 id="header">USER</h4>
+        <p id="desc">MESSAGE</p>
       </div>
     </div>
     <div id="text_area">
@@ -96,25 +96,30 @@
     </div>
     <script type="text/javascript">
       const { ipcRenderer, screen, remote } = require('electron');
+      const rantscript = require('rantscript');
 
-      const main = remote.require(__dirname + '/notify.js');
+      const main = remote.require('./modules/notify.js');
+
+      // This is lazy but it works ;)
+      let currentReply = 0;
 
       console.log(main)
 
       function sendReply() {
         let replyText = document.getElementById('ta').value;
-        document.getElementById('ta').value = "";
-        console.log(replyText);
+        console.log(replyText)
+        if(replyText.length > 0) {
+          document.getElementById('ta').value = "";
+          console.log('notif > send')
+          main.ui().hide();
+          main.send(currentReply, replyText);
+        }
       }
 
-      document.getElementById('close').onclick = () => {
-        main.ui().hide();
-      }
-
-      ipcRenderer.on('notifData', function (serder, store) {
+      function sendNotif(n, i) {
         const myNotification = new Notification('devRantron', {
-          body: 'Click here for quick reply UI to show',
-          icon: 'file://'+__dirname+'/128.png',
+          body: n.body + ' Click here to reply.',
+          icon: i,
         });
 
         myNotification.onclick = (e) => {
@@ -123,11 +128,42 @@
           if(ap.y > np.height / 2) {
             main.ui().setPosition(ap.x, ap.y + 56)
           } else {
-            main.ui().setPosition(ap.x, ap.y - 56)
+            main.ui().setPosition(ap.x, ap.y - (window.innerHeight / 2) - 56)
           }
           main.ui().show();
         };
+      }
+
+      document.getElementById('close').onclick = () => {
+        main.ui().hide();
+      }
+
+      ipcRenderer.on('notifData', function (serder, n) {
+        console.log(n)
+
+        currentReply = n.id;
+
+        rantscript
+          .rant(n.id)
+          .then((res)=>{
+            console.log(res)
+            for (comment of res.comments) {
+              if(n.content.created_time  == comment.created_time) {
+                document.getElementById('header').innerHTML = comment.user_username;
+                document.getElementById('desc').innerHTML = comment.body;
+                if(comment.user_avatar.i != undefined) {
+                  document.getElementById('notifimage').src = 'https://avatars.devrant.io/'+comment.user_avatar.i;
+                } else {
+                  document.getElementById('notifimage').src = '../res/images/invis.png';
+                }
+                document.getElementById('notifimage').style.background = '#'+comment.user_avatar.b;
+                sendNotif(n, document.getElementById('notifimage').src);
+                break;
+              }
+            }
+          })
       });
+
     </script>
   </body>
 </html>

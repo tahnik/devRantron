@@ -1,6 +1,7 @@
 import { NOTIFS, ITEM } from '../consts/types';
 import rantscript from '../consts/rantscript';
 import { openModal } from './modal';
+const {ipcRenderer} = require('electron')
 
 const currentWindow = require('electron').remote.getCurrentWindow();
 
@@ -62,6 +63,12 @@ const showNotifs = notif => (dispatch, getState) => {
     return;
   }
   if (notifSettings[notif.content.type].value === true) {
+    // Show quick reply notif instead
+    if(notif.content.type == "comment_content" || notif.content.type == "comment_mention") {
+      ipcRenderer.send('showQRNotif', notif)
+      return;
+    }
+
     const myNotification = new Notification('devRantron', {
       body: notif.body,
       data: notif.id,
