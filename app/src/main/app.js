@@ -186,13 +186,13 @@ ipcMain.on('auto-launch', (event, arg) => {
 });
 
 ipcMain.on('showQRNotif', (sender, n) => {
-  console.log('showQR',n)
-  notify.show(n)
+  console.log('showQR', n);
+  notify.show(n);
 });
 
-module.exports.sendReply= (i, m) => {
-  mainWindow.webContents.send('notifReply', {rantid: i, message: m});
-}
+module.exports.sendReply = (i, m) => {
+  mainWindow.webContents.send('notifReply', { rantid: i, message: m });
+};
 
 ipcMain.on('minimiseApp', () => {
   mainWindow.hide();
