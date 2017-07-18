@@ -20,7 +20,6 @@
         margin: 10px;
         border: none;
         border-radius: 100%;
-        -webkit-app-region: drag;
       }
       #info {
         flex: 1;
@@ -37,6 +36,7 @@
 
       #text_area {
         margin: 10px;
+        height: 68px;
       }
       button {
         height: 54px;
@@ -80,19 +80,21 @@
     </style>
   </head>
   <body>
-    <div id="close">
-      <i class="ion-close-round"></i>
-    </div>
-    <div id="top">
-      <img src="../res/images/invis.png" id="notifimage"/>
-      <div id="info">
-        <h4 id="header">USER</h4>
-        <p id="desc">MESSAGE</p>
+    <div id="app">
+      <div id="close">
+        <i class="ion-close-round"></i>
       </div>
-    </div>
-    <div id="text_area">
-      <textarea id="ta" resizable="false" placeholder="Ya wil be great! Jouinnin rite nao!"></textarea>
-      <button onclick="sendReply()"><i class="ion-android-send"></i></button>
+      <div id="top">
+        <img src="../res/images/invis.png" id="notifimage"/>
+        <div id="info">
+          <h4 id="header">USER</h4>
+          <p id="desc">MESSAGE</p>
+        </div>
+      </div>
+      <div id="text_area">
+        <textarea id="ta" resizable="false" placeholder="Ya wil be great! Jouinnin rite nao!"></textarea>
+        <button onclick="sendReply()"><i class="ion-android-send"></i></button>
+      </div>
     </div>
     <script type="text/javascript">
       const { ipcRenderer, screen, remote } = require('electron');
@@ -118,6 +120,7 @@
       }
 
       function calcPos() {
+        main.ui().setSize(460, document.getElementById('app').scrollHeight - 13)
         var np = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
         var ap = screen.getCursorScreenPoint();
         main.log(np)
