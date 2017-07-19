@@ -38,8 +38,6 @@ if (
 ) {
   if (cmp(currentVersion, prevVersion) === 1) {
     initialState = merge(DEFAULT_STATE, initialState);
-    console.log('State Merged');
-    console.log(initialState);
   }
 }
 

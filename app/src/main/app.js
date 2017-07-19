@@ -42,6 +42,11 @@ function openRantComposer() {
   mainWindow.webContents.send('compose_rant');
 }
 
+function openNotifications() {
+  mainWindow.show();
+  mainWindow.webContents.send('open_notif');
+}
+
 function quitApp() {
   mainWindow.webContents.send('quitApp');
 }
@@ -55,6 +60,7 @@ function initTray() {
     { label: 'Open App', click() { mainWindow.show(); } },
     { type: 'separator' },
     { label: 'Compose A Rant', click() { openRantComposer(); } },
+    { label: 'Open Notifications', click() { openNotifications(); } },
     { type: 'separator' },
     { label: 'Quit', click() { quitApp(); } },
   ]);
