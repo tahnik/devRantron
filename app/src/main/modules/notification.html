@@ -105,6 +105,7 @@
       // This is lazy but it works ;)
       let currentReply = 0;
       let currentName = "";
+      let notifs = [];
 
       console.log(main)
 
@@ -141,12 +142,15 @@
       calcPos()
 
       function sendNotif(n, i) {
-        const myNotification = new Notification('devRantron', {
+        main.log('sendNotif');
+        let notifNum = notifs.length;
+
+        notifs.push(new Notification('devRantron', {
           body: n.body + ' Click here to reply.',
           icon: i,
-        });
+        }));
 
-        myNotification.onclick = (e) => {
+        notifs[notifNum].onclick = (e) => {
           calcPos();
           main.ui().show();
         };
@@ -156,7 +160,18 @@
         main.ui().hide();
       }
 
+      function getClosest(num, arr) {
+        let curr = arr[0];
+        for (val of arr) {
+          if (Math.abs (num - val.created_time) < Math.abs (num - curr.created_time)) {
+            curr = val;
+          }
+        }
+        return curr;
+      }
+
       ipcRenderer.on('notifData', function (serder, n) {
+        main.log('notifData');
         console.log(n)
 
         currentReply = n.id;
@@ -165,21 +180,21 @@
           .rant(n.id)
           .then((res)=>{
             console.log(res)
-            for (comment of res.comments) {
-              if(n.content.created_time  == comment.created_time) {
-                document.getElementById('header').innerHTML = comment.user_username;
-                currentName = comment.user_username;
-                document.getElementById('desc').innerHTML = comment.body;
-                if(comment.user_avatar.i != undefined) {
-                  document.getElementById('notifimage').src = 'https://avatars.devrant.io/'+comment.user_avatar.i;
-                } else {
-                  document.getElementById('notifimage').src = '../res/images/invis.png';
-                }
-                document.getElementById('notifimage').style.background = '#'+comment.user_avatar.b;
-                sendNotif(n, document.getElementById('notifimage').src);
-                break;
-              }
+            main.log('gotComents');
+
+            let comment = getClosest(n.content.created_time, res.comments);
+
+            main.log(`comment: ${comment}`);
+            document.getElementById('header').innerHTML = comment.user_username;
+            currentName = comment.user_username;
+            document.getElementById('desc').innerHTML = comment.body;
+            if(comment.user_avatar.i != undefined) {
+              document.getElementById('notifimage').src = 'https://avatars.devrant.io/'+comment.user_avatar.i;
+            } else {
+              document.getElementById('notifimage').src = '../res/images/invis.png';
             }
+            document.getElementById('notifimage').style.background = '#'+comment.user_avatar.b;
+            sendNotif(n, document.getElementById('notifimage').src);
           })
       });
 
