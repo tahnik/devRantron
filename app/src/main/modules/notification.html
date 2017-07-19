@@ -114,6 +114,7 @@
         margin-bottom: 6px;
         margin-top: 14px;
         font-family: 'Lato', sans-serif;
+        -webkit-app-region: drag;
       }
 
       #desc {
@@ -200,7 +201,7 @@
         </div>
       </div>
       <div id="text_area">
-        <textarea id="ta" resizable="false" placeholder="Ya wil be great! Jouinnin rite nao!"></textarea>
+        <textarea id="ta" resizable="false" placeholder="Reply"></textarea>
         <button onclick="sendReply()"><i class="ion-android-send"></i></button>
       </div>
     </div>
@@ -233,22 +234,24 @@
       }
 
       function calcPos() {
-        main.ui().setSize(460, document.getElementById('app').scrollHeight - 13)
-        var np = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
-        var ap = screen.getCursorScreenPoint();
-        main.log(np)
-        main.log(np.bounds.x + np.bounds.width - window.innerWidth - 12)
-        if (ap.y > np.workArea.height / 2) {
-          main.ui().setPosition(
-            np.workArea.x + np.workArea.width - window.innerWidth - 12,
-            np.workArea.y + np.workArea.height - window.innerHeight - 12
-          )
-        } else {
-          main.ui().setPosition(
-            np.workArea.x + np.workArea.width - window.innerWidth - 12,
-            np.workArea.y + 12
-          )
-        }
+        main.ui().setSize(460, document.getElementById('app').scrollHeight - 13);
+        setTimeout(()=>{
+          var np = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
+          var ap = screen.getCursorScreenPoint();
+          main.log(np)
+          main.log(np.bounds.x + np.bounds.width - window.innerWidth - 12)
+          if (ap.y > np.workArea.height / 2) {
+            main.ui().setPosition(
+              np.workArea.x + np.workArea.width - window.innerWidth - 12,
+              np.workArea.y + np.workArea.height - window.innerHeight - 12
+            )
+          } else {
+            main.ui().setPosition(
+              np.workArea.x + np.workArea.width - window.innerWidth - 12,
+              np.workArea.y + 12
+            )
+          }
+        }, 65)
       }
 
       window.onbeforeunload = (e) => {
@@ -266,6 +269,8 @@
           body: n.body + ' Click here to reply.',
           icon: i,
         }));
+
+        calcPos();
 
         notifs[notifNum].onclick = (e) => {
           calcPos();
@@ -286,6 +291,8 @@
         }
         return curr;
       }
+
+      notifimage.onclick = calcPos
 
       ipcRenderer.on('notifData', function (serder, n) {
         main.log('notifData');

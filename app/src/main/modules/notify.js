@@ -29,7 +29,7 @@ function initUI() {
     width: 460,
     height: 172,
     frame: false,
-    show: false,
+    show: true,
     resizable: false
   });
 
