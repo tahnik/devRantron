@@ -2,14 +2,14 @@ const electron = require('electron');
 
 const { app, BrowserWindow, Menu, Tray } = electron;
 
-const notify = require('./modules/notify.js');
-
 const https = require('https');
 const os = require('os');
 const path = require('path');
 const url = require('url');
 const { ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
+
+const notify = require(path.join(__dirname, '/modules/notify.js'));
 
 const systemSpecs = {
   cpu_speed: os.cpus()[0].speed,
