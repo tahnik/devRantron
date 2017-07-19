@@ -8,14 +8,16 @@
 ## devRant Unofficial Cross Platform Desktop Application
 
 Our app is now in beta! We have almost finished implementing all the features and we can't wait for you guys to try it out!
-### Home Screen
-![devRantron 1](http://i.imgur.com/blssUMw.png)
+### Login with devRant Account
+![devRantron 1](https://github.com/tahnik/devRantron/blob/readme/app/screenshots/login.png?raw=true)
 ### View Rants and Make Comments
-![devRantron 2](http://i.imgur.com/sl3QcMY.png)
+![devRantron 2](https://github.com/tahnik/devRantron/blob/readme/app/screenshots/view.png?raw=true)
 ### Post Rants and Pick Emojis!
-![devRantron 3](http://i.imgur.com/TfV5YbG.png)
+![devRantron 3](https://github.com/tahnik/devRantron/blob/readme/app/screenshots/post.png?raw=true)
 ### Get Real Time notifications
-![devRantron 4](http://i.imgur.com/Nb9VllQ.png)
+![devRantron 4](https://github.com/tahnik/devRantron/blob/readme/app/screenshots/notif.png?raw=true)
+### Make Your Custom View!
+![devRantron 4](https://github.com/tahnik/devRantron/blob/readme/app/screenshots/custom.png?raw=true)
 
 This is our approach to create a cross platform desktop application for [devRant.io].
 
