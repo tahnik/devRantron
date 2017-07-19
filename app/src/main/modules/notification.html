@@ -251,6 +251,11 @@
         }
       }
 
+      window.onbeforeunload = (e) => {
+        main.ui().hide();
+        e.returnValue = false;
+      }
+
       calcPos()
 
       function sendNotif(n, i) {

@@ -45,7 +45,9 @@ function initUI() {
 }
 
 function showNotif(n) {
-  w.webContents.send('notifData', n);
+  if (w) {
+    w.webContents.send('notifData', n);
+  }
 }
 
 module.exports = {

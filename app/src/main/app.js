@@ -186,7 +186,6 @@ ipcMain.on('auto-launch', (event, arg) => {
 });
 
 ipcMain.on('showQRNotif', (sender, n) => {
-  console.log('showQR', n);
   notify.show(n);
 });
 
@@ -199,7 +198,6 @@ ipcMain.on('minimiseApp', () => {
 });
 
 ipcMain.on('forceQuitApp', () => {
-  console.log('Force quitting the app');
   app.exit(0);
 });
 
@@ -212,29 +210,13 @@ ipcMain.on('updateNow', () => {
   autoUpdater.quitAndInstall();
 });
 
-
-//-------------------------------------------------------------------
-// Auto updates
-//
-// For details about these events, see the Wiki:
-// https://github.com/electron-userland/electron-builder/wiki/Auto-Update#events
-//
-// The app doesn't need to listen to any events except `update-downloaded`
-//
-// Uncomment any of the below events to listen for them.  Also,
-// look in the previous section to see them being used.
-//-------------------------------------------------------------------
-// autoUpdater.on('checking-for-update', () => {
-// });
 autoUpdater.on('update-available', () => {
 });
+
 autoUpdater.on('update-not-available', () => {
   mainWindow.webContents.send('upTodate');
 });
-// autoUpdater.on('error', (err) => {
-// });
-// autoUpdater.on('download-progress', (progressObj) => {
-// });
+
 autoUpdater.on('update-downloaded', () => {
   mainWindow.webContents.send('newUpdate');
 });
