@@ -213,7 +213,17 @@
       } = require('electron');
       const rantscript = require('rantscript');
 
-      const main = remote.require('./modules/notify.js');
+      document.addEventListener("keydown", function (e) {
+        if (e.which === 123) {
+          remote.getCurrentWindow().toggleDevTools();
+        } else if (e.which === 116) {
+          location.reload();
+        }
+      });
+
+      const path = require('path');
+
+      const main = remote.require(path.join(__dirname, '/notify.js'));
 
       // This is lazy but it works ;)
       let currentReply = 0;
