@@ -5,7 +5,7 @@
 [![node](http://img.shields.io/badge/node-8.x-brightgreen.svg)](https://nodejs.org/en/)
 [![GitHub contributors](https://img.shields.io/github/contributors/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/graphs/contributors)
 [![slack](https://img.shields.io/badge/slack-devRantron-blue.svg)](https://devrantron.slack.com/)
-## devRant Unofficial Cross Platform Desktop Application
+## Unofficial devRant Cross Platform Desktop Application
 ![devRantron Banner](https://i.imgur.com/dMWxH4x.png)
 
 Our app is now in beta! We have almost finished implementing all the features and we can't wait for you guys to try it out!
