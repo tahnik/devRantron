@@ -51,7 +51,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production'),
+        NODE_ENV: JSON.stringify('production'),
       },
     }),
     new ExtractTextPlugin({ filename: 'main.css', allChunks: true }),
@@ -63,6 +63,10 @@ module.exports = {
       {
         from: './src/main/app.js',
         to: '',
+      },
+      {
+        from: './src/main/modules',
+        to: 'modules',
       },
       {
         from: './src/main/res',
