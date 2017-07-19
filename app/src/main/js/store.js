@@ -2,19 +2,18 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
 import {
-  saveUserState,
-  setUpdateStatus,
   setOnStartup,
   setFirstLaunch,
 } from './actions/settings';
 import updates from './updates';
 import DEFAULT_STATE from './consts/default_states';
+import IPCHhandlers from './utils/ipcHandlers';
 
 const cmp = require('semver-compare');
+const { remote } = require('electron');
 
-const { ipcRenderer, remote } = require('electron');
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //eslint-disable-line
+// eslint-disable-next-line
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = applyMiddleware(thunk);
 
 const getInitialState = () => {
@@ -29,7 +28,6 @@ const getInitialState = () => {
 const initialState = getInitialState();
 
 const currentVersion = remote.app.getVersion();
-
 const prevVersion = localStorage.getItem('prevVersion');
 
 if (
@@ -80,22 +78,6 @@ if (initialState) {
   }
 }
 
-ipcRenderer.on('quitApp', () => {
-  saveUserState(store.getState());
-  ipcRenderer.sendSync('forceQuitApp');
-});
-
-ipcRenderer.on('newUpdate', () => {
-  store.dispatch(setUpdateStatus(true));
-  // eslint-disable-next-line
-  const notification = new Notification('devRantron', {
-    body: 'New update is availble. You can install it from settings',
-    icon: 'http://i.imgur.com/iikd00P.png',
-  });
-});
-
-ipcRenderer.on('upToDate', () => {
-  store.dispatch(setUpdateStatus(false));
-});
+IPCHhandlers(store);
 
 export default store;
