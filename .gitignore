@@ -194,3 +194,5 @@ release
 
 # script folder holding some quick edit scripts (sirwindfield)
 scripts
+
+app/build

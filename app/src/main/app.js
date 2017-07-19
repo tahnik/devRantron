@@ -69,7 +69,7 @@ function createWindow() {
   notify.init();
 
   // Send usage data to firebase
- if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== 'development') {
     let plat = '';
 
     if (/^win/.test(process.platform)) { plat = 'windows'; }
@@ -78,8 +78,8 @@ function createWindow() {
 
     console.log(`Logging usage. Platform is ${plat}`);
 
-    https.get(`https://us-central1-devrantron.cloudfunctions.net/logUser/${plat}`, (response) => {
-        console.log('Logged usage.');
+    https.get(`https://us-central1-devrantron.cloudfunctions.net/logUser/${plat}`, () => {
+      console.log('Logged usage.');
     }).on('error', (e) => {
       console.warn(e);
     });
@@ -113,7 +113,6 @@ function createWindow() {
   } else {
     // we should be in production
     // load the index.html of the app.
-    mainWindow.webContents.openDevTools();
     mainWindow.loadURL(url.format({
       pathname: path.join(__dirname, 'index.html'),
       protocol: 'file:',
