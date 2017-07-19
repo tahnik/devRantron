@@ -135,6 +135,10 @@ function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
+    const notifyWindow = notify.ui();
+    if (notifyWindow) {
+      notifyWindow.destroy();
+    }
   });
 
   initTray();
@@ -195,6 +199,7 @@ ipcMain.on('minimiseApp', () => {
 });
 
 ipcMain.on('forceQuitApp', () => {
+  console.log('Force quitting the app');
   app.exit(0);
 });
 
