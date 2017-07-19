@@ -4,7 +4,7 @@ const { app, BrowserWindow, Menu, Tray } = electron;
 
 const notify = require('./modules/notify.js');
 
-const http = require('http');
+const https = require('https');
 const os = require('os');
 const path = require('path');
 const url = require('url');
@@ -69,7 +69,7 @@ function createWindow() {
   notify.init();
 
   // Send usage data to firebase
-  if (process.env.NODE_ENV !== 'development') {
+ if (process.env.NODE_ENV !== 'development') {
     let plat = '';
 
     if (/^win/.test(process.platform)) { plat = 'windows'; }
@@ -78,13 +78,10 @@ function createWindow() {
 
     console.log(`Logging usage. Platform is ${plat}`);
 
-    http.get({
-      host: 'us-central1-devrantron.cloudfunctions.net',
-      path: `/logUser/${plat}`,
-    }, (response) => {
-      response.on('end', () => {
+    https.get(`https://us-central1-devrantron.cloudfunctions.net/logUser/${plat}`, (response) => {
         console.log('Logged usage.');
-      });
+    }).on('error', (e) => {
+      console.warn(e);
     });
   }
 
