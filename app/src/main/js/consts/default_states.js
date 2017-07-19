@@ -9,13 +9,13 @@ import { getUID } from './DOMFunctions';
  */
 
 export default {
-  AUTH: {
+  auth: {
     user: null,
     state: STATE.INITIAL,
     noLogin: false,
   },
-  NOTIFS: null,
-  SETTINGS: {
+  notifs: null,
+  settings: {
     theme: {
       name: 'Dark Theme',
       backgroundColor: '#54556E',
@@ -122,22 +122,12 @@ export default {
       },
     },
   },
-  TOAST: {
+  toast: {
     text: '',
     isVisible: false,
   },
-  RANTS: {
-    state: STATE.INITIAL,
-    page: 0,
-    items: [],
-  },
-  WEEKLY: {
-    state: STATE.INITIAL,
-    page: 0,
-    items: [],
-  },
-  COLUMNS: [],
-  COLUMN: {
+  columns: [],
+  column: {
     id: getUID(),
     items: [],
     page: 0,
@@ -145,14 +135,11 @@ export default {
     prev_set: 0,
     state: STATE.INITIAL,
   },
-  ITEM: [
-
-  ],
-  USER: {
+  user: {
     state: STATE.INITIAL,
     profile: null,
   },
-  MODAL: {
+  modal: {
     item: null,
   },
 };

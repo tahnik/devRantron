@@ -8,7 +8,7 @@ const { ipcRenderer } = require('electron');
 
 export default (store) => {
   ipcRenderer.on('quitApp', () => {
-    saveUserState(store.getState());
+    store.dispatch(saveUserState());
     ipcRenderer.sendSync('forceQuitApp');
   });
 

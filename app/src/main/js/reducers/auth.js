@@ -1,7 +1,7 @@
 import DEFAULT_STATES from '../consts/default_states';
 import { AUTH, STATE } from '../consts/types';
 
-export default (state = DEFAULT_STATES.AUTH, action) => {
+export default (state = DEFAULT_STATES.auth, action) => {
   switch (action.type) {
     case AUTH.LOGIN: {
       switch (action.state) {

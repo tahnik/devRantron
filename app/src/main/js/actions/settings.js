@@ -10,7 +10,8 @@ const setAutoLaunch = (value) => {
   }
 };
 
-const saveUserState = (state) => {
+const saveUserState = () => (dispatch, getState) => {
+  const state = getState();
   const customCols = [...state.columns];
   for (let index = 0; index < customCols.length; index += 1) {
     customCols[index].items = [];
@@ -27,7 +28,7 @@ const saveUserState = (state) => {
   localStorage.setItem('savedState', JSON.stringify(savedState));
 };
 
-const setOnBeforeUnload = (state, value) => {
+const setOnBeforeUnload = value => (dispatch) => {
   if (value) {
     window.onbeforeunload = (e) => {
       ipcRenderer.send('minimiseApp');
@@ -35,17 +36,17 @@ const setOnBeforeUnload = (state, value) => {
     };
   } else {
     window.onbeforeunload = () => {
-      saveUserState(state);
+      dispatch(saveUserState());
     };
   }
 };
 
 
-const setMinimiseOnClose = value => (dispatch, getState) => {
+const setMinimiseOnClose = value => (dispatch) => {
   if (value) {
-    setOnBeforeUnload(getState(), true);
+    dispatch(setOnBeforeUnload(true));
   } else {
-    setOnBeforeUnload(getState(), false);
+    dispatch(setOnBeforeUnload(false));
   }
 };
 
@@ -94,7 +95,7 @@ const setOnStartup = () => (dispatch, getState) => {
  * @param {string} username Either username or email
  * @param {string} password Password for the user
  */
-const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch, getState) => {
+const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
   if (primaryKey === 'autoLaunch') {
     setAutoLaunch(value);
   }
@@ -102,7 +103,7 @@ const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch, getState) 
     dispatch(setMinimiseOnClose(value));
   }
   if (primaryKey === 'update') {
-    saveUserState(getState());
+    dispatch(saveUserState());
     ipcRenderer.send('updateNow', true);
   }
   if (primaryKey === 'reset_cache') {

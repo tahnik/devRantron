@@ -85,7 +85,7 @@ const getItemType = type => (type === FEED.COLLABS.NAME ? ITEM.COLLAB.NAME : ITE
  */
 const addColumn = (type = FEED.RANTS.NAME) => (dispatch) => {
   // get the default state of a column
-  const column = DEFAULT_STATES.COLUMN;
+  const column = DEFAULT_STATES.column;
 
   // Modify the column attributes as necessary
   const filters = getFilters(type);
@@ -118,7 +118,7 @@ const removeColumn = id => (dispatch) => {
  */
 const resetColumn = () => (dispatch) => {
   // Get a default state, this can be used to reset the column
-  const column = DEFAULT_STATES.COLUMN;
+  const column = DEFAULT_STATES.column;
   column.id = getUID();
 
   dispatch({

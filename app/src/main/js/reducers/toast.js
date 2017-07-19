@@ -1,7 +1,7 @@
 import DEFAULT_STATE from '../consts/default_states';
 import { TOAST } from '../consts/types';
 
-export default (state = DEFAULT_STATE.TOAST, action) => {
+export default (state = DEFAULT_STATE.toast, action) => {
   switch (action.type) {
     case TOAST.SHOW:
       return { ...state, text: action.text, isVisible: true };

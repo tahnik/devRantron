@@ -1,7 +1,7 @@
 import DEFAULT_STATES from '../consts/default_states';
 import { COLUMNS, COLUMN } from '../consts/types';
 
-export default (state = DEFAULT_STATES.COLUMNS, action) => {
+export default (state = DEFAULT_STATES.columns, action) => {
   switch (action.type) {
     case COLUMN.FETCH: {
       const reqColumn = state.filter(column => column.id === action.column.id)[0];
@@ -25,7 +25,7 @@ export default (state = DEFAULT_STATES.COLUMNS, action) => {
       return newColumns;
     }
     case COLUMNS.RESET: {
-      return DEFAULT_STATES.COLUMNS;
+      return DEFAULT_STATES.columns;
     }
     default:
       return state;

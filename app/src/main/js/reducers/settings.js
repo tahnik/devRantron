@@ -1,7 +1,7 @@
 import DEFAULT_STATES from '../consts/default_states';
 import { SETTINGS } from '../consts/types';
 
-export default (state = DEFAULT_STATES.SETTINGS, action) => {
+export default (state = DEFAULT_STATES.settings, action) => {
   switch (action.type) {
     case SETTINGS.ACTION.CHANGE_GENERAL: {
       const { primaryKey, secondaryKey } = action;
