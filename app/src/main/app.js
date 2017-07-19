@@ -79,7 +79,7 @@ function createWindow() {
     console.log(`Logging usage. Platform is ${plat}`);
 
     http.get({
-      host: 'https://us-central1-devrantron.cloudfunctions.net',
+      host: 'us-central1-devrantron.cloudfunctions.net',
       path: `/logUser/${plat}`,
     }, (response) => {
       response.on('end', () => {
