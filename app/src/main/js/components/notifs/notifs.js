@@ -66,7 +66,7 @@ class Notifs extends Component {
     }
   }
   toggleNotif(e) {
-    if (e.target.className === 'notif_bubbles active') {
+    if (e.target.className === 'notif_bubble_container') {
       this.setState({ active: !this.state.active });
     }
   }
