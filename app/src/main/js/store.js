@@ -2,15 +2,19 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
 import {
-  saveUserState,
-  setUpdateStatus,
   setOnStartup,
   setFirstLaunch,
 } from './actions/settings';
+import DEFAULT_STATE from './consts/default_states';
+import IPCHhandlers from './utils/ipcHandlers';
 
-const { ipcRenderer } = require('electron');
+const merge = require('deepmerge');
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //eslint-disable-line
+const cmp = require('semver-compare');
+const { remote } = require('electron');
+
+// eslint-disable-next-line
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = applyMiddleware(thunk);
 
 const getInitialState = () => {
@@ -22,7 +26,22 @@ const getInitialState = () => {
   return {};
 };
 
-const initialState = getInitialState();
+let initialState = getInitialState();
+
+const currentVersion = remote.app.getVersion();
+const prevVersion = localStorage.getItem('prevVersion');
+
+if (
+  currentVersion && prevVersion
+  && !(Object.keys(initialState).length === 0
+  && initialState.constructor === Object)
+) {
+  if (cmp(currentVersion, prevVersion) === 1) {
+    initialState = merge(DEFAULT_STATE, initialState);
+  }
+}
+
+localStorage.setItem('prevVersion', currentVersion);
 
 const store = createStore(reducers, initialState, composeEnhancers(
     middleware,
@@ -39,17 +58,6 @@ if (initialState) {
   }
 }
 
-ipcRenderer.on('quitApp', () => {
-  saveUserState(store.getState());
-  ipcRenderer.sendSync('forceQuitApp');
-});
-
-ipcRenderer.on('newUpdate', () => {
-  store.dispatch(setUpdateStatus(true));
-});
-
-ipcRenderer.on('upToDate', () => {
-  store.dispatch(setUpdateStatus(false));
-});
+IPCHhandlers(store);
 
 export default store;

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Item from './items';
 import CompactUserCard from '../user/compact_user_card';
 
+const { ipcRenderer } = require('electron');
+
 class SideNav extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +12,9 @@ class SideNav extends Component {
       username: '',
       password: '',
     };
+  }
+  componentDidMount() {
+    ipcRenderer.on('compose_rant', () => { this.props.open(); });
   }
   getUserCard() {
     const { user, logout, login, fetchUser } = this.props;

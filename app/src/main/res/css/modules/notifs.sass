@@ -71,7 +71,6 @@
     z-index: 199
     animation: notif_bubbles_out 0.3s forwards
     position: relative
-    overflow-y: scroll
     width: 100vw
     height: calc(100vh)
     margin-top: 20px
@@ -92,51 +91,57 @@
       position: fixed
       top: 0px
       left: 15px
-    .notif_bubble
-      width: 20rem
-      border-radius: 5px
-      color: #fff
-      text-align: right
-      padding: 0.5rem 0.5rem 1rem 0.5rem
-      margin: 0.5rem 0
-      transition: all 0.2s
-      &:hover
-        background-color: rgba(255, 255, 255, 0.2)
-        cursor: pointer
-      &:active
-        transform: scale(0.9)
-      .notif_desc
-        display: flex
-        align-items: center
-        height: 3rem
-        padding-left: 1rem
-        p
-          margin: 0px
-          text-align: left
-      .notif_badge
-        float: left
-        height: 3.5rem
-        width: 3.5rem
-        border-radius: 50%
-        text-align: center
-        background: #C14857
-        color: white
-        position: relative
-        i
-          position: absolute
-          top: 0
-          left: -8px
-          background-color: #D55161
+    .notif_bubble_container
+      display: flex
+      width: 100%
+      align-items: center
+      flex-direction: column
+      overflow-y: scroll
+      .notif_bubble
+        width: 20rem
+        border-radius: 5px
+        color: #fff
+        text-align: right
+        padding: 0.5rem 0.5rem 1rem 0.5rem
+        margin: 0.5rem 0
+        transition: all 0.2s
+        &:hover
+          background-color: rgba(255, 255, 255, 0.2)
+          cursor: pointer
+        &:active
+          transform: scale(0.9)
+        .notif_desc
+          display: flex
+          align-items: center
+          height: 3rem
+          padding-left: 1rem
+          p
+            margin: 0px
+            text-align: left
+        .notif_badge
+          float: left
+          height: 3.5rem
+          width: 3.5rem
+          border-radius: 50%
+          text-align: center
+          background: #C14857
+          color: white
+          position: relative
+          i
+            position: absolute
+            top: 0
+            left: -8px
+            background-color: #D55161
+            border-radius: 100%
+            height: 23px
+            width: 23px
+            font-size: 0.9rem
+            line-height: 1.4rem
+            &.read
+              background: #a2a1a1
+        .notif_image
+          height: 100%
+          width: 100%
           border-radius: 100%
-          height: 23px
-          width: 23px
-          font-size: 0.9rem
-          line-height: 1.4rem
-          &.read
-            background: #a2a1a1
-      .notif_image
-        height: 100%
-        width: 100%
-        border-radius: 100%
   ::-webkit-scrollbar
     display: none

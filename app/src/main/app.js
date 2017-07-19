@@ -2,12 +2,14 @@ const electron = require('electron');
 
 const { app, BrowserWindow, Menu, Tray } = electron;
 
-
+const https = require('https');
 const os = require('os');
 const path = require('path');
 const url = require('url');
 const { ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
+
+const notify = require(path.join(__dirname, '/modules/notify.js'));
 
 const systemSpecs = {
   cpu_speed: os.cpus()[0].speed,
@@ -40,6 +42,11 @@ function openRantComposer() {
   mainWindow.webContents.send('compose_rant');
 }
 
+function openNotifications() {
+  mainWindow.show();
+  mainWindow.webContents.send('open_notif');
+}
+
 function quitApp() {
   mainWindow.webContents.send('quitApp');
 }
@@ -53,6 +60,7 @@ function initTray() {
     { label: 'Open App', click() { mainWindow.show(); } },
     { type: 'separator' },
     { label: 'Compose A Rant', click() { openRantComposer(); } },
+    { label: 'Open Notifications', click() { openNotifications(); } },
     { type: 'separator' },
     { label: 'Quit', click() { quitApp(); } },
   ]);
@@ -64,6 +72,25 @@ function initTray() {
 
 /** This function will create the mainWindow */
 function createWindow() {
+  notify.init();
+
+  // Send usage data to firebase
+  if (process.env.NODE_ENV !== 'development') {
+    let plat = '';
+
+    if (/^win/.test(process.platform)) { plat = 'windows'; }
+    if (/^dar/.test(process.platform)) { plat = 'osx'; }
+    if (/^lin/.test(process.platform)) { plat = 'linux'; }
+
+    console.log(`Logging usage. Platform is ${plat}`);
+
+    https.get(`https://us-central1-devrantron.cloudfunctions.net/logUser/${plat}`, () => {
+      console.log('Logged usage.');
+    }).on('error', (e) => {
+      console.warn(e);
+    });
+  }
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1024,
@@ -114,6 +141,10 @@ function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
+    const notifyWindow = notify.ui();
+    if (notifyWindow) {
+      notifyWindow.destroy();
+    }
   });
 
   initTray();
@@ -160,6 +191,13 @@ ipcMain.on('auto-launch', (event, arg) => {
   }
 });
 
+ipcMain.on('showQRNotif', (sender, n) => {
+  notify.show(n);
+});
+
+module.exports.sendReply = (i, m) => {
+  mainWindow.webContents.send('notifReply', { rantid: i, message: m });
+};
 
 ipcMain.on('minimiseApp', () => {
   mainWindow.hide();
@@ -169,33 +207,22 @@ ipcMain.on('forceQuitApp', () => {
   app.exit(0);
 });
 
+ipcMain.on('reLaunch', () => {
+  app.relaunch({ args: process.argv.slice(1).concat(['--relaunch']) });
+  app.exit(0);
+});
+
 ipcMain.on('updateNow', () => {
   autoUpdater.quitAndInstall();
 });
 
-
-//-------------------------------------------------------------------
-// Auto updates
-//
-// For details about these events, see the Wiki:
-// https://github.com/electron-userland/electron-builder/wiki/Auto-Update#events
-//
-// The app doesn't need to listen to any events except `update-downloaded`
-//
-// Uncomment any of the below events to listen for them.  Also,
-// look in the previous section to see them being used.
-//-------------------------------------------------------------------
-// autoUpdater.on('checking-for-update', () => {
-// });
 autoUpdater.on('update-available', () => {
 });
+
 autoUpdater.on('update-not-available', () => {
   mainWindow.webContents.send('upTodate');
 });
-// autoUpdater.on('error', (err) => {
-// });
-// autoUpdater.on('download-progress', (progressObj) => {
-// });
+
 autoUpdater.on('update-downloaded', () => {
   mainWindow.webContents.send('newUpdate');
 });

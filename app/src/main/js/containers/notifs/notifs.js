@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Notifs from '../../components/notifs/notifs';
-import { fetchNotifs, clearNotifs } from '../../actions/notifs';
+import { fetchNotifs, clearNotifs, showNotifs } from '../../actions/notifs';
 import { openModal } from '../../actions/modal';
 import { ITEM } from '../../consts/types';
 
@@ -26,6 +26,9 @@ const mapDispatchToProps = dispatch => ({
   open: (id, type = ITEM.RANT.NAME) => {
     dispatch(fetchNotifs());
     dispatch(openModal(type, id));
+  },
+  openNotif: (notif) => {
+    dispatch(showNotifs(notif));
   },
 });
 

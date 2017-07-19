@@ -26,3 +26,12 @@ if (module.hot) {
     render(newRoot);
   });
 }
+
+document.addEventListener('keydown', (e) => {
+  if (e.which === 123) {
+    // eslint-disable-next-line
+    require('electron').remote.getCurrentWindow().toggleDevTools();
+  } else if (e.which === 116) {
+    location.reload();
+  }
+});

@@ -9,13 +9,13 @@ import { getUID } from './DOMFunctions';
  */
 
 export default {
-  AUTH: {
+  auth: {
     user: null,
     state: STATE.INITIAL,
     noLogin: false,
   },
-  NOTIFS: null,
-  SETTINGS: {
+  notifs: null,
+  settings: {
     theme: {
       name: 'Dark Theme',
       backgroundColor: '#54556E',
@@ -58,6 +58,46 @@ export default {
           },
         },
       },
+      notifications: {
+        title: 'Notifications',
+        options: {
+          notif_enabled: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'Enabled',
+            value: true,
+          },
+          content_vote: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'New +1\'s on your rants',
+            value: true,
+          },
+          comment_vote: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'New +1\'s on your comments',
+            value: true,
+          },
+          comment_content: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'New comments on your rants',
+            value: true,
+          },
+          comment_discuss: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'New comments on rants you have commented on',
+            value: true,
+          },
+          comment_mention: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'Someone @mentions you',
+            value: true,
+          },
+          rant_sub: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'New rants from users you subscribe to',
+            value: true,
+          },
+        },
+      },
       autoLaunch: {
         text: 'Auto launch after boot',
         type: SETTINGS.TYPE.TOGGLE,
@@ -74,24 +114,20 @@ export default {
         buttonText: 'Up to date',
         value: false,
       },
+      reset_cache: {
+        text: 'Reset application cache (This will log you out)',
+        type: SETTINGS.TYPE.BUTTON,
+        buttonText: 'Reset',
+        value: true,
+      },
     },
   },
-  TOAST: {
+  toast: {
     text: '',
     isVisible: false,
   },
-  RANTS: {
-    state: STATE.INITIAL,
-    page: 0,
-    items: [],
-  },
-  WEEKLY: {
-    state: STATE.INITIAL,
-    page: 0,
-    items: [],
-  },
-  COLUMNS: [],
-  COLUMN: {
+  columns: [],
+  column: {
     id: getUID(),
     items: [],
     page: 0,
@@ -99,14 +135,11 @@ export default {
     prev_set: 0,
     state: STATE.INITIAL,
   },
-  ITEM: [
-
-  ],
-  USER: {
+  user: {
     state: STATE.INITIAL,
     profile: null,
   },
-  MODAL: {
+  modal: {
     item: null,
   },
 };

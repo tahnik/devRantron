@@ -7,21 +7,27 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MainRoutes from './main';
 import AuthRoutes from './auth';
+import { saveUserState } from '../actions/settings';
 
-const Routes = ({ auth, theme }) => (
-  <Router>
-    <div>
-      <CSSTransitionGroup
-        transitionName="fade"
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}
-      >
-        { auth.user || auth.noLogin ? <MainRoutes theme={theme} auth={auth} /> : null }
-        { !auth.user && !auth.noLogin ? <AuthRoutes /> : null }
-      </CSSTransitionGroup>
-    </div>
-  </Router>
-);
+const Routes = ({ auth, theme, saveState }) => {
+  if (auth.user) {
+    saveState();
+  }
+  return (
+    <Router>
+      <div>
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+        >
+          { auth.user || auth.noLogin ? <MainRoutes theme={theme} auth={auth} /> : null }
+          { !auth.user && !auth.noLogin ? <AuthRoutes auth={auth} /> : null }
+        </CSSTransitionGroup>
+      </div>
+    </Router>
+  );
+};
 
 MainRoutes.propTypes = {
   theme: PropTypes.object.isRequired,
@@ -30,6 +36,7 @@ MainRoutes.propTypes = {
 Routes.propTypes = {
   auth: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  saveState: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -38,4 +45,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, null)(Routes);
+export default connect(mapStateToProps, { saveState: saveUserState })(Routes);

@@ -16,7 +16,7 @@ class NotifBubbles extends Component {
   render() {
     const { data, open } = this.props;
     return (
-      <div>
+      <div className="notif_bubble_container">
         {
           data ? data.items.map((notif, index) =>
             (<Notification

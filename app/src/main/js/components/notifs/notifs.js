@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import NotifBubbles from './notif_bubbles';
 import { getNotifText } from '../../consts/DOMFunctions';
 
-const currentWindow = require('electron').remote.getCurrentWindow();
 const { ipcRenderer } = require('electron');
 
 class Notifs extends Component {
@@ -50,31 +49,24 @@ class Notifs extends Component {
     }
     const prevNotifs = prevProps.notifs;
     const currentNotifs = this.props.notifs;
-    if (!prevNotifs.data) {
-      return;
-    }
     const prevUnread = prevNotifs.num_unread;
     const currentUnread = currentNotifs.num_unread;
     const notifs = this.props.notifs;
     if (prevUnread < currentUnread) {
       const notif = notifs.items[0];
-      const myNotification = new Notification('devRantron', {
+      const osNotif = {
         body: getNotifText(
           notif.type,
           notifs.username_map[notif.uid].name,
         ),
-        data: notif.rant_id,
-        icon: 'http://i.imgur.com/iikd00P.png',
-      });
-
-      myNotification.onclick = (e) => {
-        this.props.open(e.target.data);
-        currentWindow.focus();
+        id: notif.rant_id,
+        content: notif,
       };
+      this.props.openNotif(osNotif);
     }
   }
   toggleNotif(e) {
-    if (e.target.className === 'notif_bubbles active') {
+    if (e.target.className === 'notif_bubble_container') {
       this.setState({ active: !this.state.active });
     }
   }
@@ -127,6 +119,7 @@ Notifs.propTypes = {
   auth: PropTypes.object.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
   notifs: PropTypes.object, //eslint-disable-line
+  openNotif: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
   clearNotifs: PropTypes.func.isRequired,
 };
