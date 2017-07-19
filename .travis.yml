@@ -58,7 +58,7 @@ install:
   # install the proper node version specified by $NODE_VERSION
   - nvm install $NODE_VERSION
   - nvm use --delete-prefix $NODE_VERSION
-  - yarn install
+  - npm install
 
 # the order of execution is important. We want to eliminate all linting errors before testing.
 # Any only deploy if testing worked. Coverage will only be reported if testing succeeded.
