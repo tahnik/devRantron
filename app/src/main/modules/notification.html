@@ -213,7 +213,9 @@
       } = require('electron');
       const rantscript = require('rantscript');
 
-      const main = remote.require('./modules/notify.js');
+      const path = require('path');
+
+      const main = remote.require(path.join(__dirname, '/notify.js'));
 
       // This is lazy but it works ;)
       let currentReply = 0;
