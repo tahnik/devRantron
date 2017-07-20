@@ -78,6 +78,7 @@ const showNotifs = notif => (dispatch, getState) => {
 
     myNotification.onclick = (e) => {
       dispatch(openModal(ITEM.RANT.NAME, e.target.data));
+      currentWindow.show();
       currentWindow.focus();
     };
   }
