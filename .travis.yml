@@ -50,6 +50,7 @@ before_install:
   # if we are currently rocking on osx, make sure to update and install yarn over brew package manager
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     brew update;
+    npm install -g 7zip-bin-mac
     brew install yarn;
     fi
 
