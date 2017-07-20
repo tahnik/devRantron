@@ -10,15 +10,15 @@
 
 Our app is now in beta! We have almost finished implementing all the features and we can't wait for you guys to try it out!
 ### Login with devRant Account
-![devRantron 1](https://github.com/tahnik/devRantron/blob/readme/app/screenshots/login.png?raw=true)
+![devRantron 1](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/login.png)
 ### View Rants and Make Comments
-![devRantron 2](https://github.com/tahnik/devRantron/blob/readme/app/screenshots/view.png?raw=true)
+![devRantron 2](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/view.png)
 ### Post Rants and Pick Emojis!
-![devRantron 3](https://github.com/tahnik/devRantron/blob/readme/app/screenshots/post.png?raw=true)
+![devRantron 3](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/post.png)
 ### Get Real Time notifications
-![devRantron 4](https://github.com/tahnik/devRantron/blob/readme/app/screenshots/notif.png?raw=true)
+![devRantron 4](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/notif.png)
 ### Make Your Custom View!
-![devRantron 4](https://github.com/tahnik/devRantron/blob/readme/app/screenshots/custom.png?raw=true)
+![devRantron 4](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/custom.png)
 
 This is our approach to create a cross platform desktop application for [devRant.io].
 
