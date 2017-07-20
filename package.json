@@ -120,7 +120,6 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
-    "7zip-bin-linux": "^1.1.0",
     "auto-launch": "^5.0.1",
     "babel-polyfill": "^6.23.0",
     "deepmerge": "^1.5.0",
