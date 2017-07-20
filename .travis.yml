@@ -23,7 +23,6 @@ cache:
   directories:
     - node_modules
     - $HOME/.npm
-  yarn: true
 
 # build essentials for the linux build
 addons:
@@ -45,13 +44,11 @@ before_install:
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -;
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list;
     sudo apt-get update -qq;
-    sudo apt-get install yarn -y -qq;
     fi
   # if we are currently rocking on osx, make sure to update and install yarn over brew package manager
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     brew update;
-    npm install -g 7zip-bin-mac
-    brew install yarn;
+    npm install -g 7zip-bin-mac;
     fi
 
 # on linux, install yarn over apt, on osx, over brew
@@ -66,8 +63,8 @@ install:
 # MAKE SURE TO ONLY PACKAGE IF WE ARE ON MASTER. For testing, package:dir will be used.
 script:
   - npm rebuild node-sass
-  - yarn ci:all
+  - npm run ci:all
 
 # only deploy to github if the CI script exited with 0. Make sure to do this only if we are on master.
 after_success:
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then yarn ci:deploy; fi
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then npm run ci:deploy; fi
