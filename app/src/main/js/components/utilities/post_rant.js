@@ -24,8 +24,9 @@ class PostRant extends Component {
   onPost() {
     const { auth } = this.props;
     this.setState({ posting: true });
+    const rantText = document.getElementById('post_rant_content').innerHTML;
     rantscript
-    .postRant(this.state.rant_content, this.state.tags, auth.user.authToken)
+    .postRant(rantText, this.state.tags, auth.user.authToken)
     .then((res) => {
       if (!res.success) {
         this.setState({ limitCrossed: true });
