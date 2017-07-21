@@ -58,9 +58,14 @@ class UserCard extends Component {
 
         <div className="user_details_desc">
           <ul>
-            <li><i className="ion-person" /><p>{user.about}</p></li>
+            { user.about !== '' &&    <li><i className="ion-person" /><p>{user.about}</p></li>}
+            { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
+            { user.github !== '' && <li><i className="ion-social-github" /><p>{user.github}</p></li>}
+            { user.website !== '' && <li><i className="ion-earth" /><p>{user.website}</p></li>}
           </ul>
         </div>
+
+        <button className="user_openprofile">Open Profile</button>
       </div>
     );
   }
