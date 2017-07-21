@@ -26,7 +26,7 @@ function notifyLinux(opt) {
 let w;
 function initUI() {
   w = new BrowserWindow({
-    width: 460,
+    width: 444,
     height: 172,
     frame: false,
     show: false,
