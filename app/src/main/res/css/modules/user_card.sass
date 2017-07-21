@@ -1,10 +1,20 @@
 .user_card
   position: absolute
   width: 25rem
-  background: rgba(64, 65, 90, 1)
+  background: url(http://localhost:8080/res/images/profile_banner.png)
+  background-size: cover
+  background-repeat: no-repeat
   padding: 1rem 1rem 0rem 1rem
   transform: translate(-1rem, -1rem)
   box-shadow: 1px 1px 3px rgba(0,0,0,0.3)
+  &::before
+    content: " "
+    background: rgba(64, 65, 90, 0.9)
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
   .close
     position: absolute
     width: 1.2rem
@@ -15,8 +25,12 @@
     display: flex
     justify-content: center
     align-content: center
+    transform: scale(0.95)
+    cursor: pointer
+    transition: background-color 0.1s, transform 0.1s
     &:hover
       background-color: white
+      transform: scale(1)
       i
         color: black
   .user_openprofile
@@ -25,6 +39,8 @@
     margin: 0px
     text-shadow: 0px 0px 2px rgba(0,0,0,0.3)
   .user_details_desc
+    position: relative
+    z-index: 50
     ul
       list-style: none
       padding: 0px

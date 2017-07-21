@@ -41,7 +41,7 @@ class UserCard extends Component {
 
     return (
       <div className="user_details">
-        <div style={{ display: 'flex' }}>
+        <div style={{ position: 'relative', display: 'flex' }}>
           <div className="image">
             <img alt="" src={imageSource} style={{ background: `#${user.avatar.b}` }} />
           </div>
@@ -58,7 +58,7 @@ class UserCard extends Component {
 
         <div className="user_details_desc">
           <ul>
-            { user.about !== '' &&    <li><i className="ion-person" /><p>{user.about}</p></li>}
+            { user.about !== '' && <li><i className="ion-person" /><p>{user.about}</p></li>}
             { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
             { user.github !== '' && <li><i className="ion-social-github" /><p>{user.github}</p></li>}
             { user.website !== '' && <li><i className="ion-earth" /><p>{user.website}</p></li>}
