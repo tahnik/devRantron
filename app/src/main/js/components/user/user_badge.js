@@ -34,6 +34,10 @@ class UserBadge extends Component {
             className="score"
             style={{ backgroundColor: theme.user_badge.details_back }}
           >{user.score}</span>
+          <span
+            className="score"
+            style={{ background: `#${user.avatar.b}` }}
+          ><span>Supporter</span></span>
         </div>
       </div>
     );
