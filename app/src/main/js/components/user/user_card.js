@@ -65,7 +65,7 @@ class UserCard extends Component {
           </ul>
         </div>
 
-        <button className="user_openprofile">Open Profile</button>
+        <button className="user_openprofile" style={{ backgroundColor: `#${user.avatar.b}` }}>Open Profile</button>
       </div>
     );
   }
