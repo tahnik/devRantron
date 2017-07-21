@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
-import UserBadge from './user_badge';
 
 class UserCard extends Component {
   constructor(props) {
