@@ -1,5 +1,6 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
+import merge from 'deepmerge';
 import reducers from './reducers/index';
 import {
   setOnStartup,
@@ -7,8 +8,6 @@ import {
 } from './actions/settings';
 import DEFAULT_STATE from './consts/default_states';
 import IPCHhandlers from './utils/ipcHandlers';
-
-const merge = require('deepmerge');
 
 const cmp = require('semver-compare');
 const { remote } = require('electron');
