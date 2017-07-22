@@ -52,10 +52,10 @@ class UserCard extends Component {
               className="score"
               style={{ backgroundColor: 'rgb(84, 85, 110)' }}
             >{user.score}</span>
-            <span
+            {user.dpp === 1 && <span
               className="score"
               style={{ background: `#${user.avatar.b}` }}
-            ><span>Supporter</span></span>
+            ><span>Supporter</span></span>}
           </div>
         </div>
 

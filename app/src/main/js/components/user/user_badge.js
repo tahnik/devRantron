@@ -21,6 +21,7 @@ class UserBadge extends Component {
     if (user.avatar.i) {
       imageSource = `https://avatars.devrant.io/${user.avatar.i}`;
     }
+
     return (
       <div className="user_badge">
         <div className="image" onClick={() => this.openCard()}>
@@ -34,10 +35,10 @@ class UserBadge extends Component {
             className="score"
             style={{ backgroundColor: theme.user_badge.details_back }}
           >{user.score}</span>
-          <span
+          {user.dpp === 1 && <span
             className="score"
             style={{ background: `#${user.avatar.b}` }}
-          ><span>Supporter</span></span>
+          ><span>Supporter</span></span>}
         </div>
       </div>
     );
