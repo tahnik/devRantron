@@ -43,7 +43,10 @@ class UserProfile extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     const nextLength = nextState.column.items.length;
     const currentLength = this.state.column.items.length;
-    if (nextLength === currentLength) {
+    if (
+      nextLength === currentLength
+      && nextProps.item.id === this.props.item.id
+    ) {
       return false;
     }
     return true;
