@@ -17,12 +17,13 @@ class SideNav extends Component {
     ipcRenderer.on('compose_rant', () => { this.props.open(); });
   }
   getUserCard() {
-    const { user, logout, login, fetchUser } = this.props;
+    const { user, logout, login, fetchUser, open } = this.props;
     return (<CompactUserCard
       user={user}
       login={login}
       logout={logout}
       fetchUser={fetchUser}
+      open={open}
     />);
   }
   render() {

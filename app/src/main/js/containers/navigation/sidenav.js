@@ -13,7 +13,7 @@ const SIDE_NAV_ITEMS = [
   { name: 'Collabs', route: ROUTES.collabs, icon: 'ion-person-stalker' },
   { name: 'Stories', route: ROUTES.stories, icon: 'ion-ios-bookmarks' },
   { name: 'Custom', route: ROUTES.custom, icon: 'ion-edit' },
-  { name: 'Settings', route: ROUTES.settings, icon: 'ion-settings' },
+  { name: 'Settings', route: ROUTES.settings, icon: 'ion-gear-a' },
 ];
 
 const mapDispatchToProps = dispatch => ({
@@ -29,8 +29,8 @@ const mapDispatchToProps = dispatch => ({
   resetColumn: () => {
     dispatch(resetColumn());
   },
-  open: () => {
-    dispatch(openModal(ITEM.POST_RANT.NAME));
+  open: (type = ITEM.POST_RANT.NAME, id) => {
+    dispatch(openModal(type, id));
   },
 });
 

@@ -31,6 +31,7 @@ const fetchUser = () => (dispatch, getState) => {
           about: res.about,
           location: res.location,
           avatar: res.avatar,
+          id: userID,
         };
         dispatch({
           type: USER.FETCH,

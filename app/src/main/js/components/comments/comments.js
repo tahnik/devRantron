@@ -16,7 +16,7 @@ class Comments extends Component {
     return true;
   }
   render() {
-    const { theme, vote, comments, auth } = this.props;
+    const { theme, vote, comments, auth, open } = this.props;
     return (
       <div className="comments_container">
         {
@@ -30,6 +30,7 @@ class Comments extends Component {
               theme={theme}
               vote={vote}
               auth={auth}
+              open={open}
             />
           ))
         }
@@ -41,6 +42,7 @@ class Comments extends Component {
 Comments.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  open: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
   auth: PropTypes.object.isRequired,
 };

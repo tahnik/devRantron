@@ -1,0 +1,63 @@
+.user_card
+  position: absolute
+  width: 25rem
+  background: url(http://localhost:8080/res/images/profile_banner.png)
+  background-size: cover
+  background-repeat: no-repeat
+  padding: 1rem 1rem 0rem 1rem
+  transform: translate(-1rem, -1rem)
+  z-index: 99
+  button
+    box-shadow: none
+    &:hover
+      box-shadow: none
+  &::before
+    content: " "
+    background: rgba(64, 65, 90, 0.9)
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+  .close
+    position: absolute
+    width: 1.2rem
+    height: 1.3rem
+    right: 5px
+    top: 5px
+    border-radius: 100%
+    display: flex
+    justify-content: center
+    align-content: center
+    font-size: 0.9rem
+    cursor: pointer
+    transition: background-color 0.1s, transform 0.1s
+    p
+      margin: 0px
+    &:hover
+      background-color: white
+      transform: scale(1)
+      i
+        color: black
+  .user_openprofile
+    width: 27rem
+    transform: translateX(-1rem)
+    margin: 0px
+    text-shadow: 0px 0px 2px rgba(0,0,0,0.3)
+  .user_details_desc
+    position: relative
+    z-index: 50
+    ul
+      list-style: none
+      padding: 0px
+      li
+        display: flex
+        margin: 0.5rem 0rem
+        i
+          margin-right: 0.8rem
+          font-size: 1.6rem
+          min-width: 1.8rem
+          text-align: center
+        p
+          margin: 4px 0px
+          flex: 1

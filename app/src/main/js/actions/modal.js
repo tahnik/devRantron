@@ -1,5 +1,18 @@
 import { MODAL } from '../consts/types';
 
+
+/**
+ * Closes the modal.
+ *
+ */
+const closeModal = () => (dispatch) => {
+  dispatch({
+    type: MODAL.CLOSE,
+    item: null,
+  });
+};
+
+
 /**
  * Opens the modal. It can contain rant or collab
  *
@@ -13,17 +26,6 @@ const openModal = (type, id = 0) => (dispatch) => {
       type,
       id,
     },
-  });
-};
-
-/**
- * Closes the modal.
- *
- */
-const closeModal = () => (dispatch) => {
-  dispatch({
-    type: MODAL.CLOSE,
-    item: null,
   });
 };
 

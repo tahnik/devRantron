@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Item from '../item/item';
 import PostRant from '../utilities/post_rant';
+import UserProfile from '../user/user_profile';
 import { ITEM } from '../../consts/types';
 
 class Modal extends Component {
@@ -10,6 +11,8 @@ class Modal extends Component {
     const { item } = this.props;
     if (item.type === ITEM.POST_RANT.NAME) {
       return <PostRant {...this.props} />;
+    } else if (item.type === ITEM.PROFILE.NAME) {
+      return <UserProfile {...this.props} />;
     }
     return <Item key={item.id} cardItem={item} {...this.props} />;
   }
@@ -18,6 +21,7 @@ class Modal extends Component {
       e.target.className === 'item_container modal'
       || e.target.className === 'comments_and_post'
       || e.target.className === 'item_column'
+      || e.target.className === 'profile_container modal'
     ) {
       this.props.close();
     }

@@ -2,18 +2,40 @@
   height: 60px
   display: flex
   padding: 1rem 1rem 0 1rem
+  position: relative
   .image
     width: 60px
     height: 60px
     margin: 0 0.7rem 0 0
+    cursor: pointer
+    display: flex
+    justify-content: center
+    align-content: center
+    @keyframes circle
+      0%
+        transform: rotate(0deg)
+      100%
+        transform: rotate(360deg)
+    .loadingHalf
+      width: 70px
+      height: 70px
+      border-top: 1px solid cyan
+      border-top-left-radius: 36px
+      border-top-right-radius: 36px
+      position: absolute
+      top: 10px
+      animation: circle 0.6s infinite cubic-bezier(0.79, 0.63, 0.42, 0.57)
+    .secondhHalf
     img
       width: 100%
       align-self: top
       border-radius: 50%
   .details
     padding-top: 2px
+    cursor: pointer
     p
       margin: 1px 0 4px 0
     .score
       padding: 4px
       border-radius: 5px
+      margin-right: 6px

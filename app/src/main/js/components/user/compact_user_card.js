@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ITEM } from '../../consts/types';
 
 class CompactUserCard extends Component {
   componentWillMount() {
@@ -33,7 +34,23 @@ class CompactUserCard extends Component {
         className="user_compact"
         style={{ background: 'url(./res/images/profile_banner.png)' }}
       >
-        <img className="user_image" src={imgsrc} style={{ background: `#${profile.avatar.b}` }} alt="avatar" />
+        <div
+          className="user_image_container"
+          onClick={() => this.props.open(ITEM.PROFILE.NAME, profile.id)}
+        >
+          <img className="user_image" src={imgsrc} style={{ background: `#${profile.avatar.b}` }} alt="avatar" />
+        </div>
+        <div
+          className="name_and_score"
+          onClick={() => this.props.open(ITEM.PROFILE.NAME, profile.id)}
+        >
+          <div className="name">
+            {profile.username}
+          </div>
+          <div className="score">
+            <p>+{profile.score}</p>
+          </div>
+        </div>
         <div className="user_bg_tint" style={{ background: `#${profile.avatar.b}` }} />
         <div className="logout" onClick={() => this.props.logout()}>
           <i className="ion-log-out" />
@@ -46,6 +63,7 @@ class CompactUserCard extends Component {
 CompactUserCard.propTypes = {
   logout: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
+  open: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   fetchUser: PropTypes.func.isRequired,
 };

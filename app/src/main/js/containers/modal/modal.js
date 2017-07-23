@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import Modal from '../../components/modal/modal';
 import vote from '../../actions/vote';
-import { closeModal } from '../../actions/modal';
 import { fetchNotifs } from '../../actions/notifs';
+import { openModal, closeModal } from '../../actions/modal';
 
 const mapStateToProps = state => ({
   theme: state.settings.theme,
@@ -20,6 +20,9 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchNotifs: () => {
     dispatch(fetchNotifs());
+  },
+  open: (type, id) => {
+    dispatch(openModal(type, id));
   },
 });
 
