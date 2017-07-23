@@ -115,7 +115,7 @@ class UserProfile extends Component {
     const { user } = this.state;
     let imageSource = 'res/images/invis.png';
     if (user.avatar.i) {
-      imageSource = `https://avatars.devrant.io/${user.avatar.i.replace('c-1', 'c-3').replace('png', 'jpg')}`;
+      imageSource = `https://avatars.devrant.io/${user.avatar.i.replace('c-1', 'c-2').replace('png', 'jpg')}`;
     }
     return (
       <div className="profile_container modal" >
