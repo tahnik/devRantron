@@ -1,12 +1,11 @@
 const electron = require('electron');
 
-const { app, BrowserWindow, Menu, Tray } = electron;
+const { app, BrowserWindow, Menu, Tray, ipcMain } = electron;
 
 const https = require('https');
 const os = require('os');
 const path = require('path');
 const url = require('url');
-const { ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 
 const notify = require(path.join(__dirname, '/modules/notify.js'));
@@ -73,6 +72,23 @@ function initTray() {
 /** This function will create the mainWindow */
 function createWindow() {
   notify.init();
+
+  // Some shortcuts to make development easier.
+  if (process.env.NODE_ENV === 'development') {
+    const { globalShortcut } = electron;
+
+    const showNotifGlobal = globalShortcut.register('CommandOrControl+Alt+N', () => {
+      notify.show({
+        body: 'This is a test notification.',
+        content: { comment_id: 728393, created_time: 1500665102, rant_id: 538347, read: 0, type: 'comment_mention', uid: 719925 },
+        id: 538347,
+      });
+    });
+
+    if (!showNotifGlobal) {
+      console.warn('registration failed :(');
+    }
+  }
 
   // Send usage data to firebase
   if (process.env.NODE_ENV !== 'development') {
