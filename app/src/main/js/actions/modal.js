@@ -7,7 +7,6 @@ import { MODAL } from '../consts/types';
  * @param {number} id This ID can be either user id or rant/collab id
  */
 const openModal = (type, id = 0) => (dispatch) => {
-  console.log('iopening modal');
   dispatch({
     type: MODAL.OPEN,
     item: {

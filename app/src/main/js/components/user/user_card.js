@@ -15,7 +15,6 @@ class UserCard extends Component {
     if (userID) {
       rantscript.profile(userID)
         .then((res) => {
-          console.log(res);
           this.setState({ user: res });
         })
         .catch((err) => {
@@ -24,7 +23,6 @@ class UserCard extends Component {
     }
   }
   openProfile() {
-    console.log('opening');
     this.props.open(ITEM.PROFILE.NAME, this.props.userID);
   }
   getUser() {

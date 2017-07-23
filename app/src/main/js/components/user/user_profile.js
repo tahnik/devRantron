@@ -5,20 +5,23 @@ import Loading from '../utilities/loading';
 import Column from '../columns/column';
 import { ITEM, STATE } from '../../consts/types';
 
+const USER_PROFILE_FILTERS = {
+  SORT: {
+    RANTS: 'rants',
+    COMMENTS: 'comments',
+    FAVOURITES: 'favorites',
+    UPVOTED: 'upvoted',
+  },
+  PRIMARY: 'SORT',
+};
+
 const DEFAULT_COLUMN = {
   itemType: ITEM.RANT.NAME,
   items: [],
   page: 0,
-  state: STATE.INITIAL,
-  filters: {
-    SORT: {
-      RANTS: 'Rants',
-      COMMENTS: 'comments',
-      FAVOURITES: 'Favourites',
-      UPVOTED: 'Upvoted',
-    },
-    PRIMARY: 'SORT',
-  },
+  state: STATE.SUCCESS,
+  filters: USER_PROFILE_FILTERS,
+  sort: USER_PROFILE_FILTERS.RANTS,
 };
 
 class UserProfile extends Component {
@@ -32,16 +35,32 @@ class UserProfile extends Component {
   componentDidMount() {
     this.fetch();
   }
-  fetch(sort = ITEM.RANT.NAME, range = null, id = 0, refresh = false) {
+  fetch(sort = USER_PROFILE_FILTERS.SORT.RANTS, range = null, id = 0, refresh = false) {
     const { item } = this.props;
+    const prevColumn = Object.assign({}, this.state.column);
+    prevColumn.state = STATE.LOADING;
+    if (sort !== this.state.column.sort) {
+      prevColumn.page = 0;
+      prevColumn.items = [];
+    }
+    this.setState({ column: prevColumn });
+
+
     const { column } = this.state;
-    const page = refresh ? 0 : column.page;
-    rantscript.profile(item.id, null, sort.toLowerCase(), page * 30)
+    const page = refresh || sort !== this.state.column.sort ? 0 : column.page;
+    rantscript.profile(item.id, null, sort, page * 30)
       .then((res) => {
         const nextColumn = DEFAULT_COLUMN;
-        nextColumn.items = res.content.content.rants;
-        nextColumn.page += 1;
-        console.log(res);
+        nextColumn.page = this.state.column.page + 1;
+        const nextItems = sort !== column.sort ? [] : [...column.items];
+        nextColumn.items = [...nextItems, ...res.content.content[sort]];
+        nextColumn.state = STATE.SUCCESS;
+        nextColumn.sort = sort;
+        if (sort === USER_PROFILE_FILTERS.SORT.COMMENTS) {
+          nextColumn.itemType = ITEM.COMMENT.NAME;
+        } else {
+          nextColumn.itemType = ITEM.RANT.NAME;
+        }
         this.setState({
           user: res,
           column: nextColumn,
