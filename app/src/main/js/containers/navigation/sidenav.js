@@ -29,8 +29,8 @@ const mapDispatchToProps = dispatch => ({
   resetColumn: () => {
     dispatch(resetColumn());
   },
-  open: () => {
-    dispatch(openModal(ITEM.POST_RANT.NAME));
+  open: (type = ITEM.POST_RANT.NAME, id) => {
+    dispatch(openModal(type, id));
   },
 });
 

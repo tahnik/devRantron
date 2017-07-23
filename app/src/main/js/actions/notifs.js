@@ -1,6 +1,7 @@
 import { NOTIFS, ITEM } from '../consts/types';
 import rantscript from '../consts/rantscript';
 import { openModal } from './modal';
+import { fetchUser } from './user';
 
 const { ipcRenderer } = require('electron');
 
@@ -59,6 +60,8 @@ const clearNotifs = () => (dispatch, getState) => {
 
 const showNotifs = notif => (dispatch, getState) => {
   const notifSettings = getState().settings.general.notifications.options;
+
+  dispatch(fetchUser());
 
   if (!notifSettings.notif_enabled.value) {
     return;
