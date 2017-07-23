@@ -152,6 +152,9 @@ class UserProfile extends Component {
                 { user.about !== '' && <li><i className="ion-person" />
                   <p>{user.about}</p>
                 </li>}
+                { user.skills !== '' && <li><i className="ion-code" />
+                  <p>{user.skills}</p>
+                </li>}
                 { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
                 { user.github !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-social-github" />
                   <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
