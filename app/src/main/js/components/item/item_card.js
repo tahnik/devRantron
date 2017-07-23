@@ -66,7 +66,7 @@ class ItemCard extends Component {
     );
   }
   render() {
-    const { item, theme, vote, modal, itemType, auth } = this.props;
+    const { item, theme, vote, modal, itemType, auth, open } = this.props;
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,
@@ -87,7 +87,11 @@ class ItemCard extends Component {
           color: theme.item_card.color,
         }}
       >
-        <UserBadge user={user} theme={theme} />
+        <UserBadge
+          user={user}
+          theme={theme}
+          open={open}
+        />
         <div
           className="body_container"
           onClick={() => this.open()}

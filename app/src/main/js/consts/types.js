@@ -73,6 +73,12 @@ export const ITEM = {
       VOTE: 'RANT_VOTE',
     },
   },
+  PROFILE: {
+    NAME: 'PROFILE',
+    ACTION: {
+      FETCH: 'PROFILE_FETCH',
+    },
+  },
   POST_RANT: {
     NAME: 'POST_RANT',
     ACTION: {

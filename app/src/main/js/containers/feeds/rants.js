@@ -13,6 +13,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(vote(voteState, id, type));
   },
   open: (type, id) => {
+    console.log('Opening');
     dispatch(openModal(type, id));
   },
 });

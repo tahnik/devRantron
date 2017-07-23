@@ -16,7 +16,7 @@ class UserBadge extends Component {
     this.setState({ userCardOpen: false });
   }
   render() {
-    const { user, theme } = this.props;
+    const { user, theme, open } = this.props;
     let imageSource = 'res/images/invis.png';
     if (user.avatar.i) {
       imageSource = `https://avatars.devrant.io/${user.avatar.i}`;
@@ -25,10 +25,15 @@ class UserBadge extends Component {
     return (
       <div className="user_badge">
         <div className="image" onClick={() => this.openCard()}>
+          { this.state.userCardOpen ? <div className="loadingHalf" /> : null }
           <img alt="" src={imageSource} style={{ background: `#${user.avatar.b}` }} />
         </div>
-        { this.state.userCardOpen ?
-          <UserCard userID={user.id} closeCard={() => this.closeCard()} /> : null }
+        {this.state.userCardOpen ?
+          <UserCard
+            userID={user.id}
+            closeCard={() => this.closeCard()}
+            open={open}
+          /> : null}
         <div className="details" onClick={() => this.openCard()}>
           <p>{user.username}</p>
           <span
@@ -48,6 +53,7 @@ class UserBadge extends Component {
 UserBadge.propTypes = {
   user: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  open: PropTypes.func.isRequired,
 };
 
 export default UserBadge;

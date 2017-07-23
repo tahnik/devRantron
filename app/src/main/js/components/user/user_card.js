@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ITEM } from '../../consts/types';
 import rantscript from '../../consts/rantscript';
 
 class UserCard extends Component {
@@ -22,15 +23,11 @@ class UserCard extends Component {
         });
     }
   }
+  openProfile() {
+    console.log('opening');
+    this.props.open(ITEM.PROFILE.NAME, this.props.userID);
+  }
   getUser() {
-    if (!this.state.user) {
-      return (
-        <div className="loading">
-          put some loading stuff here
-        </div>
-      );
-    }
-
     const user = this.state.user;
 
     let imageSource = 'res/images/invis.png';
@@ -69,17 +66,24 @@ class UserCard extends Component {
           </ul>
         </div>
 
-        <button className="user_openprofile" style={{ backgroundColor: `#${user.avatar.b}` }}>Open Profile</button>
+        <button
+          className="user_openprofile"
+          style={{ backgroundColor: `#${user.avatar.b}` }}
+          onClick={() => this.openProfile()}
+        >Open Profile</button>
       </div>
     );
   }
   render() {
+    if (!this.state.user) {
+      return <div />;
+    }
     return (
       <div className="user_card" id="user_card">
         <div
           className="close"
           onClick={() => this.props.closeCard()}
-        ><i className="ion-android-close" /></div>
+        ><p><i className="ion-android-close" /></p></div>
         {
           this.getUser()
         }
@@ -91,6 +95,7 @@ class UserCard extends Component {
 UserCard.propTypes = {
   userID: PropTypes.number.isRequired,
   closeCard: PropTypes.func.isRequired,
+  open: PropTypes.func.isRequired,
 };
 
 export default UserCard;
