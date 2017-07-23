@@ -8,9 +8,22 @@
     flex: 1
     width: 90%
     display: flex
-    background-color: rgb(64, 65, 90)
+    background: url(http://localhost:8080/res/images/profile_banner.png)
+    background-size: cover
+    background-repeat: no-repeat
     margin: calc(1.1rem + 30px) auto 0 auto
     padding: 1rem
+    position: relative
+    *
+      z-index: 100    
+    &::before
+      content: " "
+      background: rgba(64, 65, 90, 0.9)
+      position: absolute
+      top: 0
+      left: 0
+      height: 100%
+      width: 100%
     .image
       flex: 2
       img
