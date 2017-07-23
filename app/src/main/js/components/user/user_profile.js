@@ -19,6 +19,8 @@ const DEFAULT_COLUMN = {
   itemType: ITEM.RANT.NAME,
   items: [],
   page: 0,
+  id: 'id',
+  type: 'user_profile',
   state: STATE.SUCCESS,
   filters: USER_PROFILE_FILTERS,
   sort: USER_PROFILE_FILTERS.RANTS,
@@ -34,6 +36,9 @@ class UserProfile extends Component {
   }
   componentDidMount() {
     this.fetch();
+  }
+  componentWillUnmount() {
+    console.log('unmounting user Profile');
   }
   fetch(sort = USER_PROFILE_FILTERS.SORT.RANTS, range = null, id = 0, refresh = false) {
     const { item, auth } = this.props;
@@ -113,6 +118,7 @@ class UserProfile extends Component {
             {...this.props}
             column={this.state.column}
             filters={this.state.column.filters}
+            itemType={this.state.column.itemType}
             fetch={(sort, range, id, refresh) => this.fetch(sort, range, id, refresh)}
           />
         </div>

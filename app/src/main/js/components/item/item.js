@@ -63,7 +63,7 @@ class Item extends Component {
   }
   renderMutliCol() {
     const { item } = this.state;
-    const { theme, vote, cardItem, auth } = this.props;
+    const { theme, vote, cardItem, auth, open } = this.props;
     return (
       <div className="item_column">
         <div
@@ -78,13 +78,20 @@ class Item extends Component {
             vote={vote}
             itemType={cardItem.type}
             auth={auth}
+            open={open}
           />
         </div>
         <div
           className="comments_and_post"
           style={{ width: `${theme.column.width}px` }}
         >
-          <Comments comments={item.comments} theme={theme} vote={vote} auth={auth} />
+          <Comments
+            comments={item.comments}
+            theme={theme}
+            vote={vote}
+            auth={auth}
+            open={open}
+          />
           <PostComment
             theme={theme}
             auth={auth}
@@ -97,7 +104,7 @@ class Item extends Component {
   }
   renderSingleColumn() {
     const { item } = this.state;
-    const { theme, vote, cardItem, auth } = this.props;
+    const { theme, vote, cardItem, auth, open } = this.props;
     return (
       <div className="item_compact_column">
         <ItemCard
@@ -108,12 +115,14 @@ class Item extends Component {
           vote={vote}
           itemType={cardItem.type}
           auth={auth}
+          open={open}
         />
         <Comments
           comments={item.comments}
           theme={theme}
           vote={vote}
           auth={auth}
+          open={open}
         />
         <PostComment
           theme={theme}
@@ -152,6 +161,7 @@ Item.propTypes = {
   cardItem: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,
+  open: PropTypes.func.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
 };
 

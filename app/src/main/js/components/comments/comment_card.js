@@ -7,7 +7,7 @@ import { ITEM } from '../../consts/types';
 
 
 const CommentCard = (props) => {
-  const { item, theme, vote, auth } = props;
+  const { item, theme, vote, auth, open } = props;
   const user = {
     avatar: item.user_avatar,
     score: item.user_score,
@@ -29,7 +29,7 @@ const CommentCard = (props) => {
       <div
         className="top_container"
       >
-        <UserBadge user={user} theme={theme} />
+        <UserBadge user={user} theme={theme} open={open} />
         <Twemoji><p>{item.body}</p></Twemoji>
       </div>
       <BottomBar
@@ -49,6 +49,7 @@ CommentCard.propTypes = {
   theme: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  open: PropTypes.func.isRequired,
 };
 
 export default CommentCard;
