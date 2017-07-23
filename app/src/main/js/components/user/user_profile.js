@@ -5,6 +5,8 @@ import Loading from '../utilities/loading';
 import Column from '../columns/column';
 import { ITEM, STATE } from '../../consts/types';
 
+const { shell } = require('electron');
+
 const USER_PROFILE_FILTERS = {
   SORT: {
     RANTS: 'rants',
@@ -104,6 +106,16 @@ class UserProfile extends Component {
         console.log(err);
       });
   }
+  static openLink(url) {
+    let fURL = url;
+    if (
+      url.indexOf('http://') === -1
+      || url.indexOf('https://') === -1
+    ) {
+      fURL = `http://${url}`;
+    }
+    shell.openExternal(fURL);
+  }
   render() {
     if (!this.state.user || this.state.loading) {
       return (
@@ -133,10 +145,20 @@ class UserProfile extends Component {
             </div>
             <div className="other_infos">
               <ul>
-                { user.about !== '' && <li><i className="ion-person" /><p>{user.about}</p></li>}
+                { user.about !== '' && <li><i className="ion-person" />
+                  <p>{user.about}</p>
+                </li>}
                 { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
-                { user.github !== '' && <li><i className="ion-social-github" /><p>{user.github}</p></li>}
-                { user.website !== '' && <li><i className="ion-earth" /><p>{user.website}</p></li>}
+                { user.github !== '' && <li><i className="ion-social-github" />
+                  <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
+                    {user.github}
+                  </p>
+                  </li>}
+                { user.website !== '' && <li><i className="ion-earth" />
+                  <p onClick={() => UserProfile.openLink(user.website)}>
+                    {user.website}
+                  </p>
+                </li>}
               </ul>
             </div>
           </div>
