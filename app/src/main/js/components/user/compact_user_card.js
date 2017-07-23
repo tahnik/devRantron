@@ -34,6 +34,14 @@ class CompactUserCard extends Component {
         style={{ background: 'url(./res/images/profile_banner.png)' }}
       >
         <img className="user_image" src={imgsrc} style={{ background: `#${profile.avatar.b}` }} alt="avatar" />
+        <div className="name_and_score">
+          <div className="name">
+            {profile.username}
+          </div>
+          <div className="score">
+            <p>+{profile.score}</p>
+          </div>
+        </div>
         <div className="user_bg_tint" style={{ background: `#${profile.avatar.b}` }} />
         <div className="logout" onClick={() => this.props.logout()}>
           <i className="ion-log-out" />

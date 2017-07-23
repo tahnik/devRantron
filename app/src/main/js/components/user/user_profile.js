@@ -119,7 +119,10 @@ class UserProfile extends Component {
     }
     return (
       <div className="profile_container modal" >
-        <div className="profile">
+        <div
+          className="profile"
+          style={{ background: 'url(./res/images/profile_banner.png)' }}
+        >
           <div className="image">
             <img alt="" src={imageSource} style={{ backgroundColor: `#${user.avatar.b}` }} />
           </div>

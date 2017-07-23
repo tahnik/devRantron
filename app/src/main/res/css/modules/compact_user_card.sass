@@ -2,13 +2,14 @@
 
 .user_compact
   //background: url(./../images/empty_avatar.png)
-  height: 10rem
   background-size: 100% 100% !important
   background-repeat: no-repeat !important
   position: relative
   display: flex
   align-items: center
   justify-content: center
+  flex-direction: column
+  padding: 1rem
   .user_bg_tint
     position: absolute
     top: 0px
@@ -16,7 +17,25 @@
     height: 100%
     width: 100%
     opacity: 0.66
-    z-index: 250
+    z-index: 1
+  .name_and_score
+    display: flex
+    color: white
+    z-index: 99
+    padding: 1rem 0
+    font-weight: 300
+    font-family: 'Roboto', sans-serif
+    align-items: flex-start
+    .name
+      font-size: 1.5rem
+    .score
+      font-size: 0.8rem
+      margin-left: 0.3rem
+      padding: 0.2rem 0.3rem
+      background-color: rgb(84, 85, 110)
+      border-radius: 5px
+      p
+        margin: 0
   .user_image
     position: relative
     height: 7.5rem
