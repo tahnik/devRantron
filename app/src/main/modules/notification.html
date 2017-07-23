@@ -244,7 +244,7 @@
       }
 
       function calcPos() {
-        main.ui().setSize(460, document.getElementById('app').scrollHeight - 13);
+        main.ui().setSize(444, document.getElementById('app').scrollHeight - 13);
         setTimeout(()=>{
           var np = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
           var ap = screen.getCursorScreenPoint();
@@ -261,7 +261,7 @@
               np.workArea.y + 12
             )
           }
-        }, 65)
+        }, 100)
       }
 
       window.onbeforeunload = (e) => {
