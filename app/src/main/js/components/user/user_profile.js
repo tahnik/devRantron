@@ -36,6 +36,7 @@ class UserProfile extends Component {
     const { item } = this.props;
     const { column } = this.state;
     const page = refresh ? 0 : column.page;
+    console.log(item.id, null, sort.toLowerCase(), page * 30);
     rantscript.profile(item.id, null, sort.toLowerCase(), page * 30)
       .then((res) => {
         const nextColumn = DEFAULT_COLUMN;
