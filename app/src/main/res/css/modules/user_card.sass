@@ -6,7 +6,11 @@
   background-repeat: no-repeat
   padding: 1rem 1rem 0rem 1rem
   transform: translate(-1rem, -1rem)
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.3)
+  z-index: 99
+  button
+    box-shadow: none
+    &:hover
+      box-shadow: none
   &::before
     content: " "
     background: rgba(64, 65, 90, 0.9)
@@ -25,9 +29,11 @@
     display: flex
     justify-content: center
     align-content: center
-    transform: scale(0.95)
+    font-size: 0.9rem
     cursor: pointer
     transition: background-color 0.1s, transform 0.1s
+    p
+      margin: 0px
     &:hover
       background-color: white
       transform: scale(1)
