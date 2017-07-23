@@ -36,7 +36,7 @@ class UserProfile extends Component {
     this.fetch();
   }
   fetch(sort = USER_PROFILE_FILTERS.SORT.RANTS, range = null, id = 0, refresh = false) {
-    const { item } = this.props;
+    const { item, auth } = this.props;
     const prevColumn = Object.assign({}, this.state.column);
     prevColumn.state = STATE.LOADING;
     if (sort !== this.state.column.sort) {
@@ -48,7 +48,11 @@ class UserProfile extends Component {
 
     const { column } = this.state;
     const page = refresh || sort !== this.state.column.sort ? 0 : column.page;
-    rantscript.profile(item.id, null, sort, page * 30)
+    let token = null;
+    if (auth.user) {
+      token = auth.user.authToken;
+    }
+    rantscript.profile(item.id, token, sort, page * 30)
       .then((res) => {
         const nextColumn = DEFAULT_COLUMN;
         nextColumn.page = this.state.column.page + 1;
@@ -87,7 +91,7 @@ class UserProfile extends Component {
       <div className="profile_container modal" >
         <div className="profile">
           <div className="image">
-            <img src={imageSource} />
+            <img alt="" src={imageSource} />
           </div>
           <div className="details">
             <div className="name_score">
@@ -119,6 +123,7 @@ class UserProfile extends Component {
 
 UserProfile.propTypes = {
   item: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 export default UserProfile;
