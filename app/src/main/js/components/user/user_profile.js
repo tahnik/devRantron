@@ -125,6 +125,7 @@ class UserProfile extends Component {
       );
     }
     const { user } = this.state;
+    const { theme } = this.props;
     let imageSource = 'res/images/invis.png';
     if (user.avatar.i) {
       imageSource = `https://avatars.devrant.io/${user.avatar.i.replace('c-1', 'c-2').replace('png', 'jpg')}`;
@@ -133,7 +134,10 @@ class UserProfile extends Component {
       <div className="profile_container modal" >
         <div
           className="profile"
-          style={{ background: 'url(./res/images/profile_banner.png)' }}
+          style={{
+            background: 'url(./res/images/profile_banner.png)',
+            width: `${theme.column.width}px`,
+          }}
         >
           <div className="image">
             <img alt="" src={imageSource} style={{ backgroundColor: `#${user.avatar.b}` }} />
@@ -180,6 +184,7 @@ class UserProfile extends Component {
 UserProfile.propTypes = {
   item: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default UserProfile;
