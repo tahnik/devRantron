@@ -59,7 +59,14 @@ class UserProfile extends Component {
     }
     rantscript.profile(item.id, token, sort, page * 30)
       .then((res) => {
-        const nextColumn = DEFAULT_COLUMN;
+        /**
+         * If you clone the object, JS keeps directly modifies the the items of DEFAULT_COLUMN.
+         * Which stays even after the component unmounts. So next time the component is mounting
+         * it is showing the previous items.
+         *
+         * Bloody hell, JS. You're beautiful
+         */
+        const nextColumn = Object.assign({}, DEFAULT_COLUMN);
         nextColumn.page = this.state.column.page + 1;
         const nextItems = sort !== column.sort ? [] : [...column.items];
         nextColumn.items = [...nextItems, ...res.content.content[sort]];
