@@ -72,6 +72,7 @@ class ItemCard extends Component {
       score: item.user_score,
       id: item.user_id,
       username: item.user_username,
+      dpp: item.user_dpp,
     };
     let isUser = false;
     if (auth.user) {
