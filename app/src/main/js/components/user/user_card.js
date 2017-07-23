@@ -24,6 +24,7 @@ class UserCard extends Component {
   }
   openProfile() {
     this.props.open(ITEM.PROFILE.NAME, this.props.userID);
+    this.props.closeCard();
   }
   getUser() {
     const user = this.state.user;

@@ -32,13 +32,30 @@ class UserProfile extends Component {
     this.state = {
       user: null,
       column: DEFAULT_COLUMN,
+      loading: false,
     };
   }
   componentDidMount() {
     this.fetch();
   }
-  componentWillUnmount() {
-    console.log('unmounting user Profile');
+  componentDidUpdate(prevProps) {
+    if (this.props.item.id !== prevProps.item.id) {
+      /*
+       * This works fine. Although not a good practice, as long as it is in a conditional loop
+       * it can used without side effects
+       */
+      // eslint-disable-next-line
+      this.setState({ loading: true });
+      this.fetch();
+    }
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    const nextLength = nextState.column.items.length;
+    const currentLength = this.state.column.items.length;
+    if (nextLength === currentLength) {
+      return false;
+    }
+    return true;
   }
   fetch(sort = USER_PROFILE_FILTERS.SORT.RANTS, range = null, id = 0, refresh = false) {
     const { item, auth } = this.props;
@@ -80,6 +97,7 @@ class UserProfile extends Component {
         this.setState({
           user: res,
           column: nextColumn,
+          loading: false,
         });
       })
       .catch((err) => {
@@ -87,7 +105,7 @@ class UserProfile extends Component {
       });
   }
   render() {
-    if (!this.state.user) {
+    if (!this.state.user || this.state.loading) {
       return (
         <div className="modal">
           <Loading />
