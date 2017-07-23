@@ -38,6 +38,14 @@ class UserProfile extends Component {
   componentDidMount() {
     this.fetch();
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    const nextLength = nextState.column.items.length;
+    const currentLength = this.state.column.items.length;
+    if (nextLength === currentLength) {
+      return false;
+    }
+    return true;
+  }
   componentDidUpdate(prevProps) {
     if (this.props.item.id !== prevProps.item.id) {
       /*
@@ -48,14 +56,6 @@ class UserProfile extends Component {
       this.setState({ loading: true });
       this.fetch();
     }
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    const nextLength = nextState.column.items.length;
-    const currentLength = this.state.column.items.length;
-    if (nextLength === currentLength) {
-      return false;
-    }
-    return true;
   }
   fetch(sort = USER_PROFILE_FILTERS.SORT.RANTS, range = null, id = 0, refresh = false) {
     const { item, auth } = this.props;

@@ -17,10 +17,12 @@ class Modal extends Component {
     return <Item key={item.id} cardItem={item} {...this.props} />;
   }
   onOutsideClick(e) {
+    console.log(e.target.className);
     if (
       e.target.className === 'item_container modal'
       || e.target.className === 'comments_and_post'
       || e.target.className === 'item_column'
+      || e.target.className === 'profile_container modal'
     ) {
       this.props.close();
     }

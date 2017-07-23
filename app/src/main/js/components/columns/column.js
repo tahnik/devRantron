@@ -60,7 +60,7 @@ class Column extends Component {
               column.items.map((item) => {
                 if (column.itemType === ITEM.COMMENT.NAME) {
                   return (
-                    <CommentCard {...this.props} item={item} />
+                    <CommentCard {...this.props} item={item} key={item.id} />
                   );
                 }
                 return (
