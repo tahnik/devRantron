@@ -121,7 +121,7 @@ class UserProfile extends Component {
       <div className="profile_container modal" >
         <div className="profile">
           <div className="image">
-            <img alt="" src={imageSource} />
+            <img alt="" src={imageSource} style={{ backgroundColor: `#${user.avatar.b}` }} />
           </div>
           <div className="details">
             <div className="name_score">
