@@ -11,6 +11,11 @@ const HELPER_TYPES = {
   EMOJI: 'EMOJI',
 };
 
+function replaceAll(str, search, replacement) {
+  const target = str;
+  return target.replace(new RegExp(search, 'g'), replacement);
+}
+
 class PostRant extends Component {
   constructor() {
     super();
@@ -24,8 +29,10 @@ class PostRant extends Component {
     };
   }
 
-  parseHtml(str) {
+  parseHtml(string) {
+    let str = string;
     const parser = new DOMParser();
+    str = replaceAll(str, '<br>', '\n\r');
     const imgtags = str.match(/<(img+)\s+\w+.*?>/g);
     console.log(imgtags);
     if (imgtags === null) {
