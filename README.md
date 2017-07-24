@@ -19,6 +19,9 @@ Our app is now in beta! We have almost finished implementing all the features an
 ![devRantron 4](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/notif.png)
 ### Make Your Custom View!
 ![devRantron 4](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/custom.png)
+### View Profiles
+![devRantron 5](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/profile.png)
+![devRantron 6](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/profile_card.png)
 
 This is our approach to create a cross platform desktop application for [devRant.io].
 
