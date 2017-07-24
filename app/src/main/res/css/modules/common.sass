@@ -21,9 +21,16 @@ $post_comment_height: 13rem
 
 .content_editable
   position: relative
+  display: flex
+  .textarea
+    flex: 1
+    &:focus
+      outline: none
+  .emoji_picker
+    z-index: 99
   .emoji_trigger
     position: absolute
-    bottom: 5px
+    top: 5px
     right: 5px
     opacity: 0.5
     transition: all 0.3s

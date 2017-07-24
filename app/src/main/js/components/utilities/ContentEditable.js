@@ -11,7 +11,7 @@ class ContentEditable extends Component {
       pickerActive: false,
       pickerStyle: {
         bottom: '5px',
-        right: '5px',
+        right: '0px',
       },
     };
   }
@@ -19,39 +19,69 @@ class ContentEditable extends Component {
     return true;
   }
   onChange() {
-    console.log(this.node);
   }
   toggleEmojiPicker() {
-    const emojiTrigger = this.node.getElementsByClassName('emoji_trigger')[0];
+    this.contentEditable.blur();
+    // const emojiTrigger = this.node.getElementsByClassName('emoji_trigger')[0];
+    const emojiTrigger = this.node;
     const triggerStyles = getComputedStyle(emojiTrigger);
-    const right = `${parseInt(triggerStyles.right, 10) + emojiTrigger.clientWidth}px`;
-    const bottom = `${parseInt(triggerStyles.bottom, 10) + emojiTrigger.clientHeight}px`;
+    const bottom = `${parseInt(triggerStyles.bottom, 10) + emojiTrigger.clientHeight + 10}px`;
     this.setState({
       pickerActive: !this.state.pickerActive,
       pickerStyle: {
         bottom,
-        right,
+        right: '0px',
       },
     });
+  }
+  addEmoji(emoji) {
+    let range;
+    const sel = window.getSelection();
+    if (sel.anchorNode && sel.anchorNode.parentElement.id === 'ce_textarea') {
+      if (sel.getRangeAt && sel.rangeCount) {
+        range = sel.getRangeAt(0);
+        range.deleteContents();
+        const textNode = document.createTextNode(`${emoji}`);
+        range.insertNode(textNode);
+      }
+    } else {
+      this.contentEditable.innerHTML += (`${emoji}&nbsp;`);
+      range = document.createRange();
+      range.selectNodeContents(this.contentEditable);
+      range.collapse(false);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+
+    Twemoji.parse(this.contentEditable);
   }
   render() {
     const { pickerActive } = this.state;
     return (
       <div
-        contentEditable
         className={`content_editable ${this.props.className}`}
         id={this.props.id}
         ref={(node) => { this.node = node; }}
-        onInput={() => this.onChange()}
-        suppressContentEditableWarning
       >
+        <div
+          contentEditable
+          className="textarea"
+          id="ce_textarea"
+          ref={(node) => { this.contentEditable = node; }}
+          onInput={() => this.onChange()}
+          suppressContentEditableWarning
+        />
         <TwemojiComp
           className="emoji_trigger"
           onClick={() => this.toggleEmojiPicker()}
         >
           <span role="img" aria-label="smile">🙂</span>
         </TwemojiComp>
-        { pickerActive ? <EmojiPicker style={this.state.pickerStyle} /> : null }
+        { pickerActive ? <EmojiPicker
+          style={this.state.pickerStyle}
+          onPick={emoji => this.addEmoji(emoji)}
+        /> : null }
       </div>
     );
   }
