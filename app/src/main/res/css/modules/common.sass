@@ -19,6 +19,19 @@ $post_comment_height: 13rem
   width: 18px !important
   margin: 0px 2px -3px 2px
 
+.content_editable
+  position: relative
+  .emoji_trigger
+    position: absolute
+    bottom: 5px
+    right: 5px
+    opacity: 0.5
+    transition: all 0.3s
+    &:hover
+      opacity: 1
+      transform: scale(1.1)
+      cursor: pointer
+
 body
   padding: 0
   margin: 0

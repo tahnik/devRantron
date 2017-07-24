@@ -43,7 +43,7 @@ class EmojiPicker extends Component {
   }
   render() {
     return (
-      <div className="emoji_picker">
+      <div className="emoji_picker" style={this.props.style}>
         <div className="emoji_top">
           <div className="categories">
             {emojiData.categories.map(object => (
@@ -76,6 +76,7 @@ class EmojiPicker extends Component {
 
 EmojiPicker.propTypes = {
   onPick: PropTypes.func, //eslint-disable-line
+  style: PropTypes.object, //eslint-disable-line
 };
 
 export default EmojiPicker;

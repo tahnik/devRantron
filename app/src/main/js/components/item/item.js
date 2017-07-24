@@ -93,6 +93,7 @@ class Item extends Component {
             open={open}
           />
           <PostComment
+            comments={item.comments}
             theme={theme}
             auth={auth}
             id={item.rant.id}
@@ -125,6 +126,7 @@ class Item extends Component {
           open={open}
         />
         <PostComment
+          comments={item.comments}
           theme={theme}
           id={item.rant.id}
           auth={auth}
