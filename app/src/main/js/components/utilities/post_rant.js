@@ -23,41 +23,46 @@ class PostRant extends Component {
       rant_content: '',
       tags: '',
       posting: false,
-      limitCrossed: false,
+      limitCrossed: null,
       activeHelper: null,
       image: null,
     };
   }
 
-  parseHtml(string) {
+  static parseHtml(string) {
     let str = string;
     const parser = new DOMParser();
     str = replaceAll(str, '<br>', '\n\r');
     const imgtags = str.match(/<(img+)\s+\w+.*?>/g);
-    console.log(imgtags);
+    let parsedStr = '';
     if (imgtags === null) {
       return parser.parseFromString(`<!doctype html><body> ${str}`, 'text/html').body.textContent;
     }
-    for (const tag of imgtags) {
-      console.log(tag, tag.match(/alt="(.*?)"/)[1]);
-      str = str.replace(tag, tag.match(/alt="(.*?)"/)[1]);
+    for (let i = 0; i < imgtags.length; i += 1) {
+      parsedStr = str.replace(imgtags[i], imgtags[i].match(/alt="(.*?)"/)[1]);
     }
-    return parser.parseFromString(`<!doctype html><body> ${str}`, 'text/html').body.textContent;
+    return parser.parseFromString(`<!doctype html><body> ${parsedStr}`, 'text/html').body.textContent;
   }
 
   onPost() {
     const { auth } = this.props;
     this.setState({ posting: true });
-    const rantText = this.parseHtml(document.getElementById('post_rant_content').innerHTML);
-    console.log(rantText);
+    const rantText = PostRant.parseHtml(document.getElementById('post_rant_content').innerHTML);
     if (this.state.image !== null) {
       rantscript
         .postRant(rantText, this.state.tags, auth.user.authToken, this.state.image)
         .then((res) => {
           if (!res.success) {
-            this.setState({ limitCrossed: true });
+            this.setState({ limitCrossed: res.error });
+            return;
           }
-          this.setState({ posting: false, rant_content: '', tags: '' });
+          this.setState({
+            posting: false,
+            rant_content: '',
+            tags: '',
+            limitCrossed: null,
+          });
+          this.props.close();
         })
         .catch(() => {
           this.setState({ posting: false });
@@ -67,9 +72,16 @@ class PostRant extends Component {
       .postRant(rantText, this.state.tags, auth.user.authToken)
       .then((res) => {
         if (!res.success) {
-          this.setState({ limitCrossed: true });
+          this.setState({ limitCrossed: res.error });
+          return;
         }
-        this.setState({ posting: false, rant_content: '', tags: '' });
+        this.setState({
+          posting: false,
+          rant_content: '',
+          tags: '',
+          limitCrossed: null,
+        });
+        this.props.close();
       })
       .catch(() => {
         this.setState({ posting: false });
@@ -159,10 +171,7 @@ class PostRant extends Component {
                 disabled={this.state.posting}
               >Post Rant</button>
             </div>
-            { this.state.limitCrossed ? <p>Right now you can only add 1 rant every 2 hours
-               (every 1 hour for devRant++ members) because we want
-                to make sure everyones content gets good exposure! Please contact
-                 info@devrant.io if you have any questions :)</p> : null}
+            <p>{this.state.limitCrossed || ''}</p>
           </div>
         </div>
       </div>
@@ -173,6 +182,7 @@ class PostRant extends Component {
 
 PostRant.propTypes = {
   auth: PropTypes.object.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
 export default PostRant;
