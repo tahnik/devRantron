@@ -5,6 +5,8 @@ import Twemoji from 'twemoji';
 import rantscript from '../../consts/rantscript';
 import EmojiPicker from '../emoji_picker/emoji_picker';
 
+const electron = require('electron');
+
 const HELPER_TYPES = {
   EMOJI: 'EMOJI',
 };
@@ -18,6 +20,7 @@ class PostRant extends Component {
       posting: false,
       limitCrossed: false,
       activeHelper: null,
+      image: null,
     };
   }
 
@@ -25,6 +28,9 @@ class PostRant extends Component {
     const parser = new DOMParser();
     const imgtags = str.match(/<(img+)\s+\w+.*?>/g);
     console.log(imgtags);
+    if (imgtags === null) {
+      return parser.parseFromString(`<!doctype html><body> ${str}`, 'text/html').body.textContent;
+    }
     for (const tag of imgtags) {
       console.log(tag, tag.match(/alt="(.*?)"/)[1]);
       str = str.replace(tag, tag.match(/alt="(.*?)"/)[1]);
@@ -37,17 +43,45 @@ class PostRant extends Component {
     this.setState({ posting: true });
     const rantText = this.parseHtml(document.getElementById('post_rant_content').innerHTML);
     console.log(rantText);
-    rantscript
-    .postRant(rantText, this.state.tags, auth.user.authToken)
-    .then((res) => {
-      if (!res.success) {
-        this.setState({ limitCrossed: true });
-      }
-      this.setState({ posting: false, rant_content: '', tags: '' });
-    })
-    .catch(() => {
-      this.setState({ posting: false });
-    });
+    if (this.state.image !== null) {
+      rantscript
+        .postRant(rantText, this.state.tags, auth.user.authToken, this.state.image)
+        .then((res) => {
+          if (!res.success) {
+            this.setState({ limitCrossed: true });
+          }
+          this.setState({ posting: false, rant_content: '', tags: '' });
+        })
+        .catch(() => {
+          this.setState({ posting: false });
+        });
+    } else {
+      rantscript
+      .postRant(rantText, this.state.tags, auth.user.authToken)
+      .then((res) => {
+        if (!res.success) {
+          this.setState({ limitCrossed: true });
+        }
+        this.setState({ posting: false, rant_content: '', tags: '' });
+      })
+      .catch(() => {
+        this.setState({ posting: false });
+      });
+    }
+  }
+
+  selectImage() {
+    if (this.state.image !== null) {
+      this.setState({ image: null });
+    } else {
+      const { dialog } = electron.remote;
+      dialog.showOpenDialog({
+        title: 'Upload image',
+        filters: [{ name: 'Images', extensions: ['jpg', 'png', 'gif'] }],
+      }, (image) => {
+        this.setState({ image: image[0] });
+      });
+    }
   }
 
   toggleEmoji() {
@@ -107,6 +141,12 @@ class PostRant extends Component {
               className="tags"
             />
             <div className="post">
+              <button
+                onClick={() => this.selectImage()}
+              >
+                {this.state.image === null && 'Add Image'}
+                {this.state.image !== null && 'Remove Image'}
+              </button>
               <button
                 onClick={() => this.onPost()}
                 disabled={this.state.posting}
