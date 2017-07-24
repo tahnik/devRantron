@@ -21,10 +21,22 @@ class PostRant extends Component {
     };
   }
 
+  parseHtml(str) {
+    const parser = new DOMParser();
+    const imgtags = str.match(/<(img+)\s+\w+.*?>/g);
+    console.log(imgtags);
+    for (const tag of imgtags) {
+      console.log(tag, tag.match(/alt="(.*?)"/)[1]);
+      str = str.replace(tag, tag.match(/alt="(.*?)"/)[1]);
+    }
+    return parser.parseFromString(`<!doctype html><body> ${str}`, 'text/html').body.textContent;
+  }
+
   onPost() {
     const { auth } = this.props;
     this.setState({ posting: true });
-    const rantText = document.getElementById('post_rant_content').innerHTML;
+    const rantText = this.parseHtml(document.getElementById('post_rant_content').innerHTML);
+    console.log(rantText);
     rantscript
     .postRant(rantText, this.state.tags, auth.user.authToken)
     .then((res) => {
@@ -37,6 +49,7 @@ class PostRant extends Component {
       this.setState({ posting: false });
     });
   }
+
   toggleEmoji() {
     if (this.state.activeHelper === HELPER_TYPES.EMOJI) {
       this.setState({ activeHelper: null });
@@ -44,6 +57,7 @@ class PostRant extends Component {
     }
     this.setState({ activeHelper: HELPER_TYPES.EMOJI });
   }
+
   static addEmoji(emoji) {
     const div = document.getElementById('post_rant_content');
 
