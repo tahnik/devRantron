@@ -98,7 +98,7 @@ class UserCard extends Component {
       return <div />;
     }
     return (
-      <div className="user_card" id="user_card">
+      <div className="user_card" id="user_card" style={{ background: 'url(./res/images/profile_banner.png)' }}>
         <div
           className="close"
           onClick={() => this.props.closeCard()}
