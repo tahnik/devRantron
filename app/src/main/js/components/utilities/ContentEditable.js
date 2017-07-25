@@ -9,6 +9,8 @@ class ContentEditable extends Component {
     super(props);
     this.state = {
       pickerActive: false,
+      content: '',
+      previewContent: '',
       pickerStyle: {
         bottom: '5px',
         right: '0px',
@@ -18,11 +20,41 @@ class ContentEditable extends Component {
   shouldComponentUpdate() {
     return true;
   }
-  onChange() {
+  onChange(value, caretOffset = 0) {
+    this.setState({ content: value });
+    let content = value;
+    let caretPos = 0;
+    if (this.textarea) {
+      caretPos = this.textarea.selectionStart;
+    }
+    content = ContentEditable.moveCaret(content, caretPos + caretOffset);
+    content = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
+    content = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
+    this.setState({ previewContent: content });
+  }
+  static moveCaret(content, caretPos) {
+    return `${content.slice(0, caretPos)}<span id="cursor">|</span>${content.slice(caretPos)}`;
+  }
+  getContent() {
+    let content = this.state.content;
+    let caretPos = 0;
+    if (this.textarea) {
+      caretPos = this.textarea.selectionStart;
+    }
+    content = ContentEditable.moveCaret(content, caretPos);
+    content = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
+    return Twemoji.parse(content);
+  }
+  ontextareaClick() {
+    let content = this.state.content;
+    let caretPos = 0;
+    if (this.textarea) {
+      caretPos = this.textarea.selectionStart;
+    }
+    content = ContentEditable.moveCaret(content, caretPos);
+    this.setState({ previewContent: content });
   }
   toggleEmojiPicker() {
-    this.contentEditable.blur();
-    // const emojiTrigger = this.node.getElementsByClassName('emoji_trigger')[0];
     const emojiTrigger = this.node;
     const triggerStyles = getComputedStyle(emojiTrigger);
     const bottom = `${parseInt(triggerStyles.bottom, 10) + emojiTrigger.clientHeight + 10}px`;
@@ -35,26 +67,10 @@ class ContentEditable extends Component {
     });
   }
   addEmoji(emoji) {
-    let range;
-    const sel = window.getSelection();
-    if (sel.anchorNode && sel.anchorNode.parentElement.id === 'ce_textarea') {
-      if (sel.getRangeAt && sel.rangeCount) {
-        range = sel.getRangeAt(0);
-        range.deleteContents();
-        const textNode = document.createTextNode(`${emoji}`);
-        range.insertNode(textNode);
-      }
-    } else {
-      this.contentEditable.innerHTML += (`${emoji}&nbsp;`);
-      range = document.createRange();
-      range.selectNodeContents(this.contentEditable);
-      range.collapse(false);
-      const selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
-    }
-
-    Twemoji.parse(this.contentEditable);
+    // this.setState({ previewContent: this.state.previewContent + emoji });
+    // this.setState({ content: this.state.content + emoji });
+    const content = this.state.content + emoji;
+    this.onChange(content, 0);
   }
   render() {
     const { pickerActive } = this.state;
@@ -64,13 +80,17 @@ class ContentEditable extends Component {
         id={this.props.id}
         ref={(node) => { this.node = node; }}
       >
-        <div
-          contentEditable
+        <textarea
           className="textarea"
-          id="ce_textarea"
-          ref={(node) => { this.contentEditable = node; }}
-          onInput={() => this.onChange()}
-          suppressContentEditableWarning
+          onChange={(e) => { this.onChange(e.target.value); }}
+          value={this.state.content}
+          ref={(node) => { this.textarea = node; }}
+          onClick={e => this.ontextareaClick(e)}
+        />
+        <div
+          className="previewNode"
+          ref={(node) => { this.previewNode = node; }}
+          dangerouslySetInnerHTML={{ __html: Twemoji.parse(this.state.previewContent) }}
         />
         <TwemojiComp
           className="emoji_trigger"

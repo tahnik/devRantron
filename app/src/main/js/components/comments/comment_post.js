@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
 import ContentEditable from '../utilities/ContentEditable';
 
-let pos = 0;
-let active = false;
-
 class CommentPost extends Component {
   constructor() {
     super();
@@ -14,6 +11,7 @@ class CommentPost extends Component {
       disabled: false,
       users: [],
       mentions: [],
+      content: '',
     };
   }
   componentWillMount() {
@@ -26,44 +24,9 @@ class CommentPost extends Component {
       this.setState({ users: Array.from(users) });
     }
   }
-  handleText(e) {
-    const text = e.target.value;
-    console.log(e);
-    return;
-    this.setState({ text });
-    const lastChar = text.slice(-1);
-    const { users } = this.state;
-    if (lastChar === ' ') {
-      active = false;
-      pos = 0;
-    }
-    if (lastChar === '@') {
-      pos = text.length;
-      active = true;
-    }
-    const mentions = new Set();
-    const postCommentArea = document.getElementById('post_comment_area');
-    if (active) {
-      const searchText = text.substring(pos, text.length);
-      const searchTextArray = Array.from(searchText); // Thanks ES6
-      if (searchTextArray.length === 0) {
-        mentions.add(users);
-      } else {
-        for (let i = 0; i < users.length; i += 1) {
-          let candidate = true;
-          for (let j = 0; j < searchTextArray.length; j += 1) {
-            if (users[i].indexOf(searchTextArray[j]) === -1) {
-              candidate = false;
-            }
-          }
-          if (candidate) {
-            mentions.add(users[i]);
-          }
-        }
-      }
-      this.setState({ mentions: Array.from(mentions) });
-    }
-    this.setState({ mentions: [] });
+  handleText() {
+    this.setState({ content: this.node.innerText });
+    console.log(this.node.innerText);
   }
   onPost() {
     const { auth, id, fetch } = this.props;
@@ -96,10 +59,7 @@ class CommentPost extends Component {
         />
         <div className="mentions">
           {
-            this.state.mentions.map((user) => {
-              console.log(user);
-              return <div className="item" key={user}>{user}</div>;
-            })
+            this.state.mentions.map(user => <div className="item" key={user}>{user}</div>)
           }
         </div>
         <button

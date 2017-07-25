@@ -22,13 +22,37 @@ $post_comment_height: 13rem
 .content_editable
   position: relative
   display: flex
-  .textarea
+  .previewNode
+    position: absolute
+    height: 100%
+    width: 100%
+    z-index: 9
+    background-color: white
+    white-space: pre-wrap
+    @keyframes cursor
+      from
+        color: transparent
+      50%
+        color: black
+      to
+        color: transparent
+    #cursor
+      position: absolute
+      animation: 1s cursor step-end infinite
+  textarea
+    padding: 0
+    color: transparent
+    font-family: 'Roboto', sans-serif
+    font-size: 1rem
     flex: 1
+    background-color: transparent
+    z-index: 99
     &:focus
       outline: none
   .emoji_picker
     z-index: 99
   .emoji_trigger
+    z-index: 99
     position: absolute
     top: 5px
     right: 5px
