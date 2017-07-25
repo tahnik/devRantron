@@ -67,10 +67,8 @@ class ContentEditable extends Component {
     });
   }
   addEmoji(emoji) {
-    // this.setState({ previewContent: this.state.previewContent + emoji });
-    // this.setState({ content: this.state.content + emoji });
     const content = this.state.content + emoji;
-    this.onChange(content, 0);
+    this.onChange(content, emoji.length);
   }
   render() {
     const { pickerActive } = this.state;
