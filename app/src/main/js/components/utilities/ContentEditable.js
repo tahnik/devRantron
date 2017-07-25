@@ -4,6 +4,10 @@ import TwemojiComp from 'react-twemoji';
 import Twemoji from 'twemoji';
 import EmojiPicker from '../emoji_picker/emoji_picker';
 
+function replaceAll(string, search, replacement) {
+  return string.replace(new RegExp(search, 'g'), replacement);
+}
+
 class ContentEditable extends Component {
   constructor(props) {
     super(props);
@@ -54,6 +58,12 @@ class ContentEditable extends Component {
     content = ContentEditable.moveCaret(content, caretPos);
     this.setState({ previewContent: content });
   }
+  keyDown(e) {
+    console.log(e.keyCode);
+    if (e.keyCode == 37 || e.keyCode == 39) {
+      this.ontextareaClick();
+    }
+  }
   toggleEmojiPicker() {
     const emojiTrigger = this.node;
     const triggerStyles = getComputedStyle(emojiTrigger);
@@ -84,6 +94,7 @@ class ContentEditable extends Component {
           value={this.state.content}
           ref={(node) => { this.textarea = node; }}
           onClick={e => this.ontextareaClick(e)}
+          onKeyUp={e => this.keyDown(e)}
         />
         <div
           className="previewNode"
