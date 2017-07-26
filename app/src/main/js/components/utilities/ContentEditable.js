@@ -4,10 +4,6 @@ import TwemojiComp from 'react-twemoji';
 import Twemoji from 'twemoji';
 import EmojiPicker from '../emoji_picker/emoji_picker';
 
-function replaceAll(string, search, replacement) {
-  return string.replace(new RegExp(search, 'g'), replacement);
-}
-
 class ContentEditable extends Component {
   constructor(props) {
     super(props);
@@ -24,58 +20,30 @@ class ContentEditable extends Component {
   shouldComponentUpdate() {
     return true;
   }
-  onChange(value, caretOffset = 0) {
+  componentDidUpdate() {
+    this.previewNode.scrollTop = this.textarea.scrollTop;
+  }
+  onChange(value) {
     this.setState({ content: value });
     let content = value;
     let caretPos = 0;
     if (this.textarea) {
       caretPos = this.textarea.selectionStart;
     }
-    content = ContentEditable.moveCaret(content, caretPos + caretOffset);
-    content = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
-    content = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
+    this.previewNode.scrollTop = this.textarea.scrollTop;
+    content = content.substr(0, caretPos);
+    content = ContentEditable.moveCaret(content, caretPos);
     this.setState({ previewContent: content });
+    const cursor = document.getElementById('cursor');
+    console.log(window.getComputedStyle(cursor).top);
+    const mention = document.getElementById('mention');
+    if (mention && cursor) {
+      mention.style.top = `${parseInt(window.getComputedStyle(cursor).top, 10)}`;
+      mention.style.left = `${parseInt(window.getComputedStyle(cursor).left, 10) + 5}px`;
+    }
   }
   static moveCaret(content, caretPos) {
     return `${content.slice(0, caretPos)}<span id="cursor">|</span>${content.slice(caretPos)}`;
-  }
-  getContent() {
-    let content = this.state.content;
-    let caretPos = 0;
-    if (this.textarea) {
-      caretPos = this.textarea.selectionStart;
-    }
-    content = ContentEditable.moveCaret(content, caretPos);
-    content = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
-    return Twemoji.parse(content);
-  }
-  ontextareaClick() {
-    let content = this.state.content;
-    let caretPos = 0;
-    if (this.textarea) {
-      caretPos = this.textarea.selectionStart;
-    }
-    content = ContentEditable.moveCaret(content, caretPos);
-    this.setState({ previewContent: content });
-  }
-  keyDown(e) {
-    let caretPos = 0;
-    if (this.textarea) {
-      caretPos = this.textarea.selectionStart;
-    }
-
-    const preText = this.textarea.value.substring(0, caretPos).split(' ').pop();
-    if (preText.indexOf(':') > -1) {
-      const word = preText.split(':').pop();
-      console.log(word); // this is the emoji
-    } else if (preText.indexOf('@') > -1) {
-      const word = preText.split('@').pop();
-      console.log(word); // this is the user to tag
-    }
-
-    if (e.keyCode === 37 || e.keyCode === 39) {
-      this.ontextareaClick();
-    }
   }
   toggleEmojiPicker() {
     const emojiTrigger = this.node;
@@ -91,7 +59,7 @@ class ContentEditable extends Component {
   }
   addEmoji(emoji) {
     const content = this.state.content + emoji;
-    this.onChange(content, emoji.length);
+    this.onChange(content);
   }
   render() {
     const { pickerActive } = this.state;
@@ -106,14 +74,13 @@ class ContentEditable extends Component {
           onChange={(e) => { this.onChange(e.target.value); }}
           value={this.state.content}
           ref={(node) => { this.textarea = node; }}
-          onClick={e => this.ontextareaClick(e)}
-          onKeyUp={e => this.keyDown(e)}
         />
         <div
           className="previewNode"
           ref={(node) => { this.previewNode = node; }}
-          dangerouslySetInnerHTML={{ __html: Twemoji.parse(this.state.previewContent) }}
+          dangerouslySetInnerHTML={{ __html: this.state.previewContent }}
         />
+        <div id="mention" />
         <TwemojiComp
           className="emoji_trigger"
           onClick={() => this.toggleEmojiPicker()}
@@ -136,3 +103,5 @@ ContentEditable.propTypes = {
 };
 
 export default ContentEditable;
+
+          // <span>{this.state.previewContent}</span><span className="cursor" />

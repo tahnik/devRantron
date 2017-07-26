@@ -28,28 +28,28 @@ $post_comment_height: 13rem
     height: calc(100% - 1rem)
     width: calc(100% - 1rem)
     z-index: 9
-    background-color: white
+    background-color: transparent
     white-space: pre-wrap
-    @keyframes cursor
-      from
-        color: black
-      50%
-        color: transparent
-      to
-        color: black
+    overflow-y: scroll
     #cursor
       position: absolute
-      animation: 1s cursor step-end infinite
   textarea
     padding: 0.5rem
-    color: transparent
     font-family: 'Roboto', sans-serif
+    resize: none
     font-size: 1rem
     flex: 1
-    background-color: transparent
+    background-color: white
     z-index: 99
     &:focus
       outline: none
+  #mention
+    height: 200px
+    width: 100px
+    position: absolute
+    background: cyan
+    z-index: 199
+    opacity: 0.5
   .emoji_picker
     z-index: 99
   .emoji_trigger
