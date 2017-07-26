@@ -24,7 +24,7 @@ class ContentEditable extends Component {
     const cursor = document.getElementById('cursor');
     const mention = document.getElementById('mention');
     if (mention && cursor) {
-      mention.style.top = `${parseInt(window.getComputedStyle(cursor).top, 10)}`;
+      mention.style.top = `${parseInt(window.getComputedStyle(cursor).top, 10)}px`;
       mention.style.left = `${parseInt(window.getComputedStyle(cursor).left, 10) + 5}px`;
     }
   }
