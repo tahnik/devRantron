@@ -121,11 +121,9 @@ class ContentEditable extends Component {
           dangerouslySetInnerHTML={{ __html: this.state.previewContent }}
         />
         <div id="mentions">
-          {
-            this.state.mentions.map(mention => (
-              <div className="mention" key={mention}>{mention}</div>
-            ))
-          }
+          {this.state.mentions.map(mention => (
+            <div className="mention" key={mention}><p>{mention}</p></div>
+          ))}
         </div>
         <TwemojiComp
           className="emoji_trigger"

@@ -44,12 +44,22 @@ $post_comment_height: 13rem
     &:focus
       outline: none
   #mentions
-    height: 200px
-    width: 100px
+    height: auto
+    width: auto
     position: absolute
-    background: cyan
+    background: #fff
     z-index: 199
-    opacity: 0.5
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    transition: all 0.05s;
+    .mention
+      padding: 0.5rem
+      transition: background 0.1s
+      cursor: pointer
+      &:hover
+        background: #c14857
+        color: #fff
+      p
+        margin: 0px
   .emoji_picker
     z-index: 99
   .emoji_trigger
