@@ -27,12 +27,15 @@ class ContentEditable extends Component {
   componentDidUpdate() {
     const cursor = document.getElementById('cursor');
     const mentions = document.getElementById('mentions');
+    let scrollOffset = this.textarea.scrollTop;
+    if (scrollOffset <= 20) { scrollOffset = 0; }
     if (mentions && cursor) {
-      mentions.style.bottom = `${parseInt(window.getComputedStyle(cursor).bottom, 10)}px`;
+      mentions.style.bottom = `${parseInt(window.getComputedStyle(cursor).bottom, 10) + scrollOffset}px`;
       mentions.style.left = `${parseInt(window.getComputedStyle(cursor).left, 10) + 5}px`;
     }
   }
   onChange(value) {
+    this.buildMentions(value);
     this.setState({ content: value });
     let content = value;
     let caretPos = 0;
@@ -43,13 +46,11 @@ class ContentEditable extends Component {
     content = content.substr(0, caretPos);
     content = ContentEditable.moveCaret(content, caretPos);
     this.setState({ previewContent: content });
-    this.buildMentions();
   }
-  buildMentions() {
-    const text = this.state.content;
+  buildMentions(text) {
     const lastChar = text.slice(-1);
     const { users } = this.props;
-    if (lastChar === ' ') {
+    if (lastChar === ' ' || lastChar === '') {
       active = false;
       pos = 0;
     }
@@ -77,7 +78,6 @@ class ContentEditable extends Component {
         }
       }
       this.setState({ mentions: Array.from(mentions) });
-      console.log(mentions);
       return;
     }
     this.setState({ mentions: [] });
@@ -123,7 +123,7 @@ class ContentEditable extends Component {
         <div id="mentions">
           {
             this.state.mentions.map(mention => (
-              <div className="mention">{mention}</div>
+              <div className="mention" key={mention}>{mention}</div>
             ))
           }
         </div>
