@@ -68,6 +68,9 @@ class ContentEditable extends Component {
     if (preText.indexOf(':') > -1) {
       const word = preText.split(':').pop();
       console.log(word); // this is the emoji
+    } else if (preText.indexOf('@') > -1) {
+      const word = preText.split('@').pop();
+      console.log(word); // this is the user to tag
     }
 
     if (e.keyCode === 37 || e.keyCode === 39) {
