@@ -4,6 +4,9 @@ import TwemojiComp from 'react-twemoji';
 import Twemoji from 'twemoji';
 import EmojiPicker from '../emoji_picker/emoji_picker';
 
+let active = false;
+let pos = 0;
+
 class ContentEditable extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +18,7 @@ class ContentEditable extends Component {
         bottom: '5px',
         right: '0px',
       },
+      mentions: [],
     };
   }
   shouldComponentUpdate() {
@@ -22,10 +26,10 @@ class ContentEditable extends Component {
   }
   componentDidUpdate() {
     const cursor = document.getElementById('cursor');
-    const mention = document.getElementById('mention');
-    if (mention && cursor) {
-      mention.style.bottom = `${parseInt(window.getComputedStyle(cursor).bottom, 10)}px`;
-      mention.style.left = `${parseInt(window.getComputedStyle(cursor).left, 10) + 5}px`;
+    const mentions = document.getElementById('mentions');
+    if (mentions && cursor) {
+      mentions.style.bottom = `${parseInt(window.getComputedStyle(cursor).bottom, 10)}px`;
+      mentions.style.left = `${parseInt(window.getComputedStyle(cursor).left, 10) + 5}px`;
     }
   }
   onChange(value) {
@@ -39,6 +43,44 @@ class ContentEditable extends Component {
     content = content.substr(0, caretPos);
     content = ContentEditable.moveCaret(content, caretPos);
     this.setState({ previewContent: content });
+    this.buildMentions();
+  }
+  buildMentions() {
+    const text = this.state.content;
+    const lastChar = text.slice(-1);
+    const { users } = this.props;
+    if (lastChar === ' ') {
+      active = false;
+      pos = 0;
+    }
+    if (lastChar === '@') {
+      pos = text.length;
+      active = true;
+    }
+    const mentions = new Set();
+    if (active) {
+      const searchText = text.substring(pos, text.length);
+      const searchTextArray = Array.from(searchText); // Thanks ES6
+      if (searchTextArray.length === 0) {
+        mentions.add(users);
+      } else {
+        for (let i = 0; i < users.length; i += 1) {
+          let candidate = true;
+          for (let j = 0; j < searchTextArray.length; j += 1) {
+            if (users[i].indexOf(searchTextArray[j]) === -1) {
+              candidate = false;
+            }
+          }
+          if (candidate) {
+            mentions.add(users[i]);
+          }
+        }
+      }
+      this.setState({ mentions: Array.from(mentions) });
+      console.log(mentions);
+      return;
+    }
+    this.setState({ mentions: [] });
   }
   static moveCaret(content, caretPos) {
     return `${content.slice(0, caretPos)}<span id="cursor">|</span>${content.slice(caretPos)}`;
@@ -78,7 +120,13 @@ class ContentEditable extends Component {
           ref={(node) => { this.previewNode = node; }}
           dangerouslySetInnerHTML={{ __html: this.state.previewContent }}
         />
-        <div id="mention" />
+        <div id="mentions">
+          {
+            this.state.mentions.map(mention => (
+              <div className="mention">{mention}</div>
+            ))
+          }
+        </div>
         <TwemojiComp
           className="emoji_trigger"
           onClick={() => this.toggleEmojiPicker()}
@@ -98,6 +146,7 @@ class ContentEditable extends Component {
 ContentEditable.propTypes = {
   className: PropTypes.string, // eslint-disable-line
   id: PropTypes.string, // eslint-disable-line
+  users: PropTypes.array //eslint-disable-line
 };
 
 export default ContentEditable;

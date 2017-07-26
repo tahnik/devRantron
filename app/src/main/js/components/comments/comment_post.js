@@ -26,7 +26,6 @@ class CommentPost extends Component {
   }
   handleText() {
     this.setState({ content: this.node.innerText });
-    console.log(this.node.innerText);
   }
   onPost() {
     const { auth, id, fetch } = this.props;
@@ -56,6 +55,7 @@ class CommentPost extends Component {
         <ContentEditable
           contentEditable="true"
           id="post_comment_area"
+          users={this.state.users}
         />
         <div className="mentions">
           {
