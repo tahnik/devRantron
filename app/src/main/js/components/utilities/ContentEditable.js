@@ -59,8 +59,18 @@ class ContentEditable extends Component {
     this.setState({ previewContent: content });
   }
   keyDown(e) {
-    console.log(e.keyCode);
-    if (e.keyCode == 37 || e.keyCode == 39) {
+    let caretPos = 0;
+    if (this.textarea) {
+      caretPos = this.textarea.selectionStart;
+    }
+
+    const preText = this.textarea.value.substring(0, caretPos).split(' ').pop();
+    if (preText.indexOf(':') > -1) {
+      const word = preText.split(':').pop();
+      console.log(word); // this is the emoji
+    }
+
+    if (e.keyCode === 37 || e.keyCode === 39) {
       this.ontextareaClick();
     }
   }
