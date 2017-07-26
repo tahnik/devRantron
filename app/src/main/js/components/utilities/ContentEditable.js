@@ -21,7 +21,12 @@ class ContentEditable extends Component {
     return true;
   }
   componentDidUpdate() {
-    this.previewNode.scrollTop = this.textarea.scrollTop;
+    const cursor = document.getElementById('cursor');
+    const mention = document.getElementById('mention');
+    if (mention && cursor) {
+      mention.style.top = `${parseInt(window.getComputedStyle(cursor).top, 10)}`;
+      mention.style.left = `${parseInt(window.getComputedStyle(cursor).left, 10) + 5}px`;
+    }
   }
   onChange(value) {
     this.setState({ content: value });
@@ -34,13 +39,6 @@ class ContentEditable extends Component {
     content = content.substr(0, caretPos);
     content = ContentEditable.moveCaret(content, caretPos);
     this.setState({ previewContent: content });
-    const cursor = document.getElementById('cursor');
-    console.log(window.getComputedStyle(cursor).top);
-    const mention = document.getElementById('mention');
-    if (mention && cursor) {
-      mention.style.top = `${parseInt(window.getComputedStyle(cursor).top, 10)}`;
-      mention.style.left = `${parseInt(window.getComputedStyle(cursor).left, 10) + 5}px`;
-    }
   }
   static moveCaret(content, caretPos) {
     return `${content.slice(0, caretPos)}<span id="cursor">|</span>${content.slice(caretPos)}`;
