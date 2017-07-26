@@ -24,8 +24,9 @@ $post_comment_height: 13rem
   display: flex
   .previewNode
     position: absolute
-    height: 100%
-    width: 100%
+    padding: 0.5rem
+    height: calc(100% - 1rem)
+    width: calc(100% - 1rem)
     z-index: 9
     background-color: white
     white-space: pre-wrap
@@ -40,7 +41,7 @@ $post_comment_height: 13rem
       position: absolute
       animation: 1s cursor step-end infinite
   textarea
-    padding: 0
+    padding: 0.5rem
     color: transparent
     font-family: 'Roboto', sans-serif
     font-size: 1rem
