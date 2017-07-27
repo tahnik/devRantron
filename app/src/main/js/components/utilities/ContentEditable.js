@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TwemojiComp from 'react-twemoji';
 import Twemoji from 'twemoji';
+import Fuse from 'fuse.js';
 import EmojiPicker from '../emoji_picker/emoji_picker';
 
 let active = false;
@@ -42,10 +43,10 @@ class ContentEditable extends Component {
         if (active) {
           e.preventDefault();
           if (selectedMention === lastIndex) {
-            component.setState({ selectedMention: 0 });
+            component.setState({ selectedMention: lastIndex });
             return;
           }
-          component.setState({ selectedMention: selectedMention + 1 });
+          component.setState({ selectedMention: selectedMention - 1 });
         }
         break;
       case 13: {
@@ -97,10 +98,11 @@ class ContentEditable extends Component {
     }
   }
   addMention() {
-    const { mentions, selectedMention } = this.state;
+    const { selectedMention } = this.state;
+    const { users } = this.props;
     const caretPos = this.textarea.selectionStart;
     let content = this.state.content;
-    content = `${content.slice(0, pos)}${mentions[selectedMention]} ${content.slice(caretPos, content.length)}`;
+    content = `${content.slice(0, pos)}${users[selectedMention]} ${content.slice(caretPos, content.length)}`;
     this.onChange(content);
     active = false;
     pos = 0;
@@ -130,34 +132,25 @@ class ContentEditable extends Component {
       pos = caretPos;
       active = true;
     }
-    const mentions = new Set();
+    let mentions = null;
     if (active) {
       const searchText = text.substring(pos, caretPos);
-      const searchTextArray = Array.from(searchText); // Thanks ES6
-      if (searchTextArray.length === 0) {
-        for (let k = 0; k < users.length; k += 1) {
-          if (mentions.size > 9) {
-            break;
-          }
-          mentions.add(users[k]);
-        }
-      } else {
-        for (let i = 0; i < users.length; i += 1) {
-          if (mentions.size > 9) {
-            break;
-          }
-          let candidate = true;
-          for (let j = 0; j < searchTextArray.length; j += 1) {
-            if (users[i].toLowerCase().indexOf(searchTextArray[j].toLowerCase()) === -1) {
-              candidate = false;
-            }
-          }
-          if (candidate) {
-            mentions.add(users[i]);
-          }
-        }
+      if (searchText === '') {
+        const arraySize = users.length > 10 ? 10 : users.length;
+        this.setState({
+          mentions: [...Array(arraySize).keys()].reverse(),
+          selectedMention: arraySize - 1,
+        });
+        return;
       }
-      this.setState({ mentions: Array.from(mentions) });
+      const options = {
+        shouldSort: true,
+        threshold: 0.0,
+        location: 0,
+      };
+      const fuse = new Fuse(users, options);
+      mentions = new Set(fuse.search(searchText));
+      this.setState({ mentions: Array.from(mentions), selectedMention: mentions.size - 1 });
       return;
     }
     this.setState({ mentions: [] });
@@ -201,11 +194,11 @@ class ContentEditable extends Component {
           dangerouslySetInnerHTML={{ __html: this.state.previewContent }}
         />
         <div id="mentions">
-          {this.state.mentions.map((mention, index) => (
+          {[...this.state.mentions].reverse().map((mention, index) => (
             <div
               className={`mention ${index === selectedMention ? 'active' : ''}`}
               key={mention}
-            ><p>{mention}</p></div>
+            ><p>{this.props.users[mention]}</p></div>
           ))}
         </div>
         <TwemojiComp
