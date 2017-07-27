@@ -106,6 +106,11 @@ class ItemCard extends Component {
             { this.renderCollab() }
           </div>
           { image !== '' ? <img alt="" src={image.url} /> : null }
+          {item.tags.length !== 0 && <div className="tags">
+            {item.tags.map(object => (
+              <span className="tag">{object}</span>
+            ))}
+          </div>}
         </div>
         <BottomBar
           score={item.score}
