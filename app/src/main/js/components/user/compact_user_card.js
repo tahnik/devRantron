@@ -3,10 +3,33 @@ import PropTypes from 'prop-types';
 import { ITEM } from '../../consts/types';
 
 class CompactUserCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      confirm: false,
+    };
+  }
   componentWillMount() {
     const { fetchUser, user } = this.props;
     if (!user.profile) {
       fetchUser();
+    }
+  }
+  /* componenWillUpdate() {
+    if (this.state.confirm == false && this.refs.logoutButton.getAttribute('data-text' !== 'Logout')) {
+      this.refs.logoutButton.setAttribute('data-text', 'Logout');
+    }
+  }*/
+  mouseOut() {
+    this.setState({ confirm: false });
+    this.refs.logoutButton.setAttribute('data-text', 'Logout');
+  }
+  logout(e) {
+    if (this.state.confirm) {
+      this.props.logout();
+    } else {
+      this.setState({ confirm: true });
+      this.refs.logoutButton.setAttribute('data-text', 'Are you sure?');
     }
   }
   render() {
@@ -52,7 +75,7 @@ class CompactUserCard extends Component {
           </div>
         </div>
         <div className="user_bg_tint" style={{ background: `#${profile.avatar.b}` }} />
-        <div className="logout" onClick={() => this.props.logout()}>
+        <div className="logout" ref="logoutButton" data-text="Logout" onClick={e => this.logout(e)} onMouseOut={this.mouseOut.bind(this)}>
           <i className="ion-log-out" />
         </div>
       </div>
