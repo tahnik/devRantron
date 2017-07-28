@@ -113,7 +113,9 @@ class ItemCard extends Component {
           theme={theme}
           open={open}
         />
-        <span className="timesince">{this.timeSince(item.created_time * 1000)}</span>
+        <span
+          className="timesince"
+        >{this.timeSince(item.created_time * 1000)}</span>
         <div
           className="body_container"
           onClick={() => this.open()}
@@ -130,7 +132,7 @@ class ItemCard extends Component {
           { image !== '' ? <img alt="" src={image.url} /> : null }
           {item.tags.length !== 0 && <div className="tags">
             {item.tags.map(object => (
-              <span className="tag">{object}</span>
+              <span key={object} className="tag">{object}</span>
             ))}
           </div>}
         </div>
