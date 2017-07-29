@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
-import ContentEditable from '../utilities/ContentEditable';
+import SmartArea from '../utilities/SmartArea';
 
 class CommentPost extends Component {
   constructor() {
@@ -9,6 +9,7 @@ class CommentPost extends Component {
     this.state = {
       disabled: false,
       users: [],
+      content: '',
     };
   }
   componentWillMount() {
@@ -27,7 +28,7 @@ class CommentPost extends Component {
     rantscript
       .postComment(text, id, auth.user.authToken)
       .then(() => {
-        this.setState({ text: '' });
+        this.setState({ content: '' });
         this.setState({ disabled: false });
         fetch();
         const itemContainer = document.getElementsByClassName('item_compact_column')[0];
@@ -46,11 +47,13 @@ class CommentPost extends Component {
         className="post_comment"
         style={{ width: `${theme.column.width - 17}px` }}
       >
-        <ContentEditable
+        <SmartArea
           id="post_comment_area"
           users={this.state.users}
           onPost={text => this.onPost(text)}
           disabled={this.state.disabled || auth.user === null}
+          value={this.state.content}
+          onChange={text => this.setState({ content: text })}
         />
       </div>
     );

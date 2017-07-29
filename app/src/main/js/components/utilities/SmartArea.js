@@ -26,7 +26,6 @@ class SmartArea extends Component {
     super(props);
     this.state = {
       pickerActive: false,
-      content: '',
       previewContent: '',
       pickerStyle: {
         bottom: '5px',
@@ -120,12 +119,12 @@ class SmartArea extends Component {
   }
   addStringToContent(string) {
     const caretPos = this.textarea.selectionStart;
-    let content = this.state.content;
+    let content = this.props.value;
     content = `${content.slice(0, pos || caretPos)}${string} ${content.slice(caretPos, content.length)}`;
     this.onChange(content);
   }
   onChange(value) {
-    this.setState({ content: value });
+    this.props.onChange(value);
     let content = value;
     let caretPos = 0;
     if (this.textarea) {
@@ -174,12 +173,13 @@ class SmartArea extends Component {
   static moveCaret(content, caretPos) {
     return `${content.slice(0, caretPos)}<span id="cursor">|</span>${content.slice(caretPos)}`;
   }
-  toggleEmojiPicker() {
+  toggleEmojiPicker(bool) {
     const emojiTrigger = this.node;
     const triggerStyles = getComputedStyle(emojiTrigger);
     const bottom = `${parseInt(triggerStyles.bottom, 10) + emojiTrigger.clientHeight + 10}px`;
+    const isActive = typeof bool === 'undefined' ? !this.state.pickerActive : bool;
     this.setState({
-      pickerActive: !this.state.pickerActive,
+      pickerActive: isActive,
       pickerStyle: {
         bottom,
         right: '0px',
@@ -187,7 +187,7 @@ class SmartArea extends Component {
     });
   }
   onPost() {
-    let content = this.state.content;
+    let content = this.props.value;
     const extractedEmojis = new Set();
     getEmojisFromText(content, 0, extractedEmojis);
     const emojis = getAllEmojis();
@@ -198,6 +198,7 @@ class SmartArea extends Component {
       content = content.replace(regex, emoji);
     });
     this.props.onPost(content);
+    this.toggleEmojiPicker(false);
   }
   render() {
     const { pickerActive, selectedMention } = this.state;
@@ -210,7 +211,7 @@ class SmartArea extends Component {
         <textarea
           className="textarea"
           onChange={(e) => { this.onChange(e.target.value); }}
-          value={this.state.content}
+          value={this.props.value}
           ref={(node) => { this.textarea = node; }}
         />
         <div
@@ -238,7 +239,7 @@ class SmartArea extends Component {
         /> : null }
         <div className="post">
           <button>Add Image</button>
-          <button onClick={() => this.onPost()}>Add Comment</button>
+          <button disabled={this.props.disabled} onClick={() => this.onPost()}>Add Comment</button>
         </div>
       </div>
     );
@@ -251,6 +252,9 @@ SmartArea.propTypes = {
   id: PropTypes.string, // eslint-disable-line
   users: PropTypes.array, //eslint-disable-line
   onPost: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 export default SmartArea;
