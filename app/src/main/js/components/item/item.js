@@ -45,7 +45,7 @@ class Item extends Component {
       this.setState({ maxCol });
     }
   }
-  fetchitem() {
+  fetchitem(scrollToBottom = false) {
     const { cardItem, auth, fetchNotifs } = this.props;
     let authToken = null;
     if (auth.user) {
@@ -56,6 +56,12 @@ class Item extends Component {
     .then((res) => {
       const item = res;
       this.setState({ item });
+      if (this.multiCol && scrollToBottom) {
+        this.multiCol.scrollTop = this.multiCol.scrollHeight;
+      }
+      if (this.compactCol && scrollToBottom) {
+        this.compactCol.scrollTop = this.compactCol.scrollHeight;
+      }
       fetchNotifs();
     })
     .catch(() => {
@@ -84,6 +90,7 @@ class Item extends Component {
         <div
           className="comments_and_post"
           style={{ width: `${theme.column.width}px` }}
+          ref={(node) => { this.multiCol = node; }}
         >
           <Comments
             comments={item.comments}
@@ -97,7 +104,7 @@ class Item extends Component {
             theme={theme}
             auth={auth}
             id={item.rant.id}
-            fetch={() => this.fetchitem()}
+            fetch={() => this.fetchitem(true)}
           />
         </div>
       </div>
@@ -107,7 +114,10 @@ class Item extends Component {
     const { item } = this.state;
     const { theme, vote, cardItem, auth, open } = this.props;
     return (
-      <div className="item_compact_column">
+      <div
+        className="item_compact_column"
+        ref={(node) => { this.compactCol = node; }}
+      >
         <ItemCard
           modal
           item={item.rant}
@@ -130,7 +140,7 @@ class Item extends Component {
           theme={theme}
           id={item.rant.id}
           auth={auth}
-          fetch={() => this.fetchitem()}
+          fetch={() => this.fetchitem(true)}
         />
       </div>
     );
