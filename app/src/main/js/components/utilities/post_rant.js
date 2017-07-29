@@ -48,28 +48,8 @@ class PostRant extends Component {
     const { auth } = this.props;
     this.setState({ posting: true });
     const rantText = PostRant.parseHtml(document.getElementById('post_rant_content').innerHTML);
-    if (this.state.image !== null) {
-      rantscript
-        .postRant(rantText, this.state.tags, auth.user.authToken, this.state.image)
-        .then((res) => {
-          if (!res.success) {
-            this.setState({ limitCrossed: res.error });
-            return;
-          }
-          this.setState({
-            posting: false,
-            rant_content: '',
-            tags: '',
-            limitCrossed: null,
-          });
-          this.props.close();
-        })
-        .catch(() => {
-          this.setState({ posting: false });
-        });
-    } else {
-      rantscript
-      .postRant(rantText, this.state.tags, auth.user.authToken)
+    rantscript
+      .postRant(rantText, this.state.tags, auth.user.authToken, this.state.image)
       .then((res) => {
         if (!res.success) {
           this.setState({ limitCrossed: res.error });
@@ -86,7 +66,6 @@ class PostRant extends Component {
       .catch(() => {
         this.setState({ posting: false });
       });
-    }
   }
 
   selectImage() {
