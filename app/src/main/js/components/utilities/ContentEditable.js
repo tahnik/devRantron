@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import TwemojiComp from 'react-twemoji';
 import Fuse from 'fuse.js';
 import EmojiPicker from '../emoji_picker/emoji_picker';
+import emojiData from '../emoji_picker/emojis.json';
 
 let active = false;
 let pos = null;
@@ -176,9 +177,13 @@ class ContentEditable extends Component {
   }
   onPost() {
     const content = this.state.content;
-    this.getAllEmojis(content);
+    const emojis = new Set();
+    this.getAllEmojis(content, 0, emojis);
+    emojis.forEach((emoji) => {
+
+    });
   }
-  getAllEmojis(content, index) {
+  getAllEmojis(content, index, emojis) {
     const modifiableContent = content;
     const firstIndex = modifiableContent.indexOf(':', index);
     const nextIndex = modifiableContent.indexOf(':', firstIndex + 1);
@@ -187,11 +192,11 @@ class ContentEditable extends Component {
     if (nextIndex === -1 || firstIndex === -1) {
       return;
     }
-    if (regSpace.test(stringInBetween)) {
-      this.getAllEmojis(content, nextIndex);
+    if (regSpace.test(stringInBetween) || stringInBetween === '::') {
+      this.getAllEmojis(content, nextIndex, emojis);
     } else {
-      console.log(stringInBetween);
-      this.getAllEmojis(content, nextIndex + 1);
+      emojis.add(stringInBetween);
+      this.getAllEmojis(content, nextIndex + 1, emojis);
     }
   }
   render() {
