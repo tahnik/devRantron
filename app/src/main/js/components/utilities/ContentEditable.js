@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import TwemojiComp from 'react-twemoji';
 import Fuse from 'fuse.js';
 import EmojiPicker from '../emoji_picker/emoji_picker';
-import emojiData from '../emoji_picker/emojis.json';
+import EmojiData from '../../consts/emojis.json';
+import { escapeRegExp } from '../../consts/DOMFunctions';
 
 let active = false;
 let pos = null;
@@ -176,14 +177,28 @@ class ContentEditable extends Component {
     });
   }
   onPost() {
-    const content = this.state.content;
-    const emojis = new Set();
-    this.getAllEmojis(content, 0, emojis);
-    emojis.forEach((emoji) => {
-
+    let content = this.state.content;
+    const extractedEmojis = new Set();
+    this.getEmojisFromTextarea(content, 0, extractedEmojis);
+    const emojis = ContentEditable.getAllEmojis();
+    extractedEmojis.forEach((extractedEmoji) => {
+      const colonRemoved = extractedEmoji.replace(/:/g, '');
+      const emoji = emojis[colonRemoved];
+      const regex = new RegExp(escapeRegExp(extractedEmoji), 'g');
+      content = content.replace(regex, emoji);
     });
+    console.log(content);
   }
-  getAllEmojis(content, index, emojis) {
+  static getAllEmojis() {
+    const emojis = {};
+    Object.keys(EmojiData).forEach((key) => {
+      EmojiData[key].forEach((emoji) => {
+        emojis[emoji.name] = emoji.icon;
+      });
+    });
+    return emojis;
+  }
+  getEmojisFromTextarea(content, index, emojis) {
     const modifiableContent = content;
     const firstIndex = modifiableContent.indexOf(':', index);
     const nextIndex = modifiableContent.indexOf(':', firstIndex + 1);
@@ -193,10 +208,10 @@ class ContentEditable extends Component {
       return;
     }
     if (regSpace.test(stringInBetween) || stringInBetween === '::') {
-      this.getAllEmojis(content, nextIndex, emojis);
+      this.getEmojisFromTextarea(content, nextIndex, emojis);
     } else {
       emojis.add(stringInBetween);
-      this.getAllEmojis(content, nextIndex + 1, emojis);
+      this.getEmojisFromTextarea(content, nextIndex + 1, emojis);
     }
   }
   render() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Twemoji from 'react-twemoji';
-import emojiData from './emojis.json';
+import emojiData from '../../consts/emojis.json';
 
 const categoryImages = {
   people: '😀',
