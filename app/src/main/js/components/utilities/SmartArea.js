@@ -218,14 +218,15 @@ class SmartArea extends Component {
   }
   render() {
     const { pickerActive, selectedMention } = this.state;
+    const invalidContent = this.props.value.length < 5;
     return (
       <div
-        className={`content_editable ${this.props.className}`}
+        className={`smart_area ${this.props.className}`}
         id={this.props.id}
         ref={(node) => { this.node = node; }}
       >
         <textarea
-          className="textarea"
+          className={`textarea ${invalidContent ? 'invalid' : ''}`}
           onChange={(e) => { this.onChange(e.target.value); }}
           value={this.props.value}
           ref={(node) => { this.textarea = node; }}
@@ -258,7 +259,10 @@ class SmartArea extends Component {
             {this.state.image === null && 'Add Image'}
             {this.state.image !== null && 'Remove Image'}
           </button>
-          <button disabled={this.props.disabled} onClick={() => this.onPost()}>Add Comment</button>
+          <button
+            disabled={this.props.disabled || invalidContent}
+            onClick={() => this.onPost()}
+          >Add Comment</button>
         </div>
       </div>
     );

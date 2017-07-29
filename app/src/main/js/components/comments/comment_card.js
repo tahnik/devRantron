@@ -40,7 +40,6 @@ const CommentCard = (props) => {
     isUser = auth.user.authToken.user_id === item.user_id;
   }
   const image = item.attached_image;
-  console.log(image);
   return (
     <div
       className="comment_card"

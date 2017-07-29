@@ -19,7 +19,7 @@ $post_comment_height: 13rem
   width: 18px !important
   margin: 0px 2px -3px 2px
 
-.content_editable
+.smart_area
   position: relative
   display: flex
   flex-direction: column
@@ -57,6 +57,8 @@ $post_comment_height: 13rem
     flex: 1
     background-color: white
     z-index: 99
+    &.invalid
+      color: red
     &:focus
       outline: none
   #mentions
