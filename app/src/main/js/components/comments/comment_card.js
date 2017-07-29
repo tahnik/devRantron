@@ -39,6 +39,8 @@ const CommentCard = (props) => {
   if (auth.user) {
     isUser = auth.user.authToken.user_id === item.user_id;
   }
+  const image = item.attached_image;
+  console.log(image);
   return (
     <div
       className="comment_card"
@@ -53,6 +55,7 @@ const CommentCard = (props) => {
         <UserBadge user={user} theme={theme} open={open} />
         <span className="timesince">{timeSince(item.created_time * 1000)}</span>
         <Twemoji><p>{item.body}</p></Twemoji>
+        { typeof image !== 'undefined' ? <img alt="" src={image.url} /> : null }
       </div>
       <BottomBar
         score={item.score}
