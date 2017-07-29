@@ -180,12 +180,11 @@ class ContentEditable extends Component {
   }
   getAllEmojis(content, index) {
     const modifiableContent = content;
-    const firstIndex = index || modifiableContent.indexOf(':');
+    const firstIndex = modifiableContent.indexOf(':', index);
     const nextIndex = modifiableContent.indexOf(':', firstIndex + 1);
     const stringInBetween = content.substring(firstIndex, nextIndex + 1);
     const regSpace = /[ \n\r]+/g;
-    console.log(nextIndex);
-    if (nextIndex === -1) {
+    if (nextIndex === -1 || firstIndex === -1) {
       return;
     }
     if (regSpace.test(stringInBetween)) {

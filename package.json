@@ -113,6 +113,7 @@
     "react-test-renderer": "^15.5.4",
     "redux-logger": "^3.0.1",
     "rimraf": "^2.6.1",
+    "sass-lint": "^1.10.2",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
     "webpack": "^3.1.0",
