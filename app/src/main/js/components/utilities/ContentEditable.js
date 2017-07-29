@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TwemojiComp from 'react-twemoji';
-import Twemoji from 'twemoji';
 import Fuse from 'fuse.js';
 import EmojiPicker from '../emoji_picker/emoji_picker';
 
 let active = false;
-let pos = 0;
+let pos = null;
 
 let component = null;
 
@@ -25,12 +24,22 @@ class ContentEditable extends Component {
       selectedMention: 0,
     };
   }
-  shouldComponentUpdate() {
-    return true;
-  }
   componentDidMount() {
     component = this;
     document.addEventListener('keydown', ContentEditable.handleArrowKeys, false);
+  }
+  shouldComponentUpdate() {
+    return true;
+  }
+  componentDidUpdate() {
+    const cursor = document.getElementById('cursor');
+    const mentions = document.getElementById('mentions');
+    let scrollOffset = this.textarea.scrollTop;
+    if (scrollOffset <= 20) { scrollOffset = 0; }
+    if (mentions && cursor) {
+      mentions.style.bottom = `${parseInt(window.getComputedStyle(cursor).bottom, 10) + scrollOffset}px`;
+      mentions.style.left = `${parseInt(window.getComputedStyle(cursor).left, 10) + 5}px`;
+    }
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', ContentEditable.handleArrowKeys, false);
@@ -42,11 +51,7 @@ class ContentEditable extends Component {
       case 9:
         if (active) {
           e.preventDefault();
-          if (selectedMention === lastIndex) {
-            component.setState({ selectedMention: lastIndex });
-            return;
-          }
-          component.setState({ selectedMention: selectedMention - 1 });
+          component.addMention();
         }
         break;
       case 13: {
@@ -87,26 +92,25 @@ class ContentEditable extends Component {
       default:
     }
   }
-  componentDidUpdate() {
-    const cursor = document.getElementById('cursor');
-    const mentions = document.getElementById('mentions');
-    let scrollOffset = this.textarea.scrollTop;
-    if (scrollOffset <= 20) { scrollOffset = 0; }
-    if (mentions && cursor) {
-      mentions.style.bottom = `${parseInt(window.getComputedStyle(cursor).bottom, 10) + scrollOffset}px`;
-      mentions.style.left = `${parseInt(window.getComputedStyle(cursor).left, 10) + 5}px`;
-    }
-  }
   addMention() {
-    const { selectedMention } = this.state;
+    const { selectedMention, mentions } = this.state;
     const { users } = this.props;
+    const index = mentions[selectedMention];
+    if (typeof index !== 'undefined') {
+      this.addStringToContent(users[index]);
+    }
+    active = false;
+    pos = null;
+    this.setState({ selectedMention: 0 });
+  }
+  addEmoji(emoji) {
+    this.addStringToContent(emoji);
+  }
+  addStringToContent(string) {
     const caretPos = this.textarea.selectionStart;
     let content = this.state.content;
-    content = `${content.slice(0, pos)}${users[selectedMention]} ${content.slice(caretPos, content.length)}`;
+    content = `${content.slice(0, pos || caretPos)}${string} ${content.slice(caretPos, content.length)}`;
     this.onChange(content);
-    active = false;
-    pos = 0;
-    this.setState({ selectedMention: 0 });
   }
   onChange(value) {
     this.setState({ content: value });
@@ -138,7 +142,7 @@ class ContentEditable extends Component {
       if (searchText === '') {
         const arraySize = users.length > 10 ? 10 : users.length;
         this.setState({
-          mentions: [...Array(arraySize).keys()].reverse(),
+          mentions: [...Array(arraySize).keys()],
           selectedMention: arraySize - 1,
         });
         return;
@@ -170,9 +174,26 @@ class ContentEditable extends Component {
       },
     });
   }
-  addEmoji(emoji) {
-    const content = this.state.content + emoji;
-    this.onChange(content);
+  onPost() {
+    const content = this.state.content;
+    this.getAllEmojis(content);
+  }
+  getAllEmojis(content, index) {
+    const modifiableContent = content;
+    const firstIndex = index || modifiableContent.indexOf(':');
+    const nextIndex = modifiableContent.indexOf(':', firstIndex + 1);
+    const stringInBetween = content.substring(firstIndex, nextIndex + 1);
+    const regSpace = /[ \n\r]+/g;
+    console.log(nextIndex);
+    if (nextIndex === -1) {
+      return;
+    }
+    if (regSpace.test(stringInBetween)) {
+      this.getAllEmojis(content, nextIndex);
+    } else {
+      console.log(stringInBetween);
+      this.getAllEmojis(content, nextIndex + 1);
+    }
   }
   render() {
     const { pickerActive, selectedMention } = this.state;
@@ -194,7 +215,7 @@ class ContentEditable extends Component {
           dangerouslySetInnerHTML={{ __html: this.state.previewContent }}
         />
         <div id="mentions">
-          {[...this.state.mentions].reverse().map((mention, index) => (
+          {[...this.state.mentions].map((mention, index) => (
             <div
               className={`mention ${index === selectedMention ? 'active' : ''}`}
               key={mention}
@@ -211,6 +232,10 @@ class ContentEditable extends Component {
           style={this.state.pickerStyle}
           onPick={emoji => this.addEmoji(emoji)}
         /> : null }
+        <div className="post">
+          <button>Add Image</button>
+          <button onClick={() => this.onPost()}>Add Comment</button>
+        </div>
       </div>
     );
   }

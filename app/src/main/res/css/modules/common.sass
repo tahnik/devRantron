@@ -22,15 +22,31 @@ $post_comment_height: 13rem
 .content_editable
   position: relative
   display: flex
+  flex-direction: column
+  .post
+    display: flex
+    button
+      flex: 1
+      &:nth-child(2)
+          margin-left: 1rem
   .previewNode
     position: absolute
     padding: 0.5rem
     height: calc(100% - 1rem)
     width: calc(100% - 1rem)
-    z-index: 9
+    z-index: -9
     background-color: transparent
+    color: transparent
     white-space: pre-wrap
     overflow-y: scroll
+    &::-webkit-scrollbar
+      width: 0
+
+    &::-webkit-scrollbar-thumb
+      background: transparent
+
+    &::-webkit-scrollbar-track
+      background: transparent
     #cursor
       position: absolute
   textarea

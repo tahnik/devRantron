@@ -7,11 +7,8 @@ class CommentPost extends Component {
   constructor() {
     super();
     this.state = {
-      text: '',
       disabled: false,
       users: [],
-      mentions: [],
-      content: '',
     };
   }
   componentWillMount() {
@@ -24,14 +21,11 @@ class CommentPost extends Component {
       this.setState({ users: Array.from(users) });
     }
   }
-  handleText() {
-    this.setState({ content: this.node.innerText });
-  }
-  onPost() {
+  onPost(text) {
     const { auth, id, fetch } = this.props;
     this.setState({ disabled: true });
     rantscript
-      .postComment(this.state.text, id, auth.user.authToken)
+      .postComment(text, id, auth.user.authToken)
       .then(() => {
         this.setState({ text: '' });
         this.setState({ disabled: false });
@@ -53,19 +47,11 @@ class CommentPost extends Component {
         style={{ width: `${theme.column.width - 17}px` }}
       >
         <ContentEditable
-          contentEditable="true"
           id="post_comment_area"
           users={this.state.users}
-        />
-        <div className="mentions">
-          {
-            this.state.mentions.map(user => <div className="item" key={user}>{user}</div>)
-          }
-        </div>
-        <button
+          onPost={text => this.onPost(text)}
           disabled={this.state.disabled || auth.user === null}
-          onClick={() => this.onPost()}
-        >Add Comment</button>
+        />
       </div>
     );
   }

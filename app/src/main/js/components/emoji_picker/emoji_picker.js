@@ -34,11 +34,11 @@ class EmojiPicker extends Component {
       }
     });
   }
-  pickEmoji(emojChar) {
+  pickEmoji(name) {
     if (this.props.onPick === undefined) {
       return false;
     }
-    this.props.onPick(emojChar);
+    this.props.onPick(`:${name}:`);
     return true;
   }
   render() {
@@ -62,10 +62,10 @@ class EmojiPicker extends Component {
           {emojiData[this.state.activeTab].map(object => (
             <Twemoji
               className="emoji_wrapper"
-              key={object.character}
-              onClick={() => { this.pickEmoji(object.character); }}
+              key={object.icon}
+              onClick={() => { this.pickEmoji(object.name); }}
             >
-              {object.character}
+              {object.icon}
             </Twemoji>
             ))}
         </div>
