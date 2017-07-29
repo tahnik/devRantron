@@ -4,14 +4,24 @@ import TwemojiComp from 'react-twemoji';
 import Fuse from 'fuse.js';
 import EmojiPicker from '../emoji_picker/emoji_picker';
 import EmojiData from '../../consts/emojis.json';
-import { escapeRegExp } from '../../consts/DOMFunctions';
+import { escapeRegExp, getAllEmojis, getEmojisFromText } from '../../consts/DOMFunctions';
 
+
+/**
+ * We use these two variable to track @mentions
+ * Here ${active} determines if the @mention div is currently being shown
+ * ${pos} is where the caret pos is
+ */
 let active = false;
 let pos = null;
 
+/**
+ * ${component} is set to this class when the component mounts
+ * We need this reference in scroll handlers. As we can't bind this to named scroll handlers.
+ */
 let component = null;
 
-class ContentEditable extends Component {
+class SmartArea extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,7 +38,7 @@ class ContentEditable extends Component {
   }
   componentDidMount() {
     component = this;
-    document.addEventListener('keydown', ContentEditable.handleArrowKeys, false);
+    document.addEventListener('keydown', SmartArea.handleArrowKeys, false);
   }
   shouldComponentUpdate() {
     return true;
@@ -44,7 +54,7 @@ class ContentEditable extends Component {
     }
   }
   componentWillUnmount() {
-    document.removeEventListener('keydown', ContentEditable.handleArrowKeys, false);
+    document.removeEventListener('keydown', SmartArea.handleArrowKeys, false);
   }
   static handleArrowKeys(e) {
     const { mentions, selectedMention } = component.state;
@@ -124,7 +134,7 @@ class ContentEditable extends Component {
     this.buildMentions(value, caretPos);
     this.previewNode.scrollTop = this.textarea.scrollTop;
     content = content.substr(0, caretPos);
-    content = ContentEditable.moveCaret(content, caretPos);
+    content = SmartArea.moveCaret(content, caretPos);
     this.setState({ previewContent: content });
   }
   buildMentions(text, caretPos) {
@@ -179,40 +189,15 @@ class ContentEditable extends Component {
   onPost() {
     let content = this.state.content;
     const extractedEmojis = new Set();
-    this.getEmojisFromTextarea(content, 0, extractedEmojis);
-    const emojis = ContentEditable.getAllEmojis();
+    getEmojisFromText(content, 0, extractedEmojis);
+    const emojis = getAllEmojis();
     extractedEmojis.forEach((extractedEmoji) => {
       const colonRemoved = extractedEmoji.replace(/:/g, '');
       const emoji = emojis[colonRemoved];
       const regex = new RegExp(escapeRegExp(extractedEmoji), 'g');
       content = content.replace(regex, emoji);
     });
-    console.log(content);
-  }
-  static getAllEmojis() {
-    const emojis = {};
-    Object.keys(EmojiData).forEach((key) => {
-      EmojiData[key].forEach((emoji) => {
-        emojis[emoji.name] = emoji.icon;
-      });
-    });
-    return emojis;
-  }
-  getEmojisFromTextarea(content, index, emojis) {
-    const modifiableContent = content;
-    const firstIndex = modifiableContent.indexOf(':', index);
-    const nextIndex = modifiableContent.indexOf(':', firstIndex + 1);
-    const stringInBetween = content.substring(firstIndex, nextIndex + 1);
-    const regSpace = /[ \n\r]+/g;
-    if (nextIndex === -1 || firstIndex === -1) {
-      return;
-    }
-    if (regSpace.test(stringInBetween) || stringInBetween === '::') {
-      this.getEmojisFromTextarea(content, nextIndex, emojis);
-    } else {
-      emojis.add(stringInBetween);
-      this.getEmojisFromTextarea(content, nextIndex + 1, emojis);
-    }
+    this.props.onPost(content);
   }
   render() {
     const { pickerActive, selectedMention } = this.state;
@@ -261,12 +246,11 @@ class ContentEditable extends Component {
 }
 
 
-ContentEditable.propTypes = {
+SmartArea.propTypes = {
   className: PropTypes.string, // eslint-disable-line
   id: PropTypes.string, // eslint-disable-line
-  users: PropTypes.array //eslint-disable-line
+  users: PropTypes.array, //eslint-disable-line
+  onPost: PropTypes.func.isRequired,
 };
 
-export default ContentEditable;
-
-          // <span>{this.state.previewContent}</span><span className="cursor" />
+export default SmartArea;
