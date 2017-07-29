@@ -22,11 +22,11 @@ class CommentPost extends Component {
       this.setState({ users: Array.from(users) });
     }
   }
-  onPost(text) {
+  onPost(text, image) {
     const { auth, id, fetch } = this.props;
     this.setState({ disabled: true });
     rantscript
-      .postComment(text, id, auth.user.authToken)
+      .postComment(text, id, auth.user.authToken, image)
       .then(() => {
         this.setState({ content: '' });
         this.setState({ disabled: false });
@@ -50,7 +50,7 @@ class CommentPost extends Component {
         <SmartArea
           id="post_comment_area"
           users={this.state.users}
-          onPost={text => this.onPost(text)}
+          onPost={(text, image) => this.onPost(text, image)}
           disabled={this.state.disabled || auth.user === null}
           value={this.state.content}
           onChange={text => this.setState({ content: text })}

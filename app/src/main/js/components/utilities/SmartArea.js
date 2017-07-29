@@ -6,6 +6,7 @@ import EmojiPicker from '../emoji_picker/emoji_picker';
 import EmojiData from '../../consts/emojis.json';
 import { escapeRegExp, getAllEmojis, getEmojisFromText } from '../../consts/DOMFunctions';
 
+const electron = require('electron');
 
 /**
  * We use these two variable to track @mentions
@@ -31,6 +32,7 @@ class SmartArea extends Component {
         bottom: '5px',
         right: '0px',
       },
+      image: null,
       mentions: [],
       selectedMention: 0,
     };
@@ -186,6 +188,19 @@ class SmartArea extends Component {
       },
     });
   }
+  selectImage() {
+    if (this.state.image !== null) {
+      this.setState({ image: null });
+    } else {
+      const { dialog } = electron.remote;
+      dialog.showOpenDialog({
+        title: 'Upload image',
+        filters: [{ name: 'Images', extensions: ['jpg', 'png', 'gif'] }],
+      }, (image) => {
+        this.setState({ image: image[0] });
+      });
+    }
+  }
   onPost() {
     let content = this.props.value;
     const extractedEmojis = new Set();
@@ -197,7 +212,8 @@ class SmartArea extends Component {
       const regex = new RegExp(escapeRegExp(extractedEmoji), 'g');
       content = content.replace(regex, emoji);
     });
-    this.props.onPost(content);
+
+    this.props.onPost(content, this.state.image);
     this.toggleEmojiPicker(false);
   }
   render() {
@@ -238,7 +254,10 @@ class SmartArea extends Component {
           onPick={emoji => this.addEmoji(emoji)}
         /> : null }
         <div className="post">
-          <button>Add Image</button>
+          <button onClick={() => this.selectImage()}>
+            {this.state.image === null && 'Add Image'}
+            {this.state.image !== null && 'Remove Image'}
+          </button>
           <button disabled={this.props.disabled} onClick={() => this.onPost()}>Add Comment</button>
         </div>
       </div>
