@@ -4,7 +4,7 @@ import Twemoji from 'react-twemoji';
 import UserBadge from '../user/user_badge';
 import BottomBar from './bottom_bar';
 import { ITEM } from '../../consts/types';
-import { parseLinks } from '../../consts/utils';
+import { parseLinks, timeSince } from '../../consts/utils';
 
 class ItemCard extends Component {
   shouldComponentUpdate(nextProps) {
@@ -15,27 +15,6 @@ class ItemCard extends Component {
       return false;
     }
     return true;
-  }
-  static timeSince(date) {
-    const seconds = Math.floor((new Date() - date) / 1000);
-    let interval = seconds / 2592000;
-    if (interval > 1) {
-      const nd = new Date(date);
-      return `${nd.getDate()}/${nd.getMonth()}/${nd.getYear().toString().substring(1)}`;
-    }
-    interval = seconds / 86400;
-    if (interval > 1) {
-      return `${Math.floor(interval)}d`;
-    }
-    interval = seconds / 3600;
-    if (interval > 1) {
-      return `${Math.floor(interval)}h`;
-    }
-    interval = seconds / 60;
-    if (interval > 1) {
-      return `${Math.floor(interval)}m`;
-    }
-    return `${Math.floor(seconds)}s`;
   }
   open() {
     const { item, open, modal, itemType } = this.props;
@@ -133,7 +112,7 @@ class ItemCard extends Component {
         />
         <span
           className="timesince"
-        >{ItemCard.timeSince(item.created_time * 1000)}</span>
+        >{timeSince(item.created_time * 1000)}</span>
         <div
           className="body_container"
           onClick={() => this.open()}

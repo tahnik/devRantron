@@ -1,21 +1,20 @@
+import Autolinker from 'autolinker';
 import { NOTIF_TYPES } from '../consts/types';
 import EmojiData from './emojis.json';
 
-const Autolinker = require('autolinker');
 
+export const getRandomInt = () => Math.floor(Math.random() * ((3000 - 0) + 1));
 
-const getRandomInt = () => Math.floor(Math.random() * ((3000 - 0) + 1));
-
-const getUID = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+export const getUID = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     let r = Math.random() * 16 | 0, //eslint-disable-line
       v = c == 'x' ? r : (r & 0x3 | 0x8); //eslint-disable-line
   return v.toString(16);
 });
 
 // eslint-disable-next-line
-const escapeRegExp = str => str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+export const escapeRegExp = str => str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 
-const getNotifText = (type, username) => {
+export const getNotifText = (type, username) => {
   switch (type) {
     case NOTIF_TYPES.COMMENT.MENTION:
       return `${username} mentioned you in a comment.`;
@@ -32,7 +31,7 @@ const getNotifText = (type, username) => {
   }
 };
 
-const getAllEmojis = () => {
+export const getAllEmojis = () => {
   const emojis = {};
   Object.keys(EmojiData).forEach((key) => {
     EmojiData[key].forEach((emoji) => {
@@ -42,9 +41,9 @@ const getAllEmojis = () => {
   return emojis;
 };
 
-const parseLinks = text => Autolinker.link(text);
+export const parseLinks = text => Autolinker.link(text);
 
-const getEmojisFromText = (content, index, emojis) => {
+export const getEmojisFromText = (content, index, emojis) => {
   const modifiableContent = content;
   const firstIndex = modifiableContent.indexOf(':', index);
   const nextIndex = modifiableContent.indexOf(':', firstIndex + 1);
@@ -61,12 +60,24 @@ const getEmojisFromText = (content, index, emojis) => {
   }
 };
 
-export {
-  getRandomInt,
-  getUID,
-  getNotifText,
-  escapeRegExp,
-  getAllEmojis,
-  getEmojisFromText,
-  parseLinks,
+export const timeSince = (date) => {
+  const seconds = Math.floor((new Date() - date) / 1000);
+  let interval = seconds / 2592000;
+  if (interval > 1) {
+    const nd = new Date(date);
+    return `${nd.getDate()}/${nd.getMonth()}/${nd.getYear().toString().substring(1)}`;
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return `${Math.floor(interval)}d`;
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return `${Math.floor(interval)}h`;
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return `${Math.floor(interval)}m`;
+  }
+  return `${Math.floor(seconds)}s`;
 };
