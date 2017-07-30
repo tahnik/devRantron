@@ -1,3 +1,10 @@
+/**
+ * This is part of the reusable column
+ * Top bar has some major functionalities.
+ * It controls the filters (top, algo, day, week)
+ * It also fetches new item when the column scrolls to end
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FILTERS, STATE } from '../../consts/types';
@@ -11,6 +18,11 @@ class ColumnTopBar extends Component {
       translateY: 0,
     };
   }
+  /**
+   * Sets the corret filters when the component mounts
+   *
+   * @memberof ColumnTopBar
+   */
   componentWillMount() {
     const { filters, fetchAfterMount } = this.props;
 
@@ -25,6 +37,12 @@ class ColumnTopBar extends Component {
       this.fetch(firstPri, firstSec);
     }
   }
+  /**
+   * When the component mounts, it attaches a event handler for the column
+   * which listens to the scroll events.
+   *
+   * @memberof ColumnTopBar
+   */
   componentDidMount() {
     const { divID } = this.props;
     const element = document.getElementById(divID);
@@ -32,6 +50,11 @@ class ColumnTopBar extends Component {
       element.addEventListener('scroll', () => this.handleScroll());
     }
   }
+  /**
+   * Make sure to remove the event handler
+   *
+   * @memberof ColumnTopBar
+   */
   componentWillUnmount() {
     const { divID } = this.props;
     const element = document.getElementById(divID);
@@ -39,6 +62,13 @@ class ColumnTopBar extends Component {
       element.removeEventListener('scroll', () => this.handleScroll());
     }
   }
+  /**
+   * Gets the correct primary and secondary filters
+   *
+   * @param {string} type
+   * @returns {string} correct filter
+   * @memberof ColumnTopBar
+   */
   getFilter(type) {
     const { filters, sort, range } = this.props;
     // Get the options from the given filter type i.e. algo, top and recent
@@ -77,14 +107,28 @@ class ColumnTopBar extends Component {
     }
     return null;
   }
-  fetch(firstPri, firstSec, refresh = false) {
+  /**
+   * Fetches more items for the column
+   * Calls redux actions
+   *
+   * @param {any} primary primary filter, most of the time it's sort (top, algo)
+   * @param {any} secondary secondary filter, commonly range (day, week)
+   * @param {boolean} [refresh=false] if the column should be reset
+   * @memberof ColumnTopBar
+   */
+  fetch(primary, secondary, refresh = false) {
     const { id, type, filters } = this.props;
     if (filters.PRIMARY === FILTERS.SORT) {
-      this.props.fetch(firstPri, firstSec, id, refresh, type);
+      this.props.fetch(primary, secondary, id, refresh, type);
     } else {
-      this.props.fetch(firstSec, firstPri, id, refresh, type);
+      this.props.fetch(secondary, secondary, id, refresh, type);
     }
   }
+  /**
+   * Calls fetch when the column scrolls to end
+   *
+   * @memberof ColumnTopBar
+   */
   handleScroll() {
     const { divID, state } = this.props;
     const element = document.getElementById(divID);
@@ -95,20 +139,50 @@ class ColumnTopBar extends Component {
       this.fetch(this.state.primary, this.state.secondary);
     }
   }
+  /**
+   * Refreshes(resets) the column
+   *
+   * @memberof ColumnTopBar
+   */
   refresh() {
     this.fetch(this.state.primary, this.state.secondary, true);
   }
+  /**
+   * Removes the column.
+   * Only used in custom column
+   *
+   * @memberof ColumnTopBar
+   */
   remove() {
     this.props.removeColumn(this.props.id);
   }
+  /**
+   * Click handler for primary filter
+   *
+   * @param {string} primary primary filter
+   * @memberof ColumnTopBar
+   */
   handlePri(primary) {
     this.setState({ primary });
     this.fetch(primary, this.state.secondary);
   }
+  /**
+   * Click handler for secondary filter
+   *
+   * @param {any} secondary secondary filter
+   * @memberof ColumnTopBar
+   */
   handleSec(secondary) {
     this.setState({ secondary });
     this.fetch(this.state.primary, secondary);
   }
+  /**
+   * If the primary filters have some secondary filters
+   * hovering over them make the secondary filters visible
+   *
+   * @param {string} primary primary filter
+   * @memberof ColumnTopBar
+   */
   handleHover(primary) {
     const { filters } = this.props;
     if (!filters.HAS_SECONDARY) {
@@ -119,6 +193,11 @@ class ColumnTopBar extends Component {
       this.setState({ translateY: -100 });
     }
   }
+  /**
+   * Hides the secondary filters when user moves mouse from primary filters
+   *
+   * @memberof ColumnTopBar
+   */
   handleHoverLeave() {
     if (this.state.translateY === -100) {
       this.setState({ translateY: 0 });
