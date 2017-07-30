@@ -1,3 +1,8 @@
+/**
+ * Renders comments in a item modal.
+ * Uses reusable item cards
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ItemCard from '../item/item_card';

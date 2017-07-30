@@ -1,3 +1,9 @@
+/**
+ * This renders a rant with it's comments in a modal.
+ * It can render rant and comments in a single or double columns
+ * based on the width of the window
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ItemCard from './item_card';
@@ -14,6 +20,12 @@ class Item extends Component {
       maxCol: 1,
     };
   }
+  /**
+   * It receives a rant id via props.
+   * Uses that to fetch the rant (or collab)
+   *
+   * @memberof Item
+   */
   componentWillMount() {
     this.fetchitem();
   }
@@ -32,6 +44,12 @@ class Item extends Component {
       this.props.close();
     }
   }
+  /**
+   * This component can render single or double column
+   * That is determined by how much width it has
+   *
+   * @memberof Item
+   */
   handleResize() {
     const { theme } = this.props;
     const middleContainer = document.getElementById('item_container');
@@ -45,6 +63,14 @@ class Item extends Component {
       this.setState({ maxCol });
     }
   }
+  /**
+   * Uses rantscript to fetch a rant or collab
+   * This is called again when a comment is added.
+   * If a comment is added, the comment column is scrolled to bottom
+   *
+   * @param {boolean} [scrollToBottom=false] If it should scroll to bottom
+   * @memberof Item
+   */
   fetchitem(scrollToBottom = false) {
     const { cardItem, auth, fetchNotifs } = this.props;
     let authToken = null;
@@ -68,81 +94,78 @@ class Item extends Component {
       console.log(err);
     });
   }
-  renderMutliCol() {
+  getItemCard() {
     const { item } = this.state;
     const { theme, vote, cardItem, auth, open } = this.props;
+    return (
+      <ItemCard
+        modal
+        item={item.rant}
+        key={item.rant.id}
+        theme={theme}
+        vote={vote}
+        itemType={cardItem.type}
+        auth={auth}
+        open={open}
+      />
+    );
+  }
+  getComments() {
+    const { item } = this.state;
+    const { theme, vote, auth, open } = this.props;
+    return (
+      <Comments
+        comments={item.comments}
+        theme={theme}
+        vote={vote}
+        auth={auth}
+        open={open}
+      />
+    );
+  }
+  getPostComment() {
+    const { item } = this.state;
+    const { theme, auth } = this.props;
+    return (
+      <PostComment
+        comments={item.comments}
+        theme={theme}
+        auth={auth}
+        id={item.rant.id}
+        fetch={() => this.fetchitem(true)}
+      />
+    );
+  }
+  renderMutliCol() {
+    const { theme } = this.props;
     return (
       <div className="item_column">
         <div
           className="itemcard_container"
           style={{ width: `${theme.column.width}px` }}
         >
-          <ItemCard
-            modal
-            item={item.rant}
-            key={item.rant.id}
-            theme={theme}
-            vote={vote}
-            itemType={cardItem.type}
-            auth={auth}
-            open={open}
-          />
+          {this.getItemCard()}
         </div>
         <div
           className="comments_and_post"
           style={{ width: `${theme.column.width}px` }}
           ref={(node) => { this.multiCol = node; }}
         >
-          <Comments
-            comments={item.comments}
-            theme={theme}
-            vote={vote}
-            auth={auth}
-            open={open}
-          />
-          <PostComment
-            comments={item.comments}
-            theme={theme}
-            auth={auth}
-            id={item.rant.id}
-            fetch={() => this.fetchitem(true)}
-          />
+          {this.getComments()}
+          {this.getPostComment()}
         </div>
       </div>
     );
   }
   renderSingleColumn() {
-    const { item } = this.state;
-    const { theme, vote, cardItem, auth, open } = this.props;
     return (
       <div
         className="item_compact_column"
         ref={(node) => { this.compactCol = node; }}
       >
-        <ItemCard
-          modal
-          item={item.rant}
-          key={item.rant.id}
-          theme={theme}
-          vote={vote}
-          itemType={cardItem.type}
-          auth={auth}
-          open={open}
-        />
-        <Comments
-          comments={item.comments}
-          theme={theme}
-          vote={vote}
-          auth={auth}
-          open={open}
-        />
-        <PostComment
-          comments={item.comments}
-          theme={theme}
-          id={item.rant.id}
-          auth={auth}
-          fetch={() => this.fetchitem(true)}
-        />
+        {this.getItemCard()}
+        {this.getComments()}
+        {this.getPostComment()}
       </div>
     );
   }

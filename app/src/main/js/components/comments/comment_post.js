@@ -1,3 +1,8 @@
+/**
+ * Used for posting a comment.
+ * It uses a reusable Smart area
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
@@ -12,7 +17,14 @@ class CommentPost extends Component {
       content: '',
     };
   }
+  /**
+   * Sets up users that have made comments
+   * This is used for @mention
+   *
+   * @memberof CommentPost
+   */
   componentWillMount() {
+    // We use a set to make sure there's no duplicate users
     const users = new Set();
     const { comments } = this.props;
     for (let i = 0; i < comments.length; i += 1) {
@@ -22,6 +34,13 @@ class CommentPost extends Component {
       this.setState({ users: Array.from(users) });
     }
   }
+  /**
+   * Posts a comment using rantscript
+   *
+   * @param {string} text
+   * @param {image} image
+   * @memberof CommentPost
+   */
   onPost(text, image) {
     const { auth, id, fetch } = this.props;
     this.setState({ disabled: true });

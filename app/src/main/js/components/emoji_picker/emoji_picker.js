@@ -1,3 +1,7 @@
+/**
+ * This is the emoji picker used by Smart Area
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Twemoji from 'react-twemoji';
@@ -16,8 +20,6 @@ const categoryImages = {
 
 const allEmojis = [];
 
-// Usage: <EmojiPicker onPick={(emoji)=>{console.log(emoji)}}/>
-
 class EmojiPicker extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +36,12 @@ class EmojiPicker extends Component {
       }
     });
   }
+  /**
+   * Called when an emoji is picker
+   *
+   * @param {string} name the emoji name (not the character)
+   * @memberof EmojiPicker
+   */
   pickEmoji(name) {
     if (this.props.onPick === undefined) {
       return false;
