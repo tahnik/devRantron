@@ -67,9 +67,21 @@ const clearNotifs = () => (dispatch, getState) => {
   });
 };
 
+
+/**
+ * This shows a OS notification using HTML5 Notification API
+ * This also shows a quick reply window if enabled in the settings
+ *
+ * @param {object} notif
+ */
 const showNotifs = notif => (dispatch, getState) => {
   const notifSettings = getState().settings.general.notifications.options;
 
+  /**
+   * This is done to update the user score (and the profile)
+   * Okay, so this updates the profile but the main purpose is to
+   * update the score
+   */
   dispatch(fetchUser());
 
   if (!notifSettings.notif_enabled.value) {
@@ -93,6 +105,7 @@ const showNotifs = notif => (dispatch, getState) => {
       silent: !notifSettings.notif_sound_enabled.value,
     });
 
+    // Open a modal when a user clicks on the notif
     myNotification.onclick = (e) => {
       dispatch(openModal(ITEM.RANT.NAME, e.target.data));
       currentWindow.show();
