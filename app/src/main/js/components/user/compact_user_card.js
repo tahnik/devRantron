@@ -15,21 +15,16 @@ class CompactUserCard extends Component {
       fetchUser();
     }
   }
-  /* componenWillUpdate() {
-    if (this.state.confirm == false && this.refs.logoutButton.getAttribute('data-text' !== 'Logout')) {
-      this.refs.logoutButton.setAttribute('data-text', 'Logout');
-    }
-  }*/
   mouseOut() {
     this.setState({ confirm: false });
-    this.refs.logoutButton.setAttribute('data-text', 'Logout');
+    this.logoutButton.setAttribute('data-text', 'Logout');
   }
-  logout(e) {
+  logout() {
     if (this.state.confirm) {
       this.props.logout();
     } else {
       this.setState({ confirm: true });
-      this.refs.logoutButton.setAttribute('data-text', 'Are you sure?');
+      this.logoutButton.setAttribute('data-text', 'Are you sure?');
     }
   }
   render() {
@@ -75,7 +70,13 @@ class CompactUserCard extends Component {
           </div>
         </div>
         <div className="user_bg_tint" style={{ background: `#${profile.avatar.b}` }} />
-        <div className="logout" ref="logoutButton" data-text="Logout" onClick={e => this.logout(e)} onMouseOut={this.mouseOut.bind(this)}>
+        <div
+          className="logout"
+          ref={(node) => { this.logoutButton = node; }}
+          data-text="Logout"
+          onClick={e => this.logout(e)}
+          onMouseOut={() => this.onMouseOut()}
+        >
           <i className="ion-log-out" />
         </div>
       </div>
