@@ -23,7 +23,7 @@ class BottomBar extends Component {
       return;
     }
     let voteState = state;
-    let nextScore = this.state.score + voteState;
+    let nextScore = this.state.score;
     if (this.state.isUpvoted === state) {
       voteState = 0;
       /**
@@ -36,6 +36,8 @@ class BottomBar extends Component {
       } else {
         nextScore -= 1;
       }
+    } else {
+      nextScore += state;
     }
     const { vote, id, type } = this.props;
     if (type) {
