@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import TwemojiComp from 'react-twemoji';
 import Fuse from 'fuse.js';
 import EmojiPicker from '../emoji_picker/emoji_picker';
-import EmojiData from '../../consts/emojis.json';
 import { escapeRegExp, getAllEmojis, getEmojisFromText } from '../../consts/DOMFunctions';
 
 const electron = require('electron');
@@ -237,6 +236,7 @@ class SmartArea extends Component {
           className={`smart_textarea ${invalidContent ? 'invalid' : ''}`}
           onChange={(e) => { this.onChange(e.target.value); }}
           value={this.props.value}
+          placeholder={this.props.placeholder}
           ref={(node) => { this.textarea = node; }}
         />
         <div
@@ -292,6 +292,7 @@ SmartArea.propTypes = {
   disabled: PropTypes.bool.isRequired,
   tags: PropTypes.string, //eslint-disable-line
   onTagsChange: PropTypes.func, //eslint-disable-line
+  placeholder: PropTypes.string.isRequired,
 };
 
 export default SmartArea;

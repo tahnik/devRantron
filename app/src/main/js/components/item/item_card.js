@@ -15,7 +15,7 @@ class ItemCard extends Component {
     }
     return true;
   }
-  timeSince(date) {
+  static timeSince(date) {
     const seconds = Math.floor((new Date() - date) / 1000);
     let interval = seconds / 2592000;
     if (interval > 1) {
@@ -115,7 +115,7 @@ class ItemCard extends Component {
         />
         <span
           className="timesince"
-        >{this.timeSince(item.created_time * 1000)}</span>
+        >{ItemCard.timeSince(item.created_time * 1000)}</span>
         <div
           className="body_container"
           onClick={() => this.open()}

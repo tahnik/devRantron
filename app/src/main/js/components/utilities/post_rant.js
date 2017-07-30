@@ -51,6 +51,7 @@ class PostRant extends Component {
               value={this.state.rant_content}
               onChange={text => this.setState({ rant_content: text })}
               disabled={this.state.disabled || auth.user === null}
+              placeholder="The rant starts here..."
               tags={this.state.tags}
               onTagsChange={tags => this.setState({ tags })}
             />
