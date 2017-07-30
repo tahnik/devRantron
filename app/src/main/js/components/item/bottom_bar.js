@@ -23,7 +23,7 @@ class BottomBar extends Component {
       return;
     }
     let voteState = state;
-    let nextScore = this.state.score + voteState;
+    let nextScore = this.state.score;
     if (this.state.isUpvoted === state) {
       voteState = 0;
       /**
@@ -36,6 +36,8 @@ class BottomBar extends Component {
       } else {
         nextScore -= 1;
       }
+    } else {
+      nextScore += state;
     }
     const { vote, id, type } = this.props;
     if (type) {
@@ -51,12 +53,9 @@ class BottomBar extends Component {
     return (
       <div className="bottom_bar_container" >
         <div
-          className={`upvote ${disabled}`}
+          className={`upvote ${disabled} ${this.state.isUpvoted > 0 ? 'upvoted' : ''}`}
           disabled={disabled}
           onClick={() => this.vote(1)}
-          style={{
-            backgroundColor: this.state.isUpvoted > 0 ? '#D55161' : null,
-          }}
         >
           <span className="ud_icon">+</span>
           <span className="ud_icon">+</span>
@@ -67,10 +66,7 @@ class BottomBar extends Component {
         <div
           onClick={() => this.vote(-1)}
           disabled={disabled}
-          className={`downvote ${disabled}`}
-          style={{
-            backgroundColor: this.state.isUpvoted < 0 ? '#D55161' : null,
-          }}
+          className={`downvote ${disabled} ${this.state.isUpvoted < 0 ? 'downvoted' : ''}`}
         >
           <span className="ud_icon">-</span>
           <span className="ud_icon">-</span>
@@ -93,10 +89,10 @@ BottomBar.propTypes = {
   score: PropTypes.number.isRequired,
   isUser: PropTypes.bool.isRequired,
   vote: PropTypes.func.isRequired,
-  comments: PropTypes.number, //eslint-disable-line
+  comments: PropTypes.number,
   isUpvoted: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
-  type: PropTypes.string, //eslint-disable-line
+  type: PropTypes.string,
 };
 
 export default BottomBar;

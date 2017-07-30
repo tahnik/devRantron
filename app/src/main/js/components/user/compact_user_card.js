@@ -75,7 +75,7 @@ class CompactUserCard extends Component {
           ref={(node) => { this.logoutButton = node; }}
           data-text="Logout"
           onClick={e => this.logout(e)}
-          onMouseOut={() => this.onMouseOut()}
+          onMouseOut={() => this.mouseOut()}
         >
           <i className="ion-log-out" />
         </div>

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Twemoji from 'react-twemoji';
 import UserBadge from '../user/user_badge';
-import BottomBar from '../utilities/bottom_bar';
+import BottomBar from './bottom_bar';
 import { ITEM } from '../../consts/types';
+import { parseLinks, timeSince, parseUsers } from '../../consts/utils';
 
 class ItemCard extends Component {
   shouldComponentUpdate(nextProps) {
@@ -15,32 +16,35 @@ class ItemCard extends Component {
     }
     return true;
   }
-  static timeSince(date) {
-    const seconds = Math.floor((new Date() - date) / 1000);
-    let interval = seconds / 2592000;
-    if (interval > 1) {
-      const nd = new Date(date);
-      return `${nd.getDate()}/${nd.getMonth()}/${nd.getYear().toString().substring(1)}`;
-    }
-    interval = seconds / 86400;
-    if (interval > 1) {
-      return `${Math.floor(interval)}d`;
-    }
-    interval = seconds / 3600;
-    if (interval > 1) {
-      return `${Math.floor(interval)}h`;
-    }
-    interval = seconds / 60;
-    if (interval > 1) {
-      return `${Math.floor(interval)}m`;
-    }
-    return `${Math.floor(seconds)}s`;
-  }
   open() {
     const { item, open, modal, itemType } = this.props;
-    if (!modal) {
+    if (typeof modal !== 'undefined' || typeof item.tags !== 'undefined') {
       open(itemType, item.id);
     }
+  }
+  getContent() {
+    const { item } = this.props;
+    const isComment = typeof item.rant_id !== 'undefined';
+    let content = isComment ? item.body : item.text;
+    if (isComment) {
+      content = parseUsers(content);
+    }
+    return parseLinks(content);
+  }
+  getTags() {
+    const { item } = this.props;
+    if (!item.tags) {
+      return <div />;
+    }
+    return (
+      <div>
+        {item.tags.length !== 0 && <div className="tags">
+          {item.tags.map(object => (
+            <span key={object} className="tag">{object}</span>
+            ))}
+        </div>}
+      </div>
+    );
   }
   renderCollab() {
     const { item, itemType } = this.props;
@@ -99,10 +103,11 @@ class ItemCard extends Component {
     if (auth.user) {
       isUser = auth.user.authToken.user_id === item.user_id;
     }
-    const image = item.attached_image;
+    const isComment = typeof item.rant_id !== 'undefined';
+    const image = item.attached_image || '';
     return (
       <div
-        className={`item_card ${modal ? null : 'shadow'}`}
+        className={`item_card ${modal || isComment ? null : 'shadow'}`}
         style={{
           backgroundColor: theme.item_card.backgroundColor,
           color: theme.item_card.color,
@@ -115,7 +120,7 @@ class ItemCard extends Component {
         />
         <span
           className="timesince"
-        >{ItemCard.timeSince(item.created_time * 1000)}</span>
+        >{timeSince(item.created_time * 1000)}</span>
         <div
           className="body_container"
           onClick={() => this.open()}
@@ -126,15 +131,16 @@ class ItemCard extends Component {
             { itemType === ITEM.COLLAB.NAME ?
               <span className="title">Summary</span> : null
             }
-            <span className="body"><Twemoji>{item.text}</Twemoji></span>
+            <Twemoji>
+              <span
+                className="body"
+                dangerouslySetInnerHTML={{ __html: this.getContent() }}
+              />
+            </Twemoji>
             { this.renderCollab() }
           </div>
           { image !== '' ? <img alt="" src={image.url} /> : null }
-          {item.tags.length !== 0 && <div className="tags">
-            {item.tags.map(object => (
-              <span key={object} className="tag">{object}</span>
-            ))}
-          </div>}
+          {this.getTags()}
         </div>
         <BottomBar
           score={item.score}
@@ -143,6 +149,7 @@ class ItemCard extends Component {
           vote={vote}
           id={item.id}
           isUser={isUser}
+          type={isComment ? ITEM.COMMENT.NAME : ITEM.RANT.NAME}
         />
       </div>
     );
@@ -154,9 +161,9 @@ ItemCard.propTypes = {
   theme: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
-  itemType: PropTypes.string, //eslint-disable-line
-  open: PropTypes.func, // eslint-disable-line
-  modal: PropTypes.bool, //eslint-disable-line
+  itemType: PropTypes.string,
+  open: PropTypes.func,
+  modal: PropTypes.bool,
 };
 
 export default ItemCard;

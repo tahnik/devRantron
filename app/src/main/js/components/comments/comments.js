@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CommentCard from './comment_card';
+import ItemCard from '../item/item_card';
 
 class Comments extends Component {
   constructor() {
@@ -24,7 +24,7 @@ class Comments extends Component {
         }
         {
           comments.map(comment => (
-            <CommentCard
+            <ItemCard
               key={comment.id}
               item={comment}
               theme={theme}

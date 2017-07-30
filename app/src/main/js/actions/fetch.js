@@ -2,7 +2,7 @@ import rantscript from '../consts/rantscript';
 import { FEED, STATE, COLUMN, COLUMNS, ITEM } from '../consts/types';
 import DEFAULT_STATES from '../consts/default_states';
 import showToast from './toast';
-import { getUID } from '../consts/DOMFunctions';
+import { getUID } from '../consts/utils';
 
 const AMOUNT = 20;
 
@@ -127,6 +127,14 @@ const resetColumn = () => (dispatch) => {
   });
 };
 
+const updateColumnScrollHeight = (id, value) => (dispatch) => {
+  dispatch({
+    type: COLUMN.UPDATE_SCROLL,
+    id,
+    value,
+  });
+};
+
 /**
  * fetches a feed.
  *
@@ -239,7 +247,7 @@ const fetch =
   switch (type) {
     case FEED.RANTS.NAME:
       rantscript
-      .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken)
+      .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken, range)
       .then((res) => {
         /**
          * If the pages is 0, that means we do not need to current items in the
@@ -306,4 +314,7 @@ const fetch =
 };
 
 
-export { fetch as default, addColumn, resetColumn, removeColumn };
+export { fetch as default,
+  addColumn, resetColumn, removeColumn,
+  updateColumnScrollHeight,
+};

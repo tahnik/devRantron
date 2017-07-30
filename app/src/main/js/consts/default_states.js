@@ -1,5 +1,5 @@
 import { STATE, FEED, SETTINGS } from './types';
-import { getUID } from './DOMFunctions';
+import { getUID } from './utils';
 
 /*
  * Why not export them separately?
@@ -64,6 +64,16 @@ export default {
           notif_enabled: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'Enabled',
+            value: true,
+          },
+          notif_sound_enabled: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'Play sound',
+            value: true,
+          },
+          quick_reply_enabled: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'Enable "Quick Reply" when someone @mentions',
             value: true,
           },
           content_vote: {

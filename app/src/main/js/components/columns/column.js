@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import ItemCard from '../item/item_card';
 import Loading from '../utilities/loading';
 import ColumnTopBar from './column_topbar';
-import { getRandomInt } from '../../consts/DOMFunctions';
-import { ITEM } from '../../consts/types';
-import CommentCard from '../comments/comment_card';
+import { getRandomInt } from '../../consts/utils';
 
 class Column extends Component {
   constructor() {
@@ -17,6 +15,12 @@ class Column extends Component {
   componentWillMount() {
     const divID = `column_${this.props.column.type}_${getRandomInt()}`;
     this.setState({ divID });
+  }
+  componentDidMount() {
+    const scrollHeight = this.props.column.scrollHeight;
+    if (typeof scrollHeight !== 'undefined') {
+      this.itemsContainer.scrollTop = scrollHeight;
+    }
   }
   shouldComponentUpdate(nextProps) {
     const currentColumn = this.props.column;
@@ -31,6 +35,12 @@ class Column extends Component {
       }
     }
     return true;
+  }
+  componentWillUnmount() {
+    const { updateScrollHeight } = this.props;
+    if (typeof updateScrollHeight !== 'undefined') {
+      updateScrollHeight(this.props.column.id, this.itemsContainer.scrollTop);
+    }
   }
   render() {
     const {
@@ -50,32 +60,31 @@ class Column extends Component {
           type={column.type}
           state={column.state}
           removeColumn={removeColumn}
+          sort={column.sort}
+          range={column.range}
         />
-        <div className="items_container" id={divID}>
+        <div
+          className="items_container"
+          id={divID}
+          ref={(node) => { this.itemsContainer = node; }}
+        >
           {
             column.items.length === 0 ?
               <Loading
                 backgroundColor={theme.backgroundColor}
               /> :
-              column.items.map((item) => {
-                if (column.itemType === ITEM.COMMENT.NAME) {
-                  return (
-                    <CommentCard {...this.props} item={item} key={item.id} />
-                  );
-                }
-                return (
-                  <ItemCard
-                    fetch={fetch}
-                    item={item}
-                    open={(type, id) => open(type, id)}
-                    key={item.id}
-                    theme={theme}
-                    vote={vote}
-                    itemType={itemType}
-                    auth={auth}
-                  />
-                );
-              })
+              column.items.map(item => (
+                <ItemCard
+                  fetch={fetch}
+                  item={item}
+                  open={(type, id) => open(type, id)}
+                  key={item.id}
+                  theme={theme}
+                  vote={vote}
+                  itemType={itemType}
+                  auth={auth}
+                />
+                ))
           }
         </div>
       </div>
@@ -89,10 +98,11 @@ Column.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
-  removeColumn: PropTypes.func, // eslint-disable-line
+  removeColumn: PropTypes.func,
   filters: PropTypes.object.isRequired,
   itemType: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired,
+  updateScrollHeight: PropTypes.func,
 };
 
 export default Column;

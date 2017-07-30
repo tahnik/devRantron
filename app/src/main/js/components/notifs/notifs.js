@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NotifBubbles from './notif_bubbles';
-import { getNotifText } from '../../consts/DOMFunctions';
+import { getNotifText } from '../../consts/utils';
 
 const { ipcRenderer } = require('electron');
 
@@ -118,7 +118,7 @@ class Notifs extends Component {
 Notifs.propTypes = {
   auth: PropTypes.object.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
-  notifs: PropTypes.object, //eslint-disable-line
+  notifs: PropTypes.object,
   openNotif: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
   clearNotifs: PropTypes.func.isRequired,

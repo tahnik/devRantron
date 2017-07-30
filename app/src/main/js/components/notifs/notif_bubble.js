@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getNotifText } from '../../consts/DOMFunctions';
+import { getNotifText } from '../../consts/utils';
 
 class Notification extends Component {
   constructor(props) {

@@ -75,8 +75,8 @@ class EmojiPicker extends Component {
 }
 
 EmojiPicker.propTypes = {
-  onPick: PropTypes.func, //eslint-disable-line
-  style: PropTypes.object, //eslint-disable-line
+  onPick: PropTypes.func.isRequired,
+  style: PropTypes.object,
 };
 
 export default EmojiPicker;

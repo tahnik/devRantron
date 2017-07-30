@@ -68,7 +68,11 @@ const showNotifs = notif => (dispatch, getState) => {
   }
   if (notifSettings[notif.content.type].value === true) {
     // Show quick reply notif instead
-    if (notif.content.type === 'comment_content' || notif.content.type === 'comment_mention') {
+    if (
+      (notif.content.type === 'comment_content'
+      || notif.content.type === 'comment_mention')
+      && notifSettings.quick_reply_enabled.value
+    ) {
       ipcRenderer.send('showQRNotif', notif);
       return;
     }
@@ -77,6 +81,7 @@ const showNotifs = notif => (dispatch, getState) => {
       body: notif.body,
       data: notif.id,
       icon: 'http://i.imgur.com/iikd00P.png',
+      silent: !notifSettings.notif_sound_enabled.value,
     });
 
     myNotification.onclick = (e) => {
@@ -87,4 +92,4 @@ const showNotifs = notif => (dispatch, getState) => {
   }
 };
 
-export { fetchNotifs, clearNotifs, showNotifs }; //eslint-disable-line
+export { fetchNotifs, clearNotifs, showNotifs };

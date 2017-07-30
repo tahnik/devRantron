@@ -56,7 +56,7 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  item: PropTypes.object, //eslint-disable-line
+  item: PropTypes.object,
   close: PropTypes.func.isRequired,
 };
 
