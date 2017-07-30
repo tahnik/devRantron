@@ -64,7 +64,8 @@ class Item extends Component {
       }
       fetchNotifs();
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
     });
   }
   renderMutliCol() {

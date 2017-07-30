@@ -4,8 +4,6 @@ import ItemCard from '../item/item_card';
 import Loading from '../utilities/loading';
 import ColumnTopBar from './column_topbar';
 import { getRandomInt } from '../../consts/utils';
-import { ITEM } from '../../consts/types';
-import CommentCard from '../comments/comment_card';
 
 class Column extends Component {
   constructor() {
@@ -57,25 +55,18 @@ class Column extends Component {
               <Loading
                 backgroundColor={theme.backgroundColor}
               /> :
-              column.items.map((item) => {
-                if (column.itemType === ITEM.COMMENT.NAME) {
-                  return (
-                    <CommentCard {...this.props} item={item} key={item.id} />
-                  );
-                }
-                return (
-                  <ItemCard
-                    fetch={fetch}
-                    item={item}
-                    open={(type, id) => open(type, id)}
-                    key={item.id}
-                    theme={theme}
-                    vote={vote}
-                    itemType={itemType}
-                    auth={auth}
-                  />
-                );
-              })
+              column.items.map(item => (
+                <ItemCard
+                  fetch={fetch}
+                  item={item}
+                  open={(type, id) => open(type, id)}
+                  key={item.id}
+                  theme={theme}
+                  vote={vote}
+                  itemType={itemType}
+                  auth={auth}
+                />
+                ))
           }
         </div>
       </div>

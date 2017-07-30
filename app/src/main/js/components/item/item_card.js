@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Twemoji from 'react-twemoji';
 import UserBadge from '../user/user_badge';
-import BottomBar from '../utilities/bottom_bar';
+import BottomBar from './bottom_bar';
 import { ITEM } from '../../consts/types';
 import { parseLinks } from '../../consts/utils';
 
@@ -39,9 +39,24 @@ class ItemCard extends Component {
   }
   open() {
     const { item, open, modal, itemType } = this.props;
-    if (!modal) {
+    if (!modal || item.tags) {
       open(itemType, item.id);
     }
+  }
+  getTags() {
+    const { item } = this.props;
+    if (!item.tags) {
+      return <div />;
+    }
+    return (
+      <div>
+        {item.tags.length !== 0 && <div className="tags">
+          {item.tags.map(object => (
+            <span key={object} className="tag">{object}</span>
+            ))}
+        </div>}
+      </div>
+    );
   }
   renderCollab() {
     const { item, itemType } = this.props;
@@ -100,11 +115,12 @@ class ItemCard extends Component {
     if (auth.user) {
       isUser = auth.user.authToken.user_id === item.user_id;
     }
-    console.log(item);
-    const image = item.attached_image;
+    const isComment = typeof item.rant_id !== 'undefined';
+    const content = isComment ? item.body : item.text;
+    const image = item.attached_image || '';
     return (
       <div
-        className={`item_card ${modal ? null : 'shadow'}`}
+        className={`item_card ${modal || isComment ? null : 'shadow'}`}
         style={{
           backgroundColor: theme.item_card.backgroundColor,
           color: theme.item_card.color,
@@ -131,17 +147,13 @@ class ItemCard extends Component {
             <Twemoji>
               <span
                 className="body"
-                dangerouslySetInnerHTML={{ __html: parseLinks(item.text) }}
+                dangerouslySetInnerHTML={{ __html: parseLinks(content) }}
               />
             </Twemoji>
             { this.renderCollab() }
           </div>
           { image !== '' ? <img alt="" src={image.url} /> : null }
-          {item.tags.length !== 0 && <div className="tags">
-            {item.tags.map(object => (
-              <span key={object} className="tag">{object}</span>
-            ))}
-          </div>}
+          {this.getTags()}
         </div>
         <BottomBar
           score={item.score}
@@ -150,6 +162,7 @@ class ItemCard extends Component {
           vote={vote}
           id={item.id}
           isUser={isUser}
+          type={isComment ? ITEM.COMMENT.NAME : ITEM.RANT.NAME}
         />
       </div>
     );
