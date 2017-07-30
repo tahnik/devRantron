@@ -239,7 +239,7 @@ const fetch =
   switch (type) {
     case FEED.RANTS.NAME:
       rantscript
-      .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken)
+      .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken, range)
       .then((res) => {
         /**
          * If the pages is 0, that means we do not need to current items in the
