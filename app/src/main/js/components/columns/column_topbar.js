@@ -14,16 +14,11 @@ class ColumnTopBar extends Component {
   componentWillMount() {
     const { filters, fetchAfterMount } = this.props;
 
-    const primaryFilters = filters[filters.PRIMARY];
-    const firstPriIndex = Object.keys(primaryFilters)[0];
-    const firstPri = primaryFilters[firstPriIndex];
+    const firstPri = this.getFilter(filters.PRIMARY);
     this.setState({ primary: firstPri });
 
-    let firstSec = null;
-    if (filters.SECONDARY) {
-      const secondaryFilters = filters[filters.SECONDARY];
-      const firstSecIndex = Object.keys(secondaryFilters)[0];
-      firstSec = secondaryFilters[firstSecIndex];
+    const firstSec = this.getFilter(filters.SECONDARY);
+    if (firstSec) {
       this.setState({ secondary: firstSec });
     }
     if (fetchAfterMount) {
@@ -43,6 +38,44 @@ class ColumnTopBar extends Component {
     if (element) {
       element.removeEventListener('scroll', () => this.handleScroll());
     }
+  }
+  getFilter(type) {
+    const { filters, sort, range } = this.props;
+    // Get the options from the given filter type i.e. algo, top and recent
+    const options = filters[type];
+    if (options) {
+      /**
+       * sort and range is previously selected options.
+       * if they are undefined, it means that the column is being mounted for the first time
+       */
+      if (typeof sort !== 'undefined' && sort) {
+        if (options[sort.toUpperCase()]) {
+          /**
+           * This means that we've found out previously selected 'sort' in the given filter type.
+           * let's return it
+           */
+          return sort;
+        }
+      }
+      if (typeof range !== 'undefined' && range) {
+        if (options[range.toUpperCase()]) {
+          /**
+           * This means that we've found out previously selected 'range' in the given filter type.
+           * let's return it
+           */
+          return range;
+        }
+      }
+
+      /**
+       * If we have come this far, this means that the column is being mounted for the first time
+       * Let's return the first option from the options
+       * For example, if it's algo, recent and top, we are going to return algo
+       */
+
+      return options[Object.keys(options)[0]];
+    }
+    return null;
   }
   fetch(firstPri, firstSec, refresh = false) {
     const { id, type, filters } = this.props;
@@ -156,6 +189,8 @@ ColumnTopBar.propTypes = {
   fetch: PropTypes.func.isRequired,
   removeColumn: PropTypes.func, // eslint-disable-line
   divID: PropTypes.string.isRequired,
+  sort: PropTypes.string,
+  range: PropTypes.string,
   id: PropTypes.string.isRequired,
   fetchAfterMount: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,

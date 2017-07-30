@@ -127,6 +127,14 @@ const resetColumn = () => (dispatch) => {
   });
 };
 
+const updateColumnScrollHeight = (id, value) => (dispatch) => {
+  dispatch({
+    type: COLUMN.UPDATE_SCROLL,
+    id,
+    value,
+  });
+};
+
 /**
  * fetches a feed.
  *
@@ -306,4 +314,7 @@ const fetch =
 };
 
 
-export { fetch as default, addColumn, resetColumn, removeColumn };
+export { fetch as default,
+  addColumn, resetColumn, removeColumn,
+  updateColumnScrollHeight,
+};

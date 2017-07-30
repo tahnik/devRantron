@@ -15,6 +15,15 @@ export default (state = DEFAULT_STATES.columns, action) => {
     case COLUMNS.ADD: {
       return [...state, action.column];
     }
+    case COLUMN.UPDATE_SCROLL: {
+      const reqColumn = state.filter(column => column.id === action.id)[0];
+      const index = state.indexOf(reqColumn);
+      const newColumns = state.slice();
+      const newColumn = { ...reqColumn };
+      newColumn.scrollHeight = action.value;
+      newColumns[index] = newColumn;
+      return newColumns;
+    }
     case COLUMNS.REMOVE: {
       const reqColumn = state.filter(column => column.id === action.id)[0];
       const index = state.indexOf(reqColumn);

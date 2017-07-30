@@ -46,6 +46,7 @@ class UserProfile extends Component {
     if (
       nextLength === currentLength
       && nextProps.item.id === this.props.item.id
+      && nextState.column.state !== STATE.LOADING
     ) {
       return false;
     }

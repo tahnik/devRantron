@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Columns from '../../components/columns/columns';
-import fetch, { addColumn, removeColumn } from '../../actions/fetch';
+import fetch, { addColumn, removeColumn, updateColumnScrollHeight } from '../../actions/fetch';
 import vote from '../../actions/vote';
 import { ITEM } from '../../consts/types';
 import { openModal } from '../../actions/modal';
@@ -20,6 +20,9 @@ const mapDispatchToProps = dispatch => ({
   },
   open: (type, id) => {
     dispatch(openModal(type, id));
+  },
+  updateScrollHeight: (id, value) => {
+    dispatch(updateColumnScrollHeight(id, value));
   },
 });
 

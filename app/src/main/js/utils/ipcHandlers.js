@@ -18,9 +18,14 @@ export default (store) => {
     store.dispatch(setUpdateStatus(true));
     // eslint-disable-next-line
     const notification = new Notification('devRantron', {
-      body: 'New update is availble. You can install it from settings',
+      body: 'New update is availble. Click here to install',
       icon: 'http://i.imgur.com/iikd00P.png',
+      requireInteraction: true,
     });
+
+    notification.onclick = () => {
+      ipcRenderer.send('updateNow', true);
+    };
   });
 
   ipcRenderer.on('upToDate', () => {
