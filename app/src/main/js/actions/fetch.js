@@ -136,6 +136,12 @@ const resetColumn = () => (dispatch) => {
 };
 
 
+/**
+ * Updates the scroll height of a column. This is only used in custom columns
+ *
+ * @param {string} id
+ * @param {number} value
+ */
 const updateColumnScrollHeight = (id, value) => (dispatch) => {
   dispatch({
     type: COLUMN.UPDATE_SCROLL,
