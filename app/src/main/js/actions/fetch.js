@@ -59,7 +59,7 @@ const filterRants = (orants, newRants, cFilters) => {
 
 
 /**
- * Returns the filters according to feed type
+ * Returns the filters according to feed type i.e. sort (top, algo) and range (day, month)
  *
  * @param {string} type Type of the feed
  * @returns {object} filters Filters associated with the filter
@@ -134,6 +134,7 @@ const resetColumn = () => (dispatch) => {
     column,
   });
 };
+
 
 const updateColumnScrollHeight = (id, value) => (dispatch) => {
   dispatch({
