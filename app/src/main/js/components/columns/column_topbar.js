@@ -121,7 +121,7 @@ class ColumnTopBar extends Component {
     if (filters.PRIMARY === FILTERS.SORT) {
       this.props.fetch(primary, secondary, id, refresh, type);
     } else {
-      this.props.fetch(secondary, secondary, id, refresh, type);
+      this.props.fetch(secondary, primary, id, refresh, type);
     }
   }
   /**
