@@ -27,15 +27,32 @@
     font-size: 1.2rem
     height: 2rem
     width: 2rem
+    cursor: pointer
+    position: relative
+    .ud_icon
+      z-index: 100
+    &:hover
+      background-color: rgb(84, 85, 110)
     &.disabled
       opacity: 0.5
       cursor: default
-      &:hover
-        background-color: rgb(84, 85, 110)
         cursor: default
-    &:hover
+    &.upvoted::before
+      transform: scale(1)
+    &.downvoted::before
+      transform: scale(1)
+    &::before
+      content: " "
+      height: 2rem
+      width: 2rem
+      position: absolute
+      top: 0px
+      right: 0px
+      border-radius: 100%
       background-color: #D55161
-      cursor: pointer
+      z-index: 95
+      transform: scale(0)
+      transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.0, 1.4)
   .upvote
     span:nth-child(1)
       padding-right: 0.1rem

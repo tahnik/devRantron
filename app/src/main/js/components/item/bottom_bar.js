@@ -50,15 +50,13 @@ class BottomBar extends Component {
   render() {
     const { comments, type } = this.props;
     const disabled = this.props.isUser ? 'disabled' : '';
+    const upvoted = this.props.isUser ? 'disabled' : '';
     return (
       <div className="bottom_bar_container" >
         <div
-          className={`upvote ${disabled}`}
+          className={`upvote ${disabled} ${this.state.isUpvoted > 0 ? 'upvoted' : ''}`}
           disabled={disabled}
           onClick={() => this.vote(1)}
-          style={{
-            backgroundColor: this.state.isUpvoted > 0 ? '#D55161' : null,
-          }}
         >
           <span className="ud_icon">+</span>
           <span className="ud_icon">+</span>
@@ -69,10 +67,7 @@ class BottomBar extends Component {
         <div
           onClick={() => this.vote(-1)}
           disabled={disabled}
-          className={`downvote ${disabled}`}
-          style={{
-            backgroundColor: this.state.isUpvoted < 0 ? '#D55161' : null,
-          }}
+          className={`downvote ${disabled} ${this.state.isUpvoted < 0 ? 'downvoted' : ''}`}
         >
           <span className="ud_icon">-</span>
           <span className="ud_icon">-</span>
