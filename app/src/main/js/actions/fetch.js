@@ -17,9 +17,16 @@ const AMOUNT = 20;
  */
 const filterRants = (orants, newRants, cFilters) => {
   const ids = [];
+  // Make an array of all the rants' id
   orants.map(rs => ids.push(rs.id));
+  // Then using indexOf filter out the duplicates
   const rantsWithoutDuplicates = newRants.filter(rant => ids.indexOf(rant.id) === -1);
+  // Check if the user has any custom filters, if there is then simply filter them
   if (cFilters) {
+    /**
+     * We have two type of filters. One is for rant body and another is for tags
+     * first, split each one of those using comma as a separator and create an array
+     */
     const content = cFilters.rant_content;
     const contentArray = content.split(',');
     for (let i = 0; i < contentArray.length; i += 1) {
@@ -30,6 +37,7 @@ const filterRants = (orants, newRants, cFilters) => {
     for (let i = 0; i < tagsArray.length; i += 1) {
       tagsArray[i] = tagsArray[i].trim();
     }
+    // Use those array to filter out the rants
     return rantsWithoutDuplicates.filter((rant) => {
       if (!(contentArray.length === 1 && contentArray[0] === '')) {
         for (let i = 0; i < contentArray.length; i += 1) {
