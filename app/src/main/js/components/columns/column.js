@@ -60,6 +60,8 @@ class Column extends Component {
           type={column.type}
           state={column.state}
           removeColumn={removeColumn}
+          sort={column.sort}
+          range={column.range}
         />
         <div
           className="items_container"
