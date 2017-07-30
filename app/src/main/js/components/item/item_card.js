@@ -161,9 +161,9 @@ ItemCard.propTypes = {
   theme: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
-  itemType: PropTypes.string, //eslint-disable-line
-  open: PropTypes.func, // eslint-disable-line
-  modal: PropTypes.bool, //eslint-disable-line
+  itemType: PropTypes.string,
+  open: PropTypes.func,
+  modal: PropTypes.bool,
 };
 
 export default ItemCard;

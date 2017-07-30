@@ -92,4 +92,4 @@ const showNotifs = notif => (dispatch, getState) => {
   }
 };
 
-export { fetchNotifs, clearNotifs, showNotifs }; //eslint-disable-line
+export { fetchNotifs, clearNotifs, showNotifs };

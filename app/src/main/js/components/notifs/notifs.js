@@ -118,7 +118,7 @@ class Notifs extends Component {
 Notifs.propTypes = {
   auth: PropTypes.object.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
-  notifs: PropTypes.object, //eslint-disable-line
+  notifs: PropTypes.object,
   openNotif: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
   clearNotifs: PropTypes.func.isRequired,

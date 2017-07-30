@@ -187,7 +187,7 @@ class ColumnTopBar extends Component {
 ColumnTopBar.propTypes = {
   filters: PropTypes.object.isRequired,
   fetch: PropTypes.func.isRequired,
-  removeColumn: PropTypes.func, // eslint-disable-line
+  removeColumn: PropTypes.func,
   divID: PropTypes.string.isRequired,
   sort: PropTypes.string,
   range: PropTypes.string,

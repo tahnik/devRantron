@@ -98,11 +98,11 @@ Column.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
-  removeColumn: PropTypes.func, // eslint-disable-line
+  removeColumn: PropTypes.func,
   filters: PropTypes.object.isRequired,
   itemType: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired,
-  updateScrollHeight: PropTypes.func, //eslint-disable-line
+  updateScrollHeight: PropTypes.func,
 };
 
 export default Column;

@@ -50,7 +50,6 @@ class BottomBar extends Component {
   render() {
     const { comments, type } = this.props;
     const disabled = this.props.isUser ? 'disabled' : '';
-    const upvoted = this.props.isUser ? 'disabled' : '';
     return (
       <div className="bottom_bar_container" >
         <div
@@ -90,10 +89,10 @@ BottomBar.propTypes = {
   score: PropTypes.number.isRequired,
   isUser: PropTypes.bool.isRequired,
   vote: PropTypes.func.isRequired,
-  comments: PropTypes.number, //eslint-disable-line
+  comments: PropTypes.number,
   isUpvoted: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
-  type: PropTypes.string, //eslint-disable-line
+  type: PropTypes.string,
 };
 
 export default BottomBar;

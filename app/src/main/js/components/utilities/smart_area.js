@@ -284,15 +284,15 @@ class SmartArea extends Component {
 
 
 SmartArea.propTypes = {
-  className: PropTypes.string, // eslint-disable-line
-  id: PropTypes.string, // eslint-disable-line
-  users: PropTypes.array, //eslint-disable-line
+  className: PropTypes.string,
+  id: PropTypes.string,
+  users: PropTypes.array,
   onPost: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
-  tags: PropTypes.string, //eslint-disable-line
-  onTagsChange: PropTypes.func, //eslint-disable-line
+  tags: PropTypes.string,
+  onTagsChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
 };
 
