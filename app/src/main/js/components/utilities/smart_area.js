@@ -264,6 +264,7 @@ class SmartArea extends Component {
         /> : null }
         { typeof this.props.tags !== 'undefined' ? <textarea
           className="tags"
+          placeholder="tags"
           onChange={e => this.props.onTagsChange(e.target.value)}
         /> : null }
         <div className="post">
