@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
-import SmartArea from '../utilities/SmartArea';
+import SmartArea from '../utilities/smart_area';
 
 class CommentPost extends Component {
   constructor() {

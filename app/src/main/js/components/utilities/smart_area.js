@@ -176,14 +176,21 @@ class SmartArea extends Component {
     return `${content.slice(0, caretPos)}<span id="cursor">|</span>${content.slice(caretPos)}`;
   }
   toggleEmojiPicker(bool) {
+    const isPost = typeof this.props.tags !== 'undefined';
     const emojiTrigger = this.node;
     const triggerStyles = getComputedStyle(emojiTrigger);
-    const bottom = `${parseInt(triggerStyles.bottom, 10) + emojiTrigger.clientHeight + 10}px`;
+    let bottom = `${parseInt(triggerStyles.bottom, 10) + emojiTrigger.clientHeight + 10}px`;
+    let top = null;
+    if (isPost) {
+      bottom = null;
+      top = '12px';
+    }
     const isActive = typeof bool === 'undefined' ? !this.state.pickerActive : bool;
     this.setState({
       pickerActive: isActive,
       pickerStyle: {
         bottom,
+        top,
         right: '0px',
       },
     });
@@ -219,6 +226,7 @@ class SmartArea extends Component {
   render() {
     const { pickerActive, selectedMention } = this.state;
     const invalidContent = this.props.value.length < 5;
+    const isPost = typeof this.props.tags !== 'undefined';
     return (
       <div
         className={`smart_area ${this.props.className}`}
@@ -226,7 +234,7 @@ class SmartArea extends Component {
         ref={(node) => { this.node = node; }}
       >
         <textarea
-          className={`textarea ${invalidContent ? 'invalid' : ''}`}
+          className={`smart_textarea ${invalidContent ? 'invalid' : ''}`}
           onChange={(e) => { this.onChange(e.target.value); }}
           value={this.props.value}
           ref={(node) => { this.textarea = node; }}
@@ -254,6 +262,10 @@ class SmartArea extends Component {
           style={this.state.pickerStyle}
           onPick={emoji => this.addEmoji(emoji)}
         /> : null }
+        { typeof this.props.tags !== 'undefined' ? <textarea
+          className="tags"
+          onChange={e => this.props.onTagsChange(e.target.value)}
+        /> : null }
         <div className="post">
           <button onClick={() => this.selectImage()}>
             {this.state.image === null && 'Add Image'}
@@ -262,7 +274,7 @@ class SmartArea extends Component {
           <button
             disabled={this.props.disabled || invalidContent}
             onClick={() => this.onPost()}
-          >Add Comment</button>
+          >{`${isPost ? 'Post Rant' : 'Add Comment'}`}</button>
         </div>
       </div>
     );
@@ -278,6 +290,8 @@ SmartArea.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
+  tags: PropTypes.string, //eslint-disable-line
+  onTagsChange: PropTypes.func, //eslint-disable-line
 };
 
 export default SmartArea;
