@@ -46,6 +46,7 @@ class CommentPost extends Component {
         <SmartArea
           id="post_comment_area"
           users={this.state.users}
+          placeholder="Add a comment..."
           onPost={(text, image) => this.onPost(text, image)}
           disabled={this.state.disabled || auth.user === null}
           value={this.state.content}
