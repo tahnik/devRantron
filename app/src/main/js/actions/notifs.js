@@ -77,6 +77,7 @@ const showNotifs = notif => (dispatch, getState) => {
       body: notif.body,
       data: notif.id,
       icon: 'http://i.imgur.com/iikd00P.png',
+      silent: !notifSettings.notif_sound_enabled.value,
     });
 
     myNotification.onclick = (e) => {

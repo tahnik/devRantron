@@ -66,6 +66,11 @@ export default {
             text: 'Enabled',
             value: true,
           },
+          notif_sound_enabled: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'Play sound',
+            value: true,
+          },
           content_vote: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'New +1\'s on your rants',
