@@ -1,6 +1,8 @@
 import { NOTIF_TYPES } from '../consts/types';
 import EmojiData from './emojis.json';
 
+const Autolinker = require('autolinker');
+
 
 const getRandomInt = () => Math.floor(Math.random() * ((3000 - 0) + 1));
 
@@ -40,6 +42,8 @@ const getAllEmojis = () => {
   return emojis;
 };
 
+const parseLinks = text => Autolinker.link(text);
+
 const getEmojisFromText = (content, index, emojis) => {
   const modifiableContent = content;
   const firstIndex = modifiableContent.indexOf(':', index);
@@ -64,4 +68,5 @@ export {
   escapeRegExp,
   getAllEmojis,
   getEmojisFromText,
+  parseLinks,
 };

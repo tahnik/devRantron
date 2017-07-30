@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NotifBubbles from './notif_bubbles';
-import { getNotifText } from '../../consts/DOMFunctions';
+import { getNotifText } from '../../consts/utils';
 
 const { ipcRenderer } = require('electron');
 

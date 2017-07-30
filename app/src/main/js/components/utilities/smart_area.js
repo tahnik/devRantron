@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TwemojiComp from 'react-twemoji';
 import Fuse from 'fuse.js';
 import EmojiPicker from '../emoji_picker/emoji_picker';
-import { escapeRegExp, getAllEmojis, getEmojisFromText } from '../../consts/DOMFunctions';
+import { escapeRegExp, getAllEmojis, getEmojisFromText } from '../../consts/utils';
 
 const electron = require('electron');
 

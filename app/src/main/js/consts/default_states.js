@@ -1,5 +1,5 @@
 import { STATE, FEED, SETTINGS } from './types';
-import { getUID } from './DOMFunctions';
+import { getUID } from './utils';
 
 /*
  * Why not export them separately?

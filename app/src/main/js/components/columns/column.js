@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ItemCard from '../item/item_card';
 import Loading from '../utilities/loading';
 import ColumnTopBar from './column_topbar';
-import { getRandomInt } from '../../consts/DOMFunctions';
+import { getRandomInt } from '../../consts/utils';
 import { ITEM } from '../../consts/types';
 import CommentCard from '../comments/comment_card';
 

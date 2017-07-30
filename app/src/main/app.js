@@ -1,6 +1,6 @@
 const electron = require('electron');
 
-const { app, BrowserWindow, Menu, Tray, ipcMain } = electron;
+const { app, BrowserWindow, Menu, Tray, ipcMain, shell } = electron;
 
 const https = require('https');
 const os = require('os');
@@ -49,6 +49,13 @@ function openNotifications() {
 function quitApp() {
   mainWindow.webContents.send('quitApp');
 }
+
+const handleRedirect = (e, link) => {
+  if (url !== mainWindow.webContents.getURL()) {
+    e.preventDefault();
+    shell.openExternal(link);
+  }
+};
 
 /** This function will create the tray icon */
 function initTray() {
@@ -162,6 +169,9 @@ function createWindow() {
       notifyWindow.destroy();
     }
   });
+
+  mainWindow.webContents.on('new-window', handleRedirect);
+
 
   initTray();
 }

@@ -4,6 +4,7 @@ import Twemoji from 'react-twemoji';
 import UserBadge from '../user/user_badge';
 import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';
+import { parseLinks } from '../../consts/utils';
 
 class ItemCard extends Component {
   shouldComponentUpdate(nextProps) {
@@ -99,6 +100,7 @@ class ItemCard extends Component {
     if (auth.user) {
       isUser = auth.user.authToken.user_id === item.user_id;
     }
+    console.log(item);
     const image = item.attached_image;
     return (
       <div
@@ -126,7 +128,12 @@ class ItemCard extends Component {
             { itemType === ITEM.COLLAB.NAME ?
               <span className="title">Summary</span> : null
             }
-            <span className="body"><Twemoji>{item.text}</Twemoji></span>
+            <Twemoji>
+              <span
+                className="body"
+                dangerouslySetInnerHTML={{ __html: parseLinks(item.text) }}
+              />
+            </Twemoji>
             { this.renderCollab() }
           </div>
           { image !== '' ? <img alt="" src={image.url} /> : null }
