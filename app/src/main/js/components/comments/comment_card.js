@@ -5,6 +5,27 @@ import UserBadge from '../user/user_badge';
 import BottomBar from '../utilities/bottom_bar';
 import { ITEM } from '../../consts/types';
 
+function timeSince(date) {
+  const seconds = Math.floor((new Date() - date) / 1000);
+  let interval = seconds / 2592000;
+  if (interval > 1) {
+    const nd = new Date(date);
+    return `${nd.getDate()}/${nd.getMonth()}/${nd.getYear().toString().substring(1)}`;
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return `${Math.floor(interval)}d`;
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return `${Math.floor(interval)}h`;
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return `${Math.floor(interval)}m`;
+  }
+  return `${Math.floor(seconds)}s`;
+}
 
 const CommentCard = (props) => {
   const { item, theme, vote, auth, open } = props;
@@ -18,6 +39,7 @@ const CommentCard = (props) => {
   if (auth.user) {
     isUser = auth.user.authToken.user_id === item.user_id;
   }
+  const image = item.attached_image;
   return (
     <div
       className="comment_card"
@@ -30,7 +52,9 @@ const CommentCard = (props) => {
         className="top_container"
       >
         <UserBadge user={user} theme={theme} open={open} />
+        <span className="timesince">{timeSince(item.created_time * 1000)}</span>
         <Twemoji><p>{item.body}</p></Twemoji>
+        { typeof image !== 'undefined' ? <img alt="" src={image.url} /> : null }
       </div>
       <BottomBar
         score={item.score}

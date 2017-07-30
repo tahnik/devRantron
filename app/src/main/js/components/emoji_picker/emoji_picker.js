@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Twemoji from 'react-twemoji';
-import emojiData from './emojis.json';
+import emojiData from '../../consts/emojis.json';
 
 const categoryImages = {
   people: '😀',
@@ -34,16 +34,16 @@ class EmojiPicker extends Component {
       }
     });
   }
-  pickEmoji(emojChar) {
+  pickEmoji(name) {
     if (this.props.onPick === undefined) {
       return false;
     }
-    this.props.onPick(emojChar);
+    this.props.onPick(`:${name}:`);
     return true;
   }
   render() {
     return (
-      <div className="emoji_picker">
+      <div className="emoji_picker" style={this.props.style}>
         <div className="emoji_top">
           <div className="categories">
             {emojiData.categories.map(object => (
@@ -62,10 +62,10 @@ class EmojiPicker extends Component {
           {emojiData[this.state.activeTab].map(object => (
             <Twemoji
               className="emoji_wrapper"
-              key={object.character}
-              onClick={() => { this.pickEmoji(object.character); }}
+              key={object.icon}
+              onClick={() => { this.pickEmoji(object.name); }}
             >
-              {object.character}
+              {object.icon}
             </Twemoji>
             ))}
         </div>
@@ -76,6 +76,7 @@ class EmojiPicker extends Component {
 
 EmojiPicker.propTypes = {
   onPick: PropTypes.func, //eslint-disable-line
+  style: PropTypes.object, //eslint-disable-line
 };
 
 export default EmojiPicker;

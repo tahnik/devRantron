@@ -22,6 +22,7 @@ class Modal extends Component {
       || e.target.className === 'comments_and_post'
       || e.target.className === 'item_column'
       || e.target.className === 'profile_container modal'
+      || e.target.className === 'item_compact_column'
     ) {
       this.props.close();
     }

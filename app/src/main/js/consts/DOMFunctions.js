@@ -1,4 +1,6 @@
 import { NOTIF_TYPES } from '../consts/types';
+import EmojiData from './emojis.json';
+
 
 const getRandomInt = () => Math.floor(Math.random() * ((3000 - 0) + 1));
 
@@ -7,6 +9,9 @@ const getUID = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c)
       v = c == 'x' ? r : (r & 0x3 | 0x8); //eslint-disable-line
   return v.toString(16);
 });
+
+// eslint-disable-next-line
+const escapeRegExp = str => str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 
 const getNotifText = (type, username) => {
   switch (type) {
@@ -25,4 +30,38 @@ const getNotifText = (type, username) => {
   }
 };
 
-export { getRandomInt, getUID, getNotifText };
+const getAllEmojis = () => {
+  const emojis = {};
+  Object.keys(EmojiData).forEach((key) => {
+    EmojiData[key].forEach((emoji) => {
+      emojis[emoji.name] = emoji.icon;
+    });
+  });
+  return emojis;
+};
+
+const getEmojisFromText = (content, index, emojis) => {
+  const modifiableContent = content;
+  const firstIndex = modifiableContent.indexOf(':', index);
+  const nextIndex = modifiableContent.indexOf(':', firstIndex + 1);
+  const stringInBetween = content.substring(firstIndex, nextIndex + 1);
+  const regSpace = /[ \n\r]+/g;
+  if (nextIndex === -1 || firstIndex === -1) {
+    return;
+  }
+  if (regSpace.test(stringInBetween) || stringInBetween === '::') {
+    getEmojisFromText(content, nextIndex, emojis);
+  } else {
+    emojis.add(stringInBetween);
+    getEmojisFromText(content, nextIndex + 1, emojis);
+  }
+};
+
+export {
+  getRandomInt,
+  getUID,
+  getNotifText,
+  escapeRegExp,
+  getAllEmojis,
+  getEmojisFromText,
+};

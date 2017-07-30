@@ -15,6 +15,27 @@ class ItemCard extends Component {
     }
     return true;
   }
+  static timeSince(date) {
+    const seconds = Math.floor((new Date() - date) / 1000);
+    let interval = seconds / 2592000;
+    if (interval > 1) {
+      const nd = new Date(date);
+      return `${nd.getDate()}/${nd.getMonth()}/${nd.getYear().toString().substring(1)}`;
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return `${Math.floor(interval)}d`;
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return `${Math.floor(interval)}h`;
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return `${Math.floor(interval)}m`;
+    }
+    return `${Math.floor(seconds)}s`;
+  }
   open() {
     const { item, open, modal, itemType } = this.props;
     if (!modal) {
@@ -92,6 +113,9 @@ class ItemCard extends Component {
           theme={theme}
           open={open}
         />
+        <span
+          className="timesince"
+        >{ItemCard.timeSince(item.created_time * 1000)}</span>
         <div
           className="body_container"
           onClick={() => this.open()}
@@ -106,6 +130,11 @@ class ItemCard extends Component {
             { this.renderCollab() }
           </div>
           { image !== '' ? <img alt="" src={image.url} /> : null }
+          {item.tags.length !== 0 && <div className="tags">
+            {item.tags.map(object => (
+              <span key={object} className="tag">{object}</span>
+            ))}
+          </div>}
         </div>
         <BottomBar
           score={item.score}

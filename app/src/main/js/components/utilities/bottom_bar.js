@@ -47,10 +47,12 @@ class BottomBar extends Component {
   }
   render() {
     const { comments, type } = this.props;
+    const disabled = this.props.isUser ? 'disabled' : '';
     return (
       <div className="bottom_bar_container" >
         <div
-          className="upvote"
+          className={`upvote ${disabled}`}
+          disabled={disabled}
           onClick={() => this.vote(1)}
           style={{
             backgroundColor: this.state.isUpvoted > 0 ? '#D55161' : null,
@@ -64,7 +66,8 @@ class BottomBar extends Component {
         </div>
         <div
           onClick={() => this.vote(-1)}
-          className="downvote"
+          disabled={disabled}
+          className={`downvote ${disabled}`}
           style={{
             backgroundColor: this.state.isUpvoted < 0 ? '#D55161' : null,
           }}

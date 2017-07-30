@@ -19,6 +19,81 @@ $post_comment_height: 13rem
   width: 18px !important
   margin: 0px 2px -3px 2px
 
+.smart_area
+  position: relative
+  display: flex
+  flex-direction: column
+  .post
+    display: flex
+    button
+      flex: 1
+      &:nth-child(2)
+          margin-left: 1rem
+  .previewNode
+    position: absolute
+    padding: 0.5rem
+    height: calc(100% - 1rem)
+    width: calc(100% - 1rem)
+    z-index: -9
+    background-color: transparent
+    color: transparent
+    white-space: pre-wrap
+    overflow-y: scroll
+    &::-webkit-scrollbar
+      width: 0
+
+    &::-webkit-scrollbar-thumb
+      background: transparent
+
+    &::-webkit-scrollbar-track
+      background: transparent
+    #cursor
+      position: absolute
+  textarea
+    padding: 0.5rem
+    font-family: 'Roboto', sans-serif
+    resize: none
+    font-size: 1rem
+    flex: 1
+    background-color: white
+    z-index: 99
+    &.invalid
+      color: #dd4242
+    &:focus
+      outline: none
+  #mentions
+    height: auto
+    width: auto
+    position: absolute
+    background: #fff
+    z-index: 199
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    transition: all 0.05s;
+    .mention
+      padding: 0.5rem
+      transition: background 0.1s
+      cursor: pointer
+      &:hover, &.active
+        background: #c14857
+        color: #fff
+      p
+        margin: 0px
+  .emoji_picker
+    z-index: 99
+  .emoji_trigger
+    z-index: 99
+    position: absolute
+    top: 5px
+    right: 5px
+    opacity: 0.5
+    transition: all 0.3s
+    &.bottom
+      bottom: 5px
+    &:hover
+      opacity: 1
+      transform: scale(1.1)
+      cursor: pointer
+
 body
   padding: 0
   margin: 0

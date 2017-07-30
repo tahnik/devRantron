@@ -5,15 +5,13 @@
   flex-direction: column
   padding-right: 2rem
   height: $post_comment_height
-  textarea
-    background-color: white
+  #post_comment_area
     color: black
     word-wrap: break-word
     resize: none
     flex: 8
     font-family: 'Roboto', sans-serif
     font-size: 1rem
-    padding: 0.5rem
   button
     flex: 2
 .comments_container
@@ -27,6 +25,12 @@
   border-radius: 3px
   transition: all 0.2s ease
   margin-right: 0.5rem
+  position: relative
+  .timesince
+    position: absolute
+    top: 17px
+    right: 17px
+    color: #dadada
   .top_container
     p
       font-family: 'Roboto', sans-serif
