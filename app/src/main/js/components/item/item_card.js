@@ -4,7 +4,7 @@ import Twemoji from 'react-twemoji';
 import UserBadge from '../user/user_badge';
 import BottomBar from './bottom_bar';
 import { ITEM } from '../../consts/types';
-import { parseLinks, timeSince } from '../../consts/utils';
+import { parseLinks, timeSince, parseUsers } from '../../consts/utils';
 
 class ItemCard extends Component {
   shouldComponentUpdate(nextProps) {
@@ -18,9 +18,18 @@ class ItemCard extends Component {
   }
   open() {
     const { item, open, modal, itemType } = this.props;
-    if (!modal || item.tags) {
+    if (typeof modal !== 'undefined' || typeof item.tags !== 'undefined') {
       open(itemType, item.id);
     }
+  }
+  getContent() {
+    const { item } = this.props;
+    const isComment = typeof item.rant_id !== 'undefined';
+    let content = isComment ? item.body : item.text;
+    if (isComment) {
+      content = parseUsers(content);
+    }
+    return parseLinks(content);
   }
   getTags() {
     const { item } = this.props;
@@ -95,7 +104,6 @@ class ItemCard extends Component {
       isUser = auth.user.authToken.user_id === item.user_id;
     }
     const isComment = typeof item.rant_id !== 'undefined';
-    const content = isComment ? item.body : item.text;
     const image = item.attached_image || '';
     return (
       <div
@@ -126,7 +134,7 @@ class ItemCard extends Component {
             <Twemoji>
               <span
                 className="body"
-                dangerouslySetInnerHTML={{ __html: parseLinks(content) }}
+                dangerouslySetInnerHTML={{ __html: this.getContent() }}
               />
             </Twemoji>
             { this.renderCollab() }

@@ -172,6 +172,13 @@ function createWindow() {
 
   mainWindow.webContents.on('new-window', handleRedirect);
 
+  mainWindow.webContents.on('will-navigate', (e, link) => {
+    if (link.indexOf('devrant.io') !== -1) {
+      const user = link.substr(link.lastIndexOf('/') + 1, link.length);
+      mainWindow.webContents.send('open-profile', { user });
+      e.preventDefault();
+    }
+  });
 
   initTray();
 }

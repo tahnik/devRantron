@@ -2,6 +2,8 @@ import {
   saveUserState,
   setUpdateStatus,
 } from '../actions/settings';
+import { openModal } from '../actions/modal';
+import { ITEM } from '../consts/types';
 import rantscript from '../consts/rantscript';
 
 const { ipcRenderer } = require('electron');
@@ -23,6 +25,10 @@ export default (store) => {
 
   ipcRenderer.on('upToDate', () => {
     store.dispatch(setUpdateStatus(false));
+  });
+
+  ipcRenderer.on('open-profile', (e, data) => {
+    store.dispatch(openModal(ITEM.PROFILE.NAME, data.user));
   });
 
   ipcRenderer.on('notifReply', (event, args) => {

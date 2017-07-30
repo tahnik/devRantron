@@ -81,3 +81,12 @@ export const timeSince = (date) => {
   }
   return `${Math.floor(seconds)}s`;
 };
+
+
+//eslint-disable-next-line
+export const parseUsers = (text) => {
+  return text.replace(
+    /@([a-z\d_]+)/ig,
+    '<a href="http://devrant.io/users/$1">@$1</a>',
+  );
+};

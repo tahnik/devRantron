@@ -29,4 +29,5 @@ const openModal = (type, id = 0) => (dispatch) => {
   });
 };
 
+
 export { openModal, closeModal };
