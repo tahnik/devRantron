@@ -68,7 +68,11 @@ const showNotifs = notif => (dispatch, getState) => {
   }
   if (notifSettings[notif.content.type].value === true) {
     // Show quick reply notif instead
-    if (notif.content.type === 'comment_content' || notif.content.type === 'comment_mention') {
+    if (
+      (notif.content.type === 'comment_content'
+      || notif.content.type === 'comment_mention')
+      && notifSettings.quick_reply_enabled.value
+    ) {
       ipcRenderer.send('showQRNotif', notif);
       return;
     }

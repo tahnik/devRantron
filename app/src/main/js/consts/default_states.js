@@ -71,6 +71,11 @@ export default {
             text: 'Play sound',
             value: true,
           },
+          quick_reply_enabled: {
+            type: SETTINGS.TYPE.TOGGLE,
+            text: 'Enable "Quick Reply" when someone @mentions',
+            value: true,
+          },
           content_vote: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'New +1\'s on your rants',
