@@ -63,6 +63,7 @@ export const COLUMNS = {
 export const COLUMN = {
   FETCH: 'COLUMN_FETCH',
   RESET: 'COLUMN_RESET',
+  UPDATE_SCROLL: 'COLUMN_UPDATE_SCROLL',
 };
 
 export const ITEM = {

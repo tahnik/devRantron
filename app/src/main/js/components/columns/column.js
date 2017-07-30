@@ -16,6 +16,12 @@ class Column extends Component {
     const divID = `column_${this.props.column.type}_${getRandomInt()}`;
     this.setState({ divID });
   }
+  componentDidMount() {
+    const scrollHeight = this.props.column.scrollHeight;
+    if (typeof scrollHeight !== 'undefined') {
+      this.itemsContainer.scrollTop = scrollHeight;
+    }
+  }
   shouldComponentUpdate(nextProps) {
     const currentColumn = this.props.column;
     const nextColumn = nextProps.column;
@@ -29,6 +35,12 @@ class Column extends Component {
       }
     }
     return true;
+  }
+  componentWillUnmount() {
+    const { updateScrollHeight } = this.props;
+    if (typeof updateScrollHeight !== 'undefined') {
+      updateScrollHeight(this.props.column.id, this.itemsContainer.scrollTop);
+    }
   }
   render() {
     const {
@@ -49,7 +61,11 @@ class Column extends Component {
           state={column.state}
           removeColumn={removeColumn}
         />
-        <div className="items_container" id={divID}>
+        <div
+          className="items_container"
+          id={divID}
+          ref={(node) => { this.itemsContainer = node; }}
+        >
           {
             column.items.length === 0 ?
               <Loading
@@ -84,6 +100,7 @@ Column.propTypes = {
   filters: PropTypes.object.isRequired,
   itemType: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired,
+  updateScrollHeight: PropTypes.func, //eslint-disable-line
 };
 
 export default Column;
