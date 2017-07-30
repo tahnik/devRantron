@@ -132,6 +132,7 @@ class Item extends Component {
         theme={theme}
         auth={auth}
         id={item.rant.id}
+        originalPoster={item.rant.user_username}
         fetch={() => this.fetchitem(true)}
       />
     );

@@ -30,6 +30,7 @@ class CommentPost extends Component {
     for (let i = 0; i < comments.length; i += 1) {
       users.add(comments[i].user_username);
     }
+    users.add(this.props.originalPoster);
     if (users.size !== 0) {
       this.setState({ users: Array.from(users) });
     }
@@ -81,6 +82,7 @@ CommentPost.propTypes = {
   theme: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
+  originalPoster: PropTypes.string.isRequired,
   fetch: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
 };
