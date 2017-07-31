@@ -1,6 +1,6 @@
 {
   "name": "devrantron",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "main": "./app/build/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
@@ -27,7 +27,7 @@
     "start:app": "electron app/build/app.js",
     "test": "jest -c configs/jest.json"
   },
-  "license": "MIT",
+  "license": "Apache 2.0",
   "build": {
     "productName": "devRantron",
     "appId": "de.zerotask.theclassic",

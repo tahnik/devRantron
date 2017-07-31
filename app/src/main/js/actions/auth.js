@@ -38,6 +38,8 @@ const login = (username, password) => (dispatch) => {
 /**
  * If the user does not want to login but still want to browse rants, this
  * function dispatches the necessary action
+ * If no user is logged in and this is set to true, it will make the app to show
+ * the login screen
  *
  * @param {bool} bool
  */

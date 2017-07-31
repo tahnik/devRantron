@@ -1,3 +1,8 @@
+/**
+ * This is the login component
+ * Used to log in a user
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,6 +14,14 @@ class Login extends Component {
       password: '',
     };
   }
+  /**
+   * When login is pressed a lot of state changes happen
+   * that makes this component re-render couple of times.
+   * We need to prevent that
+   *
+   * @param {any} nextProps The props that will arrive next
+   * @memberof Login
+   */
   shouldComponentUpdate(nextProps) {
     const { auth } = this.props;
     if (auth.noLogin === false && nextProps.auth.noLogin === true) {

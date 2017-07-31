@@ -2,6 +2,13 @@ import { SETTINGS } from '../consts/types';
 
 const { ipcRenderer } = require('electron');
 
+
+/**
+ * Sets auto launch at OS startup
+ * It sends a message to main process which sets the setting
+ *
+ * @param {bool} value
+ */
 const setAutoLaunch = (value) => {
   if (value) {
     ipcRenderer.send('auto-launch', true);
@@ -10,6 +17,10 @@ const setAutoLaunch = (value) => {
   }
 };
 
+/**
+ * Saves the current state of the app
+ *
+ */
 const saveUserState = () => (dispatch, getState) => {
   const state = getState();
   const customCols = [...state.columns];
@@ -18,6 +29,7 @@ const saveUserState = () => (dispatch, getState) => {
     customCols[index].prev_set = 0;
     customCols[index].page = 0;
   }
+  // We don't need to save everything, select the ones that we really need
   const savedState = {
     auth: state.auth,
     user: state.user,
@@ -25,10 +37,17 @@ const saveUserState = () => (dispatch, getState) => {
     notifs: state.notifs,
     columns: customCols,
   };
+  // Use localStorage to save the state. Much better than a file
   localStorage.setItem('savedState', JSON.stringify(savedState));
 };
 
-const setOnBeforeUnload = value => (dispatch) => {
+
+/**
+ * If the user wants to minimise the app when quit button is clicked
+ *
+ * @param {bool} value should minimise on close?
+ */
+const setMinimiseOnClose = value => (dispatch) => {
   if (value) {
     window.onbeforeunload = (e) => {
       ipcRenderer.send('minimiseApp');
@@ -41,15 +60,11 @@ const setOnBeforeUnload = value => (dispatch) => {
   }
 };
 
-
-const setMinimiseOnClose = value => (dispatch) => {
-  if (value) {
-    dispatch(setOnBeforeUnload(true));
-  } else {
-    dispatch(setOnBeforeUnload(false));
-  }
-};
-
+/**
+ * If there is a new update, this sets the appropriate settings
+ *
+ * @param {bool} value is there a new update?
+ */
 const setUpdateStatus = value => (dispatch) => {
   if (value) {
     dispatch({
@@ -69,11 +84,21 @@ const setUpdateStatus = value => (dispatch) => {
 };
 
 
+/**
+ * If the app has been launched for the first time, set some default settings
+ *
+ */
 const setFirstLaunch = () => (dispatch) => {
   setAutoLaunch(true);
   dispatch(setMinimiseOnClose(true));
 };
 
+
+/**
+ * Sets some settings according to saved user state on app startup
+ * Auto launch and minimiseOnClose has to be set everytime the app starts up
+ *
+ */
 const setOnStartup = () => (dispatch, getState) => {
   const generalSettings = getState().settings.general;
   if (generalSettings.autoLaunch.value === true) {
@@ -121,10 +146,8 @@ const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
 
 
 /**
- * Logs in the user
+ * We will use this for theming in future
  *
- * @param {string} username Either username or email
- * @param {string} password Password for the user
  */
 const changeTheme = () => () => {
 
@@ -135,7 +158,6 @@ export {
   changeGeneral,
   changeTheme,
   setAutoLaunch,
-  setMinimiseOnClose,
   saveUserState,
   setFirstLaunch,
   setOnStartup,

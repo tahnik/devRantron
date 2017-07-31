@@ -1,3 +1,8 @@
+/**
+ * Used for custom column
+ * Custom column contains multiples columns.
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
@@ -12,6 +17,12 @@ class Columns extends Component {
       maxCol: 1,
     };
   }
+  /**
+   * Show/hide columns when the window is resized
+   * If there isn't enough space, it hides some columns
+   *
+   * @memberof Columns
+   */
   componentDidMount() {
     this.handleResize();
     this.listener = () => {
@@ -22,12 +33,23 @@ class Columns extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.listener);
   }
+  /**
+   * How many columns can we show
+   *
+   * @memberof Columns
+   */
   handleResize() {
     const maxCol = this.checkSpaceLeft();
     if (maxCol !== this.state.maxCol) {
       this.setState({ maxCol });
     }
   }
+  /**
+   * How much space is left and how many columns can this space hold
+   *
+   * @returns
+   * @memberof Columns
+   */
   checkSpaceLeft() {
     const { theme } = this.props;
     const middleContainer = document.getElementById('middle_container');

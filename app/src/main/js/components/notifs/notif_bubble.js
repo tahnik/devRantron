@@ -11,8 +11,12 @@ class Notification extends Component {
   }
   shouldComponentUpdate(nextProps) {
     const { notif } = this.props;
+    if (nextProps.unread === 0 && (notif.read === 1)) {
+      return false;
+    }
     if (
-      nextProps.unread === 0 && (notif.read === 1)
+      notif.read === nextProps.notif.read
+      && nextProps.unread !== 0
     ) {
       return false;
     }

@@ -1,3 +1,9 @@
+/**
+ * Although this is just button, it's complex enough
+ * to have it's own component.
+ * This button can be used to add a column in custom column area
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FEED } from '../../consts/types';
@@ -27,6 +33,7 @@ class AddColumn extends Component {
       const middleWidth = middleContainer.offsetWidth;
       const columnsWidth = columns.offsetWidth;
       const nextColumnsWidth = columnsWidth + parseInt(theme.column.width, 10);
+      // When adding a column, check if there's any palce left for more columns in the div
       if (nextColumnsWidth < middleWidth) {
         this.props.addColumn(type);
       }

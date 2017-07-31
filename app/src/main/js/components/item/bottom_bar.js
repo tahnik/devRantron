@@ -1,3 +1,8 @@
+/**
+ * Reusable bottom bar for all the item cards.
+ * Controls upvotes and downvotes
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ITEM } from '../../consts/types';

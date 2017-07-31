@@ -1,3 +1,8 @@
+/**
+ * The great reusable column
+ * This is used in every feed, user profile and custom columns
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ItemCard from '../item/item_card';
@@ -12,16 +17,35 @@ class Column extends Component {
       divID: null,
     };
   }
+  /**
+   * Gives the column an ID
+   * This is used to handle scroll events in the column_topbar
+   * TODO: use ref instead
+   *
+   * @memberof Column
+   */
   componentWillMount() {
     const divID = `column_${this.props.column.type}_${getRandomInt()}`;
     this.setState({ divID });
   }
+  /**
+   * Restores the scroll position.
+   * Only used in custom column
+   *
+   * @memberof Column
+   */
   componentDidMount() {
     const scrollHeight = this.props.column.scrollHeight;
     if (typeof scrollHeight !== 'undefined') {
       this.itemsContainer.scrollTop = scrollHeight;
     }
   }
+  /**
+   * Don't update the column if there's not new item
+   *
+   * @param {object} nextProps props to arrive next
+   * @memberof Column
+   */
   shouldComponentUpdate(nextProps) {
     const currentColumn = this.props.column;
     const nextColumn = nextProps.column;
@@ -36,6 +60,12 @@ class Column extends Component {
     }
     return true;
   }
+  /**
+   * Saves the scroll height when the column unmounts
+   * Only used in custom column
+   *
+   * @memberof Column
+   */
   componentWillUnmount() {
     const { updateScrollHeight } = this.props;
     if (typeof updateScrollHeight !== 'undefined') {

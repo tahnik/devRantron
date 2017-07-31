@@ -2,13 +2,18 @@ import { NOTIFS, ITEM } from '../consts/types';
 import rantscript from '../consts/rantscript';
 import { openModal } from './modal';
 import { fetchUser } from './user';
+import showToast from './toast';
 
 const { ipcRenderer } = require('electron');
-
 const currentWindow = require('electron').remote.getCurrentWindow();
 
+// This is used to prevent notif being fetched when a notif clearing is in progress
 let clearingNotif = false;
 
+/**
+ * Fetches notifications
+ *
+ */
 const fetchNotifs = () => (dispatch, getState) => {
   const auth = getState().auth;
   if (!auth.user) {
@@ -35,10 +40,14 @@ const fetchNotifs = () => (dispatch, getState) => {
     }
   })
   .catch(() => {
-
+    dispatch(showToast('Could not fetch notifications'));
   });
 };
 
+/**
+ * Marks all the notif as read
+ *
+ */
 const clearNotifs = () => (dispatch, getState) => {
   dispatch({
     type: NOTIFS.CLEARALL,
@@ -58,9 +67,21 @@ const clearNotifs = () => (dispatch, getState) => {
   });
 };
 
+
+/**
+ * This shows a OS notification using HTML5 Notification API
+ * This also shows a quick reply window if enabled in the settings
+ *
+ * @param {object} notif
+ */
 const showNotifs = notif => (dispatch, getState) => {
   const notifSettings = getState().settings.general.notifications.options;
 
+  /**
+   * This is done to update the user score (and the profile)
+   * Okay, so this updates the profile but the main purpose is to
+   * update the score
+   */
   dispatch(fetchUser());
 
   if (!notifSettings.notif_enabled.value) {
@@ -84,6 +105,7 @@ const showNotifs = notif => (dispatch, getState) => {
       silent: !notifSettings.notif_sound_enabled.value,
     });
 
+    // Open a modal when a user clicks on the notif
     myNotification.onclick = (e) => {
       dispatch(openModal(ITEM.RANT.NAME, e.target.data));
       currentWindow.show();

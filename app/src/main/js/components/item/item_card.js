@@ -1,3 +1,8 @@
+/**
+ * Reusable rant cards.
+ * Can render a rant or a collab or a comment
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Twemoji from 'react-twemoji';
@@ -16,12 +21,23 @@ class ItemCard extends Component {
     }
     return true;
   }
+  /**
+   * An item can be opened if it's not already in a modal
+   *
+   * @memberof ItemCard
+   */
   open() {
     const { item, open, modal, itemType } = this.props;
     if (typeof modal !== 'undefined' || typeof item.tags !== 'undefined') {
       open(itemType, item.id);
     }
   }
+  /**
+   * Parses the content of a rant to find out links and @mention
+   * If they exist, it adds <a /> tags which can be opened
+   *
+   * @memberof ItemCard
+   */
   getContent() {
     const { item } = this.props;
     const isComment = typeof item.rant_id !== 'undefined';
@@ -46,6 +62,11 @@ class ItemCard extends Component {
       </div>
     );
   }
+  /**
+   * Collabs has some extra informations
+   *
+   * @memberof ItemCard
+   */
   renderCollab() {
     const { item, itemType } = this.props;
     if (itemType !== ITEM.COLLAB.NAME) {
@@ -99,11 +120,14 @@ class ItemCard extends Component {
       username: item.user_username,
       dpp: item.user_dpp,
     };
+    // Used to determine if user owns this card.
     let isUser = false;
     if (auth.user) {
       isUser = auth.user.authToken.user_id === item.user_id;
     }
+    // Item card is used for comments as well
     const isComment = typeof item.rant_id !== 'undefined';
+    // If there is any image with this rant
     const image = item.attached_image || '';
     return (
       <div
