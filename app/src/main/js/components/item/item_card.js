@@ -169,7 +169,7 @@ class ItemCard extends Component {
         <BottomBar
           score={item.score}
           comments={item.num_comments}
-          isUpvoted={item.vote_state}
+          isVoted={item.vote_state}
           vote={vote}
           id={item.id}
           isUser={isUser}

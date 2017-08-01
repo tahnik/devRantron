@@ -11,46 +11,41 @@ class BottomBar extends Component {
   constructor() {
     super();
     this.state = {
-      isUpvoted: 0,
+      isVoted: 0,
       score: 0,
     };
   }
   componentWillMount() {
-    const { score, isUpvoted, isUser } = this.props;
-    let nextIsUpvoted = isUpvoted;
+    const { score, isVoted, isUser } = this.props;
+    let nextIsUpvoted = isVoted;
     if (isUser) {
       nextIsUpvoted = 0;
     }
-    this.setState({ isUpvoted: nextIsUpvoted, score, staticScore: score });
+    this.setState({ isVoted: nextIsUpvoted, score, staticScore: score });
   }
   vote(state) {
     if (this.props.isUser) {
       return;
     }
-    let voteState = state;
+    const { isVoted } = this.state;
     let nextScore = this.state.score;
-    if (this.state.isUpvoted === state) {
-      voteState = 0;
-      /**
-       * Why? Why? Why do it like this?
-       * React state updates fast and messes up the calculation
-       * if I do nextScore -= this.state.isUpvoted
-       */
-      if (this.state.isUpvoted === -1) {
-        nextScore += 1;
-      } else {
-        nextScore -= 1;
-      }
+    let nextIsVoted = 0;
+    if (isVoted === state) {
+      nextScore -= isVoted;
+    } else if (isVoted !== 0) {
+      nextScore -= (2 * isVoted);
+      nextIsVoted = state;
     } else {
       nextScore += state;
+      nextIsVoted = state;
     }
     const { vote, id, type } = this.props;
     if (type) {
-      vote(voteState, id, type);
+      vote(nextIsVoted, id, type);
     } else {
-      vote(voteState, id);
+      vote(nextIsVoted, id);
     }
-    this.setState({ isUpvoted: voteState, score: nextScore });
+    this.setState({ isVoted: nextIsVoted, score: nextScore });
   }
   render() {
     const { comments, type } = this.props;
@@ -58,7 +53,7 @@ class BottomBar extends Component {
     return (
       <div className="bottom_bar_container" >
         <div
-          className={`upvote ${disabled} ${this.state.isUpvoted > 0 ? 'upvoted' : ''}`}
+          className={`upvote ${disabled} ${this.state.isVoted > 0 ? 'upvoted' : ''}`}
           disabled={disabled}
           onClick={() => this.vote(1)}
         >
@@ -71,7 +66,7 @@ class BottomBar extends Component {
         <div
           onClick={() => this.vote(-1)}
           disabled={disabled}
-          className={`downvote ${disabled} ${this.state.isUpvoted < 0 ? 'downvoted' : ''}`}
+          className={`downvote ${disabled} ${this.state.isVoted < 0 ? 'downvoted' : ''}`}
         >
           <span className="ud_icon">-</span>
           <span className="ud_icon">-</span>
@@ -95,7 +90,7 @@ BottomBar.propTypes = {
   isUser: PropTypes.bool.isRequired,
   vote: PropTypes.func.isRequired,
   comments: PropTypes.number,
-  isUpvoted: PropTypes.number.isRequired,
+  isVoted: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.string,
 };
