@@ -196,3 +196,5 @@ release
 scripts
 
 app/build
+
+.DS_Store
