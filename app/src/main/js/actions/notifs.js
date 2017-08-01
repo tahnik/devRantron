@@ -109,7 +109,9 @@ const showNotifs = notif => (dispatch, getState) => {
     // Open a modal when a user clicks on the notif
     myNotification.onclick = (e) => {
       dispatch(openModal(ITEM.RANT.NAME, e.target.data.id, { commentID: e.target.data.commentID }));
-      currentWindow.show();
+      if (!currentWindow.isVisible()) {
+        currentWindow.show();
+      }
       currentWindow.focus();
     };
   }
