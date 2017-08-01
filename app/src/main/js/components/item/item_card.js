@@ -112,7 +112,7 @@ class ItemCard extends Component {
     );
   }
   render() {
-    const { item, theme, vote, modal, itemType, auth, open } = this.props;
+    const { item, theme, vote, modal, itemType, auth, open, addMention } = this.props;
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,
@@ -132,6 +132,7 @@ class ItemCard extends Component {
     return (
       <div
         className={`item_card ${modal || isComment ? null : 'shadow'}`}
+        id={item.id}
         style={{
           backgroundColor: theme.item_card.backgroundColor,
           color: theme.item_card.color,
@@ -174,6 +175,8 @@ class ItemCard extends Component {
           id={item.id}
           isUser={isUser}
           type={isComment ? ITEM.COMMENT.NAME : ITEM.RANT.NAME}
+          addMention={addMention}
+          username={user.username}
         />
       </div>
     );
@@ -188,6 +191,7 @@ ItemCard.propTypes = {
   itemType: PropTypes.string,
   open: PropTypes.func,
   modal: PropTypes.bool,
+  addMention: PropTypes.func,
 };
 
 export default ItemCard;

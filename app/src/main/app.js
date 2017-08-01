@@ -61,7 +61,11 @@ const handleRedirect = (e, link) => {
 function initTray() {
   // No idea why using let or var or const with tray causes the tray not to display anything
   /* eslint-disable */
-  tray = new Tray(path.join(__dirname, '/res/images/devrantLogo512.png'));
+  let icon = path.join(__dirname, '/res/images/devrantLogo512.png');
+  if (process.platform === 'darwin') {
+    icon = path.join(__dirname, '/res/images/devrantLogo24.png');
+  }
+  tray = new Tray(icon);
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Open App', click() { mainWindow.show(); } },
     { type: 'separator' },
@@ -204,6 +208,18 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+if (process.platform === 'darwin') {
+  app.on('before-quit', () => {
+    quitApp();
+  });
+  app.on('activate', (e, hasVisibleWindow) => {
+    if (!hasVisibleWindow) {
+      mainWindow.show();
+      mainWindow.focus();
+    }
+  });
+}
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

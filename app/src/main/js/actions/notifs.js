@@ -97,18 +97,21 @@ const showNotifs = notif => (dispatch, getState) => {
       ipcRenderer.send('showQRNotif', notif);
       return;
     }
+    const commentID = notif.content.comment_id || 0;
 
     const myNotification = new Notification('devRantron', {
       body: notif.body,
-      data: notif.id,
+      data: { id: notif.id, commentID },
       icon: 'http://i.imgur.com/iikd00P.png',
       silent: !notifSettings.notif_sound_enabled.value,
     });
 
     // Open a modal when a user clicks on the notif
     myNotification.onclick = (e) => {
-      dispatch(openModal(ITEM.RANT.NAME, e.target.data));
-      currentWindow.show();
+      dispatch(openModal(ITEM.RANT.NAME, e.target.data.id, { commentID: e.target.data.commentID }));
+      if (!currentWindow.isVisible()) {
+        currentWindow.show();
+      }
       currentWindow.focus();
     };
   }

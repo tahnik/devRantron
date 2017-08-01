@@ -82,17 +82,36 @@ class Item extends Component {
     .then((res) => {
       const item = res;
       this.setState({ item });
-      if (this.multiCol && scrollToBottom) {
-        this.multiCol.scrollTop = this.multiCol.scrollHeight;
+      if (typeof cardItem.data.commentID !== 'undefined') {
+        const relatedComment = document.getElementById(cardItem.data.commentID);
+        if (relatedComment) {
+          relatedComment.scrollIntoView();
+        }
+        return;
       }
-      if (this.compactCol && scrollToBottom) {
-        this.compactCol.scrollTop = this.compactCol.scrollHeight;
+      if (scrollToBottom) {
+        if (this.multiCol) {
+          this.multiCol.scrollTop = this.multiCol.scrollHeight;
+        }
+        if (this.compactCol) {
+          this.compactCol.scrollTop = this.compactCol.scrollHeight;
+        }
       }
       fetchNotifs();
     })
     .catch((err) => {
       console.log(err);
     });
+  }
+  /**
+   * This is a prop for comments component.
+   * This just calls the addMention of post comment
+   *
+   * @param {string} value
+   * @memberof Item
+   */
+  addMention(value) {
+    this.postComment.addMention(value);
   }
   getItemCard() {
     const { item } = this.state;
@@ -120,6 +139,7 @@ class Item extends Component {
         vote={vote}
         auth={auth}
         open={open}
+        addMention={value => this.addMention(value)}
       />
     );
   }
@@ -134,6 +154,7 @@ class Item extends Component {
         id={item.rant.id}
         originalPoster={item.rant.user_username}
         fetch={() => this.fetchitem(true)}
+        ref={(node) => { this.postComment = node; }}
       />
     );
   }
