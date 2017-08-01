@@ -19,12 +19,13 @@ const closeModal = () => (dispatch) => {
  * @param {string} type Type of the item to show in the modal
  * @param {number} id This ID can be either user id or rant/collab id
  */
-const openModal = (type, id = 0) => (dispatch) => {
+const openModal = (type, id = 0, data = {}) => (dispatch) => {
   dispatch({
     type: MODAL.OPEN,
     item: {
       type,
       id,
+      data,
     },
   });
 };

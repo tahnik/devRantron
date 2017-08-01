@@ -82,11 +82,18 @@ class Item extends Component {
     .then((res) => {
       const item = res;
       this.setState({ item });
-      if (this.multiCol && scrollToBottom) {
-        this.multiCol.scrollTop = this.multiCol.scrollHeight;
+      if (typeof cardItem.data.commentID !== 'undefined') {
+        const relatedComment = document.getElementById(cardItem.data.commentID);
+        relatedComment.scrollIntoView();
+        return;
       }
-      if (this.compactCol && scrollToBottom) {
-        this.compactCol.scrollTop = this.compactCol.scrollHeight;
+      if (scrollToBottom) {
+        if (this.multiCol) {
+          this.multiCol.scrollTop = this.multiCol.scrollHeight;
+        }
+        if (this.compactCol) {
+          this.compactCol.scrollTop = this.compactCol.scrollHeight;
+        }
       }
       fetchNotifs();
     })

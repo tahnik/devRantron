@@ -132,6 +132,7 @@ class ItemCard extends Component {
     return (
       <div
         className={`item_card ${modal || isComment ? null : 'shadow'}`}
+        id={item.id}
         style={{
           backgroundColor: theme.item_card.backgroundColor,
           color: theme.item_card.color,
