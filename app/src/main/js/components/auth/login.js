@@ -44,7 +44,12 @@ class Login extends Component {
         <div className="auth_image" >
           <img alt="devrant" src="./res/images/devrant_sidebar.png" />
         </div>
-        <div className="auth_form" >
+        <div className="auth_form"
+          onSubmit={() => this.props.login(
+              this.state.username,
+              this.state.password,
+            )}
+        >
           <input
             value={this.state.username}
             onChange={e => this.setState({ username: e.target.value })}
