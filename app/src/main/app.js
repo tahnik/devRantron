@@ -206,9 +206,15 @@ app.on('activate', () => {
 });
 
 if (process.platform === 'darwin') {
-  app.on('before-quit', function() {
+  app.on('before-quit', () => {
     quitApp();
   });
+  app.on('activate', (e, hasVisibleWindow) => {
+    if (!hasVisibleWindow) {
+      mainWindow.show();
+      mainWindow.focus();
+    }
+  })
 }
 
 // In this file you can include the rest of your app's specific main process
