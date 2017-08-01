@@ -218,7 +218,7 @@ if (process.platform === 'darwin') {
       mainWindow.show();
       mainWindow.focus();
     }
-  })
+  });
 }
 
 // In this file you can include the rest of your app's specific main process
