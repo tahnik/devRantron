@@ -47,8 +47,22 @@ class BottomBar extends Component {
     }
     this.setState({ isVoted: nextIsVoted, score: nextScore });
   }
+  getAddMention() {
+    const { addMention, username } = this.props;
+    if (typeof addMention !== 'undefined') {
+      return (
+        <div
+          className="addMention"
+          onClick={() => addMention(`@${username}`)}
+        >
+          <p><i className="ion-reply" /></p>
+        </div>
+      );
+    }
+    return <div />;
+  }
   render() {
-    const { comments, type } = this.props;
+    const { comments, type, addMention } = this.props;
     const disabled = this.props.isUser ? 'disabled' : '';
     return (
       <div className="bottom_bar_container" >
@@ -79,6 +93,9 @@ class BottomBar extends Component {
             <span>{ comments }</span>
           </div>
         }
+        {
+          this.getAddMention()
+        }
       </div>
     );
   }
@@ -93,6 +110,8 @@ BottomBar.propTypes = {
   isVoted: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.string,
+  addMention: PropTypes.func,
+  username: PropTypes.string.isRequired,
 };
 
 export default BottomBar;

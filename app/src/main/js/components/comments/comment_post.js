@@ -56,6 +56,16 @@ class CommentPost extends Component {
         this.setState({ disabled: false });
       });
   }
+
+  /**
+   * This is a function used by comments.js to add a user to
+   * smart area when the reply button is clicked
+   *
+   * @memberof CommentPost
+   */
+  addMention(value) {
+    this.smartArea.addStringToContent(value);
+  }
   render() {
     const { theme, auth } = this.props;
     return (
@@ -71,6 +81,7 @@ class CommentPost extends Component {
           disabled={this.state.disabled || auth.user === null}
           value={this.state.content}
           onChange={text => this.setState({ content: text })}
+          ref={(node) => { this.smartArea = node; }}
         />
       </div>
     );
