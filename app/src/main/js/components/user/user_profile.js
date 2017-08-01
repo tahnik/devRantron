@@ -46,7 +46,7 @@ class UserProfile extends Component {
     if (
       nextLength === currentLength
       && nextProps.item.id === this.props.item.id
-      && nextState.column.state !== STATE.LOADING
+      && (nextState.column.state !== STATE.LOADING && nextState.column.items.length !== 0)
     ) {
       return false;
     }
@@ -100,6 +100,8 @@ class UserProfile extends Component {
         } else {
           nextColumn.itemType = ITEM.RANT.NAME;
         }
+        console.log(res);
+        console.log(sort);
         this.setState({
           user: res,
           column: nextColumn,

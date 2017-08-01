@@ -9,6 +9,7 @@ import ItemCard from '../item/item_card';
 import Loading from '../utilities/loading';
 import ColumnTopBar from './column_topbar';
 import { getRandomInt } from '../../consts/utils';
+import { STATE } from '../../consts/types';
 
 class Column extends Component {
   constructor() {
@@ -72,9 +73,45 @@ class Column extends Component {
       updateScrollHeight(this.props.column.id, this.itemsContainer.scrollTop);
     }
   }
+  getItemsContainer() {
+    const {
+      column, theme, vote, fetch, open, itemType, auth } = this.props;
+    const { divID } = this.state;
+    if (column.items.length === 0 && column.state === STATE.SUCCESS) {
+      return (
+        <div className="no_items">Nothing to see here</div>
+      );
+    }
+    return (
+      <div
+        className="items_container"
+        id={divID}
+        ref={(node) => { this.itemsContainer = node; }}
+      >
+        {
+            column.items.length === 0 ?
+              <Loading
+                backgroundColor={theme.backgroundColor}
+              /> :
+              column.items.map(item => (
+                <ItemCard
+                  fetch={fetch}
+                  item={item}
+                  open={(type, id) => open(type, id)}
+                  key={item.id}
+                  theme={theme}
+                  vote={vote}
+                  itemType={itemType}
+                  auth={auth}
+                />
+                ))
+          }
+      </div>
+    );
+  }
   render() {
     const {
-      column, theme, vote, fetch, open, filters, itemType, removeColumn, auth } = this.props;
+      column, theme, fetch, filters, removeColumn } = this.props;
     const { divID } = this.state;
     return (
       <div
@@ -93,30 +130,7 @@ class Column extends Component {
           sort={column.sort}
           range={column.range}
         />
-        <div
-          className="items_container"
-          id={divID}
-          ref={(node) => { this.itemsContainer = node; }}
-        >
-          {
-            column.items.length === 0 ?
-              <Loading
-                backgroundColor={theme.backgroundColor}
-              /> :
-              column.items.map(item => (
-                <ItemCard
-                  fetch={fetch}
-                  item={item}
-                  open={(type, id) => open(type, id)}
-                  key={item.id}
-                  theme={theme}
-                  vote={vote}
-                  itemType={itemType}
-                  auth={auth}
-                />
-                ))
-          }
-        </div>
+        { this.getItemsContainer() }
       </div>
     );
   }
