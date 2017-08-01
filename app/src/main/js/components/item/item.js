@@ -84,7 +84,9 @@ class Item extends Component {
       this.setState({ item });
       if (typeof cardItem.data.commentID !== 'undefined') {
         const relatedComment = document.getElementById(cardItem.data.commentID);
-        relatedComment.scrollIntoView();
+        if (relatedComment) {
+          relatedComment.scrollIntoView();
+        }
         return;
       }
       if (scrollToBottom) {
