@@ -63,7 +63,7 @@ class BottomBar extends Component {
     return <div />;
   }
   render() {
-    const { comments, type, modal } = this.props;
+    const { comments, type } = this.props;
     const disabled = this.props.isUser ? 'disabled' : '';
     return (
       <div className="bottom_bar_container" >
