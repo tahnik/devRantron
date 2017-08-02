@@ -143,7 +143,6 @@ BottomBar.propTypes = {
   addMention: PropTypes.func,
   username: PropTypes.string.isRequired,
   onCommentsClick: PropTypes.func,
-  modal: PropTypes.bool,
 };
 
 export default BottomBar;
