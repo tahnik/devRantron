@@ -174,9 +174,11 @@ class ItemCard extends Component {
           vote={vote}
           id={item.id}
           isUser={isUser}
+          modal={modal}
           type={isComment ? ITEM.COMMENT.NAME : ITEM.RANT.NAME}
           addMention={addMention}
           username={user.username}
+          onCommentsClick={() => this.open()}
         />
       </div>
     );

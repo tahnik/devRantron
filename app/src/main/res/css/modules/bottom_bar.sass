@@ -1,78 +1,130 @@
 .bottom_bar_container
   font-size: 1.5rem
   display: flex
+  align-items: center
   background-color: #40415A
   padding: 0.5rem
-  .addMention
+  .left_items
+    margin-right: auto
     display: flex
     align-items: center
-    p
-      margin: 0
-      i
-        transition: all 0.3s
-        opacity: 0.4
-        transform: scale(0.9)
-        &:hover
-          cursor: pointer
+    .score
+      font-size: 1rem
+      margin: 0 1rem
+      display: flex
+      align-items: center
+      justify-content: center
+    .upvote, .downvote
+      border-radius: 100%
+      font-size: 1.2rem
+      height: 2rem
+      width: 2rem
+      cursor: pointer
+      position: relative
+      .ud_icon
+        z-index: 100
+      &:hover
+        background-color: rgb(84, 85, 110)
+      &.disabled
+        opacity: 0.5
+        cursor: default
+          cursor: default
+      &.upvoted::before
+        transform: scale(1)
+      &.downvoted::before
+        transform: scale(1)
+      &::before
+        content: " "
+        height: 2rem
+        width: 2rem
+        position: absolute
+        top: 0px
+        right: 0px
+        border-radius: 100%
+        background-color: #D55161
+        z-index: 95
+        transform: scale(0)
+        transition: transform 0.32s cubic-bezier(0.4, 0, 0, 1.3)
+    .upvote
+      span:nth-child(1)
+        padding-right: 0.1rem
+    .downvote
+      span:nth-child(1)
+        padding-right: 0.2rem
+  .right_items
+    margin-left: auto
+    display: flex
+    align-items: center
+    .togglable
+      display: flex
+      overflow: hidden
+      margin-right: 1rem
+      position: relative
+      .trigger
+        display: flex
+        align-items: center
+        justify-content: center
+        position: absolute
+        right: 0
+        &.active
+          opacity: 0
+          z-index: -1
+        p
+          margin: 0
+          opacity: 0.2
+          transition: all 0.3s;
+          &:hover
+            cursor: pointer
+            opacity: 1
+      .toggle_items
+        display: flex
+        align-items: center
+        justify-content: center
+        opacity: 0
+        z-index: -1
+        &.active
           opacity: 1
-          transform: scale(1)
+          z-index: 99
+        .toggle_item
+          display: flex
+          align-items: center
+          justify-content: center
+        p
+          margin: 0
+          margin-left: 1rem
+          transition: all 0.3s;
+          &:hover
+            cursor: pointer
+            color: #C14857
+    .addMention
+      display: flex
+      align-items: center
+      p
+        margin: 0
+        i
+          transition: all 0.3s
+          opacity: 0.4
+          transform: scale(0.9)
+          &:hover
+            cursor: pointer
+            opacity: 1
+            transform: scale(1)
 
-  .score
-    flex: 2
-    font-size: 1rem
-    display: flex
-    align-items: center
-    justify-content: center
-  .padding
-    flex: 7
-  .comments
-    display: flex
-    align-items: center
-    justify-content: center
-    font-size: 1rem
-    span
-      padding-left: 0.5rem
+    .comments
+      display: flex
+      align-items: center
+      justify-content: center
+      &:hover
+        cursor: pointer
+      p
+        margin: 0
+      span
+        padding-left: 0.5rem
+        font-size: 1rem
   .upvote, .downvote, .comments
     display: flex
     justify-content: center
     align-items: center
-  .upvote, .downvote
-    border-radius: 100%
-    font-size: 1.2rem
-    height: 2rem
-    width: 2rem
-    cursor: pointer
-    position: relative
-    .ud_icon
-      z-index: 100
-    &:hover
-      background-color: rgb(84, 85, 110)
-    &.disabled
-      opacity: 0.5
-      cursor: default
-        cursor: default
-    &.upvoted::before
-      transform: scale(1)
-    &.downvoted::before
-      transform: scale(1)
-    &::before
-      content: " "
-      height: 2rem
-      width: 2rem
-      position: absolute
-      top: 0px
-      right: 0px
-      border-radius: 100%
-      background-color: #D55161
-      z-index: 95
-      transform: scale(0)
-      transition: transform 0.32s cubic-bezier(0.4, 0, 0, 1.3)
-  .upvote
-    span:nth-child(1)
-      padding-right: 0.1rem
-  .downvote
-    span:nth-child(1)
-      padding-right: 0.2rem
   div
     text-align: center
     transition: all 0.2s ease
