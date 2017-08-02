@@ -40,7 +40,6 @@ const fetchNotifs = () => (dispatch, getState) => {
     }
   })
   .catch(() => {
-    dispatch(showToast('Could not fetch notifications'));
   });
 };
 
