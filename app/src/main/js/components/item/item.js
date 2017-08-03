@@ -115,7 +115,7 @@ class Item extends Component {
   }
   getItemCard() {
     const { item } = this.state;
-    const { theme, vote, cardItem, auth, open } = this.props;
+    const { theme, vote, cardItem, auth, open, showToast } = this.props;
     return (
       <ItemCard
         modal
@@ -126,12 +126,13 @@ class Item extends Component {
         itemType={cardItem.type}
         auth={auth}
         open={open}
+        showToast={showToast}
       />
     );
   }
   getComments() {
     const { item } = this.state;
-    const { theme, vote, auth, open } = this.props;
+    const { theme, vote, auth, open, showToast } = this.props;
     return (
       <Comments
         comments={item.comments}
@@ -139,6 +140,7 @@ class Item extends Component {
         vote={vote}
         auth={auth}
         open={open}
+        showToast={showToast}
         addMention={value => this.addMention(value)}
       />
     );
@@ -220,6 +222,7 @@ Item.propTypes = {
   auth: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
+  showToast: PropTypes.func.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
 };
 

@@ -4,6 +4,7 @@ import fetch from '../../actions/fetch';
 import vote from '../../actions/vote';
 import { ITEM, FEED } from '../../consts/types';
 import { openModal } from '../../actions/modal';
+import showToast from '../../actions/toast';
 
 const mapDispatchToProps = dispatch => ({
   fetch: (sort, range, id = 0, refresh = false) => {
@@ -14,6 +15,9 @@ const mapDispatchToProps = dispatch => ({
   },
   open: (type, id) => {
     dispatch(openModal(type, id));
+  },
+  showToast: (text) => {
+    dispatch(showToast(text, 1000));
   },
 });
 
