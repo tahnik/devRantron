@@ -100,8 +100,6 @@ class UserProfile extends Component {
         } else {
           nextColumn.itemType = ITEM.RANT.NAME;
         }
-        console.log(res);
-        console.log(sort);
         this.setState({
           user: res,
           column: nextColumn,
