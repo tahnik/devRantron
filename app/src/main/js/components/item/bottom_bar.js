@@ -84,7 +84,7 @@ class BottomBar extends Component {
     return <div />;
   }
   render() {
-    const { type, item } = this.props;
+    const { type, item, onDelete } = this.props;
     const { favorited, subscribed } = this.state;
     const disabled = this.props.isUser ? 'disabled' : '';
     return (
@@ -125,11 +125,15 @@ class BottomBar extends Component {
               className={`toggle_items ${this.state.triggerActive ? 'active' : ''}`}
               onMouseLeave={() => this.setState({ triggerActive: false })}
             >
-              <div
-                className="toggle_item delete"
-              >
-                <p><i className="ion-android-delete" /></p>
-              </div>
+              { this.props.isUser ?
+                <div
+                  className="toggle_item delete"
+                  onClick={() => onDelete()}
+                >
+                  <p><i className="ion-android-delete" /></p>
+                </div>
+                : null
+              }
               <div
                 className={`toggle_item subscribe ${subscribed ? 'active' : null}`}
                 onClick={() => this.onSubscribe()}
@@ -176,7 +180,7 @@ class BottomBar extends Component {
 BottomBar.propTypes = {
   isUser: PropTypes.bool.isRequired,
   vote: PropTypes.func.isRequired,
-  comments: PropTypes.number,
+  onDelete: PropTypes.func.isRequired,
   type: PropTypes.string,
   addMention: PropTypes.func,
   username: PropTypes.string.isRequired,

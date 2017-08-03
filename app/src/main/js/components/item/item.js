@@ -127,6 +127,7 @@ class Item extends Component {
         auth={auth}
         open={open}
         showToast={showToast}
+        fetchitem={() => this.fetchitem()}
       />
     );
   }
@@ -142,6 +143,7 @@ class Item extends Component {
         open={open}
         showToast={showToast}
         addMention={value => this.addMention(value)}
+        fetchitem={() => this.fetchitem()}
       />
     );
   }

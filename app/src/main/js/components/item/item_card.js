@@ -63,14 +63,35 @@ class ItemCard extends Component {
       console.log(err);
     });
   }
+  onDelete() {
+    const { auth, item, showToast, fetchitem } = this.props;
+    if (item.rant_id) {
+      rantscript.deleteComment(item.id, auth.user.authToken)
+      .then(() => {
+        showToast('Comment has been deleted');
+        fetchitem();
+      })
+      .catch(() => {
+        showToast('Could not delete the comment');
+      });
+    } else {
+      rantscript.deleteRant(item.id, auth.user.authToken)
+      .then(() => {
+        showToast('Rant has been deleted');
+      })
+      .catch(() => {
+        showToast('Could not delete the rant');
+      });
+    }
+  }
   onSubscribe(bool) {
-    const { auth, item } = this.props;
+    const { auth, item, showToast } = this.props;
     rantscript.subscribe(bool, item.user_id, auth.user.authToken)
     .then(() => {
-
+      showToast('Subsribed to user');
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(() => {
+      showToast('Could not subscribe to user');
     });
   }
   /**
@@ -220,6 +241,7 @@ class ItemCard extends Component {
           onCommentsClick={() => this.open()}
           onFavorite={bool => this.onFavorite(bool)}
           onSubscribe={bool => this.onSubscribe(bool)}
+          onDelete={() => this.onDelete()}
         />
       </div>
     );
@@ -236,6 +258,7 @@ ItemCard.propTypes = {
   open: PropTypes.func,
   modal: PropTypes.bool,
   addMention: PropTypes.func,
+  fetchitem: PropTypes.func,
 };
 
 
