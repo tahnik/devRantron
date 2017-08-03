@@ -10,6 +10,9 @@ import UserBadge from '../user/user_badge';
 import BottomBar from './bottom_bar';
 import { ITEM } from '../../consts/types';
 import { parseLinks, timeSince, parseUsers } from '../../consts/utils';
+import rantscript from '../../consts/rantscript';
+
+const { clipboard } = require('electron');
 
 class ItemCard extends Component {
   shouldComponentUpdate(nextProps) {
@@ -31,6 +34,65 @@ class ItemCard extends Component {
     if (typeof modal !== 'undefined' || typeof item.tags !== 'undefined') {
       open(itemType, item.id);
     }
+  }
+  /**
+   * Copy the link of the rant or collab to clipboard
+   *
+   * @memberof ItemCard
+   */
+  copyLinkToClipboard() {
+    const { item, showToast } = this.props;
+    const type = typeof item.c_type === 'undefined' ? 'rants' : 'collabs';
+    clipboard.writeText(`https://devrant.io/${type}/${item.id}`);
+    showToast('Copied to clipboard');
+  }
+  /**
+   * Mark a rant as favourite
+   *
+   * @param {bool} bool
+   * @memberof ItemCard
+   */
+  onFavorite(bool) {
+    const { auth, item } = this.props;
+    const id = item.id;
+    rantscript.favorite(bool, id, auth.user.authToken)
+    .then(() => {
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  onDelete() {
+    const { auth, item, showToast, fetchitem } = this.props;
+    if (item.rant_id) {
+      rantscript.deleteComment(item.id, auth.user.authToken)
+      .then(() => {
+        showToast('Comment has been deleted');
+        fetchitem();
+      })
+      .catch(() => {
+        showToast('Could not delete the comment');
+      });
+    } else {
+      rantscript.deleteRant(item.id, auth.user.authToken)
+      .then(() => {
+        showToast('Rant has been deleted');
+      })
+      .catch(() => {
+        showToast('Could not delete the rant');
+      });
+    }
+  }
+  onSubscribe(bool) {
+    const { auth, item, showToast } = this.props;
+    rantscript.subscribe(bool, item.user_id, auth.user.authToken)
+    .then(() => {
+      showToast('Subsribed to user');
+    })
+    .catch(() => {
+      showToast('Could not subscribe to user');
+    });
   }
   /**
    * Parses the content of a rant to find out links and @mention
@@ -168,15 +230,18 @@ class ItemCard extends Component {
           {this.getTags()}
         </div>
         <BottomBar
-          score={item.score}
-          comments={item.num_comments}
-          isVoted={item.vote_state}
+          item={item}
           vote={vote}
-          id={item.id}
           isUser={isUser}
+          copyToClip={() => this.copyLinkToClipboard()}
+          modal={modal}
           type={isComment ? ITEM.COMMENT.NAME : ITEM.RANT.NAME}
           addMention={addMention}
           username={user.username}
+          onCommentsClick={() => this.open()}
+          onFavorite={bool => this.onFavorite(bool)}
+          onSubscribe={bool => this.onSubscribe(bool)}
+          onDelete={() => this.onDelete()}
         />
       </div>
     );
@@ -188,10 +253,13 @@ ItemCard.propTypes = {
   theme: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  showToast: PropTypes.func.isRequired,
   itemType: PropTypes.string,
   open: PropTypes.func,
   modal: PropTypes.bool,
   addMention: PropTypes.func,
+  fetchitem: PropTypes.func,
 };
+
 
 export default ItemCard;

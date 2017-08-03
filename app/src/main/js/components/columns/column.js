@@ -75,7 +75,7 @@ class Column extends Component {
   }
   getItemsContainer() {
     const {
-      column, theme, vote, fetch, open, itemType, auth } = this.props;
+      column, theme, vote, fetch, open, itemType, auth, showToast } = this.props;
     const { divID } = this.state;
     if (column.items.length === 0 && column.state === STATE.SUCCESS) {
       return (
@@ -103,6 +103,7 @@ class Column extends Component {
                   vote={vote}
                   itemType={itemType}
                   auth={auth}
+                  showToast={showToast}
                 />
                 ))
           }
@@ -141,6 +142,7 @@ Column.propTypes = {
   column: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  showToast: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
   removeColumn: PropTypes.func,
   filters: PropTypes.object.isRequired,

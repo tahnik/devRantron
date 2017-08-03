@@ -4,6 +4,7 @@ import fetch, { addColumn, removeColumn, updateColumnScrollHeight } from '../../
 import vote from '../../actions/vote';
 import { ITEM } from '../../consts/types';
 import { openModal } from '../../actions/modal';
+import showToast from '../../actions/toast';
 
 const mapDispatchToProps = dispatch => ({
   fetch: (sort, range, id = 0, refresh = false, type) => {
@@ -23,6 +24,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateScrollHeight: (id, value) => {
     dispatch(updateColumnScrollHeight(id, value));
+  },
+  showToast: (text) => {
+    dispatch(showToast(text, 1000));
   },
 });
 
