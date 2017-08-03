@@ -54,7 +54,8 @@ class ItemCard extends Component {
    */
   onFavorite(bool) {
     const { auth, item } = this.props;
-    rantscript.favorite(bool, item.id, auth.authToken)
+    const id = item.id;
+    rantscript.favorite(bool, id, auth.user.authToken)
     .then(() => {
 
     })
@@ -64,7 +65,7 @@ class ItemCard extends Component {
   }
   onSubscribe(bool) {
     const { auth, item } = this.props;
-    rantscript.subscribe(bool, item.user_id, auth.authToken)
+    rantscript.subscribe(bool, item.user_id, auth.user.authToken)
     .then(() => {
 
     })

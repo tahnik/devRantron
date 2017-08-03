@@ -84,7 +84,7 @@ class BottomBar extends Component {
     return <div />;
   }
   render() {
-    const { comments, type, item } = this.props;
+    const { type, item } = this.props;
     const { favorited, subscribed } = this.state;
     const disabled = this.props.isUser ? 'disabled' : '';
     return (
@@ -110,7 +110,10 @@ class BottomBar extends Component {
             <span className="ud_icon">-</span>
           </div>
         </div>
-        <div className="right_items">
+        <div
+          className="right_items"
+          onMouseLeave={() => this.setState({ triggerActive: false })}
+        >
           <div className="togglable">
             <div
               className={`trigger ${this.state.triggerActive ? 'active' : ''}`}
@@ -133,7 +136,7 @@ class BottomBar extends Component {
               >
                 <p><i className="ion-social-rss-outline" /></p>
               </div>
-              { !item.rant_id ?
+              { !item.rant_id && !item.c_type ?
                 <div
                   className={`toggle_item favorite ${favorited ? 'active' : null}`}
                   onClick={() => this.onFavorite()}
@@ -157,7 +160,7 @@ class BottomBar extends Component {
             type === ITEM.COMMENT.NAME ? null :
             <div className="comments" onClick={() => this.props.onCommentsClick()} >
               <p><i className="ion-ios-chatboxes-outline" /></p>
-              <span>{ comments }</span>
+              <span>{ item.num_comments }</span>
             </div>
           }
           {
