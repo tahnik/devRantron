@@ -199,7 +199,6 @@ app/build
 
 .DS_Store
 
-.snapcraft
 prime
 stage
 parts
