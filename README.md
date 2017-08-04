@@ -8,7 +8,10 @@
 ## Unofficial devRant Cross Platform Desktop Application
 ![devRantron Banner](https://i.imgur.com/dMWxH4x.png)
 
-Our app is now in beta! We have almost finished implementing all the features and we can't wait for you guys to try it out!
+Thank you for waiting!     
+Our app is now in public version! Download the latest release by going to [devrantron.firebaseapp.com](https://devrantron.firebaseapp.com)!       
+Available for Windows, macOS, and Linux.
+
 ### Login with devRant Account
 ![devRantron 1](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/login.png)
 ### View Rants and Make Comments
