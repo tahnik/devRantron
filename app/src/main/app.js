@@ -61,10 +61,7 @@ const handleRedirect = (e, link) => {
 function initTray() {
   // No idea why using let or var or const with tray causes the tray not to display anything
   /* eslint-disable */
-  let icon = path.join(__dirname, '/res/images/devrantLogo512.png');
-  if (process.platform === 'darwin') {
-    icon = path.join(__dirname, '/res/images/devrantLogo24.png');
-  }
+  let icon = path.join(__dirname, '/res/images/devrantLogo24.png');
   tray = new Tray(icon);
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Open App', click() { mainWindow.show(); } },
