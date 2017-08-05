@@ -114,10 +114,14 @@ class Column extends Component {
     const {
       column, theme, fetch, filters, removeColumn } = this.props;
     const { divID } = this.state;
+    const columnStyle = { };
+    if (0) {
+      columnStyle.width = `${theme.column.width}px`;
+    }
     return (
       <div
         className="column"
-        style={{ width: `${theme.column.width}px` }}
+        style={columnStyle}
       >
         <ColumnTopBar
           filters={filters}
@@ -130,6 +134,7 @@ class Column extends Component {
           removeColumn={removeColumn}
           sort={column.sort}
           range={column.range}
+          theme={theme}
         />
         { this.getItemsContainer() }
       </div>

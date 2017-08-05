@@ -168,13 +168,11 @@ class Item extends Component {
       <div className="item_column">
         <div
           className="itemcard_container"
-          style={{ width: `${theme.column.width}px` }}
         >
           {this.getItemCard()}
         </div>
         <div
           className="comments_and_post"
-          style={{ width: `${theme.column.width}px` }}
           ref={(node) => { this.multiCol = node; }}
         >
           {this.getComments()}
