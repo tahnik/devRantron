@@ -22,8 +22,8 @@ class Notification extends Component {
     }
     return true;
   }
-  open(id) {
-    this.props.open(id);
+  open(id, commentID) {
+    this.props.open(id, commentID);
   }
   render() {
     const { notif, user, unread } = this.props;
@@ -52,7 +52,7 @@ class Notification extends Component {
     }
     return (
       <div
-        onClick={() => this.open(notif.rant_id)}
+        onClick={() => this.open(notif.rant_id, notif.comment_id)}
         className="notif_bubble"
       >
         <div className={`notif_badge ${notif.read === 1 ? 'read' : ''}`}>
