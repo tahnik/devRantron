@@ -88,7 +88,7 @@ class ItemCard extends Component {
     const { auth, item, showToast } = this.props;
     rantscript.subscribe(bool, item.user_id, auth.user.authToken)
     .then(() => {
-      showToast('Subsribed to user');
+      showToast('Subscribed to user');
     })
     .catch(() => {
       showToast('Could not subscribe to user');
