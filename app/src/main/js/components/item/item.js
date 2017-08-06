@@ -163,7 +163,6 @@ class Item extends Component {
     );
   }
   renderMutliCol() {
-    const { theme } = this.props;
     return (
       <div className="item_column">
         <div

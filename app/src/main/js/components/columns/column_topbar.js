@@ -266,6 +266,7 @@ class ColumnTopBar extends Component {
 
 ColumnTopBar.propTypes = {
   filters: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   fetch: PropTypes.func.isRequired,
   removeColumn: PropTypes.func,
   divID: PropTypes.string.isRequired,
