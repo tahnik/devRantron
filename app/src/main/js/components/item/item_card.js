@@ -198,6 +198,7 @@ class ItemCard extends Component {
         style={{
           backgroundColor: theme.item_card.backgroundColor,
           color: theme.item_card.color,
+          width: `${theme.column.width}px`,
         }}
       >
         <UserBadge

@@ -71,7 +71,7 @@ class CommentPost extends Component {
     return (
       <div
         className="post_comment"
-        style={{ width: `${theme.column.width - 17}px` }}
+        style={{ width: `${theme.column.width}px` }}
       >
         <SmartArea
           id="post_comment_area"

@@ -6,7 +6,7 @@ import { openModal } from '../actions/modal';
 import { ITEM } from '../consts/types';
 import rantscript from '../consts/rantscript';
 
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, shell } = require('electron');
 
 export default (store) => {
   ipcRenderer.on('quitApp', () => {
@@ -25,6 +25,19 @@ export default (store) => {
 
     notification.onclick = () => {
       ipcRenderer.send('updateNow', true);
+    };
+  });
+
+  ipcRenderer.on('newUpdateAvailable', () => {
+    // eslint-disable-next-line
+    const notification = new Notification('devRantron', {
+      body: 'New update is availble. Click here to go to the download page',
+      icon: 'http://i.imgur.com/iikd00P.png',
+      requireInteraction: true,
+    });
+
+    notification.onclick = () => {
+      shell.openExternal('https://devrantron.firebaseapp.com/');
     };
   });
 

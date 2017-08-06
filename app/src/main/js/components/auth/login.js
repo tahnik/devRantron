@@ -32,6 +32,14 @@ class Login extends Component {
     }
     return true;
   }
+  handleClick(e) {
+    if (e.keyCode === 13) {
+      this.props.login(
+        this.state.username,
+        this.state.password,
+      );
+    }
+  }
   render() {
     const { theme, auth, noLogin } = this.props;
     return (
@@ -44,7 +52,7 @@ class Login extends Component {
         <div className="auth_image" >
           <img alt="devrant" src="./res/images/devrant_sidebar.png" />
         </div>
-        <div className="auth_form" >
+        <div className="auth_form" onKeyDown={e => this.handleClick(e)}>
           <input
             value={this.state.username}
             onChange={e => this.setState({ username: e.target.value })}

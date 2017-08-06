@@ -134,12 +134,16 @@ class BottomBar extends Component {
                 </div>
                 : null
               }
-              <div
-                className={`toggle_item subscribe ${subscribed ? 'active' : null}`}
-                onClick={() => this.onSubscribe()}
-              >
-                <p><i className="ion-social-rss-outline" /></p>
-              </div>
+              {
+                !this.props.isUser ?
+                  <div
+                    className={`toggle_item subscribe ${subscribed ? 'active' : null}`}
+                    onClick={() => this.onSubscribe()}
+                  >
+                    <p><i className="ion-social-rss-outline" /></p>
+                  </div>
+                : null
+              }
               { !item.rant_id && !item.c_type ?
                 <div
                   className={`toggle_item favorite ${favorited ? 'active' : null}`}

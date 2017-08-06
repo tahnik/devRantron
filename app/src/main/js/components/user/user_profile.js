@@ -174,7 +174,12 @@ class UserProfile extends Component {
             </div>
           </div>
         </div>
-        <div className="user_contents">
+        <div
+          className="user_contents"
+          style={{
+            width: `${parseInt(theme.column.width, 10) + 20}px`,
+          }}
+        >
           <Column
             {...this.props}
             column={this.state.column}
