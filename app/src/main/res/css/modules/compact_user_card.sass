@@ -2,7 +2,7 @@
 
 .user_compact
   //background: url(./../images/empty_avatar.png)
-  background-size: 100% 100% !important
+  background-size: cover !important
   background-repeat: no-repeat !important
   position: relative
   display: flex
@@ -10,6 +10,7 @@
   justify-content: center
   flex-direction: column
   padding: 1rem
+  padding-bottom: 2rem
   .user_bg_tint
     position: absolute
     top: 0px
@@ -51,8 +52,8 @@
       cursor: pointer
   .logout
     position: absolute
-    bottom: 5px
-    left: 10px
+    bottom: 0.25rem
+    left: 0.5rem
     font-size: 1.5rem
     z-index: 300
     display: flex
@@ -63,12 +64,12 @@
     i
       text-shadow: 0px 0px 4px rgba(0,0,0,0.4)
     &:hover::after
-      margin-left: 0.2rem
+      margin-left: 0.4rem
       opacity: 1
       text-shadow: 0px 0px 4px rgba(0,0,0,0.4)
     &::after
       content: attr(data-text)
-      font-size: 1rem
-      margin-left: -1.4rem
+      font-size: 1.1rem
+      margin-left: -0.6rem
       opacity: 0
       transition: opacity 0.2s, margin-left 0.2s

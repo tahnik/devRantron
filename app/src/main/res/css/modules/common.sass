@@ -160,6 +160,13 @@ body
     display: flex
     justify-content: center
     height: 100%
+    &:after
+      content: ''
+      position: absolute
+      left: 0
+      bottom: 0
+      width: 100%
+      background: linear-gradient(to top,#54556e 0%,rgba(0,0,0,0) 100%)
 
   .fade-enter
     opacity: 0.01

@@ -1,16 +1,17 @@
 .user_card
   position: absolute
-  width: 25rem
+  width: calc(100% - 2rem)
   background-size: cover !important
   background-repeat: no-repeat !important
-  padding: 1rem 1rem 0rem 1rem
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.19), 0 3px 4px rgba(0, 0, 0, 0.23)
+  padding: 1rem 1rem 2rem 1rem
   transform: translate(-1rem, -1rem)
   z-index: 199
   button
     box-shadow: none
     &:hover
       box-shadow: none
-  &::before
+  &:before
     content: " "
     background: rgba(64, 65, 90, 0.9)
     position: absolute
@@ -21,7 +22,8 @@
   .close
     position: absolute
     width: 1.2rem
-    height: 1.3rem
+    height: 1.2rem
+    line-height: 1.3rem
     right: 5px
     top: 5px
     border-radius: 100%
@@ -39,7 +41,8 @@
       i
         color: black
   .user_openprofile
-    width: 27rem
+    position: absolute;
+    width: calc(100%)
     transform: translateX(-1rem)
     margin: 0px
     text-shadow: 0px 0px 2px rgba(0,0,0,0.3)
