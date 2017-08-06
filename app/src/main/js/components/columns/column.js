@@ -75,9 +75,9 @@ class Column extends Component {
   }
   getItemsContainer() {
     const {
-      column, theme, vote, fetch, open, itemType, auth, showToast } = this.props;
+      column, theme, vote, fetch, open, itemType, auth, showToast, custom } = this.props;
     const { divID } = this.state;
-    if (column.items.length === 0 && column.state === STATE.SUCCESS) {
+    if (column.items.length === 0 && column.state === STATE.SUCCESS && !custom) {
       return (
         <div className="no_items">Nothing to see here</div>
       );
@@ -114,14 +114,9 @@ class Column extends Component {
     const {
       column, theme, fetch, filters, removeColumn } = this.props;
     const { divID } = this.state;
-    const columnStyle = { };
-    if (0) {
-      columnStyle.width = `${theme.column.width}px`;
-    }
     return (
       <div
         className="column"
-        style={columnStyle}
       >
         <ColumnTopBar
           filters={filters}
@@ -154,6 +149,7 @@ Column.propTypes = {
   itemType: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired,
   updateScrollHeight: PropTypes.func,
+  custom: PropTypes.bool,
 };
 
 export default Column;
