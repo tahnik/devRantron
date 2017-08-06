@@ -30,19 +30,6 @@ class Notifs extends Component {
 
     ipcRenderer.on('open_notif', () => { this.setState({ active: true }); });
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.firstFetch) {
-      this.setState({ firstFetch: false });
-      return true;
-    }
-    if (
-      this.props.notifs.num_unread === nextProps.notifs.num_unread
-      && this.state.active === nextState.active
-    ) {
-      return false;
-    }
-    return true;
-  }
   componentDidUpdate(prevProps) {
     if (!this.props.notifs || !this.props.auth.user) {
       return;

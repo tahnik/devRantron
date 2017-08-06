@@ -198,3 +198,8 @@ scripts
 app/build
 
 .DS_Store
+
+prime
+stage
+parts
+*.snap

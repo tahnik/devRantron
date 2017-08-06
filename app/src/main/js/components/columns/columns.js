@@ -85,6 +85,7 @@ class Columns extends Component {
                     filters={column.filters}
                     itemType={column.itemType}
                     auth={auth}
+                    custom
                   />
                 );
               }

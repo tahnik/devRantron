@@ -23,9 +23,9 @@ const mapDispatchToProps = dispatch => ({
   clearNotifs: () => {
     dispatch(clearNotifs());
   },
-  open: (id, type = ITEM.RANT.NAME) => {
+  open: (id, commentID, type = ITEM.RANT.NAME) => {
     dispatch(fetchNotifs());
-    dispatch(openModal(type, id));
+    dispatch(openModal(type, id, { commentID }));
   },
   openNotif: (notif) => {
     dispatch(showNotifs(notif));

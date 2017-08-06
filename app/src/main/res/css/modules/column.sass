@@ -32,6 +32,10 @@
   height: 100vh
   overflow: hidden
   margin: 0 1rem
+  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
   .no_items
     display: flex
     justify-content: center
@@ -39,9 +43,12 @@
     margin-top: 5rem
     font-size: 1.3rem
   .items_container
-    position: relative
-    overflow: auto
-    overflow-x: visible
+    overflow-x: hidden
+    overflow-y: scroll
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
     transform: translateZ(0)
     -webkit-transform: translateZ(0)
     padding: 0 10px
@@ -51,11 +58,11 @@
   .column_topbar
     height: 30px
     overflow: hidden
-    margin: 0.7rem 0 0.4rem 0
+    margin: 0.7rem 20px 0.4rem 0
     display: flex
     .right_navs
       flex: 2
-      padding: 3px 1.35rem 0 0
+      padding: 3px 0 0 0
       color: white
       display: flex
       justify-content: flex-end

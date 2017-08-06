@@ -67,7 +67,7 @@ class UserProfile extends Component {
     const { item, auth } = this.props;
     const prevColumn = Object.assign({}, this.state.column);
     prevColumn.state = STATE.LOADING;
-    if (sort !== this.state.column.sort) {
+    if (refresh || sort !== this.state.column.sort) {
       prevColumn.page = 0;
       prevColumn.items = [];
     }
@@ -91,7 +91,7 @@ class UserProfile extends Component {
          */
         const nextColumn = Object.assign({}, DEFAULT_COLUMN);
         nextColumn.page = this.state.column.page + 1;
-        const nextItems = sort !== column.sort ? [] : [...column.items];
+        const nextItems = refresh || sort !== column.sort ? [] : [...column.items];
         nextColumn.items = [...nextItems, ...res.content.content[sort]];
         nextColumn.state = STATE.SUCCESS;
         nextColumn.sort = sort;
@@ -100,8 +100,6 @@ class UserProfile extends Component {
         } else {
           nextColumn.itemType = ITEM.RANT.NAME;
         }
-        console.log(res);
-        console.log(sort);
         this.setState({
           user: res,
           column: nextColumn,
@@ -176,7 +174,12 @@ class UserProfile extends Component {
             </div>
           </div>
         </div>
-        <div className="user_contents">
+        <div
+          className="user_contents"
+          style={{
+            width: `${parseInt(theme.column.width, 10) + 20}px`,
+          }}
+        >
           <Column
             {...this.props}
             column={this.state.column}

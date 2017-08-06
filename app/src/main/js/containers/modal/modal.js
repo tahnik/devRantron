@@ -3,6 +3,7 @@ import Modal from '../../components/modal/modal';
 import vote from '../../actions/vote';
 import { fetchNotifs } from '../../actions/notifs';
 import { openModal, closeModal } from '../../actions/modal';
+import showToast from '../../actions/toast';
 
 const mapStateToProps = state => ({
   theme: state.settings.theme,
@@ -23,6 +24,9 @@ const mapDispatchToProps = dispatch => ({
   },
   open: (type, id) => {
     dispatch(openModal(type, id));
+  },
+  showToast: (text) => {
+    dispatch(showToast(text, 1000));
   },
 });
 

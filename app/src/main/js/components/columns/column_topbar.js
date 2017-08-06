@@ -204,7 +204,7 @@ class ColumnTopBar extends Component {
     }
   }
   render() {
-    const { filters, removeColumn } = this.props;
+    const { filters, removeColumn, theme } = this.props;
     const primaryFilters = filters[filters.PRIMARY];
 
     const secondaryFilters = filters[filters.SECONDARY];
@@ -212,6 +212,7 @@ class ColumnTopBar extends Component {
       <div
         className="column_topbar"
         onMouseLeave={() => this.handleHoverLeave()}
+        style={{ width: `${theme.column.width}px` }}
       >
         <div className="left_navs">
           <div
@@ -265,6 +266,7 @@ class ColumnTopBar extends Component {
 
 ColumnTopBar.propTypes = {
   filters: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   fetch: PropTypes.func.isRequired,
   removeColumn: PropTypes.func,
   divID: PropTypes.string.isRequired,

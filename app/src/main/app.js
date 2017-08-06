@@ -61,10 +61,7 @@ const handleRedirect = (e, link) => {
 function initTray() {
   // No idea why using let or var or const with tray causes the tray not to display anything
   /* eslint-disable */
-  let icon = path.join(__dirname, '/res/images/devrantLogo512.png');
-  if (process.platform === 'darwin') {
-    icon = path.join(__dirname, '/res/images/devrantLogo24.png');
-  }
+  let icon = path.join(__dirname, '/res/images/devrantLogo24.png');
   tray = new Tray(icon);
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Open App', click() { mainWindow.show(); } },
@@ -266,6 +263,14 @@ ipcMain.on('updateNow', () => {
 });
 
 autoUpdater.on('update-available', () => {
+  let plat = '';
+
+  if (/^win/.test(process.platform)) { plat = 'windows'; }
+  if (/^dar/.test(process.platform)) { plat = 'osx'; }
+  if (/^lin/.test(process.platform)) { plat = 'linux'; }
+  if (plat !== 'windows') {
+    mainWindow.webContents.send('newUpdateAvailable');
+  }
 });
 
 autoUpdater.on('update-not-available', () => {

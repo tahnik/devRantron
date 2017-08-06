@@ -2,7 +2,6 @@ import { NOTIFS, ITEM } from '../consts/types';
 import rantscript from '../consts/rantscript';
 import { openModal } from './modal';
 import { fetchUser } from './user';
-import showToast from './toast';
 
 const { ipcRenderer } = require('electron');
 const currentWindow = require('electron').remote.getCurrentWindow();
@@ -40,7 +39,6 @@ const fetchNotifs = () => (dispatch, getState) => {
     }
   })
   .catch(() => {
-    dispatch(showToast('Could not fetch notifications'));
   });
 };
 

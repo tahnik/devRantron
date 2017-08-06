@@ -7,6 +7,16 @@ import UserProfile from '../user/user_profile';
 import { ITEM } from '../../consts/types';
 
 class Modal extends Component {
+  componentDidUpdate() {
+    if (this.modal) {
+      this.modal.focus();
+    }
+  }
+  handleESC(e) {
+    if (e.keyCode === 27) {
+      this.props.close();
+    }
+  }
   getItem() {
     const { item } = this.props;
     if (item.type === ITEM.POST_RANT.NAME) {
@@ -40,7 +50,10 @@ class Modal extends Component {
           item ?
             <div
               className="modal_container"
+              tabIndex="0" //eslint-disable-line
+              onKeyDown={e => this.handleESC(e)}
               onClick={e => this.onOutsideClick(e)}
+              ref={(node) => { this.modal = node; }}
             >
               <div className="close_modal" onClick={() => close()}>
                 <i className="ion-close-round" />
