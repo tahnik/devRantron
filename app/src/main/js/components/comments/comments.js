@@ -25,7 +25,11 @@ class Comments extends Component {
     return (
       <div className="comments_container">
         {
-          comments.length === 0 ? <h4>No comments</h4> : null
+          comments.length === 0 ?
+            <div style={{ width: `${theme.column.width}px` }}>
+              <h4>No comments</h4>
+            </div>
+            : null
         }
         {
           comments.map(comment => (
