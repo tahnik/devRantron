@@ -113,7 +113,7 @@ class ItemCard extends Component {
     let fURL = url;
     if (
       url.indexOf('http://') === -1
-      || url.indexOf('https://') === -1
+      && url.indexOf('https://') === -1
     ) {
       fURL = `http://${url}`;
     }
