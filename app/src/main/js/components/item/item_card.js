@@ -12,7 +12,7 @@ import { ITEM } from '../../consts/types';
 import { parseLinks, timeSince, parseUsers } from '../../consts/utils';
 import rantscript from '../../consts/rantscript';
 
-const { clipboard } = require('electron');
+const { shell, clipboard } = require('electron');
 
 class ItemCard extends Component {
   shouldComponentUpdate(nextProps) {
@@ -109,6 +109,16 @@ class ItemCard extends Component {
     }
     return parseLinks(content);
   }
+  static openLink(url) {
+    let fURL = url;
+    if (
+      url.indexOf('http://') === -1
+      || url.indexOf('https://') === -1
+    ) {
+      fURL = `http://${url}`;
+    }
+    shell.openExternal(fURL);
+  }
   getTags() {
     const { item } = this.props;
     if (!item.tags) {
@@ -166,7 +176,9 @@ class ItemCard extends Component {
           item.c_url ?
             <div>
               <span className="title">Project Url</span>
-              <span className="body">{item.c_url}</span>
+              <span className="body">
+                <p onClick={() => ItemCard.openLink(item.c_url)} className="url">{item.c_url}</p>
+              </span>
             </div>
             : null
         }
