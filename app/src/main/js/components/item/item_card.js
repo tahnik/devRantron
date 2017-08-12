@@ -107,7 +107,7 @@ class ItemCard extends Component {
     if (isComment) {
       content = parseUsers(content);
     }
-    return parseLinks(content);
+    return parseLinks(content, item);
   }
   static openLink(url) {
     let fURL = url;
@@ -203,6 +203,9 @@ class ItemCard extends Component {
     const isComment = typeof item.rant_id !== 'undefined';
     // If there is any image with this rant
     const image = item.attached_image || '';
+    if (isComment) {
+      console.log(item);
+    }
     return (
       <div
         className={`item_card ${modal || isComment ? null : 'shadow'}`}
