@@ -94,7 +94,7 @@ export const timeSince = (date) => {
 //eslint-disable-next-line
 export const parseUsers = (text) => {
   return text.replace(
-    /@([a-z\d_]+)/ig,
+    /@(\S+)/ig,
     '<a href="http://devrant.io/users/$1">@$1</a>',
   );
 };

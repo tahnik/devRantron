@@ -203,9 +203,6 @@ class ItemCard extends Component {
     const isComment = typeof item.rant_id !== 'undefined';
     // If there is any image with this rant
     const image = item.attached_image || '';
-    if (isComment) {
-      console.log(item);
-    }
     return (
       <div
         className={`item_card ${modal || isComment ? null : 'shadow'}`}
