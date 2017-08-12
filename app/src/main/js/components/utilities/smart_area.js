@@ -221,6 +221,7 @@ class SmartArea extends Component {
 
     this.props.onPost(content, this.state.image);
     this.toggleEmojiPicker(false);
+    this.setState({ image: null });
   }
   render() {
     const { pickerActive, selectedMention } = this.state;
