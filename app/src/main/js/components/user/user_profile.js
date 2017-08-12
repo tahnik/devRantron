@@ -4,6 +4,7 @@ import rantscript from '../../consts/rantscript';
 import Loading from '../utilities/loading';
 import Column from '../columns/column';
 import { ITEM, STATE } from '../../consts/types';
+import { parseLinks } from '../../consts/utils';
 
 const { shell } = require('electron');
 
@@ -111,10 +112,9 @@ class UserProfile extends Component {
       });
   }
   static openLink(url) {
-    let fURL = url;
-    if (
+    let fURL = url; if (
       url.indexOf('http://') === -1
-      || url.indexOf('https://') === -1
+      && url.indexOf('https://') === -1
     ) {
       fURL = `http://${url}`;
     }
