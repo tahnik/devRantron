@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
 import SmartArea from '../utilities/smart_area';
-
+import { ITEM } from '../../consts/types';
 
 class PostRant extends Component {
   constructor() {
@@ -31,7 +31,7 @@ class PostRant extends Component {
           tags: '',
           limitCrossed: null,
         });
-        this.props.close();
+        this.props.open(ITEM.RANT.NAME, res.rant_id);
       })
       .catch(() => {
         this.setState({ posting: false });
@@ -67,6 +67,7 @@ class PostRant extends Component {
 PostRant.propTypes = {
   auth: PropTypes.object.isRequired,
   close: PropTypes.func.isRequired,
+  open: PropTypes.func.isRequired,
 };
 
 export default PostRant;
