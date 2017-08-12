@@ -15,6 +15,11 @@ class SideNav extends Component {
   }
   componentDidMount() {
     ipcRenderer.on('compose_rant', () => { this.props.open(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.which === 13 && e.ctrlKey) {
+        this.props.open();
+      }
+    });
   }
   getUserCard() {
     const { user, logout, login, fetchUser, open } = this.props;
