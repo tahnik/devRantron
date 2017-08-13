@@ -7,38 +7,99 @@ const { ipcRenderer } = require('electron');
 const currentWindow = require('electron').remote.getCurrentWindow();
 
 // This is used to prevent notif being fetched when a notif clearing is in progress
-let clearingNotif = false;
+let clearingNotifs = false;
+let fetching = false;
 
 /**
  * Fetches notifications
  *
  */
 const fetchNotifs = () => (dispatch, getState) => {
+  if (clearingNotifs || fetching) {
+    return;
+  }
   const auth = getState().auth;
   if (!auth.user) {
     return;
   }
+  const stateNotifs = getState().notifs;
+  let lastCheckTime = 1;
+  let lastItems = [];
+  let lastUsers = [];
+  if (stateNotifs && stateNotifs.check_time) {
+    lastItems = stateNotifs.items;
+    lastUsers = stateNotifs.username_map;
+    if (lastItems.length !== 0) {
+      lastCheckTime = stateNotifs.check_time;
+    }
+  }
+  fetching = true;
   rantscript
-  .notifications(auth.user.authToken, 1)
+  .notifications(auth.user.authToken, lastCheckTime)
   .then((res) => {
+    fetching = false;
     /*
     * We have got a successful response, let's dispatch to let
     * redux store know about it
     */
+    if (res.data.items.length === 0) {
+      return;
+    }
+    const nextItems = [...lastItems];
+    res.data.items.forEach((element) => {
+      const duplicate = lastItems.find(item => item.created_time === element.created_time);
+      if (typeof duplicate === 'undefined') {
+        if (lastCheckTime === 1) {
+          nextItems.push(element);
+        } else {
+          nextItems.unshift(element);
+        }
+      } else {
+        console.log('Leviosaaaaaaa');
+      }
+    });
     const notifs = {
-      items: res.data.items,
+      items: nextItems,
       check_time: res.data.check_time,
-      username_map: res.data.username_map,
+      username_map: { ...res.data.username_map, ...lastUsers },
       num_unread: res.data.num_unread,
     };
-    if (!clearingNotif) {
-      dispatch({
-        type: NOTIFS.FETCH,
-        notifs,
-      });
-    }
+    dispatch({
+      type: NOTIFS.FETCH,
+      notifs,
+    });
   })
   .catch(() => {
+    fetching = false;
+  });
+};
+
+/**
+ * Clears the notifications associated with a particular rant id
+ * @param {number} id id of a rant
+ */
+const clearNotif = id => (dispatch, getState) => {
+  const prevNotifs = { ...getState().notifs };
+  const nextItems = [...prevNotifs.items];
+  let nextNumUnread = prevNotifs.num_unread;
+  for (let i = 0; i < nextItems.length; i += 1) {
+    const item = nextItems[i];
+    if (item.rant_id === id) {
+      if (!item.read) {
+        item.read = 1;
+        nextNumUnread -= 1;
+      }
+    }
+  }
+  const notifs = {
+    items: nextItems,
+    check_time: Date.now() / 1000,
+    username_map: prevNotifs.username_map,
+    num_unread: nextNumUnread,
+  };
+  dispatch({
+    type: NOTIFS.FETCH,
+    notifs,
   });
 };
 
@@ -54,14 +115,14 @@ const clearNotifs = () => (dispatch, getState) => {
   if (!auth.user) {
     return;
   }
-  clearingNotif = true;
+  clearingNotifs = true;
   rantscript
   .clearNotifications(auth.user.authToken)
   .then(() => {
-    clearingNotif = false;
+    clearingNotifs = false;
   })
   .catch(() => {
-    clearingNotif = false;
+    clearingNotifs = false;
   });
 };
 
@@ -115,4 +176,4 @@ const showNotifs = notif => (dispatch, getState) => {
   }
 };
 
-export { fetchNotifs, clearNotifs, showNotifs };
+export { fetchNotifs, clearNotifs, showNotifs, clearNotif };

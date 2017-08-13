@@ -15,19 +15,22 @@ class NotifBubbles extends Component {
   }
   render() {
     const { data, open } = this.props;
+    if (!data) {
+      return <div />;
+    }
     return (
       <div className="notif_bubble_container">
         {
-          data ? data.items.map((notif, index) =>
+          data.items.map((notif, index) =>
             (<Notification
               notif={notif}
               index={index}
               open={open}
               unread={data.num_unread}
-              key={`${notif.uid}_${index}`} //eslint-disable-line
+              key={`${notif.uid}_${notif.created_time}_${notif.comment_id}_${notif.type}_${notif.rant_id}_${notif.read}`} //eslint-disable-line
               user={data.username_map[notif.uid]}
             />),
-          ) : null
+          )
         }
       </div>
     );

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Modal from '../../components/modal/modal';
 import vote from '../../actions/vote';
-import { fetchNotifs } from '../../actions/notifs';
+import { fetchNotifs, clearNotif } from '../../actions/notifs';
 import { openModal, closeModal } from '../../actions/modal';
 import showToast from '../../actions/toast';
 
@@ -21,6 +21,9 @@ const mapDispatchToProps = dispatch => ({
   },
   fetchNotifs: () => {
     dispatch(fetchNotifs());
+  },
+  clearNotif: (id) => {
+    dispatch(clearNotif(id));
   },
   open: (type, id) => {
     dispatch(openModal(type, id));
