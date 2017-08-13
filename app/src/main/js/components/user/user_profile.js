@@ -4,7 +4,6 @@ import rantscript from '../../consts/rantscript';
 import Loading from '../utilities/loading';
 import Column from '../columns/column';
 import { ITEM, STATE } from '../../consts/types';
-import { parseLinks } from '../../consts/utils';
 
 const { shell } = require('electron');
 
