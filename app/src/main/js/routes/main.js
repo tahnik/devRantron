@@ -13,6 +13,7 @@ import Notifs from '../containers/notifs/notifs';
 import Custom from '../containers/feeds/custom';
 import Toast from '../containers/utilities/toast/toast';
 import Settings from '../containers/settings/settings';
+import Search from '../containers/search/search';
 
 const MainRoutes = props => (
   <div key="MainRoutes" className="main_container" >
@@ -51,6 +52,12 @@ const MainRoutes = props => (
         path="/settings"
         render={() => (
           <Settings />
+        )}
+      />
+      <Route
+        path="/search"
+        render={() => (
+          <Search />
         )}
       />
       <Modal />

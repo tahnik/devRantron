@@ -20,6 +20,13 @@ export const NOTIF_TYPES = {
   },
 };
 
+export const SEARCH_FILTERS = {
+  SORT: {
+    RECENT: 'recent',
+  },
+  PRIMARY: 'SORT',
+};
+
 export const SETTINGS = {
   TYPE: {
     DROPDOWN: 'DROPDOWN',
