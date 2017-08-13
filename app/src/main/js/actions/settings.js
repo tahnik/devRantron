@@ -1,4 +1,5 @@
 import { SETTINGS } from '../consts/types';
+import { fetchUser } from './user';
 
 const { ipcRenderer } = require('electron');
 
@@ -100,6 +101,7 @@ const setFirstLaunch = () => (dispatch) => {
  *
  */
 const setOnStartup = () => (dispatch, getState) => {
+  dispatch(fetchUser());
   const generalSettings = getState().settings.general;
   if (generalSettings.autoLaunch.value === true) {
     setAutoLaunch(true);
