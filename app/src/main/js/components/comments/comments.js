@@ -26,7 +26,7 @@ class Comments extends Component {
       <div className="comments_container">
         {
           comments.length === 0 ?
-            <div style={{ width: `${theme.column.width}px` }}>
+            <div style={{ width: `${theme.column.width}px`, marginRight: '0.5rem' }}>
               <h4>No comments</h4>
             </div>
             : null
