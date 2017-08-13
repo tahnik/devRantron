@@ -240,8 +240,8 @@ class ItemCard extends Component {
             { this.renderCollab() }
           </div>
           { image !== '' ? <img alt="" src={image.url} /> : null }
-          {this.getTags()}
         </div>
+        {this.getTags()}
         <BottomBar
           item={item}
           vote={vote}
