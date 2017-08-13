@@ -39,6 +39,7 @@ class SmartArea extends Component {
   componentDidMount() {
     component = this;
     document.addEventListener('keydown', SmartArea.handleArrowKeys, false);
+    this.charLeft.style.top = `${parseInt(window.getComputedStyle(this.textarea).height, 10) - 5}px`;
   }
   shouldComponentUpdate() {
     return true;
@@ -135,7 +136,9 @@ class SmartArea extends Component {
     this.previewNode.scrollTop = this.textarea.scrollTop;
     content = content.substr(0, caretPos);
     content = SmartArea.moveCaret(content, caretPos);
-    this.setState({ previewContent: content });
+    this.setState({
+      previewContent: content,
+    });
   }
   buildMentions(text, caretPos) {
     const lastChar = text.charAt(caretPos - 1);
@@ -268,6 +271,13 @@ class SmartArea extends Component {
           placeholder="tags"
           onChange={e => this.props.onTagsChange(e.target.value)}
         /> : null }
+        { this.props.maxChar ?
+          <p
+            className="charLeft"
+            ref={(node) => { this.charLeft = node; }}
+          >{this.props.maxChar - this.props.value.length}</p>
+          : null
+        }
         <div className="post">
           <button onClick={() => this.selectImage()}>
             {this.state.image === null && 'Add Image'}
@@ -295,6 +305,7 @@ SmartArea.propTypes = {
   tags: PropTypes.string,
   onTagsChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
+  maxChar: PropTypes.number.isRequired,
 };
 
 export default SmartArea;

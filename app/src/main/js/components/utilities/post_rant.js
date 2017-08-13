@@ -53,6 +53,7 @@ class PostRant extends Component {
               disabled={this.state.disabled || auth.user === null}
               placeholder="The rant starts here..."
               tags={this.state.tags}
+              maxChar={5000}
               onTagsChange={tags => this.setState({ tags })}
             />
             <p>{this.state.limitCrossed || ''}</p>
@@ -66,7 +67,6 @@ class PostRant extends Component {
 
 PostRant.propTypes = {
   auth: PropTypes.object.isRequired,
-  close: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
 };
 
