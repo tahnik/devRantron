@@ -9,6 +9,10 @@ export const NOTIFS = {
   CLEAR: 'NOTIF_CLEAR',
 };
 
+export const SEARCH = {
+  ADDTOFREQ: 'SEARCH_ADD_TO_FREQ',
+};
+
 export const NOTIF_TYPES = {
   CONTENT_VOTE: 'content_vote',
   RANT_SUB: 'rant_sub',

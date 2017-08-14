@@ -19,9 +19,10 @@ const DEFAULT_COLUMN = {
   state: STATE.SUCCESS,
   filters: SEARCH_FILTERS,
   sort: SEARCH_FILTERS.SORT.RECENT,
+  frequentTerms: [],
 };
 
-class Comments extends Component {
+class Search extends Component {
   constructor() {
     super();
     this.state = {
@@ -31,14 +32,39 @@ class Comments extends Component {
       freqTerms: [],
     };
   }
+  componentDidMount() {
+    const randMin = 25;
+    const randMax = 40;
+    rantscript.getFrequentSearchTerms()
+    .then((res) => {
+      const freqTerms = [];
+      this.props.search.forEach((element) => {
+        freqTerms.push({
+          name: element,
+          flex: Math.floor((Math.random() * ((randMax - randMin) + 1)) + randMin),
+        });
+      });
+      res.forEach((element) => {
+        freqTerms.push({
+          name: element,
+          flex: Math.floor((Math.random() * ((randMax - randMin) + 1)) + randMin),
+        });
+      });
+      this.setState({ freqTerms });
+    });
+  }
   onKeyDown(e) {
     if (e.keyCode === 13) {
       this.onSearch();
     }
   }
-  onSearch() {
+  onSearch(givenTerm = null) {
+    if (this.state.searchTerm === '' && !givenTerm) {
+      return;
+    }
+    this.props.addToFreqTerms(this.state.searchTerm);
     this.setState({ searched: true });
-    const term = this.state.searchTerm;
+    const term = givenTerm || this.state.searchTerm;
     const prevColumn = Object.assign({}, DEFAULT_COLUMN);
     prevColumn.state = STATE.LOADING;
     prevColumn.page = 0;
@@ -59,9 +85,10 @@ class Comments extends Component {
     return (
       <div className="search_container">
         <div className="search">
+          <i className="ion-android-search" />
           <input
             onKeyDown={e => this.onKeyDown(e)}
-            placeholder="&#xf2f5;&nbsp;Search"
+            placeholder="Search Term or Username"
             onChange={e => this.setState({ searchTerm: e.target.value })}
             value={this.state.searchTerm}
             style={{ width: `${theme.column.width}px` }}
@@ -73,18 +100,36 @@ class Comments extends Component {
             column={this.state.column}
             filters={this.state.column.filters}
             itemType={this.state.column.itemType}
-            fetch={() => { }}
+            fetch={(a, b, c, refresh) => { if (refresh) { this.onSearch(); } }}
           />
           :
-          null
+          <div className="frequent_terms">
+            {
+              this.state.freqTerms.map(
+                term => (
+                  <div
+                    key={term.name}
+                    className="term"
+                    onClick={() => this.onSearch(term.name)}
+                    style={{
+                      flex: `0 1 ${term.flex}%`,
+                      transform: term.flex > 31 ? 'scale(0.9)' : 'scale(1.1)',
+                    }}
+                  >{term.name}</div>
+                ),
+              )
+            }
+          </div>
         }
       </div>
     );
   }
 }
 
-Comments.propTypes = {
+Search.propTypes = {
   theme: PropTypes.object.isRequired,
+  addToFreqTerms: PropTypes.func.isRequired,
+  search: PropTypes.array.isRequired,
 };
 
-export default Comments;
+export default Search;

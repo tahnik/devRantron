@@ -4,6 +4,7 @@ import vote from '../../actions/vote';
 import { ITEM } from '../../consts/types';
 import { openModal } from '../../actions/modal';
 import showToast from '../../actions/toast';
+import { addToFreqTerms } from '../../actions/search';
 
 const mapDispatchToProps = dispatch => ({
   vote: (voteState, id, type = ITEM.COLLAB.NAME) => {
@@ -15,12 +16,16 @@ const mapDispatchToProps = dispatch => ({
   showToast: (text) => {
     dispatch(showToast(text, 1000));
   },
+  addToFreqTerms: (term) => {
+    dispatch(addToFreqTerms(term));
+  },
 });
 
 const mapStateToProps = state => ({
   column: state.column,
   theme: state.settings.theme,
   auth: state.auth,
+  search: state.search,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

@@ -2,12 +2,34 @@
   width: 100%
   display: flex
   flex-wrap: wrap
+  align-content: flex-start
+  .frequent_terms
+    margin-top: 2rem
+    margin-right: 40px
+    flex: 0 1 100%
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    .term
+      color: white
+      margin: 1rem 0
+      display: flex
+      justify-content: center
+      font-size: 1.2rem
+      &:hover
+        cursor: pointer
   .search
     flex: 0 1 100%
     display: flex
-    margin-right: 20px
+    margin-right: 40px
     justify-content: center
+    align-items: center
+    i
+      font-size: 1.4rem
+      color: white
+      margin-right: 5px
+      display: flex
+      align-items: center
     input
-      font-family: "Ionicons"
-      font-size: 1.3rem
+      font-size: 1.2rem
       padding: 0.2rem 0.2rem
