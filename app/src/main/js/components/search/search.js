@@ -85,7 +85,7 @@ class Search extends Component {
     rantscript.search(term)
     .then((res) => {
       const nextColumn = Object.assign({}, DEFAULT_COLUMN);
-      nextColumn.items = res;
+      nextColumn.items = res.slice(0, 100);
       nextColumn.state = STATE.SUCCESS;
       nextColumn.page = 0;
       nextColumn.itemType = ITEM.RANT.NAME;
