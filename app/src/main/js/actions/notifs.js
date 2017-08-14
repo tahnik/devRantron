@@ -46,7 +46,9 @@ const fetchNotifs = () => (dispatch, getState) => {
       return;
     }
     const nextItems = [...lastItems];
-    res.data.items.forEach((element) => {
+    const resItems = res.data.items;
+    for (let i = resItems.length; i >= 0; i -= 1) {
+      const element = resItems[i];
       const duplicate = lastItems.find(item => item.created_time === element.created_time);
       if (typeof duplicate === 'undefined') {
         if (lastCheckTime === 1) {
@@ -57,9 +59,9 @@ const fetchNotifs = () => (dispatch, getState) => {
       } else {
         console.log('Leviosaaaaaaa');
       }
-    });
+    }
     const notifs = {
-      items: nextItems,
+      items: nextItems.slice(0, 100),
       check_time: res.data.check_time,
       username_map: { ...res.data.username_map, ...lastUsers },
       num_unread: res.data.num_unread,
