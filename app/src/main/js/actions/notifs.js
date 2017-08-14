@@ -14,7 +14,7 @@ let fetching = false;
  * Fetches notifications
  *
  */
-const fetchNotifs = () => (dispatch, getState) => {
+const fetchNotifs = (refresh = false) => (dispatch, getState) => {
   if (clearingNotifs || fetching) {
     return;
   }
@@ -25,11 +25,13 @@ const fetchNotifs = () => (dispatch, getState) => {
   const stateNotifs = getState().notifs;
   let lastCheckTime = 1;
   let lastItems = [];
-  let lastUsers = [];
+  let lastUsers = {};
   if (stateNotifs && stateNotifs.check_time) {
-    lastItems = stateNotifs.items;
-    lastUsers = stateNotifs.username_map;
-    if (lastItems.length !== 0) {
+    if (!refresh) {
+      lastItems = stateNotifs.items;
+      lastUsers = stateNotifs.username_map;
+    }
+    if (lastItems.length !== 0 && !refresh) {
       lastCheckTime = stateNotifs.check_time;
     }
   }
@@ -45,20 +47,24 @@ const fetchNotifs = () => (dispatch, getState) => {
     if (res.data.items.length === 0) {
       return;
     }
-    const nextItems = [...lastItems];
+    let nextItems = [...lastItems];
     const resItems = res.data.items;
-    for (let i = resItems.length; i >= 0; i -= 1) {
-      const element = resItems[i];
-      const duplicate = lastItems.find(item => item.created_time === element.created_time);
-      if (typeof duplicate === 'undefined') {
-        if (lastCheckTime === 1) {
-          nextItems.push(element);
+    if (!refresh) {
+      for (let i = (resItems.length - 1); i >= 0; i -= 1) {
+        const element = resItems[i];
+        const duplicate = lastItems.find(item => item.created_time === element.created_time);
+        if (typeof duplicate === 'undefined') {
+          if (lastCheckTime === 1) {
+            nextItems.push(element);
+          } else {
+            nextItems.unshift(element);
+          }
         } else {
-          nextItems.unshift(element);
+          console.log('Leviosaaaaaaa');
         }
-      } else {
-        console.log('Leviosaaaaaaa');
       }
+    } else {
+      nextItems = [...resItems];
     }
     const notifs = {
       items: nextItems.slice(0, 100),
@@ -95,7 +101,7 @@ const clearNotif = id => (dispatch, getState) => {
   }
   const notifs = {
     items: nextItems,
-    check_time: Date.now() / 1000,
+    check_time: parseInt(Date.now() / 1000, 10),
     username_map: prevNotifs.username_map,
     num_unread: nextNumUnread,
   };
