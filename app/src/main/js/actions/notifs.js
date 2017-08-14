@@ -95,7 +95,9 @@ const clearNotif = id => (dispatch, getState) => {
     if (item.rant_id === id) {
       if (!item.read) {
         item.read = 1;
-        nextNumUnread -= 1;
+        if (nextNumUnread > 0) {
+          nextNumUnread -= 1;
+        }
       }
     }
   }
