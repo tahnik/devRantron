@@ -107,13 +107,13 @@ class ItemCard extends Component {
     if (isComment) {
       content = parseUsers(content);
     }
-    return parseLinks(content);
+    return parseLinks(content, item);
   }
   static openLink(url) {
     let fURL = url;
     if (
       url.indexOf('http://') === -1
-      || url.indexOf('https://') === -1
+      && url.indexOf('https://') === -1
     ) {
       fURL = `http://${url}`;
     }
@@ -128,7 +128,11 @@ class ItemCard extends Component {
       <div>
         {item.tags.length !== 0 && <div className="tags">
           {item.tags.map(object => (
-            <span key={object} className="tag">{object}</span>
+            <span
+              key={object}
+              className="tag"
+              onClick={() => this.props.history.replace(`/search/${object}`)}
+            >{object}</span>
             ))}
         </div>}
       </div>
@@ -240,8 +244,8 @@ class ItemCard extends Component {
             { this.renderCollab() }
           </div>
           { image !== '' ? <img alt="" src={image.url} /> : null }
-          {this.getTags()}
         </div>
+        {this.getTags()}
         <BottomBar
           item={item}
           vote={vote}
@@ -272,6 +276,7 @@ ItemCard.propTypes = {
   modal: PropTypes.bool,
   addMention: PropTypes.func,
   fetchitem: PropTypes.func,
+  history: PropTypes.object,
 };
 
 

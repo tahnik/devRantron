@@ -1,4 +1,6 @@
 import { SETTINGS } from '../consts/types';
+import { fetchUser } from './user';
+import { fetchNotifs } from './notifs';
 
 const { ipcRenderer } = require('electron');
 
@@ -36,6 +38,7 @@ const saveUserState = () => (dispatch, getState) => {
     settings: state.settings,
     notifs: state.notifs,
     columns: customCols,
+    search: state.search,
   };
   // Use localStorage to save the state. Much better than a file
   localStorage.setItem('savedState', JSON.stringify(savedState));
@@ -100,6 +103,8 @@ const setFirstLaunch = () => (dispatch) => {
  *
  */
 const setOnStartup = () => (dispatch, getState) => {
+  dispatch(fetchUser());
+  dispatch(fetchNotifs(true));
   const generalSettings = getState().settings.general;
   if (generalSettings.autoLaunch.value === true) {
     setAutoLaunch(true);

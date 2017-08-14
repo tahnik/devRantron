@@ -5,6 +5,8 @@ import Toggle from './toggle';
 import Text from './text';
 import Button from './button';
 
+const { remote } = require('electron');
+
 class General extends Component {
   handleChange(primaryKey, secondaryKey, value = null) {
     this.props.changeGeneral(primaryKey, secondaryKey, value);
@@ -91,6 +93,7 @@ class General extends Component {
         {
           this.getSettings().map(s => s)
         }
+        <div className="version_number">v{remote.app.getVersion()}</div>
       </div>
     );
   }

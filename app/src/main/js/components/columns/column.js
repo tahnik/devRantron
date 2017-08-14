@@ -104,6 +104,7 @@ class Column extends Component {
                   itemType={itemType}
                   auth={auth}
                   showToast={showToast}
+                  history={this.props.history}
                 />
                 ))
           }
@@ -150,6 +151,7 @@ Column.propTypes = {
   auth: PropTypes.object.isRequired,
   updateScrollHeight: PropTypes.func,
   custom: PropTypes.bool,
+  history: PropTypes.object.isRequired,
 };
 
 export default Column;

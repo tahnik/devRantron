@@ -41,7 +41,15 @@ export const getAllEmojis = () => {
   return emojis;
 };
 
-export const parseLinks = text => Autolinker.link(text);
+export const parseLinks = (text, item = null) => {
+  let returnText = text;
+  if (item && item.links) {
+    item.links.forEach((link) => {
+      returnText = returnText.replace(link.short_url, link.url);
+    });
+  }
+  return Autolinker.link(returnText, { truncate: { length: 32 } });
+};
 
 export const getEmojisFromText = (content, index, emojis) => {
   const modifiableContent = content;
@@ -86,7 +94,7 @@ export const timeSince = (date) => {
 //eslint-disable-next-line
 export const parseUsers = (text) => {
   return text.replace(
-    /@([a-z\d_]+)/ig,
+    /@(\S+)/ig,
     '<a href="http://devrant.io/users/$1">@$1</a>',
   );
 };

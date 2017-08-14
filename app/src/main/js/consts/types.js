@@ -9,6 +9,10 @@ export const NOTIFS = {
   CLEAR: 'NOTIF_CLEAR',
 };
 
+export const SEARCH = {
+  ADDTOFREQ: 'SEARCH_ADD_TO_FREQ',
+};
+
 export const NOTIF_TYPES = {
   CONTENT_VOTE: 'content_vote',
   RANT_SUB: 'rant_sub',
@@ -18,6 +22,13 @@ export const NOTIF_TYPES = {
     CONTENT: 'comment_content',
     VOTE: 'comment_vote',
   },
+};
+
+export const SEARCH_FILTERS = {
+  SORT: {
+    RECENT: 'recent',
+  },
+  PRIMARY: 'SORT',
 };
 
 export const SETTINGS = {

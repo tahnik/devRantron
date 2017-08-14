@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import Column from '../../components/columns/column';
 import fetch from '../../actions/fetch';
 import vote from '../../actions/vote';
@@ -29,5 +30,5 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Column);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Column));
 

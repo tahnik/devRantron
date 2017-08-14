@@ -35,6 +35,7 @@ class UserProfile extends Component {
       user: null,
       column: DEFAULT_COLUMN,
       loading: false,
+      userNonExisting: false,
     };
   }
   componentDidMount() {
@@ -46,6 +47,7 @@ class UserProfile extends Component {
     if (
       nextLength === currentLength
       && nextProps.item.id === this.props.item.id
+      && nextState.userNonExisting === this.state.userNonExisting
       && (nextState.column.state !== STATE.LOADING && nextState.column.items.length !== 0)
     ) {
       return false;
@@ -107,20 +109,29 @@ class UserProfile extends Component {
         });
       })
       .catch((err) => {
+        this.setState({ userNonExisting: true });
         console.log(err);
       });
   }
   static openLink(url) {
-    let fURL = url;
-    if (
+    let fURL = url; if (
       url.indexOf('http://') === -1
-      || url.indexOf('https://') === -1
+      && url.indexOf('https://') === -1
     ) {
       fURL = `http://${url}`;
     }
     shell.openExternal(fURL);
   }
   render() {
+    if (this.state.userNonExisting) {
+      return (
+        <div className="profile_container modal">
+          <div className="no_user">
+            No such user!
+          </div>
+        </div>
+      );
+    }
     if (!this.state.user || this.state.loading) {
       return (
         <div className="modal">

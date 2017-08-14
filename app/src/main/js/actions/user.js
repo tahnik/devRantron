@@ -22,8 +22,14 @@ const fetchUser = () => (dispatch, getState) => {
     });
     return;
   }
+  const authToken = user.authToken;
+  /**
+   * Normally fetching a user fetches a lot of contents with it
+   * we use collabs as most of the users don't have any and it uses
+   * the least bandwidth
+   */
   rantscript
-      .profile(userID)
+      .profile(userID, authToken, 'collabs', 0)
       .then((res) => {
         const profile = {
           username: res.username,
