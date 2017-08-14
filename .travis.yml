@@ -1,15 +1,12 @@
 sudo: required
 dist: trusty
-env:
-  - ARCH_TRAVIS_CLEAN_CHROOT=1
-  - ARCH_TRAVIS_CONFIRM_YES=1
 language: c
 matrix:
   include:
   - os: osx
     env: NODE_VERSION=8
   - os: linux
-    env: CC=clang CXX=clang++ npm_config_clang=1 NODE_VERSION=7
+    env: CC=clang CXX=clang++ npm_config_clang=1 NODE_VERSION=7 ARCH_TRAVIS_CLEAN_CHROOT=1 ARCH_TRAVIS_CONFIRM_YES=1
     compiler: clang
 node_js:
 - 8
