@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import Modal from '../../components/modal/modal';
 import vote from '../../actions/vote';
 import { fetchNotifs, clearNotif } from '../../actions/notifs';
@@ -33,4 +34,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Modal));
