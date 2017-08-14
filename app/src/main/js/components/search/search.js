@@ -33,16 +33,28 @@ class Search extends Component {
     };
   }
   componentDidMount() {
+    const term = this.props.match.params.term;
+    if (term !== 'Cw0DCAAHDAcOBg8MBAIDAA') {
+      this.onSearch(term);
+      /**
+       * It's under a if condition so settings a state during componentDidMount is fine
+       */
+      // eslint-disable-next-line
+      this.setState({ searchTerm: term });
+      return;
+    }
     const randMin = 25;
     const randMax = 40;
     rantscript.getFrequentSearchTerms()
     .then((res) => {
       const freqTerms = [];
       this.props.search.forEach((element) => {
-        freqTerms.push({
-          name: element,
-          flex: Math.floor((Math.random() * ((randMax - randMin) + 1)) + randMin),
-        });
+        if (element !== '') {
+          freqTerms.push({
+            name: element,
+            flex: Math.floor((Math.random() * ((randMax - randMin) + 1)) + randMin),
+          });
+        }
       });
       res.forEach((element) => {
         freqTerms.push({
@@ -130,6 +142,7 @@ Search.propTypes = {
   theme: PropTypes.object.isRequired,
   addToFreqTerms: PropTypes.func.isRequired,
   search: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default Search;

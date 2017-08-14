@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import Columns from '../../components/columns/columns';
 import fetch, { addColumn, removeColumn, updateColumnScrollHeight } from '../../actions/fetch';
 import vote from '../../actions/vote';
@@ -36,5 +37,5 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Columns);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Columns));
 

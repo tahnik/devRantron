@@ -128,7 +128,11 @@ class ItemCard extends Component {
       <div>
         {item.tags.length !== 0 && <div className="tags">
           {item.tags.map(object => (
-            <span key={object} className="tag">{object}</span>
+            <span
+              key={object}
+              className="tag"
+              onClick={() => this.props.history.replace(`/search/${object}`)}
+            >{object}</span>
             ))}
         </div>}
       </div>
@@ -272,6 +276,7 @@ ItemCard.propTypes = {
   modal: PropTypes.bool,
   addMention: PropTypes.func,
   fetchitem: PropTypes.func,
+  history: PropTypes.object,
 };
 
 

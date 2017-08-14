@@ -5,5 +5,5 @@ export default {
   weekly: '/weekly',
   settings: '/settings',
   custom: '/custom',
-  search: '/search',
+  search: '/search/Cw0DCAAHDAcOBg8MBAIDAA',
 };

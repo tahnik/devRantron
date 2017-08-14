@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import Search from '../../components/search/search';
 import vote from '../../actions/vote';
 import { ITEM } from '../../consts/types';
@@ -28,4 +29,4 @@ const mapStateToProps = state => ({
   search: state.search,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));

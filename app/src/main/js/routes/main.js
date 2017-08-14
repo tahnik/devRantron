@@ -55,7 +55,7 @@ const MainRoutes = props => (
         )}
       />
       <Route
-        path="/search"
+        path="/search/:term"
         render={() => (
           <Search />
         )}
