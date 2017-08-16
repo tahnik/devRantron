@@ -1,18 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Notification from './notif_bubble';
 
-class NotifBubbles extends Component {
-  shouldComponentUpdate(nextProps) {
-    const { data } = this.props;
-    if (
-      data.items.length === nextProps.data.items.length
-      && data.num_unread === nextProps.data.num_unread
-    ) {
-      return false;
-    }
-    return true;
-  }
+class NotifBubbles extends PureComponent {
   render() {
     const { data, open } = this.props;
     if (!data) {
@@ -27,7 +17,7 @@ class NotifBubbles extends Component {
               index={index}
               open={open}
               unread={data.num_unread}
-              key={`${notif.uid}_${notif.created_time}_${notif.comment_id}_${notif.type}_${notif.rant_id}_${notif.read}`} //eslint-disable-line
+              key={`${notif.uid}_${notif.created_time}_${notif.comment_id}_${notif.type}_${notif.rant_id}`} //eslint-disable-line
               user={data.username_map[notif.uid]}
             />),
           )
