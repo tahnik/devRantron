@@ -72,7 +72,7 @@ class Item extends Component {
    * @memberof Item
    */
   fetchitem(scrollToBottom = false) {
-    const { cardItem, auth, fetchNotifs, clearNotif } = this.props;
+    const { cardItem, auth, fetchNotifs } = this.props;
     let authToken = null;
     if (auth.user) {
       authToken = auth.user.authToken;
@@ -81,7 +81,6 @@ class Item extends Component {
     .rant(cardItem.id, authToken)
     .then((res) => {
       fetchNotifs();
-      clearNotif(cardItem.id);
       const item = res;
       this.setState({ item });
       if (typeof cardItem.data.commentID !== 'undefined') {
@@ -224,7 +223,6 @@ Item.propTypes = {
   open: PropTypes.func.isRequired,
   showToast: PropTypes.func.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
-  clearNotif: PropTypes.func.isRequired,
 };
 
 export default Item;
