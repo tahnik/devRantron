@@ -104,7 +104,7 @@ const setFirstLaunch = () => (dispatch) => {
  */
 const setOnStartup = () => (dispatch, getState) => {
   dispatch(fetchUser());
-  dispatch(fetchNotifs(true));
+  dispatch(fetchNotifs());
   const generalSettings = getState().settings.general;
   if (generalSettings.autoLaunch.value === true) {
     setAutoLaunch(true);

@@ -14,7 +14,7 @@ let fetching = false;
  * Fetches notifications
  *
  */
-const fetchNotifs = (refresh = false) => (dispatch, getState) => {
+const fetchNotifs = () => (dispatch, getState) => {
   if (clearingNotifs || fetching) {
     return;
   }
@@ -22,54 +22,41 @@ const fetchNotifs = (refresh = false) => (dispatch, getState) => {
   if (!auth.user) {
     return;
   }
-  const stateNotifs = getState().notifs;
-  let lastCheckTime = 1;
-  let lastItems = [];
-  let lastUsers = {};
-  if (stateNotifs && stateNotifs.check_time) {
-    if (!refresh) {
-      lastItems = stateNotifs.items;
-      lastUsers = stateNotifs.username_map;
-    }
-    if (lastItems.length !== 0 && !refresh) {
-      lastCheckTime = stateNotifs.check_time;
-    }
-  }
+  const prevNotifs = getState().notifs;
+  const lastCheckTime = 1;
   fetching = true;
   rantscript
   .notifications(auth.user.authToken, lastCheckTime)
   .then((res) => {
     fetching = false;
-    /*
-    * We have got a successful response, let's dispatch to let
-    * redux store know about it
-    */
-    if (res.data.items.length === 0) {
-      return;
-    }
-    let nextItems = [...lastItems];
-    const resItems = res.data.items;
-    if (!refresh) {
-      for (let i = (resItems.length - 1); i >= 0; i -= 1) {
-        const element = resItems[i];
-        const duplicate = lastItems.find(item => item.created_time === element.created_time);
-        if (typeof duplicate === 'undefined') {
-          if (lastCheckTime === 1) {
-            nextItems.push(element);
-          } else {
-            nextItems.unshift(element);
-          }
-        } else {
-          console.log('Leviosaaaaaaa');
+    let noChange = true;
+
+    if (prevNotifs.num_unread === res.data.num_unread) {
+      const nextnotifItems = res.data.items;
+      let j = 0;
+      while (j < nextnotifItems.length) {
+        const prevItem = prevNotifs.items[j];
+        const nextItem = nextnotifItems[j];
+        if (
+        prevItem.rant_id !== nextItem.rant_id
+        || prevItem.read !== nextItem.read
+      ) {
+          noChange = false;
+          break;
         }
+        j += 1;
       }
     } else {
-      nextItems = [...resItems];
+      noChange = false;
+    }
+
+    if (noChange) {
+      return;
     }
     const notifs = {
-      items: nextItems.slice(0, 100),
+      items: res.data.items,
       check_time: res.data.check_time,
-      username_map: { ...res.data.username_map, ...lastUsers },
+      username_map: res.data.username_map,
       num_unread: res.data.num_unread,
     };
     dispatch({
@@ -79,37 +66,6 @@ const fetchNotifs = (refresh = false) => (dispatch, getState) => {
   })
   .catch(() => {
     fetching = false;
-  });
-};
-
-/**
- * Clears the notifications associated with a particular rant id
- * @param {number} id id of a rant
- */
-const clearNotif = id => (dispatch, getState) => {
-  const prevNotifs = { ...getState().notifs };
-  const nextItems = [...prevNotifs.items];
-  let nextNumUnread = prevNotifs.num_unread;
-  for (let i = 0; i < nextItems.length; i += 1) {
-    const item = nextItems[i];
-    if (item.rant_id === id) {
-      if (!item.read) {
-        item.read = 1;
-        if (nextNumUnread > 0) {
-          nextNumUnread -= 1;
-        }
-      }
-    }
-  }
-  const notifs = {
-    items: nextItems,
-    check_time: parseInt(Date.now() / 1000, 10),
-    username_map: prevNotifs.username_map,
-    num_unread: nextNumUnread,
-  };
-  dispatch({
-    type: NOTIFS.FETCH,
-    notifs,
   });
 };
 
@@ -186,4 +142,4 @@ const showNotifs = notif => (dispatch, getState) => {
   }
 };
 
-export { fetchNotifs, clearNotifs, showNotifs, clearNotif };
+export { fetchNotifs, clearNotifs, showNotifs };
