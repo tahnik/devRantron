@@ -122,6 +122,7 @@ function createWindow() {
     minHeight: 768,
     minWidth: 1024,
     show: false,
+    titleBarStyle: 'hidden',
   });
 
   if (process.env.NODE_ENV === 'development') {
