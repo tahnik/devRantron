@@ -61,7 +61,6 @@ const fetchNotifs = () => (dispatch, getState) => {
       username_map: res.data.username_map,
       num_unread: res.data.num_unread,
     };
-    console.log('dispathcing');
     dispatch({
       type: NOTIFS.FETCH,
       notifs,
