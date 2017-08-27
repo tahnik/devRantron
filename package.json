@@ -55,6 +55,9 @@
         "AppImage"
       ]
     },
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
     "directories": {
       "output": "release"
     }
