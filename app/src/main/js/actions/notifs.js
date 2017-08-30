@@ -31,20 +31,22 @@ const fetchNotifs = () => (dispatch, getState) => {
     fetching = false;
     let noChange = true;
 
-    if (prevNotifs.num_unread === res.data.num_unread) {
+    if (prevNotifs && prevNotifs.num_unread === res.data.num_unread) {
       const nextnotifItems = res.data.items;
       let j = 0;
-      while (j < nextnotifItems.length) {
-        const prevItem = prevNotifs.items[j];
-        const nextItem = nextnotifItems[j];
-        if (
+      if (nextnotifItems) {
+        while (j < nextnotifItems.length) {
+          const prevItem = prevNotifs.items[j];
+          const nextItem = nextnotifItems[j];
+          if (
         prevItem.rant_id !== nextItem.rant_id
         || prevItem.read !== nextItem.read
       ) {
-          noChange = false;
-          break;
+            noChange = false;
+            break;
+          }
+          j += 1;
         }
-        j += 1;
       }
     } else {
       noChange = false;
