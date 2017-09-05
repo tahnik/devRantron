@@ -262,66 +262,66 @@ const fetch =
   switch (type) {
     case FEED.RANTS.NAME:
       rantscript
-      .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken, range)
-      .then((res) => {
+        .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken, range)
+        .then((res) => {
         /**
          * If the pages is 0, that means we do not need to current items in the
          * column.
          */
-        const currentItems = page !== 0 ? currentColumn.items : [];
-        newColumn.items = [
-          ...currentItems,
-          ...filterRants(currentItems, res.rants, cFilters),
-        ];
-        // The prev_set is needed for algo sort to work.
-        newColumn.prev_set = res.set;
-        dispatch({
-          type: COLUMN.FETCH,
-          column: newColumn,
+          const currentItems = page !== 0 ? currentColumn.items : [];
+          newColumn.items = [
+            ...currentItems,
+            ...filterRants(currentItems, res.rants, cFilters),
+          ];
+          // The prev_set is needed for algo sort to work.
+          newColumn.prev_set = res.set;
+          dispatch({
+            type: COLUMN.FETCH,
+            column: newColumn,
+          });
+        })
+        .catch(() => {
+          dispatch(showToast('Could not fetch feed'));
         });
-      })
-      .catch(() => {
-        dispatch(showToast('Could not fetch feed'));
-      });
       break;
     case FEED.STORIES.NAME:
       rantscript
-      .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
-      .then((res) => {
-        const currentItems = page !== 0 ? currentColumn.items : [];
-        newColumn.items = [
-          ...currentItems,
-          ...filterRants(currentItems, res, cFilters),
-        ];
-        newColumn.prev_set = res.set;
-        dispatch({
-          type: COLUMN.FETCH,
-          column: newColumn,
+        .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
+        .then((res) => {
+          const currentItems = page !== 0 ? currentColumn.items : [];
+          newColumn.items = [
+            ...currentItems,
+            ...filterRants(currentItems, res, cFilters),
+          ];
+          newColumn.prev_set = res.set;
+          dispatch({
+            type: COLUMN.FETCH,
+            column: newColumn,
+          });
+        })
+        .catch(() => {
+          dispatch(showToast('Could not fetch feed'));
         });
-      })
-      .catch(() => {
-        dispatch(showToast('Could not fetch feed'));
-      });
 
       break;
     case FEED.COLLABS.NAME:
       rantscript
-      .collabs(sort, AMOUNT, AMOUNT * page, authToken)
-      .then((res) => {
-        const currentItems = page !== 0 ? currentColumn.items : [];
-        newColumn.items = [
-          ...currentItems,
-          ...filterRants(currentItems, res, cFilters),
-        ];
-        newColumn.prev_set = res.set;
-        dispatch({
-          type: COLUMN.FETCH,
-          column: newColumn,
+        .collabs(sort, AMOUNT, AMOUNT * page, authToken)
+        .then((res) => {
+          const currentItems = page !== 0 ? currentColumn.items : [];
+          newColumn.items = [
+            ...currentItems,
+            ...filterRants(currentItems, res, cFilters),
+          ];
+          newColumn.prev_set = res.set;
+          dispatch({
+            type: COLUMN.FETCH,
+            column: newColumn,
+          });
+        })
+        .catch(() => {
+          dispatch(showToast('Could not fetch feed'));
         });
-      })
-      .catch(() => {
-        dispatch(showToast('Could not fetch feed'));
-      });
       break;
     default:
       dispatch();

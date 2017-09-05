@@ -56,43 +56,43 @@ class ItemCard extends Component {
     const { auth, item } = this.props;
     const id = item.id;
     rantscript.favorite(bool, id, auth.user.authToken)
-    .then(() => {
+      .then(() => {
 
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   onDelete() {
     const { auth, item, showToast, fetchitem } = this.props;
     if (item.rant_id) {
       rantscript.deleteComment(item.id, auth.user.authToken)
-      .then(() => {
-        showToast('Comment has been deleted');
-        fetchitem();
-      })
-      .catch(() => {
-        showToast('Could not delete the comment');
-      });
+        .then(() => {
+          showToast('Comment has been deleted');
+          fetchitem();
+        })
+        .catch(() => {
+          showToast('Could not delete the comment');
+        });
     } else {
       rantscript.deleteRant(item.id, auth.user.authToken)
-      .then(() => {
-        showToast('Rant has been deleted');
-      })
-      .catch(() => {
-        showToast('Could not delete the rant');
-      });
+        .then(() => {
+          showToast('Rant has been deleted');
+        })
+        .catch(() => {
+          showToast('Could not delete the rant');
+        });
     }
   }
   onSubscribe(bool) {
     const { auth, item, showToast } = this.props;
     rantscript.subscribe(bool, item.user_id, auth.user.authToken)
-    .then(() => {
-      showToast('Subscribed to user');
-    })
-    .catch(() => {
-      showToast('Could not subscribe to user');
-    });
+      .then(() => {
+        showToast('Subscribed to user');
+      })
+      .catch(() => {
+        showToast('Could not subscribe to user');
+      });
   }
   /**
    * Parses the content of a rant to find out links and @mention
@@ -133,7 +133,7 @@ class ItemCard extends Component {
               className="tag"
               onClick={() => this.props.history.replace(`/search/${object}`)}
             >{object}</span>
-            ))}
+          ))}
         </div>}
       </div>
     );

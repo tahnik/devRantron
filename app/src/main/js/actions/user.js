@@ -29,29 +29,29 @@ const fetchUser = () => (dispatch, getState) => {
    * the least bandwidth
    */
   rantscript
-      .profile(userID, authToken, 'collabs', 0)
-      .then((res) => {
-        const profile = {
-          username: res.username,
-          score: res.score,
-          about: res.about,
-          location: res.location,
-          avatar: res.avatar,
-          id: userID,
-        };
-        dispatch({
-          type: USER.FETCH,
-          state: STATE.SUCCESS,
-          profile,
-        });
-      })
-      .catch(() => {
-        dispatch(showToast('User is not logged in'));
-        dispatch({
-          type: USER.FETCH,
-          state: STATE.FAILED,
-        });
+    .profile(userID, authToken, 'collabs', 0)
+    .then((res) => {
+      const profile = {
+        username: res.username,
+        score: res.score,
+        about: res.about,
+        location: res.location,
+        avatar: res.avatar,
+        id: userID,
+      };
+      dispatch({
+        type: USER.FETCH,
+        state: STATE.SUCCESS,
+        profile,
       });
+    })
+    .catch(() => {
+      dispatch(showToast('User is not logged in'));
+      dispatch({
+        type: USER.FETCH,
+        state: STATE.FAILED,
+      });
+    });
 };
 
 export { fetchUser }; //eslint-disable-line

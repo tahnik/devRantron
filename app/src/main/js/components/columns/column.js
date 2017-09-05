@@ -89,25 +89,25 @@ class Column extends Component {
         ref={(node) => { this.itemsContainer = node; }}
       >
         {
-            column.items.length === 0 ?
-              <Loading
-                backgroundColor={theme.backgroundColor}
-              /> :
-              column.items.map(item => (
-                <ItemCard
-                  fetch={fetch}
-                  item={item}
-                  open={(type, id) => open(type, id)}
-                  key={item.id}
-                  theme={theme}
-                  vote={vote}
-                  itemType={itemType}
-                  auth={auth}
-                  showToast={showToast}
-                  history={this.props.history}
-                />
-                ))
-          }
+          column.items.length === 0 ?
+            <Loading
+              backgroundColor={theme.backgroundColor}
+            /> :
+            column.items.map(item => (
+              <ItemCard
+                fetch={fetch}
+                item={item}
+                open={(type, id) => open(type, id)}
+                key={item.id}
+                theme={theme}
+                vote={vote}
+                itemType={itemType}
+                auth={auth}
+                showToast={showToast}
+                history={this.props.history}
+              />
+            ))
+        }
       </div>
     );
   }

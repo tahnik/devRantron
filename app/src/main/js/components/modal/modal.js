@@ -60,7 +60,7 @@ class Modal extends Component {
               </div>
               { this.getItem() }
             </div>
-          : null
+            : null
         }
       </CSSTransitionGroup>
 
