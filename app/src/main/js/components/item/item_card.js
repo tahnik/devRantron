@@ -101,9 +101,15 @@ class ItemCard extends Component {
    * @memberof ItemCard
    */
   getContent() {
+    const replaceAll = function (target, search, replacement) {
+      return target.replace(new RegExp(search, 'g'), replacement);
+    };
+
     const { item } = this.props;
     const isComment = typeof item.rant_id !== 'undefined';
     let content = isComment ? item.body : item.text;
+    content = replaceAll(content, '<[^>]*>', '');
+
     if (isComment) {
       content = parseUsers(content);
     }

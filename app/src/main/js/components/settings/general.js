@@ -5,7 +5,7 @@ import Toggle from './toggle';
 import Text from './text';
 import Button from './button';
 
-const { remote } = require('electron');
+// fix later const { remote } = require('electron');
 
 class General extends Component {
   handleChange(primaryKey, secondaryKey, value = null) {
@@ -93,11 +93,13 @@ class General extends Component {
         {
           this.getSettings().map(s => s)
         }
-        <div className="version_number">v{remote.app.getVersion()}</div>
+        <div className="version_number">v1.3.5</div>
       </div>
     );
   }
 }
+
+// {tempfix @tahnik remote.app.getVersion()}
 
 General.propTypes = {
   general: PropTypes.object.isRequired,
