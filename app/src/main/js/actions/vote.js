@@ -25,12 +25,12 @@ const voteRant = (voteState = 1, rantID) => (dispatch, getState) => {
     return;
   }
   rantscript
-      .vote(voteState, rantID, authToken)
-      .then(() => {
-      })
-      .catch(() => {
-        dispatch(showToast('Username or Password is wrong'));
-      });
+    .vote(voteState, rantID, authToken)
+    .then(() => {
+    })
+    .catch(() => {
+      dispatch(showToast('Username or Password is wrong'));
+    });
 };
 
 /**
@@ -54,12 +54,12 @@ const voteComment = (voteState = 1, commentID) => (dispatch, getState) => {
     return;
   }
   rantscript
-      .voteComment(voteState, commentID, authToken)
-      .then(() => {
-      })
-      .catch(() => {
-        dispatch(showToast('Username or Password is wrong'));
-      });
+    .voteComment(voteState, commentID, authToken)
+    .then(() => {
+    })
+    .catch(() => {
+      dispatch(showToast('Username or Password is wrong'));
+    });
 };
 
 /**

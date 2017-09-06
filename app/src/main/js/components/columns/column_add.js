@@ -83,7 +83,7 @@ class AddColumn extends Component {
                 >
                   { FEED[key].NAME }
                 </button>
-                ))
+              ))
             }
           </div>
         </div>

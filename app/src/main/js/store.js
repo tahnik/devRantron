@@ -43,7 +43,7 @@ if (
 localStorage.setItem('prevVersion', currentVersion);
 
 const store = createStore(reducers, initialState, composeEnhancers(
-    middleware,
+  middleware,
 ));
 
 if (initialState) {

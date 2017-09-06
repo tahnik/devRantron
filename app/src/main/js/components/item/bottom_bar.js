@@ -142,7 +142,7 @@ class BottomBar extends Component {
                   >
                     <p><i className="ion-social-rss-outline" /></p>
                   </div>
-                : null
+                  : null
               }
               { !item.rant_id && !item.c_type ?
                 <div
@@ -165,11 +165,12 @@ class BottomBar extends Component {
             </div>
           </div>
           {
-            type === ITEM.COMMENT.NAME ? null :
-            <div className="comments" onClick={() => this.props.onCommentsClick()} >
-              <p><i className="ion-ios-chatboxes-outline" /></p>
-              <span>{ item.num_comments }</span>
-            </div>
+            type === ITEM.COMMENT.NAME ?
+              null :
+              <div className="comments" onClick={() => this.props.onCommentsClick()} >
+                <p><i className="ion-ios-chatboxes-outline" /></p>
+                <span>{ item.num_comments }</span>
+              </div>
           }
           {
             this.getAddMention()

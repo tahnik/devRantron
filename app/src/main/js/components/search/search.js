@@ -46,24 +46,24 @@ class Search extends Component {
     const randMin = 25;
     const randMax = 40;
     rantscript.getFrequentSearchTerms()
-    .then((res) => {
-      const freqTerms = [];
-      this.props.search.forEach((element) => {
-        if (element !== '') {
+      .then((res) => {
+        const freqTerms = [];
+        this.props.search.forEach((element) => {
+          if (element !== '') {
+            freqTerms.push({
+              name: element,
+              flex: Math.floor((Math.random() * ((randMax - randMin) + 1)) + randMin),
+            });
+          }
+        });
+        res.forEach((element) => {
           freqTerms.push({
             name: element,
             flex: Math.floor((Math.random() * ((randMax - randMin) + 1)) + randMin),
           });
-        }
-      });
-      res.forEach((element) => {
-        freqTerms.push({
-          name: element,
-          flex: Math.floor((Math.random() * ((randMax - randMin) + 1)) + randMin),
         });
+        this.setState({ freqTerms });
       });
-      this.setState({ freqTerms });
-    });
   }
   onKeyDown(e) {
     if (e.keyCode === 13) {
@@ -83,14 +83,14 @@ class Search extends Component {
     prevColumn.items = [];
     this.setState({ column: prevColumn });
     rantscript.search(term)
-    .then((res) => {
-      const nextColumn = Object.assign({}, DEFAULT_COLUMN);
-      nextColumn.items = res.slice(0, 100);
-      nextColumn.state = STATE.SUCCESS;
-      nextColumn.page = 0;
-      nextColumn.itemType = ITEM.RANT.NAME;
-      this.setState({ column: nextColumn });
-    });
+      .then((res) => {
+        const nextColumn = Object.assign({}, DEFAULT_COLUMN);
+        nextColumn.items = res.slice(0, 100);
+        nextColumn.state = STATE.SUCCESS;
+        nextColumn.page = 0;
+        nextColumn.itemType = ITEM.RANT.NAME;
+        this.setState({ column: nextColumn });
+      });
   }
   render() {
     const { theme } = this.props;
