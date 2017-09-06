@@ -1,23 +1,23 @@
 {
-	"extends": "airbnb",
-	"indent": ["error", "tab"],
-	"env": {
-		"es6": true,
-		"node": true,
-		"browser": true
-	},
-	"parserOptions": {
+  "extends": "airbnb",
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "plugins": [
+		"react",
+		"jsx-a11y",
+		"import"
+  ],
+  "parserOptions": {
 		"ecmaFeatures": {
 			"experimentalObjectRestSpread": true,
 			"jsx": true
 		},
-		"sourceType": "module"
-	},
-	"plugins": [
-		"react",
-		"jsx-a11y",
-		"import"
-	],
+		"sourceType": "module",
+    "indent": ["error", 2]
+  },
 	"rules": {
 		"react/sort-comp": [1, {
 			"order": [
@@ -32,6 +32,8 @@
 		}],
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
 		"import/no-dynamic-require": 0,
 		"import/no-extraneous-dependencies": "off",
     "linebreak-style": ["error", "unix"],

@@ -78,30 +78,30 @@ class Item extends Component {
       authToken = auth.user.authToken;
     }
     rantscript
-    .rant(cardItem.id, authToken)
-    .then((res) => {
-      fetchNotifs();
-      const item = res;
-      this.setState({ item });
-      if (typeof cardItem.data.commentID !== 'undefined') {
-        const relatedComment = document.getElementById(cardItem.data.commentID);
-        if (relatedComment) {
-          relatedComment.scrollIntoView();
+      .rant(cardItem.id, authToken)
+      .then((res) => {
+        fetchNotifs();
+        const item = res;
+        this.setState({ item });
+        if (typeof cardItem.data.commentID !== 'undefined') {
+          const relatedComment = document.getElementById(cardItem.data.commentID);
+          if (relatedComment) {
+            relatedComment.scrollIntoView();
+          }
+          return;
         }
-        return;
-      }
-      if (scrollToBottom) {
-        if (this.multiCol) {
-          this.multiCol.scrollTop = this.multiCol.scrollHeight;
+        if (scrollToBottom) {
+          if (this.multiCol) {
+            this.multiCol.scrollTop = this.multiCol.scrollHeight;
+          }
+          if (this.compactCol) {
+            this.compactCol.scrollTop = this.compactCol.scrollHeight;
+          }
         }
-        if (this.compactCol) {
-          this.compactCol.scrollTop = this.compactCol.scrollHeight;
-        }
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   /**
    * This is a prop for comments component.

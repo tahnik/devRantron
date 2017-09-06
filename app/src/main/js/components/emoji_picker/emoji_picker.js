@@ -60,7 +60,7 @@ class EmojiPicker extends Component {
                 key={object.name}
                 className="category"
               >{object.icon}</Twemoji>
-              ))}
+            ))}
           </div>
         </div>
 
@@ -75,7 +75,7 @@ class EmojiPicker extends Component {
             >
               {object.icon}
             </Twemoji>
-            ))}
+          ))}
         </div>
       </div>
     );

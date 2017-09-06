@@ -65,7 +65,7 @@ class UserProfile extends Component {
       this.fetch();
     }
   }
-  fetch(sort = USER_PROFILE_FILTERS.SORT.RANTS, range = null, id = 0, refresh = false) {
+  fetch(sort = USER_PROFILE_FILTERS.SORT.RANTS, range, id, refresh = false) {
     const { item, auth } = this.props;
     const prevColumn = Object.assign({}, this.state.column);
     prevColumn.state = STATE.LOADING;
@@ -175,7 +175,7 @@ class UserProfile extends Component {
                   <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
                     {user.github}
                   </p>
-                  </li>}
+                </li>}
                 { user.website !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-earth" />
                   <p onClick={() => UserProfile.openLink(user.website)}>
                     {user.website}

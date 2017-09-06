@@ -11,8 +11,6 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     app: [
-      // 'babel-polyfill',
-      'react-hot-loader/patch',
       './src/main/res/css/main.sass',
       './src/main/js/index.js',
     ],

@@ -26,49 +26,49 @@ const fetchNotifs = () => (dispatch, getState) => {
   const lastCheckTime = 1;
   fetching = true;
   rantscript
-  .notifications(auth.user.authToken, lastCheckTime)
-  .then((res) => {
-    fetching = false;
-    let noChange = true;
+    .notifications(auth.user.authToken, lastCheckTime)
+    .then((res) => {
+      fetching = false;
+      let noChange = true;
 
-    if (prevNotifs && prevNotifs.num_unread === res.data.num_unread) {
-      const nextnotifItems = res.data.items;
-      let j = 0;
-      if (nextnotifItems) {
-        while (j < nextnotifItems.length) {
-          const prevItem = prevNotifs.items[j];
-          const nextItem = nextnotifItems[j];
-          if (
-        prevItem.rant_id !== nextItem.rant_id
+      if (prevNotifs && prevNotifs.num_unread === res.data.num_unread) {
+        const nextnotifItems = res.data.items;
+        let j = 0;
+        if (nextnotifItems) {
+          while (j < nextnotifItems.length) {
+            const prevItem = prevNotifs.items[j];
+            const nextItem = nextnotifItems[j];
+            if (
+              prevItem.rant_id !== nextItem.rant_id
         || prevItem.read !== nextItem.read
-      ) {
-            noChange = false;
-            break;
+            ) {
+              noChange = false;
+              break;
+            }
+            j += 1;
           }
-          j += 1;
         }
+      } else {
+        noChange = false;
       }
-    } else {
-      noChange = false;
-    }
 
-    if (noChange) {
-      return;
-    }
-    const notifs = {
-      items: res.data.items,
-      check_time: res.data.check_time,
-      username_map: res.data.username_map,
-      num_unread: res.data.num_unread,
-    };
-    dispatch({
-      type: NOTIFS.FETCH,
-      notifs,
+      if (noChange) {
+        return;
+      }
+      const notifs = {
+        items: res.data.items,
+        check_time: res.data.check_time,
+        username_map: res.data.username_map,
+        num_unread: res.data.num_unread,
+      };
+      dispatch({
+        type: NOTIFS.FETCH,
+        notifs,
+      });
+    })
+    .catch(() => {
+      fetching = false;
     });
-  })
-  .catch(() => {
-    fetching = false;
-  });
 };
 
 /**
@@ -85,13 +85,13 @@ const clearNotifs = () => (dispatch, getState) => {
   }
   clearingNotifs = true;
   rantscript
-  .clearNotifications(auth.user.authToken)
-  .then(() => {
-    clearingNotifs = false;
-  })
-  .catch(() => {
-    clearingNotifs = false;
-  });
+    .clearNotifications(auth.user.authToken)
+    .then(() => {
+      clearingNotifs = false;
+    })
+    .catch(() => {
+      clearingNotifs = false;
+    });
 };
 
 

@@ -33,12 +33,12 @@ class Items extends Component {
       <div className="settings">
         <div className="top_nav">
           { SETTINGS_NAV.map(
-              nav => (<div
-                className={`nav ${activeNav === nav ? 'active' : ''}`}
-                onClick={() => this.setState({ activeNav: nav })}
-                key={nav}
-              >{nav}</div>),
-            )
+            nav => (<div
+              className={`nav ${activeNav === nav ? 'active' : ''}`}
+              onClick={() => this.setState({ activeNav: nav })}
+              key={nav}
+            >{nav}</div>),
+          )
           }
         </div>
         <div className="settings_container">
