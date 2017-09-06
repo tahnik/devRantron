@@ -9,9 +9,6 @@ module.exports = {
   devtool: 'inline-source-map',
   entry: {
     app: [
-      // 'babel-polyfill',
-      'react-hot-loader/patch',
-      'webpack/hot/only-dev-server',
       './src/main/res/css/main.sass',
       './src/main/js/index.js',
     ],
@@ -19,12 +16,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './app/build'),
     filename: 'app.bundle.js',
-    publicPath: 'http://localhost:8080/',
   },
   devServer: {
     hot: true,
-    publicPath: 'http://localhost:8080/',
-    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -59,7 +53,7 @@ module.exports = {
       template: 'src/main/index.ejs',
     }),
     new CopyWebpackPlugin([
-            { from: './src/main/res', to: 'res' },
+      { from: './src/main/res', to: 'res' },
     ]),
   ],
 };
