@@ -9,7 +9,7 @@ import Twemoji from 'react-twemoji';
 import UserBadge from '../user/user_badge';
 import BottomBar from './bottom_bar';
 import { ITEM } from '../../consts/types';
-import { parseLinks, timeSince, parseUsers } from '../../consts/utils';
+import { parseLinks, timeSince, parseUsers, replaceAll, purifyDOM } from '../../consts/utils';
 import rantscript from '../../consts/rantscript';
 
 const { shell, clipboard } = require('electron');
@@ -101,14 +101,11 @@ class ItemCard extends Component {
    * @memberof ItemCard
    */
   getContent() {
-    const replaceAll = function (target, search, replacement) {
-      return target.replace(new RegExp(search, 'g'), replacement);
-    };
-
     const { item } = this.props;
     const isComment = typeof item.rant_id !== 'undefined';
     let content = isComment ? item.body : item.text;
-    content = replaceAll(content, '<[^>]*>', '');
+    content = replaceAll(content, '<', '&#60;');
+    content = purifyDOM(content);
 
     if (isComment) {
       content = parseUsers(content);

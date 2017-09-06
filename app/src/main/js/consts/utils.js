@@ -1,6 +1,9 @@
 import Autolinker from 'autolinker';
+import createDOMPurify from 'dompurify';
 import { NOTIF_TYPES } from '../consts/types';
 import EmojiData from './emojis.json';
+
+const DOMPurify = createDOMPurify(window);
 
 
 export const getRandomInt = () => Math.floor(Math.random() * ((3000 - 0) + 1));
@@ -98,3 +101,7 @@ export const parseUsers = (text) => {
     '<a href="http://devrant.io/users/$1">@$1</a>',
   );
 };
+
+export const replaceAll = (target, search, replacement) => target.replace(new RegExp(search, 'g'), replacement);
+
+export const purifyDOM = content => DOMPurify.sanitize(content);
