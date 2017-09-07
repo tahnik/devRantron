@@ -1,8 +1,8 @@
 os: unstable
 
 # cache yarn and node_modules folder for rebuilds
-cache:
-  - node_modules
+# cache:
+#   - node_modules
 
 # The environment configurations. We will use the latest node version.
 environment:
