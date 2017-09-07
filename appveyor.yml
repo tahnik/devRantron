@@ -8,7 +8,7 @@ cache:
 environment:
   # the token is encrypted by appveyor. No need to hide it.
   GH_TOKEN:
-    secure: 6d2w18wTLgz3cqa6w2ACgRVI2PIlGJSyV9kKG1W8F4aVkYcyHMEBvxD5XruXA6V/
+    secure: F+HS8KZxRNTuVHrgvn7qtG+NmS6LLCWoWYndsvG2Ru+zr6D6SMD5FsGAZmRCGwnQ
   matrix:
     - NODE_VERSION: 8
 
