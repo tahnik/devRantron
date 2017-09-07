@@ -148,5 +148,8 @@
     "redux-thunk": "^2.2.0",
     "semver-compare": "^1.0.0",
     "twemoji": "^2.5.0"
+  },
+  "optionalDependencies": {
+    "7zip-bin-mac": "^1.0.1"
   }
 }
