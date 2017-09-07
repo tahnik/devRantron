@@ -97,7 +97,7 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "electron": "^1.7.5",
-    "electron-builder": "^19.27.3",
+    "electron-builder": "^19.13.0",
     "electron-builder-squirrel-windows": "^19.27.3",
     "env-paths": "^1.0.0",
     "enzyme": "^2.9.1",
