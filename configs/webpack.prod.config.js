@@ -1,7 +1,6 @@
 const webpack = require('webpack');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 const path = require('path');
-
-const BabiliPlugin = require('babili-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -52,6 +51,10 @@ module.exports = {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new MinifyPlugin(),
     new ExtractTextPlugin({ filename: 'main.css', allChunks: true }),
     new HtmlWebpackPlugin({
       title: 'devRantron',
@@ -71,8 +74,5 @@ module.exports = {
         to: 'res',
       },
     ]),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new BabiliPlugin(),
   ],
 };
