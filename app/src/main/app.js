@@ -237,6 +237,10 @@ ipcMain.on('auto-launch', (event, arg) => {
   }
 });
 
+ipcMain.on('zoom-level', (event, arg) => {
+  mainWindow.webContents.setZoomLevel(parseFloat(arg));
+});
+
 ipcMain.on('showQRNotif', (sender, n) => {
   notify.show(n);
 });

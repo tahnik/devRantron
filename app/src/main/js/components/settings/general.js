@@ -19,8 +19,8 @@ class General extends Component {
           <Slider
             setting={setting}
             key={secondaryKey}
-            handleChange={() => {
-              this.handleChange(primaryKey, secondaryKey, !setting.value);
+            handleChange={(value) => {
+              this.handleChange(primaryKey, secondaryKey, value);
             }}
           />
         );
