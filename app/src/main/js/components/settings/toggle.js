@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Toggle = props => (
-  <div className="setting toggle">
+  <div className="setting toggle" onClick={() => props.handleChange()}>
     <span className="setting_label">{props.setting.text}</span>
     <div className="setting_option">
       <label className="switch" htmlFor={props.setting.text}>
@@ -13,7 +13,6 @@ const Toggle = props => (
           readOnly
         />
         <span
-          onClick={() => props.handleChange()}
           className="slider"
         />
       </label>
