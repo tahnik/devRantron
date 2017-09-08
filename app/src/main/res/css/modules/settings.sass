@@ -54,6 +54,8 @@
         align-items: center
         color: white
         margin: 0.6rem 0 0 0
+        ::-webkit-input-placeholder
+          color: #bbb
         input:focus
           border-bottom-color: #C14857
         button
@@ -63,8 +65,10 @@
           margin-top: 0.5rem
         &.toggle
           margin: 0.6rem 0 0 0
+          cursor: pointer
           .setting_label
             color: white
+            user-select: none
           .setting_option
             display: flex
             align-items: center

@@ -4,6 +4,7 @@ import { SETTINGS } from '../../consts/types';
 import Toggle from './toggle';
 import Text from './text';
 import Button from './button';
+import Slider from './slider';
 
 const { remote } = require('electron');
 
@@ -13,6 +14,17 @@ class General extends Component {
   }
   getSettingComponent(setting, primaryKey, secondaryKey) {
     switch (setting.type) {
+      case SETTINGS.TYPE.SLIDER: {
+        return (
+          <Slider
+            setting={setting}
+            key={secondaryKey}
+            handleChange={(value) => {
+              this.handleChange(primaryKey, secondaryKey, value);
+            }}
+          />
+        );
+      }
       case SETTINGS.TYPE.TOGGLE: {
         return (
           <Toggle
