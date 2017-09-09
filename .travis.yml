@@ -6,7 +6,7 @@ matrix:
   - os: osx
     env: NODE_VERSION=8
   - os: linux
-    env: CC=clang CXX=clang++ npm_config_clang=1 NODE_VERSION=7
+    env: CC=clang CXX=clang++ npm_config_clang=1 NODE_VERSION=7 ARCH_TRAVIS_CLEAN_CHROOT=1 ARCH_TRAVIS_CONFIRM_YES=1
     compiler: clang
 node_js:
 - 8
@@ -36,6 +36,24 @@ install:
 - nvm install $NODE_VERSION
 - nvm use --delete-prefix $NODE_VERSION
 - npm install
+arch:
+  repos:
+    - archlinuxfr=http://repo.archlinux.fr/$arch
+  packages:
+    - gconf
+    - libnotify
+    - libappindicator-gtk3
+    - libxtst
+    - nss
+    - libxss
+    - curl
+    - wget
+    - jq
+    - binutils
+    - tar
+    - xz
+  script:
+    - "bash ./aur-build.sh"
 script:
 - npm rebuild node-sass
 - npm run ci:all
@@ -43,6 +61,7 @@ after_success:
 - openssl aes-256-cbc -K $encrypted_40cbf57c34aa_key -iv $encrypted_40cbf57c34aa_iv
   -in .snapcraft/travis_snapcraft.cfg -out .snapcraft/snapcraft.cfg -d
 - if [[ "$TRAVIS_BRANCH" == "master" ]]; then npm run ci:deploy; fi
+- "bash ./arch-travis.sh"
 services:
 - docker
 deploy:
