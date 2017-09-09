@@ -17,6 +17,7 @@ import Search from '../containers/search/search';
 
 const MainRoutes = props => (
   <div key="MainRoutes" className="main_container" >
+    <div className="draggable-region" />
     <SideNav />
     <div
       className="middle_container"
