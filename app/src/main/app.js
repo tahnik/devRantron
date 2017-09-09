@@ -124,6 +124,12 @@ function createWindow() {
     show: false,
   });
 
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true,
+  }));
+
   if (process.env.NODE_ENV === 'development') {
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
@@ -136,18 +142,6 @@ function createWindow() {
     installExtension(REDUX_DEVTOOLS)
       .then(name => console.log(`Added Extension:  ${name}`))
       .catch(err => console.log('An error occurred: ', err));
-    /* eslint-enable no-console */
-
-    // make sure to load the index from the hot reload server while in development mode
-    mainWindow.loadURL('http://localhost:8080');
-  } else {
-    // we should be in production
-    // load the index.html of the app.
-    mainWindow.loadURL(url.format({
-      pathname: path.join(__dirname, 'index.html'),
-      protocol: 'file:',
-      slashes: true,
-    }));
   }
 
   // just show the window if all content has been loaded

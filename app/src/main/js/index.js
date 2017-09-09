@@ -16,8 +16,10 @@ const render = (Component) => {
 render(Root);
 
 if (module.hot) {
-  module.hot.accept('./routes/index.js', () => {
-    render(Root);
+  module.hot.accept('./routes/index', () => {
+    // eslint-disable-next-line
+    const nextApp = require('./routes/index').default;
+    render(nextApp);
   });
 }
 
