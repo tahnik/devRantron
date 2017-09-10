@@ -8,6 +8,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --color --profile --config ./webpack/prod.config.js",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
+    "publish": "electron-builder --draft",
     "postinstall": "install-app-deps",
     "dev": "concurrently -k \"npm run server\" \"npm run start\" ",
     "server": "webpack-dev-server --color --config webpack/dev.config.js",
@@ -33,7 +34,11 @@
       ]
     },
     "win": {
-      "target": "NSIS"
+      "target": ["nsis", "nsis-web", "portable"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
     },
     "linux": {
       "target": [
