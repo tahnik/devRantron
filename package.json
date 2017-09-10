@@ -34,7 +34,7 @@
       ]
     },
     "win": {
-      "target": ["nsis", "nsis-web", "portable"]
+      "target": ["nsis", "portable"]
     },
     "nsis": {
       "oneClick": false,

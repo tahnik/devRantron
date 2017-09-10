@@ -41,11 +41,5 @@ test: off
 deploy: off
 
 # only deploy on success and if we are on the master branch
-for:
--
-  branches:
-    only:
-      - master
-  build_script:
-    - npm run build
-    - npm run publish
+on_success:
+  - IF %APPVEYOR_REPO_BRANCH%==master npm run publish
