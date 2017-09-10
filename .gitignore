@@ -203,3 +203,5 @@ prime
 stage
 parts
 *.snap
+
+build/app
