@@ -46,5 +46,6 @@ for:
   branches:
     only:
       - master
-  build_success:
+  build_script:
+    - npm run build
     - npm run publish
