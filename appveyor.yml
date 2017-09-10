@@ -46,5 +46,5 @@ for:
   branches:
     only:
       - master
-  on_success:
-    - IF %APPVEYOR_REPO_BRANCH%==master npm run publish
+  build_success:
+    - npm run publish
