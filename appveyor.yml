@@ -37,6 +37,9 @@ before_build:
 build_script:
   - npm run build
 
+test: off
+deploy: off
+
 # only deploy on success and if we are on the master branch
 on_success:
   - IF %APPVEYOR_REPO_BRANCH%==master npm run publish
