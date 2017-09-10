@@ -42,4 +42,4 @@ deploy: off
 
 # only deploy on success and if we are on the master branch
 on_success:
-  - IF %APPVEYOR_REPO_BRANCH%==master npm run publish
+  - IF %APPVEYOR_REPO_BRANCH%==master && IF NOT DEFINED APPVEYOR_PULL_REQUEST_NUMBER npm run publish
