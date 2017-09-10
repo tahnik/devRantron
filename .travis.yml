@@ -1,44 +1,39 @@
 sudo: required
 dist: trusty
+
 osx_image: xcode8.3
-language: c
-matrix:
-  include:
-  - os: osx
-    env: NODE_VERSION=8
-  - os: linux
-    env: CC=clang CXX=clang++ npm_config_clang=1 NODE_VERSION=7
-    compiler: clang
-node_js:
-- 8
+
+language: node_js
+node_js: "8"
+
+os:
+  - linux
+  - osx
+
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
 cache:
   directories:
   - node_modules
-  - $HOME/.npm
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-    - icnsutils
-    - graphicsmagick
-    - libgnome-keyring-dev
-    - xz-utils
-    - xorriso
-    - xvfb
+  - $HOME/.cache/electron
+  - $HOME/.cache/electron-builder
+  - $HOME/.npm/_prebuilds
+
+
 before_install:
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg
-  | sudo apt-key add -; echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo
-  tee /etc/apt/sources.list.d/yarn.list; sudo apt-get update -qq; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -qq; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; npm install -g 7zip-bin-mac;
   fi
 install:
 - nvm install $NODE_VERSION
 - nvm use --delete-prefix $NODE_VERSION
-- npm install
+- npm i
 script:
 - npm rebuild node-sass
-- npm run ci:all
+- npm run lint
+- npm run build
 after_success:
-- if [[ "$TRAVIS_BRANCH" == "master" ]]; then npm run ci:deploy; fi
+- if [[ "$TRAVIS_BRANCH" == "master" ]]; then npm run publish; fi
