@@ -137,6 +137,7 @@
     "twemoji": "^2.5.0"
   },
   "optionalDependencies": {
-    "7zip-bin-mac": "^1.0.1"
+    "7zip-bin-mac": "^1.0.1",
+    "7zip-bin-linux": "^1.1.0"
   }
 }
