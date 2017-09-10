@@ -22,16 +22,13 @@ cache:
   - $HOME/.cache/electron-builder
   - $HOME/.npm/_prebuilds
 
-
-before_install:
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -qq; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; npm install -g 7zip-bin-mac;
-  fi
 install:
 - npm i
+
 script:
 - npm rebuild node-sass
 - npm run lint
 - npm run build
+
 after_success:
 - if [[ "$TRAVIS_BRANCH" == "master" && "TRAVIS_PULL_REQUEST" == "false" ]]; then npm run publish; fi
