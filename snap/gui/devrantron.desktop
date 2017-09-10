@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=devRantron
-Comment=An open source cross platform desktop application for devRant
-Exec=devrantron
-Terminal=false
-Type=Application
-Icon=${SNAP}/meta/gui/icon.png

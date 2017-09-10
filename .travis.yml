@@ -40,16 +40,4 @@ script:
 - npm rebuild node-sass
 - npm run ci:all
 after_success:
-- openssl aes-256-cbc -K $encrypted_40cbf57c34aa_key -iv $encrypted_40cbf57c34aa_iv
-  -in .snapcraft/travis_snapcraft.cfg -out .snapcraft/snapcraft.cfg -d
 - if [[ "$TRAVIS_BRANCH" == "master" ]]; then npm run ci:deploy; fi
-services:
-- docker
-deploy:
-  'on':
-    branch: master
-    condition: $TRAVIS_OS_NAME == linux
-  provider: script
-  script: docker run -v $(pwd):$(pwd) -t snapcore/snapcraft sh -c "apt update -qq
-    && cd $(pwd) && snapcraft && snapcraft push *.snap --release edge"
-  skip_cleanup: true

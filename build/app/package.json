@@ -1,12 +1,12 @@
 {
   "name": "devrantron",
   "version": "1.3.7",
-  "main": "./build/app/app.js",
+  "main": "./build/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
     "lint": "eslint --ext .jsx,.js app/src/main",
     "build": "cross-env NODE_ENV=production webpack --progress --color --profile --config ./webpack/prod.config.js",
-    "pack": "electron-builder --dir",
+    "package": "electron-builder --dir",
     "dist": "electron-builder",
     "postinstall": "install-app-deps",
     "dev": "concurrently -k \"npm run server\" \"npm run start\" ",
