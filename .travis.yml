@@ -28,8 +28,6 @@ before_install:
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; npm install -g 7zip-bin-mac;
   fi
 install:
-- nvm install $NODE_VERSION
-- nvm use --delete-prefix $NODE_VERSION
 - npm i
 script:
 - npm rebuild node-sass
