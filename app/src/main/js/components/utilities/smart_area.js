@@ -218,8 +218,10 @@ class SmartArea extends Component {
     extractedEmojis.forEach((extractedEmoji) => {
       const colonRemoved = extractedEmoji.replace(/:/g, '');
       const emoji = emojis[colonRemoved];
-      const regex = new RegExp(escapeRegExp(extractedEmoji), 'g');
-      content = content.replace(regex, emoji);
+      if (typeof emoji !== 'undefined') {
+        const regex = new RegExp(escapeRegExp(extractedEmoji), 'g');
+        content = content.replace(regex, emoji);
+      }
     });
 
     this.props.onPost(content, this.state.image);
