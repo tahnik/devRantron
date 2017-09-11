@@ -239,6 +239,10 @@ module.exports.sendReply = (i, m) => {
   mainWindow.webContents.send('notifReply', { rantid: i, message: m });
 };
 
+ipcMain.on('zoom-level', (event, arg) => {
+  mainWindow.webContents.setZoomLevel(parseFloat(arg));
+});
+
 ipcMain.on('minimiseApp', () => {
   mainWindow.hide();
 });

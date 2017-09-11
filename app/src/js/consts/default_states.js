@@ -118,6 +118,11 @@ export default {
         type: SETTINGS.TYPE.TOGGLE,
         value: true,
       },
+      zoomLevel: {
+        text: 'Zoom level',
+        type: SETTINGS.TYPE.SLIDER,
+        value: 0,
+      },
       update: {
         text: 'Update Status',
         type: SETTINGS.TYPE.BUTTON,

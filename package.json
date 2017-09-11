@@ -1,6 +1,6 @@
 {
   "name": "devrantron",
-  "version": "1.3.8",
+  "version": "1.3.9",
   "main": "./build/app/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
