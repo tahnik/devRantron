@@ -1,8 +1,13 @@
 os: unstable
 
 # cache yarn and node_modules folder for rebuilds
-# cache:
-#   - node_modules
+cache:
+  - node_modules
+
+# Do not build feature branch with open Pull Requests
+skip_branch_with_pr: true
+
+configuration: Release
 
 # The environment configurations. We will use the latest node version.
 environment:
@@ -24,13 +29,17 @@ matrix:
 install:
   - ps: Install-Product node $env:NODE_VERSION x64
   - set CI=true
-  - npm install
+  - npm i
 
-test_script:
-  - yarn ci:all
+before_build:
+  - npm run lint
 
-build: off
+build_script:
+  - npm run build
+
+test: off
+deploy: off
 
 # only deploy on success and if we are on the master branch
 on_success:
-  - IF %APPVEYOR_REPO_BRANCH%==master yarn ci:deploy
+  - IF %APPVEYOR_REPO_BRANCH%==master (IF NOT DEFINED APPVEYOR_PULL_REQUEST_NUMBER (npm run publish))

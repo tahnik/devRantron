@@ -8,23 +8,22 @@
 ## Unofficial devRant Cross Platform Desktop Application
 ![devRantron Banner](https://i.imgur.com/dMWxH4x.png)
 
-Thank you for waiting!     
-Our app is now in public version! Download the latest release by going to [devrantron.firebaseapp.com](https://devrantron.firebaseapp.com)!       
+Thank you for waiting!
+Our app is now in public version! Download the latest release by going to [devrantron.firebaseapp.com](https://devrantron.firebaseapp.com)!
 Available for Windows, macOS, and Linux.
 
 ### Login with devRant Account
-![devRantron 1](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/login.png)
+![Imgur](https://i.imgur.com/Tf1T1BR.png)
 ### View Rants and Make Comments
-![devRantron 2](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/view.png)
+![Imgur](https://i.imgur.com/zGVFdqV.png)
 ### Post Rants and Pick Emojis!
-![devRantron 3](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/post.png)
+![Imgur](https://i.imgur.com/FxJJ3jn.png)
 ### Get Real Time notifications
-![devRantron 4](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/notif.png)
+![Imgur](https://i.imgur.com/1XO7f4b.png)
 ### Make Your Custom View!
-![devRantron 4](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/custom.png)
+![Imgur](https://i.imgur.com/XFQC2aO.png)
 ### View Profiles
-![devRantron 5](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/profile.png)
-![devRantron 6](https://raw.githubusercontent.com/tahnik/devRantron/master/app/screenshots/profile_card.png)
+![Imgur](https://i.imgur.com/oPTZQLs.png)
 
 This is our approach to create a cross platform desktop application for [devRant.io].
 

@@ -203,3 +203,7 @@ prime
 stage
 parts
 *.snap
+
+build/app
+
+stats.json
