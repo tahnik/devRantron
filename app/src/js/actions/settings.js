@@ -126,6 +126,9 @@ const setOnStartup = () => (dispatch, getState) => {
   } else {
     dispatch(setMinimiseOnClose(false));
   }
+  if (generalSettings.zoomLevel.value !== 0) {
+    setZoomLevel(generalSettings.zoomLevel.value);
+  }
 };
 
 
@@ -140,7 +143,7 @@ const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
     setAutoLaunch(value);
   }
   if (primaryKey === 'zoomLevel') {
-    dispatch(setZoomLevel(value));
+    setZoomLevel(value);
   }
   if (primaryKey === 'minimiseOnClose') {
     dispatch(setMinimiseOnClose(value));
