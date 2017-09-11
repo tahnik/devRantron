@@ -18,6 +18,16 @@ const setAutoLaunch = (value) => {
     ipcRenderer.send('auto-launch', false);
   }
 };
+/**
+ * Sets the webContents.zoomLevel
+ * It sends a message to main process which sets the setting
+ *
+ * @param {float} value
+ */
+const setZoomLevel = (value) => {
+  ipcRenderer.send('zoom-level', value);
+};
+
 
 /**
  * Saves the current state of the app
@@ -128,6 +138,9 @@ const setOnStartup = () => (dispatch, getState) => {
 const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
   if (primaryKey === 'autoLaunch') {
     setAutoLaunch(value);
+  }
+  if (primaryKey === 'zoomLevel') {
+    dispatch(setZoomLevel(value));
   }
   if (primaryKey === 'minimiseOnClose') {
     dispatch(setMinimiseOnClose(value));
