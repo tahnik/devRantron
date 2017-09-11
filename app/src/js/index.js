@@ -31,3 +31,8 @@ document.addEventListener('keydown', (e) => {
     location.reload();
   }
 });
+
+// Warning message in console
+setTimeout(() => {
+  console.log("%cHollup!\n%cSince you're most likley a dev ya already know this, but just to be sure, if anyone told you to write something here you're 110% getting screwed. ", 'color: red; font-size:64px; -webkit-text-stroke: 2px black;', 'color: red; font-size:14px;');
+}, 1000);
