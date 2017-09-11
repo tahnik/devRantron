@@ -43,7 +43,7 @@
 	"settings": {
 		"import/resolver": {
 			"webpack": {
-				"config": "./configs/webpack.dev.config.js"
+				"config": "./webpack/dev.config.js"
 			}
 		}
 	}

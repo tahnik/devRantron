@@ -12,7 +12,8 @@
     "postinstall": "install-app-deps",
     "dev": "concurrently -k \"npm run server\" \"npm run start\" ",
     "server": "webpack-dev-server --color --config webpack/dev.config.js",
-    "start": "cross-env NODE_ENV=development electron app/src/app.js"
+    "start": "cross-env NODE_ENV=development electron app/src/app.js",
+    "profile": "webpack --config webpack/prod.config.js --profile --json > stats.json"
   },
   "license": "Apache 2.0",
   "build": {

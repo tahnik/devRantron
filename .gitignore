@@ -205,3 +205,5 @@ parts
 *.snap
 
 build/app
+
+stats.json
