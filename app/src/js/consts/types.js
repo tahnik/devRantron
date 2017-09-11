@@ -37,6 +37,7 @@ export const SETTINGS = {
     TOGGLE: 'TOGGLE',
     TEXT: 'TEXT',
     BUTTON: 'BUTTON',
+    SLIDER: 'SLIDER',
   },
   ACTION: {
     CHANGE_GENERAL: 'CHANGE_GENERAL',
