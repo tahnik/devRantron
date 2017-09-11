@@ -74,8 +74,8 @@ $post_comment_height: 13rem
     position: absolute
     background: #fff
     z-index: 199
-    box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-    transition: all 0.05s;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.5)
+    transition: all 0.05s
     .mention
       padding: 0.5rem
       transition: background 0.1s
@@ -100,6 +100,40 @@ $post_comment_height: 13rem
       opacity: 1
       transform: scale(1.1)
       cursor: pointer
+
+.range_input
+  -webkit-appearance: none
+  width: 100%
+  margin: 7px 0
+  border: none
+  position: relative
+  &:focus
+    outline: none
+  &::-webkit-slider-runnable-track
+    width: 100%
+    padding: 0px 5px
+    height: 24px
+    cursor: pointer
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0)
+    background: #c14857
+    border-radius: 12px
+    border: 0px solid rgba(0, 0, 0, 0)
+
+  &::-webkit-slider-thumb
+    position: relative
+    top: 10px
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0)
+    border: 0px solid rgba(0, 0, 0, 0)
+    height: 18.2px
+    width: 18.2px
+    border-radius: 18px
+    background: #ffffff
+    cursor: pointer
+    -webkit-appearance: none
+    margin-top: -7px
+
+  &:focus::-webkit-slider-runnable-track
+    background: #c14857
 
 body
   padding: 0
