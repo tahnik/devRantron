@@ -24,28 +24,30 @@ class Comments extends Component {
     const { theme, vote, comments, auth, open, addMention, showToast, fetchitem } = this.props;
     return (
       <div className="comments_container">
-        {
-          comments.length === 0 ?
-            <div style={{ width: `${theme.column.width}px`, marginRight: '0.5rem' }}>
-              <h4>No comments</h4>
-            </div>
-            : null
-        }
-        {
-          comments.map(comment => (
-            <ItemCard
-              key={comment.id}
-              item={comment}
-              theme={theme}
-              vote={vote}
-              auth={auth}
-              open={open}
-              addMention={addMention}
-              showToast={showToast}
-              fetchitem={fetchitem}
-            />
-          ))
-        }
+        <div className="comments">
+          {
+            comments.length === 0 ?
+              <div style={{ width: `${theme.column.width}px`, marginRight: '0.5rem' }}>
+                <h4>No comments</h4>
+              </div>
+              : null
+          }
+          {
+            comments.map(comment => (
+              <ItemCard
+                key={comment.id}
+                item={comment}
+                theme={theme}
+                vote={vote}
+                auth={auth}
+                open={open}
+                addMention={addMention}
+                showToast={showToast}
+                fetchitem={fetchitem}
+              />
+            ))
+          }
+        </div>
       </div>
     );
   }
