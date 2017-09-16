@@ -5,16 +5,34 @@
   display: flex
   flex-direction: column
   align-items: center
+  .weekly_expand
+    max-height: 27rem
+    overflow-y: scroll
+    width: 29rem
+    .weekly_selection
+      transform: translateX(1rem)
+      &.active
+        background-color: #C14857
   .weekly_selection
     display: flex
     margin: 0.5rem 0
     margin-left: calc(-10px - 0.5rem)
-    height: 3rem
+    max-width: 27rem
+    min-height: 3rem
     padding-left: 1rem
     align-items: center
     background-color: #40415A
     color: white
-    transition: all 0.4s
+    user-select: none
+    transition: all 0.2s
+    .weekly_option
+      display: flex
+      flex-direction: row
+      width: 100%
+      .selBtn
+        margin-right: 1rem
+      .weekDesc
+        flex: 1
     &:hover
       cursor: pointer
       background-color: #C14857
