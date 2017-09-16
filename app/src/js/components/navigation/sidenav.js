@@ -33,6 +33,7 @@ class SideNav extends Component {
   }
   render() {
     const { sideNavItems, history, location, resetColumn, open } = this.props;
+    console.log(sideNavItems);
     return (
       <div className="sidenav_container" >
         <div className="navs">
@@ -53,6 +54,18 @@ class SideNav extends Component {
                 }}
               />
             ))
+          }
+          {
+            /* if update available */ true &&
+              <Item
+                key={'update'}
+                item={{ icon: 'ion-android-alert', name: 'Update Available', route: '/' }}
+                active={''}
+                className={'updateBtn'}
+                onClick={() => {
+                  console.log('show modal here');
+                }}
+              />
           }
         </div>
         <div className="add_rant">
