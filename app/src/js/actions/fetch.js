@@ -168,7 +168,7 @@ const updateColumnScrollHeight = (id, value) => (dispatch) => {
  *                       start
  */
 const fetch =
-(sort, type, id, range, refresh = false) => (dispatch, getState) => {
+(sort, type, id, range, refresh = false, week = 0) => (dispatch, getState) => {
   // First check if column that requested the fetch is part of custom columns
   const columns = getState().columns;
   let currentColumn = columns.filter(column => column.id === id)[0];
@@ -307,6 +307,25 @@ const fetch =
     case FEED.COLLABS.NAME:
       rantscript
         .collabs(sort, AMOUNT, AMOUNT * page, authToken)
+        .then((res) => {
+          const currentItems = page !== 0 ? currentColumn.items : [];
+          newColumn.items = [
+            ...currentItems,
+            ...filterRants(currentItems, res, cFilters),
+          ];
+          newColumn.prev_set = res.set;
+          dispatch({
+            type: COLUMN.FETCH,
+            column: newColumn,
+          });
+        })
+        .catch(() => {
+          dispatch(showToast('Could not fetch feed'));
+        });
+      break;
+    case FEED.WEEKLY.NAME:
+      rantscript
+        .weekly(week, sort, AMOUNT, AMOUNT * page, authToken)
         .then((res) => {
           const currentItems = page !== 0 ? currentColumn.items : [];
           newColumn.items = [

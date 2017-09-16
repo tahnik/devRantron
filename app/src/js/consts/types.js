@@ -116,6 +116,12 @@ export const ITEM = {
       VOTE: 'COLLAB_VOTE',
     },
   },
+  WEEKLY: {
+    NAME: 'WEEKLY',
+    ACTION: {
+      VOTE: 'WEEKLY_VOTE',
+    },
+  },
   COMMON: {
     ACTION: {
       CLOSE: 'ITEM_CLOSE',
@@ -150,6 +156,17 @@ export const FEED = {
         ALGO: false,
         RECENT: false,
       },
+    },
+  },
+  WEEKLY: {
+    NAME: 'WEEKLY',
+    FILTERS: {
+      SORT: {
+        ALGO: 'algo',
+        TOP: 'top',
+        RECENT: 'recent',
+      },
+      PRIMARY: 'SORT',
     },
   },
   STORIES: {
