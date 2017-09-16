@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Column from '../columns/column';
 import rantscript from '../../consts/rantscript';
 
@@ -16,6 +17,12 @@ class Weekly extends Component {
         this.setState({ weeks: res });
       });
   }
+  onClick(week = 67) {
+    const { column } = this.props;
+    const { weeks } = this.state;
+    this.props.fetch(column.sort, column.range, column.id, true, column.itemType, week);
+    this.setState({ selection: weeks.length - week });
+  }
   render() {
     const { weeks, selection } = this.state;
     const { theme } = this.props;
@@ -31,12 +38,21 @@ class Weekly extends Component {
             width: `${theme.column.width}px`,
           }}
         >
-          <div className="weekly_option">{selectionText}</div>
+          <div
+            className="weekly_option"
+            onClick={() => this.onClick(67)}
+          >{selectionText}</div>
         </div>
         <Column {...this.props} />
       </div>
     );
   }
 }
+
+Weekly.propTypes = {
+  fetch: PropTypes.func.isRequired,
+  column: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+};
 
 export default Weekly;

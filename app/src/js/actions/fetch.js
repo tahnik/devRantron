@@ -332,6 +332,7 @@ const fetch =
             ...currentItems,
             ...filterRants(currentItems, res, cFilters),
           ];
+          newColumn.week = week;
           newColumn.prev_set = res.set;
           dispatch({
             type: COLUMN.FETCH,

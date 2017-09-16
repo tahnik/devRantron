@@ -8,7 +8,7 @@ import { openModal } from '../../actions/modal';
 import showToast from '../../actions/toast';
 
 const mapDispatchToProps = dispatch => ({
-  fetch: (sort, range, id = 0, refresh = false, week) => {
+  fetch: (sort, range, id = 0, refresh = false, itemType, week = 0) => {
     dispatch(fetch(sort, FEED.WEEKLY.NAME, id, range, refresh, week));
   },
   vote: (voteState, id, type = ITEM.RANT.NAME) => {
