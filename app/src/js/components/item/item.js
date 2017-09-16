@@ -11,6 +11,7 @@ import Loading from '../utilities/loading';
 import rantscript from '../../consts/rantscript';
 import Comments from '../comments/comments';
 import PostComment from '../comments/comment_post';
+import Popup from '../utilities/popup';
 
 class Item extends Component {
   constructor() {
@@ -206,6 +207,7 @@ class Item extends Component {
         id="item_container"
         onClick={e => this.handleOnClick(e)}
       >
+        <Popup />
         { this.state.maxCol === 1 ? this.renderSingleColumn()
           : this.renderMutliCol()
         }

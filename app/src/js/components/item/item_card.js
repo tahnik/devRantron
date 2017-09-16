@@ -206,6 +206,15 @@ class ItemCard extends Component {
     if (auth.user) {
       isUser = auth.user.authToken.user_id === item.user_id;
     }
+    let editable = false;
+    if (isUser) {
+      const seconds = Math.floor((new Date() - (item.created_time * 1000)) / 1000);
+      const interval = (seconds / 2592000) / 60;
+      const maxEditLimit = item.user_dpp ? 30 : 5;
+      if (interval <= maxEditLimit) {
+        editable = true;
+      }
+    }
     // Item card is used for comments as well
     const isComment = typeof item.rant_id !== 'undefined';
     // If there is any image with this rant
@@ -253,6 +262,7 @@ class ItemCard extends Component {
           item={item}
           vote={vote}
           isUser={isUser}
+          editable={editable}
           copyToClip={() => this.copyLinkToClipboard()}
           modal={modal}
           type={isComment ? ITEM.COMMENT.NAME : ITEM.RANT.NAME}
