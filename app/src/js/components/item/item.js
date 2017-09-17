@@ -99,7 +99,9 @@ class Item extends Component {
         }
         if (scrollToBottom) {
           if (this.multiCol) {
-            this.multiCol.scrollTop = this.multiCol.scrollHeight;
+            setTimeout(() => {
+              this.multiCol.scrollTop = this.multiCol.scrollHeight;
+            }, 500);
           }
           if (this.compactCol) {
             this.compactCol.scrollTop = this.compactCol.scrollHeight;
