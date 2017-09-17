@@ -70,7 +70,7 @@ class CommentPost extends Component {
     rantscript
       .editComment(text, editID, auth.user.authToken, image)
       .then(() => {
-        this.setState({ content: '' });
+        this.setState({ content: '', editID: 0 });
         this.setState({ disabled: false });
         fetch();
       })

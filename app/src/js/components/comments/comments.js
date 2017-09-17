@@ -14,12 +14,6 @@ class Comments extends Component {
       item: null,
     };
   }
-  shouldComponentUpdate(nextProps) {
-    if (this.props.comments.length === nextProps.comments.length) {
-      return false;
-    }
-    return true;
-  }
   render() {
     const { theme, vote, comments, auth, open, addMention, showToast, fetchitem } = this.props;
     return (

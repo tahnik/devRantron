@@ -33,7 +33,6 @@ class SideNav extends Component {
   }
   render() {
     const { sideNavItems, history, location, resetColumn, open } = this.props;
-    console.log(sideNavItems);
     return (
       <div className="sidenav_container" >
         <div className="navs">

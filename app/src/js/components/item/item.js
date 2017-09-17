@@ -37,6 +37,12 @@ class Item extends Component {
     };
     window.addEventListener('resize', this.listener);
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.item === nextState.item) {
+      return false;
+    }
+    return true;
+  }
   componentWillUnmount() {
     window.removeEventListener('resize', this.listener);
   }
@@ -115,7 +121,6 @@ class Item extends Component {
     this.postComment.addMention(value);
   }
   onEdit(id, value) {
-    console.log(id);
     this.postComment.edit(id, value);
   }
   getItemCard() {
