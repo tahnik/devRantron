@@ -5,7 +5,7 @@ const Popup = (props) => {
     return false;
   }
   return (
-    <div className="popup_container">
+    <div className={`popup_container ${props.className}`}>
       <div className="popup">
         <span className="title">
           { props.body }

@@ -1,18 +1,18 @@
 @keyframes flowIn
   from
     opacity: 0
-    transform: scale(0.9) translateY(-24px)
+    transform: scale(0.9)
   to
     opacity: 1
-    transform: scale(1) translateY(0px)
+    transform: scale(1)
 
 @keyframes flowOut
   from
     opacity: 1
-    transform: scale(1) translateY(0px)
+    transform: scale(1)
   to
     opacity: 0
-    transform: scale(0.9) translateY(24px)
+    transform: scale(0.9)
 
 .popup_container
   height: 100vh
@@ -27,9 +27,9 @@
   justify-content: center
   align-items: center
   box-shadow: 1px 1px 4px rgba(0,0,0,0.3)
-  animation: flowIn 0.3s forwards
+  animation: flowIn 0.3s forwards cubic-bezier(0.6,-0.2, 0.15, 1.25)
   &.closeAnim
-    animation: flowOut 0.3s forwards
+    animation: flowOut 0.3s forwards cubic-bezier(0.6,-0.2, 0.15, 1.25)
   .popup
     background-color: #C14857
     position: relative
@@ -37,6 +37,7 @@
     flex-direction: column
     align-items: center
     border-radius: 5px
+    overflow: hidden
     span
       padding: 2rem
       font-size: 1.2rem
@@ -49,3 +50,7 @@
         flex: 1
         margin: 0
         box-shadow: none
+        box-sizing: content-box
+        padding: 6px
+        &:hover
+          background-color: #ba4553

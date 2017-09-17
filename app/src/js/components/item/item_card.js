@@ -22,6 +22,7 @@ class ItemCard extends Component {
     this.state = {
       popup: {
         visible: false,
+        className: '',
         pos: deleteItem.pos,
         neg: deleteItem.neg,
         body: deleteItem.body,
@@ -79,7 +80,7 @@ class ItemCard extends Component {
   }
   onDelete(showConfirmPopup = true) {
     if (showConfirmPopup) {
-      this.setState({ popup: { ...this.state.popup, visible: true } });
+      this.setState({ popup: { ...this.state.popup, className: '', visible: true } });
       return;
     }
     if (this.state.popup.visible) {
@@ -253,8 +254,8 @@ class ItemCard extends Component {
       >
         <Popup
           {...popup}
-          onPos={() => this.onDelete(false)}
-          onNeg={() => this.setState({ popup: { ...this.state.popup, visible: false } })}
+          onPos={() => { this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } }); setTimeout(() => { this.onDelete(false); }); }}
+          onNeg={() => { this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } }); setTimeout(() => { this.setState({ popup: { ...this.state.popup, visible: false } }); }, 300); }}
         />
         <UserBadge
           user={user}
