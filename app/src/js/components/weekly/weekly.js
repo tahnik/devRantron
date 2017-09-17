@@ -48,26 +48,25 @@ class Weekly extends Component {
             <i className={`selBtn ${expanded ? 'ion-chevron-up' : 'ion-chevron-down'}`} />
           </div>
         </div>
-        {weeks.length !== 0 && expanded ? (
-          <div className="weekly_expand">
-            {weeks.map(week =>
-              (
-                <div
-                  key={week.week}
-                  className={`weekly_selection ${selection} ${week.week}`}
-                  onClick={() => this.onClick(week.week)}
-                  style={{
-                    width: `${theme.column.width}px`,
-                  }}
-                >
-                  <div className={'weekly_option'}>
-                    <div className="weekDesc"><b>{`wk${week.week}`}</b> {`${week.prompt}`}</div>
-                  </div>
+
+        <div className={`weekly_expand ${expanded && expanded ? 'active' : ''}`}>
+          {weeks.map(week =>
+            (
+              <div
+                key={week.week}
+                className={`weekly_selection ${selection} ${week.week}`}
+                onClick={() => this.onClick(week.week)}
+                style={{
+                  width: `${theme.column.width}px`,
+                }}
+              >
+                <div className={'weekly_option'}>
+                  <div className="weekDesc"><b>{`wk${week.week}`}</b> {`${week.prompt}`}</div>
                 </div>
-              ),
-            )}
-          </div>
-        ) : (<div />)}
+              </div>
+            ),
+          )}
+        </div>
 
         <Column {...this.props} />
       </div>
