@@ -11,14 +11,28 @@ import BottomBar from './bottom_bar';
 import { ITEM } from '../../consts/types';
 import { parseLinks, timeSince, parseUsers, replaceAll, purifyDOM } from '../../consts/utils';
 import rantscript from '../../consts/rantscript';
+import Popup from '../utilities/popup';
+import { deleteItem } from '../../consts/errors';
 
 const { shell, clipboard } = require('electron');
 
 class ItemCard extends Component {
-  shouldComponentUpdate(nextProps) {
+  constructor() {
+    super();
+    this.state = {
+      popup: {
+        visible: false,
+        pos: deleteItem.pos,
+        neg: deleteItem.neg,
+        body: deleteItem.body,
+      },
+    };
+  }
+  shouldComponentUpdate(nextProps, nextState) {
     if (
       this.props.theme === nextProps.theme
       && this.props.item === nextProps.item
+      && this.state.popup === nextState.popup
     ) {
       return false;
     }
@@ -63,7 +77,14 @@ class ItemCard extends Component {
         console.log(err);
       });
   }
-  onDelete() {
+  onDelete(showConfirmPopup = true) {
+    if (showConfirmPopup) {
+      this.setState({ popup: { ...this.state.popup, visible: true } });
+      return;
+    }
+    if (this.state.popup.visible) {
+      this.setState({ popup: { ...this.state.popup, visible: false } });
+    }
     const { auth, item, showToast, fetchitem } = this.props;
     if (item.rant_id) {
       rantscript.deleteComment(item.id, auth.user.authToken)
@@ -194,6 +215,7 @@ class ItemCard extends Component {
   }
   render() {
     const { item, theme, vote, modal, itemType, auth, open, addMention } = this.props;
+    const { popup } = this.state;
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,
@@ -229,6 +251,11 @@ class ItemCard extends Component {
           width: `${theme.column.width}px`,
         }}
       >
+        <Popup
+          {...popup}
+          onPos={() => this.onDelete(false)}
+          onNeg={() => this.setState({ popup: { ...this.state.popup, visible: false } })}
+        />
         <UserBadge
           user={user}
           theme={theme}

@@ -219,7 +219,6 @@ class Item extends Component {
         id="item_container"
         onClick={e => this.handleOnClick(e)}
       >
-        <Popup />
         { this.state.maxCol === 1 ? this.renderSingleColumn()
           : this.renderMutliCol()
         }
