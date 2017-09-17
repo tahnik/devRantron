@@ -1,3 +1,19 @@
+@keyframes flowIn
+  from
+    opacity: 0
+    transform: scale(0.9) translateY(-24px)
+  to
+    opacity: 1
+    transform: scale(1) translateY(0px)
+
+@keyframes flowOut
+  from
+    opacity: 1
+    transform: scale(1) translateY(0px)
+  to
+    opacity: 0
+    transform: scale(0.9) translateY(24px)
+
 .popup_container
   height: 100vh
   width: 100vw
@@ -10,6 +26,10 @@
   z-index: 299
   justify-content: center
   align-items: center
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.3)
+  animation: flowIn 0.3s forwards
+  &.closeAnim
+    animation: flowOut 0.3s forwards
   .popup
     background-color: #C14857
     position: relative
@@ -24,7 +44,8 @@
     .actions
       width: 100%
       display: flex
-      border-top: 1px solid grey
+      border-top: 1px solid rgba(0,0,0,0.05)
       button
         flex: 1
         margin: 0
+        box-shadow: none
