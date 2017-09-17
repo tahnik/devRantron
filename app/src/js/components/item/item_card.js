@@ -209,7 +209,7 @@ class ItemCard extends Component {
     let editable = false;
     if (isUser) {
       const seconds = Math.floor((new Date() - (item.created_time * 1000)) / 1000);
-      const interval = (seconds / 2592000) / 60;
+      const interval = seconds / 60;
       const maxEditLimit = item.user_dpp ? 30 : 5;
       if (interval <= maxEditLimit) {
         editable = true;

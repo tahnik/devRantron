@@ -167,7 +167,7 @@ class BottomBar extends Component {
                   className="toggle_item edit"
                   onClick={() => this.props.copyToClip()}
                 >
-                  <p><i className="ion-edit" /></p>
+                  <p><i className="ion-android-create" /></p>
                 </div>
                 : null
               }
