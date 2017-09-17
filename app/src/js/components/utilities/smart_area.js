@@ -232,6 +232,16 @@ class SmartArea extends Component {
     const { pickerActive, selectedMention } = this.state;
     const invalidContent = this.props.value.length < 5;
     const isPost = typeof this.props.tags !== 'undefined';
+    let btnText = 'Post Rant';
+    if (!isPost) {
+      if (this.props.editing) {
+        btnText = 'Edit Comment';
+      } else {
+        btnText = 'Post Comment';
+      }
+    } else if (this.props.editing) {
+      btnText = 'Edit Rant';
+    }
     return (
       <div
         className={`smart_area ${this.props.className}`}
@@ -288,7 +298,7 @@ class SmartArea extends Component {
           <button
             disabled={this.props.disabled || invalidContent}
             onClick={() => this.onPost()}
-          >{`${isPost ? 'Post Rant' : 'Add Comment'}`}</button>
+          >{btnText}</button>
         </div>
       </div>
     );

@@ -44,6 +44,7 @@ class Comments extends Component {
                 addMention={addMention}
                 showToast={showToast}
                 fetchitem={fetchitem}
+                onEdit={this.props.onEdit}
               />
             ))
           }

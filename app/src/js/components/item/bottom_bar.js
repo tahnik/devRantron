@@ -165,7 +165,7 @@ class BottomBar extends Component {
               { this.props.isUser && this.props.editable ?
                 <div
                   className="toggle_item edit"
-                  onClick={() => this.props.copyToClip()}
+                  onClick={() => this.props.onEdit()}
                 >
                   <p><i className="ion-android-create" /></p>
                 </div>

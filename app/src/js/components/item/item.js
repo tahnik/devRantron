@@ -114,6 +114,10 @@ class Item extends Component {
   addMention(value) {
     this.postComment.addMention(value);
   }
+  onEdit(id, value) {
+    console.log(id);
+    this.postComment.edit(id, value);
+  }
   getItemCard() {
     const { item } = this.state;
     const { theme, vote, cardItem, auth, open, showToast } = this.props;
@@ -145,6 +149,7 @@ class Item extends Component {
         showToast={showToast}
         addMention={value => this.addMention(value)}
         fetchitem={() => this.fetchitem()}
+        onEdit={(id, value) => this.onEdit(id, value)}
       />
     );
   }

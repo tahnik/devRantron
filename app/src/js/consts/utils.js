@@ -44,6 +44,16 @@ export const getAllEmojis = () => {
   return emojis;
 };
 
+export const getAllEmojisRev = () => {
+  const emojis = {};
+  Object.keys(EmojiData).forEach((key) => {
+    EmojiData[key].forEach((emoji) => {
+      emojis[emoji.icon] = emoji.name;
+    });
+  });
+  return emojis;
+};
+
 export const parseLinks = (text, item = null) => {
   let returnText = text;
   if (item && item.links) {
@@ -69,6 +79,20 @@ export const getEmojisFromText = (content, index, emojis) => {
     emojis.add(stringInBetween);
     getEmojisFromText(content, nextIndex + 1, emojis);
   }
+};
+
+export const getTextFromEmoji = (content) => {
+  let contentToParse = content;
+  const regex = /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/;
+  const emojis = regex.exec(content);
+  if (emojis) {
+    const allEmojis = getAllEmojisRev();
+    emojis.forEach((emoji) => {
+      const replaceReg = new RegExp(emoji, 'g');
+      contentToParse = content.replace(replaceReg, `:${allEmojis[emoji]}:`);
+    });
+  }
+  return contentToParse;
 };
 
 export const timeSince = (date) => {
