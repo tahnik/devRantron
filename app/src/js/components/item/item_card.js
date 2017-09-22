@@ -238,6 +238,8 @@ class ItemCard extends Component {
         editable = true;
       }
     }
+    // Test
+    editable = true;
     // Item card is used for comments as well
     const isComment = typeof item.rant_id !== 'undefined';
     // If there is any image with this rant

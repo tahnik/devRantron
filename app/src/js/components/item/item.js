@@ -11,7 +11,7 @@ import Loading from '../utilities/loading';
 import rantscript from '../../consts/rantscript';
 import Comments from '../comments/comments';
 import PostComment from '../comments/comment_post';
-import Popup from '../utilities/popup';
+import { ITEM } from '../../consts/types';
 
 class Item extends Component {
   constructor() {
@@ -101,7 +101,7 @@ class Item extends Component {
           if (this.multiCol) {
             setTimeout(() => {
               this.multiCol.scrollTop = this.multiCol.scrollHeight;
-            }, 500);
+            }, 1000);
           }
           if (this.compactCol) {
             this.compactCol.scrollTop = this.compactCol.scrollHeight;
@@ -122,7 +122,11 @@ class Item extends Component {
   addMention(value) {
     this.postComment.addMention(value);
   }
-  onEdit(id, value) {
+  onEdit(id, value, isRant = false) {
+    if (isRant) {
+      this.props.open(ITEM.POST_RANT.NAME, id);
+      return;
+    }
     this.postComment.edit(id, value);
   }
   getItemCard() {
@@ -140,6 +144,7 @@ class Item extends Component {
         open={open}
         showToast={showToast}
         fetchitem={() => this.fetchitem()}
+        onEdit={(id, value) => this.onEdit(id, value, true)}
       />
     );
   }
