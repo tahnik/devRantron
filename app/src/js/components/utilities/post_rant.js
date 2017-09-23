@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
 import SmartArea from '../utilities/smart_area';
+import RantType from './rant_type';
 import Loading from '../utilities/loading';
 import { ITEM } from '../../consts/types';
 
@@ -98,6 +99,10 @@ class PostRant extends Component {
       >
         <div className="post_rant_container">
           <div className="post_rant">
+            {/* @tahnik needs to hook dis up */}
+            <RantType
+              onSelect={type => console.log(type)}
+            />
             <SmartArea
               onPost={(text, image) => this.onPost(text, image)}
               value={this.state.rant_content}

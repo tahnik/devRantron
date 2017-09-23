@@ -1,0 +1,32 @@
+.dropdown
+  color: #fff
+  margin-bottom: 12px
+  background: #ffffff
+  padding: 4px
+  border-radius: 6px
+  .actualDropdown
+    height: 0px
+    overflow: hidden
+    &.active
+      height: auto
+  .item
+    display: flex
+    padding: 12px
+    border-radius: 6px
+    font-size: 1.2rem
+    cursor: pointer
+    user-select: none
+    margin-top: 4px
+    transition: background 0.2s
+    &.selected
+      margin-top: 0px
+    i
+      margin-right: 6px
+      &::before
+        width: 16px
+        text-align: center
+    .flexgrow
+      flex: 1
+    .dropbtn
+      i
+        margin: 0px
