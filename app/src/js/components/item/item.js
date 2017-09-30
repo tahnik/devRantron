@@ -98,14 +98,11 @@ class Item extends Component {
           return;
         }
         if (scrollToBottom) {
-          if (this.multiCol) {
-            setTimeout(() => {
-              this.multiCol.scrollTop = this.multiCol.scrollHeight;
-            }, 1000);
-          }
-          if (this.compactCol) {
-            this.compactCol.scrollTop = this.compactCol.scrollHeight;
-          }
+          setTimeout(() => {
+            const commentsContainer = document.getElementsByClassName('comments_container')[0];
+            console.log(commentsContainer);
+            commentsContainer.scrollTop = commentsContainer.scrollHeight;
+          }, 1000);
         }
       })
       .catch((err) => {
@@ -190,7 +187,6 @@ class Item extends Component {
         </div>
         <div
           className="comments_and_post"
-          ref={(node) => { this.multiCol = node; }}
         >
           {this.getComments()}
           {this.getPostComment()}
