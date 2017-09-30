@@ -100,7 +100,6 @@ class Item extends Component {
         if (scrollToBottom) {
           setTimeout(() => {
             const commentsContainer = document.getElementsByClassName('comments_container')[0];
-            console.log(commentsContainer);
             commentsContainer.scrollTop = commentsContainer.scrollHeight;
           }, 1000);
         }
