@@ -52,7 +52,8 @@ class PostRant extends Component {
         });
         this.props.open(ITEM.RANT.NAME, res.rant_id);
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         this.setState({ posting: false });
       });
   }
