@@ -35,10 +35,10 @@ class PostRant extends Component {
       });
   }
 
-  editRant(text, image) {
+  editRant(text) {
     const { auth, item } = this.props;
     rantscript
-      .postRant(text, this.state.tags, auth.user.authToken, image)
+      .editRant(text, this.state.tags, item.id, auth.user.authToken)
       .then((res) => {
         if (!res.success) {
           this.setState({ limitCrossed: res.error });
@@ -60,12 +60,12 @@ class PostRant extends Component {
   onPost(text, image) {
     const { auth, item } = this.props;
     this.setState({ disabled: true });
-    if (item.id === 0) {
-      this.editRant(text, image);
+    if (item.id !== 0) {
+      this.editRant(text);
       return;
     }
     rantscript
-      .postRant(text, this.state.tags, auth.user.authToken, image)
+      .postRant(text, this.state.tags, 1, auth.user.authToken, image)
       .then((res) => {
         if (!res.success) {
           this.setState({ limitCrossed: res.error });
