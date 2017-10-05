@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import Modal from '../../components/modal/modal';
 import vote from '../../actions/vote';
 import { fetchNotifs } from '../../actions/notifs';
+import { logout } from '../../actions/auth';
 import { openModal, closeModal } from '../../actions/modal';
 import showToast from '../../actions/toast';
 
@@ -28,6 +29,9 @@ const mapDispatchToProps = dispatch => ({
   },
   showToast: (text) => {
     dispatch(showToast(text, 1000));
+  },
+  logout: () => {
+    dispatch(logout());
   },
 });
 

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
 import Loading from '../utilities/loading';
 import Column from '../columns/column';
+import Popup from '../utilities/popup';
 import { ITEM, STATE } from '../../consts/types';
+import { logout } from '../../consts/errors';
 
 const { shell } = require('electron');
 
@@ -36,6 +38,13 @@ class UserProfile extends Component {
       column: DEFAULT_COLUMN,
       loading: false,
       userNonExisting: false,
+      popup: {
+        visible: false,
+        className: '',
+        pos: logout.pos,
+        neg: logout.neg,
+        body: logout.body,
+      },
     };
   }
   componentDidMount() {
@@ -49,6 +58,7 @@ class UserProfile extends Component {
       && nextProps.item.id === this.props.item.id
       && nextState.userNonExisting === this.state.userNonExisting
       && (nextState.column.state !== STATE.LOADING && nextState.column.items.length !== 0)
+      && (nextState.popup.visible === this.state.popup.visible)
     ) {
       return false;
     }
@@ -122,6 +132,16 @@ class UserProfile extends Component {
     }
     shell.openExternal(fURL);
   }
+  onLogout(showConfirmPopup = true) {
+    if (showConfirmPopup) {
+      this.setState({ popup: { ...this.state.popup, className: '', visible: true } });
+      return;
+    }
+    if (this.state.popup.visible) {
+      this.setState({ popup: { ...this.state.popup, visible: false } });
+    }
+    this.props.logout();
+  }
   render() {
     if (this.state.userNonExisting) {
       return (
@@ -139,7 +159,7 @@ class UserProfile extends Component {
         </div>
       );
     }
-    const { user } = this.state;
+    const { user, popup } = this.state;
     const { theme } = this.props;
     let imageSource = 'res/images/invis.png';
     if (user.avatar.i) {
@@ -147,6 +167,19 @@ class UserProfile extends Component {
     }
     return (
       <div className="profile_container modal" >
+        <Popup
+          {...popup}
+          onPos={() => {
+            this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } });
+            setTimeout(() => { this.onLogout(false); });
+          }}
+          onNeg={() => {
+            this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } });
+            setTimeout(() => {
+              this.setState({ popup: { ...this.state.popup, visible: false } });
+            }, 300);
+          }}
+        />
         <div
           className="profile"
           style={{
@@ -154,6 +187,9 @@ class UserProfile extends Component {
             width: `${theme.column.width}px`,
           }}
         >
+          <div className="logout" onClick={() => { this.onLogout(true); }} >
+            <i className="ion-log-out" />
+          </div>
           <div className="image">
             <img alt="" src={imageSource} style={{ backgroundColor: `#${user.avatar.b}` }} />
           </div>

@@ -195,6 +195,7 @@ BottomBar.propTypes = {
   isUser: PropTypes.bool.isRequired,
   editable: PropTypes.bool.isRequired,
   vote: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   type: PropTypes.string,
   addMention: PropTypes.func,

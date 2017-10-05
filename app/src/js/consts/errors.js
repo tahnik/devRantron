@@ -9,3 +9,9 @@ export const deleteItem = {
   neg: 'Cancel',
   body: 'Are you sure?',
 };
+
+export const logout = {
+  pos: 'Yes',
+  neg: 'Cancel',
+  body: 'Are you sure?',
+};

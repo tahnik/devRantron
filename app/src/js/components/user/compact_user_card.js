@@ -18,9 +18,11 @@ class CompactUserCard extends Component {
   componentDidMount() {
     const { user } = this.props;
     const profile = user.profile;
-    let imgsrc = './res/images/empty_avatar.png';
-    if (profile.avatar.i) {
+    let imgsrc = '';
+    if (profile && profile.avatar.i) {
       imgsrc = `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
+    } else {
+      return;
     }
     const reload = setInterval(() => {
       const profilePicture = new Image();
@@ -58,16 +60,20 @@ class CompactUserCard extends Component {
       );
     }
     const profile = user.profile;
-    const imgsrc = './res/images/empty_avatar.png';
+    console.log(this.profilePicture);
+    let imgsrc = './res/images/empty_avatar.png';
+    if (profile.avatar.i) {
+      imgsrc = `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
+    }
 
     return (
       <div
         className="user_compact"
         style={{ background: 'url(./res/images/profile_banner.png)' }}
+        onClick={() => this.props.open(ITEM.PROFILE.NAME, profile.id)}
       >
         <div
           className="user_image_container"
-          onClick={() => this.props.open(ITEM.PROFILE.NAME, profile.id)}
         >
           <img
             className="user_image"
@@ -89,15 +95,6 @@ class CompactUserCard extends Component {
           </div>
         </div>
         <div className="user_bg_tint" style={{ background: `#${profile.avatar.b}` }} />
-        <div
-          className="logout"
-          ref={(node) => { this.logoutButton = node; }}
-          data-text="Logout"
-          onClick={e => this.logout(e)}
-          onMouseOut={() => this.mouseOut()}
-        >
-          <i className="ion-log-out" />
-        </div>
       </div>
     );
   }

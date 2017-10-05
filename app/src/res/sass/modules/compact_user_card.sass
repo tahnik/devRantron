@@ -10,7 +10,8 @@
   justify-content: center
   flex-direction: column
   padding: 1rem
-  padding-bottom: 2rem
+  &:hover
+    cursor: pointer
   .user_bg_tint
     position: absolute
     top: 0px
@@ -23,12 +24,10 @@
     display: flex
     color: white
     z-index: 99
-    padding: 1rem 0
+    padding: 1rem 1rem 0 1rem
     font-weight: 300
     font-family: 'Roboto', sans-serif
     align-items: flex-start
-    &:hover
-      cursor: pointer
     .name
       font-size: 1.5rem
     .score
