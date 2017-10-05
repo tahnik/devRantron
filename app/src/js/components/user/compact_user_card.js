@@ -18,7 +18,7 @@ class CompactUserCard extends Component {
   componentDidMount() {
     const { user } = this.props;
     const profile = user.profile;
-    let imgsrc = '';
+    let imgsrc = './res/images/empty_avatar.png';
     if (profile && profile.avatar.i) {
       imgsrc = `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
     } else {
@@ -32,6 +32,26 @@ class CompactUserCard extends Component {
       };
       profilePicture.src = imgsrc;
     }, 1000);
+  }
+  componentDidUpdate() {
+    const { user } = this.props;
+    const profile = user.profile;
+    if (!this.profilePicture) {
+      return;
+    }
+    const indexOfEmpty = this.profilePicture.src.indexOf('empty_avatar');
+    if (indexOfEmpty === -1) {
+      return;
+    }
+    let imgsrc = '';
+    if (profile && profile.avatar.i) {
+      imgsrc = `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
+    }
+    const profilePicture = new Image();
+    profilePicture.onload = () => {
+      this.profilePicture.src = profilePicture.src;
+    };
+    profilePicture.src = imgsrc;
   }
   mouseOut() {
     this.setState({ confirm: false });
@@ -60,11 +80,7 @@ class CompactUserCard extends Component {
       );
     }
     const profile = user.profile;
-    console.log(this.profilePicture);
-    let imgsrc = './res/images/empty_avatar.png';
-    if (profile.avatar.i) {
-      imgsrc = `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
-    }
+    const imgsrc = './res/images/empty_avatar.png';
 
     return (
       <div
