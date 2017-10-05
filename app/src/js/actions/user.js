@@ -46,7 +46,6 @@ const fetchUser = () => (dispatch, getState) => {
       });
     })
     .catch(() => {
-      dispatch(showToast('User is not logged in'));
       dispatch({
         type: USER.FETCH,
         state: STATE.FAILED,

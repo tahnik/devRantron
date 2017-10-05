@@ -22,7 +22,10 @@ class UserBadge extends Component {
       imageSource = `https://avatars.devrant.io/${user.avatar.i}`;
     }
 
-    const c = ['dGFobmlr', 'RGFjZXhp', 'ZGZveA==', 'dHJvZ3Vz'].indexOf(btoa(user.username)) > -1 ? `#${user.avatar.b}` : '#ffffff';
+    // const c =
+    // ['dGFobmlr', 'RGFjZXhp', 'ZGZveA==', 'dHJvZ3Vz'].indexOf(btoa(user.username)) > -1 ?
+    // `#${user.avatar.b}` : '#ffffff';
+    const c = '#ffffff';
 
     return (
       <div className="user_badge">

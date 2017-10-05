@@ -281,6 +281,9 @@ const fetch =
               type: COLUMN.FETCH,
               column: newColumn,
             });
+          })
+          .catch(() => {
+            //
           });
       }, 1000);
       break;
@@ -303,7 +306,7 @@ const fetch =
             });
           })
           .catch(() => {
-            dispatch(showToast('Could not fetch feed'));
+            //
           });
       });
       break;
@@ -326,7 +329,7 @@ const fetch =
             });
           })
           .catch(() => {
-            dispatch(showToast('Could not fetch feed'));
+            //
           });
       }, 1000);
       break;
@@ -350,7 +353,7 @@ const fetch =
             });
           })
           .catch(() => {
-            dispatch(showToast('Could not fetch feed'));
+            //
           });
       });
       break;

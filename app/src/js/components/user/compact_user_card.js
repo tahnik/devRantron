@@ -15,6 +15,22 @@ class CompactUserCard extends Component {
       fetchUser();
     }
   }
+  componentDidMount() {
+    const { user } = this.props;
+    const profile = user.profile;
+    let imgsrc = './res/images/empty_avatar.png';
+    if (profile.avatar.i) {
+      imgsrc = `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
+    }
+    const reload = setInterval(() => {
+      const profilePicture = new Image();
+      profilePicture.onload = () => {
+        window.clearInterval(reload);
+        this.profilePicture.src = profilePicture.src;
+      };
+      profilePicture.src = imgsrc;
+    }, 1000);
+  }
   mouseOut() {
     this.setState({ confirm: false });
     this.logoutButton.setAttribute('data-text', 'Logout');
@@ -42,10 +58,7 @@ class CompactUserCard extends Component {
       );
     }
     const profile = user.profile;
-    let imgsrc = '';
-    if (profile.avatar.i) {
-      imgsrc += `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
-    }
+    const imgsrc = './res/images/empty_avatar.png';
 
     return (
       <div
@@ -56,7 +69,13 @@ class CompactUserCard extends Component {
           className="user_image_container"
           onClick={() => this.props.open(ITEM.PROFILE.NAME, profile.id)}
         >
-          <img className="user_image" src={imgsrc} style={{ background: `#${profile.avatar.b}` }} alt="avatar" />
+          <img
+            className="user_image"
+            src={imgsrc}
+            ref={(node) => { this.profilePicture = node; }}
+            style={{ background: `#${profile.avatar.b}` }}
+            alt="avatar"
+          />
         </div>
         <div
           className="name_and_score"
