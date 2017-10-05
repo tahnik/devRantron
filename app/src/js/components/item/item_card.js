@@ -229,6 +229,8 @@ class ItemCard extends Component {
     if (auth.user) {
       isUser = auth.user.authToken.user_id === item.user_id;
     }
+    // Item card is used for comments as well
+    const isComment = typeof item.rant_id !== 'undefined';
     let editable = false;
     if (isUser) {
       const seconds = Math.floor((new Date() - (item.created_time * 1000)) / 1000);
@@ -236,12 +238,11 @@ class ItemCard extends Component {
       const maxEditLimit = item.user_dpp ? 30 : 5;
       if (interval <= maxEditLimit) {
         editable = true;
+        if (isComment && modal) {
+          editable = false;
+        }
       }
     }
-    // Test
-    editable = true;
-    // Item card is used for comments as well
-    const isComment = typeof item.rant_id !== 'undefined';
     // If there is any image with this rant
     const image = item.attached_image || '';
     return (

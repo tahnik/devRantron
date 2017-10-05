@@ -193,6 +193,7 @@ class UserProfile extends Component {
         >
           <Column
             {...this.props}
+            modal
             column={this.state.column}
             filters={this.state.column.filters}
             itemType={this.state.column.itemType}
