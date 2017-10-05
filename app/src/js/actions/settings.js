@@ -3,6 +3,7 @@ import { fetchUser } from './user';
 import { fetchNotifs } from './notifs';
 
 const { ipcRenderer } = require('electron');
+const settings = require('electron-settings');
 
 
 /**
@@ -50,8 +51,12 @@ const saveUserState = () => (dispatch, getState) => {
     columns: customCols,
     search: state.search,
   };
-  // Use localStorage to save the state. Much better than a file
-  localStorage.setItem('savedState', JSON.stringify(savedState));
+  /**
+   * Use localStorage to save the state. Much better than a file.
+   * EDIT: I was wrong. LocalStorage is not saved is the app crashes abnormally.
+   * so I will be using electron-settings package
+   */
+  settings.set('currentVersion', savedState);
 };
 
 
@@ -153,7 +158,7 @@ const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
     ipcRenderer.send('updateNow', true);
   }
   if (primaryKey === 'reset_cache') {
-    localStorage.setItem('savedState', JSON.stringify({}));
+    settings.deleteAll();
     ipcRenderer.send('reLaunch', true);
     return;
   }

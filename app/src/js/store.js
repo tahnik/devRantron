@@ -9,6 +9,8 @@ import {
 import DEFAULT_STATE from './consts/default_states';
 import IPCHhandlers from './utils/ipcHandlers';
 
+const settings = require('electron-settings');
+
 const cmp = require('semver-compare');
 const { remote } = require('electron');
 
@@ -17,10 +19,10 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = applyMiddleware(thunk);
 
 const getInitialState = () => {
-  const persistedState = localStorage.getItem('savedState');
+  const persistedState = settings.get('currentVersion');
 
   if (persistedState) {
-    return JSON.parse(persistedState);
+    return persistedState;
   }
   return {};
 };
@@ -28,7 +30,7 @@ const getInitialState = () => {
 let initialState = getInitialState();
 
 const currentVersion = remote.app.getVersion();
-const prevVersion = localStorage.getItem('prevVersion');
+const prevVersion = settings.get('prevVersion');
 
 if (
   currentVersion && prevVersion
@@ -40,7 +42,7 @@ if (
   }
 }
 
-localStorage.setItem('prevVersion', currentVersion);
+settings.set('prevVersion', currentVersion);
 
 const store = createStore(reducers, initialState, composeEnhancers(
   middleware,
