@@ -25,9 +25,7 @@ class PostRant extends Component {
     const authToken = auth.user.authToken;
     rantscript.rant(item.id, authToken)
       .then((res) => {
-        console.log(res);
         const rant = res.rant;
-        console.log(rant.tags.join());
         this.setState({
           rant_content: rant.text,
           tags: rant.tags.join(),
@@ -50,10 +48,9 @@ class PostRant extends Component {
           tags: '',
           limitCrossed: null,
         });
-        this.props.open(ITEM.RANT.NAME, res.rant_id);
+        this.props.open(ITEM.RANT.NAME, item.id);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         this.setState({ posting: false });
       });
   }

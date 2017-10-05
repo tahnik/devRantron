@@ -314,6 +314,7 @@ ItemCard.propTypes = {
   theme: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
   showToast: PropTypes.func.isRequired,
   itemType: PropTypes.string,
   open: PropTypes.func,
