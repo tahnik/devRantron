@@ -60,7 +60,7 @@ class UserProfile extends Component {
       && nextProps.item.id === this.props.item.id
       && nextState.userNonExisting === this.state.userNonExisting
       && (nextState.column.state !== STATE.LOADING && nextState.column.items.length !== 0)
-      && (nextState.popup.visible === this.state.popup.visible)
+      && (nextState.popup === this.state.popup)
     ) {
       return false;
     }
