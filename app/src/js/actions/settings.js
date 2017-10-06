@@ -166,7 +166,7 @@ const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
   }
   if (primaryKey === 'update') {
     dispatch(saveUserState());
-    ipcRenderer.send('updateNow', true);
+    dispatch(openModal(ITEM.RELEASE_INFO.NAME));
   }
   if (primaryKey === 'reset_cache') {
     settings.deleteAll();
