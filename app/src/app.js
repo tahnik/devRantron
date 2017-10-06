@@ -260,17 +260,6 @@ ipcMain.on('updateNow', () => {
   autoUpdater.quitAndInstall();
 });
 
-autoUpdater.on('update-available', () => {
-  let plat = '';
-
-  if (/^win/.test(process.platform)) { plat = 'windows'; }
-  if (/^dar/.test(process.platform)) { plat = 'osx'; }
-  if (/^lin/.test(process.platform)) { plat = 'linux'; }
-  if (plat !== 'windows') {
-    mainWindow.webContents.send('newUpdateAvailable');
-  }
-});
-
 autoUpdater.on('update-not-available', () => {
   mainWindow.webContents.send('upTodate');
 });

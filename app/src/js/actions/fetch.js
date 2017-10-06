@@ -308,7 +308,7 @@ const fetch =
           .catch(() => {
             //
           });
-      });
+      }, 1000);
       break;
     }
     case FEED.COLLABS.NAME: {
@@ -355,7 +355,7 @@ const fetch =
           .catch(() => {
             //
           });
-      });
+      }, 1000);
       break;
     }
     default:

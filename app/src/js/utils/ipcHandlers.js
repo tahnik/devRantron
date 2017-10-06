@@ -16,29 +16,6 @@ export default (store) => {
 
   ipcRenderer.on('newUpdate', () => {
     store.dispatch(setUpdateStatus(true));
-    // eslint-disable-next-line
-    const notification = new Notification('devRantron', {
-      body: 'New update is availble. Click here to install',
-      icon: 'http://i.imgur.com/iikd00P.png',
-      requireInteraction: true,
-    });
-
-    notification.onclick = () => {
-      ipcRenderer.send('updateNow', true);
-    };
-  });
-
-  ipcRenderer.on('newUpdateAvailable', () => {
-    // eslint-disable-next-line
-    const notification = new Notification('devRantron', {
-      body: 'New update is availble. Click here to go to the download page',
-      icon: 'http://i.imgur.com/iikd00P.png',
-      requireInteraction: true,
-    });
-
-    notification.onclick = () => {
-      shell.openExternal('https://devrantron.firebaseapp.com/');
-    };
   });
 
   ipcRenderer.on('upToDate', () => {

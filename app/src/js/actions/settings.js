@@ -91,6 +91,26 @@ const setUpdateStatus = value => (dispatch) => {
       buttonText: 'Update availble',
       value: true,
     });
+
+    // const notification = new Notification('devRantron', {
+    //   body: 'New update is availble',
+    //   icon: 'http://i.imgur.com/iikd00P.png',
+    //   requireInteraction: true,
+    // });
+
+    // let plat = '';
+
+    // if (/^win/.test(process.platform)) { plat = 'windows'; }
+    // if (/^dar/.test(process.platform)) { plat = 'osx'; }
+    // if (/^lin/.test(process.platform)) { plat = 'linux'; }
+
+    // if (plat === 'windows') {
+    //   notification.onclick = () => {
+    //     ipcRenderer.send('updateNow', true);
+    //   };
+    // } else {
+
+    // }
   } else {
     dispatch({
       type: SETTINGS.ACTION.CHANGE_GENERAL,

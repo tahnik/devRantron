@@ -41,6 +41,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
   user: state.user,
   sideNavItems: SIDE_NAV_ITEMS,
+  settings: state.settings,
 });
 
 

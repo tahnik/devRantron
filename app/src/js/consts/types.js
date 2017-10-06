@@ -86,6 +86,9 @@ export const ITEM = {
       VOTE: 'RANT_VOTE',
     },
   },
+  RELEASE_INFO: {
+    NAME: 'RELEASE_INFO',
+  },
   PROFILE: {
     NAME: 'PROFILE',
     ACTION: {
