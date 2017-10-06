@@ -1,7 +1,6 @@
 import rantscript from '../consts/rantscript';
 import { FEED, STATE, COLUMN, COLUMNS, ITEM } from '../consts/types';
 import DEFAULT_STATES from '../consts/default_states';
-import showToast from './toast';
 import { getUID } from '../consts/utils';
 
 const AMOUNT = 20;

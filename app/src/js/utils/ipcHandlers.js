@@ -6,7 +6,7 @@ import { openModal } from '../actions/modal';
 import { ITEM } from '../consts/types';
 import rantscript from '../consts/rantscript';
 
-const { ipcRenderer, shell } = require('electron');
+const { ipcRenderer } = require('electron');
 
 export default (store) => {
   ipcRenderer.on('quitApp', () => {

@@ -1,6 +1,5 @@
 import rantscript from '../consts/rantscript';
 import { USER, STATE } from '../consts/types';
-import showToast from './toast';
 
 /**
  * Fetches a user. But does not store user's rants or comments as it is

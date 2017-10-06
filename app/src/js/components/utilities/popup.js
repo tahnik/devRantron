@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Popup = (props) => {
   if (!props.visible) {
@@ -17,6 +18,16 @@ const Popup = (props) => {
       </div>
     </div>
   );
+};
+
+Popup.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  className: PropTypes.string,
+  body: PropTypes.string.isRequired,
+  onPos: PropTypes.func.isRequired,
+  onNeg: PropTypes.func.isRequired,
+  pos: PropTypes.string.isRequired,
+  neg: PropTypes.string.isRequired,
 };
 
 export default Popup;

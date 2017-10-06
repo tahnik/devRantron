@@ -51,6 +51,7 @@ class Comments extends Component {
 Comments.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
   auth: PropTypes.object.isRequired,
