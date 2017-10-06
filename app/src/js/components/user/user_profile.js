@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Twemoji from 'react-twemoji';
+
 import rantscript from '../../consts/rantscript';
 import Loading from '../utilities/loading';
 import Column from '../columns/column';
@@ -203,27 +205,29 @@ class UserProfile extends Component {
               <span className="name">{user.username}</span>
               <span className="score">+{user.score}</span>
             </div>
-            <div className="other_infos">
-              <ul>
-                { user.about !== '' && <li><i className="ion-person" />
-                  <p>{user.about}</p>
-                </li>}
-                { user.skills !== '' && <li><i className="ion-code" />
-                  <p>{user.skills}</p>
-                </li>}
-                { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
-                { user.github !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-social-github" />
-                  <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
-                    {user.github}
-                  </p>
-                </li>}
-                { user.website !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-earth" />
-                  <p onClick={() => UserProfile.openLink(user.website)}>
-                    {user.website}
-                  </p>
-                </li>}
-              </ul>
-            </div>
+            <Twemoji>
+              <div className="other_infos">
+                <ul>
+                  { user.about !== '' && <li><i className="ion-person" />
+                    <p>{user.about}</p>
+                  </li>}
+                  { user.skills !== '' && <li><i className="ion-code" />
+                    <p>{user.skills}</p>
+                  </li>}
+                  { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
+                  { user.github !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-social-github" />
+                    <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
+                      {user.github}
+                    </p>
+                  </li>}
+                  { user.website !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-earth" />
+                    <p onClick={() => UserProfile.openLink(user.website)}>
+                      {user.website}
+                    </p>
+                  </li>}
+                </ul>
+              </div>
+            </Twemoji>
           </div>
         </div>
         <div
