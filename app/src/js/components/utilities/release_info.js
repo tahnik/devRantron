@@ -16,7 +16,6 @@ class ReleaseInfo extends Component {
     fetch('https://raw.githubusercontent.com/tahnik/devRantron/update-md/UPDATE.md')
       .then((res) => {
         res.text().then((latestRelease) => {
-          console.log(latestRelease);
           const converter = new showdown.Converter();
           const html = converter.makeHtml(latestRelease);
           this.setState({ markdown: html });
