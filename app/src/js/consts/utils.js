@@ -1,5 +1,6 @@
 import Autolinker from 'autolinker';
 import createDOMPurify from 'dompurify';
+import Twemoji from 'twemoji';
 import { NOTIF_TYPES } from '../consts/types';
 import EmojiData from './emojis.json';
 
@@ -83,15 +84,14 @@ export const getEmojisFromText = (content, index, emojis) => {
 
 export const getTextFromEmoji = (content) => {
   let contentToParse = content;
-  const regex = /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/;
-  const emojis = regex.exec(content);
-  if (emojis) {
-    const allEmojis = getAllEmojisRev();
-    emojis.forEach((emoji) => {
-      const replaceReg = new RegExp(emoji, 'g');
-      contentToParse = content.replace(replaceReg, `:${allEmojis[emoji]}:`);
-    });
-  }
+  const allEmojis = getAllEmojisRev();
+  Twemoji.replace(content, (emoji) => {
+    const unicodeEmoji = allEmojis[emoji];
+    if (unicodeEmoji) {
+      const regex = new RegExp(emoji, 'g');
+      contentToParse = contentToParse.replace(regex, `:${unicodeEmoji}:`);
+    }
+  });
   return contentToParse;
 };
 
