@@ -4,7 +4,7 @@
   "main": "./build/app/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
-    "lint": "eslint --ext .jsx,.js app/src/main",
+    "lint": "eslint --ext .jsx,.js app/src/js",
     "build": "cross-env NODE_ENV=production webpack --progress --color --profile --config ./webpack/prod.config.js",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
