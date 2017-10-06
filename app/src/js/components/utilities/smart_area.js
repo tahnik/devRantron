@@ -316,6 +316,7 @@ SmartArea.propTypes = {
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   tags: PropTypes.string,
+  editing: PropTypes.bool,
   onTagsChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   maxChar: PropTypes.number.isRequired,
