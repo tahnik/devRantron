@@ -140,6 +140,7 @@ class UserProfile extends Component {
     if (this.state.popup.visible) {
       this.setState({ popup: { ...this.state.popup, visible: false } });
     }
+    this.props.close();
     this.props.logout();
   }
   render() {
@@ -245,6 +246,8 @@ UserProfile.propTypes = {
   item: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
 export default UserProfile;
