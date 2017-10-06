@@ -1,6 +1,7 @@
-import { SETTINGS } from '../consts/types';
+import { SETTINGS, ITEM } from '../consts/types';
 import { fetchUser } from './user';
 import { fetchNotifs } from './notifs';
+import { openModal } from './modal';
 
 const { ipcRenderer } = require('electron');
 const settings = require('electron-settings');
@@ -92,25 +93,15 @@ const setUpdateStatus = value => (dispatch) => {
       value: true,
     });
 
-    // const notification = new Notification('devRantron', {
-    //   body: 'New update is availble',
-    //   icon: 'http://i.imgur.com/iikd00P.png',
-    //   requireInteraction: true,
-    // });
+    const notification = new Notification('devRantron', {
+      body: 'New update is availble',
+      icon: 'http://i.imgur.com/iikd00P.png',
+      requireInteraction: true,
+    });
 
-    // let plat = '';
-
-    // if (/^win/.test(process.platform)) { plat = 'windows'; }
-    // if (/^dar/.test(process.platform)) { plat = 'osx'; }
-    // if (/^lin/.test(process.platform)) { plat = 'linux'; }
-
-    // if (plat === 'windows') {
-    //   notification.onclick = () => {
-    //     ipcRenderer.send('updateNow', true);
-    //   };
-    // } else {
-
-    // }
+    notification.onclick = () => {
+      dispatch(openModal(ITEM.RELEASE_INFO.NAME));
+    };
   } else {
     dispatch({
       type: SETTINGS.ACTION.CHANGE_GENERAL,
