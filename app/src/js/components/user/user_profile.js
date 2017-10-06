@@ -144,6 +144,8 @@ class UserProfile extends Component {
     this.props.logout();
   }
   render() {
+    const { auth, theme, item } = this.props;
+    const { user, loading, popup } = this.state;
     if (this.state.userNonExisting) {
       return (
         <div className="profile_container modal">
@@ -153,15 +155,14 @@ class UserProfile extends Component {
         </div>
       );
     }
-    if (!this.state.user || this.state.loading) {
+    if (!user || loading) {
       return (
         <div className="modal">
           <Loading />
         </div>
       );
     }
-    const { user, popup } = this.state;
-    const { theme } = this.props;
+    const isLoggedInUser = auth.user.authToken.user_id === item.id;
     let imageSource = 'res/images/invis.png';
     if (user.avatar.i) {
       imageSource = `https://avatars.devrant.io/${user.avatar.i.replace('c-1', 'c-2').replace('png', 'jpg')}`;
@@ -188,9 +189,12 @@ class UserProfile extends Component {
             width: `${theme.column.width}px`,
           }}
         >
-          <div className="logout" onClick={() => { this.onLogout(true); }} >
-            <i className="ion-log-out" />
-          </div>
+          {
+            isLoggedInUser ?
+              <div className="logout" onClick={() => { this.onLogout(true); }} >
+                <i className="ion-log-out" />
+              </div> : null
+          }
           <div className="image">
             <img alt="" src={imageSource} style={{ backgroundColor: `#${user.avatar.b}` }} />
           </div>
