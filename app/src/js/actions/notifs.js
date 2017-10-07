@@ -36,25 +36,38 @@ const fetchNotifs = (refresh = false) => (dispatch, getState) => {
       let currentNumUnread = res.data.num_unread;
       if (prevNotifs) {
         currentNumUnread = 0;
-        for (let j = 0; j < prevNotifs.items.length; j += 1) {
-          if (prevNotifs.items[j].read === 0) {
+        let k = prevNotifs.items.length - 1;
+        /**
+         * Fuck eslint for this rules.
+         */
+        // eslint-disable-next-line
+        while (k--) {
+          if (prevNotifs.items[k].read === 0) {
             currentNumUnread += 1;
           }
         }
       }
       if (
         prevNotifs
-        && res.data.num_unread === prevNotifs.num_unread
-        && res.data.num_unread === currentNumUnread
+        && (res.data.num_unread === prevNotifs.num_unread
+        || res.data.num_unread === currentNumUnread)
         && res.data.items.length === 0
       ) {
         console.timeEnd('someFunction');
+        const notifs = {
+          ...prevNotifs,
+          num_unread: res.data.num_unread,
+        };
+        dispatch({
+          type: NOTIFS.FETCH,
+          notifs,
+        });
         return;
       }
       if (
         prevNotifs
-        && res.data.num_unread !== prevNotifs.num_unread
-        && res.data.num_unread !== currentNumUnread
+        && (res.data.num_unread !== prevNotifs.num_unread
+        || res.data.num_unread !== currentNumUnread)
         && !refresh
       ) {
         console.timeEnd('someFunction');
