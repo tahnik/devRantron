@@ -1,9 +1,14 @@
 .dropdown
   color: #fff
   margin-bottom: 12px
+  position: relative
   .actualDropdown
-    height: 0px
+    height: 0
     overflow: hidden
+    transition: all 0.4s
+    z-index: 9
+    position: absolute
+    width: 100%
     &.active
       height: auto
   .item
@@ -17,6 +22,8 @@
     transition: background 0.2s
     &.selected
       margin-top: 0px
+      z-index: 99
+      position: relative
     i
       margin-right: 6px
       &::before

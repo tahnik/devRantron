@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import rantscript from '../../consts/rantscript';
 import SmartArea from '../utilities/smart_area';
-import RantType from './rant_type';
 import Loading from '../utilities/loading';
 import { ITEM } from '../../consts/types';
 import Popup from '../utilities/popup';
+import Dropdown from '../utilities/dropdown/dropdown';
+
+const RANT_TYPES = [
+  { id: 1, color: '#d55063', icon: 'icon ion-chatbubble-working', header: 'Rant / Story' },
+  { id: 3, color: '#2b8a9c', icon: 'icon ion-image', header: 'Joke / Meme' },
+  { id: 4, color: '#ab73a2', icon: 'icon ion-help', header: 'Question' },
+  { id: 5, color: '#fa9a67', icon: 'icon ion-heart', header: 'devRant' },
+  { id: 6, color: '#7ac8a6', icon: 'icon ion-ios-game-controller-a', header: 'Random' },
+];
 
 class PostRant extends Component {
   constructor() {
@@ -15,6 +23,7 @@ class PostRant extends Component {
       tags: '',
       limitCrossed: null,
       disabled: false,
+      type: 1,
       popup: {
         visible: false,
         className: '',
@@ -71,7 +80,7 @@ class PostRant extends Component {
       return;
     }
     rantscript
-      .postRant(text, this.state.tags, 1, auth.user.authToken, image)
+      .postRant(text, this.state.tags, this.state.type, auth.user.authToken, image)
       .then((res) => {
         if (!res.success) {
           this.setState({ popup:
@@ -131,9 +140,16 @@ class PostRant extends Component {
             />
           </div>
           <div className="utils" >
-            <RantType
-              onSelect={type => console.log(type)}
+            <span className="header">Rant Type</span>
+            <Dropdown
+              items={RANT_TYPES}
+              noBackground
+              onSelect={type => this.setState({ type: type.id })}
             />
+            <span className="header">Save draft</span>
+            <div className="save_draft">
+              <input /><button>Save Draft</button>
+            </div>
           </div>
         </div>
       </div>

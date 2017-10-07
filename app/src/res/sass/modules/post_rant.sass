@@ -2,15 +2,35 @@
   height: 100%
   width: 100%
   display: flex
+  align-items: flex-start
   .utils
-    padding: 0 2rem 0 0.5rem;
+    padding: 0.5rem
+    display: block
+    margin: 0 1.5rem 0 0.5rem
+    background-color: #54556E
+    border-radius: 4px
     flex: 1
+    .save_draft
+      button
+        margin-left: 1rem
+      input
+        padding: 0 7px
+        border: none
+        color: black
+        background-color: white
+    .header
+      display: block
+      margin-bottom: 0.7rem
+      color: white
+      font-size: 0.8rem
+      opacity: 0.5
   .post_rant
     display: flex
     flex-direction: column
-    padding: 0 0.5rem 0 2rem;
+    padding: 0 0.5rem 0 0.5rem;
     flex: 1
     height: 100%
+    margin: 0 0.5rem 0 1.5rem
     .smart_area
       height: 100%
       textarea
