@@ -101,7 +101,7 @@ class Item extends Component {
           setTimeout(() => {
             const commentsContainer = document.getElementsByClassName('comments_container')[0];
             commentsContainer.scrollTop = commentsContainer.scrollHeight;
-          }, 1000);
+          }, 500);
         }
       })
       .catch((err) => {

@@ -14,7 +14,7 @@ let fetching = false;
  * Fetches notifications
  *
  */
-const fetchNotifs = () => (dispatch, getState) => {
+const fetchNotifs = (refresh = false) => (dispatch, getState) => {
   if (clearingNotifs || fetching) {
     return;
   }
@@ -23,44 +23,60 @@ const fetchNotifs = () => (dispatch, getState) => {
     return;
   }
   const prevNotifs = getState().notifs;
-  const lastCheckTime = 1;
+  let lastCheckTime = 1;
+  if (prevNotifs && !refresh) {
+    lastCheckTime = getState().notifs.check_time;
+  }
   fetching = true;
   rantscript
     .notifications(auth.user.authToken, lastCheckTime)
     .then((res) => {
+      console.time('someFunction');
       fetching = false;
-      let noChange = true;
-
-      if (prevNotifs && prevNotifs.num_unread === res.data.num_unread) {
-        const nextnotifItems = res.data.items;
-        let j = 0;
-        if (nextnotifItems) {
-          while (j < nextnotifItems.length) {
-            const prevItem = prevNotifs.items[j];
-            const nextItem = nextnotifItems[j];
-            if (
-              prevItem.rant_id !== nextItem.rant_id
-        || prevItem.read !== nextItem.read
-            ) {
-              noChange = false;
-              break;
-            }
-            j += 1;
+      let currentNumUnread = res.data.num_unread;
+      if (prevNotifs) {
+        currentNumUnread = 0;
+        for (let j = 0; j < prevNotifs.items.length; j += 1) {
+          if (prevNotifs.items[j].read === 0) {
+            currentNumUnread += 1;
           }
         }
-      } else {
-        noChange = false;
       }
-
-      if (noChange) {
+      if (
+        prevNotifs
+        && res.data.num_unread === prevNotifs.num_unread
+        && res.data.num_unread === currentNumUnread
+        && res.data.items.length === 0
+      ) {
+        console.timeEnd('someFunction');
         return;
       }
+      if (
+        prevNotifs
+        && res.data.num_unread !== prevNotifs.num_unread
+        && res.data.num_unread !== currentNumUnread
+        && !refresh
+      ) {
+        console.timeEnd('someFunction');
+        dispatch(fetchNotifs(true));
+        return;
+      }
+      let items = null;
+      let usernameMap = null;
+      if (lastCheckTime === 1 && !prevNotifs) {
+        items = res.data.items;
+        usernameMap = res.data.username_map;
+      } else {
+        items = [...res.data.items, ...prevNotifs.items].slice(0, 99);
+        usernameMap = { ...res.data.username_map, ...prevNotifs.username_map };
+      }
       const notifs = {
-        items: res.data.items,
+        items,
         check_time: res.data.check_time,
-        username_map: res.data.username_map,
+        username_map: usernameMap,
         num_unread: res.data.num_unread,
       };
+      console.timeEnd('someFunction');
       dispatch({
         type: NOTIFS.FETCH,
         notifs,
