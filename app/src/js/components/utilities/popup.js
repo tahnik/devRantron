@@ -13,7 +13,7 @@ const Popup = (props) => {
         </span>
         <div className="actions">
           <button onClick={() => props.onPos()}>{ props.pos }</button>
-          <button onClick={() => props.onNeg()} >{ props.neg }</button>
+          { props.onNeg ? <button onClick={() => props.onNeg()} >{ props.neg }</button> : null }
         </div>
       </div>
     </div>

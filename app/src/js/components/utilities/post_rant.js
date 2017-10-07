@@ -5,6 +5,7 @@ import SmartArea from '../utilities/smart_area';
 import RantType from './rant_type';
 import Loading from '../utilities/loading';
 import { ITEM } from '../../consts/types';
+import Popup from '../utilities/popup';
 
 class PostRant extends Component {
   constructor() {
@@ -14,6 +15,12 @@ class PostRant extends Component {
       tags: '',
       limitCrossed: null,
       disabled: false,
+      popup: {
+        visible: false,
+        className: '',
+        pos: 'Ok',
+        body: '',
+      },
     };
   }
 
@@ -39,7 +46,9 @@ class PostRant extends Component {
       .editRant(text, this.state.tags, item.id, auth.user.authToken)
       .then((res) => {
         if (!res.success) {
-          this.setState({ limitCrossed: res.error });
+          this.setState({ popup:
+            { ...this.state.popup, body: res.error, visible: true, className: '' },
+          });
           return;
         }
         this.setState({
@@ -57,7 +66,6 @@ class PostRant extends Component {
 
   onPost(text, image) {
     const { auth, item } = this.props;
-    this.setState({ disabled: true });
     if (item.id !== 0) {
       this.editRant(text);
       return;
@@ -66,7 +74,9 @@ class PostRant extends Component {
       .postRant(text, this.state.tags, 1, auth.user.authToken, image)
       .then((res) => {
         if (!res.success) {
-          this.setState({ limitCrossed: res.error });
+          this.setState({ popup:
+            { ...this.state.popup, body: res.error, visible: true, className: '' },
+          });
           return;
         }
         this.setState({
@@ -74,6 +84,7 @@ class PostRant extends Component {
           rant_content: '',
           tags: '',
           limitCrossed: null,
+          disabled: true,
         });
         this.props.open(ITEM.RANT.NAME, res.rant_id);
       })
@@ -84,6 +95,7 @@ class PostRant extends Component {
 
   render() {
     const { auth, item } = this.props;
+    const { popup } = this.state;
     if (item.id !== 0 && this.state.rant_content === '') {
       return (
         <div className="modal" >
@@ -96,11 +108,16 @@ class PostRant extends Component {
         className="modal"
       >
         <div className="post_rant_container">
+          <Popup
+            {...popup}
+            onPos={() => {
+              this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } });
+              setTimeout(() => {
+                this.setState({ popup: { ...this.state.popup, visible: false } });
+              }, 300);
+            }}
+          />
           <div className="post_rant">
-            {/* @tahnik needs to hook dis up */}
-            <RantType
-              onSelect={type => console.log(type)}
-            />
             <SmartArea
               onPost={(text, image) => this.onPost(text, image)}
               value={this.state.rant_content}
@@ -112,7 +129,11 @@ class PostRant extends Component {
               editing={item.id !== 0}
               onTagsChange={tags => this.setState({ tags })}
             />
-            <p>{this.state.limitCrossed || ''}</p>
+          </div>
+          <div className="utils" >
+            <RantType
+              onSelect={type => console.log(type)}
+            />
           </div>
         </div>
       </div>

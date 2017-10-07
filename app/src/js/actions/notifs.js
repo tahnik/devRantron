@@ -31,6 +31,7 @@ const fetchNotifs = (refresh = false) => (dispatch, getState) => {
   rantscript
     .notifications(auth.user.authToken, lastCheckTime)
     .then((res) => {
+      console.log('fethcing notigs');
       fetching = false;
       const newItems = res.data.items;
       const newNumUnread = res.data.num_unread;
@@ -51,7 +52,7 @@ const fetchNotifs = (refresh = false) => (dispatch, getState) => {
       if (
         prevNotifs
         && (newNumUnread === prevNotifs.num_unread
-        || newNumUnread === currentNumUnread)
+        && newNumUnread === currentNumUnread)
         && newItems.length === 0
       ) {
         const notifs = {

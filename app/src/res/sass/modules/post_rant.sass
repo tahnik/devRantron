@@ -2,16 +2,20 @@
   height: 100%
   width: 100%
   display: flex
-  align-items: center
-  flex-direction: column
+  .utils
+    padding: 0 2rem 0 0.5rem;
+    flex: 1
   .post_rant
     display: flex
-    width: 25rem
     flex-direction: column
+    padding: 0 0.5rem 0 2rem;
+    flex: 1
+    height: 100%
     .smart_area
+      height: 100%
       textarea
         &.smart_textarea
-          height: 70vh
+          flex: 10
         &.tags
-          height: 3rem
+          flex: 1
           margin-top: 0.5rem
