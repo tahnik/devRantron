@@ -31,8 +31,9 @@ const fetchNotifs = (refresh = false) => (dispatch, getState) => {
   rantscript
     .notifications(auth.user.authToken, lastCheckTime)
     .then((res) => {
-      console.time('someFunction');
       fetching = false;
+      const newItems = res.data.items;
+      const newNumUnread = res.data.num_unread;
       let currentNumUnread = res.data.num_unread;
       if (prevNotifs) {
         currentNumUnread = 0;
@@ -49,14 +50,13 @@ const fetchNotifs = (refresh = false) => (dispatch, getState) => {
       }
       if (
         prevNotifs
-        && (res.data.num_unread === prevNotifs.num_unread
-        || res.data.num_unread === currentNumUnread)
-        && res.data.items.length === 0
+        && (newNumUnread === prevNotifs.num_unread
+        || newNumUnread === currentNumUnread)
+        && newItems.length === 0
       ) {
-        console.timeEnd('someFunction');
         const notifs = {
           ...prevNotifs,
-          num_unread: res.data.num_unread,
+          num_unread: newNumUnread,
         };
         dispatch({
           type: NOTIFS.FETCH,
@@ -66,30 +66,28 @@ const fetchNotifs = (refresh = false) => (dispatch, getState) => {
       }
       if (
         prevNotifs
-        && (res.data.num_unread !== prevNotifs.num_unread
-        || res.data.num_unread !== currentNumUnread)
+        && (newNumUnread !== prevNotifs.num_unread
+        || newNumUnread !== currentNumUnread)
         && !refresh
       ) {
-        console.timeEnd('someFunction');
         dispatch(fetchNotifs(true));
         return;
       }
       let items = null;
       let usernameMap = null;
       if (lastCheckTime === 1 && !prevNotifs) {
-        items = res.data.items;
+        items = newItems;
         usernameMap = res.data.username_map;
       } else {
-        items = [...res.data.items, ...prevNotifs.items].slice(0, 99);
+        items = [...newItems, ...prevNotifs.items].slice(0, 99);
         usernameMap = { ...res.data.username_map, ...prevNotifs.username_map };
       }
       const notifs = {
         items,
         check_time: res.data.check_time,
         username_map: usernameMap,
-        num_unread: res.data.num_unread,
+        num_unread: newNumUnread,
       };
-      console.timeEnd('someFunction');
       dispatch({
         type: NOTIFS.FETCH,
         notifs,
