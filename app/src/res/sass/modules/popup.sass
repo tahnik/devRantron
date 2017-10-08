@@ -1,0 +1,57 @@
+@keyframes flowIn
+  from
+    opacity: 0
+    transform: scale(0.9)
+  to
+    opacity: 1
+    transform: scale(1)
+
+@keyframes flowOut
+  from
+    opacity: 1
+    transform: scale(1)
+  to
+    opacity: 0
+    transform: scale(0.9)
+
+.popup_container
+  height: 100vh
+  width: 100vw
+  position: fixed
+  top: 0
+  left: 0
+  bottom: 0
+  right: 0
+  display: flex
+  z-index: 299
+  justify-content: center
+  align-items: center
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.3)
+  animation: flowIn 0.3s forwards cubic-bezier(0.6,-0.2, 0.15, 1.25)
+  &.closeAnim
+    animation: flowOut 0.3s forwards cubic-bezier(0.6,-0.2, 0.15, 1.25)
+  .popup
+    background-color: #C14857
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
+    border-radius: 5px
+    overflow: hidden
+    max-width: 50%
+    span
+      padding: 2rem
+      font-size: 1.2rem
+      color: white
+    .actions
+      width: 100%
+      display: flex
+      border-top: 1px solid rgba(0,0,0,0.05)
+      button
+        flex: 1
+        margin: 0
+        box-shadow: none
+        box-sizing: content-box
+        padding: 6px
+        &:hover
+          background-color: #ba4553

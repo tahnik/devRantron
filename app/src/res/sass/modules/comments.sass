@@ -1,6 +1,6 @@
 .post_comment
   position: absolute
-  bottom: 1rem
+  bottom: 0
   display: flex
   flex-direction: column
   padding-right: 2rem
@@ -15,6 +15,8 @@
   button
     flex: 2
 .comments_container
+  overflow-y: scroll
+  height: calc(100% - (#{$post_comment_height} + 1rem))
   h4
     text-align: center
     color: white

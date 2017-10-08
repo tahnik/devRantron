@@ -11,6 +11,7 @@ import Loading from '../utilities/loading';
 import rantscript from '../../consts/rantscript';
 import Comments from '../comments/comments';
 import PostComment from '../comments/comment_post';
+import { ITEM } from '../../consts/types';
 
 class Item extends Component {
   constructor() {
@@ -35,6 +36,12 @@ class Item extends Component {
       this.handleResize();
     };
     window.addEventListener('resize', this.listener);
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.item === nextState.item) {
+      return false;
+    }
+    return true;
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.listener);
@@ -91,12 +98,10 @@ class Item extends Component {
           return;
         }
         if (scrollToBottom) {
-          if (this.multiCol) {
-            this.multiCol.scrollTop = this.multiCol.scrollHeight;
-          }
-          if (this.compactCol) {
-            this.compactCol.scrollTop = this.compactCol.scrollHeight;
-          }
+          setTimeout(() => {
+            const commentsContainer = document.getElementsByClassName('comments_container')[0];
+            commentsContainer.scrollTop = commentsContainer.scrollHeight;
+          }, 500);
         }
       })
       .catch((err) => {
@@ -113,6 +118,13 @@ class Item extends Component {
   addMention(value) {
     this.postComment.addMention(value);
   }
+  onEdit(id, value, isRant = false) {
+    if (isRant) {
+      this.props.open(ITEM.POST_RANT.NAME, id);
+      return;
+    }
+    this.postComment.edit(id, value);
+  }
   getItemCard() {
     const { item } = this.state;
     const { theme, vote, cardItem, auth, open, showToast } = this.props;
@@ -128,6 +140,7 @@ class Item extends Component {
         open={open}
         showToast={showToast}
         fetchitem={() => this.fetchitem()}
+        onEdit={(id, value) => this.onEdit(id, value, true)}
       />
     );
   }
@@ -144,6 +157,7 @@ class Item extends Component {
         showToast={showToast}
         addMention={value => this.addMention(value)}
         fetchitem={() => this.fetchitem()}
+        onEdit={(id, value) => this.onEdit(id, value)}
       />
     );
   }
@@ -172,7 +186,6 @@ class Item extends Component {
         </div>
         <div
           className="comments_and_post"
-          ref={(node) => { this.multiCol = node; }}
         >
           {this.getComments()}
           {this.getPostComment()}

@@ -1,0 +1,41 @@
+.dropdown
+  position: relative
+  z-index: 99
+  .selected
+    background-color: #40415A
+    &:hover
+      cursor: pointer
+  .drop_item
+    display: flex
+    align-items: center
+    padding: 0.7rem
+    font-size: 1.2rem
+    .drop_icon
+      width: 20px
+      display: flex
+      justify-content: center
+    &:hover
+      cursor: pointer
+    .drop_header
+      margin-left: 0.5rem
+      font-weight: 600
+    .ion-chevron-down
+      margin-left: auto
+      padding-left: 0.6rem
+
+  .drop_items
+    margin: 5px 0
+    padding: 8px
+    background-color: #40415A
+    opacity: 0
+    transform: translateY(-10px)
+    transition: all 0.4s
+    position: absolute
+    width: 100%
+    pointer-events: none
+    &.active
+      pointer-events: all
+      opacity: 1
+      transform: translateY(0)
+    .drop_item
+      margin: 8px 0

@@ -162,6 +162,15 @@ class BottomBar extends Component {
                 </div>
                 : null
               }
+              { this.props.isUser && this.props.editable ?
+                <div
+                  className="toggle_item edit"
+                  onClick={() => this.props.onEdit()}
+                >
+                  <p><i className="ion-android-create" /></p>
+                </div>
+                : null
+              }
             </div>
           </div>
           {
@@ -184,7 +193,9 @@ class BottomBar extends Component {
 
 BottomBar.propTypes = {
   isUser: PropTypes.bool.isRequired,
+  editable: PropTypes.bool.isRequired,
   vote: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   type: PropTypes.string,
   addMention: PropTypes.func,

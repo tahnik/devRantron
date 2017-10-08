@@ -15,6 +15,44 @@ class CompactUserCard extends Component {
       fetchUser();
     }
   }
+  componentDidMount() {
+    const { user } = this.props;
+    const profile = user.profile;
+    let imgsrc = './res/images/empty_avatar.png';
+    if (profile && profile.avatar.i) {
+      imgsrc = `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
+    } else {
+      return;
+    }
+    const reload = setInterval(() => {
+      const profilePicture = new Image();
+      profilePicture.onload = () => {
+        window.clearInterval(reload);
+        this.profilePicture.src = profilePicture.src;
+      };
+      profilePicture.src = imgsrc;
+    }, 1000);
+  }
+  componentDidUpdate() {
+    const { user } = this.props;
+    const profile = user.profile;
+    if (!this.profilePicture) {
+      return;
+    }
+    const indexOfEmpty = this.profilePicture.src.indexOf('empty_avatar');
+    if (indexOfEmpty === -1) {
+      return;
+    }
+    let imgsrc = '';
+    if (profile && profile.avatar.i) {
+      imgsrc = `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
+    }
+    const profilePicture = new Image();
+    profilePicture.onload = () => {
+      this.profilePicture.src = profilePicture.src;
+    };
+    profilePicture.src = imgsrc;
+  }
   mouseOut() {
     this.setState({ confirm: false });
     this.logoutButton.setAttribute('data-text', 'Logout');
@@ -42,21 +80,24 @@ class CompactUserCard extends Component {
       );
     }
     const profile = user.profile;
-    let imgsrc = '';
-    if (profile.avatar.i) {
-      imgsrc += `https://avatars.devrant.io/${profile.avatar.i.replace('c-1', 'c-2')}`.toString();
-    }
+    const imgsrc = './res/images/empty_avatar.png';
 
     return (
       <div
         className="user_compact"
         style={{ background: 'url(./res/images/profile_banner.png)' }}
+        onClick={() => this.props.open(ITEM.PROFILE.NAME, profile.id)}
       >
         <div
           className="user_image_container"
-          onClick={() => this.props.open(ITEM.PROFILE.NAME, profile.id)}
         >
-          <img className="user_image" src={imgsrc} style={{ background: `#${profile.avatar.b}` }} alt="avatar" />
+          <img
+            className="user_image"
+            src={imgsrc}
+            ref={(node) => { this.profilePicture = node; }}
+            style={{ background: `#${profile.avatar.b}` }}
+            alt="avatar"
+          />
         </div>
         <div
           className="name_and_score"
@@ -70,15 +111,6 @@ class CompactUserCard extends Component {
           </div>
         </div>
         <div className="user_bg_tint" style={{ background: `#${profile.avatar.b}` }} />
-        <div
-          className="logout"
-          ref={(node) => { this.logoutButton = node; }}
-          data-text="Logout"
-          onClick={e => this.logout(e)}
-          onMouseOut={() => this.mouseOut()}
-        >
-          <i className="ion-log-out" />
-        </div>
       </div>
     );
   }

@@ -1,7 +1,6 @@
 import rantscript from '../consts/rantscript';
 import { FEED, STATE, COLUMN, COLUMNS, ITEM } from '../consts/types';
 import DEFAULT_STATES from '../consts/default_states';
-import showToast from './toast';
 import { getUID } from '../consts/utils';
 
 const AMOUNT = 20;
@@ -168,7 +167,7 @@ const updateColumnScrollHeight = (id, value) => (dispatch) => {
  *                       start
  */
 const fetch =
-(sort, type, id, range, refresh = false) => (dispatch, getState) => {
+(sort, type, id, range, refresh = false, week = 0) => (dispatch, getState) => {
   // First check if column that requested the fetch is part of custom columns
   const columns = getState().columns;
   let currentColumn = columns.filter(column => column.id === id)[0];
@@ -260,69 +259,104 @@ const fetch =
 
   // Switch between different feed types and fetches the right one.
   switch (type) {
-    case FEED.RANTS.NAME:
-      rantscript
-        .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken, range)
-        .then((res) => {
-        /**
-         * If the pages is 0, that means we do not need to current items in the
-         * column.
-         */
-          const currentItems = page !== 0 ? currentColumn.items : [];
-          newColumn.items = [
-            ...currentItems,
-            ...filterRants(currentItems, res.rants, cFilters),
-          ];
-          // The prev_set is needed for algo sort to work.
-          newColumn.prev_set = res.set;
-          dispatch({
-            type: COLUMN.FETCH,
-            column: newColumn,
+    case FEED.RANTS.NAME: {
+      const reload = setInterval(() => {
+        rantscript
+          .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken, range)
+          .then((res) => {
+            /**
+             * If the pages is 0, that means we do not need to current items in the
+             * column.
+             */
+            window.clearInterval(reload);
+            const currentItems = page !== 0 ? currentColumn.items : [];
+            newColumn.items = [
+              ...currentItems,
+              ...filterRants(currentItems, res.rants, cFilters),
+            ];
+            // The prev_set is needed for algo sort to work.
+            newColumn.prev_set = res.set;
+            dispatch({
+              type: COLUMN.FETCH,
+              column: newColumn,
+            });
+          })
+          .catch(() => {
+            //
           });
-        })
-        .catch(() => {
-          dispatch(showToast('Could not fetch feed'));
-        });
+      }, 1000);
       break;
-    case FEED.STORIES.NAME:
-      rantscript
-        .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
-        .then((res) => {
-          const currentItems = page !== 0 ? currentColumn.items : [];
-          newColumn.items = [
-            ...currentItems,
-            ...filterRants(currentItems, res, cFilters),
-          ];
-          newColumn.prev_set = res.set;
-          dispatch({
-            type: COLUMN.FETCH,
-            column: newColumn,
+    }
+    case FEED.STORIES.NAME: {
+      const reload = setInterval(() => {
+        rantscript
+          .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
+          .then((res) => {
+            window.clearInterval(reload);
+            const currentItems = page !== 0 ? currentColumn.items : [];
+            newColumn.items = [
+              ...currentItems,
+              ...filterRants(currentItems, res, cFilters),
+            ];
+            newColumn.prev_set = res.set;
+            dispatch({
+              type: COLUMN.FETCH,
+              column: newColumn,
+            });
+          })
+          .catch(() => {
+            //
           });
-        })
-        .catch(() => {
-          dispatch(showToast('Could not fetch feed'));
-        });
-
+      }, 1000);
       break;
-    case FEED.COLLABS.NAME:
-      rantscript
-        .collabs(sort, AMOUNT, AMOUNT * page, authToken)
-        .then((res) => {
-          const currentItems = page !== 0 ? currentColumn.items : [];
-          newColumn.items = [
-            ...currentItems,
-            ...filterRants(currentItems, res, cFilters),
-          ];
-          newColumn.prev_set = res.set;
-          dispatch({
-            type: COLUMN.FETCH,
-            column: newColumn,
+    }
+    case FEED.COLLABS.NAME: {
+      const reload = setInterval(() => {
+        rantscript
+          .collabs(sort, AMOUNT, AMOUNT * page, authToken)
+          .then((res) => {
+            window.clearInterval(reload);
+            const currentItems = page !== 0 ? currentColumn.items : [];
+            newColumn.items = [
+              ...currentItems,
+              ...filterRants(currentItems, res, cFilters),
+            ];
+            newColumn.prev_set = res.set;
+            dispatch({
+              type: COLUMN.FETCH,
+              column: newColumn,
+            });
+          })
+          .catch(() => {
+            //
           });
-        })
-        .catch(() => {
-          dispatch(showToast('Could not fetch feed'));
-        });
+      }, 1000);
       break;
+    }
+    case FEED.WEEKLY.NAME: {
+      const reload = setInterval(() => {
+        rantscript
+          .weekly(week, sort, AMOUNT, AMOUNT * page, authToken)
+          .then((res) => {
+            window.clearInterval(reload);
+            const currentItems = page !== 0 ? currentColumn.items : [];
+            newColumn.items = [
+              ...currentItems,
+              ...filterRants(currentItems, res, cFilters),
+            ];
+            newColumn.week = week;
+            newColumn.prev_set = res.set;
+            dispatch({
+              type: COLUMN.FETCH,
+              column: newColumn,
+            });
+          })
+          .catch(() => {
+            //
+          });
+      }, 1000);
+      break;
+    }
     default:
       dispatch();
   }

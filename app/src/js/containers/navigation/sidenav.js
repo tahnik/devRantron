@@ -12,6 +12,7 @@ const SIDE_NAV_ITEMS = [
   { name: 'Rants', route: ROUTES.rants, icon: 'ion-chatboxes' },
   { name: 'Collabs', route: ROUTES.collabs, icon: 'ion-person-stalker' },
   { name: 'Stories', route: ROUTES.stories, icon: 'ion-ios-bookmarks' },
+  { name: 'Weekly', route: ROUTES.weekly, icon: 'ion-android-calendar' },
   { name: 'Custom', route: ROUTES.custom, icon: 'ion-edit' },
   { name: 'Search', route: ROUTES.search, icon: 'ion-android-search' },
   { name: 'Settings', route: ROUTES.settings, icon: 'ion-gear-a' },
@@ -40,6 +41,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
   user: state.user,
   sideNavItems: SIDE_NAV_ITEMS,
+  settings: state.settings,
 });
 
 

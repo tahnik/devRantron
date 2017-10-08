@@ -118,8 +118,8 @@ function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1024,
-    height: 768,
-    minHeight: 768,
+    height: 600,
+    minHeight: 600,
     minWidth: 1024,
     show: false,
   });
@@ -258,17 +258,6 @@ ipcMain.on('reLaunch', () => {
 
 ipcMain.on('updateNow', () => {
   autoUpdater.quitAndInstall();
-});
-
-autoUpdater.on('update-available', () => {
-  let plat = '';
-
-  if (/^win/.test(process.platform)) { plat = 'windows'; }
-  if (/^dar/.test(process.platform)) { plat = 'osx'; }
-  if (/^lin/.test(process.platform)) { plat = 'linux'; }
-  if (plat !== 'windows') {
-    mainWindow.webContents.send('newUpdateAvailable');
-  }
 });
 
 autoUpdater.on('update-not-available', () => {

@@ -14,38 +14,35 @@ class Comments extends Component {
       item: null,
     };
   }
-  shouldComponentUpdate(nextProps) {
-    if (this.props.comments.length === nextProps.comments.length) {
-      return false;
-    }
-    return true;
-  }
   render() {
     const { theme, vote, comments, auth, open, addMention, showToast, fetchitem } = this.props;
     return (
       <div className="comments_container">
-        {
-          comments.length === 0 ?
-            <div style={{ width: `${theme.column.width}px`, marginRight: '0.5rem' }}>
-              <h4>No comments</h4>
-            </div>
-            : null
-        }
-        {
-          comments.map(comment => (
-            <ItemCard
-              key={comment.id}
-              item={comment}
-              theme={theme}
-              vote={vote}
-              auth={auth}
-              open={open}
-              addMention={addMention}
-              showToast={showToast}
-              fetchitem={fetchitem}
-            />
-          ))
-        }
+        <div className="comments">
+          {
+            comments.length === 0 ?
+              <div style={{ width: `${theme.column.width}px`, marginRight: '0.5rem' }}>
+                <h4>No comments</h4>
+              </div>
+              : null
+          }
+          {
+            comments.map(comment => (
+              <ItemCard
+                key={comment.id}
+                item={comment}
+                theme={theme}
+                vote={vote}
+                auth={auth}
+                open={open}
+                addMention={addMention}
+                showToast={showToast}
+                fetchitem={fetchitem}
+                onEdit={this.props.onEdit}
+              />
+            ))
+          }
+        </div>
       </div>
     );
   }
@@ -54,6 +51,7 @@ class Comments extends Component {
 Comments.propTypes = {
   theme: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
   auth: PropTypes.object.isRequired,

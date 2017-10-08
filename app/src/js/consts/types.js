@@ -61,6 +61,15 @@ export const MODAL = {
   CLOSE: 'MODAL_CLOSE',
 };
 
+export const POST_RANT = {
+  ADD_DRAFT: 'POST_RANT_ADD_DRAFT',
+  REMOVE_DRAFT: 'POST_RANT_REMOVE_DRAFT',
+  AUTOSAVE: {
+    SAVE: 'AUTOSAVE_SAVE',
+    CLEAR: 'AUTOSAVE_CLEAR',
+  },
+};
+
 export const USER = {
   FETCH: 'USER_FETCH',
   REMOVE: 'USER_REMOVE',
@@ -85,6 +94,9 @@ export const ITEM = {
       FETCH: 'RANT_FETCH',
       VOTE: 'RANT_VOTE',
     },
+  },
+  RELEASE_INFO: {
+    NAME: 'RELEASE_INFO',
   },
   PROFILE: {
     NAME: 'PROFILE',
@@ -114,6 +126,12 @@ export const ITEM = {
     NAME: 'COLLAB',
     ACTION: {
       VOTE: 'COLLAB_VOTE',
+    },
+  },
+  WEEKLY: {
+    NAME: 'WEEKLY',
+    ACTION: {
+      VOTE: 'WEEKLY_VOTE',
     },
   },
   COMMON: {
@@ -150,6 +168,17 @@ export const FEED = {
         ALGO: false,
         RECENT: false,
       },
+    },
+  },
+  WEEKLY: {
+    NAME: 'WEEKLY',
+    FILTERS: {
+      SORT: {
+        ALGO: 'algo',
+        TOP: 'top',
+        RECENT: 'recent',
+      },
+      PRIMARY: 'SORT',
     },
   },
   STORIES: {

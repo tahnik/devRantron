@@ -11,14 +11,29 @@ import BottomBar from './bottom_bar';
 import { ITEM } from '../../consts/types';
 import { parseLinks, timeSince, parseUsers, replaceAll, purifyDOM } from '../../consts/utils';
 import rantscript from '../../consts/rantscript';
+import Popup from '../utilities/popup';
+import { deleteItem } from '../../consts/errors';
 
 const { shell, clipboard } = require('electron');
 
 class ItemCard extends Component {
-  shouldComponentUpdate(nextProps) {
+  constructor() {
+    super();
+    this.state = {
+      popup: {
+        visible: false,
+        className: '',
+        pos: deleteItem.pos,
+        neg: deleteItem.neg,
+        body: deleteItem.body,
+      },
+    };
+  }
+  shouldComponentUpdate(nextProps, nextState) {
     if (
       this.props.theme === nextProps.theme
       && this.props.item === nextProps.item
+      && this.state.popup === nextState.popup
     ) {
       return false;
     }
@@ -63,7 +78,14 @@ class ItemCard extends Component {
         console.log(err);
       });
   }
-  onDelete() {
+  onDelete(showConfirmPopup = true) {
+    if (showConfirmPopup) {
+      this.setState({ popup: { ...this.state.popup, className: '', visible: true } });
+      return;
+    }
+    if (this.state.popup.visible) {
+      this.setState({ popup: { ...this.state.popup, visible: false } });
+    }
     const { auth, item, showToast, fetchitem } = this.props;
     if (item.rant_id) {
       rantscript.deleteComment(item.id, auth.user.authToken)
@@ -194,6 +216,7 @@ class ItemCard extends Component {
   }
   render() {
     const { item, theme, vote, modal, itemType, auth, open, addMention } = this.props;
+    const { popup } = this.state;
     const user = {
       avatar: item.user_avatar,
       score: item.user_score,
@@ -208,6 +231,18 @@ class ItemCard extends Component {
     }
     // Item card is used for comments as well
     const isComment = typeof item.rant_id !== 'undefined';
+    let editable = false;
+    if (isUser) {
+      const seconds = Math.floor((new Date() - (item.created_time * 1000)) / 1000);
+      const interval = seconds / 60;
+      const maxEditLimit = item.user_dpp ? 30 : 5;
+      if (interval <= maxEditLimit) {
+        editable = true;
+        if (isComment && modal) {
+          editable = false;
+        }
+      }
+    }
     // If there is any image with this rant
     const image = item.attached_image || '';
     return (
@@ -220,6 +255,11 @@ class ItemCard extends Component {
           width: `${theme.column.width}px`,
         }}
       >
+        <Popup
+          {...popup}
+          onPos={() => { this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } }); setTimeout(() => { this.onDelete(false); }); }}
+          onNeg={() => { this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } }); setTimeout(() => { this.setState({ popup: { ...this.state.popup, visible: false } }); }, 300); }}
+        />
         <UserBadge
           user={user}
           theme={theme}
@@ -253,6 +293,7 @@ class ItemCard extends Component {
           item={item}
           vote={vote}
           isUser={isUser}
+          editable={editable}
           copyToClip={() => this.copyLinkToClipboard()}
           modal={modal}
           type={isComment ? ITEM.COMMENT.NAME : ITEM.RANT.NAME}
@@ -262,6 +303,7 @@ class ItemCard extends Component {
           onFavorite={bool => this.onFavorite(bool)}
           onSubscribe={bool => this.onSubscribe(bool)}
           onDelete={() => this.onDelete()}
+          onEdit={() => this.props.onEdit(item.id, item.body)}
         />
       </div>
     );
@@ -273,6 +315,7 @@ ItemCard.propTypes = {
   theme: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
   showToast: PropTypes.func.isRequired,
   itemType: PropTypes.string,
   open: PropTypes.func,

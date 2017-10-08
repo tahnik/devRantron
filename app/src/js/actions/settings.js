@@ -1,8 +1,10 @@
-import { SETTINGS } from '../consts/types';
+import { SETTINGS, ITEM } from '../consts/types';
 import { fetchUser } from './user';
 import { fetchNotifs } from './notifs';
+import { openModal } from './modal';
 
 const { ipcRenderer } = require('electron');
+const settings = require('electron-settings');
 
 
 /**
@@ -49,9 +51,14 @@ const saveUserState = () => (dispatch, getState) => {
     notifs: state.notifs,
     columns: customCols,
     search: state.search,
+    postRant: state.postRant,
   };
-  // Use localStorage to save the state. Much better than a file
-  localStorage.setItem('savedState', JSON.stringify(savedState));
+  /**
+   * Use localStorage to save the state. Much better than a file.
+   * EDIT: I was wrong. LocalStorage is not saved is the app crashes abnormally.
+   * so I will be using electron-settings package
+   */
+  settings.set('currentVersion', savedState);
 };
 
 
@@ -86,6 +93,16 @@ const setUpdateStatus = value => (dispatch) => {
       buttonText: 'Update availble',
       value: true,
     });
+
+    const notification = new Notification('devRantron', {
+      body: 'New update is availble',
+      icon: 'http://i.imgur.com/iikd00P.png',
+      requireInteraction: true,
+    });
+
+    notification.onclick = () => {
+      dispatch(openModal(ITEM.RELEASE_INFO.NAME));
+    };
   } else {
     dispatch({
       type: SETTINGS.ACTION.CHANGE_GENERAL,
@@ -150,10 +167,10 @@ const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
   }
   if (primaryKey === 'update') {
     dispatch(saveUserState());
-    ipcRenderer.send('updateNow', true);
+    dispatch(openModal(ITEM.RELEASE_INFO.NAME));
   }
   if (primaryKey === 'reset_cache') {
-    localStorage.setItem('savedState', JSON.stringify({}));
+    settings.deleteAll();
     ipcRenderer.send('reLaunch', true);
     return;
   }

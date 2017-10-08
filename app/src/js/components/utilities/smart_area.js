@@ -232,6 +232,16 @@ class SmartArea extends Component {
     const { pickerActive, selectedMention } = this.state;
     const invalidContent = this.props.value.length < 5;
     const isPost = typeof this.props.tags !== 'undefined';
+    let btnText = 'Post Rant';
+    if (!isPost) {
+      if (this.props.editing) {
+        btnText = 'Edit Comment';
+      } else {
+        btnText = 'Post Comment';
+      }
+    } else if (this.props.editing) {
+      btnText = 'Edit Rant';
+    }
     return (
       <div
         className={`smart_area ${this.props.className}`}
@@ -271,6 +281,7 @@ class SmartArea extends Component {
         { typeof this.props.tags !== 'undefined' ? <textarea
           className="tags"
           placeholder="tags"
+          value={this.props.tags}
           onChange={e => this.props.onTagsChange(e.target.value)}
         /> : null }
         { this.props.maxChar ?
@@ -288,7 +299,7 @@ class SmartArea extends Component {
           <button
             disabled={this.props.disabled || invalidContent}
             onClick={() => this.onPost()}
-          >{`${isPost ? 'Post Rant' : 'Add Comment'}`}</button>
+          >{btnText}</button>
         </div>
       </div>
     );
@@ -305,6 +316,7 @@ SmartArea.propTypes = {
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   tags: PropTypes.string,
+  editing: PropTypes.bool,
   onTagsChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   maxChar: PropTypes.number.isRequired,

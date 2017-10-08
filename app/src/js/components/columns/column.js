@@ -9,7 +9,7 @@ import ItemCard from '../item/item_card';
 import Loading from '../utilities/loading';
 import ColumnTopBar from './column_topbar';
 import { getRandomInt } from '../../consts/utils';
-import { STATE } from '../../consts/types';
+import { STATE, ITEM } from '../../consts/types';
 
 class Column extends Component {
   constructor() {
@@ -75,7 +75,7 @@ class Column extends Component {
   }
   getItemsContainer() {
     const {
-      column, theme, vote, fetch, open, itemType, auth, showToast, custom } = this.props;
+      column, theme, vote, fetch, open, itemType, auth, showToast, custom, modal } = this.props;
     const { divID } = this.state;
     if (column.items.length === 0 && column.state === STATE.SUCCESS && !custom) {
       return (
@@ -95,6 +95,7 @@ class Column extends Component {
             /> :
             column.items.map(item => (
               <ItemCard
+                modal={modal}
                 fetch={fetch}
                 item={item}
                 open={(type, id) => open(type, id)}
@@ -105,6 +106,7 @@ class Column extends Component {
                 auth={auth}
                 showToast={showToast}
                 history={this.props.history}
+                onEdit={(id) => { this.props.open(ITEM.POST_RANT.NAME, id); }}
               />
             ))
         }
@@ -151,6 +153,7 @@ Column.propTypes = {
   auth: PropTypes.object.isRequired,
   updateScrollHeight: PropTypes.func,
   custom: PropTypes.bool,
+  modal: PropTypes.bool,
   history: PropTypes.object.isRequired,
 };
 

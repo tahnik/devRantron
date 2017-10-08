@@ -15,6 +15,7 @@ import Custom from '../containers/feeds/custom';
 import Toast from '../containers/utilities/toast/toast';
 import Settings from '../containers/settings/settings';
 import Search from '../containers/search/search';
+import Weekly from '../containers/feeds/weekly';
 
 const MainRoutes = props => (
   <div key="MainRoutes" className="main_container" >
@@ -53,6 +54,12 @@ const MainRoutes = props => (
         path="/settings"
         render={() => (
           <Settings />
+        )}
+      />
+      <Route
+        path="/weekly"
+        render={() => (
+          <Weekly />
         )}
       />
       <Route

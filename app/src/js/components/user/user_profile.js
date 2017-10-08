@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Twemoji from 'react-twemoji';
+
 import rantscript from '../../consts/rantscript';
 import Loading from '../utilities/loading';
 import Column from '../columns/column';
+import Popup from '../utilities/popup';
 import { ITEM, STATE } from '../../consts/types';
+import { logout } from '../../consts/errors';
 
 const { shell } = require('electron');
 
@@ -36,6 +40,13 @@ class UserProfile extends Component {
       column: DEFAULT_COLUMN,
       loading: false,
       userNonExisting: false,
+      popup: {
+        visible: false,
+        className: '',
+        pos: logout.pos,
+        neg: logout.neg,
+        body: logout.body,
+      },
     };
   }
   componentDidMount() {
@@ -49,6 +60,7 @@ class UserProfile extends Component {
       && nextProps.item.id === this.props.item.id
       && nextState.userNonExisting === this.state.userNonExisting
       && (nextState.column.state !== STATE.LOADING && nextState.column.items.length !== 0)
+      && (nextState.popup === this.state.popup)
     ) {
       return false;
     }
@@ -122,7 +134,20 @@ class UserProfile extends Component {
     }
     shell.openExternal(fURL);
   }
+  onLogout(showConfirmPopup = true) {
+    if (showConfirmPopup) {
+      this.setState({ popup: { ...this.state.popup, className: '', visible: true } });
+      return;
+    }
+    if (this.state.popup.visible) {
+      this.setState({ popup: { ...this.state.popup, visible: false } });
+    }
+    this.props.close();
+    this.props.logout();
+  }
   render() {
+    const { auth, theme, item } = this.props;
+    const { user, loading, popup } = this.state;
     if (this.state.userNonExisting) {
       return (
         <div className="profile_container modal">
@@ -132,21 +157,33 @@ class UserProfile extends Component {
         </div>
       );
     }
-    if (!this.state.user || this.state.loading) {
+    if (!user || loading) {
       return (
         <div className="modal">
           <Loading />
         </div>
       );
     }
-    const { user } = this.state;
-    const { theme } = this.props;
+    const isLoggedInUser = auth.user.authToken.user_id === item.id;
     let imageSource = 'res/images/invis.png';
     if (user.avatar.i) {
       imageSource = `https://avatars.devrant.io/${user.avatar.i.replace('c-1', 'c-2').replace('png', 'jpg')}`;
     }
     return (
       <div className="profile_container modal" >
+        <Popup
+          {...popup}
+          onPos={() => {
+            this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } });
+            setTimeout(() => { this.onLogout(false); });
+          }}
+          onNeg={() => {
+            this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } });
+            setTimeout(() => {
+              this.setState({ popup: { ...this.state.popup, visible: false } });
+            }, 300);
+          }}
+        />
         <div
           className="profile"
           style={{
@@ -154,6 +191,12 @@ class UserProfile extends Component {
             width: `${theme.column.width}px`,
           }}
         >
+          {
+            isLoggedInUser ?
+              <div className="logout" onClick={() => { this.onLogout(true); }} >
+                <i className="ion-log-out" />
+              </div> : null
+          }
           <div className="image">
             <img alt="" src={imageSource} style={{ backgroundColor: `#${user.avatar.b}` }} />
           </div>
@@ -162,27 +205,29 @@ class UserProfile extends Component {
               <span className="name">{user.username}</span>
               <span className="score">+{user.score}</span>
             </div>
-            <div className="other_infos">
-              <ul>
-                { user.about !== '' && <li><i className="ion-person" />
-                  <p>{user.about}</p>
-                </li>}
-                { user.skills !== '' && <li><i className="ion-code" />
-                  <p>{user.skills}</p>
-                </li>}
-                { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
-                { user.github !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-social-github" />
-                  <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
-                    {user.github}
-                  </p>
-                </li>}
-                { user.website !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-earth" />
-                  <p onClick={() => UserProfile.openLink(user.website)}>
-                    {user.website}
-                  </p>
-                </li>}
-              </ul>
-            </div>
+            <Twemoji>
+              <div className="other_infos">
+                <ul>
+                  { user.about !== '' && <li><i className="ion-person" />
+                    <p>{user.about}</p>
+                  </li>}
+                  { user.skills !== '' && <li><i className="ion-code" />
+                    <p>{user.skills}</p>
+                  </li>}
+                  { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
+                  { user.github !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-social-github" />
+                    <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
+                      {user.github}
+                    </p>
+                  </li>}
+                  { user.website !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-earth" />
+                    <p onClick={() => UserProfile.openLink(user.website)}>
+                      {user.website}
+                    </p>
+                  </li>}
+                </ul>
+              </div>
+            </Twemoji>
           </div>
         </div>
         <div
@@ -193,6 +238,7 @@ class UserProfile extends Component {
         >
           <Column
             {...this.props}
+            modal
             column={this.state.column}
             filters={this.state.column.filters}
             itemType={this.state.column.itemType}
@@ -208,6 +254,8 @@ UserProfile.propTypes = {
   item: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
 export default UserProfile;

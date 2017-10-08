@@ -1,5 +1,6 @@
 import Autolinker from 'autolinker';
 import createDOMPurify from 'dompurify';
+import Twemoji from 'twemoji';
 import { NOTIF_TYPES } from '../consts/types';
 import EmojiData from './emojis.json';
 
@@ -44,6 +45,16 @@ export const getAllEmojis = () => {
   return emojis;
 };
 
+export const getAllEmojisRev = () => {
+  const emojis = {};
+  Object.keys(EmojiData).forEach((key) => {
+    EmojiData[key].forEach((emoji) => {
+      emojis[emoji.icon] = emoji.name;
+    });
+  });
+  return emojis;
+};
+
 export const parseLinks = (text, item = null) => {
   let returnText = text;
   if (item && item.links) {
@@ -71,6 +82,19 @@ export const getEmojisFromText = (content, index, emojis) => {
   }
 };
 
+export const getTextFromEmoji = (content) => {
+  let contentToParse = content;
+  const allEmojis = getAllEmojisRev();
+  Twemoji.replace(content, (emoji) => {
+    const unicodeEmoji = allEmojis[emoji];
+    if (unicodeEmoji) {
+      const regex = new RegExp(emoji, 'g');
+      contentToParse = contentToParse.replace(regex, `:${unicodeEmoji}:`);
+    }
+  });
+  return contentToParse;
+};
+
 export const timeSince = (date) => {
   const seconds = Math.floor((new Date() - date) / 1000);
   let interval = seconds / 2592000;
@@ -94,10 +118,10 @@ export const timeSince = (date) => {
 };
 
 
-//eslint-disable-next-line
+// eslint-disable-next-line
 export const parseUsers = (text) => {
   return text.replace(
-    /@(\S+)/ig,
+    /@(\w+[-]*\w*)/ig,
     '<a href="http://devrant.io/users/$1">@$1</a>',
   );
 };

@@ -1,6 +1,5 @@
 import rantscript from '../consts/rantscript';
 import { USER, STATE } from '../consts/types';
-import showToast from './toast';
 
 /**
  * Fetches a user. But does not store user's rants or comments as it is
@@ -46,7 +45,6 @@ const fetchUser = () => (dispatch, getState) => {
       });
     })
     .catch(() => {
-      dispatch(showToast('User is not logged in'));
       dispatch({
         type: USER.FETCH,
         state: STATE.FAILED,

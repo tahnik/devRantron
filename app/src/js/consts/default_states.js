@@ -157,4 +157,8 @@ export default {
   modal: {
     item: null,
   },
+  postRant: {
+    autoSave: { content: '', tags: '' },
+    drafts: [],
+  },
 };

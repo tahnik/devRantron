@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Item from './items';
 import CompactUserCard from '../user/compact_user_card';
+import { ITEM } from '../../consts/types';
 
 const { ipcRenderer } = require('electron');
 
@@ -32,7 +33,7 @@ class SideNav extends Component {
     />);
   }
   render() {
-    const { sideNavItems, history, location, resetColumn, open } = this.props;
+    const { sideNavItems, history, location, resetColumn, open, settings } = this.props;
     return (
       <div className="sidenav_container" >
         <div className="navs">
@@ -54,6 +55,18 @@ class SideNav extends Component {
               />
             ))
           }
+          {
+            settings.general.update.value &&
+              <Item
+                key={'update'}
+                item={{ icon: 'ion-android-alert', name: 'Update Available', route: '/' }}
+                active={''}
+                className={'updateBtn'}
+                onClick={() => {
+                  open(ITEM.RELEASE_INFO.NAME);
+                }}
+              />
+          }
         </div>
         <div className="add_rant">
           <button onClick={() => open()} className="add_button">
@@ -69,6 +82,7 @@ SideNav.propTypes = {
   sideNavItems: PropTypes.array.isRequired,
   history: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
+  settings: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,

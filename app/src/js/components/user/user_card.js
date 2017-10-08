@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Twemoji from 'react-twemoji';
+
 import { ITEM } from '../../consts/types';
 import rantscript from '../../consts/rantscript';
 
@@ -67,23 +69,25 @@ class UserCard extends Component {
           </div>
         </div>
 
-        <div className="user_details_desc">
-          <ul>
-            { user.about !== '' && <li><i className="ion-person" /><p>{user.about}</p></li>}
-            { user.skills !== '' && <li><i className="ion-code" /><p>{user.skills}</p></li>}
-            { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
-            { user.github !== '' && <li><i className="ion-social-github" />
-              <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
-                {user.github}
-              </p>
-            </li>}
-            { user.website !== '' && <li><i className="ion-earth" />
-              <p onClick={() => UserCard.openLink(user.website)}>
-                {user.website}
-              </p>
-            </li>}
-          </ul>
-        </div>
+        <Twemoji>
+          <div className="user_details_desc">
+            <ul>
+              { user.about !== '' && <li><i className="ion-person" /><p>{user.about}</p></li>}
+              { user.skills !== '' && <li><i className="ion-code" /><p>{user.skills}</p></li>}
+              { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
+              { user.github !== '' && <li><i className="ion-social-github" />
+                <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
+                  {user.github}
+                </p>
+              </li>}
+              { user.website !== '' && <li><i className="ion-earth" />
+                <p onClick={() => UserCard.openLink(user.website)}>
+                  {user.website}
+                </p>
+              </li>}
+            </ul>
+          </div>
+        </Twemoji>
 
         <button
           className="user_openprofile"
