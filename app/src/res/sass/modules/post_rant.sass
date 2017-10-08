@@ -2,38 +2,45 @@
   height: 100%
   width: 100%
   display: flex
-  align-items: flex-start
   .utils
     padding: 0.5rem
     display: block
     margin: 0 1.5rem 0 0.5rem
-    background-color: #54556E
+    // background-color: #54556E
+    background-color: #40415A
     border-radius: 4px
     flex: 1
-    .drafts
-      background-color: #40415A
+    display: flex
+    flex-direction: column
+    .drafts_container
+      background-color: #54556E
       padding: 0.3rem
-      max-height: 25.3rem
-      height: 25.3rem
-      overflow-y: scroll
-      .noDrafts
-        color: white
-        width: 100%
-        height: 100%
-        display: flex
-        justify-content: center
-        align-items: center
-      .draft
-        padding: 0.5rem
-        display: flex
-        align-items: center
-        color: white
-        span
-          text-transform: capitalize
-        .actions
-          margin-left: auto
-          button
-            margin-left: 0.5rem
+      flex: 1
+      position: relative
+      display: flex
+      .drafts
+        // background-color: #40415A
+        background-color: #54556E
+        overflow-y: scroll
+        flex: 1
+        .noDrafts
+          color: white
+          width: 100%
+          height: 100%
+          display: flex
+          justify-content: center
+          align-items: center
+        .draft
+          padding: 0.5rem
+          display: flex
+          align-items: center
+          color: white
+          span
+            text-transform: capitalize
+          .actions
+            margin-left: auto
+            button
+              margin-left: 0.5rem
     .save_draft
       button
         margin-left: 1rem
@@ -55,6 +62,8 @@
     flex: 1
     height: 100%
     margin: 0 0.5rem 0 1.5rem
+    button
+      margin-bottom: 0px
     .smart_area
       height: 100%
       textarea

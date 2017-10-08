@@ -191,23 +191,25 @@ class PostRant extends Component {
               <button onClick={() => this.saveDraft()}>Save Draft</button>
             </div>
             <span className="header">Saved Drafts</span>
-            <div className="drafts" >
-              {
-                postRant.drafts.length !== 0 ?
-                  postRant.drafts.map((draft, index) => (
-                    <div
-                      className="draft"
-                      key={draft.name}
-                    >
-                      <span className="d_name" >{draft.name}</span>
-                      <div className="actions">
-                        <button onClick={() => this.getDraft(index)}>Load</button>
-                        <button onClick={() => this.removeDraft(draft.name)}>Delete</button>
+            <div className="drafts_container">
+              <div className="drafts" >
+                {
+                  postRant.drafts.length !== 0 ?
+                    postRant.drafts.map((draft, index) => (
+                      <div
+                        className="draft"
+                        key={draft.name}
+                      >
+                        <span className="d_name" >{draft.name}</span>
+                        <div className="actions">
+                          <button onClick={() => this.getDraft(index)}>Load</button>
+                          <button onClick={() => this.removeDraft(draft.name)}>Delete</button>
+                        </div>
                       </div>
-                    </div>
-                  ))
-                  : <div className="noDrafts"><span >No Drafts Saved</span></div>
-              }
+                    ))
+                    : <div className="noDrafts"><span >No Drafts Saved</span></div>
+                }
+              </div>
             </div>
           </div>
         </div>
