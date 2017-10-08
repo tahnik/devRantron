@@ -106,7 +106,7 @@ const setUpdateStatus = value => (dispatch) => {
   } else {
     dispatch({
       type: SETTINGS.ACTION.CHANGE_GENERAL,
-      primaryKey: '',
+      primaryKey: 'update',
       buttonText: 'Up to date',
       value: false,
     });
