@@ -24,6 +24,7 @@ class PostRant extends Component {
       limitCrossed: null,
       disabled: false,
       type: 1,
+      draftName: '',
       popup: {
         visible: false,
         className: '',
@@ -31,6 +32,14 @@ class PostRant extends Component {
         body: '',
       },
     };
+  }
+
+  componentWillMount() {
+    const { postRant } = this.props;
+    console.log(postRant);
+    if (postRant.autoSave.content) {
+      this.setState({ rant_content: postRant.autoSave.content, tags: postRant.autoSave.tags });
+    }
   }
 
   componentDidMount() {
@@ -49,6 +58,32 @@ class PostRant extends Component {
       });
   }
 
+  componentWillUnmount() {
+    this.props.saveAutoSave({ content: this.state.rant_content, tags: this.state.tags });
+  }
+
+  saveDraft() {
+    const { draftName, rant_content, tags } = this.state;
+    if (draftName !== '') {
+      this.props.addDraft(draftName, { content: rant_content, tags });
+    }
+  }
+
+  getDraft(index) {
+    const { postRant } = this.props;
+    const draft = postRant.drafts[index];
+    if (draft.name && draft.rant) {
+      this.setState({
+        draftName: draft.name, rant_content: draft.rant.content, tags: draft.rant.tags,
+      });
+    }
+  }
+
+  removeDraft(name) {
+    const { removeDraft } = this.props;
+    removeDraft(name);
+  }
+
   editRant(text) {
     const { auth, item } = this.props;
     rantscript
@@ -60,6 +95,7 @@ class PostRant extends Component {
           });
           return;
         }
+        this.props.clearAutoSave();
         this.setState({
           posting: false,
           rant_content: '',
@@ -88,6 +124,7 @@ class PostRant extends Component {
           });
           return;
         }
+        this.props.clearAutoSave();
         this.setState({
           posting: false,
           rant_content: '',
@@ -103,7 +140,7 @@ class PostRant extends Component {
   }
 
   render() {
-    const { auth, item } = this.props;
+    const { auth, item, postRant } = this.props;
     const { popup } = this.state;
     if (item.id !== 0 && this.state.rant_content === '') {
       return (
@@ -148,7 +185,30 @@ class PostRant extends Component {
             />
             <span className="header">Save draft</span>
             <div className="save_draft">
-              <input /><button>Save Draft</button>
+              <input
+                onChange={e => this.setState({ draftName: e.currentTarget.value })}
+                value={this.state.draftName}
+              />
+              <button onClick={() => this.saveDraft()}>Save Draft</button>
+            </div>
+            <span className="header">Saved Drafts</span>
+            <div className="drafts" >
+              {
+                postRant.drafts.length !== 0 ?
+                  postRant.drafts.map((draft, index) => (
+                    <div
+                      className="draft"
+                      key={draft.name}
+                    >
+                      <span className="d_name" >{draft.name}</span>
+                      <div className="actions">
+                        <button onClick={() => this.getDraft(index)}>Load</button>
+                        <button onClick={() => this.removeDraft(draft.name)}>Delete</button>
+                      </div>
+                    </div>
+                  ))
+                  : <div className="noDrafts"><span >No Drafts Saved</span></div>
+              }
             </div>
           </div>
         </div>
@@ -161,7 +221,12 @@ class PostRant extends Component {
 PostRant.propTypes = {
   auth: PropTypes.object.isRequired,
   item: PropTypes.object.isRequired,
+  postRant: PropTypes.object.isRequired,
   open: PropTypes.func.isRequired,
+  saveAutoSave: PropTypes.func.isRequired,
+  clearAutoSave: PropTypes.func.isRequired,
+  addDraft: PropTypes.func.isRequired,
+  removeDraft: PropTypes.func.isRequired,
 };
 
 export default PostRant;

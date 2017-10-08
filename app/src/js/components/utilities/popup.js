@@ -25,9 +25,9 @@ Popup.propTypes = {
   className: PropTypes.string,
   body: PropTypes.string.isRequired,
   onPos: PropTypes.func.isRequired,
-  onNeg: PropTypes.func.isRequired,
+  onNeg: PropTypes.func,
   pos: PropTypes.string.isRequired,
-  neg: PropTypes.string.isRequired,
+  neg: PropTypes.string,
 };
 
 export default Popup;

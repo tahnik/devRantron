@@ -51,6 +51,7 @@ const saveUserState = () => (dispatch, getState) => {
     notifs: state.notifs,
     columns: customCols,
     search: state.search,
+    postRant: state.postRant,
   };
   /**
    * Use localStorage to save the state. Much better than a file.

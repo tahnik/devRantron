@@ -5,6 +5,9 @@ import vote from '../../actions/vote';
 import { fetchNotifs } from '../../actions/notifs';
 import { logout } from '../../actions/auth';
 import { openModal, closeModal } from '../../actions/modal';
+import { saveAutoSave,
+  clearAutoSave, addDraft, removeDraft,
+} from '../../actions/post_rant';
 import showToast from '../../actions/toast';
 
 const mapStateToProps = state => ({
@@ -12,6 +15,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
   item: state.modal.item,
   user: state.user,
+  postRant: state.postRant,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -32,6 +36,19 @@ const mapDispatchToProps = dispatch => ({
   },
   logout: () => {
     dispatch(logout());
+  },
+  clearAutoSave: () => {
+    dispatch(clearAutoSave());
+  },
+  saveAutoSave: (rant) => {
+    dispatch(saveAutoSave(rant));
+  },
+  addDraft: (name, rant) => {
+    dispatch(addDraft({ name, rant }));
+  },
+  removeDraft: (name) => {
+    console.log(name);
+    dispatch(removeDraft(name));
   },
 });
 

@@ -8,6 +8,7 @@ import column from './column';
 import modal from './modal';
 import notifs from './notifs';
 import search from './search';
+import postRant from './post_rant';
 
 const devRantron = combineReducers({
   auth,
@@ -19,6 +20,7 @@ const devRantron = combineReducers({
   notifs,
   column,
   search,
+  postRant,
 });
 
 export default devRantron;

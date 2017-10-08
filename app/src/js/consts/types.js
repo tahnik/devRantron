@@ -61,6 +61,15 @@ export const MODAL = {
   CLOSE: 'MODAL_CLOSE',
 };
 
+export const POST_RANT = {
+  ADD_DRAFT: 'POST_RANT_ADD_DRAFT',
+  REMOVE_DRAFT: 'POST_RANT_REMOVE_DRAFT',
+  AUTOSAVE: {
+    SAVE: 'AUTOSAVE_SAVE',
+    CLEAR: 'AUTOSAVE_CLEAR',
+  },
+};
+
 export const USER = {
   FETCH: 'USER_FETCH',
   REMOVE: 'USER_REMOVE',
