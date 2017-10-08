@@ -31,14 +31,14 @@ class Notifs extends Component {
     ipcRenderer.on('open_notif', () => { this.setState({ active: true }); });
   }
   componentDidUpdate(prevProps) {
+    const prevNotifs = prevProps.notifs;
     if (
+      !prevNotifs ||
       !this.props.notifs ||
-      !this.props.auth.user ||
-      !prevProps.num_unread
+      !this.props.auth.user
     ) {
       return;
     }
-    const prevNotifs = prevProps.notifs;
     const currentNotifs = this.props.notifs;
     const prevUnread = prevNotifs.num_unread;
     const currentUnread = currentNotifs.num_unread;
