@@ -36,7 +36,6 @@ class PostRant extends Component {
 
   componentWillMount() {
     const { postRant } = this.props;
-    console.log(postRant);
     if (postRant.autoSave.content) {
       this.setState({ rant_content: postRant.autoSave.content, tags: postRant.autoSave.tags });
     }

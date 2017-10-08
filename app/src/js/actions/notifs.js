@@ -31,7 +31,6 @@ const fetchNotifs = (refresh = false) => (dispatch, getState) => {
   rantscript
     .notifications(auth.user.authToken, lastCheckTime)
     .then((res) => {
-      console.log('fethcing notigs');
       fetching = false;
       const newItems = res.data.items;
       const newNumUnread = res.data.num_unread;
