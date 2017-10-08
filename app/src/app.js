@@ -57,6 +57,7 @@ const handleRedirect = (e, link) => {
   }
 };
 
+
 /** This function will create the tray icon */
 function initTray() {
   // No idea why using let or var or const with tray causes the tray not to display anything
@@ -80,23 +81,6 @@ function initTray() {
 /** This function will create the mainWindow */
 function createWindow() {
   notify.init();
-
-  // Some shortcuts to make development easier.
-  if (process.env.NODE_ENV === 'development') {
-    const { globalShortcut } = electron;
-
-    const showNotifGlobal = globalShortcut.register('CommandOrControl+Alt+N', () => {
-      notify.show({
-        body: 'This is a test notification.',
-        content: { comment_id: 728393, created_time: 1500665102, rant_id: 538347, read: 0, type: 'comment_mention', uid: 719925 },
-        id: 538347,
-      });
-    });
-
-    if (!showNotifGlobal) {
-      console.warn('registration failed :(');
-    }
-  }
 
   // Send usage data to firebase
   if (process.env.NODE_ENV !== 'development') {
@@ -178,6 +162,18 @@ function createWindow() {
   initTray();
 }
 
+const shouldQuit = app.makeSingleInstance(() => {
+  // Someone tried to run a second instance, we should focus our window.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) mainWindow.restore();
+    mainWindow.focus();
+  }
+});
+
+if (shouldQuit) {
+  app.quit();
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -221,6 +217,9 @@ ipcMain.on('auto-launch', (event, arg) => {
 
     const AppAutoLauncher = new AutoLaunch({
       name: 'devRantron',
+      mac: {
+        useLaunchAgent: true,
+      },
     });
 
     if (arg) {
