@@ -13,7 +13,7 @@ class ReleaseInfo extends Component {
     };
   }
   componentWillMount() {
-    fetch('https://raw.githubusercontent.com/tahnik/devRantron/update-md/UPDATE.md')
+    fetch('https://raw.githubusercontent.com/tahnik/devRantron/master/update.md')
       .then((res) => {
         res.text().then((latestRelease) => {
           const converter = new showdown.Converter();
