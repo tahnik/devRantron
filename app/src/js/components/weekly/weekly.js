@@ -13,7 +13,7 @@ class Weekly extends Component {
     };
   }
   componentWillMount() {
-    const regex = /wk(\d{0,3})/;
+    const regex = /(#?)wk(\d{0,3})/;
     const weekString = this.props.match.params.week;
     let week = -1;
     if (regex.test(weekString)) {
@@ -24,7 +24,6 @@ class Weekly extends Component {
     rantscript.listWeekly()
       .then((res) => {
         this.setState({ weeks: res });
-        console.log(week);
         this.setState({ selection: res.length - (week === -1 ? res.length : week) });
       });
   }
@@ -46,9 +45,6 @@ class Weekly extends Component {
     const { weeks, selection, expanded } = this.state;
     const { theme } = this.props;
     const selectedWeek = weeks[selection] || weeks[weeks.length - 1];
-
-    console.log(selectedWeek);
-    console.log(selection);
 
     return (
       <div className="weekly_container">
