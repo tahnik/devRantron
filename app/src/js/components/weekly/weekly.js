@@ -22,8 +22,12 @@ class Weekly extends Component {
     const { column } = this.props;
     const { weeks } = this.state;
     this.expand();
-    this.props.fetch(column.sort, column.range, column.id, true, column.itemType, week);
+    this.props.fetch(column.sort, column.range, column.id, true, this.props.itemType, week);
     this.setState({ selection: weeks.length - week });
+  }
+  fetch(sort, range, id = 0, refresh = false, itemType) {
+    const { weeks } = this.state;
+    this.props.fetch(sort, range, id, refresh, itemType, weeks.length - this.state.selection);
   }
   expand() {
     this.setState({ expanded: !this.state.expanded });
@@ -68,7 +72,12 @@ class Weekly extends Component {
           )}
         </div>
 
-        <Column {...this.props} />
+        <Column
+          {...this.props}
+          fetch={
+            (sort, range, id, refresh, itemType) => this.fetch(sort, range, id, refresh, itemType)
+          }
+        />
       </div>
     );
   }
@@ -78,6 +87,7 @@ Weekly.propTypes = {
   fetch: PropTypes.func.isRequired,
   column: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  itemType: PropTypes.string.isRequired,
 };
 
 export default Weekly;
