@@ -30,10 +30,12 @@ class Notification extends Component {
     let icon;
     let imageSource = 'res/images/invis.png';
 
-    if (user.avatar.i) {
+    if (user && user.avatar.i) {
       imageSource = `https://avatars.devrant.io/${user.avatar.i}`;
     }
-    const notifText = getNotifText(notif.type, user.name);
+    const username = user ? user.name : 'Deleted user';
+    const avatarBack = user ? user.avatar.b : '#FFF';
+    const notifText = getNotifText(notif.type, username);
     switch (notif.type) {
       case 'comment_mention':
         icon = 'ion-chatbubble-working';
@@ -56,7 +58,7 @@ class Notification extends Component {
         className="notif_bubble"
       >
         <div className={`notif_badge ${notif.read === 1 ? 'read' : ''}`}>
-          <img alt="" src={imageSource} className="notif_image" style={{ background: `#${user.avatar.b}` }} />
+          <img alt="" src={imageSource} className="notif_image" style={{ background: `#${avatarBack}` }} />
           <i
             className={`${icon} ${notif.read === 1 || unread === 0 ? 'read' : ''}`}
           />
@@ -71,7 +73,7 @@ class Notification extends Component {
 
 Notification.propTypes = {
   notif: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
   open: PropTypes.func.isRequired,
   unread: PropTypes.number.isRequired,
 };

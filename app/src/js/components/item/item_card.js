@@ -144,6 +144,14 @@ class ItemCard extends Component {
     }
     shell.openExternal(fURL);
   }
+  handleTagClick(term) {
+    const weekly = /(#?)wk(\d{0,3})/;
+    if (weekly.test(term)) {
+      this.props.history.replace(`/weekly/${term}`);
+      return;
+    }
+    this.props.history.replace(`/search/${term}`);
+  }
   getTags() {
     const { item } = this.props;
     if (!item.tags) {
@@ -156,7 +164,7 @@ class ItemCard extends Component {
             <span
               key={object}
               className="tag"
-              onClick={() => this.props.history.replace(`/search/${object}`)}
+              onClick={() => this.handleTagClick(object)}
             >{object}</span>
           ))}
         </div>}

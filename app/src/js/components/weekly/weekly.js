@@ -12,18 +12,31 @@ class Weekly extends Component {
       expanded: false,
     };
   }
-  componentDidMount() {
+  componentWillMount() {
+    const regex = /(#?)wk(\d{0,3})/;
+    const weekString = this.props.match.params.week;
+    let week = -1;
+    if (regex.test(weekString)) {
+      const { column } = this.props;
+      week = weekString.replace(/^\D+/g, '');
+      this.props.fetch(column.sort, column.range, column.id, true, this.props.itemType, week);
+    }
     rantscript.listWeekly()
       .then((res) => {
         this.setState({ weeks: res });
+        this.setState({ selection: res.length - (week === -1 ? res.length : week) });
       });
   }
   onClick(week = 67) {
     const { column } = this.props;
     const { weeks } = this.state;
     this.expand();
-    this.props.fetch(column.sort, column.range, column.id, true, column.itemType, week);
+    this.props.fetch(column.sort, column.range, column.id, true, this.props.itemType, week);
     this.setState({ selection: weeks.length - week });
+  }
+  fetch(sort, range, id = 0, refresh = false, itemType) {
+    const { weeks } = this.state;
+    this.props.fetch(sort, range, id, refresh, itemType, weeks.length - this.state.selection);
   }
   expand() {
     this.setState({ expanded: !this.state.expanded });
@@ -31,6 +44,7 @@ class Weekly extends Component {
   render() {
     const { weeks, selection, expanded } = this.state;
     const { theme } = this.props;
+    const selectedWeek = weeks[selection] || weeks[weeks.length - 1];
 
     return (
       <div className="weekly_container">
@@ -43,7 +57,10 @@ class Weekly extends Component {
         >
           <div className="weekly_option">
             <div className="weekDesc">
-              {weeks.length !== 0 ? (<span><b>wk{weeks[selection].week}</b> {weeks[selection].prompt}</span>) : 'Loading weeks...'}
+              {weeks.length !== 0 ?
+                (<span><b>wk{selectedWeek.week}</b> {selectedWeek.prompt}</span>)
+                : 'Loading weeks...'
+              }
             </div>
             <i className={`selBtn ${expanded ? 'ion-chevron-up' : 'ion-chevron-down'}`} />
           </div>
@@ -68,7 +85,12 @@ class Weekly extends Component {
           )}
         </div>
 
-        <Column {...this.props} />
+        <Column
+          {...this.props}
+          fetch={
+            (sort, range, id, refresh, itemType) => this.fetch(sort, range, id, refresh, itemType)
+          }
+        />
       </div>
     );
   }
@@ -78,6 +100,8 @@ Weekly.propTypes = {
   fetch: PropTypes.func.isRequired,
   column: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  itemType: PropTypes.string.isRequired,
 };
 
 export default Weekly;

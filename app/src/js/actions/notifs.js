@@ -54,14 +54,6 @@ const fetchNotifs = (refresh = false) => (dispatch, getState) => {
         && newNumUnread === currentNumUnread)
         && newItems.length === 0
       ) {
-        const notifs = {
-          ...prevNotifs,
-          num_unread: newNumUnread,
-        };
-        dispatch({
-          type: NOTIFS.FETCH,
-          notifs,
-        });
         return;
       }
       if (
