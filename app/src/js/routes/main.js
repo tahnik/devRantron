@@ -57,7 +57,7 @@ const MainRoutes = props => (
         )}
       />
       <Route
-        path="/weekly"
+        path="/weekly/:week"
         render={() => (
           <Weekly />
         )}
