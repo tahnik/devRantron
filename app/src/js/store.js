@@ -71,7 +71,10 @@ if (plat !== 'windows') {
         if (!releaseInfo.draft) {
           store.dispatch(setUpdateStatus(true));
         }
-      } else if (cmp(latestRelease, currentVersion) === 0) {
+      } else if (
+        cmp(latestRelease, currentVersion) === 0
+        || cmp(latestRelease, currentVersion) === -1
+      ) {
         if (!releaseInfo.draft) {
           store.dispatch(setUpdateStatus(false));
         }
