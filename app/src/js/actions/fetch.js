@@ -6,6 +6,7 @@ import { getUID } from '../consts/utils';
 const AMOUNT = 20;
 
 let fetching = false;
+let fetched = true;
 let reload = null;
 
 /**
@@ -173,7 +174,6 @@ const updateColumnScrollHeight = (id, value) => (dispatch) => {
 const fetchFeed =
 (sort, type, id, range, refresh = false, week = 0) => (dispatch, getState) => {
   // First check if column that requested the fetch is part of custom columns
-  fetching = true;
   const columns = getState().columns;
   let currentColumn = columns.filter(column => column.id === id)[0];
 
@@ -268,6 +268,8 @@ const fetchFeed =
       rantscript
         .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken, range)
         .then((res) => {
+          fetching = false;
+          fetched = true;
           /**
              * If the pages is 0, that means we do not need to current items in the
              * column.
@@ -286,6 +288,7 @@ const fetchFeed =
           });
         })
         .catch(() => {
+          fetching = false;
           //
         });
       break;
@@ -294,6 +297,8 @@ const fetchFeed =
       rantscript
         .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
         .then((res) => {
+          fetching = false;
+          fetched = true;
           window.clearInterval(reload);
           const currentItems = page !== 0 ? currentColumn.items : [];
           newColumn.items = [
@@ -307,6 +312,7 @@ const fetchFeed =
           });
         })
         .catch(() => {
+          fetching = false;
           //
         });
       break;
@@ -315,6 +321,8 @@ const fetchFeed =
       rantscript
         .collabs(sort, AMOUNT, AMOUNT * page, authToken)
         .then((res) => {
+          fetching = false;
+          fetched = true;
           window.clearInterval(reload);
           const currentItems = page !== 0 ? currentColumn.items : [];
           newColumn.items = [
@@ -328,6 +336,7 @@ const fetchFeed =
           });
         })
         .catch(() => {
+          fetching = false;
           //
         });
       break;
@@ -336,6 +345,8 @@ const fetchFeed =
       rantscript
         .weekly(week, sort, AMOUNT, AMOUNT * page, authToken)
         .then((res) => {
+          fetching = false;
+          fetched = true;
           window.clearInterval(reload);
           const currentItems = page !== 0 ? currentColumn.items : [];
           newColumn.items = [
@@ -350,6 +361,7 @@ const fetchFeed =
           });
         })
         .catch(() => {
+          fetching = false;
           //
         });
       break;
@@ -357,17 +369,20 @@ const fetchFeed =
     default:
       dispatch();
   }
-  fetching = false;
 };
 
 const fetch =
 (sort, type, id, range, refresh = false, week = 0) => (dispatch) => {
+  fetching = true;
+  fetched = false;
   dispatch(fetchFeed(sort, type, id, range, refresh, week));
-  if (!fetching) {
-    reload = setInterval(() => {
+  reload = setInterval(() => {
+    console.log('time');
+    if (!fetching && !fetched) {
+      console.log('fetching');
       dispatch(fetchFeed(sort, type, id, range, refresh, week));
-    }, 1000);
-  }
+    }
+  }, 1000);
 };
 
 export { fetch as default,
