@@ -260,7 +260,7 @@ ipcMain.on('updateNow', () => {
 });
 
 autoUpdater.on('update-not-available', () => {
-  mainWindow.webContents.send('upTodate');
+  mainWindow.webContents.send('upToDate');
 });
 
 autoUpdater.on('update-downloaded', () => {
