@@ -11,6 +11,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   settings: state.settings,
+  theme: state.settings.theme,
 });
 
 
