@@ -34,7 +34,6 @@ class UserCard extends Component {
     ) {
       fURL = `http://${url}`;
     }
-    console.log(fURL)
     shell.openExternal(fURL);
   }
   openProfile() {
