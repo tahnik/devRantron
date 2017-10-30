@@ -8,6 +8,7 @@
     height: 60px
     margin: 0 0.7rem 0 0
     cursor: pointer
+    position: relative
     display: flex
     justify-content: center
     align-content: center
@@ -16,6 +17,31 @@
         transform: rotate(0deg)
       100%
         transform: rotate(360deg)
+    .badge
+      position: absolute
+      top: 0px
+      right: 0px
+      height: 20px
+      width: 20px
+      display: flex
+      justify-content: center
+      border-radius: 10px
+      background: transparent
+      color: transparent
+      filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3))
+      &.badge_bronze
+        background: #e86b12
+        color: #ab390e
+      &.badge_silver
+        background: #ffffff
+        color: #999999
+      &.badge_gold
+        background: #f3c10c
+        color: #a77913
+      &.badge_diamond
+        background: #1dcafd
+        color: #1589ab
+
     .loadingHalf
       width: 70px
       height: 70px

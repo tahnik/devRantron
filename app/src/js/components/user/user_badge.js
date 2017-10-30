@@ -32,6 +32,23 @@ class UserBadge extends Component {
         <div className="image" onClick={() => this.openCard()}>
           { this.state.userCardOpen ? <div className="loadingHalf" /> : null }
           <img alt="" src={imageSource} style={{ background: `#${user.avatar.b}` }} />
+
+          {(user.score > 5000 && user.score < 10000) && <div
+            className="badge badge_bronze"
+          ><i className="ion-star" /></div>}
+
+          {(user.score > 10000 && user.score < 25000) && <div
+            className="badge badge_silver"
+          ><i className="ion-star" /></div>}
+
+          {(user.score > 25000 && user.score < 50000) && <div
+            className="badge badge_gold"
+          ><i className="ion-star" /></div>}
+
+          {(user.score > 50000) && <div
+            className="badge badge_diamond"
+          ><i className="ion-star" /></div>}
+
         </div>
         {this.state.userCardOpen ?
           <UserCard
