@@ -92,7 +92,7 @@
     "electron-builder": "^19.41.0",
     "env-paths": "^1.0.0",
     "eslint": "^4.8.0",
-    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
