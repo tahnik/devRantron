@@ -13,6 +13,8 @@ import Comments from '../comments/comments';
 import PostComment from '../comments/comment_post';
 import { ITEM } from '../../consts/types';
 
+let reload = null;
+
 class Item extends Component {
   constructor() {
     super();
@@ -29,6 +31,11 @@ class Item extends Component {
    */
   componentWillMount() {
     this.fetchitem();
+    reload = setInterval(() => {
+      if (!this.state.item) {
+        this.fetchitem();
+      }
+    }, 2000);
   }
   componentDidMount() {
     this.handleResize();
@@ -87,6 +94,7 @@ class Item extends Component {
     rantscript
       .rant(cardItem.id, authToken)
       .then((res) => {
+        window.clearInterval(reload);
         fetchNotifs();
         const item = res;
         this.setState({ item });
@@ -104,8 +112,8 @@ class Item extends Component {
           }, 500);
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        //
       });
   }
   /**

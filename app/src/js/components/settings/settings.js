@@ -17,13 +17,13 @@ class Items extends Component {
   }
   getSettings() {
     const { activeNav } = this.state;
-    const { settings, changeGeneral } = this.props;
+    const { settings, changeGeneral, theme } = this.props;
     if (activeNav === SETTINGS_NAV[0]) {
       return (
         <General general={settings.general} changeGeneral={changeGeneral} />
       );
     } else if (activeNav === SETTINGS_NAV[1]) {
-      return <Theme />;
+      return <Theme theme={theme} />;
     }
     return <General />;
   }
@@ -32,13 +32,13 @@ class Items extends Component {
     return (
       <div className="settings">
         <div className="top_nav">
-          { SETTINGS_NAV.map(
-            nav => (<div
+          { SETTINGS_NAV.map(nav => (
+            <div
               className={`nav ${activeNav === nav ? 'active' : ''}`}
               onClick={() => this.setState({ activeNav: nav })}
               key={nav}
-            >{nav}</div>),
-          )
+            >{nav}
+            </div>))
           }
         </div>
         <div className="settings_container">
@@ -52,6 +52,7 @@ class Items extends Component {
 Items.propTypes = {
   settings: PropTypes.object.isRequired,
   changeGeneral: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default Items;

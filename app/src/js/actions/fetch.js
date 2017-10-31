@@ -5,6 +5,10 @@ import { getUID } from '../consts/utils';
 
 const AMOUNT = 20;
 
+let fetching = false;
+let fetched = true;
+let reload = null;
+
 /**
  * devRant server sometimes returns duplicate for algo sorts. Duplicates
  * can happen for many other reasons as well. This function filters them.
@@ -149,6 +153,7 @@ const updateColumnScrollHeight = (id, value) => (dispatch) => {
   });
 };
 
+
 /**
  * fetches a feed.
  *
@@ -166,7 +171,7 @@ const updateColumnScrollHeight = (id, value) => (dispatch) => {
  * @param {bool} refresh Indicates if the column should be refreshed from the
  *                       start
  */
-const fetch =
+const fetchFeed =
 (sort, type, id, range, refresh = false, week = 0) => (dispatch, getState) => {
   // First check if column that requested the fetch is part of custom columns
   const columns = getState().columns;
@@ -260,101 +265,105 @@ const fetch =
   // Switch between different feed types and fetches the right one.
   switch (type) {
     case FEED.RANTS.NAME: {
-      const reload = setInterval(() => {
-        rantscript
-          .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken, range)
-          .then((res) => {
-            /**
+      rantscript
+        .rants(sort, AMOUNT, AMOUNT * page, prevSet, authToken, range)
+        .then((res) => {
+          fetching = false;
+          fetched = true;
+          /**
              * If the pages is 0, that means we do not need to current items in the
              * column.
              */
-            window.clearInterval(reload);
-            const currentItems = page !== 0 ? currentColumn.items : [];
-            newColumn.items = [
-              ...currentItems,
-              ...filterRants(currentItems, res.rants, cFilters),
-            ];
-            // The prev_set is needed for algo sort to work.
-            newColumn.prev_set = res.set;
-            dispatch({
-              type: COLUMN.FETCH,
-              column: newColumn,
-            });
-          })
-          .catch(() => {
-            //
+          window.clearInterval(reload);
+          const currentItems = page !== 0 ? currentColumn.items : [];
+          newColumn.items = [
+            ...currentItems,
+            ...filterRants(currentItems, res.rants, cFilters),
+          ];
+          // The prev_set is needed for algo sort to work.
+          newColumn.prev_set = res.set;
+          dispatch({
+            type: COLUMN.FETCH,
+            column: newColumn,
           });
-      }, 1000);
+        })
+        .catch(() => {
+          fetching = false;
+          //
+        });
       break;
     }
     case FEED.STORIES.NAME: {
-      const reload = setInterval(() => {
-        rantscript
-          .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
-          .then((res) => {
-            window.clearInterval(reload);
-            const currentItems = page !== 0 ? currentColumn.items : [];
-            newColumn.items = [
-              ...currentItems,
-              ...filterRants(currentItems, res, cFilters),
-            ];
-            newColumn.prev_set = res.set;
-            dispatch({
-              type: COLUMN.FETCH,
-              column: newColumn,
-            });
-          })
-          .catch(() => {
-            //
+      rantscript
+        .stories(range, sort, AMOUNT, AMOUNT * page, authToken)
+        .then((res) => {
+          fetching = false;
+          fetched = true;
+          window.clearInterval(reload);
+          const currentItems = page !== 0 ? currentColumn.items : [];
+          newColumn.items = [
+            ...currentItems,
+            ...filterRants(currentItems, res, cFilters),
+          ];
+          newColumn.prev_set = res.set;
+          dispatch({
+            type: COLUMN.FETCH,
+            column: newColumn,
           });
-      }, 1000);
+        })
+        .catch(() => {
+          fetching = false;
+          //
+        });
       break;
     }
     case FEED.COLLABS.NAME: {
-      const reload = setInterval(() => {
-        rantscript
-          .collabs(sort, AMOUNT, AMOUNT * page, authToken)
-          .then((res) => {
-            window.clearInterval(reload);
-            const currentItems = page !== 0 ? currentColumn.items : [];
-            newColumn.items = [
-              ...currentItems,
-              ...filterRants(currentItems, res, cFilters),
-            ];
-            newColumn.prev_set = res.set;
-            dispatch({
-              type: COLUMN.FETCH,
-              column: newColumn,
-            });
-          })
-          .catch(() => {
-            //
+      rantscript
+        .collabs(sort, AMOUNT, AMOUNT * page, authToken)
+        .then((res) => {
+          fetching = false;
+          fetched = true;
+          window.clearInterval(reload);
+          const currentItems = page !== 0 ? currentColumn.items : [];
+          newColumn.items = [
+            ...currentItems,
+            ...filterRants(currentItems, res, cFilters),
+          ];
+          newColumn.prev_set = res.set;
+          dispatch({
+            type: COLUMN.FETCH,
+            column: newColumn,
           });
-      }, 1000);
+        })
+        .catch(() => {
+          fetching = false;
+          //
+        });
       break;
     }
     case FEED.WEEKLY.NAME: {
-      const reload = setInterval(() => {
-        rantscript
-          .weekly(week, sort, AMOUNT, AMOUNT * page, authToken)
-          .then((res) => {
-            window.clearInterval(reload);
-            const currentItems = page !== 0 ? currentColumn.items : [];
-            newColumn.items = [
-              ...currentItems,
-              ...filterRants(currentItems, res, cFilters),
-            ];
-            newColumn.week = week;
-            newColumn.prev_set = res.set;
-            dispatch({
-              type: COLUMN.FETCH,
-              column: newColumn,
-            });
-          })
-          .catch(() => {
-            //
+      rantscript
+        .weekly(week, sort, AMOUNT, AMOUNT * page, authToken)
+        .then((res) => {
+          fetching = false;
+          fetched = true;
+          window.clearInterval(reload);
+          const currentItems = page !== 0 ? currentColumn.items : [];
+          newColumn.items = [
+            ...currentItems,
+            ...filterRants(currentItems, res, cFilters),
+          ];
+          newColumn.week = week;
+          newColumn.prev_set = res.set;
+          dispatch({
+            type: COLUMN.FETCH,
+            column: newColumn,
           });
-      }, 1000);
+        })
+        .catch(() => {
+          fetching = false;
+          //
+        });
       break;
     }
     default:
@@ -362,6 +371,19 @@ const fetch =
   }
 };
 
+const fetch =
+(sort, type, id, range, refresh = false, week = 0) => (dispatch) => {
+  fetching = true;
+  fetched = false;
+  dispatch(fetchFeed(sort, type, id, range, refresh, week));
+  reload = setInterval(() => {
+    console.log('time');
+    if (!fetching && !fetched) {
+      console.log('fetching');
+      dispatch(fetchFeed(sort, type, id, range, refresh, week));
+    }
+  }, 1000);
+};
 
 export { fetch as default,
   addColumn, resetColumn, removeColumn,

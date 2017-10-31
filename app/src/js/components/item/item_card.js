@@ -45,7 +45,9 @@ class ItemCard extends Component {
    * @memberof ItemCard
    */
   open() {
-    const { item, open, modal, itemType } = this.props;
+    const {
+      item, open, modal, itemType,
+    } = this.props;
     if (typeof modal !== 'undefined' || typeof item.tags !== 'undefined') {
       open(itemType, item.id);
     }
@@ -86,7 +88,9 @@ class ItemCard extends Component {
     if (this.state.popup.visible) {
       this.setState({ popup: { ...this.state.popup, visible: false } });
     }
-    const { auth, item, showToast, fetchitem } = this.props;
+    const {
+      auth, item, showToast, fetchitem,
+    } = this.props;
     if (item.rant_id) {
       rantscript.deleteComment(item.id, auth.user.authToken)
         .then(() => {
@@ -165,7 +169,8 @@ class ItemCard extends Component {
               key={object}
               className="tag"
               onClick={() => this.handleTagClick(object)}
-            >{object}</span>
+            >{object}
+            </span>
           ))}
         </div>}
       </div>
@@ -223,7 +228,9 @@ class ItemCard extends Component {
     );
   }
   render() {
-    const { item, theme, vote, modal, itemType, auth, open, addMention } = this.props;
+    const {
+      item, theme, vote, modal, itemType, auth, open, addMention,
+    } = this.props;
     const { popup } = this.state;
     const user = {
       avatar: item.user_avatar,
@@ -232,6 +239,7 @@ class ItemCard extends Component {
       username: item.user_username,
       dpp: item.user_dpp,
     };
+    console.log(JSON.stringify(user));
     // Used to determine if user owns this card.
     let isUser = false;
     if (auth.user) {
@@ -275,7 +283,8 @@ class ItemCard extends Component {
         />
         <span
           className="timesince"
-        >{timeSince(item.created_time * 1000)}</span>
+        >{timeSince(item.created_time * 1000)}
+        </span>
         <div
           className="body_container"
           onClick={() => this.open()}
