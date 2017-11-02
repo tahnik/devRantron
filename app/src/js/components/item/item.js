@@ -186,7 +186,9 @@ class Item extends Component {
   }
   renderMutliCol() {
     return (
-      <div className="item_column">
+      <div
+        className="item_column"
+      >
         <div
           className="itemcard_container"
         >

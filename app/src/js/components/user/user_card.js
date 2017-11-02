@@ -50,7 +50,10 @@ class UserCard extends Component {
 
     return (
       <div className="user_details">
-        <div style={{ position: 'relative', display: 'flex' }}>
+        <div
+          style={{ position: 'relative', display: 'flex', cursor: 'pointer' }}
+          onClick={() => this.props.closeCard()}
+        >
           <div className="image">
             <img alt="" src={imageSource} style={{ background: `#${user.avatar.b}` }} />
           </div>

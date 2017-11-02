@@ -377,9 +377,7 @@ const fetch =
   fetched = false;
   dispatch(fetchFeed(sort, type, id, range, refresh, week));
   reload = setInterval(() => {
-    console.log('time');
     if (!fetching && !fetched) {
-      console.log('fetching');
       dispatch(fetchFeed(sort, type, id, range, refresh, week));
     }
   }, 1000);

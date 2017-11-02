@@ -239,7 +239,6 @@ class ItemCard extends Component {
       username: item.user_username,
       dpp: item.user_dpp,
     };
-    console.log(JSON.stringify(user));
     // Used to determine if user owns this card.
     let isUser = false;
     if (auth.user) {

@@ -17,7 +17,9 @@ class Comments extends Component {
   render() {
     const { theme, vote, comments, auth, open, addMention, showToast, fetchitem } = this.props;
     return (
-      <div className="comments_container">
+      <div
+        className="comments_container"
+      >
         <div className="comments">
           {
             comments.length === 0 ?

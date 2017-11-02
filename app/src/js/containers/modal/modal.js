@@ -47,7 +47,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addDraft({ name, rant }));
   },
   removeDraft: (name) => {
-    console.log(name);
     dispatch(removeDraft(name));
   },
 });

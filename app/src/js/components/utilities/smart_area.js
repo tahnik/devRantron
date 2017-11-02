@@ -20,6 +20,7 @@ let pos = null;
  * We need this reference in scroll handlers. As we can't bind this to named scroll handlers.
  */
 let component = null;
+let mouseDown = false;
 
 class SmartArea extends Component {
   constructor(props) {
@@ -40,6 +41,12 @@ class SmartArea extends Component {
     component = this;
     document.addEventListener('keydown', SmartArea.handleArrowKeys, false);
     this.charLeft.style.top = `${parseInt(window.getComputedStyle(this.textarea).height, 10) - 5}px`;
+    document.body.addEventListener('mousedown', () => {
+      mouseDown = true;
+    }, true);
+    document.body.addEventListener('mouseup', () => {
+      mouseDown = false;
+    }, true);
   }
   shouldComponentUpdate() {
     return true;
@@ -56,6 +63,13 @@ class SmartArea extends Component {
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', SmartArea.handleArrowKeys, false);
+  }
+  onOutOfFocus() {
+    if (!mouseDown) {
+      if (this.textarea) {
+        this.textarea.focus();
+      }
+    }
   }
   static handleArrowKeys(e) {
     const { mentions, selectedMention } = component.state;
@@ -247,6 +261,7 @@ class SmartArea extends Component {
         className={`smart_area ${this.props.className}`}
         id={this.props.id}
         ref={(node) => { this.node = node; }}
+        onBlur={() => this.onOutOfFocus()}
       >
         <textarea
           className={`smart_textarea ${invalidContent ? 'invalid' : ''}`}
