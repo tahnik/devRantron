@@ -65,7 +65,6 @@ class SmartArea extends Component {
     document.removeEventListener('keydown', SmartArea.handleArrowKeys, false);
   }
   onOutOfFocus() {
-    console.log(mouseDown);
     if (!mouseDown) {
       if (this.textarea) {
         this.textarea.focus();
