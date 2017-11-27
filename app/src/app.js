@@ -196,6 +196,8 @@ app.on('activate', () => {
   }
 });
 
+app.setAppUserModelId('com.tahnik.devrantron');
+
 if (process.platform === 'darwin') {
   app.on('before-quit', () => {
     quitApp();
