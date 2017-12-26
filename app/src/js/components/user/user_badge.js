@@ -44,11 +44,13 @@ class UserBadge extends Component {
           <span
             className="score"
             style={{ backgroundColor: theme.user_badge.details_back }}
-          >{user.score}</span>
+          >{user.score}
+          </span>
           {user.dpp === 1 && <span
             className="score"
             style={{ background: `#${user.avatar.b}` }}
-          ><span>Supporter</span></span>}
+          ><span>Supporter</span>
+          </span>}
         </div>
       </div>
     );

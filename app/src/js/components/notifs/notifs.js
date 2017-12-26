@@ -62,7 +62,9 @@ class Notifs extends Component {
     }
   }
   render() {
-    const { notifs, auth, open, clearNotifs } = this.props;
+    const {
+      notifs, auth, open, clearNotifs,
+    } = this.props;
 
     /* Wondering why there is notifs.notifs?
      * If you look at the default state, it looks like this:
@@ -97,7 +99,8 @@ class Notifs extends Component {
           <button
             className="notifs_clear"
             onClick={() => { clearNotifs(); }}
-          >Clear All</button>
+          >Clear All
+          </button>
           <NotifBubbles data={notifs} open={open} />
         </div>
         <div className={`notifs_bubbles_container ${this.state.active ? 'active' : ''}`} />

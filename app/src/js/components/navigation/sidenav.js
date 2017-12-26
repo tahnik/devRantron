@@ -23,7 +23,9 @@ class SideNav extends Component {
     });
   }
   getUserCard() {
-    const { user, logout, login, fetchUser, open } = this.props;
+    const {
+      user, logout, login, fetchUser, open,
+    } = this.props;
     return (<CompactUserCard
       user={user}
       login={login}
@@ -33,7 +35,9 @@ class SideNav extends Component {
     />);
   }
   render() {
-    const { sideNavItems, history, location, resetColumn, open, settings } = this.props;
+    const {
+      sideNavItems, history, location, resetColumn, open, settings,
+    } = this.props;
     return (
       <div className="sidenav_container" >
         <div className="navs">
@@ -58,10 +62,10 @@ class SideNav extends Component {
           {
             settings.general.update.value &&
               <Item
-                key={'update'}
+                key="update"
                 item={{ icon: 'ion-android-alert', name: 'Update Available', route: '/' }}
-                active={''}
-                className={'updateBtn'}
+                active=""
+                className="updateBtn"
                 onClick={() => {
                   open(ITEM.RELEASE_INFO.NAME);
                 }}

@@ -241,7 +241,9 @@ const fetchFeed =
   if (page === 0) {
     dispatch({
       type: COLUMN.FETCH,
-      column: { ...currentColumn, items: [], page: 0, state: STATE.LOADING },
+      column: {
+        ...currentColumn, items: [], page: 0, state: STATE.LOADING,
+      },
     });
   } else {
     dispatch({

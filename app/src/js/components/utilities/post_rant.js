@@ -8,11 +8,21 @@ import Popup from '../utilities/popup';
 import Dropdown from '../utilities/dropdown/dropdown';
 
 const RANT_TYPES = [
-  { id: 1, color: '#d55063', icon: 'icon ion-chatbubble-working', header: 'Rant / Story' },
-  { id: 3, color: '#2b8a9c', icon: 'icon ion-image', header: 'Joke / Meme' },
-  { id: 4, color: '#ab73a2', icon: 'icon ion-help', header: 'Question' },
-  { id: 5, color: '#fa9a67', icon: 'icon ion-heart', header: 'devRant' },
-  { id: 6, color: '#7ac8a6', icon: 'icon ion-ios-game-controller-a', header: 'Random' },
+  {
+    id: 1, color: '#d55063', icon: 'icon ion-chatbubble-working', header: 'Rant / Story',
+  },
+  {
+    id: 3, color: '#2b8a9c', icon: 'icon ion-image', header: 'Joke / Meme',
+  },
+  {
+    id: 4, color: '#ab73a2', icon: 'icon ion-help', header: 'Question',
+  },
+  {
+    id: 5, color: '#fa9a67', icon: 'icon ion-heart', header: 'devRant',
+  },
+  {
+    id: 6, color: '#7ac8a6', icon: 'icon ion-ios-game-controller-a', header: 'Random',
+  },
 ];
 
 class PostRant extends Component {
@@ -89,8 +99,11 @@ class PostRant extends Component {
       .editRant(text, this.state.tags, item.id, auth.user.authToken)
       .then((res) => {
         if (!res.success) {
-          this.setState({ popup:
-            { ...this.state.popup, body: res.error, visible: true, className: '' },
+          this.setState({
+            popup:
+            {
+              ...this.state.popup, body: res.error, visible: true, className: '',
+            },
           });
           return;
         }
@@ -118,8 +131,11 @@ class PostRant extends Component {
       .postRant(text, this.state.tags, this.state.type, auth.user.authToken, image)
       .then((res) => {
         if (!res.success) {
-          this.setState({ popup:
-            { ...this.state.popup, body: res.error, visible: true, className: '' },
+          this.setState({
+            popup:
+            {
+              ...this.state.popup, body: res.error, visible: true, className: '',
+            },
           });
           return;
         }

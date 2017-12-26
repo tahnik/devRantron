@@ -46,9 +46,7 @@ if (
 
 settings.set('prevVersion', currentVersion);
 
-const store = createStore(reducers, initialState, composeEnhancers(
-  middleware,
-));
+const store = createStore(reducers, initialState, composeEnhancers(middleware));
 
 /**
  * In MacOS and Linux we don't have auto update

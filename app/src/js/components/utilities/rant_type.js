@@ -5,16 +5,30 @@ class RantType extends Component {
   constructor() {
     super();
     this.types = [
-      { id: 1, color: '#d55063', icon: 'icon ion-chatbubble-working', text: 'Rant / Story' },
-      { id: 2, color: '#e1c871', icon: 'ion-android-people', text: 'Collab' },
-      { id: 3, color: '#2b8a9c', icon: 'icon ion-image', text: 'Joke / Meme' },
-      { id: 4, color: '#ab73a2', icon: 'icon ion-help', text: 'Question' },
-      { id: 5, color: '#fa9a67', icon: 'icon ion-heart', text: 'devRant' },
-      { id: 6, color: '#7ac8a6', icon: 'icon ion-ios-game-controller-a', text: 'Random' },
+      {
+        id: 1, color: '#d55063', icon: 'icon ion-chatbubble-working', text: 'Rant / Story',
+      },
+      {
+        id: 2, color: '#e1c871', icon: 'ion-android-people', text: 'Collab',
+      },
+      {
+        id: 3, color: '#2b8a9c', icon: 'icon ion-image', text: 'Joke / Meme',
+      },
+      {
+        id: 4, color: '#ab73a2', icon: 'icon ion-help', text: 'Question',
+      },
+      {
+        id: 5, color: '#fa9a67', icon: 'icon ion-heart', text: 'devRant',
+      },
+      {
+        id: 6, color: '#7ac8a6', icon: 'icon ion-ios-game-controller-a', text: 'Random',
+      },
     ];
     this.state = {
       open: false,
-      selected: { id: 1, color: '#d55063', icon: 'ion-chatbubble-working', text: 'Rant / Story' },
+      selected: {
+        id: 1, color: '#d55063', icon: 'ion-chatbubble-working', text: 'Rant / Story',
+      },
     };
   }
 
@@ -51,8 +65,7 @@ class RantType extends Component {
                     <i className={type.icon} /><span>{type.text}</span>
                   </div>
                 </div>
-              ),
-            )
+              ))
           }
         </div>
       </div>

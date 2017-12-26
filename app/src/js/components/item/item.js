@@ -135,7 +135,9 @@ class Item extends Component {
   }
   getItemCard() {
     const { item } = this.state;
-    const { theme, vote, cardItem, auth, open, showToast } = this.props;
+    const {
+      theme, vote, cardItem, auth, open, showToast,
+    } = this.props;
     return (
       <ItemCard
         modal
@@ -154,7 +156,9 @@ class Item extends Component {
   }
   getComments() {
     const { item } = this.state;
-    const { theme, vote, auth, open, showToast } = this.props;
+    const {
+      theme, vote, auth, open, showToast,
+    } = this.props;
     return (
       <Comments
         comments={item.comments}
