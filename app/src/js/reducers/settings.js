@@ -1,5 +1,5 @@
 import DEFAULT_STATES from '../consts/default_states';
-import { SETTINGS } from '../consts/types';
+import { SETTINGS, THEMES } from '../consts/types';
 
 export default (state = DEFAULT_STATES.settings, action) => {
   switch (action.type) {
@@ -18,6 +18,15 @@ export default (state = DEFAULT_STATES.settings, action) => {
       return {
         ...state,
         general,
+      };
+    }
+    case SETTINGS.ACTION.CHANGE_THEME: {
+      const { key, values } = action;
+      let theme = { ...state.general };
+      theme = THEMES[key];
+      return {
+        ...state,
+        theme,
       };
     }
     default:

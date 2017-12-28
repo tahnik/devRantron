@@ -41,6 +41,50 @@ export const SETTINGS = {
   },
   ACTION: {
     CHANGE_GENERAL: 'CHANGE_GENERAL',
+    CHANGE_THEME: 'CHANGE_THEME',
+  },
+};
+
+export const THEMES = {
+  DARK_THEME: {
+    name: 'Dark Theme',
+    id: 'dark_theme',
+    backgroundColor: '#54556E',
+    item_card: {
+      backgroundColor: '#40415A',
+      color: 'white',
+    },
+    comment_card: {
+      backgroundColor: '#40415A',
+      color: 'white',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+  },
+  LIGHT_THEME: {
+    name: 'Light Theme',
+    id: 'light_theme',
+    backgroundColor: '#94556E',
+    item_card: {
+      backgroundColor: '#40415A',
+      color: 'white',
+    },
+    comment_card: {
+      backgroundColor: '#40415A',
+      color: 'white',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
   },
 };
 

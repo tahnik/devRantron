@@ -1,4 +1,4 @@
-import { SETTINGS, ITEM } from '../consts/types';
+import { SETTINGS, ITEM, THEMES } from '../consts/types';
 import { fetchUser } from './user';
 import { fetchNotifs } from './notifs';
 import { openModal } from './modal';
@@ -187,8 +187,12 @@ const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
  * We will use this for theming in future
  *
  */
-const changeTheme = () => () => {
-
+const changeTheme = (key, values = null) => (dispatch) => {
+  dispatch({
+    type: SETTINGS.ACTION.CHANGE_THEME,
+    key: values ? null : key,
+    values,
+  });
 };
 
 
