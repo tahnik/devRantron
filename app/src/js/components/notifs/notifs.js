@@ -111,8 +111,8 @@ class Notifs extends Component {
           <button
             className="notifs_clear notifs_sort"
             onClick={() => { this.toggleSort(); }}
-          >{this.state.sort ? 'Sort by Quality' : 'Sort by Time'}</button>
-          <NotifBubbles data={notifs} open={open} />
+          >{this.state.sort ? 'Sort by Time' : 'Sort by Quality'}</button>
+          <NotifBubbles data={notifs} open={open} sort={this.state.sort} />
         </div>
         <div className={`notifs_bubbles_container ${this.state.active ? 'active' : ''}`} />
       </div>

@@ -10,18 +10,6 @@ const currentWindow = require('electron').remote.getCurrentWindow();
 let clearingNotifs = false;
 let fetching = false;
 
-/* function calculateQuality(a, b) {
-  let worth = {
-    comment_discuss: 0,
-    comment_vote: 1,
-    content_vote: 2,
-    comment_content: 3,
-    comment_mention: 4,
-  }
-
-  return worth[a] > worth[b];
-} */
-
 /**
  * Fetches notifications
  *
