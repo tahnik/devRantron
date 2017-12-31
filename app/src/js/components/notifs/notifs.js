@@ -12,6 +12,7 @@ class Notifs extends Component {
       notifTimestamp: 1,
       active: false,
       firstFetch: true,
+      sort: false,
     };
   }
   componentDidMount() {
@@ -61,6 +62,9 @@ class Notifs extends Component {
       this.setState({ active: !this.state.active });
     }
   }
+  toggleSort() {
+    this.setState({ sort: !this.state.sort });
+  }
   render() {
     const { notifs, auth, open, clearNotifs } = this.props;
 
@@ -98,6 +102,10 @@ class Notifs extends Component {
             className="notifs_clear"
             onClick={() => { clearNotifs(); }}
           >Clear All</button>
+          <button
+            className="notifs_clear notifs_sort"
+            onClick={() => { this.toggleSort(); }}
+          >{this.state.sort ? 'Sort by Quality' : 'Sort by Time'}</button>
           <NotifBubbles data={notifs} open={open} />
         </div>
         <div className={`notifs_bubbles_container ${this.state.active ? 'active' : ''}`} />
