@@ -23,6 +23,11 @@ class Notifs extends Component {
      */
     const { fetchNotifs } = this.props;
 
+    if (localStorage.getItem('notifsort') === null) { localStorage.setItem('notifsort', false); }
+
+    // eslint-disable-next-line
+    this.setState({ sort: localStorage.getItem('notifsort') }); 
+
     fetchNotifs();
 
     setInterval(() => {
@@ -64,6 +69,7 @@ class Notifs extends Component {
   }
   toggleSort() {
     this.setState({ sort: !this.state.sort });
+    localStorage.setItem('notifsort', this.state.sort);
   }
   render() {
     const { notifs, auth, open, clearNotifs } = this.props;
