@@ -14,21 +14,33 @@ class NotifBubbles extends PureComponent {
 
     if (this.props.sort) {
       console.time('qualitySort');
-      const worth = {
-        comment_discuss: 0,
-        comment_vote: 1,
-        content_vote: 2,
-        comment_content: 3,
-        comment_mention: 4,
-      };
+
       const tempItems = data.items;
-      tempItems.sort((a, b) => {
-        if (a.read === 1) { return 1; }
-        console.log(a.type, worth[a.type] >= worth[b.type], worth[a.type], worth[b.type])
-        if (worth[a.type] >= worth[b.type]) { return -1; }
-        return -1;
+      const commentDiscuss = [];
+      const commentVote = [];
+      const contentVote = [];
+      const commentContent = [];
+      const commentMention = [];
+      const alreadyRead = [];
+
+      tempItems.forEach((notif) => {
+        if (notif.read === 1) { alreadyRead.push(notif); return; }
+        if (notif.type === 'comment_discuss') { commentDiscuss.push(notif); }
+        if (notif.type === 'comment_vote') { commentVote.push(notif); }
+        if (notif.type === 'content_vote') { contentVote.push(notif); }
+        if (notif.type === 'comment_content') { commentContent.push(notif); }
+        if (notif.type === 'comment_mention') { commentMention.push(notif); }
       });
-      data.items = tempItems;
+
+      data.items = [
+        ...commentMention,
+        ...commentContent,
+        ...contentVote,
+        ...commentVote,
+        ...commentDiscuss,
+        ...alreadyRead,
+      ];
+
       console.timeEnd('qualitySort');
     } else {
       console.time('timeSort');
@@ -37,7 +49,7 @@ class NotifBubbles extends PureComponent {
         return b.created_time - a.created_time;
       });
       data.items = tempItems;
-      console.timeEnd('timeSort'); 
+      console.timeEnd('timeSort');
     }
 
     return (
