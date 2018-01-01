@@ -1,10 +1,35 @@
 import React, { Component } from 'react';
+import { SketchPicker, CompactPicker, SliderPicker } from 'react-color';
 import PropTypes from 'prop-types';
 import Twemoji from 'react-twemoji';
-import { timeSince } from '../../consts/utils';
 import { THEMES } from '../../consts/types';
 
 class Theme extends Component {
+  constructor() {
+    super();
+    this.state = {
+      theme: {
+        name: 'Custom Theme',
+        id: 'custom_theme',
+        backgroundColor: '#54556E',
+        item_card: {
+          backgroundColor: '#40415A',
+          color: 'white',
+        },
+        comment_card: {
+          backgroundColor: '#40415A',
+          color: 'white',
+        },
+        column: {
+          backgroundColor: '#54556E',
+          width: '450',
+        },
+        user_badge: {
+          details_back: '#54556E',
+        },
+      },
+    };
+  }
   getTheme(key) {
     const { theme } = this.props;
     const selectedTheme = THEMES[key];
@@ -28,10 +53,6 @@ class Theme extends Component {
               width: `${selectedTheme.column.width}px`,
             }}
         >
-          <span
-            className="timesince"
-          >{timeSince(1514319457 * 1000)}
-          </span>
           <div
             className="body_container"
             onClick={() => this.open()}
@@ -43,9 +64,7 @@ class Theme extends Component {
                 <span
                   className="body"
                 >
-                  Bro ipsum dolor sit amet sucker hole heli granny gear, newschooler McTwist cruiser wheelie drop taco mitt. Bomb hole Skate avie carve grind line. Bro clipless table top whip glades pow pow poaching avie wack. 180 wheelie corduroy table top schwag shred.
-                  Chillax flow pow pow steeps granny gear. Crank grind rigid sketching. Manny hero stomp bowl rock roll, pinner granny gear dust on crust reverse camber hardtail. Clean air avie euro death cookies, face shots japan air brain bucket sketching presta.
-                  Death cookies first tracks ski bum T-bar 360. Wheelie deck afterbang rail table top gapers. Whistler nose dust on crust stoked pipe endo. Heli pow rock roll, schwag sketching gaper noodle road rash laps free ride gnar gnar frozen chicken heads rigid avie.
+                  Select Me Please!
                 </span>
               </Twemoji>
             </div>
@@ -57,14 +76,43 @@ class Theme extends Component {
   getThemes() {
     return Object.keys(THEMES).map(key => this.getTheme(key));
   }
+  changeTheme() {
+    this.props.changeTheme(null, this.state.theme);
+  }
   render() {
+    const { theme } = this.state;
     return (
       <div className="theme_container">
         <div className="items_container">
           { this.getThemes() }
         </div>
         <div className="custom_theme">
-          <h4>Global</h4>
+          <div className="theme_settings">
+            <h4>Global</h4>
+          </div>
+          <div className="theme_settings">
+            <h4>Custom</h4>
+            <div className="custom_colors">
+              <div className="custom_color background_color">
+                <span className="color_type">Background Color</span>
+                <SliderPicker
+                  color={theme.backgroundColor}
+                  onChangeComplete={(color) => {
+                    this.setState({ theme: { ...theme, backgroundColor: color.hex } });
+                    this.changeTheme();
+                  }}
+                />
+                <input
+                  onChange={(e) => {
+                    this.setState({ theme: { ...theme, backgroundColor: e.target.value } });
+                    this.changeTheme();
+                  }}
+                  value={theme.backgroundColor}
+                />
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
     );

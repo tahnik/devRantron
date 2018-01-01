@@ -23,7 +23,7 @@ export default (state = DEFAULT_STATES.settings, action) => {
     case SETTINGS.ACTION.CHANGE_THEME: {
       const { key, values } = action;
       let theme = { ...state.general };
-      theme = THEMES[key];
+      theme = values || THEMES[key];
       return {
         ...state,
         theme,

@@ -31,15 +31,27 @@
       display: flex
       margin-top: 2rem
       position: relative
+      flex-direction: column
       .custom_theme
         flex: 1
+        .theme_settings
+          .custom_colors
+            padding-left: 1rem
+            margin-left: 1.5rem
+            display: flex
+            .custom_color
+              flex: 0 0 25%
+              span
+                display: block
+                margin-bottom: 1rem
+              input
+                width: 98.5%
       .items_container
         flex: 1
         display: flex
-        flex-direction: column
         .item_container
           cursor: pointer
-          margin: 0.5rem 0
+          margin: 0.5rem
           padding: 1rem
           .item_card
             pointer-events: none
