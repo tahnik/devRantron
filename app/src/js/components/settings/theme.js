@@ -64,7 +64,7 @@ class Theme extends Component {
                 <span
                   className="body"
                 >
-                  Select Me Please!
+                  {selectedTheme.name}
                 </span>
               </Twemoji>
             </div>
