@@ -135,7 +135,7 @@ class BottomBar extends Component {
                 </div>
                 : null
               }
-              {
+              {/* {
                 !this.props.isUser ?
                   <div
                     className={`toggle_item subscribe ${subscribed ? 'active' : null}`}
@@ -144,7 +144,7 @@ class BottomBar extends Component {
                     <p><i className="ion-social-rss-outline" /></p>
                   </div>
                   : null
-              }
+              } */}
               { !item.rant_id && !item.c_type ?
                 <div
                   className={`toggle_item favorite ${favorited ? 'active' : null}`}
