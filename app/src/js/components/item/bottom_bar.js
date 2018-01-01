@@ -118,6 +118,7 @@ class BottomBar extends Component {
             <div
               className={`trigger ${this.state.triggerActive ? 'active' : ''}`}
               onClick={() => this.setState({ triggerActive: true })}
+              onMouseEnter={() => this.setState({ triggerActive: true })}
             >
               <p><i className="ion-android-more-horizontal" /></p>
             </div>
