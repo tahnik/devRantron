@@ -194,7 +194,7 @@ class Theme extends Component {
             <div className="sharable_string">
               <span className="sharable_title">Sharable theme string</span>
               <input
-                value={`${theme.backgroundColor},${theme.item_card.backgroundColor},${theme.item_card.color} xd meme`}
+                value={`${theme.backgroundColor},${theme.item_card.backgroundColor},${theme.item_card.color} <- should look like this. Also, paste here to apply theme`}
               />
             </div>
 
