@@ -36,10 +36,13 @@ class SideNav extends Component {
   }
   render() {
     const {
-      sideNavItems, history, location, resetColumn, open, settings,
+      sideNavItems, history, location, resetColumn, open, settings, theme,
     } = this.props;
     return (
-      <div className="sidenav_container" >
+      <div
+        className="sidenav_container"
+        style={{ backgroundColor: theme.item_card.backgroundColor }}
+      >
         <div className="navs">
           <div className="devRant_logo">
             { this.getUserCard() }
@@ -47,6 +50,7 @@ class SideNav extends Component {
           {
             sideNavItems.map(item => (
               <Item
+                {...this.props}
                 key={item.route}
                 item={item}
                 active={location.pathname === item.route ? 'active' : null}
@@ -90,6 +94,7 @@ SideNav.propTypes = {
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   fetchUser: PropTypes.func.isRequired,
   resetColumn: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,

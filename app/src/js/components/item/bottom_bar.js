@@ -84,11 +84,16 @@ class BottomBar extends Component {
     return <div />;
   }
   render() {
-    const { type, item, onDelete } = this.props;
+    const {
+      type, item, onDelete, theme,
+    } = this.props;
     const { favorited, subscribed } = this.state;
     const disabled = this.props.isUser ? 'disabled' : '';
     return (
-      <div className="bottom_bar_container" >
+      <div
+        className="bottom_bar_container"
+        style={{ backgroundColor: theme.item_card.backgroundColor }}
+      >
         <div className="left_items">
           <div
             className={`upvote ${disabled} ${this.state.isVoted > 0 ? 'upvoted' : ''}`}
@@ -203,6 +208,7 @@ BottomBar.propTypes = {
   onCommentsClick: PropTypes.func,
   copyToClip: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   onFavorite: PropTypes.func.isRequired,
   onSubscribe: PropTypes.func.isRequired,
 };

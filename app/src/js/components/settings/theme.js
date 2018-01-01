@@ -110,6 +110,84 @@ class Theme extends Component {
                   value={theme.backgroundColor}
                 />
               </div>
+              <div className="custom_color rant_color">
+                <span className="color_type">Rant Card Background Color</span>
+                <SliderPicker
+                  color={theme.item_card.backgroundColor}
+                  onChangeComplete={(color) => {
+                    this.setState({
+                      theme: {
+                        ...theme,
+                        item_card: { ...theme.item_card, backgroundColor: color.hex },
+                      },
+                    });
+                    this.changeTheme();
+                  }}
+                />
+                <input
+                  onChange={(e) => {
+                    this.setState({
+                      theme: {
+                        ...theme,
+                        item_card: { ...theme.item_card, backgroundColor: e.target.value },
+                      },
+                    });
+                    this.changeTheme();
+                  }}
+                  value={theme.item_card.backgroundColor}
+                />
+              </div>
+              <div className="custom_color background_color">
+                <span className="color_type">Rant Card Text Color</span>
+                <SliderPicker
+                  color={theme.backgroundColor}
+                  onChangeComplete={(color) => {
+                    this.setState({ theme: { ...theme, backgroundColor: color.hex } });
+                    this.changeTheme();
+                  }}
+                />
+                <input
+                  onChange={(e) => {
+                    this.setState({ theme: { ...theme, backgroundColor: e.target.value } });
+                    this.changeTheme();
+                  }}
+                  value={theme.backgroundColor}
+                />
+              </div>
+              <div className="custom_color background_color">
+                <span className="color_type">Background Color</span>
+                <SliderPicker
+                  color={theme.backgroundColor}
+                  onChangeComplete={(color) => {
+                    this.setState({ theme: { ...theme, backgroundColor: color.hex } });
+                    this.changeTheme();
+                  }}
+                />
+                <input
+                  onChange={(e) => {
+                    this.setState({ theme: { ...theme, backgroundColor: e.target.value } });
+                    this.changeTheme();
+                  }}
+                  value={theme.backgroundColor}
+                />
+              </div>
+              <div className="custom_color background_color">
+                <span className="color_type">Background Color</span>
+                <SliderPicker
+                  color={theme.backgroundColor}
+                  onChangeComplete={(color) => {
+                    this.setState({ theme: { ...theme, backgroundColor: color.hex } });
+                    this.changeTheme();
+                  }}
+                />
+                <input
+                  onChange={(e) => {
+                    this.setState({ theme: { ...theme, backgroundColor: e.target.value } });
+                    this.changeTheme();
+                  }}
+                  value={theme.backgroundColor}
+                />
+              </div>
 
             </div>
           </div>

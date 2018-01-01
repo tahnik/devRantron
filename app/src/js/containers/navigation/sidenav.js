@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  theme: state.theme,
+  theme: state.settings.theme,
   auth: state.auth,
   user: state.user,
   sideNavItems: SIDE_NAV_ITEMS,

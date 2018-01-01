@@ -172,7 +172,7 @@ class ItemCard extends Component {
             >{object}
             </span>
           ))}
-        </div>}
+                                   </div>}
       </div>
     );
   }
@@ -306,6 +306,7 @@ class ItemCard extends Component {
         </div>
         {this.getTags()}
         <BottomBar
+          theme={theme}
           item={item}
           vote={vote}
           isUser={isUser}
