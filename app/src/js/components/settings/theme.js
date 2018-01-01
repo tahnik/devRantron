@@ -189,8 +189,15 @@ class Theme extends Component {
                   value={theme.backgroundColor}
                 />
               </div>
-
             </div>
+
+            <div className="sharable_string">
+              <span className="sharable_title">Sharable theme string</span>
+              <input
+                value={`${theme.backgroundColor},${theme.item_card.backgroundColor},${theme.item_card.color} xd meme`}
+              />
+            </div>
+
           </div>
         </div>
       </div>
