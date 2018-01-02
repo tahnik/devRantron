@@ -88,7 +88,7 @@ class Notifs extends Component {
       >
         <button
           className="notifs_ball"
-          style={{ backgroundColor: theme.plus_notif.backgroundColor }}
+          style={{ backgroundColor: theme.plus_notif ? theme.plus_notif.backgroundColor : '#D55161' }}
           onClick={() => { this.setState({ active: !this.state.active }); }}
         >
           <i className="ion-ios-bell" />
