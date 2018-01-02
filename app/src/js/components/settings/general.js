@@ -78,21 +78,24 @@ class General extends Component {
           );
           subSettings.push(settingComponent);
         });
-        settings.push(<div
-          className="multi_settings"
-          style={{
-            backgroundColor: theme.item_card.backgroundColor,
-            color: theme.item_card.color,
-          }}
-          key={key}
-        >
-          { Header }
-          <div className="options">
-            {
-              subSettings.map(s => s)
-            }
-          </div>
-        </div>);
+        /* eslint-disable */
+        settings.push(
+          <div
+            className="multi_settings"
+            style={{
+                backgroundColor: theme.item_card.backgroundColor,
+                color: theme.item_card.color,
+              }}
+            key={key}
+          >
+            { Header }
+            <div className="options">
+              {
+                  subSettings.map(s => s)
+                }
+            </div>
+          </div>,
+        );
       } else {
         const component = this.getSettingComponent(setting, key);
         settings.push(<div
@@ -105,6 +108,7 @@ class General extends Component {
         >
           { component }
         </div>);
+        /* eslint-enable */
       }
     });
     return settings;

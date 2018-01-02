@@ -87,7 +87,7 @@ class BottomBar extends Component {
     const {
       type, item, onDelete, theme,
     } = this.props;
-    const { favorited, subscribed } = this.state;
+    const { favorited } = this.state;
     const disabled = this.props.isUser ? 'disabled' : '';
     const backgroundColor = type === ITEM.COMMENT.NAME ?
       theme.comment_card.backgroundColor : theme.item_card.backgroundColor;

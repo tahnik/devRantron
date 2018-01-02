@@ -29,9 +29,8 @@ class PostRant extends Component {
   constructor() {
     super();
     this.state = {
-      rant_content: '',
+      rantContent: '',
       tags: '',
-      limitCrossed: null,
       disabled: false,
       type: 1,
       draftName: '',
@@ -47,7 +46,7 @@ class PostRant extends Component {
   componentWillMount() {
     const { postRant } = this.props;
     if (postRant.autoSave.content) {
-      this.setState({ rant_content: postRant.autoSave.content, tags: postRant.autoSave.tags });
+      this.setState({ rantContent: postRant.autoSave.content, tags: postRant.autoSave.tags });
     }
   }
 
@@ -61,20 +60,20 @@ class PostRant extends Component {
       .then((res) => {
         const rant = res.rant;
         this.setState({
-          rant_content: rant.text,
+          rantContent: rant.text,
           tags: rant.tags.join(),
         });
       });
   }
 
   componentWillUnmount() {
-    this.props.saveAutoSave({ content: this.state.rant_content, tags: this.state.tags });
+    this.props.saveAutoSave({ content: this.state.rantContent, tags: this.state.tags });
   }
 
   saveDraft() {
-    const { draftName, rant_content, tags } = this.state;
+    const { draftName, rantContent, tags } = this.state;
     if (draftName !== '') {
-      this.props.addDraft(draftName, { content: rant_content, tags });
+      this.props.addDraft(draftName, { content: rantContent, tags });
     }
   }
 
@@ -83,7 +82,7 @@ class PostRant extends Component {
     const draft = postRant.drafts[index];
     if (draft.name && draft.rant) {
       this.setState({
-        draftName: draft.name, rant_content: draft.rant.content, tags: draft.rant.tags,
+        draftName: draft.name, rantContent: draft.rant.content, tags: draft.rant.tags,
       });
     }
   }
@@ -109,15 +108,12 @@ class PostRant extends Component {
         }
         this.props.clearAutoSave();
         this.setState({
-          posting: false,
-          rant_content: '',
+          rantContent: '',
           tags: '',
-          limitCrossed: null,
         });
         this.props.open(ITEM.RANT.NAME, item.id);
       })
       .catch(() => {
-        this.setState({ posting: false });
       });
   }
 
@@ -141,23 +137,20 @@ class PostRant extends Component {
         }
         this.props.clearAutoSave();
         this.setState({
-          posting: false,
-          rant_content: '',
+          rantContent: '',
           tags: '',
-          limitCrossed: null,
           disabled: true,
         });
         this.props.open(ITEM.RANT.NAME, res.rant_id);
       })
       .catch(() => {
-        this.setState({ posting: false });
       });
   }
 
   render() {
     const { auth, item, postRant } = this.props;
     const { popup } = this.state;
-    if (item.id !== 0 && this.state.rant_content === '') {
+    if (item.id !== 0 && this.state.rantContent === '') {
       return (
         <div className="modal" >
           <Loading />
@@ -181,8 +174,8 @@ class PostRant extends Component {
           <div className="post_rant">
             <SmartArea
               onPost={(text, image) => this.onPost(text, image)}
-              value={this.state.rant_content}
-              onChange={text => this.setState({ rant_content: text })}
+              value={this.state.rantContent}
+              onChange={text => this.setState({ rantContent: text })}
               disabled={this.state.disabled || auth.user === null}
               placeholder="The rant starts here..."
               tags={this.state.tags}

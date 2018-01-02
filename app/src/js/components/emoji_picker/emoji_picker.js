@@ -23,7 +23,7 @@ const allEmojis = [];
 class EmojiPicker extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeTab: 'people', search: '' };
+    this.state = { activeTab: 'people' };
   }
   componentWillMount() {
     emojiData.categories = [];

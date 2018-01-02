@@ -9,9 +9,7 @@ class Notifs extends Component {
   constructor() {
     super();
     this.state = {
-      notifTimestamp: 1,
       active: false,
-      firstFetch: true,
     };
   }
   componentDidMount() {

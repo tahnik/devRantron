@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SketchPicker, CompactPicker, SliderPicker } from 'react-color';
+import { SliderPicker } from 'react-color';
 import PropTypes from 'prop-types';
 import Twemoji from 'react-twemoji';
 import { THEMES } from '../../consts/types';
@@ -43,6 +43,10 @@ class Theme extends Component {
     if (prevProps.theme !== this.props.theme) {
       const { theme } = this.props;
       const sharableTheme = `${theme.backgroundColor}, ${theme.item_card.backgroundColor}, ${theme.item_card.color}, ${theme.comment_card.backgroundColor}, ${theme.comment_card.color}, ${theme.plus_notif.backgroundColor}`;
+      /**
+       * Under if statement so it's okay to use
+       */
+      // eslint-disable-next-line
       this.setState({ sharableTheme, theme: this.props.theme });
     }
   }
