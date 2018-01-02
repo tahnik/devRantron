@@ -212,7 +212,10 @@ class ColumnTopBar extends Component {
       <div
         className="column_topbar"
         onMouseLeave={() => this.handleHoverLeave()}
-        style={{ width: `${theme.column.width}px` }}
+        style={{
+          width: `${theme.column.width}px`,
+          color: theme.item_card.color,
+        }}
       >
         <div className="left_navs">
           <div
