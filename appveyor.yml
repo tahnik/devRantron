@@ -1,8 +1,8 @@
 os: unstable
 
 # cache yarn and node_modules folder for rebuilds
-cache:
-  - node_modules
+# cache:
+#   - node_modules
 
 # Do not build feature branch with open Pull Requests
 skip_branch_with_pr: true
