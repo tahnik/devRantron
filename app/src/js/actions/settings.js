@@ -1,4 +1,4 @@
-import { SETTINGS, ITEM, THEMES } from '../consts/types';
+import { SETTINGS, ITEM } from '../consts/types';
 import { fetchUser } from './user';
 import { fetchNotifs } from './notifs';
 import { openModal } from './modal';

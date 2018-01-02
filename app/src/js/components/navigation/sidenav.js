@@ -7,13 +7,6 @@ import { ITEM } from '../../consts/types';
 const { ipcRenderer } = require('electron');
 
 class SideNav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
   componentDidMount() {
     ipcRenderer.on('compose_rant', () => { this.props.open(); });
     document.addEventListener('keydown', (e) => {

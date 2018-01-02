@@ -163,7 +163,8 @@ class ItemCard extends Component {
     }
     return (
       <div>
-        {item.tags.length !== 0 && <div className="tags">
+        {item.tags.length !== 0 &&
+        <div className="tags">
           {item.tags.map(object => (
             <span
               key={object}
@@ -173,7 +174,8 @@ class ItemCard extends Component {
             >{object}
             </span>
           ))}
-        </div>}
+        </div>
+        }
       </div>
     );
   }

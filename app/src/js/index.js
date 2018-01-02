@@ -28,6 +28,7 @@ document.addEventListener('keydown', (e) => {
     // eslint-disable-next-line
     require('electron').remote.getCurrentWindow().toggleDevTools();
   } else if (e.which === 116) {
+    // eslint-disable-next-line
     location.reload();
   }
 });

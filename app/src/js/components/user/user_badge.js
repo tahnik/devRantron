@@ -25,7 +25,6 @@ class UserBadge extends Component {
     // const c =
     // ['dGFobmlr', 'RGFjZXhp', 'ZGZveA==', 'dHJvZ3Vz'].indexOf(btoa(user.username)) > -1 ?
     // `#${user.avatar.b}` : '#ffffff';
-    const c = '#ffffff';
 
     return (
       <div className="user_badge">
@@ -46,11 +45,13 @@ class UserBadge extends Component {
             style={{ backgroundColor: theme.backgroundColor }}
           >{user.score}
           </span>
-          {user.dpp === 1 && <span
+          {user.dpp === 1 &&
+          <span
             className="score"
             style={{ color: '#ffffff', background: `#${user.avatar.b}` }}
           ><span>Supporter</span>
-                             </span>}
+          </span>
+          }
         </div>
       </div>
     );

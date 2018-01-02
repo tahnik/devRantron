@@ -3,12 +3,6 @@ import PropTypes from 'prop-types';
 import { getNotifText } from '../../consts/utils';
 
 class Notification extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visable: false,
-    };
-  }
   shouldComponentUpdate(nextProps) {
     const { notif } = this.props;
     if (nextProps.unread === 0 && (notif.read === 1)) {

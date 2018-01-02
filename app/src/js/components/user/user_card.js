@@ -66,11 +66,14 @@ class UserCard extends Component {
               style={{ backgroundColor: 'rgb(84, 85, 110)' }}
             >{user.score}
             </span>
-            {user.dpp === 1 && <span
+            {user.dpp === 1 &&
+            <span
               className="score"
               style={{ background: `#${user.avatar.b}` }}
-            ><span>Supporter</span>
-            </span>}
+            >
+              <span>Supporter</span>
+            </span>
+            }
           </div>
         </div>
 
@@ -80,16 +83,20 @@ class UserCard extends Component {
               { user.about !== '' && <li><i className="ion-person" /><p>{user.about}</p></li>}
               { user.skills !== '' && <li><i className="ion-code" /><p>{user.skills}</p></li>}
               { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
-              { user.github !== '' && <li><i className="ion-social-github" />
+              { user.github !== '' &&
+              <li><i className="ion-social-github" />
                 <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
                   {user.github}
                 </p>
-              </li>}
-              { user.website !== '' && <li><i className="ion-earth" />
+              </li>
+              }
+              { user.website !== '' &&
+              <li><i className="ion-earth" />
                 <p onClick={() => UserCard.openLink(user.website)}>
                   {user.website}
                 </p>
-              </li>}
+              </li>
+              }
             </ul>
           </div>
         </Twemoji>

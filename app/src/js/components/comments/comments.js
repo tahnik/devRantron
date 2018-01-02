@@ -11,6 +11,7 @@ class Comments extends Component {
   constructor() {
     super();
     this.state = {
+      // eslint-disable-next-line
       item: null,
     };
   }
