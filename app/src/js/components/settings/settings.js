@@ -25,7 +25,7 @@ class Items extends Component {
     } = this.props;
     if (activeNav === SETTINGS_NAV[0]) {
       return (
-        <General general={settings.general} changeGeneral={changeGeneral} />
+        <General general={settings.general} changeGeneral={changeGeneral} {...this.props} />
       );
     } else if (activeNav === SETTINGS_NAV[1]) {
       return <Theme theme={theme} {...this.props} />;

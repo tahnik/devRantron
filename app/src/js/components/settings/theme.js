@@ -136,7 +136,10 @@ class Theme extends Component {
   render() {
     const { theme } = this.state;
     return (
-      <div className="theme_container" style={{ backgroundColor: theme.item_card.backgroundColor }}>
+      <div
+        className="theme_container"
+        style={{ backgroundColor: theme.item_card.backgroundColor, color: theme.item_card.color }}
+      >
         <div className="items_container">
           { this.getThemes() }
         </div>

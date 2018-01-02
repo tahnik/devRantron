@@ -63,7 +63,7 @@ class General extends Component {
     }
   }
   getSettings() {
-    const { general } = this.props;
+    const { general, theme } = this.props;
     const settings = [];
     Object.keys(general).forEach((key) => {
       const setting = general[key];
@@ -78,19 +78,33 @@ class General extends Component {
           );
           subSettings.push(settingComponent);
         });
-        settings.push(<div className="multi_settings" key={key}>
+        settings.push(<div
+          className="multi_settings"
+          style={{
+            backgroundColor: theme.item_card.backgroundColor,
+            color: theme.item_card.color,
+          }}
+          key={key}
+        >
           { Header }
           <div className="options">
             {
-                subSettings.map(s => s)
-              }
+              subSettings.map(s => s)
+            }
           </div>
-                      </div>);
+        </div>);
       } else {
         const component = this.getSettingComponent(setting, key);
-        settings.push(<div className="single_settings" key={key}>
+        settings.push(<div
+          className="single_settings"
+          key={key}
+          style={{
+            backgroundColor: theme.item_card.backgroundColor,
+            color: theme.item_card.color,
+          }}
+        >
           { component }
-                      </div>);
+        </div>);
       }
     });
     return settings;
@@ -110,6 +124,7 @@ class General extends Component {
 General.propTypes = {
   general: PropTypes.object.isRequired,
   changeGeneral: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default General;
