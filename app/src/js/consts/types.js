@@ -158,7 +158,7 @@ export const THEMES = {
       details_back: '#54556E',
     },
     plus_notif: {
-      backgroundColor: '#dc322f',
+      backgroundColor: '#D55161',
     },
   },
   MONOKAI: {
