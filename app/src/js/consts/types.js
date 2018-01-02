@@ -41,6 +41,102 @@ export const SETTINGS = {
   },
   ACTION: {
     CHANGE_GENERAL: 'CHANGE_GENERAL',
+    CHANGE_THEME: 'CHANGE_THEME',
+  },
+};
+
+export const THEMES = {
+  DARK_THEME: {
+    name: 'Dark Theme',
+    id: 'dark_theme',
+    backgroundColor: '#54556E',
+    item_card: {
+      backgroundColor: '#40415A',
+      color: '#FFFFFF',
+    },
+    comment_card: {
+      backgroundColor: '#40415A',
+      color: '#FFFFFF',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#D55161',
+    },
+  },
+  LIGHT_THEME: {
+    name: 'Light Theme',
+    id: 'light_theme',
+    backgroundColor: '#94556E',
+    item_card: {
+      backgroundColor: '#40415A',
+      color: '#FFFFFF',
+    },
+    comment_card: {
+      backgroundColor: '#40415A',
+      color: '#FFFFFF',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#D55161',
+    },
+  },
+  SOLARIZED_DARK: {
+    name: 'Solarized Dark',
+    id: 'solarized_dark',
+    backgroundColor: '#342345',
+    item_card: {
+      backgroundColor: '#40415A',
+      color: '#FFFFFF',
+    },
+    comment_card: {
+      backgroundColor: '#40415A',
+      color: '#FFFFFF',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#D55161',
+    },
+  },
+  SOLARIZED_LIGHT: {
+    name: 'Solarized Light',
+    id: 'solarized_light',
+    backgroundColor: '#230923',
+    item_card: {
+      backgroundColor: '#40415A',
+      color: '#FFFFFF',
+    },
+    comment_card: {
+      backgroundColor: '#40415A',
+      color: '#FFFFFF',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#D55161',
+    },
   },
 };
 

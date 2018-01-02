@@ -19,8 +19,7 @@ class NotifBubbles extends PureComponent {
               unread={data.num_unread}
               key={`${notif.uid}_${notif.created_time}_${notif.comment_id}_${notif.type}_${notif.rant_id}`} //eslint-disable-line
               user={data.username_map[notif.uid]}
-            />),
-          )
+            />))
         }
       </div>
     );

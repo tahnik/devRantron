@@ -8,7 +8,8 @@ const Button = props => (
       <button
         onClick={() => props.handleChange()}
         disabled={!props.setting.value}
-      >{props.setting.buttonText}</button>
+      >{props.setting.buttonText}
+      </button>
     </div>
   </div>
 );

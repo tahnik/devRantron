@@ -280,7 +280,8 @@ class SmartArea extends Component {
             <div
               className={`mention ${index === selectedMention ? 'active' : ''}`}
               key={mention}
-            ><p>{this.props.users[mention]}</p></div>
+            ><p>{this.props.users[mention]}</p>
+            </div>
           ))}
         </div>
         <TwemojiComp
@@ -303,7 +304,8 @@ class SmartArea extends Component {
           <p
             className="charLeft"
             ref={(node) => { this.charLeft = node; }}
-          >{this.props.maxChar - this.props.value.length}</p>
+          >{this.props.maxChar - this.props.value.length}
+          </p>
           : null
         }
         <div className="post">
@@ -314,7 +316,8 @@ class SmartArea extends Component {
           <button
             disabled={this.props.disabled || invalidContent}
             onClick={() => this.onPost()}
-          >{btnText}</button>
+          >{btnText}
+          </button>
         </div>
       </div>
     );

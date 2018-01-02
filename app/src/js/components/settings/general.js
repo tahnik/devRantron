@@ -78,23 +78,19 @@ class General extends Component {
           );
           subSettings.push(settingComponent);
         });
-        settings.push(
-          <div className="multi_settings" key={key}>
-            { Header }
-            <div className="options">
-              {
+        settings.push(<div className="multi_settings" key={key}>
+          { Header }
+          <div className="options">
+            {
                 subSettings.map(s => s)
               }
-            </div>
-          </div>,
-        );
+          </div>
+                      </div>);
       } else {
         const component = this.getSettingComponent(setting, key);
-        settings.push(
-          <div className="single_settings" key={key}>
-            { component }
-          </div>,
-        );
+        settings.push(<div className="single_settings" key={key}>
+          { component }
+                      </div>);
       }
     });
     return settings;

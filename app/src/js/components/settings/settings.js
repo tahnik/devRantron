@@ -20,13 +20,15 @@ class Items extends Component {
   }
   getSettings() {
     const { activeNav } = this.state;
-    const { settings, changeGeneral, theme } = this.props;
+    const {
+      settings, changeGeneral, theme,
+    } = this.props;
     if (activeNav === SETTINGS_NAV[0]) {
       return (
         <General general={settings.general} changeGeneral={changeGeneral} />
       );
     } else if (activeNav === SETTINGS_NAV[1]) {
-      return <Theme theme={theme} />;
+      return <Theme theme={theme} {...this.props} />;
     }
     return <General />;
   }
@@ -57,6 +59,7 @@ Items.propTypes = {
   changeGeneral: PropTypes.func.isRequired,
   saveUserState: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 export default Items;

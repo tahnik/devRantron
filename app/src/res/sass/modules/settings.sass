@@ -28,9 +28,46 @@
     overflow-y: scroll
     .theme_container
       color: white
+      padding: 0.8rem
       display: flex
-      justify-content: center
       margin-top: 2rem
+      position: relative
+      flex-direction: column
+      .custom_theme
+        flex: 1
+        input:focus
+          border-bottom: 0.12rem solid #c14857
+        .theme_settings
+          .sharable_string
+            padding: 0.5rem
+            input
+              width: 98.5%
+          .custom_colors
+            display: flex
+            flex-wrap: wrap
+            .custom_color
+              margin: 0.5rem
+              flex: 1 0 30%
+              span
+                display: block
+                margin-bottom: 1rem
+              input
+                width: 98.5%
+      .items_container
+        flex: 1
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
+        .item_container
+          flex: 0 0 25%
+          cursor: pointer
+          margin: 0.5rem
+          padding: 1rem
+          box-shadow: 1px 1px 6px rgba(0,0,0,0.33)
+          .item_card
+            pointer-events: none
+            margin: 0
+            width: auto !important
     .general_container
       .version_number
         display: flex

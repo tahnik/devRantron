@@ -53,7 +53,8 @@ class ReleaseInfo extends Component {
             <div className="info" >
               <span>* On Windows: Update will be installed after you click update</span>
               <span>* On MacOS and Linux: Clicking update will take you to our website.
-                You have to download the latest update from there.</span>
+                You have to download the latest update from there.
+              </span>
             </div>
           </div>
         </div>
