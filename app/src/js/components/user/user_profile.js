@@ -189,6 +189,7 @@ class UserProfile extends Component {
           style={{
             background: 'url(./res/images/profile_banner.png)',
             width: `${theme.column.width}px`,
+            color: theme.item_card.color,
           }}
         >
           {
@@ -197,6 +198,10 @@ class UserProfile extends Component {
                 <i className="ion-log-out" />
               </div> : null
           }
+          <div
+            className="background"
+            style={{ backgroundColor: theme.item_card.backgroundColor }}
+          />
           <div className="image">
             <img alt="" src={imageSource} style={{ backgroundColor: `#${user.avatar.b}` }} />
           </div>

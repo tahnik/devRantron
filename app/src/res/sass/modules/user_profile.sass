@@ -6,7 +6,6 @@
     position: absolute
     top: 10px
     right: 10px
-    color: white
     font-size: 1.5rem
     transition: all 0.2s
     &:hover
@@ -32,26 +31,36 @@
     position: relative
     *
       z-index: 100
-    &::before
-      content: " "
-      background: rgba(64, 65, 90, 0.9)
-      position: absolute
-      top: 0
-      left: 0
-      height: 100%
-      width: 100%
+    // &::before
+    //   content: " "
+    //   background: rgba(64, 65, 90, 0.9)
+    //   position: absolute
+    //   top: 0
+    //   left: 0
+    //   height: 100%
+    //   width: 100%
     .image
       flex: 2
       img
         width: 150px
         height: 150px
         border-radius: 100%
+    .background
+      position: absolute
+      width: 100%
+      height: 100%
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      opacity: 0.9
+      z-index: 99
     .details
       flex: 7
       display: flex
       padding: 0 1rem
       margin-top: 1rem
-      color: white
+      color: inherit
       flex-direction: column
       .name_score
         font-family: 'Roboto', sans-serif
