@@ -8,17 +8,18 @@ class Theme extends Component {
   constructor() {
     super();
     this.state = {
+      sharableTheme: '',
       theme: {
         name: 'Custom Theme',
         id: 'custom_theme',
         backgroundColor: '#54556E',
         item_card: {
           backgroundColor: '#40415A',
-          color: 'white',
+          color: '#FFFFFF',
         },
         comment_card: {
           backgroundColor: '#40415A',
-          color: 'white',
+          color: '#FFFFFF',
         },
         column: {
           backgroundColor: '#54556E',
@@ -27,8 +28,60 @@ class Theme extends Component {
         user_badge: {
           details_back: '#54556E',
         },
+        plus_notif: {
+          backgroundColor: '#D55161',
+        },
       },
     };
+  }
+  componentWillMount() {
+    const { theme } = this.props;
+    const sharableTheme = `${theme.backgroundColor}, ${theme.item_card.backgroundColor}, ${theme.item_card.color}, ${theme.comment_card.backgroundColor}, ${theme.comment_card.color}, ${theme.plus_notif.backgroundColor}`;
+    this.setState({ theme, sharableTheme });
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.theme !== this.props.theme) {
+      const { theme } = this.props;
+      const sharableTheme = `${theme.backgroundColor}, ${theme.item_card.backgroundColor}, ${theme.item_card.color}, ${theme.comment_card.backgroundColor}, ${theme.comment_card.color}, ${theme.plus_notif.backgroundColor}`;
+      this.setState({ sharableTheme, theme: this.props.theme });
+    }
+  }
+  handleSharableTheme(values) {
+    this.setState({ sharableTheme: values });
+    const themeVals = values.replace(' ', '').split(',');
+    if (themeVals.length !== 6) {
+      return;
+    }
+    for (let i = 0; i < themeVals.length; i += 1) {
+      const isCorrect = /[#]\S{6}/g.test(themeVals[i]);
+      if (!isCorrect) {
+        return;
+      }
+    }
+    console.log(themeVals);
+    this.props.changeTheme(null, {
+      name: 'Custom Theme',
+      id: 'custom_theme',
+      backgroundColor: themeVals[0].replace(' ', ''),
+      item_card: {
+        backgroundColor: themeVals[1].replace(' ', ''),
+        color: themeVals[2].replace(' ', ''),
+      },
+      comment_card: {
+        backgroundColor: themeVals[3].replace(' ', ''),
+        color: themeVals[4].replace(' ', ''),
+      },
+      column: {
+        backgroundColor: '#54556E',
+        width: '450',
+      },
+      user_badge: {
+        details_back: '#54556E',
+      },
+      plus_notif: {
+        backgroundColor: themeVals[5].replace(' ', ''),
+      },
+    });
   }
   getTheme(key) {
     const { theme } = this.props;
@@ -43,6 +96,7 @@ class Theme extends Component {
           backgroundColor: selectedTheme.backgroundColor,
         }}
         onClick={() => { this.props.changeTheme(key); }}
+        key={key}
       >
         <div
           className={`item_card ${1 ? null : 'shadow'}`}
@@ -81,7 +135,6 @@ class Theme extends Component {
   }
   render() {
     const { theme } = this.state;
-    console.log(theme)
     return (
       <div className="theme_container" style={{ backgroundColor: theme.item_card.backgroundColor }}>
         <div className="items_container">
@@ -94,8 +147,8 @@ class Theme extends Component {
           <div className="theme_settings">
             <h4>Custom</h4>
             <div className="custom_colors">
-              <div className="custom_color background_color">
-                <span className="color_type">Background Color</span>
+              <div className="custom_color">
+                <span className="color_type">Background</span>
                 <SliderPicker
                   color={theme.backgroundColor}
                   onChangeComplete={(color) => {
@@ -111,8 +164,8 @@ class Theme extends Component {
                   value={theme.backgroundColor}
                 />
               </div>
-              <div className="custom_color rant_color">
-                <span className="color_type">Rant Card Background Color</span>
+              <div className="custom_color">
+                <span className="color_type">Rant Card Background</span>
                 <SliderPicker
                   color={theme.item_card.backgroundColor}
                   onChangeComplete={(color) => {
@@ -138,55 +191,112 @@ class Theme extends Component {
                   value={theme.item_card.backgroundColor}
                 />
               </div>
-              <div className="custom_color background_color">
-                <span className="color_type">Rant Card Text Color</span>
+              <div className="custom_color">
+                <span className="color_type">Rant Card Text</span>
                 <SliderPicker
-                  color={theme.backgroundColor}
+                  color={theme.item_card.color}
                   onChangeComplete={(color) => {
-                    this.setState({ theme: { ...theme, backgroundColor: color.hex } });
+                    this.setState({
+                      theme: {
+                        ...theme,
+                        item_card: { ...theme.item_card, color: color.hex },
+                      },
+                    });
                     this.changeTheme();
                   }}
                 />
                 <input
                   onChange={(e) => {
-                    this.setState({ theme: { ...theme, backgroundColor: e.target.value } });
+                    this.setState({
+                      theme: {
+                        ...theme,
+                        item_card: { ...theme.item_card, color: e.target.value },
+                      },
+                    });
                     this.changeTheme();
                   }}
-                  value={theme.backgroundColor}
+                  value={theme.item_card.color}
+                />
+              </div>
+              <div className="custom_color">
+                <span className="color_type">Comment Card Background</span>
+                <SliderPicker
+                  color={theme.comment_card.backgroundColor}
+                  onChangeComplete={(color) => {
+                    this.setState({
+                      theme: {
+                        ...theme,
+                        comment_card: { ...theme.comment_card, backgroundColor: color.hex },
+                      },
+                    });
+                    this.changeTheme();
+                  }}
+                />
+                <input
+                  onChange={(e) => {
+                    this.setState({
+                      theme: {
+                        ...theme,
+                        comment_card: { ...theme.comment_card, backgroundColor: e.target.value },
+                      },
+                    });
+                    this.changeTheme();
+                  }}
+                  value={theme.comment_card.backgroundColor}
+                />
+              </div>
+              <div className="custom_color">
+                <span className="color_type">Comment Card Text</span>
+                <SliderPicker
+                  color={theme.comment_card.color}
+                  onChangeComplete={(color) => {
+                    this.setState({
+                      theme: {
+                        ...theme,
+                        comment_card: { ...theme.comment_card, color: color.hex },
+                      },
+                    });
+                    this.changeTheme();
+                  }}
+                />
+                <input
+                  onChange={(e) => {
+                    this.setState({
+                      theme: {
+                        ...theme,
+                        comment_card: { ...theme.comment_card, color: e.target.value },
+                      },
+                    });
+                    this.changeTheme();
+                  }}
+                  value={theme.comment_card.color}
                 />
               </div>
               <div className="custom_color background_color">
-                <span className="color_type">Background Color</span>
+                <span className="color_type">PlusPlus and Notifs</span>
                 <SliderPicker
-                  color={theme.backgroundColor}
+                  color={theme.plus_notif.backgroundColor}
                   onChangeComplete={(color) => {
-                    this.setState({ theme: { ...theme, backgroundColor: color.hex } });
+                    this.setState({
+                      theme: {
+                        ...theme,
+                        plus_notif: { ...theme.plus_notif, backgroundColor: color.hex },
+                      },
+                    });
                     this.changeTheme();
                   }}
                 />
                 <input
                   onChange={(e) => {
-                    this.setState({ theme: { ...theme, backgroundColor: e.target.value } });
+                    this.setState({
+                      theme: {
+                        ...theme,
+                        plus_notif: { ...theme.plus_notif, backgroundColor: e.target.value },
+                      },
+                    });
                     this.changeTheme();
                   }}
-                  value={theme.backgroundColor}
-                />
-              </div>
-              <div className="custom_color background_color">
-                <span className="color_type">Background Color</span>
-                <SliderPicker
-                  color={theme.backgroundColor}
-                  onChangeComplete={(color) => {
-                    this.setState({ theme: { ...theme, backgroundColor: color.hex } });
-                    this.changeTheme();
-                  }}
-                />
-                <input
-                  onChange={(e) => {
-                    this.setState({ theme: { ...theme, backgroundColor: e.target.value } });
-                    this.changeTheme();
-                  }}
-                  value={theme.backgroundColor}
+                  value={theme.plus_notif.backgroundColor}
                 />
               </div>
             </div>
@@ -194,7 +304,8 @@ class Theme extends Component {
             <div className="sharable_string">
               <span className="sharable_title">Sharable theme string</span>
               <input
-                value={`${theme.backgroundColor},${theme.item_card.backgroundColor},${theme.item_card.color} <- should look like this. Also, paste here to apply theme`}
+                onChange={e => this.handleSharableTheme(e.target.value)}
+                value={this.state.sharableTheme}
               />
             </div>
 

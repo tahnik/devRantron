@@ -89,10 +89,14 @@ class BottomBar extends Component {
     } = this.props;
     const { favorited, subscribed } = this.state;
     const disabled = this.props.isUser ? 'disabled' : '';
+    const backgroundColor = type === ITEM.COMMENT.NAME ?
+      theme.comment_card.backgroundColor : theme.item_card.backgroundColor;
+    const color = type === ITEM.COMMENT.NAME ?
+      theme.comment_card.color : theme.item_card.color;
     return (
       <div
         className="bottom_bar_container"
-        style={{ backgroundColor: theme.item_card.backgroundColor }}
+        style={{ backgroundColor, color }}
       >
         <div className="left_items">
           <div

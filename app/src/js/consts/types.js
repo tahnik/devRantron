@@ -52,11 +52,11 @@ export const THEMES = {
     backgroundColor: '#54556E',
     item_card: {
       backgroundColor: '#40415A',
-      color: 'white',
+      color: '#FFFFFF',
     },
     comment_card: {
       backgroundColor: '#40415A',
-      color: 'white',
+      color: '#FFFFFF',
     },
     column: {
       backgroundColor: '#54556E',
@@ -64,6 +64,9 @@ export const THEMES = {
     },
     user_badge: {
       details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#D55161',
     },
   },
   LIGHT_THEME: {
@@ -72,11 +75,11 @@ export const THEMES = {
     backgroundColor: '#94556E',
     item_card: {
       backgroundColor: '#40415A',
-      color: 'white',
+      color: '#FFFFFF',
     },
     comment_card: {
       backgroundColor: '#40415A',
-      color: 'white',
+      color: '#FFFFFF',
     },
     column: {
       backgroundColor: '#54556E',
@@ -84,6 +87,9 @@ export const THEMES = {
     },
     user_badge: {
       details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#D55161',
     },
   },
   SOLARIZED_DARK: {
@@ -92,11 +98,11 @@ export const THEMES = {
     backgroundColor: '#342345',
     item_card: {
       backgroundColor: '#40415A',
-      color: 'white',
+      color: '#FFFFFF',
     },
     comment_card: {
       backgroundColor: '#40415A',
-      color: 'white',
+      color: '#FFFFFF',
     },
     column: {
       backgroundColor: '#54556E',
@@ -104,6 +110,9 @@ export const THEMES = {
     },
     user_badge: {
       details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#D55161',
     },
   },
   SOLARIZED_LIGHT: {
@@ -112,11 +121,11 @@ export const THEMES = {
     backgroundColor: '#230923',
     item_card: {
       backgroundColor: '#40415A',
-      color: 'white',
+      color: '#FFFFFF',
     },
     comment_card: {
       backgroundColor: '#40415A',
-      color: 'white',
+      color: '#FFFFFF',
     },
     column: {
       backgroundColor: '#54556E',
@@ -124,6 +133,9 @@ export const THEMES = {
     },
     user_badge: {
       details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#D55161',
     },
   },
 };

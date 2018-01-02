@@ -77,7 +77,11 @@ class SideNav extends Component {
           }
         </div>
         <div className="add_rant">
-          <button onClick={() => open()} className="add_button">
+          <button
+            onClick={() => open()}
+            className="add_button"
+            style={{ backgroundColor: theme.plus_notif.backgroundColor }}
+          >
             <i className="ion-plus-round" />
           </button>
         </div>

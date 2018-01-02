@@ -10,6 +10,7 @@ import { ITEM } from '../../consts/types';
 const mapStateToProps = state => ({
   auth: state.auth,
   notifs: state.notifs,
+  theme: state.settings.theme,
 });
 
 /* Here we use dispatch to dispatch actions to redux store

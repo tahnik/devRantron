@@ -63,7 +63,7 @@ class Notifs extends Component {
   }
   render() {
     const {
-      notifs, auth, open, clearNotifs,
+      notifs, auth, open, clearNotifs, theme,
     } = this.props;
 
     /* Wondering why there is notifs.notifs?
@@ -88,10 +88,13 @@ class Notifs extends Component {
       >
         <button
           className="notifs_ball"
+          style={{ backgroundColor: theme.plus_notif.backgroundColor }}
           onClick={() => { this.setState({ active: !this.state.active }); }}
         >
           <i className="ion-ios-bell" />
-          <span className={`num_unread ${notifs.num_unread > 0 ? 'unread' : ''}`} >
+          <span
+            className={`num_unread ${notifs.num_unread > 0 ? 'unread' : ''}`}
+          >
             { notifs ? notifs.num_unread : '' }
           </span>
         </button>
@@ -111,6 +114,7 @@ class Notifs extends Component {
 
 Notifs.propTypes = {
   auth: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
   notifs: PropTypes.object,
   openNotif: PropTypes.func.isRequired,

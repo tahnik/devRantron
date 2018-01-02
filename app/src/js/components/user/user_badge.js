@@ -40,17 +40,17 @@ class UserBadge extends Component {
             open={open}
           /> : null}
         <div className="details" onClick={() => this.openCard()}>
-          <p style={{ color: c }}>{user.username}</p>
+          <p>{user.username}</p>
           <span
             className="score"
-            style={{ backgroundColor: theme.user_badge.details_back }}
+            style={{ backgroundColor: theme.backgroundColor }}
           >{user.score}
           </span>
           {user.dpp === 1 && <span
             className="score"
             style={{ background: `#${user.avatar.b}` }}
           ><span>Supporter</span>
-          </span>}
+                             </span>}
         </div>
       </div>
     );
