@@ -7,7 +7,7 @@ const Items = ({
   <div
     className={`item ${className} ${active}`}
     onClick={() => onClick()}
-    style={{ backgroundColor: theme.item_card.backgroundColor }}
+    style={{ backgroundColor: theme.item_card.backgroundColor, color: theme.item_card.color }}
   >
     <i className={item.icon} />{ item.name }
   </div>
