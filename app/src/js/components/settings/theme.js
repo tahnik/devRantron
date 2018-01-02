@@ -149,9 +149,6 @@ class Theme extends Component {
         </div>
         <div className="custom_theme">
           <div className="theme_settings">
-            <h4>Global</h4>
-          </div>
-          <div className="theme_settings">
             <h4>Custom</h4>
             <div className="custom_colors">
               <div className="custom_color">
