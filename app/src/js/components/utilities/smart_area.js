@@ -244,6 +244,7 @@ class SmartArea extends Component {
   }
   render() {
     const { pickerActive, selectedMention } = this.state;
+    const { theme } = this.props;
     const invalidContent = this.props.value.length < 5;
     const isPost = typeof this.props.tags !== 'undefined';
     let btnText = 'Post Rant';
@@ -309,11 +310,21 @@ class SmartArea extends Component {
           : null
         }
         <div className="post">
-          <button onClick={() => this.selectImage()}>
+          <button
+            onClick={() => this.selectImage()}
+            style={{
+              backgroundColor: theme.plus_notif ? theme.plus_notif.backgroundColor : '#dd4242',
+              color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor,
+            }}
+          >
             {this.state.image === null && 'Add Image'}
             {this.state.image !== null && 'Remove Image'}
           </button>
           <button
+            style={{
+              backgroundColor: theme.plus_notif ? theme.plus_notif.backgroundColor : '#dd4242',
+              color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor,
+            }}
             disabled={this.props.disabled || invalidContent}
             onClick={() => this.onPost()}
           >{btnText}
@@ -338,6 +349,7 @@ SmartArea.propTypes = {
   onTagsChange: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   maxChar: PropTypes.number.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default SmartArea;

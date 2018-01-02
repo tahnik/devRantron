@@ -111,6 +111,7 @@ class CommentPost extends Component {
           onChange={text => this.setState({ content: text })}
           ref={(node) => { this.smartArea = node; }}
           editing={this.state.editID !== 0}
+          theme={theme}
         />
       </div>
     );

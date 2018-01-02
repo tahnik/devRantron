@@ -95,7 +95,10 @@ class Search extends Component {
   render() {
     const { theme } = this.props;
     return (
-      <div className="search_container">
+      <div
+        className="search_container"
+        style={{ color: theme.item_card.color }}
+      >
         <div className="search">
           <i className="ion-android-search" />
           <input

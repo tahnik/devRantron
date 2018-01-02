@@ -148,7 +148,9 @@ class PostRant extends Component {
   }
 
   render() {
-    const { auth, item, postRant } = this.props;
+    const {
+      auth, item, postRant, theme,
+    } = this.props;
     const { popup } = this.state;
     if (item.id !== 0 && this.state.rantContent === '') {
       return (
@@ -182,9 +184,16 @@ class PostRant extends Component {
               maxChar={5000}
               editing={item.id !== 0}
               onTagsChange={tags => this.setState({ tags })}
+              theme={theme}
             />
           </div>
-          <div className="utils" >
+          <div
+            className="utils"
+            style={{
+              backgroundColor: theme.backgroundColor,
+              color: theme.item_card.color,
+            }}
+          >
             <span className="header">Rant Type</span>
             <Dropdown
               items={RANT_TYPES}
@@ -194,14 +203,32 @@ class PostRant extends Component {
             <span className="header">Save draft</span>
             <div className="save_draft">
               <input
+                style={{ backgroundColor: theme.item_card.backgroundColor }}
                 onChange={e => this.setState({ draftName: e.currentTarget.value })}
                 value={this.state.draftName}
+                placeholder="Title of Draft"
               />
-              <button onClick={() => this.saveDraft()}>Save Draft</button>
+              <button
+                onClick={() => this.saveDraft()}
+                style={{
+                  backgroundColor: theme.plus_notif ? theme.plus_notif.backgroundColor : '#dd4242',
+                  color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor,
+                }}
+              >Save Draft
+              </button>
             </div>
             <span className="header">Saved Drafts</span>
-            <div className="drafts_container">
-              <div className="drafts" >
+            <div
+              className="drafts_container"
+              style={{ backgroundColor: theme.item_card.backgroundColor }}
+            >
+              <div
+                className="drafts"
+                style={{
+                  backgroundColor: theme.item_card.backgroundColor,
+                  color: theme.item_card.color,
+                }}
+              >
                 {
                   postRant.drafts.length !== 0 ?
                     postRant.drafts.map((draft, index) => (
@@ -211,8 +238,22 @@ class PostRant extends Component {
                       >
                         <span className="d_name" >{draft.name}</span>
                         <div className="actions">
-                          <button onClick={() => this.getDraft(index)}>Load</button>
-                          <button onClick={() => this.removeDraft(draft.name)}>Delete</button>
+                          <button
+                            onClick={() => this.getDraft(index)}
+                            style={{
+                              background: theme.plus_notif ? theme.plus_notif.backgroundColor : '#dd4242',
+                              color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor,
+                            }}
+                          >Load
+                          </button>
+                          <button
+                            onClick={() => this.removeDraft(draft.name)}
+                            style={{
+                              background: theme.plus_notif ? theme.plus_notif.backgroundColor : '#dd4242',
+                              color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor,
+                            }}
+                          >Delete
+                          </button>
                         </div>
                       </div>
                     ))
@@ -230,6 +271,7 @@ class PostRant extends Component {
 
 PostRant.propTypes = {
   auth: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   item: PropTypes.object.isRequired,
   postRant: PropTypes.object.isRequired,
   open: PropTypes.func.isRequired,
