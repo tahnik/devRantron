@@ -161,6 +161,29 @@ export const THEMES = {
       backgroundColor: '#dc322f',
     },
   },
+  MONOKAI: {
+    name: 'Monokai',
+    id: 'monokai',
+    backgroundColor: '#22231e',
+    item_card: {
+      backgroundColor: '#272822',
+      color: '#fdf6e3',
+    },
+    comment_card: {
+      backgroundColor: '#586e75',
+      color: '#fdf6e3',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#f92672',
+    },
+  },
 };
 
 export const STATE = {
