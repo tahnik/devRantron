@@ -102,6 +102,13 @@ class BottomBar extends Component {
     const color = type === ITEM.COMMENT.NAME ?
       theme.comment_card.color : theme.item_card.color;
     const voteColor = theme.plus_notif.backgroundColor;
+    let plusColor = theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.color;
+    let minusColor = theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.color;
+    if (this.state.isVoted > 0) {
+      plusColor = theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor;
+    } else if (this.state.isVoted < 0) {
+      minusColor = theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor;
+    }
     return (
       <div
         className="bottom_bar_container"
@@ -111,9 +118,12 @@ class BottomBar extends Component {
           <div
             className={`upvote ${disabled} ${this.state.isVoted > 0 ? 'upvoted' : ''}`}
             disabled={disabled}
-            style={{ backgroundColor: this.state.plusHover ? theme.backgroundColor : '' }}
-            onMouseEnter={this.togglePlusHover.bind(this)}
-            onMouseLeave={this.togglePlusHover.bind(this)}
+            style={{
+              backgroundColor: this.state.plusHover ? theme.backgroundColor : '',
+              color: plusColor,
+            }}
+            onMouseEnter={() => { this.togglePlusHover(); }}
+            onMouseLeave={() => { this.togglePlusHover(); }}
             onClick={() => this.vote(1)}
           >
             <div
@@ -134,9 +144,12 @@ class BottomBar extends Component {
             onClick={() => this.vote(-1)}
             disabled={disabled}
             className={`downvote ${disabled} ${this.state.isVoted < 0 ? 'downvoted' : ''}`}
-            style={{ backgroundColor: this.state.minusHover ? theme.backgroundColor : '' }}
-            onMouseEnter={this.toggleMinusHover.bind(this)}
-            onMouseLeave={this.toggleMinusHover.bind(this)}
+            style={{
+              backgroundColor: this.state.minusHover ? theme.backgroundColor : '',
+              color: minusColor,
+            }}
+            onMouseEnter={() => { this.toggleMinusHover(); }}
+            onMouseLeave={() => { this.toggleMinusHover(); }}
           >
             <div
               style={{ backgroundColor: voteColor }}
