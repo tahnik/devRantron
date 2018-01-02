@@ -41,6 +41,7 @@ class General extends Component {
           <Text
             key={secondaryKey}
             setting={setting}
+            theme={this.props.theme}
             handleChange={(value) => {
               this.handleChange(primaryKey, secondaryKey, value);
             }}
@@ -119,7 +120,12 @@ class General extends Component {
         {
           this.getSettings().map(s => s)
         }
-        <div className="version_number">v{remote.app.getVersion()}</div>
+        <div
+          className="version_number"
+          style={{ color: this.props.theme.item_card.color }}
+        >
+          v{remote.app.getVersion()}
+        </div>
       </div>
     );
   }
