@@ -15,6 +15,9 @@ class Items extends Component {
       activeNav: SETTINGS_NAV[0],
     };
   }
+  componentDidUpdate() {
+    this.props.saveUserState();
+  }
   getSettings() {
     const { activeNav } = this.state;
     const {
@@ -54,6 +57,7 @@ class Items extends Component {
 Items.propTypes = {
   settings: PropTypes.object.isRequired,
   changeGeneral: PropTypes.func.isRequired,
+  saveUserState: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 };
