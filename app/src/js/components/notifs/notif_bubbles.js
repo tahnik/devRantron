@@ -6,50 +6,8 @@ class NotifBubbles extends PureComponent {
   render() {
     const { data, open } = this.props;
 
-    console.log('render');
-
     if (!data) {
       return <div />;
-    }
-
-    if (this.props.sort) {
-      console.time('qualitySort');
-
-      const tempItems = data.items;
-      const commentDiscuss = [];
-      const commentVote = [];
-      const contentVote = [];
-      const commentContent = [];
-      const commentMention = [];
-      const alreadyRead = [];
-
-      tempItems.forEach((notif) => {
-        if (notif.read === 1) { alreadyRead.push(notif); return; }
-        if (notif.type === 'comment_discuss') { commentDiscuss.push(notif); }
-        if (notif.type === 'comment_vote') { commentVote.push(notif); }
-        if (notif.type === 'content_vote') { contentVote.push(notif); }
-        if (notif.type === 'comment_content') { commentContent.push(notif); }
-        if (notif.type === 'comment_mention') { commentMention.push(notif); }
-      });
-
-      data.items = [
-        ...commentMention,
-        ...commentContent,
-        ...contentVote,
-        ...commentVote,
-        ...commentDiscuss,
-        ...alreadyRead,
-      ];
-
-      console.timeEnd('qualitySort');
-    } else {
-      console.time('timeSort');
-      const tempItems = data.items;
-      tempItems.sort((a, b) => {
-        return b.created_time - a.created_time;
-      });
-      data.items = tempItems;
-      console.timeEnd('timeSort');
     }
 
     return (
@@ -73,7 +31,6 @@ class NotifBubbles extends PureComponent {
 
 NotifBubbles.propTypes = {
   data: PropTypes.object.isRequired,
-  sort: PropTypes.object.isRequired,
   open: PropTypes.func.isRequired,
 };
 
