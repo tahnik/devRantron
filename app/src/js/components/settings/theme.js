@@ -168,6 +168,7 @@ class Theme extends Component {
                     this.setState({ theme: { ...theme, backgroundColor: e.target.value } });
                     this.changeTheme();
                   }}
+                  style={{ color: theme.item_card.color }}
                   value={theme.backgroundColor}
                 />
               </div>
@@ -195,6 +196,7 @@ class Theme extends Component {
                     });
                     this.changeTheme();
                   }}
+                  style={{ color: theme.item_card.color }}
                   value={theme.item_card.backgroundColor}
                 />
               </div>
@@ -222,6 +224,7 @@ class Theme extends Component {
                     });
                     this.changeTheme();
                   }}
+                  style={{ color: theme.item_card.color }}
                   value={theme.item_card.color}
                 />
               </div>
@@ -249,6 +252,7 @@ class Theme extends Component {
                     });
                     this.changeTheme();
                   }}
+                  style={{ color: theme.item_card.color }}
                   value={theme.comment_card.backgroundColor}
                 />
               </div>
@@ -276,6 +280,7 @@ class Theme extends Component {
                     });
                     this.changeTheme();
                   }}
+                  style={{ color: theme.item_card.color }}
                   value={theme.comment_card.color}
                 />
               </div>
@@ -303,6 +308,7 @@ class Theme extends Component {
                     });
                     this.changeTheme();
                   }}
+                  style={{ color: theme.item_card.color }}
                   value={theme.plus_notif.backgroundColor}
                 />
               </div>
@@ -312,6 +318,7 @@ class Theme extends Component {
               <span className="sharable_title">Sharable theme string</span>
               <input
                 onChange={e => this.handleSharableTheme(e.target.value)}
+                style={{ color: theme.item_card.color }}
                 value={this.state.sharableTheme}
               />
             </div>

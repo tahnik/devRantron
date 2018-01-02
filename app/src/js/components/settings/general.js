@@ -41,6 +41,7 @@ class General extends Component {
           <Text
             key={secondaryKey}
             setting={setting}
+            theme={this.props.theme}
             handleChange={(value) => {
               this.handleChange(primaryKey, secondaryKey, value);
             }}
