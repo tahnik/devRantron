@@ -120,11 +120,11 @@ export const THEMES = {
     id: 'solarized_light',
     backgroundColor: '#342345',
     item_card: {
-      backgroundColor: '#40415A',
+      backgroundColor: '#534661',
       color: '#FFFFFF',
     },
     comment_card: {
-      backgroundColor: '#40415A',
+      backgroundColor: '#534661',
       color: '#FFFFFF',
     },
     column: {
@@ -143,11 +143,11 @@ export const THEMES = {
     id: 'solarized_dark',
     backgroundColor: '#230923',
     item_card: {
-      backgroundColor: '#40415A',
+      backgroundColor: '#543254',
       color: '#FFFFFF',
     },
     comment_card: {
-      backgroundColor: '#40415A',
+      backgroundColor: '#543254',
       color: '#FFFFFF',
     },
     column: {
