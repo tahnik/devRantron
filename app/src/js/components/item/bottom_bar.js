@@ -93,6 +93,7 @@ class BottomBar extends Component {
       theme.comment_card.backgroundColor : theme.item_card.backgroundColor;
     const color = type === ITEM.COMMENT.NAME ?
       theme.comment_card.color : theme.item_card.color;
+    const voteColor = theme.plus_notif.backgroundColor;
     return (
       <div
         className="bottom_bar_container"
@@ -104,8 +105,16 @@ class BottomBar extends Component {
             disabled={disabled}
             onClick={() => this.vote(1)}
           >
+            <div
+              style={{ backgroundColor: voteColor }}
+              className={`before ${this.state.isVoted > 0 ? 'votebefore' : ''}`}
+            />
             <span className="ud_icon">+</span>
             <span className="ud_icon">+</span>
+            <div
+              style={{ borderColor: this.state.isVoted > 0 ? `${voteColor}` : 'rgba(0,0,0,0)' }}
+              className={`${this.state.isVoted > 0 ? 'voteafter' : ''} after`}
+            />
           </div>
           <div className="score" >
             <span>{ this.state.score }</span>
@@ -115,8 +124,16 @@ class BottomBar extends Component {
             disabled={disabled}
             className={`downvote ${disabled} ${this.state.isVoted < 0 ? 'downvoted' : ''}`}
           >
+            <div
+              style={{ backgroundColor: voteColor }}
+              className={`before ${this.state.isVoted < 0 ? 'votebefore' : ''}`}
+            />
             <span className="ud_icon">-</span>
             <span className="ud_icon">-</span>
+            <div
+              style={{ borderColor: this.state.isVoted < 0 ? `${voteColor}` : 'rgba(0,0,0,0)' }}
+              className={`${this.state.isVoted < 0 ? 'voteafter' : ''} after`}
+            />
           </div>
         </div>
         <div
