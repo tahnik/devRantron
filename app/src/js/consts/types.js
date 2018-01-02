@@ -118,14 +118,14 @@ export const THEMES = {
   SOLARIZED_LIGHT: {
     name: 'Solarized Light',
     id: 'solarized_light',
-    backgroundColor: '#342345',
+    backgroundColor: '#fdf6e3',
     item_card: {
-      backgroundColor: '#534661',
-      color: '#FFFFFF',
+      backgroundColor: '#93a1a1',
+      color: '#073642',
     },
     comment_card: {
-      backgroundColor: '#534661',
-      color: '#FFFFFF',
+      backgroundColor: '#93a1a1',
+      color: '#073642',
     },
     column: {
       backgroundColor: '#54556E',
@@ -141,14 +141,14 @@ export const THEMES = {
   SOLARIZED_DARK: {
     name: 'Solarized Dark',
     id: 'solarized_dark',
-    backgroundColor: '#230923',
+    backgroundColor: '#002b36',
     item_card: {
-      backgroundColor: '#543254',
-      color: '#FFFFFF',
+      backgroundColor: '#586e75',
+      color: '#fdf6e3',
     },
     comment_card: {
-      backgroundColor: '#543254',
-      color: '#FFFFFF',
+      backgroundColor: '#586e75',
+      color: '#fdf6e3',
     },
     column: {
       backgroundColor: '#54556E',
@@ -158,7 +158,7 @@ export const THEMES = {
       details_back: '#54556E',
     },
     plus_notif: {
-      backgroundColor: '#D55161',
+      backgroundColor: '#dc322f',
     },
   },
 };
