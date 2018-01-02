@@ -101,6 +101,10 @@ class Notifs extends Component {
         </button>
         <div className={`notif_bubbles ${this.state.active ? 'active' : 'inactive'}`}>
           <button
+            style={{
+              backgroundColor: theme.plus_notif ? theme.plus_notif.backgroundColor : '#D55161',
+              color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor,
+            }}
             className="notifs_clear"
             onClick={() => { clearNotifs(); }}
           >Clear All
