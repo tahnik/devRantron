@@ -69,6 +69,52 @@ export const THEMES = {
       backgroundColor: '#D55161',
     },
   },
+  BLACK_THEME: {
+    name: 'Black Theme',
+    id: 'white_theme',
+    backgroundColor: '#000000',
+    item_card: {
+      backgroundColor: '#111111',
+      color: '#FFFFFF',
+    },
+    comment_card: {
+      backgroundColor: '#111111',
+      color: '#FFFFFF',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#FFFFFF',
+    },
+  },
+  WHITE_THEME: {
+    name: 'White Theme',
+    id: 'white_theme',
+    backgroundColor: '#F5F5F5',
+    item_card: {
+      backgroundColor: '#FFFFFF',
+      color: '#000000',
+    },
+    comment_card: {
+      backgroundColor: '#FFFFFF',
+      color: '#00000',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#000000',
+    },
+  },
   LIGHT_THEME: {
     name: 'Light Theme',
     id: 'light_theme',

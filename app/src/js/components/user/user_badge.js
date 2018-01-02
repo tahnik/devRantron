@@ -48,7 +48,7 @@ class UserBadge extends Component {
           {user.dpp === 1 &&
           <span
             className="score"
-            style={{ background: `#${user.avatar.b}` }}
+            style={{ color: '#ffffff', background: `#${user.avatar.b}` }}
           ><span>Supporter</span>
           </span>
           }

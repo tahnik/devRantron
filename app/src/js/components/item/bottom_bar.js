@@ -16,6 +16,8 @@ class BottomBar extends Component {
       triggerActive: false,
       favorited: false,
       subscribed: false,
+      plusHover: false,
+      minusHover: false,
     };
   }
   componentWillMount() {
@@ -83,6 +85,12 @@ class BottomBar extends Component {
     }
     return <div />;
   }
+  togglePlusHover() {
+    this.setState({ plusHover: !this.state.plusHover });
+  }
+  toggleMinusHover() {
+    this.setState({ minusHover: !this.state.minusHover });
+  }
   render() {
     const {
       type, item, onDelete, theme,
@@ -103,6 +111,9 @@ class BottomBar extends Component {
           <div
             className={`upvote ${disabled} ${this.state.isVoted > 0 ? 'upvoted' : ''}`}
             disabled={disabled}
+            style={{ backgroundColor: this.state.plusHover ? theme.backgroundColor : '' }}
+            onMouseEnter={this.togglePlusHover.bind(this)}
+            onMouseLeave={this.togglePlusHover.bind(this)}
             onClick={() => this.vote(1)}
           >
             <div
@@ -123,6 +134,9 @@ class BottomBar extends Component {
             onClick={() => this.vote(-1)}
             disabled={disabled}
             className={`downvote ${disabled} ${this.state.isVoted < 0 ? 'downvoted' : ''}`}
+            style={{ backgroundColor: this.state.minusHover ? theme.backgroundColor : '' }}
+            onMouseEnter={this.toggleMinusHover.bind(this)}
+            onMouseLeave={this.toggleMinusHover.bind(this)}
           >
             <div
               style={{ backgroundColor: voteColor }}
