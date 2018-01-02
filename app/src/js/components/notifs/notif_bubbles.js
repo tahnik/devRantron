@@ -5,11 +5,9 @@ import Notification from './notif_bubble';
 class NotifBubbles extends PureComponent {
   render() {
     const { data, open } = this.props;
-
     if (!data) {
       return <div />;
     }
-
     return (
       <div className="notif_bubble_container">
         {
