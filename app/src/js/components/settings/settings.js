@@ -36,7 +36,10 @@ class Items extends Component {
     const { activeNav } = this.state;
     return (
       <div className="settings">
-        <div className="top_nav">
+        <div
+          className="top_nav"
+          style={{ color: this.props.theme.item_card.color }}
+        >
           { SETTINGS_NAV.map(nav => (
             <div
               className={`nav ${activeNav === nav ? 'active' : ''}`}
