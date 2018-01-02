@@ -29,6 +29,7 @@ const {
   REDUX_DEVTOOLS,
 } = require('electron-devtools-installer');
 
+app.commandLine.appendSwitch('disable-smooth-scrolling');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
