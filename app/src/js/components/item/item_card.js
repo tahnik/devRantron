@@ -157,7 +157,7 @@ class ItemCard extends Component {
     this.props.history.replace(`/search/${term}`);
   }
   getTags() {
-    const { item } = this.props;
+    const { item, theme } = this.props;
     if (!item.tags) {
       return <div />;
     }
@@ -168,6 +168,7 @@ class ItemCard extends Component {
             <span
               key={object}
               className="tag"
+              style={{ backgroundColor: theme.backgroundColor }}
               onClick={() => this.handleTagClick(object)}
             >{object}
             </span>
