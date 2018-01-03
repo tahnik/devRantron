@@ -18,20 +18,20 @@ export const getUID = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]
 // eslint-disable-next-line
 export const escapeRegExp = str => str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 
-export const getNotifText = (type, username) => {
+export const getNotifText = (type, username, isCollab = false) => {
   switch (type) {
     case NOTIF_TYPES.COMMENT.MENTION:
       return `${username} mentioned you in a comment.`;
     case NOTIF_TYPES.COMMENT.CONTENT:
-      return `${username} commented on your rant.`;
+      return `${username} commented on your ${isCollab ? 'collab' : 'rant'}.`;
     case NOTIF_TYPES.COMMENT.DISCUSS:
-      return 'New comments on a rant you follow.';
+      return `New comments on a ${isCollab ? 'collab' : 'rant'} you follow.`;
     case NOTIF_TYPES.COMMENT.VOTE:
       return `${username} +1'd your comment.`;
     case NOTIF_TYPES.RANT_SUB:
-      return `${username} posted a new rant`;
+      return `${username} posted a new ${isCollab ? 'collab' : 'rant'}.`;
     default:
-      return `${username} +1'd your rant.`;
+      return `${username} +1'd your ${isCollab ? 'collab' : 'rant'}.`;
   }
 };
 

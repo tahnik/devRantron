@@ -56,7 +56,7 @@ export default {
           quick_reply_enabled: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'Enable "Quick Reply" when someone @mentions',
-            value: true,
+            value: false,
           },
           content_vote: {
             type: SETTINGS.TYPE.TOGGLE,

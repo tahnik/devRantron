@@ -62,7 +62,6 @@ class Theme extends Component {
         return;
       }
     }
-    console.log(themeVals);
     this.props.changeTheme(null, {
       name: 'Custom Theme',
       id: 'custom_theme',

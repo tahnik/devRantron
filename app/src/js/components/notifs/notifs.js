@@ -43,10 +43,12 @@ class Notifs extends Component {
     const notifs = this.props.notifs;
     if (prevUnread < currentUnread) {
       const notif = notifs.items[0];
+      const isCollab = notif.rt === 2;
       const osNotif = {
         body: getNotifText(
           notif.type,
           notifs.username_map[notif.uid].name,
+          isCollab,
         ),
         id: notif.rant_id,
         content: notif,

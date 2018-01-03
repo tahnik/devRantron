@@ -138,6 +138,7 @@ class Item extends Component {
     const {
       theme, vote, cardItem, auth, open, showToast,
     } = this.props;
+    const type = item.rant.rt === 2 ? ITEM.COLLAB.NAME : cardItem.type;
     return (
       <ItemCard
         modal
@@ -145,7 +146,7 @@ class Item extends Component {
         key={item.rant.id}
         theme={theme}
         vote={vote}
-        itemType={cardItem.type}
+        itemType={type}
         auth={auth}
         open={open}
         showToast={showToast}

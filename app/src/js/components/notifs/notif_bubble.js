@@ -29,7 +29,8 @@ class Notification extends Component {
     }
     const username = user ? user.name : 'Deleted user';
     const avatarBack = user ? user.avatar.b : '#FFF';
-    const notifText = getNotifText(notif.type, username);
+    const isCollab = notif.rt === 2;
+    const notifText = getNotifText(notif.type, username, isCollab);
     switch (notif.type) {
       case 'comment_mention':
         icon = 'ion-chatbubble-working';
