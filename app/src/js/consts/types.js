@@ -135,7 +135,7 @@ export const THEMES = {
       details_back: '#54556E',
     },
     plus_notif: {
-      backgroundColor: '#D55161',
+      backgroundColor: '#eee8d5',
     },
   },
   SOLARIZED_DARK: {
@@ -158,7 +158,7 @@ export const THEMES = {
       details_back: '#54556E',
     },
     plus_notif: {
-      backgroundColor: '#D55161',
+      backgroundColor: '#eee8d5',
     },
   },
   MONOKAI: {
