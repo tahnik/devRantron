@@ -22,6 +22,7 @@ class General extends Component {
             handleChange={(value) => {
               this.handleChange(primaryKey, secondaryKey, value);
             }}
+            theme={this.props.theme}
           />
         );
       }
@@ -33,6 +34,7 @@ class General extends Component {
             handleChange={() => {
               this.handleChange(primaryKey, secondaryKey, !setting.value);
             }}
+            theme={this.props.theme}
           />
         );
       }
@@ -56,6 +58,7 @@ class General extends Component {
             handleChange={() => {
               this.handleChange(primaryKey, secondaryKey);
             }}
+            theme={this.props.theme}
           />
         );
       }
