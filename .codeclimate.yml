@@ -18,13 +18,13 @@ checks:
       threshold: 500
   method-complexity:
     config:
-      threshold: 6
+      threshold: 10
   method-count:
     config:
       threshold: 20
   method-lines:
     config:
-      threshold: 50
+      threshold: 200
 ratings:
   paths:
   - "**.js"
