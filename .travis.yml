@@ -15,12 +15,12 @@ env:
     - ELECTRON_CACHE=$HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-# cache:
-#   directories:
-#   - node_modules
-#   - $HOME/.cache/electron
-#   - $HOME/.cache/electron-builder
-#   - $HOME/.npm/_prebuilds
+cache:
+  directories:
+  - node_modules
+  - $HOME/.cache/electron
+  - $HOME/.cache/electron-builder
+  - $HOME/.npm/_prebuilds
 
 install:
 - npm i
