@@ -3,12 +3,6 @@ import PropTypes from 'prop-types';
 import { getNotifText } from '../../consts/utils';
 
 class Notification extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visable: false,
-    };
-  }
   shouldComponentUpdate(nextProps) {
     const { notif } = this.props;
     if (nextProps.unread === 0 && (notif.read === 1)) {
@@ -35,7 +29,8 @@ class Notification extends Component {
     }
     const username = user ? user.name : 'Deleted user';
     const avatarBack = user ? user.avatar.b : '#FFF';
-    const notifText = getNotifText(notif.type, username);
+    const isCollab = notif.rt === 2;
+    const notifText = getNotifText(notif.type, username, isCollab);
     switch (notif.type) {
       case 'comment_mention':
         icon = 'ion-chatbubble-working';

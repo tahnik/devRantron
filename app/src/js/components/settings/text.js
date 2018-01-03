@@ -9,6 +9,7 @@ const Text = props => (
         onChange={e => props.handleChange(e.target.value)}
         placeholder={props.setting.placeholder}
         value={props.setting.value}
+        style={{ color: props.theme.item_card.color }}
       />
     </div>
   </div>
@@ -16,6 +17,7 @@ const Text = props => (
 
 Text.propTypes = {
   setting: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 

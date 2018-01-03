@@ -75,7 +75,8 @@ class Column extends Component {
   }
   getItemsContainer() {
     const {
-      column, theme, vote, fetch, open, itemType, auth, showToast, custom, modal } = this.props;
+      column, theme, vote, fetch, open, itemType, auth, showToast, custom, modal,
+    } = this.props;
     const { divID } = this.state;
     if (column.items.length === 0 && column.state === STATE.SUCCESS && !custom) {
       return (
@@ -115,7 +116,8 @@ class Column extends Component {
   }
   render() {
     const {
-      column, theme, fetch, filters, removeColumn } = this.props;
+      column, theme, fetch, filters, removeColumn,
+    } = this.props;
     const { divID } = this.state;
     return (
       <div

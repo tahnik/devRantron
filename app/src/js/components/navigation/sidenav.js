@@ -7,13 +7,6 @@ import { ITEM } from '../../consts/types';
 const { ipcRenderer } = require('electron');
 
 class SideNav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
   componentDidMount() {
     ipcRenderer.on('compose_rant', () => { this.props.open(); });
     document.addEventListener('keydown', (e) => {
@@ -23,7 +16,9 @@ class SideNav extends Component {
     });
   }
   getUserCard() {
-    const { user, logout, login, fetchUser, open } = this.props;
+    const {
+      user, logout, login, fetchUser, open,
+    } = this.props;
     return (<CompactUserCard
       user={user}
       login={login}
@@ -33,9 +28,14 @@ class SideNav extends Component {
     />);
   }
   render() {
-    const { sideNavItems, history, location, resetColumn, open, settings } = this.props;
+    const {
+      sideNavItems, history, location, resetColumn, open, settings, theme,
+    } = this.props;
     return (
-      <div className="sidenav_container" >
+      <div
+        className="sidenav_container"
+        style={{ backgroundColor: theme.item_card.backgroundColor }}
+      >
         <div className="navs">
           <div className="devRant_logo">
             { this.getUserCard() }
@@ -43,6 +43,7 @@ class SideNav extends Component {
           {
             sideNavItems.map(item => (
               <Item
+                {...this.props}
                 key={item.route}
                 item={item}
                 active={location.pathname === item.route ? 'active' : null}
@@ -58,10 +59,10 @@ class SideNav extends Component {
           {
             settings.general.update.value &&
               <Item
-                key={'update'}
+                key="update"
                 item={{ icon: 'ion-android-alert', name: 'Update Available', route: '/' }}
-                active={''}
-                className={'updateBtn'}
+                active=""
+                className="updateBtn"
                 onClick={() => {
                   open(ITEM.RELEASE_INFO.NAME);
                 }}
@@ -69,7 +70,14 @@ class SideNav extends Component {
           }
         </div>
         <div className="add_rant">
-          <button onClick={() => open()} className="add_button">
+          <button
+            onClick={() => open()}
+            className="add_button"
+            style={{
+              backgroundColor: theme.plus_notif ? theme.plus_notif.backgroundColor : '#D55161',
+              color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor,
+            }}
+          >
             <i className="ion-plus-round" />
           </button>
         </div>
@@ -86,6 +94,7 @@ SideNav.propTypes = {
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   fetchUser: PropTypes.func.isRequired,
   resetColumn: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,

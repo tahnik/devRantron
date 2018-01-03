@@ -157,22 +157,25 @@ class ItemCard extends Component {
     this.props.history.replace(`/search/${term}`);
   }
   getTags() {
-    const { item } = this.props;
+    const { item, theme } = this.props;
     if (!item.tags) {
       return <div />;
     }
     return (
       <div>
-        {item.tags.length !== 0 && <div className="tags">
+        {item.tags.length !== 0 &&
+        <div className="tags">
           {item.tags.map(object => (
             <span
               key={object}
               className="tag"
+              style={{ backgroundColor: theme.backgroundColor }}
               onClick={() => this.handleTagClick(object)}
             >{object}
             </span>
           ))}
-        </div>}
+        </div>
+        }
       </div>
     );
   }
@@ -260,13 +263,17 @@ class ItemCard extends Component {
     }
     // If there is any image with this rant
     const image = item.attached_image || '';
+    const backgroundColor = isComment ?
+      theme.comment_card.backgroundColor : theme.item_card.backgroundColor;
+    const color = isComment ?
+      theme.comment_card.color : theme.item_card.color;
     return (
       <div
         className={`item_card ${modal || isComment ? null : 'shadow'}`}
         id={item.id}
         style={{
-          backgroundColor: theme.item_card.backgroundColor,
-          color: theme.item_card.color,
+          backgroundColor,
+          color,
           width: `${theme.column.width}px`,
         }}
       >
@@ -306,6 +313,7 @@ class ItemCard extends Component {
         </div>
         {this.getTags()}
         <BottomBar
+          theme={theme}
           item={item}
           vote={vote}
           isUser={isUser}

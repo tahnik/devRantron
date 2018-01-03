@@ -1,4 +1,4 @@
-import { STATE, FEED, SETTINGS } from './types';
+import { STATE, FEED, SETTINGS, THEMES } from './types';
 import { getUID } from './utils';
 
 /*
@@ -16,25 +16,7 @@ export default {
   },
   notifs: null,
   settings: {
-    theme: {
-      name: 'Dark Theme',
-      backgroundColor: '#54556E',
-      item_card: {
-        backgroundColor: '#40415A',
-        color: 'white',
-      },
-      comment_card: {
-        backgroundColor: '#40415A',
-        color: 'white',
-      },
-      column: {
-        backgroundColor: '#54556E',
-        width: '450',
-      },
-      user_badge: {
-        details_back: '#54556E',
-      },
-    },
+    theme: THEMES.DARK_THEME,
     general: {
       filterRants: {
         title: 'Filter Rants',
@@ -74,7 +56,7 @@ export default {
           quick_reply_enabled: {
             type: SETTINGS.TYPE.TOGGLE,
             text: 'Enable "Quick Reply" when someone @mentions',
-            value: true,
+            value: false,
           },
           content_vote: {
             type: SETTINGS.TYPE.TOGGLE,

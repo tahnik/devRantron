@@ -23,7 +23,7 @@ const allEmojis = [];
 class EmojiPicker extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeTab: 'people', search: '' };
+    this.state = { activeTab: 'people' };
   }
   componentWillMount() {
     emojiData.categories = [];
@@ -59,7 +59,8 @@ class EmojiPicker extends Component {
                 onClick={() => { this.setState({ activeTab: object.name }); }}
                 key={object.name}
                 className="category"
-              >{object.icon}</Twemoji>
+              >{object.icon}
+              </Twemoji>
             ))}
           </div>
         </div>

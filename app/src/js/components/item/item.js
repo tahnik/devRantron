@@ -135,7 +135,10 @@ class Item extends Component {
   }
   getItemCard() {
     const { item } = this.state;
-    const { theme, vote, cardItem, auth, open, showToast } = this.props;
+    const {
+      theme, vote, cardItem, auth, open, showToast,
+    } = this.props;
+    const type = item.rant.rt === 2 ? ITEM.COLLAB.NAME : cardItem.type;
     return (
       <ItemCard
         modal
@@ -143,7 +146,7 @@ class Item extends Component {
         key={item.rant.id}
         theme={theme}
         vote={vote}
-        itemType={cardItem.type}
+        itemType={type}
         auth={auth}
         open={open}
         showToast={showToast}
@@ -154,7 +157,9 @@ class Item extends Component {
   }
   getComments() {
     const { item } = this.state;
-    const { theme, vote, auth, open, showToast } = this.props;
+    const {
+      theme, vote, auth, open, showToast,
+    } = this.props;
     return (
       <Comments
         comments={item.comments}

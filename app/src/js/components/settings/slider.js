@@ -22,6 +22,7 @@ class Slider extends Component {
             value={this.state.value}
             onChange={(e) => { this.setState({ value: e.target.value }); }}
             onMouseUp={() => this.props.handleChange(this.state.value)}
+            style={{ backgroundColor: this.props.theme.backgroundColor }}
           />
         </div>
       </div>
@@ -31,6 +32,7 @@ class Slider extends Component {
 
 Slider.propTypes = {
   setting: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 

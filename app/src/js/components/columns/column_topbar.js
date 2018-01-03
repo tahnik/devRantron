@@ -212,7 +212,10 @@ class ColumnTopBar extends Component {
       <div
         className="column_topbar"
         onMouseLeave={() => this.handleHoverLeave()}
-        style={{ width: `${theme.column.width}px` }}
+        style={{
+          width: `${theme.column.width}px`,
+          color: theme.item_card.color,
+        }}
       >
         <div className="left_navs">
           <div
@@ -227,7 +230,8 @@ class ColumnTopBar extends Component {
                   className={`${isActive}`}
                   onClick={() => this.handlePri(primaryFilters[key])}
                   onMouseOver={() => this.handleHover(primaryFilters[key])}
-                >{primaryFilters[key]}</span>
+                >{primaryFilters[key]}
+                </span>
               );
             })}
           </div>
@@ -243,7 +247,8 @@ class ColumnTopBar extends Component {
                     key={key}
                     className={`${isActive}`}
                     onClick={() => this.handleSec(secondaryFilters[key])}
-                  >{secondaryFilters[key]}</span>
+                  >{secondaryFilters[key]}
+                  </span>
                 );
               })}
           </div>

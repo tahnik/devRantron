@@ -16,6 +16,8 @@ class BottomBar extends Component {
       triggerActive: false,
       favorited: false,
       subscribed: false,
+      plusHover: false,
+      minusHover: false,
     };
   }
   componentWillMount() {
@@ -83,20 +85,57 @@ class BottomBar extends Component {
     }
     return <div />;
   }
+  togglePlusHover() {
+    this.setState({ plusHover: !this.state.plusHover });
+  }
+  toggleMinusHover() {
+    this.setState({ minusHover: !this.state.minusHover });
+  }
   render() {
-    const { type, item, onDelete } = this.props;
-    const { favorited, subscribed } = this.state;
+    const {
+      type, item, onDelete, theme,
+    } = this.props;
+    const { favorited } = this.state;
     const disabled = this.props.isUser ? 'disabled' : '';
+    const backgroundColor = type === ITEM.COMMENT.NAME ?
+      theme.comment_card.backgroundColor : theme.item_card.backgroundColor;
+    const color = type === ITEM.COMMENT.NAME ?
+      theme.comment_card.color : theme.item_card.color;
+    const voteColor = theme.plus_notif.backgroundColor;
+    let plusColor = theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.color;
+    let minusColor = theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.color;
+    if (this.state.isVoted > 0) {
+      plusColor = theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor;
+    } else if (this.state.isVoted < 0) {
+      minusColor = theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor;
+    }
     return (
-      <div className="bottom_bar_container" >
+      <div
+        className="bottom_bar_container"
+        style={{ backgroundColor, color }}
+      >
         <div className="left_items">
           <div
             className={`upvote ${disabled} ${this.state.isVoted > 0 ? 'upvoted' : ''}`}
             disabled={disabled}
+            style={{
+              backgroundColor: this.state.plusHover ? theme.backgroundColor : '',
+              color: plusColor,
+            }}
+            onMouseEnter={() => { this.togglePlusHover(); }}
+            onMouseLeave={() => { this.togglePlusHover(); }}
             onClick={() => this.vote(1)}
           >
+            <div
+              style={{ backgroundColor: voteColor }}
+              className={`before ${this.state.isVoted > 0 ? 'votebefore' : ''}`}
+            />
             <span className="ud_icon">+</span>
             <span className="ud_icon">+</span>
+            <div
+              style={{ borderColor: this.state.isVoted > 0 ? `${voteColor}` : 'rgba(0,0,0,0)' }}
+              className={`${this.state.isVoted > 0 ? 'voteafter' : ''} after`}
+            />
           </div>
           <div className="score" >
             <span>{ this.state.score }</span>
@@ -105,9 +144,23 @@ class BottomBar extends Component {
             onClick={() => this.vote(-1)}
             disabled={disabled}
             className={`downvote ${disabled} ${this.state.isVoted < 0 ? 'downvoted' : ''}`}
+            style={{
+              backgroundColor: this.state.minusHover ? theme.backgroundColor : '',
+              color: minusColor,
+            }}
+            onMouseEnter={() => { this.toggleMinusHover(); }}
+            onMouseLeave={() => { this.toggleMinusHover(); }}
           >
+            <div
+              style={{ backgroundColor: voteColor }}
+              className={`before ${this.state.isVoted < 0 ? 'votebefore' : ''}`}
+            />
             <span className="ud_icon">-</span>
             <span className="ud_icon">-</span>
+            <div
+              style={{ borderColor: this.state.isVoted < 0 ? `${voteColor}` : 'rgba(0,0,0,0)' }}
+              className={`${this.state.isVoted < 0 ? 'voteafter' : ''} after`}
+            />
           </div>
         </div>
         <div
@@ -117,6 +170,7 @@ class BottomBar extends Component {
           <div className="togglable">
             <div
               className={`trigger ${this.state.triggerActive ? 'active' : ''}`}
+              onClick={() => this.setState({ triggerActive: true })}
               onMouseEnter={() => this.setState({ triggerActive: true })}
             >
               <p><i className="ion-android-more-horizontal" /></p>
@@ -134,7 +188,7 @@ class BottomBar extends Component {
                 </div>
                 : null
               }
-              {
+              {/* {
                 !this.props.isUser ?
                   <div
                     className={`toggle_item subscribe ${subscribed ? 'active' : null}`}
@@ -143,7 +197,7 @@ class BottomBar extends Component {
                     <p><i className="ion-social-rss-outline" /></p>
                   </div>
                   : null
-              }
+              } */}
               { !item.rant_id && !item.c_type ?
                 <div
                   className={`toggle_item favorite ${favorited ? 'active' : null}`}
@@ -203,6 +257,7 @@ BottomBar.propTypes = {
   onCommentsClick: PropTypes.func,
   copyToClip: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   onFavorite: PropTypes.func.isRequired,
   onSubscribe: PropTypes.func.isRequired,
 };

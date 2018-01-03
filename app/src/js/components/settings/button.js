@@ -8,13 +8,19 @@ const Button = props => (
       <button
         onClick={() => props.handleChange()}
         disabled={!props.setting.value}
-      >{props.setting.buttonText}</button>
+        style={{
+          backgroundColor: props.theme.backgroundColor,
+          color: props.theme.item_card.color,
+        }}
+      >{props.setting.buttonText}
+      </button>
     </div>
   </div>
 );
 
 Button.propTypes = {
   setting: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 

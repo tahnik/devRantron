@@ -22,6 +22,7 @@ class General extends Component {
             handleChange={(value) => {
               this.handleChange(primaryKey, secondaryKey, value);
             }}
+            theme={this.props.theme}
           />
         );
       }
@@ -33,6 +34,7 @@ class General extends Component {
             handleChange={() => {
               this.handleChange(primaryKey, secondaryKey, !setting.value);
             }}
+            theme={this.props.theme}
           />
         );
       }
@@ -41,6 +43,7 @@ class General extends Component {
           <Text
             key={secondaryKey}
             setting={setting}
+            theme={this.props.theme}
             handleChange={(value) => {
               this.handleChange(primaryKey, secondaryKey, value);
             }}
@@ -55,6 +58,7 @@ class General extends Component {
             handleChange={() => {
               this.handleChange(primaryKey, secondaryKey);
             }}
+            theme={this.props.theme}
           />
         );
       }
@@ -63,7 +67,7 @@ class General extends Component {
     }
   }
   getSettings() {
-    const { general } = this.props;
+    const { general, theme } = this.props;
     const settings = [];
     Object.keys(general).forEach((key) => {
       const setting = general[key];
@@ -78,23 +82,37 @@ class General extends Component {
           );
           subSettings.push(settingComponent);
         });
+        /* eslint-disable */
         settings.push(
-          <div className="multi_settings" key={key}>
+          <div
+            className="multi_settings"
+            style={{
+                backgroundColor: theme.item_card.backgroundColor,
+                color: theme.item_card.color,
+              }}
+            key={key}
+          >
             { Header }
             <div className="options">
               {
-                subSettings.map(s => s)
-              }
+                  subSettings.map(s => s)
+                }
             </div>
           </div>,
         );
       } else {
         const component = this.getSettingComponent(setting, key);
-        settings.push(
-          <div className="single_settings" key={key}>
-            { component }
-          </div>,
-        );
+        settings.push(<div
+          className="single_settings"
+          key={key}
+          style={{
+            backgroundColor: theme.item_card.backgroundColor,
+            color: theme.item_card.color,
+          }}
+        >
+          { component }
+        </div>);
+        /* eslint-enable */
       }
     });
     return settings;
@@ -105,7 +123,12 @@ class General extends Component {
         {
           this.getSettings().map(s => s)
         }
-        <div className="version_number">v{remote.app.getVersion()}</div>
+        <div
+          className="version_number"
+          style={{ color: this.props.theme.item_card.color }}
+        >
+          v{remote.app.getVersion()}
+        </div>
       </div>
     );
   }
@@ -114,6 +137,7 @@ class General extends Component {
 General.propTypes = {
   general: PropTypes.object.isRequired,
   changeGeneral: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default General;

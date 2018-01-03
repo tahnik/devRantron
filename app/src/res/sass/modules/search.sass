@@ -11,7 +11,7 @@
     flex-wrap: wrap
     justify-content: center
     .term
-      color: white
+      color: inherit
       margin: 1rem 0
       display: flex
       justify-content: center
@@ -26,10 +26,15 @@
     align-items: center
     i
       font-size: 1.4rem
-      color: white
+      color: inherit
       margin-right: 5px
       display: flex
       align-items: center
     input
       font-size: 1.2rem
       padding: 0.2rem 0.2rem
+      color: inherit
+      &:focus
+        border-bottom: 0.12rem solid #C14857
+      &::-webkit-input-placeholder
+        color: #e6e6e6

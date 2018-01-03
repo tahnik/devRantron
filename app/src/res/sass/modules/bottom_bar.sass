@@ -24,27 +24,19 @@
       position: relative
       .ud_icon
         z-index: 100
-      &:hover
-        background-color: rgb(84, 85, 110)
+        transform: translatey(-2px)
       &.disabled
         opacity: 0.5
         cursor: default
           cursor: default
-      &.upvoted::before
-        transform: scale(1)
-      &.downvoted::before
-        transform: scale(1)
-      &.upvoted::after
-        border: 4px solid #D55161
-        transform: scale(1.4)
-        opacity: 0
-        transition: all 0.64s cubic-bezier(0.4, 0, 0, 1.3) !important
-      &.downvoted::after
-        border: 4px solid #D55161
-        transform: scale(1.4)
-        opacity: 0
-        transition: all 0.64s cubic-bezier(0.4, 0, 0, 1.3) !important
-      &::before
+      .votebefore
+        transform: scale(1) !important
+      .voteafter
+        border: 4px solid
+        transform: scale(1.4) !important
+        opacity: 0 !important
+        transition: all 0.64s cubic-bezier(0.4, 0, 0, 1.3)
+      .before
         content: " "
         height: 2rem
         width: 2rem
@@ -55,8 +47,8 @@
         background-color: #D55161
         z-index: 95
         transform: scale(0)
-        transition: transform 0.32s cubic-bezier(0.4, 0, 0, 1.3)
-      &::after
+        transition: all 0.32s cubic-bezier(0.4, 0, 0, 1.3)
+      .after
         content: " "
         height: calc(2rem - 4px)
         width: calc(2rem - 4px)
@@ -68,7 +60,7 @@
         transform: scale(1)
         opacity: 1
         z-index: 100
-        transition: all 0s cubic-bezier(0.4, 0, 0, 1.3)
+        transition: all 0.64s cubic-bezier(0.4, 0, 0, 1.3)
     .upvote
       span:nth-child(1)
         padding-right: 0.1rem

@@ -41,6 +41,148 @@ export const SETTINGS = {
   },
   ACTION: {
     CHANGE_GENERAL: 'CHANGE_GENERAL',
+    CHANGE_THEME: 'CHANGE_THEME',
+  },
+};
+
+export const THEMES = {
+  DARK_THEME: {
+    name: 'Dark Theme',
+    id: 'dark_theme',
+    backgroundColor: '#54556E',
+    item_card: {
+      backgroundColor: '#40415A',
+      color: '#FFFFFF',
+    },
+    comment_card: {
+      backgroundColor: '#40415A',
+      color: '#FFFFFF',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#D55161',
+    },
+  },
+  BLACK_THEME: {
+    name: 'Black Theme',
+    id: 'white_theme',
+    backgroundColor: '#000000',
+    item_card: {
+      backgroundColor: '#111111',
+      color: '#FFFFFF',
+    },
+    comment_card: {
+      backgroundColor: '#111111',
+      color: '#FFFFFF',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#FFFFFF',
+    },
+  },
+  WHITE_THEME: {
+    name: 'White Theme',
+    id: 'white_theme',
+    backgroundColor: '#F5F5F5',
+    item_card: {
+      backgroundColor: '#FFFFFF',
+      color: '#000000',
+    },
+    comment_card: {
+      backgroundColor: '#FFFFFF',
+      color: '#00000',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#000000',
+    },
+  },
+  SOLARIZED_LIGHT: {
+    name: 'Solarized Light',
+    id: 'solarized_light',
+    backgroundColor: '#fdf6e3',
+    item_card: {
+      backgroundColor: '#93a1a1',
+      color: '#073642',
+    },
+    comment_card: {
+      backgroundColor: '#93a1a1',
+      color: '#073642',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#eee8d5',
+    },
+  },
+  SOLARIZED_DARK: {
+    name: 'Solarized Dark',
+    id: 'solarized_dark',
+    backgroundColor: '#002b36',
+    item_card: {
+      backgroundColor: '#586e75',
+      color: '#fdf6e3',
+    },
+    comment_card: {
+      backgroundColor: '#586e75',
+      color: '#fdf6e3',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#eee8d5',
+    },
+  },
+  MONOKAI: {
+    name: 'Monokai',
+    id: 'monokai',
+    backgroundColor: '#22231e',
+    item_card: {
+      backgroundColor: '#272822',
+      color: '#fdf6e3',
+    },
+    comment_card: {
+      backgroundColor: '#586e75',
+      color: '#fdf6e3',
+    },
+    column: {
+      backgroundColor: '#54556E',
+      width: '450',
+    },
+    user_badge: {
+      details_back: '#54556E',
+    },
+    plus_notif: {
+      backgroundColor: '#f92672',
+    },
   },
 };
 

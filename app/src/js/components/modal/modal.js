@@ -42,7 +42,7 @@ class Modal extends Component {
     }
   }
   render() {
-    const { item, close } = this.props;
+    const { item, close, theme } = this.props;
     return (
       <CSSTransitionGroup
         transitionName="fade_item"
@@ -59,7 +59,14 @@ class Modal extends Component {
               onClick={e => this.onOutsideClick(e)}
               ref={(node) => { this.modal = node; }}
             >
-              <div className="close_modal" onClick={() => close()}>
+              <div
+                className="close_modal"
+                onClick={() => close()}
+                style={{
+                  background: theme.plus_notif ? theme.plus_notif.backgroundColor : '#dd4242',
+                  color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor,
+                }}
+              >
                 <i className="ion-close-round" />
               </div>
               { this.getItem() }
@@ -75,6 +82,7 @@ class Modal extends Component {
 Modal.propTypes = {
   item: PropTypes.object,
   close: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default Modal;

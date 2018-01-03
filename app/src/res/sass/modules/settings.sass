@@ -12,7 +12,7 @@
     height: 1.4rem
     .nav
       padding: 0 0.7rem
-      color: white
+      color: inherit
       transition: 0.1s all
       opacity: 0.4
       &:hover
@@ -27,32 +27,72 @@
     height: calc(100vh - 2.8rem)
     overflow-y: scroll
     .theme_container
-      color: white
+      padding: 0.8rem
       display: flex
-      justify-content: center
       margin-top: 2rem
+      margin-bottom: 1rem
+      position: relative
+      flex-direction: column
+      .custom_theme
+        flex: 1
+        input:focus
+          border-bottom: 0.12rem solid #c14857
+        .theme_settings
+          .sharable_string
+            padding: 0.5rem
+            input
+              width: 98.5%
+          .custom_colors
+            display: flex
+            flex-wrap: wrap
+            .custom_color
+              margin: 0.5rem
+              flex: 1 0 30%
+              span
+                display: block
+                margin-bottom: 1rem
+              input
+                width: 98.5%
+      .items_container
+        flex: 1
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
+        .item_container
+          flex: 0 0 25%
+          cursor: pointer
+          margin: 0.5rem
+          padding: 1rem
+          max-width: 200px
+          box-shadow: 1px 1px 6px rgba(0,0,0,0.33)
+          .item_card
+            pointer-events: none
+            margin: 0
+            width: auto !important
     .general_container
       .version_number
         display: flex
         justify-content: center
         margin: 4rem 0 1rem 0
-        color: white
       .multi_settings
         margin-bottom: 18px
+        background: #40415a
+        padding: 0.8rem
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.2)
         .header
-          color: white
           padding: 0.3rem 0
         .options
           margin-left: 1.5rem
           margin-bottom: 0.6rem
           padding-left: 1rem
       .single_settings
-        padding-bottom: 0.6rem
+        background: #40415a
+        padding: 0.1rem 1rem 0.6rem 1rem
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.2)
       .setting
         display: flex
         justify-content: space-between
         align-items: center
-        color: white
         margin: 0.6rem 0 0 0
         ::-webkit-input-placeholder
           color: #bbb
@@ -67,7 +107,6 @@
           margin: 0.6rem 0 0 0
           cursor: pointer
           .setting_label
-            color: white
             user-select: none
           .setting_option
             display: flex

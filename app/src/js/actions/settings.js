@@ -187,8 +187,12 @@ const changeGeneral = (primaryKey, secondaryKey, value) => (dispatch) => {
  * We will use this for theming in future
  *
  */
-const changeTheme = () => () => {
-
+const changeTheme = (key, values = null) => (dispatch) => {
+  dispatch({
+    type: SETTINGS.ACTION.CHANGE_THEME,
+    key: values ? null : key,
+    values,
+  });
 };
 
 

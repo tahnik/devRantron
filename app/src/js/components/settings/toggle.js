@@ -14,6 +14,7 @@ const Toggle = props => (
         />
         <span
           className="slider"
+          style={{ backgroundColor: props.theme.backgroundColor }}
         />
       </label>
     </div>
@@ -22,6 +23,7 @@ const Toggle = props => (
 
 Toggle.propTypes = {
   setting: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 

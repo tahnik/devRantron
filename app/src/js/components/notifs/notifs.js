@@ -9,9 +9,7 @@ class Notifs extends Component {
   constructor() {
     super();
     this.state = {
-      notifTimestamp: 1,
       active: false,
-      firstFetch: true,
     };
   }
   componentDidMount() {
@@ -45,10 +43,12 @@ class Notifs extends Component {
     const notifs = this.props.notifs;
     if (prevUnread < currentUnread) {
       const notif = notifs.items[0];
+      const isCollab = notif.rt === 2;
       const osNotif = {
         body: getNotifText(
           notif.type,
           notifs.username_map[notif.uid].name,
+          isCollab,
         ),
         id: notif.rant_id,
         content: notif,
@@ -62,7 +62,9 @@ class Notifs extends Component {
     }
   }
   render() {
-    const { notifs, auth, open, clearNotifs } = this.props;
+    const {
+      notifs, auth, open, clearNotifs, theme,
+    } = this.props;
 
     /* Wondering why there is notifs.notifs?
      * If you look at the default state, it looks like this:
@@ -86,18 +88,29 @@ class Notifs extends Component {
       >
         <button
           className="notifs_ball"
+          style={{
+            backgroundColor: theme.plus_notif ? theme.plus_notif.backgroundColor : '#D55161',
+            color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor,
+          }}
           onClick={() => { this.setState({ active: !this.state.active }); }}
         >
           <i className="ion-ios-bell" />
-          <span className={`num_unread ${notifs.num_unread > 0 ? 'unread' : ''}`} >
+          <span
+            className={`num_unread ${notifs.num_unread > 0 ? 'unread' : ''}`}
+          >
             { notifs ? notifs.num_unread : '' }
           </span>
         </button>
         <div className={`notif_bubbles ${this.state.active ? 'active' : 'inactive'}`}>
           <button
+            style={{
+              backgroundColor: theme.plus_notif ? theme.plus_notif.backgroundColor : '#D55161',
+              color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.backgroundColor,
+            }}
             className="notifs_clear"
             onClick={() => { clearNotifs(); }}
-          >Clear All</button>
+          >Clear All
+          </button>
           <NotifBubbles data={notifs} open={open} />
         </div>
         <div className={`notifs_bubbles_container ${this.state.active ? 'active' : ''}`} />
@@ -108,6 +121,7 @@ class Notifs extends Component {
 
 Notifs.propTypes = {
   auth: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
   notifs: PropTypes.object,
   openNotif: PropTypes.func.isRequired,

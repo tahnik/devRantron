@@ -189,6 +189,7 @@ class UserProfile extends Component {
           style={{
             background: 'url(./res/images/profile_banner.png)',
             width: `${theme.column.width}px`,
+            color: theme.item_card.color,
           }}
         >
           {
@@ -197,6 +198,10 @@ class UserProfile extends Component {
                 <i className="ion-log-out" />
               </div> : null
           }
+          <div
+            className="background"
+            style={{ backgroundColor: theme.item_card.backgroundColor }}
+          />
           <div className="image">
             <img alt="" src={imageSource} style={{ backgroundColor: `#${user.avatar.b}` }} />
           </div>
@@ -208,23 +213,33 @@ class UserProfile extends Component {
             <Twemoji>
               <div className="other_infos">
                 <ul>
-                  { user.about !== '' && <li><i className="ion-person" />
+                  { user.about !== '' &&
+                  <li><i className="ion-person" />
                     <p>{user.about}</p>
-                  </li>}
-                  { user.skills !== '' && <li><i className="ion-code" />
+                  </li>
+                  }
+                  { user.skills !== '' &&
+                  <li><i className="ion-code" />
                     <p>{user.skills}</p>
-                  </li>}
-                  { user.location !== '' && <li><i className="ion-ios-location" /><p>{user.location}</p></li>}
-                  { user.github !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-social-github" />
+                  </li>
+                  }
+                  { user.location !== '' &&
+                  <li><i className="ion-ios-location" /><p>{user.location}</p></li>
+                  }
+                  { user.github !== '' &&
+                  <li style={{ cursor: 'pointer' }}><i className="ion-social-github" />
                     <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
                       {user.github}
                     </p>
-                  </li>}
-                  { user.website !== '' && <li style={{ cursor: 'pointer' }}><i className="ion-earth" />
+                  </li>
+                  }
+                  { user.website !== '' &&
+                  <li style={{ cursor: 'pointer' }}><i className="ion-earth" />
                     <p onClick={() => UserProfile.openLink(user.website)}>
                       {user.website}
                     </p>
-                  </li>}
+                  </li>
+                  }
                 </ul>
               </div>
             </Twemoji>

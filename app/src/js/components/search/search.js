@@ -95,7 +95,10 @@ class Search extends Component {
   render() {
     const { theme } = this.props;
     return (
-      <div className="search_container">
+      <div
+        className="search_container"
+        style={{ color: theme.item_card.color }}
+      >
         <div className="search">
           <i className="ion-android-search" />
           <input
@@ -117,19 +120,18 @@ class Search extends Component {
           :
           <div className="frequent_terms">
             {
-              this.state.freqTerms.map(
-                term => (
-                  <div
-                    key={term.name}
-                    className="term"
-                    onClick={() => this.onSearch(term.name)}
-                    style={{
+              this.state.freqTerms.map(term => (
+                <div
+                  key={term.name}
+                  className="term"
+                  onClick={() => this.onSearch(term.name)}
+                  style={{
                       flex: `0 1 ${term.flex}%`,
                       transform: term.flex > 31 ? 'scale(0.9)' : 'scale(1.1)',
                     }}
-                  >{term.name}</div>
-                ),
-              )
+                >{term.name}
+                </div>
+                ))
             }
           </div>
         }

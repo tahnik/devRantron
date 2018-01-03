@@ -7,7 +7,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: path.join(__dirname, '../app'),
-  devtool: 'source-map',
+  /**
+   * There is a known problem with devtools in webpack right now.
+   * Will add it back once that is fixed.
+   */
+  // devtool: 'source-map',
   entry: {
     app: [
       './src/res/sass/main.sass',

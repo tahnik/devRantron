@@ -15,15 +15,20 @@ class Items extends Component {
       activeNav: SETTINGS_NAV[0],
     };
   }
+  componentDidUpdate() {
+    this.props.saveUserState();
+  }
   getSettings() {
     const { activeNav } = this.state;
-    const { settings, changeGeneral, theme } = this.props;
+    const {
+      settings, changeGeneral, theme,
+    } = this.props;
     if (activeNav === SETTINGS_NAV[0]) {
       return (
-        <General general={settings.general} changeGeneral={changeGeneral} />
+        <General general={settings.general} changeGeneral={changeGeneral} {...this.props} />
       );
     } else if (activeNav === SETTINGS_NAV[1]) {
-      return <Theme theme={theme} />;
+      return <Theme theme={theme} {...this.props} />;
     }
     return <General />;
   }
@@ -31,7 +36,10 @@ class Items extends Component {
     const { activeNav } = this.state;
     return (
       <div className="settings">
-        <div className="top_nav">
+        <div
+          className="top_nav"
+          style={{ color: this.props.theme.item_card.color }}
+        >
           { SETTINGS_NAV.map(nav => (
             <div
               className={`nav ${activeNav === nav ? 'active' : ''}`}
@@ -52,7 +60,9 @@ class Items extends Component {
 Items.propTypes = {
   settings: PropTypes.object.isRequired,
   changeGeneral: PropTypes.func.isRequired,
+  saveUserState: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 export default Items;

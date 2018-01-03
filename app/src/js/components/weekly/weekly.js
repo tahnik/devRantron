@@ -77,12 +77,11 @@ class Weekly extends Component {
                   width: `${theme.column.width}px`,
                 }}
               >
-                <div className={'weekly_option'}>
+                <div className="weekly_option">
                   <div className="weekDesc"><b>{`wk${week.week}`}</b> {`${week.prompt}`}</div>
                 </div>
               </div>
-            ),
-          )}
+            ))}
         </div>
 
         <Column

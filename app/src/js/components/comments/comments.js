@@ -11,11 +11,14 @@ class Comments extends Component {
   constructor() {
     super();
     this.state = {
+      // eslint-disable-next-line
       item: null,
     };
   }
   render() {
-    const { theme, vote, comments, auth, open, addMention, showToast, fetchitem } = this.props;
+    const {
+      theme, vote, comments, auth, open, addMention, showToast, fetchitem,
+    } = this.props;
     return (
       <div
         className="comments_container"

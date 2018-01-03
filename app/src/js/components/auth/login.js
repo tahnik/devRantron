@@ -71,7 +71,8 @@ class Login extends Component {
               this.state.password,
             )}
             disabled={auth.state === 'STATE_LOADING'}
-          >Login</button>
+          >Login
+          </button>
           <p onClick={() => noLogin(true)}><u>Not now</u></p>
         </div>
       </div>
