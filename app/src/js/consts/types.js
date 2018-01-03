@@ -170,7 +170,7 @@ export const THEMES = {
       color: '#fdf6e3',
     },
     comment_card: {
-      backgroundColor: '#586e75',
+      backgroundColor: '#272822',
       color: '#fdf6e3',
     },
     column: {
