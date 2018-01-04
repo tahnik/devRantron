@@ -1,7 +1,9 @@
 # What's new?
-![devRantron](https://i.imgur.com/RteqoFG.png)
+![devRantron](https://i.imgur.com/OiuyOL3.png)
+
+## Themes!
+You can now chose multiple preset themes available in settings. Or make your own custom theme and share with others!
 
 ## Bugfixes
-* Fixed: No notification on Windows. This was due to a bug in Electron.
-
-And a lot more bugfixes and optimizations. We hope you enjoy!
+- Fixed a bug where settings would not be saved if the app crashed
+- Removed custom columns
