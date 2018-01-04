@@ -11,7 +11,9 @@ class SideNav extends Component {
     ipcRenderer.on('compose_rant', () => { this.props.open(); });
     document.addEventListener('keydown', (e) => {
       if (e.which === 13 && e.ctrlKey) {
-        this.props.open();
+        if (!this.props.modalItem) {
+          this.props.open();
+        }
       }
     });
   }
@@ -98,6 +100,7 @@ SideNav.propTypes = {
   fetchUser: PropTypes.func.isRequired,
   resetColumn: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
+  modalItem: PropTypes.object,
 };
 
 export default SideNav;

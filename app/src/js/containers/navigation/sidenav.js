@@ -42,6 +42,7 @@ const mapStateToProps = state => ({
   user: state.user,
   sideNavItems: SIDE_NAV_ITEMS,
   settings: state.settings,
+  modalItem: state.modal.item,
 });
 
 

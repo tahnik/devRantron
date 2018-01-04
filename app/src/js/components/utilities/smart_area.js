@@ -47,6 +47,14 @@ class SmartArea extends Component {
     document.body.addEventListener('mouseup', () => {
       mouseDown = false;
     }, true);
+    document.addEventListener('keydown', (e) => {
+      if (e.which === 13 && e.ctrlKey) {
+        const invalidContent = this.props.value.length < 5;
+        if (!(this.props.disabled || invalidContent)) {
+          this.onPost();
+        }
+      }
+    });
   }
   shouldComponentUpdate() {
     return true;
