@@ -14,7 +14,10 @@ const Toggle = props => (
         />
         <span
           className="slider"
-          style={{ backgroundColor: props.theme.backgroundColor }}
+          style={{
+            backgroundColor: props.theme.plus_notif ?
+                      props.theme.plus_notif.backgroundColor : props.theme.backgroundColor,
+          }}
         />
       </label>
     </div>
