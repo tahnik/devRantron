@@ -9,6 +9,7 @@ class Slider extends Component {
     };
   }
   render() {
+    const { theme } = this.props;
     return (
       <div className="setting slider">
         <span className="setting_label">{this.props.setting.text}</span>
@@ -22,7 +23,10 @@ class Slider extends Component {
             value={this.state.value}
             onChange={(e) => { this.setState({ value: e.target.value }); }}
             onMouseUp={() => this.props.handleChange(this.state.value)}
-            style={{ backgroundColor: this.props.theme.backgroundColor }}
+            style={{
+            backgroundColor: theme.plus_notif ?
+                      theme.plus_notif.backgroundColor : theme.backgroundColor,
+          }}
           />
         </div>
       </div>
