@@ -101,7 +101,7 @@ class BottomBar extends Component {
       theme.comment_card.backgroundColor : theme.item_card.backgroundColor;
     const color = type === ITEM.COMMENT.NAME ?
       theme.comment_card.color : theme.item_card.color;
-    const voteColor = theme.plus_notif.backgroundColor;
+    const voteColor = theme.plus_notif ? theme.plus_notif.backgroundColor : '#C14857';
     let plusColor = theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.color;
     let minusColor = theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.color;
     if (this.state.isVoted > 0) {
