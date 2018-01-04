@@ -97,6 +97,10 @@ class Notifs extends Component {
           <i className="ion-ios-bell" />
           <span
             className={`num_unread ${notifs.num_unread > 0 ? 'unread' : ''}`}
+            style={{
+              backgroundColor: theme.item_card.backgroundColor,
+              color: theme.id === 'dark_theme' ? '#ffffff' : theme.item_card.color,
+            }}
           >
             { notifs ? notifs.num_unread : '' }
           </span>
