@@ -222,11 +222,10 @@ body
     position: absolute
     width: 100%
     height: 100%
+    display: flex
 
   .middle_container
-    position: absolute
-    left: $sidenav_width
-    width: calc(100% - #{$sidenav_width})
+    flex: 1
     display: flex
     justify-content: center
     height: 100%

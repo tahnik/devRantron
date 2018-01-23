@@ -213,7 +213,7 @@ class Item extends Component {
       <div
         className="item_compact_column"
         style={{
-          width: `${parseInt(this.props.theme.column.width, 10) + 15}px`,
+          width: `${parseInt(this.props.theme.column.width, 10) + 18}px`,
         }}
         ref={(node) => { this.compactCol = node; }}
       >

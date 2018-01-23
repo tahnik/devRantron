@@ -7,7 +7,19 @@ import { ITEM } from '../../consts/types';
 const { ipcRenderer } = require('electron');
 
 class SideNav extends Component {
+  constructor() {
+    super();
+    this.state = {
+      hidden: false,
+    };
+  }
   componentDidMount() {
+    this.handleResize();
+    this.listener = () => {
+      this.handleResize();
+    };
+    window.addEventListener('resize', this.listener);
+
     const { theme } = this.props;
     ipcRenderer.on('compose_rant', () => { this.props.open(); });
     document.addEventListener('keydown', (e) => {
@@ -21,6 +33,17 @@ class SideNav extends Component {
     const styleElement = document.createElement('style');
     styleElement.appendChild(document.createTextNode(`div ::-webkit-scrollbar-thumb {background: ${thumbColor}}`));
     document.getElementsByTagName('head')[0].appendChild(styleElement);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.listener);
+  }
+  handleResize() {
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 1000) {
+      this.setState({ hidden: true });
+    } else {
+      this.setState({ hidden: false });
+    }
   }
   getUserCard() {
     const {
@@ -39,6 +62,9 @@ class SideNav extends Component {
     const {
       sideNavItems, history, location, resetColumn, open, settings, theme,
     } = this.props;
+    if (this.state.hidden) {
+      return null;
+    }
     return (
       <div
         className="sidenav_container"
