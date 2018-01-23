@@ -43,6 +43,13 @@ class Theme extends Component {
     if (prevProps.theme !== this.props.theme) {
       const { theme } = this.props;
       const sharableTheme = `${theme.backgroundColor}, ${theme.item_card.backgroundColor}, ${theme.item_card.color}, ${theme.comment_card.backgroundColor}, ${theme.comment_card.color}, ${theme.plus_notif.backgroundColor}`;
+
+      const thumbColor = theme.comment_card.backgroundColor;
+
+      const styleElement = document.createElement('style');
+      styleElement.appendChild(document.createTextNode(`div ::-webkit-scrollbar-thumb {background: ${thumbColor}}`));
+      document.getElementsByTagName('head')[0].appendChild(styleElement);
+
       /**
        * Under if statement so it's okay to use
        */

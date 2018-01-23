@@ -67,6 +67,7 @@ class CompactUserCard extends Component {
   }
   render() {
     const { user, login, theme } = this.props;
+    const scoreback = theme.comment_card.backgroundColor === '#FFFFFF' ? '#000000' : theme.comment_card.backgroundColor;
     if (!user.profile) {
       return (
         <div className="devRant_placeholder">
@@ -108,7 +109,7 @@ class CompactUserCard extends Component {
           </div>
           <div
             className="score"
-            style={{ backgroundColor: theme.backgroundColor }}
+            style={{ backgroundColor: scoreback }}
           >
             <p>+{profile.score}</p>
           </div>
