@@ -20,7 +20,7 @@ class WeeklyItem extends Component {
         onMouseEnter={() => this.setState({ hovering: true })}
         onMouseLeave={() => this.setState({ hovering: false })}
         style={{
-          width: `${theme.column.width}px`,
+          width: `${parseInt(theme.column.width, 10) - 25}px`,
           backgroundColor: `${this.state.hovering ?
             theme.backgroundColor
             : theme.item_card.backgroundColor
