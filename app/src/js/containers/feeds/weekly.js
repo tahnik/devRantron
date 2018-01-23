@@ -9,7 +9,7 @@ import showToast from '../../actions/toast';
 
 const mapDispatchToProps = dispatch => ({
   fetch: (sort, range, id = 0, refresh = false, itemType, week = 0) => {
-    dispatch(fetch(sort, FEED.WEEKLY.NAME, id, range, refresh, week));
+    dispatch(fetch(sort, FEED.WEEKLY.NAME, id, null, refresh, week));
   },
   vote: (voteState, id, type = ITEM.RANT.NAME) => {
     dispatch(vote(voteState, id, type));
