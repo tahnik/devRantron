@@ -48,7 +48,9 @@ class Weekly extends Component {
     const selectedWeek = weeks[selection] || weeks[weeks.length - 1];
 
     return (
-      <div className="weekly_container">
+      <div
+        className="weekly_container"
+      >
         <div
           className="weekly_selection selection_main"
           onClick={() => this.expand()}
@@ -71,6 +73,7 @@ class Weekly extends Component {
 
         <div
           className={`weekly_expand_cont ${expanded && expanded ? 'active' : ''}`}
+          onMouseLeave={() => { this.setState({ expanded: false }); }}
           style={{
             width: `${theme.column.width}px`,
             maxWidth: `${theme.column.width}px`,
