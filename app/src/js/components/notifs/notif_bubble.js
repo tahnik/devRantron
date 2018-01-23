@@ -53,7 +53,12 @@ class Notification extends Component {
         className="notif_bubble"
       >
         <div className={`notif_badge ${notif.read === 1 ? 'read' : ''}`}>
-          <img alt="" src={imageSource} className="notif_image" style={{ background: `#${avatarBack}` }} />
+          <img
+            alt=""
+            src={imageSource}
+            className="notif_image"
+            style={{ background: `#${avatarBack}` }}
+          />
           <i
             className={`${icon} ${notif.read === 1 || unread === 0 ? 'read' : ''}`}
           />
