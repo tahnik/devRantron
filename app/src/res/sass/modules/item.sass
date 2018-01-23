@@ -5,10 +5,12 @@
   align-items: center
   .item_compact_column
     height: 100vh
-    width: 450px
     overflow-y: scroll
     overflow-x: hidden
-    margin-bottom: calc(#{$post_comment_height} + 1rem)
+    margin-bottom: calc(#{$post_comment_height} - 0.5rem)
+    .comments_container
+      height: auto
+      overflow-y: visible
   .item_column
     display: flex
     height: 100%

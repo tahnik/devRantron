@@ -8,6 +8,7 @@ const { ipcRenderer } = require('electron');
 
 class SideNav extends Component {
   componentDidMount() {
+    const { theme } = this.props;
     ipcRenderer.on('compose_rant', () => { this.props.open(); });
     document.addEventListener('keydown', (e) => {
       if (e.which === 13 && e.ctrlKey) {
@@ -16,6 +17,10 @@ class SideNav extends Component {
         }
       }
     });
+    const thumbColor = theme.comment_card.backgroundColor;
+    const styleElement = document.createElement('style');
+    styleElement.appendChild(document.createTextNode(`div ::-webkit-scrollbar-thumb {background: ${thumbColor}}`));
+    document.getElementsByTagName('head')[0].appendChild(styleElement);
   }
   getUserCard() {
     const {
