@@ -3,6 +3,7 @@ import { SliderPicker } from 'react-color';
 import PropTypes from 'prop-types';
 import Twemoji from 'react-twemoji';
 import { THEMES } from '../../consts/types';
+import Toggle from './toggle';
 
 class Theme extends Component {
   constructor() {
@@ -31,6 +32,7 @@ class Theme extends Component {
         plus_notif: {
           backgroundColor: '#D55161',
         },
+        showAvatar: true,
       },
     };
   }
@@ -91,7 +93,11 @@ class Theme extends Component {
       plus_notif: {
         backgroundColor: themeVals[5].replace(' ', ''),
       },
+      showAvatar: true,
     });
+  }
+  handleAvatarChange(value) {
+    this.props.changeTheme(null, { ...this.state.theme, showAvatar: value });
   }
   getTheme(key) {
     const { theme } = this.props;
@@ -145,6 +151,7 @@ class Theme extends Component {
   }
   render() {
     const { theme } = this.state;
+    const showAvatar = typeof theme.showAvatar !== 'undefined' ? theme.showAvatar : true;
     return (
       <div
         className="theme_container"
@@ -153,6 +160,13 @@ class Theme extends Component {
         <div className="items_container">
           { this.getThemes() }
         </div>
+        <Toggle
+          setting={{ text: 'Show User Details on Rant Card in Feeds', value: showAvatar }}
+          handleChange={() => {
+            this.handleAvatarChange(!showAvatar);
+          }}
+          theme={this.props.theme}
+        />
         <div className="custom_theme">
           <div className="theme_settings">
             <h4>Custom</h4>

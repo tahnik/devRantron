@@ -68,6 +68,7 @@ export const THEMES = {
     plus_notif: {
       backgroundColor: '#D55161',
     },
+    showAvatar: true,
   },
   BLACK_THEME: {
     name: 'Black Theme',
@@ -91,6 +92,7 @@ export const THEMES = {
     plus_notif: {
       backgroundColor: '#FFFFFF',
     },
+    showAvatar: true,
   },
   WHITE_THEME: {
     name: 'White Theme',
@@ -114,6 +116,7 @@ export const THEMES = {
     plus_notif: {
       backgroundColor: '#000000',
     },
+    showAvatar: true,
   },
   SOLARIZED_LIGHT: {
     name: 'Solarized Light',
@@ -137,6 +140,7 @@ export const THEMES = {
     plus_notif: {
       backgroundColor: '#eee8d5',
     },
+    showAvatar: true,
   },
   SOLARIZED_DARK: {
     name: 'Solarized Dark',
@@ -160,6 +164,7 @@ export const THEMES = {
     plus_notif: {
       backgroundColor: '#eee8d5',
     },
+    showAvatar: true,
   },
   MONOKAI: {
     name: 'Monokai',
@@ -183,6 +188,7 @@ export const THEMES = {
     plus_notif: {
       backgroundColor: '#f92672',
     },
+    showAvatar: true,
   },
 };
 
