@@ -42,6 +42,7 @@ class UserCard extends Component {
   }
   getUser() {
     const user = this.state.user;
+    const { theme } = this.props;
 
     let imageSource = 'res/images/invis.png';
     if (user.avatar.i) {
@@ -63,7 +64,7 @@ class UserCard extends Component {
             <p>{user.username}</p>
             <span
               className="score"
-              style={{ backgroundColor: 'rgb(84, 85, 110)' }}
+              style={{ backgroundColor: theme.backgroundColor }}
             >{user.score}
             </span>
             {user.dpp === 1 &&
@@ -114,8 +115,17 @@ class UserCard extends Component {
     if (!this.state.user) {
       return <div />;
     }
+    const { theme } = this.props;
     return (
-      <div className="user_card" id="user_card" style={{ background: 'url(./res/images/profile_banner.png)' }}>
+      <div
+        className="user_card"
+        id="user_card"
+        style={{ background: 'url(./res/images/profile_banner.png)' }}
+      >
+        <div
+          className="background"
+          style={{ backgroundColor: theme.backgroundColor }}
+        />
         <div
           className="close"
           onClick={() => this.props.closeCard()}
@@ -133,6 +143,7 @@ UserCard.propTypes = {
   userID: PropTypes.number.isRequired,
   closeCard: PropTypes.func.isRequired,
   open: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default UserCard;

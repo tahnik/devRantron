@@ -66,7 +66,7 @@ class CompactUserCard extends Component {
     }
   }
   render() {
-    const { user, login } = this.props;
+    const { user, login, theme } = this.props;
     if (!user.profile) {
       return (
         <div className="devRant_placeholder">
@@ -106,7 +106,10 @@ class CompactUserCard extends Component {
           <div className="name">
             {profile.username}
           </div>
-          <div className="score">
+          <div
+            className="score"
+            style={{ backgroundColor: theme.backgroundColor }}
+          >
             <p>+{profile.score}</p>
           </div>
         </div>
@@ -122,6 +125,7 @@ CompactUserCard.propTypes = {
   open: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   fetchUser: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
 export default CompactUserCard;

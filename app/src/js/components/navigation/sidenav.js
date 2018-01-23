@@ -19,7 +19,7 @@ class SideNav extends Component {
   }
   getUserCard() {
     const {
-      user, logout, login, fetchUser, open,
+      user, logout, login, fetchUser, open, theme,
     } = this.props;
     return (<CompactUserCard
       user={user}
@@ -27,6 +27,7 @@ class SideNav extends Component {
       logout={logout}
       fetchUser={fetchUser}
       open={open}
+      theme={theme}
     />);
   }
   render() {
