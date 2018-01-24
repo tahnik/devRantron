@@ -4,6 +4,33 @@ import { Provider } from 'react-redux';
 import Root from './routes/index';
 import store from './store';
 
+const settings = require('electron-settings');
+const { ipcRenderer } = require('electron');
+
+window.onerror = (msg) => {
+  console.log(msg);
+
+  const reqListener = () => {
+    console.log(this.responseText);
+  };
+
+  const oReq = new XMLHttpRequest();
+  oReq.addEventListener('load', reqListener);
+  oReq.open(
+    'GET',
+    `https://us-central1-devrantron.cloudfunctions.net/logError?error=${msg}`,
+  );
+  oReq.send();
+
+  settings.deleteAll();
+  ipcRenderer.send('reLaunch', true);
+
+  const suppressErrorAlert = true;
+  // If you return true, then error alerts (like in older versions of
+  // Internet Explorer) will be suppressed.
+  return suppressErrorAlert;
+};
+
 const render = (Component) => {
   ReactDOM.render(
     <Provider store={store}>
