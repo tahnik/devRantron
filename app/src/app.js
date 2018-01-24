@@ -85,15 +85,17 @@ function createWindow() {
 
   // Send usage data to firebase
   if (process.env.NODE_ENV !== 'development') {
-    let plat = 'linux';
+    let plat = 'Unknown';
 
-    if (/^win/.test(process.platform)) { plat = 'windows'; }
-    if (/^dar/.test(process.platform)) { plat = 'osx'; }
-    if (/^lin/.test(process.platform)) { plat = 'linux'; }
+    console.log(process.platform);
+
+    if (/^win/.test(process.platform)) { plat = 'Windows'; }
+    if (/^dar/.test(process.platform)) { plat = 'macOS'; }
+    if (/^lin/.test(process.platform)) { plat = 'Linux'; }
 
     console.log(`Logging usage. Platform is ${plat}`);
 
-    https.get(`https://us-central1-devrantron.cloudfunctions.net/logUser/${plat}`, () => {
+    https.get(`https://us-central1-devrantron.cloudfunctions.net/logUser?os=${plat}`, () => {
       console.log('Logged usage.');
     }).on('error', (e) => {
       console.warn(e);
