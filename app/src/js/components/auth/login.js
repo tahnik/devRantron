@@ -6,6 +6,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+const { shell } = require('electron');
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -73,7 +75,10 @@ class Login extends Component {
             disabled={auth.state === 'STATE_LOADING'}
           >Login
           </button>
-          <p onClick={() => noLogin(true)}><u>Not now</u></p>
+          <div className="actions">
+            <span onClick={() => noLogin(true)}><u>Not now</u></span>
+            <span onClick={() => shell.openExternal('https://devrant.com/feed/top/month?signup=1')}><u>Sign Up</u></span>
+          </div>
         </div>
       </div>
     );
