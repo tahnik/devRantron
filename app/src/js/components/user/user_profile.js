@@ -36,6 +36,7 @@ class UserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      hidden: false,
       user: null,
       column: DEFAULT_COLUMN,
       loading: false,
@@ -50,6 +51,11 @@ class UserProfile extends Component {
     };
   }
   componentDidMount() {
+    this.handleResize();
+    this.listener = () => {
+      this.handleResize();
+    };
+    window.addEventListener('resize', this.listener);
     this.fetch();
   }
   shouldComponentUpdate(nextProps, nextState) {
@@ -61,6 +67,7 @@ class UserProfile extends Component {
       && nextState.userNonExisting === this.state.userNonExisting
       && (nextState.column.state !== STATE.LOADING && nextState.column.items.length !== 0)
       && (nextState.popup === this.state.popup)
+      && nextState.hidden === this.state.hidden
     ) {
       return false;
     }
@@ -75,6 +82,17 @@ class UserProfile extends Component {
       // eslint-disable-next-line
       this.setState({ loading: true });
       this.fetch();
+    }
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.listener);
+  }
+  handleResize() {
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 1000) {
+      this.setState({ hidden: true });
+    } else {
+      this.setState({ hidden: false });
     }
   }
   fetch(sort = USER_PROFILE_FILTERS.SORT.RANTS, range, id, refresh = false) {
@@ -184,67 +202,70 @@ class UserProfile extends Component {
             }, 300);
           }}
         />
-        <div
-          className="profile"
-          style={{
+        {
+          this.state.hidden ? null :
+          <div
+            className="profile"
+            style={{
             background: 'url(./res/images/profile_banner.png)',
             width: `${theme.column.width}px`,
             color: theme.item_card.color,
           }}
-        >
-          {
+          >
+            {
             isLoggedInUser ?
               <div className="logout" onClick={() => { this.onLogout(true); }} >
                 <i className="ion-log-out" />
               </div> : null
           }
-          <div
-            className="background"
-            style={{ backgroundColor: theme.item_card.backgroundColor }}
-          />
-          <div className="image">
-            <img alt="" src={imageSource} style={{ backgroundColor: `#${user.avatar.b}` }} />
-          </div>
-          <div className="details">
-            <div className="name_score">
-              <span className="name">{user.username}</span>
-              <span className="score">+{user.score}</span>
+            <div
+              className="background"
+              style={{ backgroundColor: theme.item_card.backgroundColor }}
+            />
+            <div className="image">
+              <img alt="" src={imageSource} style={{ backgroundColor: `#${user.avatar.b}` }} />
             </div>
-            <Twemoji>
-              <div className="other_infos">
-                <ul>
-                  { user.about !== '' &&
-                  <li><i className="ion-person" />
-                    <p>{user.about}</p>
-                  </li>
-                  }
-                  { user.skills !== '' &&
-                  <li><i className="ion-code" />
-                    <p>{user.skills}</p>
-                  </li>
-                  }
-                  { user.location !== '' &&
-                  <li><i className="ion-ios-location" /><p>{user.location}</p></li>
-                  }
-                  { user.github !== '' &&
-                  <li style={{ cursor: 'pointer' }}><i className="ion-social-github" />
-                    <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
-                      {user.github}
-                    </p>
-                  </li>
-                  }
-                  { user.website !== '' &&
-                  <li style={{ cursor: 'pointer' }}><i className="ion-earth" />
-                    <p onClick={() => UserProfile.openLink(user.website)}>
-                      {user.website}
-                    </p>
-                  </li>
-                  }
-                </ul>
+            <div className="details">
+              <div className="name_score">
+                <span className="name">{user.username}</span>
+                <span className="score">+{user.score}</span>
               </div>
-            </Twemoji>
+              <Twemoji>
+                <div className="other_infos">
+                  <ul>
+                    { user.about !== '' &&
+                    <li><i className="ion-person" />
+                      <p>{user.about}</p>
+                    </li>
+                  }
+                    { user.skills !== '' &&
+                    <li><i className="ion-code" />
+                      <p>{user.skills}</p>
+                    </li>
+                  }
+                    { user.location !== '' &&
+                    <li><i className="ion-ios-location" /><p>{user.location}</p></li>
+                  }
+                    { user.github !== '' &&
+                    <li style={{ cursor: 'pointer' }}><i className="ion-social-github" />
+                      <p onClick={() => shell.openExternal(`https://www.github.com/${user.github}`)}>
+                        {user.github}
+                      </p>
+                    </li>
+                  }
+                    { user.website !== '' &&
+                    <li style={{ cursor: 'pointer' }}><i className="ion-earth" />
+                      <p onClick={() => UserProfile.openLink(user.website)}>
+                        {user.website}
+                      </p>
+                    </li>
+                  }
+                  </ul>
+                </div>
+              </Twemoji>
+            </div>
           </div>
-        </div>
+        }
         <div
           className="user_contents"
           style={{
