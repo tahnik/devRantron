@@ -93,6 +93,7 @@ class SideNav extends Component {
           {
             settings.general.update.value &&
               <Item
+                {...this.props}
                 key="update"
                 item={{ icon: 'ion-android-alert', name: 'Update Available', route: '/' }}
                 active=""
