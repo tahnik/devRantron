@@ -85,7 +85,7 @@ function createWindow() {
 
   // Send usage data to firebase
   if (process.env.NODE_ENV !== 'development') {
-    let plat = '';
+    let plat = 'linux';
 
     if (/^win/.test(process.platform)) { plat = 'windows'; }
     if (/^dar/.test(process.platform)) { plat = 'osx'; }
