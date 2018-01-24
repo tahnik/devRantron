@@ -258,7 +258,7 @@ const fetchFeed =
     sort,
     range,
     type,
-    page: currentColumn.page + 1,
+    page: page === 0 ? 1 : currentColumn.page + 1,
     state: STATE.SUCCESS,
     filters,
     itemType,

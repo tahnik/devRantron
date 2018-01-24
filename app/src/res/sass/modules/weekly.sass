@@ -5,48 +5,51 @@
   display: flex
   flex-direction: column
   align-items: center
-  .weekly_expand
-    max-height: 27rem
-    overflow-y: scroll
-    width: calc(27rem + 2px)
+  .weekly_expand_cont
+    margin-left: calc(-1px - 0.5rem)
     position: absolute
     z-index: 89
-    top: 4rem
-    margin-left: -0.5rem
-    padding: 0.5rem
-    background: #40415a
-    overflow-x: hidden
-    box-shadow: 0px 2px 6px rgba(0,0,0,0.3)
-    opacity: 0
-    pointer-events: none
+    top: 4.5rem
     transform: translateY(-18px)
+    opacity: 0
     transition: all 0.2s
+    pointer-events: none
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.3)
     &.active
       pointer-events: all
       transform: translateY(0px)
       opacity: 1
       display: block
-    .weekly_selection
-      transform: translateX(1rem)
-      max-width: 26rem
-      &.active
-        background-color: #C14857
+    .weekly_expand
+      max-height: 27rem
+      overflow-y: scroll
+      background: #40415a
+      overflow-x: hidden
+      margin: 0.3rem
+    ::-webkit-scrollbar-thumb
+      background: #282828
+      .weekly_selection
+        max-width: 26rem
+        &.active
+          background-color: #C14857
+  .selection_main
+    margin-top: 0.5rem
+    margin-left: calc(-10px - 0.5rem)
   .weekly_selection
     display: flex
-    margin: 0.5rem 0
-    margin-left: calc(-10px - 0.5rem)
-    max-width: 27rem
+    padding: 0.15rem 0 0.15rem 0
     min-height: 3rem
-    padding-left: 1rem
     align-items: center
     background-color: #40415A
     color: white
     user-select: none
     transition: all 0.2s
+    margin-right: 0.5rem
     .weekly_option
       display: flex
       flex-direction: row
       width: 100%
+      margin-left: 1rem
       .selBtn
         margin-right: 1rem
       .weekDesc

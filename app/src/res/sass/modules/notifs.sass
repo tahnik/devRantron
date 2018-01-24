@@ -11,7 +11,6 @@
   button
     margin: 0px
     width: 3.6rem
-    position: fixed
     right: 0px
   @keyframes notif_bubbles_in
     0%
@@ -59,7 +58,7 @@
     top: -0.8rem
     right: -0.8rem
     border-radius: 50%
-    background-color: rgba(0, 0, 0, 0.8)
+    background-color: rgba(0, 0, 0, 0.9)
     transition: transform 0.3s
     transition-delay: 0.05s
     transform: scale(0)
@@ -88,10 +87,8 @@
     .notifs_clear
       z-index: 299
       width: 9.5rem
-      height: 2.3rem
-      position: fixed
-      top: 0px
-      left: 15px
+      min-height: 2.3rem
+      margin-bottom: 0.5rem
     .notifs_sort
       top: 48px
     .notif_bubble_container
@@ -121,6 +118,9 @@
           p
             margin: 0px
             text-align: left
+        .notif_badge.read
+          img
+            -webkit-filter: grayscale(100%)
         .notif_badge
           float: left
           height: 3.5rem

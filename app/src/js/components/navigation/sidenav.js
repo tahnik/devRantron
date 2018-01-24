@@ -7,7 +7,20 @@ import { ITEM } from '../../consts/types';
 const { ipcRenderer } = require('electron');
 
 class SideNav extends Component {
+  constructor() {
+    super();
+    this.state = {
+      hidden: false,
+    };
+  }
   componentDidMount() {
+    this.handleResize();
+    this.listener = () => {
+      this.handleResize();
+    };
+    window.addEventListener('resize', this.listener);
+
+    const { theme } = this.props;
     ipcRenderer.on('compose_rant', () => { this.props.open(); });
     document.addEventListener('keydown', (e) => {
       if (e.which === 13 && e.ctrlKey) {
@@ -16,10 +29,25 @@ class SideNav extends Component {
         }
       }
     });
+    const thumbColor = theme.comment_card.backgroundColor;
+    const styleElement = document.createElement('style');
+    styleElement.appendChild(document.createTextNode(`div ::-webkit-scrollbar-thumb {background: ${thumbColor}}`));
+    document.getElementsByTagName('head')[0].appendChild(styleElement);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.listener);
+  }
+  handleResize() {
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 1000) {
+      this.setState({ hidden: true });
+    } else {
+      this.setState({ hidden: false });
+    }
   }
   getUserCard() {
     const {
-      user, logout, login, fetchUser, open,
+      user, logout, login, fetchUser, open, theme,
     } = this.props;
     return (<CompactUserCard
       user={user}
@@ -27,12 +55,16 @@ class SideNav extends Component {
       logout={logout}
       fetchUser={fetchUser}
       open={open}
+      theme={theme}
     />);
   }
   render() {
     const {
       sideNavItems, history, location, resetColumn, open, settings, theme,
     } = this.props;
+    if (this.state.hidden) {
+      return null;
+    }
     return (
       <div
         className="sidenav_container"

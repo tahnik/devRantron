@@ -1,6 +1,6 @@
 {
   "name": "devrantron",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "main": "./build/app/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
@@ -77,7 +77,7 @@
   ],
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.1.2",
+    "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-preset-es2015": "^6.24.1",
@@ -87,11 +87,11 @@
     "concurrently": "^3.5.1",
     "copy-webpack-plugin": "^4.3.1",
     "cross-env": "^5.1.3",
-    "css-loader": "^0.28.7",
-    "electron": "^1.7.10",
-    "electron-builder": "^19.49.2",
+    "css-loader": "^0.28.9",
+    "electron": "^1.7.11",
+    "electron-builder": "^19.55.2",
     "env-paths": "^1.0.0",
-    "eslint": "^4.14.0",
+    "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
@@ -107,7 +107,7 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7",
+    "webpack-dev-server": "^2.11.1",
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
@@ -117,11 +117,11 @@
     "dompurify": "^1.0.3",
     "electron-devtools-installer": "^2.2.3",
     "electron-settings": "^3.1.4",
-    "electron-updater": "^2.17.6",
+    "electron-updater": "^2.20.1",
     "fuse.js": "^3.2.0",
-    "jquery": "^3.2.1",
+    "jquery": "^3.3.1",
     "json-schema-traverse": "^0.3.1",
-    "node-notifier": "^5.1.2",
+    "node-notifier": "^5.2.1",
     "prop-types": "^15.6.0",
     "rantscript": "^1.4.0",
     "react": "^16.2.0",
@@ -141,7 +141,7 @@
   },
   "optionalDependencies": {
     "7zip-bin-mac": "^1.0.1",
-    "7zip-bin-linux": "^1.2.0",
+    "7zip-bin-linux": "^1.3.1",
     "7zip-bin-win": "^2.1.1"
   }
 }

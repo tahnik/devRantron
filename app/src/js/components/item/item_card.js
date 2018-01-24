@@ -267,6 +267,7 @@ class ItemCard extends Component {
       theme.comment_card.backgroundColor : theme.item_card.backgroundColor;
     const color = isComment ?
       theme.comment_card.color : theme.item_card.color;
+    const showAvatar = typeof theme.showAvatar !== 'undefined' ? theme.showAvatar : true;
     return (
       <div
         className={`item_card ${modal || isComment ? null : 'shadow'}`}
@@ -282,15 +283,21 @@ class ItemCard extends Component {
           onPos={() => { this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } }); setTimeout(() => { this.onDelete(false); }); }}
           onNeg={() => { this.setState({ popup: { ...this.state.popup, className: 'closeAnim' } }); setTimeout(() => { this.setState({ popup: { ...this.state.popup, visible: false } }); }, 300); }}
         />
-        <UserBadge
-          user={user}
-          theme={theme}
-          open={open}
-        />
-        <span
-          className="timesince"
-        >{timeSince(item.created_time * 1000)}
-        </span>
+        {
+          !modal && !showAvatar && !isComment ?
+            null :
+            <div>
+              <UserBadge
+                user={user}
+                theme={theme}
+                open={open}
+              />
+              <span
+                className="timesince"
+              >{timeSince(item.created_time * 1000)}
+              </span>
+            </div>
+        }
         <div
           className="body_container"
           onClick={() => this.open()}

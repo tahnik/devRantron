@@ -22,10 +22,6 @@ class UserBadge extends Component {
       imageSource = `https://avatars.devrant.io/${user.avatar.i}`;
     }
 
-    // const c =
-    // ['dGFobmlr', 'RGFjZXhp', 'ZGZveA==', 'dHJvZ3Vz'].indexOf(btoa(user.username)) > -1 ?
-    // `#${user.avatar.b}` : '#ffffff';
-
     return (
       <div className="user_badge">
         <div className="image" onClick={() => this.openCard()}>
@@ -37,6 +33,7 @@ class UserBadge extends Component {
             userID={user.id}
             closeCard={() => this.closeCard()}
             open={open}
+            theme={theme}
           /> : null}
         <div className="details" onClick={() => this.openCard()}>
           <p>{user.username}</p>

@@ -89,59 +89,59 @@
         background: #40415a
         padding: 0.1rem 1rem 0.6rem 1rem
         box-shadow: 2px 2px 5px rgba(0,0,0,0.2)
-      .setting
-        display: flex
-        justify-content: space-between
-        align-items: center
+    .setting
+      display: flex
+      justify-content: space-between
+      align-items: center
+      margin: 0.6rem 0 0 0
+      ::-webkit-input-placeholder
+        color: #bbb
+      input:focus
+        border-bottom-color: #C14857
+      button
+        margin-bottom: 0
+        margin-top: 0
+      &.textarea
+        margin-top: 0.5rem
+      &.toggle
         margin: 0.6rem 0 0 0
-        ::-webkit-input-placeholder
-          color: #bbb
-        input:focus
-          border-bottom-color: #C14857
-        button
-          margin-bottom: 0
-          margin-top: 0
-        &.textarea
-          margin-top: 0.5rem
-        &.toggle
-          margin: 0.6rem 0 0 0
-          cursor: pointer
-          .setting_label
-            user-select: none
-          .setting_option
-            display: flex
-            align-items: center
-            .switch
-              position: relative
-              display: inline-block
-              width: 60px
-              height: 34px
-              input
-                display: none
-              input:checked + .slider
-                background-color: #C14857
-              input:focus + .slider
-                box-shadow: 0 0 1px #C14857
-              input:checked + .slider:before
-                transform: translateX(26px)
-              .slider
-                transform: scale(0.7)
+        cursor: pointer
+        .setting_label
+          user-select: none
+        .setting_option
+          display: flex
+          align-items: center
+          .switch
+            position: relative
+            display: inline-block
+            width: 60px
+            height: 34px
+            input
+              display: none
+            input:checked + .slider
+              background-color: #C14857
+            input:focus + .slider
+              box-shadow: 0 0 1px #C14857
+            input:checked + .slider:before
+              transform: translateX(26px)
+            .slider
+              transform: scale(0.7)
+              position: absolute
+              cursor: pointer
+              border-radius: 24px
+              top: 0
+              left: 0
+              right: 0
+              bottom: 0
+              background-color: #ccc
+              transition: .2s
+              &:before
                 position: absolute
-                cursor: pointer
+                content: ""
+                height: 26px
+                width: 26px
                 border-radius: 24px
-                top: 0
-                left: 0
-                right: 0
-                bottom: 0
+                left: 4px
+                bottom: 4px
                 background-color: #ccc
                 transition: .2s
-                &:before
-                  position: absolute
-                  content: ""
-                  height: 26px
-                  width: 26px
-                  border-radius: 24px
-                  left: 4px
-                  bottom: 4px
-                  background-color: #ccc
-                  transition: .2s

@@ -3,6 +3,7 @@ import { SliderPicker } from 'react-color';
 import PropTypes from 'prop-types';
 import Twemoji from 'react-twemoji';
 import { THEMES } from '../../consts/types';
+import Toggle from './toggle';
 
 class Theme extends Component {
   constructor() {
@@ -31,6 +32,7 @@ class Theme extends Component {
         plus_notif: {
           backgroundColor: '#D55161',
         },
+        showAvatar: true,
       },
     };
   }
@@ -43,6 +45,13 @@ class Theme extends Component {
     if (prevProps.theme !== this.props.theme) {
       const { theme } = this.props;
       const sharableTheme = `${theme.backgroundColor}, ${theme.item_card.backgroundColor}, ${theme.item_card.color}, ${theme.comment_card.backgroundColor}, ${theme.comment_card.color}, ${theme.plus_notif.backgroundColor}`;
+
+      const thumbColor = theme.comment_card.backgroundColor;
+
+      const styleElement = document.createElement('style');
+      styleElement.appendChild(document.createTextNode(`div ::-webkit-scrollbar-thumb {background: ${thumbColor}}`));
+      document.getElementsByTagName('head')[0].appendChild(styleElement);
+
       /**
        * Under if statement so it's okay to use
        */
@@ -84,7 +93,11 @@ class Theme extends Component {
       plus_notif: {
         backgroundColor: themeVals[5].replace(' ', ''),
       },
+      showAvatar: true,
     });
+  }
+  handleAvatarChange(value) {
+    this.props.changeTheme(null, { ...this.state.theme, showAvatar: value });
   }
   getTheme(key) {
     const { theme } = this.props;
@@ -138,6 +151,7 @@ class Theme extends Component {
   }
   render() {
     const { theme } = this.state;
+    const showAvatar = typeof theme.showAvatar !== 'undefined' ? theme.showAvatar : true;
     return (
       <div
         className="theme_container"
@@ -146,6 +160,13 @@ class Theme extends Component {
         <div className="items_container">
           { this.getThemes() }
         </div>
+        <Toggle
+          setting={{ text: 'Show User Details on Rant Card in Feeds', value: showAvatar }}
+          handleChange={() => {
+            this.handleAvatarChange(!showAvatar);
+          }}
+          theme={this.props.theme}
+        />
         <div className="custom_theme">
           <div className="theme_settings">
             <h4>Custom</h4>

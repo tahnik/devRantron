@@ -86,6 +86,7 @@ class Notifs extends Component {
         className={`notifs_container ${this.state.active ? 'active' : ''}`}
         onClick={e => this.toggleNotif(e)}
       >
+        <div className="notifs_back" />
         <button
           className="notifs_ball"
           style={{

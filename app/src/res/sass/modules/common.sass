@@ -222,14 +222,24 @@ body
     position: absolute
     width: 100%
     height: 100%
+    display: flex
 
   .middle_container
-    position: absolute
-    left: $sidenav_width
-    width: calc(100% - #{$sidenav_width})
+    flex: 1
     display: flex
     justify-content: center
     height: 100%
+    position: relative
+    .compact
+      position: absolute
+      bottom: 5px
+      left: 10px
+      font-size: 1.4rem
+      z-index: 99
+      opacity: 0.2
+      transition: all 0.2s;
+      &:hover
+        opacity: 1
     &:after
       content: ''
       position: absolute

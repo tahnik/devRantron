@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Column from '../columns/column';
 import rantscript from '../../consts/rantscript';
+import WeeklyItem from './weekly_item';
 
 class Weekly extends Component {
   constructor() {
@@ -47,12 +48,16 @@ class Weekly extends Component {
     const selectedWeek = weeks[selection] || weeks[weeks.length - 1];
 
     return (
-      <div className="weekly_container">
+      <div
+        className="weekly_container"
+      >
         <div
-          className="weekly_selection"
+          className="weekly_selection selection_main"
           onClick={() => this.expand()}
           style={{
             width: `${theme.column.width}px`,
+            maxWidth: `${theme.column.width}px`,
+            backgroundColor: `${theme.item_card.backgroundColor}`,
           }}
         >
           <div className="weekly_option">
@@ -66,22 +71,33 @@ class Weekly extends Component {
           </div>
         </div>
 
-        <div className={`weekly_expand ${expanded && expanded ? 'active' : ''}`}>
-          {weeks.map(week =>
-            (
-              <div
-                key={week.week}
-                className={`weekly_selection ${selection} ${week.week}`}
-                onClick={() => this.onClick(week.week)}
-                style={{
-                  width: `${theme.column.width}px`,
-                }}
-              >
-                <div className="weekly_option">
-                  <div className="weekDesc"><b>{`wk${week.week}`}</b> {`${week.prompt}`}</div>
-                </div>
-              </div>
-            ))}
+        <div
+          className={`weekly_expand_cont ${expanded && expanded ? 'active' : ''}`}
+          onMouseLeave={() => { this.setState({ expanded: false }); }}
+          style={{
+            width: `${theme.column.width}px`,
+            maxWidth: `${theme.column.width}px`,
+            minWidth: `${theme.column.width}px`,
+            backgroundColor: `${theme.item_card.backgroundColor}`,
+          }}
+        >
+          <div
+            className="weekly_expand"
+            style={{
+              backgroundColor: `${theme.item_card.backgroundColor}`,
+            }}
+          >
+            {weeks.map(week =>
+              (
+                <WeeklyItem
+                  key={week.week}
+                  week={week}
+                  selection={selection}
+                  theme={theme}
+                  onClick={(weekNumber) => { this.onClick(weekNumber); }}
+                />
+              ))}
+          </div>
         </div>
 
         <Column
