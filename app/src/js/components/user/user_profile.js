@@ -182,7 +182,7 @@ class UserProfile extends Component {
         </div>
       );
     }
-    const isLoggedInUser = auth.user.authToken.user_id === item.id;
+    const isLoggedInUser = auth.user ? auth.user.authToken.user_id === item.id : false;
     let imageSource = 'res/images/invis.png';
     if (user.avatar.i) {
       imageSource = `https://avatars.devrant.io/${user.avatar.i.replace('c-1', 'c-2').replace('png', 'jpg')}`;
