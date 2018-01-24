@@ -229,6 +229,17 @@ body
     display: flex
     justify-content: center
     height: 100%
+    position: relative
+    .compact
+      position: absolute
+      bottom: 5px
+      left: 10px
+      font-size: 1.4rem
+      z-index: 99
+      opacity: 0.2
+      transition: all 0.2s;
+      &:hover
+        opacity: 1
     &:after
       content: ''
       position: absolute

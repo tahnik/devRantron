@@ -1,6 +1,8 @@
 const electron = require('electron');
 
-const { app, BrowserWindow, Menu, Tray, ipcMain, shell } = electron;
+const {
+  app, BrowserWindow, Menu, Tray, ipcMain, shell,
+} = electron;
 
 const https = require('https');
 const os = require('os');
@@ -103,7 +105,7 @@ function createWindow() {
     width: 1024,
     height: 600,
     minHeight: 600,
-    minWidth: 1024,
+    minWidth: 590,
     show: false,
   });
 
@@ -233,6 +235,28 @@ ipcMain.on('auto-launch', (event, arg) => {
 
 ipcMain.on('showQRNotif', (sender, n) => {
   notify.show(n);
+});
+
+let compact = false;
+let prevBounds = {};
+
+ipcMain.on('toggleCompact', () => {
+  compact = !compact;
+  const screenSize = electron.screen.getPrimaryDisplay().workArea;
+  if (compact) {
+    prevBounds = mainWindow.getBounds();
+
+    mainWindow.setBounds({
+      x: screenSize.width - 600, y: 0, width: 600, height: screenSize.height,
+    });
+  } else {
+    mainWindow.setBounds({
+      x: prevBounds.x,
+      y: prevBounds.y,
+      width: prevBounds.width,
+      height: prevBounds.height,
+    });
+  }
 });
 
 module.exports.sendReply = (i, m) => {

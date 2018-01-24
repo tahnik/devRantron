@@ -16,6 +16,7 @@ import Toast from '../containers/utilities/toast/toast';
 import Settings from '../containers/settings/settings';
 import Search from '../containers/search/search';
 import Weekly from '../containers/feeds/weekly';
+import CompactButton from '../components/utilities/compact_button';
 
 const MainRoutes = props => (
   <div key="MainRoutes" className="main_container" >
@@ -25,6 +26,7 @@ const MainRoutes = props => (
       id="middle_container"
       style={{ backgroundColor: props.theme.backgroundColor }}
     >
+      <CompactButton theme={props.theme} />
       <Route exact path="/" render={() => (<Redirect to="/rants" />)} />
       <Route
         path="/rants"
