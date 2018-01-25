@@ -165,6 +165,9 @@ class SmartArea extends Component {
   buildMentions(text, caretPos) {
     const lastChar = text.charAt(caretPos - 1);
     const { users } = this.props;
+    if (!users) {
+      return;
+    }
     if (lastChar === ' ' || lastChar === '') {
       active = false;
       pos = 0;

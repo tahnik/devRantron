@@ -19,6 +19,34 @@ $post_comment_height: 13rem
   width: 18px !important
   margin: 0px 2px -3px 2px
 
+@keyframes reset_btn
+  0%
+    opacity: 0
+    transform: translateY(-10px)
+  5%
+    opacity: 1
+    transform: translateY(0px)
+  95%
+    opacity: 1
+    transform: translateY(0px)
+  100%
+    opacity: 0
+    transform: translateY(-10px)
+
+.reset_button
+  position: absolute
+  z-index: 999
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 100vw
+  background-color: rgba(0, 0, 0, 0.8)
+  color: white
+  padding-bottom: 5px
+  animation: reset_btn 3s forwards
+  p
+    margin-bottom: 0
+
 .release_info_container
   padding: 0 0.5rem 0 2rem
   color: white

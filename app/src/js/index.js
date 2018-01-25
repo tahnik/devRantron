@@ -9,7 +9,6 @@ const { ipcRenderer } = require('electron');
 
 window.onerror = (msg) => {
   console.log(msg);
-
   const reqListener = () => {
     console.log(this.responseText);
   };
@@ -22,8 +21,33 @@ window.onerror = (msg) => {
   );
   oReq.send();
 
-  settings.deleteAll();
-  ipcRenderer.send('reLaunch', true);
+  const doesExist = document.getElementsByClassName('reset_button')[0];
+
+  if (!doesExist) {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <p>We have hit an error! If the app crashed, please reset the cache</p>
+    `;
+    const btn = document.createElement('button');
+    const t = document.createTextNode('Reset Cache'); // Create a text node
+    btn.appendChild(t);
+    btn.onclick = () => {
+      settings.deleteAll();
+
+      ipcRenderer.send('reLaunch', true);
+    };
+
+    div.appendChild(btn);
+
+    // better to use CSS though - just set class
+    div.setAttribute('class', 'reset_button'); // and make sure myclass has some styles in css
+    document.body.appendChild(div);
+
+    setTimeout(() => {
+      document.body.removeChild(div);
+    }, 3000);
+  }
+
 
   const suppressErrorAlert = true;
   // If you return true, then error alerts (like in older versions of
