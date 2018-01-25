@@ -28,9 +28,13 @@ class CompactUserCard extends Component {
       const profilePicture = new Image();
       profilePicture.onload = () => {
         window.clearInterval(reload);
-        this.profilePicture.src = profilePicture.src;
+        if (this.profilePicture) {
+          this.profilePicture.src = profilePicture.src;
+        }
       };
-      profilePicture.src = imgsrc;
+      if (profilePicture) {
+        profilePicture.src = imgsrc;
+      }
     }, 1000);
   }
   componentDidUpdate() {
@@ -49,9 +53,13 @@ class CompactUserCard extends Component {
     }
     const profilePicture = new Image();
     profilePicture.onload = () => {
-      this.profilePicture.src = profilePicture.src;
+      if (this.profilePicture) {
+        this.profilePicture.src = profilePicture.src;
+      }
     };
-    profilePicture.src = imgsrc;
+    if (profilePicture) {
+      profilePicture.src = imgsrc;
+    }
   }
   mouseOut() {
     this.setState({ confirm: false });
