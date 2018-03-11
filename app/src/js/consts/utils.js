@@ -99,8 +99,7 @@ export const timeSince = (date) => {
   const seconds = Math.floor((new Date() - date) / 1000);
   let interval = seconds / 2592000;
   if (interval > 1) {
-    const nd = new Date(date);
-    return `${nd.getDate()}/${nd.getMonth()}/${nd.getYear().toString().substring(1)}`;
+    return new Date(date).toLocaleDateString('en-GB', { year: '2-digit', month: 'numeric', day: 'numeric' });
   }
   interval = seconds / 86400;
   if (interval > 1) {
