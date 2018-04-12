@@ -1,15 +1,18 @@
+![devRantron Banner](https://i.imgur.com/dMWxH4x.png)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+
 [![appveyor-badge]][appveyor-url]
 [![travis-badge]][travis-url]
-[![Code Climate](https://codeclimate.com/github/tahnik/devRantron/badges/gpa.svg)](https://codeclimate.com/github/tahnik/devRantron)
-[![Github All Releases](https://img.shields.io/github/downloads/tahnik/devRantron/total.svg)](https://github.com/tahnik/devRantron/releases)
-[![node](http://img.shields.io/badge/node-8.x-brightgreen.svg)](https://nodejs.org/en/)
-[![GitHub contributors](https://img.shields.io/github/contributors/tahnik/devRantron.svg)](https://github.com/tahnik/devRantron/graphs/contributors)
-[![slack](https://img.shields.io/badge/slack-devRantron-blue.svg)](https://devrantron.slack.com/)
-## Unofficial devRant Cross Platform Desktop Application
-![devRantron Banner](https://i.imgur.com/dMWxH4x.png)
+[![code-climate-badge]][code-climate-url]
+[![github-total-downloads-badge]][github-total-downloads-url]
+[![github-contributors-badge]][github-contributors-url]
+[![slack-badge]][slack-url]
 
-devRantron is now in public version! Download the latest release by going to [devrantron.com](https://devrantron.com)!
-Available for Windows, macOS, and Linux.
+> Unofficial devRant desktop client.
+
+Works on Linux, MacOS and Windows.
+
+## Features
 
 ### Login with devRant Account
 ![Imgur](https://i.imgur.com/Tf1T1BR.png)
@@ -24,34 +27,55 @@ Available for Windows, macOS, and Linux.
 ### View Profiles
 ![Imgur](https://i.imgur.com/oPTZQLs.png)
 
-This is our approach to create a cross platform desktop application for [devRant.com].
+> This is our approach to create a cross platform desktop application for [devRant.com].
 
-#### Requirements to build this software:
-    - NodeJS v^8.1.0
-#### Preferable editor to work on the source code:
-    - Visual Studio Code
+## Installation
 
-#### How to setup the project:
-- Install NodeJS from here: https://nodejs.org/en/
-- Clone this repository using:
-    `git clone https://github.com/tahnik/devRantron.git`
-- cd into downloaded directory
-- Install dependencies
-    ```bash
-    npm install
-    ```
+Pre-compiled builds can be found on the latest [release](https://github.com/tahnik/devRantron/releases/latest) page.
+Additionally on macOS, `brew` can be used to install devRantron:
 
-- To run in development with hot reloading, type the following into a terminal:
+```
+$ brew cask install devrantron
+```
 
-    ```bash
-    npm run dev
-    ```
+## Contribute
 
-    The command will start two processes. One process will create a `webpack-dev-server` that will watch and reload the bundle as you edit and will make it available at `http://localhost:8080`.
-    The second process will run the electron app in development mode, meaning that it will open up devtools with React and Redux devtools initialized.
+### How to setup the project
 
-[devRant.com]: <http://devrant.com>
+```bash
+$ git clone https://github.com/tahnik/devRantron.git
+$ cd devRantron
+$ npm install
+$ npm run dev
+```
+
+The `dev` script entry will start two processes. One process will create a `webpack-dev-server` that will watch and reload the bundle as you edit and will make it available at `http://localhost:8080`.
+The second process will run the electron app in development mode, meaning that it will open up devtools with React and Redux devtools initialized.
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars1.githubusercontent.com/u/5113257?v=4" width="100px;"/><br /><sub><b>SirWindfield</b></sub>](https://github.com/SirWindfield)<br />[💻](https://github.com/tahnik/devRantron/commits?author=SirWindfield "Code") [📖](https://github.com/tahnik/devRantron/commits?author=SirWindfield "Documentation") [📦](#platform-SirWindfield "Packaging/porting to new platform") [🔧](#tool-SirWindfield "Tools") |
+| :---: |
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 [appveyor-badge]: https://img.shields.io/appveyor/ci/tahnik/devRantron/master.svg
 [appveyor-url]: https://ci.appveyor.com/project/tahnik/devrantron
+
+[code-climate-badge]: https://codeclimate.com/github/tahnik/devRantron/badges/gpa.svg
+[code-climate-url]: https://codeclimate.com/github/tahnik/devRantron
+
+[devRant.com]: <http://devrant.com>
+
+[github-contributors-badge]: https://img.shields.io/github/contributors/tahnik/devRantron.svg
+[github-contributors-url]: https://github.com/tahnik/devRantron/graphs/contributors
+
+[github-total-downloads-badge]: https://img.shields.io/github/downloads/tahnik/devRantron/total.svg
+[github-total-downloads-url]: https://github.com/tahnik/devRantron/releases
+
+[slack-badge]: https://img.shields.io/badge/slack-devRantron-blue.svg
+[slack-url]: https://devrantron.slack.com/
+
 [travis-badge]: https://img.shields.io/travis/tahnik/devRantron/master.svg
 [travis-url]: https://travis-ci.org/tahnik/devRantron
