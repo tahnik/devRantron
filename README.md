@@ -24,7 +24,7 @@ Available for Windows, macOS, and Linux.
 ### View Profiles
 ![Imgur](https://i.imgur.com/oPTZQLs.png)
 
-This is our approach to create a cross platform desktop application for [devRant.io].
+This is our approach to create a cross platform desktop application for [devRant.com].
 
 #### Requirements to build this software:
     - NodeJS v^8.1.0
@@ -50,7 +50,7 @@ This is our approach to create a cross platform desktop application for [devRant
     The command will start two processes. One process will create a `webpack-dev-server` that will watch and reload the bundle as you edit and will make it available at `http://localhost:8080`.
     The second process will run the electron app in development mode, meaning that it will open up devtools with React and Redux devtools initialized.
 
-[devRant.io]: <http://devrant.io>
+[devRant.com]: <http://devrant.com>
 [appveyor-badge]: https://img.shields.io/appveyor/ci/tahnik/devRantron/master.svg
 [appveyor-url]: https://ci.appveyor.com/project/tahnik/devrantron
 [travis-badge]: https://img.shields.io/travis/tahnik/devRantron/master.svg
