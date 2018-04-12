@@ -1,5 +1,5 @@
 ![devRantron Banner](https://i.imgur.com/dMWxH4x.png)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 [![appveyor-badge]][appveyor-url]
 [![travis-badge]][travis-url]
@@ -56,8 +56,8 @@ The second process will run the electron app in development mode, meaning that i
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars1.githubusercontent.com/u/5113257?v=4" width="100px;"/><br /><sub><b>SirWindfield</b></sub>](https://github.com/SirWindfield)<br />[💻](https://github.com/tahnik/devRantron/commits?author=SirWindfield "Code") [📖](https://github.com/tahnik/devRantron/commits?author=SirWindfield "Documentation") [📦](#platform-SirWindfield "Packaging/porting to new platform") [🔧](#tool-SirWindfield "Tools") |
-| :---: |
+| [<img src="https://avatars1.githubusercontent.com/u/5113257?v=4" width="100px;"/><br /><sub><b>SirWindfield</b></sub>](https://github.com/SirWindfield)<br />[💻](https://github.com/tahnik/devRantron/commits?author=SirWindfield "Code") [📖](https://github.com/tahnik/devRantron/commits?author=SirWindfield "Documentation") [📦](#platform-SirWindfield "Packaging/porting to new platform") [🔧](#tool-SirWindfield "Tools") | [<img src="https://avatars0.githubusercontent.com/u/9964210?v=4" width="100px;"/><br /><sub><b>Tahnik Mustasin</b></sub>](http://www.tahnik.com)<br />[💻](https://github.com/tahnik/devRantron/commits?author=tahnik "Code") [📖](https://github.com/tahnik/devRantron/commits?author=tahnik "Documentation") [📦](#platform-tahnik "Packaging/porting to new platform") [🔧](#tool-tahnik "Tools") |
+| :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 [appveyor-badge]: https://img.shields.io/appveyor/ci/tahnik/devRantron/master.svg

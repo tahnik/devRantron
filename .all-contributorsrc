@@ -20,6 +20,18 @@
         "platform",
         "tool"
       ]
+    },
+    {
+      "login": "tahnik",
+      "name": "Tahnik Mustasin",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/9964210?v=4",
+      "profile": "http://www.tahnik.com",
+      "contributions": [
+        "code",
+        "doc",
+        "platform",
+        "tool"
+      ]
     }
   ]
 }
