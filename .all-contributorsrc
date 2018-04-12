@@ -17,6 +17,7 @@
       "contributions": [
         "code",
         "doc",
+        "infra",
         "platform",
         "tool"
       ]
@@ -28,6 +29,19 @@
       "profile": "http://www.tahnik.com",
       "contributions": [
         "code",
+        "doc",
+        "platform",
+        "tool"
+      ]
+    },
+    {
+      "login": "RekkyRek",
+      "name": "Hampus Lundqvist",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/16632409?v=4",
+      "profile": "https://mobooru.me",
+      "contributions": [
+        "code",
+        "design",
         "doc",
         "platform",
         "tool"
