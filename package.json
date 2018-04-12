@@ -15,7 +15,7 @@
     "start": "cross-env NODE_ENV=development electron app/src/app.js",
     "profile": "webpack --config webpack/prod.config.js --profile --json > stats.json"
   },
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "build": {
     "productName": "devRantron",
     "appId": "com.tahnik.devrantron",
