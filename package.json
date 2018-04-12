@@ -9,7 +9,7 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "publish": "electron-builder --draft",
-    "postinstall": "install-app-deps",
+    "postinstall": "electron-builder install-app-deps",
     "dev": "concurrently -k \"npm run server\" \"npm run start\" ",
     "server": "webpack-dev-server --color --config webpack/dev.config.js",
     "start": "cross-env NODE_ENV=development electron app/src/app.js",
