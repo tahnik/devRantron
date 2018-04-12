@@ -92,6 +92,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "kovaacs",
+      "name": "Marcell Kovács",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/20384210?v=4",
+      "profile": "https://marcellkovacs.com/",
+      "contributions": [
+        "code"
+      ]
     }
   ]
 }
