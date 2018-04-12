@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  HashRouter as Router,
-} from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

@@ -5,7 +5,8 @@ import vote from '../../actions/vote';
 import { fetchNotifs } from '../../actions/notifs';
 import { logout } from '../../actions/auth';
 import { openModal, closeModal } from '../../actions/modal';
-import { saveAutoSave,
+import {
+  saveAutoSave,
   clearAutoSave, addDraft, removeDraft,
 } from '../../actions/post_rant';
 import showToast from '../../actions/toast';
