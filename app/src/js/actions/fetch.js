@@ -385,7 +385,8 @@ const fetch =
   }, 1000);
 };
 
-export { fetch as default,
+export {
+  fetch as default,
   addColumn, resetColumn, removeColumn,
   updateColumnScrollHeight,
 };

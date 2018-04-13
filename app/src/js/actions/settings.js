@@ -203,4 +203,5 @@ export {
   saveUserState,
   setFirstLaunch,
   setOnStartup,
-  setUpdateStatus };
+  setUpdateStatus,
+};
