@@ -10,19 +10,6 @@
   "commit": true,
   "contributors": [
     {
-      "login": "SirWindfield",
-      "name": "SirWindfield",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/5113257?v=4",
-      "profile": "https://github.com/SirWindfield",
-      "contributions": [
-        "code",
-        "doc",
-        "infra",
-        "platform",
-        "tool"
-      ]
-    },
-    {
       "login": "tahnik",
       "name": "Tahnik Mustasin",
       "avatar_url": "https://avatars0.githubusercontent.com/u/9964210?v=4",
@@ -43,6 +30,19 @@
         "code",
         "design",
         "doc",
+        "platform",
+        "tool"
+      ]
+    },
+    {
+      "login": "SirWindfield",
+      "name": "SirWindfield",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5113257?v=4",
+      "profile": "https://github.com/SirWindfield",
+      "contributions": [
+        "code",
+        "doc",
+        "infra",
         "platform",
         "tool"
       ]
