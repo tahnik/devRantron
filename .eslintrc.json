@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb", "prettier"],
   "env": {
     "es6": true,
     "node": true,
@@ -8,7 +8,8 @@
   "plugins": [
 		"react",
 		"jsx-a11y",
-		"import"
+    "import",
+    "prettier"
   ],
   "parserOptions": {
 		"ecmaFeatures": {

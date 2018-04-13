@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Route,
-} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Auth from '../containers/auth/auth';
 import Toast from '../containers/utilities/toast/toast';
 
