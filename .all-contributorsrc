@@ -1,0 +1,124 @@
+{
+  "projectName": "devRantron",
+  "projectOwner": "tahnik",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "tahnik",
+      "name": "Tahnik Mustasin",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/9964210?v=4",
+      "profile": "http://www.tahnik.com",
+      "contributions": [
+        "code",
+        "doc",
+        "platform",
+        "tool"
+      ]
+    },
+    {
+      "login": "RekkyRek",
+      "name": "Hampus Lundqvist",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/16632409?v=4",
+      "profile": "https://mobooru.me",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "platform",
+        "tool"
+      ]
+    },
+    {
+      "login": "SirWindfield",
+      "name": "SirWindfield",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5113257?v=4",
+      "profile": "https://github.com/SirWindfield",
+      "contributions": [
+        "code",
+        "doc",
+        "infra",
+        "platform",
+        "tool"
+      ]
+    },
+    {
+      "login": "DRSDavidSoft",
+      "name": "David Refoua",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4673812?v=4",
+      "profile": "http://www.Refoua.me",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "cozyplanes",
+      "name": "cozyplanes",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/25971070?v=4",
+      "profile": "http://cozyplanes.github.io",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "tkshnwesper",
+      "name": "Saurabh",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/7362366?v=4",
+      "profile": "http://blog.cryf.in",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Dacexi",
+      "name": "Dacexi",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6199593?v=4",
+      "profile": "https://github.com/Dacexi",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "xMarkusSpringerx",
+      "name": "Markus Springer",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2272176?v=4",
+      "profile": "https://github.com/xMarkusSpringerx",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "kovaacs",
+      "name": "Marcell Kovács",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/20384210?v=4",
+      "profile": "https://marcellkovacs.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "nblackburn",
+      "name": "Nathaniel Blackburn",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2931085?v=4",
+      "profile": "http://nblackburn.uk",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "metaa",
+      "name": "Metaa",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/5056880?v=4",
+      "profile": "https://metaa.io",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
+}
