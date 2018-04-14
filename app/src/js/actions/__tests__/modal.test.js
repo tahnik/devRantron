@@ -23,4 +23,18 @@ describe('[Action] modal', () => {
       expect(store.getActions()).toEqual([expected]);
     });
   });
+  describe('closeModal', () => {
+    it('should dispatch the proper action', () => {
+      const mockStore = createMockStore();
+      const store = mockStore({});
+
+      const expected = {
+        type: MODAL.CLOSE,
+        item: null,
+      };
+
+      store.dispatch(closeModal());
+      expect(store.getActions()).toEqual([expected]);
+    });
+  });
 });
