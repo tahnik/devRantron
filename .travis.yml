@@ -31,5 +31,7 @@ script:
 - npm run test
 - npm run build
 
+after_script: cat ./coverage/lcov.info | coveralls
+
 after_success:
 - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then npm run publish; fi
