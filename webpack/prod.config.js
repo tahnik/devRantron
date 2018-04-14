@@ -1,8 +1,6 @@
-const webpack = require('webpack');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -20,7 +18,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../build/app'),
-    chunkFilename: 'js/[name].bundle.js',
+    // chunkFilename: 'js/[name].bundle.js',
     filename: 'js/app.bundle.js',
   },
   module: {
@@ -34,48 +32,18 @@ module.exports = {
     {
       exclude: /node_modules/,
       test: /\.sass$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          options: {
-            minimize: true,
-            sourceMap: true,
-          },
-        },
-        {
-          loader: 'sass-loader',
-        },
-        ],
-      }),
+      use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
     },
     {
       exclude: /node_modules/,
       test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        use: {
-          loader: 'css-loader',
-          options: {
-            minimize: true,
-            sourceMap: true,
-          },
-        },
-      }),
+      use: [MiniCssExtractPlugin.loader, 'css-loader'],
     },
     ],
   },
   target: 'electron-renderer',
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new MinifyPlugin(),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: 'css/main.css',
       allChunks: true,
     }),
