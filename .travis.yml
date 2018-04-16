@@ -4,7 +4,7 @@ dist: trusty
 osx_image: xcode8.3
 
 language: node_js
-node_js: "8"
+node_js: "9"
 
 os:
   - linux
@@ -16,6 +16,7 @@ env:
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
 cache:
+  yarn: true
   directories:
   - node_modules
   - $HOME/.cache/electron
@@ -23,13 +24,13 @@ cache:
   - $HOME/.npm/_prebuilds
 
 install:
-- npm install
+- yarn
 
 script:
 - npm rebuild node-sass
-- npm run lint
-- npm run test
-- npm run build
+- yarn lint
+- yarn test
+- yarn build
 
 after_script: cat ./coverage/lcov.info | coveralls
 
