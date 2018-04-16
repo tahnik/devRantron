@@ -2,6 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
   context: path.join(__dirname, '../app'),
@@ -43,6 +44,7 @@ module.exports = {
   },
   target: 'electron-renderer',
   plugins: [
+    new DashboardPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/main.css',
       allChunks: true,

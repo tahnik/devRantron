@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
   context: path.join(__dirname, '../app'),
@@ -64,5 +65,6 @@ module.exports = {
         to: 'res',
       },
     ]),
+    new DashboardPlugin(),
   ],
 };
