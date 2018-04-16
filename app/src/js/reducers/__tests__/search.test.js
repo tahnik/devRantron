@@ -2,7 +2,7 @@ import defaultStates from '../../consts/default_states';
 import { SEARCH } from '../../consts/types';
 import reduce from '../search';
 
-const defaultState = [];
+const defaultState = defaultStates.search;
 
 describe('[Reducer] search', () => {
   it('should return the default state', () => {
