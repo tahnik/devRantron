@@ -23,7 +23,7 @@ cache:
   - $HOME/.npm/_prebuilds
 
 install:
-- npm i
+- npm install
 
 script:
 - npm rebuild node-sass
