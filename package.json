@@ -7,7 +7,7 @@
     "lint": "eslint --ext .jsx,.js app/src/js",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
-    "build": "cross-env NODE_ENV=production webpack --mode production --progress --color --profile --config ./webpack/prod.config.js",
+    "build": "cross-env NODE_ENV=production webpack --mode production --progress --color --config ./webpack/prod.config.js",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "lint-fix": "eslint --ext .jsx,.js app/src/js --fix",
