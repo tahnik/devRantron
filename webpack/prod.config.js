@@ -3,6 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -80,6 +81,8 @@ module.exports = {
     minimize: true,
     minimizer: [
       new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
         uglifyOptions: {
           beautify: false,
           comments: false,
@@ -88,6 +91,7 @@ module.exports = {
           toplevel: false,
         },
       }),
+      new OptimizeCSSAssetsPlugin({}),
     ],
   },
 };
