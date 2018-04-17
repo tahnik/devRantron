@@ -2,6 +2,7 @@
 [![appveyor-badge]][appveyor-url]
 [![travis-badge]][travis-url]
 [![code-climate-badge]][code-climate-url]
+[![code-coverage-badge]][code-coverage-url]
 [![commitizen-badge]][commitizen-url]
 [![github-total-downloads-badge]][github-total-downloads-url]
 [![All Contributors][all-contributors-badge]](#contributors)
@@ -91,6 +92,9 @@ Make sure that you add yourself as a contributor. Simply run `npm run contributo
 
 [code-climate-badge]: https://codeclimate.com/github/tahnik/devRantron/badges/gpa.svg
 [code-climate-url]: https://codeclimate.com/github/tahnik/devRantron
+
+[code-coverage-badge]: https://coveralls.io/repos/github/tahnik/devRantron/badge.svg?branch=master
+[code-coverage-url]: https://coveralls.io/github/tahnik/devRantron?branch=master
 
 [commitizen-badge]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
 [commitizen-url]: http://commitizen.github.io/cz-cli/

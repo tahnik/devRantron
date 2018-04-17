@@ -132,6 +132,7 @@ export default {
     prev_set: 0,
     state: STATE.INITIAL,
   },
+  search: [],
   user: {
     state: STATE.INITIAL,
     profile: null,

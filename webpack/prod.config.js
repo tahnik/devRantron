@@ -1,9 +1,12 @@
-const webpack = require('webpack');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+// const smp = new SpeedMeasurePlugin();
 
 module.exports = {
   context: path.join(__dirname, '../app'),
@@ -11,7 +14,7 @@ module.exports = {
    * There is a known problem with devtools in webpack right now.
    * Will add it back once that is fixed.
    */
-  // devtool: 'source-map',
+  // devtool: 'cheap-eval-source-map',
   entry: {
     app: [
       './src/res/sass/main.sass',
@@ -20,7 +23,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../build/app'),
-    chunkFilename: 'js/[name].bundle.js',
+    // chunkFilename: 'js/[name].bundle.js',
     filename: 'js/app.bundle.js',
   },
   module: {
@@ -34,48 +37,19 @@ module.exports = {
     {
       exclude: /node_modules/,
       test: /\.sass$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          options: {
-            minimize: true,
-            sourceMap: true,
-          },
-        },
-        {
-          loader: 'sass-loader',
-        },
-        ],
-      }),
+      use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
     },
     {
       exclude: /node_modules/,
       test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        use: {
-          loader: 'css-loader',
-          options: {
-            minimize: true,
-            sourceMap: true,
-          },
-        },
-      }),
+      use: [MiniCssExtractPlugin.loader, 'css-loader'],
     },
     ],
   },
   target: 'electron-renderer',
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new MinifyPlugin(),
-    new ExtractTextPlugin({
+    // new DashboardPlugin(),
+    new MiniCssExtractPlugin({
       filename: 'css/main.css',
       allChunks: true,
     }),
@@ -101,4 +75,19 @@ module.exports = {
       ],
     }),
   ],
+
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          beautify: false,
+          comments: false,
+          compress: true,
+          mangle: true,
+          toplevel: false,
+        },
+      }),
+    ],
+  },
 };
