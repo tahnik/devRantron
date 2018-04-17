@@ -4,6 +4,7 @@
   "main": "./build/app/app.js",
   "description": "An open source cross platform desktop application for devRant",
   "scripts": {
+    "clean": "rimraf build/app",
     "lint": "eslint --ext .jsx,.js app/src/js",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
