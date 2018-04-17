@@ -14,7 +14,7 @@
     "publish": "electron-builder --draft",
     "postinstall": "electron-builder install-app-deps",
     "dev": "cross-env NODE_ENV=development concurrently -k \"npm run server\" \"npm run start\" ",
-    "server": "webpack-dev-server --color --config webpack/dev.config.js",
+    "server": "webpack-dev-server --mode development --color --config webpack/dev.config.js",
     "start": "cross-env NODE_ENV=development electron app/src/app.js",
     "start-build": "electron build/app/app.js",
     "test": "jest --coverage",
