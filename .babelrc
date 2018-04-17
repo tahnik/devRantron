@@ -13,6 +13,8 @@
     "transform-object-rest-spread"
   ],
   "env": {
-    "production": ["react-optimize"]
+    "production": {
+      "presets": ["react-optimize"]
+    }
   }
 }
