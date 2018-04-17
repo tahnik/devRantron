@@ -3,6 +3,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+// const smp = new SpeedMeasurePlugin();
 
 module.exports = {
   context: path.join(__dirname, '../app'),
@@ -10,7 +14,7 @@ module.exports = {
    * There is a known problem with devtools in webpack right now.
    * Will add it back once that is fixed.
    */
-  // devtool: 'source-map',
+  // devtool: 'cheap-eval-source-map',
   entry: {
     app: [
       './src/res/sass/main.sass',
@@ -44,7 +48,7 @@ module.exports = {
   },
   target: 'electron-renderer',
   plugins: [
-    new DashboardPlugin(),
+    // new DashboardPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/main.css',
       allChunks: true,
@@ -71,4 +75,19 @@ module.exports = {
       ],
     }),
   ],
+
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          beautify: false,
+          comments: false,
+          compress: true,
+          mangle: true,
+          toplevel: false,
+        },
+      }),
+    ],
+  },
 };
