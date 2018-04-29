@@ -15,7 +15,7 @@ environment:
   GH_TOKEN:
     secure: lM/xGAC3kzCNNZ0iKGgriVDK1C2kQlShiW8ZKVrnKzZ4zin4A3PkJ4wuNdnWfhpM
   matrix:
-    - NODE_VERSION: 8
+    - NODE_VERSION: 9
 
 # make sure we are running on 64bit
 platform:

@@ -17,7 +17,7 @@
     "postinstall": "electron-builder install-app-deps",
     "precommit": "lint-staged",
     "profile": "webpack --config webpack/prod.config.js --profile --json > stats.json",
-    "publish": "electron-builder --draft",
+    "publish": "electron-builder --publish always",
     "server": "webpack-dev-server --mode development --color --config webpack/dev.config.js",
     "start": "cross-env NODE_ENV=development electron app/src/app.js",
     "start:build": "electron build/app/app.js",
