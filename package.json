@@ -63,8 +63,7 @@
     },
     "files": [
       "build/app"
-    ],
-    "homepage": "https://www.devrantron.com/"
+    ]
   },
   "author": {
     "name": "Tahnik Mustasin",
@@ -81,6 +80,7 @@
       "url": "https://sirwindfield.github.io"
     }
   ],
+  "homepage": "https://www.devrantron.com/",
   "keywords": [
     "Electron",
     "react"
