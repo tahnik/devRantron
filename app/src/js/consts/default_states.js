@@ -93,12 +93,12 @@ export default {
       autoLaunch: {
         text: 'Auto launch after boot',
         type: SETTINGS.TYPE.TOGGLE,
-        value: true,
+        value: false,
       },
       minimiseOnClose: {
         text: 'Minimise app on close',
         type: SETTINGS.TYPE.TOGGLE,
-        value: true,
+        value: false,
       },
       zoomLevel: {
         text: 'Zoom level',
