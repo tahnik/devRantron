@@ -51,7 +51,8 @@
     "linux": {
       "target": [
         "deb",
-        "AppImage"
+        "AppImage",
+        "snap"
       ]
     },
     "mac": {
@@ -62,7 +63,8 @@
     },
     "files": [
       "build/app"
-    ]
+    ],
+    "homepage": "https://www.devrantron.com/"
   },
   "author": {
     "name": "Tahnik Mustasin",
