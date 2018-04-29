@@ -27,9 +27,9 @@ install:
 
 script:
 - npm rebuild node-sass
-- npm lint
+- npm run lint
 - npm test
-- npm build
+- npm run build
 
 after_script: cat ./coverage/lcov.info | coveralls
 
