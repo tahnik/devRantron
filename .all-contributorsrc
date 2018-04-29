@@ -17,6 +17,8 @@
       "contributions": [
         "code",
         "doc",
+        "infra",
+        "design",
         "platform",
         "tool"
       ]
