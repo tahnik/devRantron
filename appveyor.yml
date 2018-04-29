@@ -13,7 +13,7 @@ configuration: Release
 environment:
   # the token is encrypted by appveyor. No need to hide it.
   GH_TOKEN:
-    secure: F+HS8KZxRNTuVHrgvn7qtG+NmS6LLCWoWYndsvG2Ru+zr6D6SMD5FsGAZmRCGwnQ
+    secure: lM/xGAC3kzCNNZ0iKGgriVDK1C2kQlShiW8ZKVrnKzZ4zin4A3PkJ4wuNdnWfhpM
   matrix:
     - NODE_VERSION: 8
 
