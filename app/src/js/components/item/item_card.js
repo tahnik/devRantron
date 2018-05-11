@@ -150,6 +150,9 @@ class ItemCard extends Component {
   }
   handleTagClick(term) {
     const weekly = /(#?)wk(\d{0,3})/;
+    if (this.props.modal) {
+      this.props.close();
+    }
     if (weekly.test(term)) {
       this.props.history.replace(`/weekly/${term}`);
       return;
@@ -354,6 +357,7 @@ ItemCard.propTypes = {
   addMention: PropTypes.func,
   fetchitem: PropTypes.func,
   history: PropTypes.object,
+  close: PropTypes.func
 };
 
 
