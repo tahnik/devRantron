@@ -37,6 +37,15 @@ let mainWindow;
 
 console.time('startup'); //eslint-disable-line
 
+
+/* eslint-disable */
+function isInt(value) {
+  return !isNaN(value) &&
+         parseInt(Number(value)) === value &&
+         !isNaN(parseInt(value, 10));
+}
+/* eslint-enable */
+
 function openRantComposer() {
   mainWindow.show();
   mainWindow.webContents.send('compose_rant');
@@ -54,7 +63,17 @@ function quitApp() {
 const handleRedirect = (e, link) => {
   if (url !== mainWindow.webContents.getURL()) {
     e.preventDefault();
-    shell.openExternal(link);
+    if (link.indexOf('devrant.io') !== -1 || link.indexOf('devrant.com') !== -1) {
+      const pathArray = link.split( '/' );
+      const rantid = pathArray[pathArray.length - 1];
+      if (Number.isInteger(rantid)) {
+        shell.openExternal(link);
+      } else {
+        mainWindow.webContents.send('open-rant', { rantid });
+      }
+    } else {
+      shell.openExternal(link);
+    }
   }
 };
 
