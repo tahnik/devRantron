@@ -136,7 +136,7 @@ class Item extends Component {
   getItemCard() {
     const { item } = this.state;
     const {
-      theme, vote, cardItem, auth, open, showToast,
+      theme, vote, cardItem, auth, open, showToast, close
     } = this.props;
     const type = item.rant.rt === 2 ? ITEM.COLLAB.NAME : cardItem.type;
     return (
@@ -149,8 +149,10 @@ class Item extends Component {
         itemType={type}
         auth={auth}
         open={open}
+        close={close}
         showToast={showToast}
         fetchitem={() => this.fetchitem()}
+        history={this.props.history}
         onEdit={(id, value) => this.onEdit(id, value, true)}
       />
     );
@@ -254,6 +256,7 @@ Item.propTypes = {
   open: PropTypes.func.isRequired,
   showToast: PropTypes.func.isRequired,
   fetchNotifs: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default Item;

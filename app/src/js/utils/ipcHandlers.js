@@ -35,5 +35,11 @@ export default (store) => {
       .catch(() => {
       });
   });
+
+  ipcRenderer.on('open-rant', (e, args) => {
+    store.dispatch(
+      openModal(ITEM.RANT.NAME, args.rantid)
+    );
+  })
 };
 
