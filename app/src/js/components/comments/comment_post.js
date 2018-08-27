@@ -107,7 +107,7 @@ class CommentPost extends Component {
           onPost={(text, image) => this.onPost(text, image)}
           disabled={this.state.disabled || auth.user === null}
           value={this.state.content}
-          maxChar={2000}
+          maxChar={1000}
           onChange={text => this.setState({ content: text })}
           ref={(node) => { this.smartArea = node; }}
           editing={this.state.editID !== 0}
